@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>НВО след седми клас - графично сравнение на училищата</title>
+  <meta name="description" content="НВО след седми клас - графично сравнение на училищата">
+  <meta name="author" content="Татко Нинджа">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <script src="https://cdn.plot.ly/plotly-2.2.0.min.js"></script>
+  <script src="./schools.js"></script>
+  <script src="./logic.js"></script>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8HJKYKWQX5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-8HJKYKWQX5');
+  </script>  
+</head>
+<body>
+  <div class="container">
+    <div class="row">&nbsp;</div>
+    <div class="row">
+      <h4>НВО след седми клас</h4>
+    </div>
+    <div class="row">
+      За най-добра визуализация използвайте пейзажен режим на екрана (landscape) и зареждайте данни за не повече от 3-4 училища.<br>
+      Мейл за конструктивна обратна връзка: <strong>info@nvo.bg.cm</strong><br>
+      Мейл за всякаква друга обратна връзка: <strong>pop@armenia.com</strong>
+      <hr>
+    </div>
+  </div>
+  <div id="chartm"></div>
+  <hr>
+  <div id="chartb"></div>
+  <div class="container">
+    <div class="row">
+      <hr>
+    </div>
+    <div class="row">
+      <strong>София</strong>
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="row">
+      Държавни училища
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="row">
+      <script>loadButtons(201, 220);</script>
+      <script>loadButtons(1, 200);</script>
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="row">
+      Частни училища
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="row">
+      <script>loadButtons(301, 330);</script>
+    </div>
+    <div class="row">
+      <hr>
+    </div>
+    <!-- -->
+    <div class="row">
+      <strong>Пловдив</strong>
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="row">
+      Държавни училища
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="row">
+      <script>loadButtons(351, 370);</script>
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="row">
+      Частни училища
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="row">
+      <script>loadButtons(371, 380);</script>
+    </div>
+    <div class="row">
+      <hr>
+    </div>
+    <!-- -->
+    <div class="row">
+      <strong>Варна</strong>
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="row">
+      Държавни училища
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="row">
+      <script>loadButtons(381, 400);</script>
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="row">
+      Частни училища
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="row">
+      <script>loadButtons(401, 410);</script>
+    </div>
+    <div class="row">
+      <hr>
+    </div>
+    <!-- -->
+    <div class="row">
+      <strong>Бургас</strong>
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="row">
+      Държавни училища
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="row">
+      <button>TODO...</button>
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="row">
+      Частни училища
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="row">
+      <button>TODO...</button>    
+    </div>
+    <div class="row">
+      <hr>
+    </div>
+    <!-- -->
+    <div class="row">
+      <strong>Русе</strong>
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="row">
+      Държавни училища
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="row">
+      <button>TODO...</button>
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="row">
+      Частни училища
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="row">
+      <button>TODO...</button>    
+    </div>
+    <div class="row">
+      <hr>
+    </div>
+    <!-- -->
+    <div class="row">
+      <strong>Стара Загора</strong>
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="row">
+      Държавни училища
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="row">
+      <button>TODO...</button>
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="row">
+      Частни училища
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="row">
+      <button>TODO...</button>    
+    </div>
+    <div class="row">
+      <hr>
+    </div>
+    <!-- -->
+    <div class="row">
+      <strong>Плевен</strong>
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="row">
+      Държавни училища
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="row">
+      <button>TODO...</button>
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="row">
+      Частни училища
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="row">
+      <button>TODO...</button>    
+    </div>
+    <div class="row">
+      <hr>
+    </div>
+    <!-- -->
+    <div class="row">
+      <strong>Сливен</strong>
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="row">
+      Държавни училища
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="row">
+      <button>TODO...</button>
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="row">
+      Частни училища
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="row">
+      <button>TODO...</button>    
+    </div>
+    <div class="row">
+      <hr>
+    </div>
+    <!-- -->
+    <div class="row">
+      <strong>Габрово</strong>
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="row">
+      Държавни училища
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="row">
+      <button>TODO...</button>
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="row">
+      Частни училища
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="row">
+      <button>TODO...</button>    
+    </div>
+    <div class="row">
+      <hr>
+    </div>
+    <!-- -->
+  </div>
+  <script>onLoad();</script>
+</body>
+</html>
