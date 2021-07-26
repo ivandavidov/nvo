@@ -34,12 +34,14 @@ function recalculate() {
         x: ['2017 г.', '2018 г.', '2019 г.', '2020 г.'],
         y: s[i].m,
         mode: 'lines+markers',
+        connectgaps: true,
         name: s[i].n
       };
       let traceb = {
         x: ['2017 г.', '2018 г.', '2019 г.', '2020 г.'],
         y: s[i].b,
         mode: 'lines+markers',
+        connectgaps: true,
         name: s[i].n
       };
       
@@ -63,6 +65,38 @@ function toggleButton(id) {
   replot();
 }
 
+function getLayout(title) {
+  return {
+    title: title,
+    showlegend: true,
+    legend: {
+      orientation: 'h',
+      x: 0.01,
+      y: -0.1
+    },
+    margin: {
+      l: 30,
+      r: 10,
+      t: 25,
+      b: 10
+    }, annotations: [
+      {
+        xref: 'paper',
+        yref: 'paper',
+        x: 0.5,
+        y: -0.05,
+        xanchor: 'center',
+        yanchor: 'top',
+        showarrow: false,
+        text: 'ivandavidov.github.io/nvo',
+        font: {
+          color: 'rgb(240,240,240)'
+        }
+      }
+    ]
+  }
+}
+
 function replot() {
   let opts = {
     displayModeBar: false,
@@ -71,28 +105,8 @@ function replot() {
     staticPlot: true
   }
 
-  let layoutm = {
-    title: 'НВО - Математика',
-    showlegend: true,
-    legend: {
-      orientation: 'h',
-      x: 0.01,
-      y: -0.1
-    }
-  }
-
-  let layoutb = {
-    title: 'НВО - Български език',
-    showlegend: true,
-    legend: {
-      orientation: 'h',
-      x: 0.01,
-      y: -0.1
-    }
-  }
-
-  Plotly.newPlot('chartm', tracesm, layoutm, opts);
-  Plotly.newPlot('chartb', tracesb, layoutb, opts);
+  Plotly.newPlot('chartm', tracesm, getLayout('НВО - Математика'), opts);
+  Plotly.newPlot('chartb', tracesb, getLayout('НВО - Български език'), opts);
 }
 
 function loadButtons(begin, end) {
@@ -131,7 +145,7 @@ function onLoad() {
   setButtonState(201, true);
     
   document.getElementById('btnTop').onclick = function() {
-    document.getElementById('chartm').scrollIntoView();
+    document.getElementById('hrCharts').scrollIntoView();
   }
 
   recalculate();
