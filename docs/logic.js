@@ -111,11 +111,30 @@ function loadButtons(begin, end) {
   }
 }
 
+function setChartsButton() {
+  let btnTop = document.createElement('button');
+
+  btnTop.id = 'btnTop';
+  btnTop.classList.add('button-primary');
+  btnTop.style.position = 'fixed';
+  btnTop.style.bottom = '1%';
+  btnTop.style.right = '1%';
+  btnTop.style.zIndex = '99';
+  btnTop.style.display = 'block';
+  btnTop.appendChild(document.createTextNode('↑'));
+  
+  btnTop.onclick = function() {
+    document.getElementById('chartm').scrollIntoView();
+  }
+  
+  document.body.appendChild(btnTop);
+}
+
 function onLoad() {
   for(let i = 1; i <= numSchools; i++) {
     let b = document.getElementById('b' + i);
     if(b) {
-      b.onclick = function(){toggleButton('' + i)};
+      b.onclick = function() {toggleButton('' + i)};
       
       // Fix for year 2018 (max base is 65, rebase it to 100)
       if(s[i].m[1] != null) {
@@ -134,6 +153,10 @@ function onLoad() {
 
   setButtonState(20, true);
   setButtonState(201, true);
+  
+  document.getElementsByTagName('html')[0].style.scrollBehavior = 'smooth';
+  
+  setChartsButton();
   
   recalculate();
   replot();
