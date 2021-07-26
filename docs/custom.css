@@ -1,0 +1,21 @@
+html {
+  scroll-behavior: smooth;  
+}
+
+.button-scroll {
+  position: fixed;
+  bottom: 1%;
+  right: 1%;
+  z-index: 99;
+  display: block;
+  margin-bottom: 0px;
+}
+
+.button,
+button,
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+  padding-left: 15px;
+  padding-right: 15px;
+}

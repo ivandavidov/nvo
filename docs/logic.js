@@ -111,27 +111,6 @@ function loadButtons(begin, end) {
   }
 }
 
-function setChartsButton() {
-  let btnTop = document.createElement('button');
-
-  btnTop.id = 'btnTop';
-  btnTop.classList.add('button-primary');
-  btnTop.style.position = 'fixed';
-  btnTop.style.bottom = '1%';
-  btnTop.style.right = '1%';
-  btnTop.style.zIndex = '99';
-  btnTop.style.display = 'block';
-  btnTop.style.paddingLeft = '15px';
-  btnTop.style.paddingRight = '15px';
-  btnTop.appendChild(document.createTextNode('↑'));
-  
-  btnTop.onclick = function() {
-    document.getElementById('chartm').scrollIntoView();
-  }
-  
-  document.body.appendChild(btnTop);
-}
-
 function onLoad() {
   for(let i = 1; i <= numSchools; i++) {
     let b = document.getElementById('b' + i);
@@ -148,18 +127,13 @@ function onLoad() {
     }
   }
   
-  document.getElementById('chartm').style.width = '100%';
-  document.getElementById('chartm').style.height = '100%';
-  document.getElementById('chartb').style.width = '100%';
-  document.getElementById('chartb').style.height = '100%';
-
   setButtonState(20, true);
   setButtonState(201, true);
-  
-  document.getElementsByTagName('html')[0].style.scrollBehavior = 'smooth';
-  
-  setChartsButton();
-  
+    
+  document.getElementById('btnTop').onclick = function() {
+    document.getElementById('chartm').scrollIntoView();
+  }
+
   recalculate();
   replot();
 }
