@@ -121,6 +121,8 @@ function setChartsButton() {
   btnTop.style.right = '1%';
   btnTop.style.zIndex = '99';
   btnTop.style.display = 'block';
+  btnTop.style.paddingLeft = '15px';
+  btnTop.style.paddingRight = '15px';
   btnTop.appendChild(document.createTextNode('↑'));
   
   btnTop.onclick = function() {
