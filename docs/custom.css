@@ -18,4 +18,5 @@ input[type="reset"],
 input[type="button"] {
   padding-left: 15px;
   padding-right: 15px;
+  text-transform: none;  
 }
