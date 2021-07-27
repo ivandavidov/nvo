@@ -115,6 +115,7 @@ function generateSchoolButtons(div, slices) {
       let b = document.createElement('button');
       b.id = 'b' + j;
       b.textContent = s[j].l;
+      b.onclick = function() {toggleButton('' + j)};
       div.appendChild(b);
       div.appendChild(document.createTextNode('\u00A0'));
     }
@@ -186,7 +187,23 @@ function generateCitySection(name, hrName, btName, btPos, puSchools, prSchools) 
   generateSchoolButtons(prDiv, prSchools);
 }
 
+function fix2018() {
+  for(let i = 1; i <= numSchools; i++) {
+    if(!s[i]) {
+      continue;
+    }
+    if(s[i].b[1] != null) {
+      s[i].b[1] = s[i].b[1] * 100 / 65;
+    }
+    if(s[i].m[1] != null) {
+      s[i].m[1] = s[i].m[1] * 100 / 65;
+    }
+  }
+}
+
 function onLoad() {
+  fix2018();
+
   generateCitySection('София', 'sofia', 'София', 1, [[201, 210], [1, 200]], [[211, 250]]);
   generateCitySection('Пловдив', 'plovdiv', 'Пловдив', 1, [[251, 280]], [[281, 290]]);
   generateCitySection('Варна', 'varna', 'Варна', 1, [[291, 320]], [[321, 330]]);
@@ -198,24 +215,9 @@ function onLoad() {
   generateCitySection('Сливен', 'sliven', 'Сливен', 2, [[421, 435]], null);
   generateCitySection('Стара Загора', 'stara-zagora', 'Ст. Загора', 2, [[381, 390]], [[396, 400]]);
 
-  for(let i = 1; i <= numSchools; i++) {
-    let b = document.getElementById('b' + i);
-    if(b) {
-      b.onclick = function() {toggleButton('' + i)};
-      
-      // Fix for year 2018 (max base is 65, rebase it to 100)
-      if(s[i].b[1] != null) {
-        s[i].b[1] = s[i].b[1] * 100 / 65;
-      }
-      if(s[i].m[1] != null) {
-        s[i].m[1] = s[i].m[1] * 100 / 65;
-      }
-    }
-  }
-    
   setButtonState(20, true);
   setButtonState(201, true);
-    
+
   document.getElementById('btnTop').onclick = function() {
     document.getElementById('hrCharts').scrollIntoView();
   }
