@@ -1,4 +1,6 @@
 let numSchools = 800;
+let tracesm = [];
+let tracesb = [];
 
 function button(id) {
   return document.getElementById('b' + id);
@@ -20,8 +22,15 @@ function setButtonState(id, state) {
   }
 }
 
-let tracesm = [];
-let tracesb = [];
+function getTrace(tName, tValues) {
+  return {
+    x: ['2017 г.', '2018 г.', '2019 г.', '2020 г.'],
+    y: tValues,
+    mode: 'lines+markers',
+    connectgaps: true,
+    name: tName
+  }
+}
 
 function recalculate() {
   tracesm = [];
@@ -30,23 +39,11 @@ function recalculate() {
   for(let i = 1; i <= numSchools; i++) {
     let b = document.getElementById('b' + i);
     if(buttonEnabled(i)) {
-      let tracem = {
-        x: ['2017 г.', '2018 г.', '2019 г.', '2020 г.'],
-        y: s[i].m,
-        mode: 'lines+markers',
-        connectgaps: true,
-        name: s[i].n
-      };
-      let traceb = {
-        x: ['2017 г.', '2018 г.', '2019 г.', '2020 г.'],
-        y: s[i].b,
-        mode: 'lines+markers',
-        connectgaps: true,
-        name: s[i].n
-      };
+      let traceb = getTrace(s[i].n, s[i].b);
+      let tracem = getTrace(s[i].n, s[i].m);
       
-      tracesm.push(tracem);
       tracesb.push(traceb);
+      tracesm.push(tracem);
     }
   }
 }
@@ -109,38 +106,113 @@ function replot() {
   Plotly.newPlot('chartb', tracesb, getLayout('НВО - Български език'), opts);
 }
 
-function loadButtons(begin, end) {
-  let scripts = document.getElementsByTagName('script');
-  let div = scripts[scripts.length - 1].parentNode;
-  for(let i = begin; i <= end; i++) {
-    school = s[i];
-    if(!school) {
-      continue;
+function generateSchoolButtons(div, slices) {
+  for(let i = 0; i < slices.length; i++) {
+    for(let j = slices[i][0]; j <= slices[i][1]; j++) {
+      if(!s[j]) {
+        continue;
+      }
+      let b = document.createElement('button');
+      b.id = 'b' + j;
+      b.textContent = s[j].l;
+      div.appendChild(b);
+      div.appendChild(document.createTextNode('\u00A0'));
     }
-    let button = document.createElement('button');
-    button.id = 'b' + i;
-    button.appendChild(document.createTextNode(s[i].l));
-    div.appendChild(button);
-    div.appendChild(document.createTextNode(' '));
   }
 }
 
+function generateRow(el) {
+  let div = document.createElement('div');
+  div.classList.add('row');
+  el.appendChild(div);
+  return div;
+}
+
+function generateRowWithHr(el, hrId) {
+  let div = document.createElement('div');
+  div.classList.add('row');
+  let hr = document.createElement('hr');
+  hr.id = hrId;
+  div.appendChild(hr);
+  el.appendChild(div);
+}
+
+function generateRowWithStrong(el, txt) {
+  let div = document.createElement('div');
+  div.classList.add('row');
+  let strong = document.createElement('strong');
+  strong.textContent = txt;
+  div.appendChild(strong);
+  el.appendChild(div);
+}
+
+function generateRowWithText(el, txt) {
+  let div = document.createElement('div');
+  div.classList.add('row');
+  div.appendChild(document.createTextNode(txt));
+  el.appendChild(div);
+}
+
+function generateCityMenu(pos, name, href) {
+  let a = document.createElement('a');
+  a.classList.add('button');
+  a.href = '#' + href;
+  a.textContent = name;
+  let g = document.getElementById('g' + pos);
+  g.appendChild(a);
+  g.appendChild(document.createTextNode('\u00A0'));
+}
+
+function generateCitySection(name, hrName, btName, btPos, puSchools, prSchools) {
+  generateCityMenu(btPos, btName, hrName);
+
+  let schoolsDiv = document.getElementById('schools');
+  generateRowWithHr(schoolsDiv, hrName);
+  generateRowWithStrong(schoolsDiv, name);
+  generateRowWithText(schoolsDiv, '\u00A0');
+  generateRowWithText(schoolsDiv, 'Държавни училища');
+  generateRowWithText(schoolsDiv, '\u00A0');
+  let puDiv = generateRow(schoolsDiv);
+  generateSchoolButtons(puDiv, puSchools);
+
+  if(!prSchools) {
+    return;
+  }
+
+  generateRowWithText(schoolsDiv, '\u00A0');
+  generateRowWithText(schoolsDiv, 'Частни училища');
+  generateRowWithText(schoolsDiv, '\u00A0');
+  let prDiv = generateRow(schoolsDiv);
+  generateSchoolButtons(prDiv, prSchools);
+}
+
 function onLoad() {
+  generateCitySection('София', 'sofia', 'София', 1, [[201, 210], [1, 200]], [[211, 250]]);
+  generateCitySection('Пловдив', 'plovdiv', 'Пловдив', 1, [[251, 280]], [[281, 290]]);
+  generateCitySection('Варна', 'varna', 'Варна', 1, [[291, 320]], [[321, 330]]);
+  generateCitySection('Бургас', 'burgas', 'Бургас', 1, [[331, 350]], [[351, 360]]);
+
+  generateCitySection('Добрич', 'dobrich', 'Добрич', 2, [[441, 455]], [[456, 460]]);
+  generateCitySection('Плевен', 'pleven', 'Плевен', 2, [[401, 420]], null);
+  generateCitySection('Русе', 'ruse', 'Русе', 2, [[361, 370]], [[376, 380]]);
+  generateCitySection('Сливен', 'sliven', 'Сливен', 2, [[421, 435]], null);
+  generateCitySection('Стара Загора', 'stara-zagora', 'Ст. Загора', 2, [[381, 390]], [[396, 400]]);
+
   for(let i = 1; i <= numSchools; i++) {
     let b = document.getElementById('b' + i);
     if(b) {
       b.onclick = function() {toggleButton('' + i)};
       
       // Fix for year 2018 (max base is 65, rebase it to 100)
-      if(s[i].m[1] != null) {
-        s[i].m[1] = s[i].m[1] * 100 / 65;
-      }
       if(s[i].b[1] != null) {
         s[i].b[1] = s[i].b[1] * 100 / 65;
       }
+      if(s[i].m[1] != null) {
+        s[i].m[1] = s[i].m[1] * 100 / 65;
+      }
     }
   }
-  
+    
   setButtonState(20, true);
   setButtonState(201, true);
     
