@@ -1,6 +1,7 @@
 let numSchools = 800;
 let tracesm = [];
 let tracesb = [];
+let colors = ['#3366CC','#DC3912','#FF9900','#109618','#990099','#3B3EAC','#0099C6','#DD4477','#66AA00','#B82E2E','#316395','#994499','#22AA99','#AAAA11','#6633CC','#E67300','#8B0707','#329262','#5574A6','#3B3EAC'];
 
 function button(id) {
   return document.getElementById('b' + id);
@@ -22,13 +23,16 @@ function setButtonState(id, state) {
   }
 }
 
-function getTrace(tName, tValues) {
+function getTrace(tName, tValues, tColor) {
   return {
     x: ['2017 г.', '2018 г.', '2019 г.', '2020 г.'],
     y: tValues,
     mode: 'lines+markers',
     connectgaps: true,
-    name: tName
+    name: tName,
+    line: {
+      color: tColor ? tColor : null
+    }
   }
 }
 
@@ -36,11 +40,14 @@ function recalculate() {
   tracesm = [];
   tracesb = [];
   
+  let counter = 0;
+  let maxCount = colors.length;
+  
   for(let i = 1; i <= numSchools; i++) {
     let b = document.getElementById('b' + i);
     if(buttonEnabled(i)) {
-      let traceb = getTrace(s[i].n, s[i].b);
-      let tracem = getTrace(s[i].n, s[i].m);
+      let traceb = getTrace(s[i].n, s[i].b, s[i].c);
+      let tracem = getTrace(s[i].n, s[i].m, s[i].c);
       
       tracesb.push(traceb);
       tracesm.push(tracem);
@@ -187,7 +194,7 @@ function generateCitySection(name, hrName, btName, btPos, puSchools, prSchools) 
   generateSchoolButtons(prDiv, prSchools);
 }
 
-function fix2018() {
+function fixForYear2018() {
   for(let i = 1; i <= numSchools; i++) {
     if(!s[i]) {
       continue;
@@ -201,27 +208,48 @@ function fix2018() {
   }
 }
 
-function onLoad() {
-  fix2018();
+function useFixedColors() {
+  let counter = 0;
+  for(let i = 1; i <= numSchools; i++) {
+    if(!s[i]) {
+      continue;
+    }
+    s[i].c = colors[++counter % colors.length];
+  }
+}
 
+function setDefaultClickedButtons() {
+  setButtonState(20, true);
+  setButtonState(201, true);
+}
+
+function enableScrollButton() {
+  let btnTop = document.getElementById('btnTop');
+  btnTop.style.display = 'block';
+  btnTop.onclick = function() {
+    document.getElementById('hrCharts').scrollIntoView();
+  }
+}
+
+function generateCitySections() {
   generateCitySection('София', 'sofia', 'София', 1, [[201, 210], [1, 200]], [[211, 250]]);
   generateCitySection('Пловдив', 'plovdiv', 'Пловдив', 1, [[251, 280]], [[281, 290]]);
   generateCitySection('Варна', 'varna', 'Варна', 1, [[291, 320]], [[321, 330]]);
   generateCitySection('Бургас', 'burgas', 'Бургас', 1, [[331, 350]], [[351, 360]]);
-
   generateCitySection('Добрич', 'dobrich', 'Добрич', 2, [[441, 455]], [[456, 460]]);
   generateCitySection('Плевен', 'pleven', 'Плевен', 2, [[401, 420]], null);
   generateCitySection('Русе', 'ruse', 'Русе', 2, [[361, 370]], [[376, 380]]);
   generateCitySection('Сливен', 'sliven', 'Сливен', 2, [[421, 435]], null);
   generateCitySection('Стара Загора', 'stara-zagora', 'Ст. Загора', 2, [[381, 390]], [[396, 400]]);
+  generateCitySection('Шумен', 'shumen', 'Шумен', 2, [[461, 470]], null);
+}
 
-  setButtonState(20, true);
-  setButtonState(201, true);
-
-  document.getElementById('btnTop').onclick = function() {
-    document.getElementById('hrCharts').scrollIntoView();
-  }
-
+function onLoad() {
+  fixForYear2018();
+  //useFixedColors(); // User experience is poor due to the dynamic nature of the charts.
+  generateCitySections();
+  enableScrollButton();
+  setDefaultClickedButtons();
   recalculate();
   replot();
 }
