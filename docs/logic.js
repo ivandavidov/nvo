@@ -1,17 +1,11 @@
-let numSchools = 800;
-let tracesm = [];
-let tracesb = [];
-let colors = ['#3366CC','#DC3912','#FF9900','#109618','#990099','#3B3EAC','#0099C6','#DD4477','#66AA00','#B82E2E','#316395','#994499','#22AA99','#AAAA11','#6633CC','#E67300','#8B0707','#329262','#5574A6','#3B3EAC'];
-
 function button(id) {
   return document.getElementById('b' + id);
 }
 
 function buttonEnabled(id) {
-  if(document.getElementById('b' + id)) {
+  if(button(id)) {
     return button(id).classList.contains('button-primary');
   }
-
   return false;
 }
 
@@ -31,28 +25,21 @@ function getTrace(tName, tValues, tColor) {
     connectgaps: true,
     name: tName,
     line: {
-      color: tColor ? tColor : null
+      color: tColor
     }
   }
 }
 
 function recalculate() {
-  tracesm = [];
-  tracesb = [];
-  
-  let counter = 0;
-  let maxCount = colors.length;
-  
-  for(let i = 1; i <= numSchools; i++) {
-    let b = document.getElementById('b' + i);
+  let tracesb = [];
+  let tracesm = [];
+  s.forEach(function(o, i) {
     if(buttonEnabled(i)) {
-      let traceb = getTrace(s[i].n, s[i].b, s[i].c);
-      let tracem = getTrace(s[i].n, s[i].m, s[i].c);
-      
-      tracesb.push(traceb);
-      tracesm.push(tracem);
+      tracesb.push(getTrace(o.n, o.b, o.c));
+      tracesm.push(getTrace(o.n, o.m, o.c));
     }
-  }
+  });
+  return {b: tracesb, m: tracesm};
 }
 
 function toggleButton(id) {
@@ -64,9 +51,8 @@ function toggleButton(id) {
   } else {
     setButtonState(id, true);        
   }
-  
-  recalculate();
-  replot();
+  let traces = recalculate();
+  replot(traces.b, traces.m);
 }
 
 function getLayout(title) {
@@ -94,23 +80,22 @@ function getLayout(title) {
         showarrow: false,
         text: 'ivandavidov.github.io/nvo',
         font: {
-          color: 'rgb(240,240,240)'
+          color: '#fdfdfd'
         }
       }
     ]
   }
 }
 
-function replot() {
+function replot(tracesb, tracesm) {
   let opts = {
     displayModeBar: false,
     displaylogo: false,
     responsive: true,
     staticPlot: true
   }
-
-  Plotly.newPlot('chartm', tracesm, getLayout('НВО - Математика'), opts);
   Plotly.newPlot('chartb', tracesb, getLayout('НВО - Български език'), opts);
+  Plotly.newPlot('chartm', tracesm, getLayout('НВО - Математика'), opts);
 }
 
 function generateSchoolButtons(div, slices) {
@@ -173,7 +158,6 @@ function generateCityMenu(pos, name, href) {
 
 function generateCitySection(name, hrName, btName, btPos, puSchools, prSchools) {
   generateCityMenu(btPos, btName, hrName);
-
   let schoolsDiv = document.getElementById('schools');
   generateRowWithHr(schoolsDiv, hrName);
   generateRowWithStrong(schoolsDiv, name);
@@ -182,11 +166,9 @@ function generateCitySection(name, hrName, btName, btPos, puSchools, prSchools) 
   generateRowWithText(schoolsDiv, '\u00A0');
   let puDiv = generateRow(schoolsDiv);
   generateSchoolButtons(puDiv, puSchools);
-
   if(!prSchools) {
     return;
   }
-
   generateRowWithText(schoolsDiv, '\u00A0');
   generateRowWithText(schoolsDiv, 'Частни училища');
   generateRowWithText(schoolsDiv, '\u00A0');
@@ -195,27 +177,22 @@ function generateCitySection(name, hrName, btName, btPos, puSchools, prSchools) 
 }
 
 function fixForYear2018() {
-  for(let i = 1; i <= numSchools; i++) {
-    if(!s[i]) {
-      continue;
+  s.forEach(function(o) {
+    if(o.b[1] != null) {
+      o.b[1] = o.b[1] * 100 / 65;
     }
-    if(s[i].b[1] != null) {
-      s[i].b[1] = s[i].b[1] * 100 / 65;
+    if(o.m[1] != null) {
+      o.m[1] = o.m[1] * 100 / 65;
     }
-    if(s[i].m[1] != null) {
-      s[i].m[1] = s[i].m[1] * 100 / 65;
-    }
-  }
+  });  
 }
 
-function useFixedColors() {
+function useFixedColors(use) {
+  let colors = ['#3366CC', '#DC3912', '#FF9900', '#109618', '#990099', '#3B3EAC', '#0099C6', '#DD4477', '#66AA00', '#B82E2E', '#316395', '#994499', '#22AA99', '#AAAA11', '#6633CC', '#E67300', '#8B0707', '#329262', '#5574A6', '#3B3EAC'];
   let counter = 0;
-  for(let i = 1; i <= numSchools; i++) {
-    if(!s[i]) {
-      continue;
-    }
-    s[i].c = colors[++counter % colors.length];
-  }
+  s.forEach(function(o) {
+    o.c = colors[++counter % colors.length];    
+  });
 }
 
 function setDefaultClickedButtons() {
@@ -236,20 +213,37 @@ function generateCitySections() {
   generateCitySection('Пловдив', 'plovdiv', 'Пловдив', 1, [[251, 280]], [[281, 290]]);
   generateCitySection('Варна', 'varna', 'Варна', 1, [[291, 320]], [[321, 330]]);
   generateCitySection('Бургас', 'burgas', 'Бургас', 1, [[331, 350]], [[351, 360]]);
+  generateCitySection('Благоевград', 'blagoevgrad', 'Благоевград', 2, [[511, 520]], null);
+  generateCitySection('В. Търново', 'veliko-turnovo', 'В. Търново', 2, [[521, 530]], null);
+  generateCitySection('Видин', 'vidin', 'Видин', 2, [[551, 560]], null);
+  generateCitySection('Враца', 'vratsa', 'Враца', 2, [[531, 540]], null);
+  generateCitySection('Габрово', 'gabrovo', 'Габрово', 2, [[541, 550]], null);
   generateCitySection('Добрич', 'dobrich', 'Добрич', 2, [[441, 455]], [[456, 460]]);
+  generateCitySection('Кърджали', 'kurdzhali', 'Кърджали', 2, [[581, 590]], null);
+  generateCitySection('Кюстендил', 'kiustendil', 'Кюстендил', 2, [[571, 580]], null);
+  generateCitySection('Ловеч', 'lovech', 'Ловеч', 2, [[601, 610]], null);
+  generateCitySection('Монтана', 'montana', 'Монтана', 2, [[561, 570]], null);
+  generateCitySection('Пазарджик', 'pazardzhik', 'Пазарджик', 2, [[501, 510 ]], null);
+  generateCitySection('Перник', 'pernik', 'Перник', 2, [[471, 480]], null);
   generateCitySection('Плевен', 'pleven', 'Плевен', 2, [[401, 420]], null);
+  generateCitySection('Разград', 'razgrad', 'Разград', 2, [[621, 630]], null);
   generateCitySection('Русе', 'ruse', 'Русе', 2, [[361, 370]], [[376, 380]]);
+  generateCitySection('Силистра', 'silistra', 'Силистра', 2, [[611, 620]], null);
   generateCitySection('Сливен', 'sliven', 'Сливен', 2, [[421, 435]], null);
+  generateCitySection('Смолян', 'smolian', 'Смолян', 2, [[631, 640]], null);
   generateCitySection('Стара Загора', 'stara-zagora', 'Ст. Загора', 2, [[381, 390]], [[396, 400]]);
+  generateCitySection('Търговище', 'turgovishte', 'Търговище', 2, [[591, 600]], null);
+  generateCitySection('Хасково', 'haskovo', 'Хасково', 2, [[481, 490]], null);
   generateCitySection('Шумен', 'shumen', 'Шумен', 2, [[461, 470]], null);
+  generateCitySection('Ямбол', 'iambol', 'Ямбол', 2, [[491, 500]], null);
 }
 
 function onLoad() {
   fixForYear2018();
-  //useFixedColors(); // User experience is poor due to the dynamic nature of the charts.
+  //useFixedColors(); // Използваемостта е под въпрс, защото графиките се променят динамично.
   generateCitySections();
   enableScrollButton();
   setDefaultClickedButtons();
-  recalculate();
-  replot();
+  let traces = recalculate();
+  replot(traces.b, traces.m);
 }
