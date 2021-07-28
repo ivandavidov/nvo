@@ -214,7 +214,7 @@ function generateCitySections() {
   generateCitySection('Варна', 'varna', 'Варна', 1, [[291, 320]], [[321, 330]]);
   generateCitySection('Бургас', 'burgas', 'Бургас', 1, [[331, 350]], [[351, 360]]);
   generateCitySection('Благоевград', 'blagoevgrad', 'Благоевград', 2, [[511, 520]], null);
-  generateCitySection('В. Търново', 'veliko-turnovo', 'В. Търново', 2, [[521, 530]], null);
+  generateCitySection('Велико Търново', 'veliko-turnovo', 'В. Търново', 2, [[521, 530]], null);
   generateCitySection('Видин', 'vidin', 'Видин', 2, [[551, 560]], null);
   generateCitySection('Враца', 'vratsa', 'Враца', 2, [[531, 540]], null);
   generateCitySection('Габрово', 'gabrovo', 'Габрово', 2, [[541, 550]], null);
