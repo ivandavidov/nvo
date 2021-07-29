@@ -59,6 +59,12 @@ function getLayout(title) {
   return {
     title: title,
     showlegend: true,
+    xaxis: {
+      fixedrange: true
+    },
+    yaxis: {
+      fixedrange: true
+    },
     legend: {
       orientation: 'h',
       x: 0.01,
@@ -92,7 +98,7 @@ function replot(tracesb, tracesm) {
     displayModeBar: false,
     displaylogo: false,
     responsive: true,
-    staticPlot: true
+    staticPlot: false
   }
   Plotly.newPlot('chartb', tracesb, getLayout('НВО - Български език'), opts);
   Plotly.newPlot('chartm', tracesm, getLayout('НВО - Математика'), opts);
