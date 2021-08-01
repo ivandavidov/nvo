@@ -97,7 +97,7 @@ function replot(tracesb, tracesm) {
     displayModeBar: false,
     displaylogo: false,
     responsive: true,
-    staticPlot: false
+    staticPlot: true
   }
   Plotly.newPlot('chartb', tracesb, getLayout('НВО - Български език'), opts);
   Plotly.newPlot('chartm', tracesm, getLayout('НВО - Математика'), opts);
