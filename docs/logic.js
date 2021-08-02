@@ -17,29 +17,34 @@ function setButtonState(id, state) {
   }
 }
 
-function getTrace(tName, tValues, tColor) {
+function getTrace(traceName, traceValues, traceColor) {
+  let firstYear = 2017;
+  let allYears = [];
+  for(let i = 0; i < s[1].b.length; i++) {
+    allYears.push((firstYear + i) + ' г.');
+  }
   return {
-    x: ['2017 г.', '2018 г.', '2019 г.', '2020 г.'],
-    y: tValues,
+    x: allYears,
+    y: traceValues,
     mode: 'lines+markers',
     connectgaps: true,
-    name: tName,
+    name: traceName,
     line: {
-      color: tColor
+      color: traceColor
     }
   }
 }
 
 function recalculate() {
-  let tracesb = [];
-  let tracesm = [];
+  let tracesBel = [];
+  let tracesMat = [];
   s.forEach((o, i) => {
     if(buttonEnabled(i)) {
-      tracesb.push(getTrace(o.n, o.b, o.c));
-      tracesm.push(getTrace(o.n, o.m, o.c));
+      tracesBel.push(getTrace(o.n, o.b, o.c));
+      tracesMat.push(getTrace(o.n, o.m, o.c));
     }
   });
-  return {b: tracesb, m: tracesm};
+  return {b: tracesBel, m: tracesMat};
 }
 
 function toggleButton(id) {
@@ -92,15 +97,15 @@ function getLayout(title) {
   }
 }
 
-function replot(tracesb, tracesm) {
+function replot(tracesBel, tracesMat) {
   let opts = {
     displayModeBar: false,
     displaylogo: false,
     responsive: true,
     staticPlot: true
   }
-  Plotly.newPlot('chartb', tracesb, getLayout('НВО - Български език'), opts);
-  Plotly.newPlot('chartm', tracesm, getLayout('НВО - Математика'), opts);
+  Plotly.newPlot('chartb', tracesBel, getLayout('НВО - Български език'), opts);
+  Plotly.newPlot('chartm', tracesMat, getLayout('НВО - Математика'), opts);
 }
 
 function redraw() {
@@ -234,7 +239,7 @@ function calculateMedians() {
   s.forEach((o) => {
     let mb = 0;
     let mm = 0;
-    let divider = 4;
+    let divider = o.b.length;
     for(let i = 0; i < 4; i++) {
       if(!o.b[i] || !o.m[i]) {
         --divider;
