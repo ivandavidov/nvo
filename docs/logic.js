@@ -140,23 +140,25 @@ function generateSchoolButtons(div, slices, topCount) {
     }
   }
   let topBtnClicked = () => {
-    if(topBtn.classList.contains('button-primary')) {
-      schools.forEach((o) => setButtonState(o, false));
-      topBtn.classList.remove('button-primary');
-    } else {
-      schools.forEach((o) => (setButtonState(o, false)));
-      let sortFunc = (i1, i2) => (s[i1].mb + s[i1].mm) / 2 < (s[i2].mb + s[i2].mm) / 2 ? 1 : -1;
-      schools.sort(sortFunc);
+    let sortFunc = (i1, i2) => (s[i1].mb + s[i1].mm) / 2 < (s[i2].mb + s[i2].mm) / 2 ? 1 : -1;
+    let setTopSchoolButtons = (state) => {
       for(let i = 0; i < topCount; i++) {
         if(!schools[i]) {
           continue;
         }
-        setButtonState(schools[i], true);
+        setButtonState(schools[i], state);
       }
+    }
+    schools.sort(sortFunc);
+    if(topBtn.classList.contains('button-primary')) {
+    setTopSchoolButtons(false);
+      topBtn.classList.remove('button-primary');
+    } else {
+      setTopSchoolButtons(true);
       topBtn.classList.add('button-primary');    
     }
     redraw();
-  };
+  }
   if(topCount && topCount > 0) {
     topBtn.onclick = () => topBtnClicked();
   }
@@ -261,6 +263,7 @@ function useFixedColors(use) {
 
 function setDefaultClickedButtons() {
   setButtonState(20, true);
+  setButtonState(25, true);
   setButtonState(201, true);
 }
 
