@@ -275,7 +275,7 @@ function enableScrollButton() {
 
 function generateCitySections() {
   generateCitySection('София', 'sofia', 'София', 1, [[201, 210], [1, 200]], [[211, 250]], 10, 10);
-  generateCitySection('Пловдив', 'plovdiv', 'Пловдив', 1, [[251, 280]], [[281, 290]], 5, 0);
+  generateCitySection('Пловдив', 'plovdiv', 'Пловдив', 1, [[251, 280]], [[281, 290]], 10, 0);
   generateCitySection('Варна', 'varna', 'Варна', 1, [[291, 320]], [[321, 330]], 5, 0);
   generateCitySection('Бургас', 'burgas', 'Бургас', 1, [[331, 350]], [[351, 360]], 5, 0);
   generateCitySection('Благоевград', 'blagoevgrad', 'Благоевград', 2, [[511, 520]], null, 5, 0);
