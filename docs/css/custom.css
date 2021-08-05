@@ -1,5 +1,9 @@
 html {
-  scroll-behavior: smooth;  
+  scroll-behavior: smooth;
+}
+
+.container {
+  max-width: 1020px;
 }
 
 .button-scroll {
@@ -16,7 +20,7 @@ button,
 input[type="submit"],
 input[type="reset"],
 input[type="button"] {
-  padding-left: 15px;
-  padding-right: 15px;
-  text-transform: none;  
+  padding-left: 12px;
+  padding-right: 12px;
+  text-transform: none;
 }

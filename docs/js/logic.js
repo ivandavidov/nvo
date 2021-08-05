@@ -79,21 +79,7 @@ function getLayout(title) {
       r: 10,
       t: 25,
       b: 10
-    }, annotations: [
-      {
-        xref: 'paper',
-        yref: 'paper',
-        x: 0.5,
-        y: -0.05,
-        xanchor: 'center',
-        yanchor: 'top',
-        showarrow: false,
-        text: 'ivandavidov.github.io/nvo',
-        font: {
-          color: '#fdfdfd'
-        }
-      }
-    ]
+    }
   }
 }
 
@@ -263,7 +249,6 @@ function useFixedColors() {
 
 function setDefaultClickedButtons() {
   setButtonState(20, true);
-  setButtonState(25, true);
   setButtonState(201, true);
 }
 
