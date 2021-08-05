@@ -107,7 +107,6 @@ function generateSchoolButtons(div, slices, topCount) {
     topBtn = document.createElement('button');
     topBtn.textContent = 'Топ ' + topCount;
     div.appendChild(topBtn);
-    div.appendChild(document.createTextNode('\u00A0'));
   }
   for(let i = 0; i < slices.length; i++) {
     for(let j = slices[i][0]; j <= slices[i][1]; j++) {
@@ -122,7 +121,6 @@ function generateSchoolButtons(div, slices, topCount) {
       b.textContent = s[j].l;
       b.onclick = function() {toggleButton('' + j)};
       div.appendChild(b);
-      div.appendChild(document.createTextNode('\u00A0'));
     }
   }
   let topBtnClicked = () => {
@@ -189,7 +187,6 @@ function generateCityMenu(pos, name, href) {
   a.textContent = name;
   let g = document.getElementById('g' + pos);
   g.appendChild(a);
-  g.appendChild(document.createTextNode('\u00A0'));
 }
 
 function generateCitySection(name, hrName, btName, btPos, puSchools, prSchools, topPuCount, topPrCount) {

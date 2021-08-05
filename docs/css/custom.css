@@ -22,5 +22,6 @@ input[type="reset"],
 input[type="button"] {
   padding-left: 12px;
   padding-right: 12px;
+  margin-left: 5px;
   text-transform: none;
 }
