@@ -228,10 +228,10 @@ function generateCitySection(name, hrName, btName, btPos, puSchools, prSchools, 
 
 function fixForYear2018() {
   s.forEach((o) => {
-    if(o.b[1] != null) {
+    if(o.b[1] !== null) {
       o.b[1] = Math.floor(o.b[1] * 10000 / 65 + Number.EPSILON) / 100;
     }
-    if(o.m[1] != null) {
+    if(o.m[1] !== null) {
       o.m[1] = Math.floor(o.m[1] * 10000 / 65 + Number.EPSILON) / 100;
     }
   });  
