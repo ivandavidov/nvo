@@ -22,6 +22,14 @@ input[type="reset"],
 input[type="button"] {
   padding-left: 12px;
   padding-right: 12px;
-  margin-left: 5px;
+  margin-right: 5px;
   text-transform: none;
+}
+
+.button:last-child,
+button:last-child,
+input[type="submit"]:last-child,
+input[type="reset"]:last-child,
+input[type="button"]:last-child {
+  margin-right: 0px;
 }
