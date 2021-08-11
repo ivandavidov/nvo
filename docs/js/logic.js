@@ -218,7 +218,7 @@ function calculateMedians() {
     let mb = 0;
     let mm = 0;
     let divider = o.b.length;
-    for(let i = 0; i < 4; i++) {
+    for(let i = 0; i < o.b.length; i++) {
       if(!o.b[i] || !o.m[i]) {
         --divider;
         continue;
