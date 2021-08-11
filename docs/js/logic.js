@@ -47,12 +47,17 @@ function toggleButton(id) {
 }
 
 function getLayout(title, series) {
+  let categories = [];
+  let first = 2017;
+  for(let i = 0; i < s[1].b.length; i++) {
+    categories.push((first + i) + '');
+  }
   return {
     title: {
       text: title
     },
     xAxis: {
-      categories: ['2017', '2018', '2019', '2020']
+      categories: categories
     },
     yAxis: {
       title: {
