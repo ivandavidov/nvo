@@ -83,6 +83,18 @@ function getLayout(title, series) {
     tooltip: {
       animation: false
     },
+    exporting: {
+      enabled: true,
+      sourceWidth: 960,
+      sourceHeight: 540,
+      scale: 2,
+      filename: 'nvo-chart',
+      buttons: {
+        contextButton: {
+          menuItems: ['printChart', 'separator', 'downloadPNG', 'downloadJPEG', 'downloadPDF', 'downloadSVG']
+        }
+      }
+    },
     series: series
   }
 }
@@ -274,12 +286,31 @@ function generateCitySections() {
   generateCitySection('Ямбол', 'iambol', 'Ямбол', 2, [[491, 500]], null, 5, 0);
 }
 
+function initializeHighcharts() {
+  window.onresize = redraw;
+  Highcharts.setOptions({
+    lang: {
+      downloadPNG: 'Свали като PNG',
+      downloadJPEG: 'Свали като JPG',
+      downloadPDF: 'Свали като PDF',
+      downloadSVG: 'Свали като SVG',
+      downloadCSV: 'Свали данните (CSV)',
+      downloadXLS: 'Свали данните (XLS)',
+      viewData: 'Покажи данните',
+      viewFullscreen: 'Цял екран',
+      hideData: 'Скрий данните',
+      printChart: 'Отпечатай',
+      contextButtonTitle: null
+    }
+  });
+}
+
 function onLoad() {
   fixForYear2018();
   calculateMedians();
   generateCitySections();
   enableScrollButton();
   setDefaultClickedButtons();
-  window.onresize = redraw;
+  initializeHighcharts();
   redraw();
 }
