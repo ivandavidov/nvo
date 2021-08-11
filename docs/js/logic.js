@@ -70,7 +70,7 @@ function getLayout(title, series) {
     },
     chart: {
       animation: false,
-      height: Math.max(Math.floor(Math.min(window.innerWidth, window.innerHeight) * 85 / 100), 440)
+      height: Math.max(Math.floor(Math.min(window.innerWidth, window.innerHeight) * 85 / 100), 500)
     },
     plotOptions: {
       series: {
