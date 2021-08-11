@@ -17,31 +17,13 @@ function setButtonState(id, state) {
   }
 }
 
-function getTrace(traceName, traceValues, traceColor) {
-  let firstYear = 2017;
-  let allYears = [];
-  for(let i = 0; i < s[1].b.length; i++) {
-    allYears.push((firstYear + i) + ' г.');
-  }
-  return {
-    x: allYears,
-    y: traceValues,
-    mode: 'lines+markers',
-    connectgaps: true,
-    name: traceName,
-    line: {
-      color: traceColor
-    }
-  }
-}
-
 function recalculate() {
   let tracesBel = [];
   let tracesMat = [];
   s.forEach((o, i) => {
     if(buttonEnabled(i)) {
-      tracesBel.push(getTrace(o.n, o.b, o.c));
-      tracesMat.push(getTrace(o.n, o.m, o.c));
+      tracesBel.push({name: o.n, data: o.b});
+      tracesMat.push({name: o.n, data: o.m});
     }
   });
   return {b: tracesBel, m: tracesMat};
@@ -59,44 +41,45 @@ function toggleButton(id) {
   redraw();
 }
 
-function getLayout(title) {
+function getLayout(title, series) {
   return {
-    title: title,
-    showlegend: true,
-    xaxis: {
-      fixedrange: true
+    title: {
+      text: title
     },
-    yaxis: {
-      fixedrange: true
+    xAxis: {
+      categories: ['2017', '2018', '2019', '2020']
+    },
+    yAxis: {
+      title: {
+        text: null
+      }
     },
     legend: {
-      orientation: 'h',
-      x: 0.01,
-      y: -0.1
+      layout: 'horizontal',
+      align: 'left'
     },
-    margin: {
-      l: 30,
-      r: 10,
-      t: 25,
-      b: 10
-    }
+    chart: {
+      animation: false
+    },
+    plotOptions: {
+      series: {
+        animation:false
+      }
+    },
+    credits: {
+      enabled: false
+    },
+    tooltip: {
+      animation: false
+    },
+    series: series
   }
-}
-
-function replot(tracesBel, tracesMat) {
-  let opts = {
-    displayModeBar: false,
-    displaylogo: false,
-    responsive: true,
-    staticPlot: true
-  }
-  Plotly.newPlot('chartb', tracesBel, getLayout('НВО - Български език'), opts);
-  Plotly.newPlot('chartm', tracesMat, getLayout('НВО - Математика'), opts);
 }
 
 function redraw() {
   let traces = recalculate();
-  replot(traces.b, traces.m);
+  Highcharts.chart(chartb, getLayout('НВО - Български език', traces.b));
+  Highcharts.chart(chartm, getLayout('НВО - Математика', traces.m));
 }
 
 function generateSchoolButtons(div, slices, topCount) {
