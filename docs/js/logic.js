@@ -69,7 +69,8 @@ function getLayout(title, series) {
       align: 'left'
     },
     chart: {
-      animation: false
+      animation: false,
+      height: Math.max(Math.floor(Math.min(window.innerWidth, window.innerHeight) * 85 / 100), 440)
     },
     plotOptions: {
       series: {
@@ -217,24 +218,19 @@ function calculateMedians() {
   s.forEach((o) => {
     let mb = 0;
     let mm = 0;
-    let divider = o.b.length;
-    for(let i = 0; i < o.b.length; i++) {
-      if(!o.b[i] || !o.m[i]) {
+    let numYears = 3;
+    let divider = numYears;
+    for(let i = 1; i <= numYears; i++) {
+      if(!o.b[o.b.length - i] || !o.m[o.m.length - i]) {
         --divider;
         continue;
       }
-      mb += o.b[i];
-      mm += o.m[i];
+      mb += o.b[o.b.length - i];
+      mm += o.m[o.m.length - i];
     }
-    o.mb = mb / divider;
-    o.mm = mm / divider;
+    o.mb = divider > 0 ? mb / divider : 0;
+    o.mm = divider > 0 ? mm / divider : 0;
   });
-}
-
-function useFixedColors() {
-  let colors = ['#3366CC', '#DC3912', '#FF9900', '#109618', '#990099', '#3B3EAC', '#0099C6', '#DD4477', '#66AA00', '#B82E2E', '#316395', '#994499', '#22AA99', '#AAAA11', '#6633CC', '#E67300', '#8B0707', '#329262', '#5574A6', '#3B3EAC'];
-  let counter = 0;
-  s.forEach((o) => {o.c = colors[++counter % colors.length];});
 }
 
 function setDefaultClickedButtons() {
@@ -281,9 +277,9 @@ function generateCitySections() {
 function onLoad() {
   fixForYear2018();
   calculateMedians();
-  //useFixedColors(); // Използваемостта е под въпрс, защото графиките се променят динамично.
   generateCitySections();
   enableScrollButton();
   setDefaultClickedButtons();
+  window.onresize = redraw;
   redraw();
 }
