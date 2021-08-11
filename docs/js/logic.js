@@ -20,12 +20,17 @@ function setButtonState(id, state) {
 function recalculate() {
   let tracesBel = [];
   let tracesMat = [];
+  let noSchool = {name: 'Изберете поне едно училище', data: [50, 50, 50, 50]};
   s.forEach((o, i) => {
     if(buttonEnabled(i)) {
       tracesBel.push({name: o.n, data: o.b});
       tracesMat.push({name: o.n, data: o.m});
     }
   });
+  if(tracesBel.length === 0 || tracesMat.length === 0) {
+    tracesBel.push(noSchool);
+    tracesMat.push(noSchool);
+  }
   return {b: tracesBel, m: tracesMat};
 }
 
