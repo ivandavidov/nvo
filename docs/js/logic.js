@@ -77,7 +77,7 @@ function getLayout(title, series) {
       }
     },
     credits: {
-      enabled: false
+      enabled: true
     },
     tooltip: {
       animation: false
