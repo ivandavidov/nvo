@@ -20,7 +20,7 @@ function setButtonState(id, state) {
 function recalculate() {
   let tracesBel = [];
   let tracesMat = [];
-  let noSchool = {name: 'Изберете поне едно училище', data: [50, 50, 50, 50]};
+  let noSchool = {name: 'Изберете поне едно училище', data: [50, 50, 50, 50, 50]};
   s.forEach((o, i) => {
     if(buttonEnabled(i)) {
       tracesBel.push({name: o.n, data: o.b});
@@ -46,11 +46,43 @@ function toggleButton(id) {
   redraw();
 }
 
+function normalizeSeries(series) {
+  while(true) {
+    let exitFlag = false;
+    for(let i = 0; i < series.length; i++) {
+      if(series[i].data[0]) {
+        exitFlag = true;
+        break;
+      }
+    }
+    if(exitFlag) {
+      break;
+    }
+    for(let i = 0; i < series.length; i++) {
+      series[i].data = series[i].data.slice(1);
+    }
+  }
+  let counter = 0;
+  while(true) {
+    for(let i = 0; i < series.length; i++) {
+      if(series[i].data[series[i].data.length - 1]) {
+        return counter;
+      }
+    }
+    for(let i = 0; i < series.length; i++) {
+      series[i].data = series[i].data.slice(0, series[i].data.length - 1);
+    }
+    ++counter;
+  }
+  return counter;
+}
+
 function getLayout(title, series) {
+  let removedYears = normalizeSeries(series);
+  let lastYear = 2021 - removedYears;
   let categories = [];
-  let first = 2017;
-  for(let i = 0; i < s[1].b.length; i++) {
-    categories.push((first + i) + '');
+  for(let i = 0; i < series[0].data.length; i++) {
+    categories.push(lastYear - (series[0].data.length - i - 1) + '');
   }
   return {
     title: {
@@ -226,6 +258,17 @@ function fixForYear2018() {
   });  
 }
 
+function fixForYear2021() {
+  s.forEach((o) => {
+    if(o.b.length === 4) {
+      o.b.push(null);
+    }
+    if(o.m.length === 4) {
+      o.m.push(null);
+    }
+  });
+}
+
 function calculateMedians() {
   s.forEach((o) => {
     let mb = 0;
@@ -307,6 +350,7 @@ function initializeHighcharts() {
 
 function onLoad() {
   fixForYear2018();
+  fixForYear2021();
   calculateMedians();
   generateCitySections();
   enableScrollButton();
