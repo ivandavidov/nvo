@@ -303,7 +303,7 @@ function generateCitySections() {
   generateCitySection('София', 'sofia', 'София', 1, [[201, 210], [1, 200]], [[211, 250]], 10, 10);
   generateCitySection('Пловдив', 'plovdiv', 'Пловдив', 1, [[251, 285]], [[286, 290]], 10, 0);
   generateCitySection('Варна', 'varna', 'Варна', 1, [[291, 320]], [[321, 330]], 10, 0);
-  generateCitySection('Бургас', 'burgas', 'Бургас', 1, [[331, 350]], [[351, 360]], 5, 0);
+  generateCitySection('Бургас', 'burgas', 'Бургас', 1, [[331, 350]], [[351, 360]], 10, 0);
   generateCitySection('Благоевград', 'blagoevgrad', 'Благоевград', 2, [[511, 520]], null, 5, 0);
   generateCitySection('Велико Търново', 'veliko-turnovo', 'В. Търново', 2, [[521, 530]], null, 5, 0);
   generateCitySection('Видин', 'vidin', 'Видин', 2, [[551, 560]], null, 5, 0);
@@ -318,7 +318,7 @@ function generateCitySections() {
   generateCitySection('Перник', 'pernik', 'Перник', 2, [[471, 480]], null, 5, 0);
   generateCitySection('Плевен', 'pleven', 'Плевен', 2, [[401, 420]], null, 5, 0);
   generateCitySection('Разград', 'razgrad', 'Разград', 2, [[621, 630]], null, 5, 0);
-  generateCitySection('Русе', 'ruse', 'Русе', 2, [[361, 370]], [[376, 380]], 5, 0);
+  generateCitySection('Русе', 'ruse', 'Русе', 2, [[361, 378]], [[379, 380]], 10, 0);
   generateCitySection('Силистра', 'silistra', 'Силистра', 2, [[611, 620]], null, 5, 0);
   generateCitySection('Сливен', 'sliven', 'Сливен', 2, [[421, 435]], null, 5, 0);
   generateCitySection('Смолян', 'smolian', 'Смолян', 2, [[631, 640]], null, 5, 0);
