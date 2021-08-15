@@ -79,7 +79,7 @@ function normalizeSeries(series) {
 
 function getLayout(title, series) {
   let removedYears = normalizeSeries(series);
-  let lastYear = 2021 - removedYears;
+  let lastYear = 2016 + s[201].b.length - removedYears;
   let categories = [];
   for(let i = 0; i < series[0].data.length; i++) {
     categories.push(lastYear - (series[0].data.length - i - 1) + '');
