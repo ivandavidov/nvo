@@ -193,10 +193,10 @@ function generateDownloadForCity(city, schools, type) {
       if(!s[i]) {
         continue;
       }
-      let row = city + ';' + s[i].n + ';' + type
+      let row = city + ',' + s[i].n + ',' + type
       for(let j = 2017; j < 2017 + s[201].b.length; j++) {
-        row += ';' + (s[i].b[j - 2017] ? s[i].b[j - 2017] : '');
-        row += ';' + (s[i].m[j - 2017] ? s[i].m[j - 2017] : '');
+        row += ',' + (s[i].b[j - 2017] ? s[i].b[j - 2017] : '');
+        row += ',' + (s[i].m[j - 2017] ? s[i].m[j - 2017] : '');
       }
       data += row + '\r\n';
     }
@@ -247,9 +247,9 @@ function generateCityMenu(pos, name, href) {
 }
 
 function generateDownloadCSVLink(el, name, data) {
-  let header = 'Град;Училище;Тип';
+  let header = 'Град,Училище,Тип';
   for(let j = 2017; j < 2017 + s[201].b.length; j++) {
-    header += ';' + j + ' - БЕЛ;' + j + ' - МАТ';
+    header += ',' + j + ' - БЕЛ,' + j + ' - МАТ';
   }
   header += '\r\n';
   let a = document.createElement('a');
@@ -368,9 +368,9 @@ function generateCitySections() {
   data += generateCitySection('Хасково', 'haskovo', 'Хасково', 2, [[481, 490]], null, 5, 0);
   data += generateCitySection('Шумен', 'shumen', 'Шумен', 2, [[461, 470]], null, 5, 0);
   data += generateCitySection('Ямбол', 'iambol', 'Ямбол', 2, [[491, 500]], null, 5, 0);
-  let header = 'Град;Училище;Тип';
+  let header = 'Град,Училище,Тип';
   for(let j = 2017; j < 2017 + s[201].b.length; j++) {
-    header += ';' + j + ' - БЕЛ;' + j + ' - МАТ';
+    header += ',' + j + ' - БЕЛ,' + j + ' - МАТ';
   }
   header += '\r\n';  
   let a = document.getElementById('csvAll');
