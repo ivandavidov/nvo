@@ -186,6 +186,24 @@ function generateSchoolButtons(div, slices, topCount) {
   }
 }
 
+function generateDownloadForCity(city, schools, type) {
+  let data = '';
+  schools.forEach((range) => {
+    for(let i = range[0]; i <= range[1]; i++) {
+      if(!s[i]) {
+        continue;
+      }
+      let row = city + ';' + s[i].n + ';' + type
+      for(let j = 2017; j < 2017 + s[201].b.length; j++) {
+        row += ';' + (s[i].b[j - 2017] ? s[i].b[j - 2017] : '');
+        row += ';' + (s[i].m[j - 2017] ? s[i].m[j - 2017] : '');
+      }
+      data += row + '\r\n';
+    }
+  });
+  return data;
+}
+
 function generateRow(el) {
   let div = document.createElement('div');
   div.classList.add('row');
@@ -209,6 +227,7 @@ function generateRowWithStrong(el, txt) {
   strong.textContent = txt;
   div.appendChild(strong);
   el.appendChild(div);
+  return div;
 }
 
 function generateRowWithText(el, txt) {
@@ -227,24 +246,46 @@ function generateCityMenu(pos, name, href) {
   g.appendChild(a);
 }
 
+function generateDownloadCSVLink(el, name, data) {
+  let header = 'Град;Училище;Тип';
+  for(let j = 2017; j < 2017 + s[201].b.length; j++) {
+    header += ';' + j + ' - БЕЛ;' + j + ' - МАТ';
+  }
+  header += '\r\n';
+  let a = document.createElement('a');
+  a.appendChild(document.createTextNode('CSV'));
+  a.setAttribute('download', 'nvo-data-' + name +'.csv');
+  a.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(header + data));
+  el.appendChild(document.createTextNode(' - '));
+  el.appendChild(a);
+}
+
 function generateCitySection(name, hrName, btName, btPos, puSchools, prSchools, topPuCount, topPrCount) {
   generateCityMenu(btPos, btName, hrName);
-  let schoolsDiv = document.getElementById('schools');
-  generateRowWithHr(schoolsDiv, hrName);
-  generateRowWithStrong(schoolsDiv, name);
-  generateRowWithText(schoolsDiv, '\u00A0');
-  generateRowWithText(schoolsDiv, 'Държавни училища');
-  generateRowWithText(schoolsDiv, '\u00A0');
-  let puDiv = generateRow(schoolsDiv);
+  let schoolsDivFragment = new DocumentFragment();
+  generateRowWithHr(schoolsDivFragment, hrName);
+  let cityDiv = generateRowWithStrong(schoolsDivFragment, name);
+  generateRowWithText(schoolsDivFragment, '\u00A0');
+  generateRowWithText(schoolsDivFragment, 'Държавни училища');
+  generateRowWithText(schoolsDivFragment, '\u00A0');
+  let puDiv = generateRow(schoolsDivFragment);
   generateSchoolButtons(puDiv, puSchools, topPuCount);
+  let data = generateDownloadForCity(name, puSchools, 'Д');
+  let schoolsDiv = document.getElementById('schools');
   if(!prSchools) {
-    return;
+    generateDownloadCSVLink(cityDiv, hrName, data);
+    schoolsDiv.appendChild(schoolsDivFragment);
+    return data;
   }
-  generateRowWithText(schoolsDiv, '\u00A0');
-  generateRowWithText(schoolsDiv, 'Частни училища');
-  generateRowWithText(schoolsDiv, '\u00A0');
-  let prDiv = generateRow(schoolsDiv);
+  generateRowWithText(schoolsDivFragment, '\u00A0');
+  generateRowWithText(schoolsDivFragment, 'Частни училища');
+  generateRowWithText(schoolsDivFragment, '\u00A0');
+  let prDiv = generateRow(schoolsDivFragment);
   generateSchoolButtons(prDiv, prSchools, topPrCount);
+  data += generateDownloadForCity(name, prSchools, 'Ч');  
+  generateDownloadCSVLink(cityDiv, hrName, data);
+  schoolsDiv.appendChild(schoolsDivFragment);
+  return data;
 }
 
 function fixForYear2018() {
@@ -300,33 +341,41 @@ function enableScrollButton() {
 }
 
 function generateCitySections() {
-  generateCitySection('София', 'sofia', 'София', 1, [[201, 210], [1, 200]], [[211, 250]], 10, 10);
-  generateCitySection('Пловдив', 'plovdiv', 'Пловдив', 1, [[251, 285]], [[286, 290]], 10, 0);
-  generateCitySection('Варна', 'varna', 'Варна', 1, [[291, 320]], [[321, 330]], 10, 0);
-  generateCitySection('Бургас', 'burgas', 'Бургас', 1, [[331, 350]], [[351, 360]], 10, 0);
-  generateCitySection('Благоевград', 'blagoevgrad', 'Благоевград', 2, [[511, 520]], null, 5, 0);
-  generateCitySection('Велико Търново', 'veliko-turnovo', 'В. Търново', 2, [[521, 530]], null, 5, 0);
-  generateCitySection('Видин', 'vidin', 'Видин', 2, [[551, 560]], null, 5, 0);
-  generateCitySection('Враца', 'vratsa', 'Враца', 2, [[531, 540]], null, 5, 0);
-  generateCitySection('Габрово', 'gabrovo', 'Габрово', 2, [[541, 550]], null, 5, 0);
-  generateCitySection('Добрич', 'dobrich', 'Добрич', 2, [[441, 455]], [[456, 460]], 5, 0);
-  generateCitySection('Кърджали', 'kurdzhali', 'Кърджали', 2, [[581, 590]], null, 5, 0);
-  generateCitySection('Кюстендил', 'kiustendil', 'Кюстендил', 2, [[571, 580]], null, 5, 0);
-  generateCitySection('Ловеч', 'lovech', 'Ловеч', 2, [[601, 610]], null, 5, 0);
-  generateCitySection('Монтана', 'montana', 'Монтана', 2, [[561, 570]], null, 5, 0);
-  generateCitySection('Пазарджик', 'pazardzhik', 'Пазарджик', 2, [[501, 510 ]], null, 5, 0);
-  generateCitySection('Перник', 'pernik', 'Перник', 2, [[471, 480]], null, 5, 0);
-  generateCitySection('Плевен', 'pleven', 'Плевен', 2, [[401, 420]], null, 10, 0);
-  generateCitySection('Разград', 'razgrad', 'Разград', 2, [[621, 630]], null, 5, 0);
-  generateCitySection('Русе', 'ruse', 'Русе', 2, [[361, 378]], [[379, 380]], 10, 0);
-  generateCitySection('Силистра', 'silistra', 'Силистра', 2, [[611, 620]], null, 5, 0);
-  generateCitySection('Сливен', 'sliven', 'Сливен', 2, [[421, 435]], null, 5, 0);
-  generateCitySection('Смолян', 'smolian', 'Смолян', 2, [[631, 640]], null, 5, 0);
-  generateCitySection('Стара Загора', 'stara-zagora', 'Ст. Загора', 2, [[381, 395]], [[396, 400]], 10, 0);
-  generateCitySection('Търговище', 'turgovishte', 'Търговище', 2, [[591, 600]], null, 5, 0);
-  generateCitySection('Хасково', 'haskovo', 'Хасково', 2, [[481, 490]], null, 5, 0);
-  generateCitySection('Шумен', 'shumen', 'Шумен', 2, [[461, 470]], null, 5, 0);
-  generateCitySection('Ямбол', 'iambol', 'Ямбол', 2, [[491, 500]], null, 5, 0);
+  let data = generateCitySection('София', 'sofia', 'София', 1, [[201, 210], [1, 200]], [[211, 250]], 10, 10);
+  data += generateCitySection('Пловдив', 'plovdiv', 'Пловдив', 1, [[251, 285]], [[286, 290]], 10, 0);
+  data += generateCitySection('Варна', 'varna', 'Варна', 1, [[291, 320]], [[321, 330]], 10, 0);
+  data += generateCitySection('Бургас', 'burgas', 'Бургас', 1, [[331, 350]], [[351, 360]], 10, 0);
+  data += generateCitySection('Благоевград', 'blagoevgrad', 'Благоевград', 2, [[511, 520]], null, 5, 0);
+  data += generateCitySection('Велико Търново', 'veliko-turnovo', 'В. Търново', 2, [[521, 530]], null, 5, 0);
+  data += generateCitySection('Видин', 'vidin', 'Видин', 2, [[551, 560]], null, 5, 0);
+  data += generateCitySection('Враца', 'vratsa', 'Враца', 2, [[531, 540]], null, 5, 0);
+  data += generateCitySection('Габрово', 'gabrovo', 'Габрово', 2, [[541, 550]], null, 5, 0);
+  data += generateCitySection('Добрич', 'dobrich', 'Добрич', 2, [[441, 455]], [[456, 460]], 5, 0);
+  data += generateCitySection('Кърджали', 'kurdzhali', 'Кърджали', 2, [[581, 590]], null, 5, 0);
+  data += generateCitySection('Кюстендил', 'kiustendil', 'Кюстендил', 2, [[571, 580]], null, 5, 0);
+  data += generateCitySection('Ловеч', 'lovech', 'Ловеч', 2, [[601, 610]], null, 5, 0);
+  data += generateCitySection('Монтана', 'montana', 'Монтана', 2, [[561, 570]], null, 5, 0);
+  data += generateCitySection('Пазарджик', 'pazardzhik', 'Пазарджик', 2, [[501, 510 ]], null, 5, 0);
+  data += generateCitySection('Перник', 'pernik', 'Перник', 2, [[471, 480]], null, 5, 0);
+  data += generateCitySection('Плевен', 'pleven', 'Плевен', 2, [[401, 420]], null, 10, 0);
+  data += generateCitySection('Разград', 'razgrad', 'Разград', 2, [[621, 630]], null, 5, 0);
+  data += generateCitySection('Русе', 'ruse', 'Русе', 2, [[361, 378]], [[379, 380]], 10, 0);
+  data += generateCitySection('Силистра', 'silistra', 'Силистра', 2, [[611, 620]], null, 5, 0);
+  data += generateCitySection('Сливен', 'sliven', 'Сливен', 2, [[421, 435]], null, 5, 0);
+  data += generateCitySection('Смолян', 'smolian', 'Смолян', 2, [[631, 640]], null, 5, 0);
+  data += generateCitySection('Стара Загора', 'stara-zagora', 'Ст. Загора', 2, [[381, 395]], [[396, 400]], 10, 0);
+  data += generateCitySection('Търговище', 'turgovishte', 'Търговище', 2, [[591, 600]], null, 5, 0);
+  data += generateCitySection('Хасково', 'haskovo', 'Хасково', 2, [[481, 490]], null, 5, 0);
+  data += generateCitySection('Шумен', 'shumen', 'Шумен', 2, [[461, 470]], null, 5, 0);
+  data += generateCitySection('Ямбол', 'iambol', 'Ямбол', 2, [[491, 500]], null, 5, 0);
+  let header = 'Град;Училище;Тип';
+  for(let j = 2017; j < 2017 + s[201].b.length; j++) {
+    header += ';' + j + ' - БЕЛ;' + j + ' - МАТ';
+  }
+  header += '\r\n';  
+  let a = document.getElementById('csvAll');
+  a.setAttribute('download', 'nvo-data-all.csv');
+  a.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(header + data));  
 }
 
 function initializeHighcharts() {
