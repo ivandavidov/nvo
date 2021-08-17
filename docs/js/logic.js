@@ -267,7 +267,7 @@ function generateHTMLTable(el, hrName, puSchools, prSchools) {
   table.appendChild(tHead);
   let headTr = document.createElement('tr');
   tHead.appendChild(headTr);
-  let headers = ['Училище', 'Тип'];
+  let headers = ['№', 'Училище', 'Тип'];
   for(let i = 0; i < 3; i++) {
     headers.push((16 + s[201].b.length - i) + ' Б');
     headers.push((16 + s[201].b.length - i) + ' М');
@@ -300,10 +300,14 @@ function generateHTMLTable(el, hrName, puSchools, prSchools) {
   }
   let sortFunc = (o1, o2) => (s[o1.i].mb + s[o1.i].mm) / 2 < (s[o2.i].mb + s[o2.i].mm) / 2 ? 1 : -1;
   schools.sort(sortFunc);
+  let counter = 0;
   schools.forEach((o) => {
     let tr = document.createElement('tr');
     tBody.appendChild(tr);
     let td = document.createElement('td');
+    td.appendChild(document.createTextNode(++counter));
+    tr.appendChild(td);
+    td = document.createElement('td');
     td.appendChild(document.createTextNode(s[o.i].l));
     tr.appendChild(td);
     td = document.createElement('td');
@@ -329,18 +333,22 @@ function generateDownloadCSVLink(el, name, data) {
   el.appendChild(span);
   let header = generateDownloadCSVHeader();
   let a = document.createElement('a');
+  a.style.cursor = 'pointer';
   a.appendChild(document.createTextNode('Таблица'));
-  a.onclick = () => {
+  a.onclick = (e) => {
     tableDiv = document.getElementById('t' + name);
     if(tableDiv.style.display === 'none') {
       tableDiv.style.display = 'block';
+      e.currentTarget.innerText = 'Затвори'
     } else {
       tableDiv.style.display = 'none';
+      e.currentTarget.innerText = 'Таблица'
     }
   }
   span.appendChild(a);
   span.appendChild(document.createTextNode(' | '));
   a = document.createElement('a');
+  a.style.cursor = 'pointer';
   a.appendChild(document.createTextNode('CSV'));
   a.setAttribute('download', 'nvo-data-' + name +'.csv');
   a.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(header + data));
