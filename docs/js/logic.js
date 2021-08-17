@@ -271,19 +271,16 @@ function generateCitySection(name, hrName, btName, btPos, puSchools, prSchools, 
   let puDiv = generateRow(schoolsDivFragment);
   generateSchoolButtons(puDiv, puSchools, topPuCount);
   let data = generateDownloadForCity(name, puSchools, 'Д');
-  let schoolsDiv = document.getElementById('schools');
-  if(!prSchools) {
-    generateDownloadCSVLink(cityDiv, hrName, data);
-    schoolsDiv.appendChild(schoolsDivFragment);
-    return data;
+  if(prSchools) {
+    generateRowWithText(schoolsDivFragment, '\u00A0');
+    generateRowWithText(schoolsDivFragment, 'Частни училища');
+    generateRowWithText(schoolsDivFragment, '\u00A0');
+    let prDiv = generateRow(schoolsDivFragment);
+    generateSchoolButtons(prDiv, prSchools, topPrCount);
+    data += generateDownloadForCity(name, prSchools, 'Ч');
   }
-  generateRowWithText(schoolsDivFragment, '\u00A0');
-  generateRowWithText(schoolsDivFragment, 'Частни училища');
-  generateRowWithText(schoolsDivFragment, '\u00A0');
-  let prDiv = generateRow(schoolsDivFragment);
-  generateSchoolButtons(prDiv, prSchools, topPrCount);
-  data += generateDownloadForCity(name, prSchools, 'Ч');  
   generateDownloadCSVLink(cityDiv, hrName, data);
+  let schoolsDiv = document.getElementById('schools');
   schoolsDiv.appendChild(schoolsDivFragment);
   return data;
 }
