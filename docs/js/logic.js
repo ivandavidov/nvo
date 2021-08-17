@@ -140,6 +140,7 @@ function redraw() {
 function generateSchoolButtons(div, slices, topCount) {
   let schools = null;
   let topBtn = null;
+  let sortFunc = (i1, i2) => (s[i1].mb + s[i1].mm) / 2 < (s[i2].mb + s[i2].mm) / 2 ? 1 : -1;  
   if(topCount && topCount > 0) {
     schools = [];
     topBtn = document.createElement('button');
@@ -162,7 +163,6 @@ function generateSchoolButtons(div, slices, topCount) {
     }
   }
   let topBtnClicked = () => {
-    let sortFunc = (i1, i2) => (s[i1].mb + s[i1].mm) / 2 < (s[i2].mb + s[i2].mm) / 2 ? 1 : -1;
     let setTopSchoolButtons = (state) => {
       for(let i = 0; i < topCount; i++) {
         if(!schools[i]) {
@@ -246,18 +246,105 @@ function generateCityMenu(pos, name, href) {
   g.appendChild(a);
 }
 
-function generateDownloadCSVLink(el, name, data) {
+function generateDownloadCSVHeader() {
   let header = 'Град,Училище,Тип';
   for(let j = 2017; j < 2017 + s[201].b.length; j++) {
-    header += ',' + j + ' - БЕЛ,' + j + ' - МАТ';
+    header += ',БЕЛ ' + (j -2000) + ',МАТ ' + (j -2000);
   }
   header += '\r\n';
+  return header;
+}
+
+function generateHTMLTable(el, hrName, puSchools, prSchools) {
+  let div = document.createElement('div');
+  generateRowWithText(div, '\u00A0');
+  div.classList.add('row');
+  div.id = 't' + hrName;
+  div.style.display = 'none';
+  let table = document.createElement('table');
+  //table.classList.add('u-full-width');
+  let tHead = document.createElement('thead');
+  table.appendChild(tHead);
+  let headTr = document.createElement('tr');
+  tHead.appendChild(headTr);
+  let headers = ['Училище', 'Тип'];
+  for(let i = 0; i < 3; i++) {
+    headers.push((16 + s[201].b.length - i) + ' Б');
+    headers.push((16 + s[201].b.length - i) + ' М');
+  }
+  headers.forEach((header) => {
+    let th = document.createElement('th');
+    th.appendChild(document.createTextNode(header));
+    headTr.appendChild(th);
+  });
+  let tBody = document.createElement('tbody');
+  table.appendChild(tBody);
+  let schools = [];
+  puSchools.forEach((slice) => {
+    for(let i = slice[0]; i <= slice[1]; i++) {
+      if(!s[i]) {
+        continue;
+      }
+      schools.push({i: i, t: 'Д'});
+    }
+  });
+  if(prSchools) {
+    prSchools.forEach((slice) => {
+      for(let i = slice[0]; i <= slice[1]; i++) {
+        if(!s[i]) {
+          continue;
+        }
+        schools.push({i: i, t: 'Ч'});
+      }
+    });
+  }
+  let sortFunc = (o1, o2) => (s[o1.i].mb + s[o1.i].mm) / 2 < (s[o2.i].mb + s[o2.i].mm) / 2 ? 1 : -1;
+  schools.sort(sortFunc);
+  schools.forEach((o) => {
+    let tr = document.createElement('tr');
+    tBody.appendChild(tr);
+    let td = document.createElement('td');
+    td.appendChild(document.createTextNode(s[o.i].l));
+    tr.appendChild(td);
+    td = document.createElement('td');
+    td.appendChild(document.createTextNode(o.t));
+    tr.appendChild(td);
+    let totalYears = s[o.i].b.length;
+    for(let j = 0; j < 3; j++) {
+      td = document.createElement('td');
+      td.appendChild(document.createTextNode(s[o.i].b[totalYears - j - 1] ? s[o.i].b[totalYears - j - 1] : 0));
+      tr.appendChild(td);
+      td = document.createElement('td');
+      td.appendChild(document.createTextNode(s[o.i].m[totalYears - j - 1] ? s[o.i].m[totalYears - j - 1] : 0));
+      tr.appendChild(td);
+    }
+  });
+  div.appendChild(table);
+  el.appendChild(div);
+}
+
+function generateDownloadCSVLink(el, name, data) {
+  span = document.createElement('span');
+  span.classList.add('u-pull-right');
+  el.appendChild(span);
+  let header = generateDownloadCSVHeader();
   let a = document.createElement('a');
+  a.appendChild(document.createTextNode('Таблица'));
+  a.onclick = () => {
+    tableDiv = document.getElementById('t' + name);
+    if(tableDiv.style.display === 'none') {
+      tableDiv.style.display = 'block';
+    } else {
+      tableDiv.style.display = 'none';
+    }
+  }
+  span.appendChild(a);
+  span.appendChild(document.createTextNode(' | '));
+  a = document.createElement('a');
   a.appendChild(document.createTextNode('CSV'));
   a.setAttribute('download', 'nvo-data-' + name +'.csv');
   a.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(header + data));
-  el.appendChild(document.createTextNode(' - '));
-  el.appendChild(a);
+  span.appendChild(a);    
 }
 
 function generateCitySection(name, hrName, btName, btPos, puSchools, prSchools, topPuCount, topPrCount) {
@@ -265,6 +352,7 @@ function generateCitySection(name, hrName, btName, btPos, puSchools, prSchools, 
   let schoolsDivFragment = new DocumentFragment();
   generateRowWithHr(schoolsDivFragment, hrName);
   let cityDiv = generateRowWithStrong(schoolsDivFragment, name);
+  generateHTMLTable(schoolsDivFragment, hrName, puSchools, prSchools);
   generateRowWithText(schoolsDivFragment, '\u00A0');
   generateRowWithText(schoolsDivFragment, 'Държавни училища');
   generateRowWithText(schoolsDivFragment, '\u00A0');
@@ -365,11 +453,7 @@ function generateCitySections() {
   data += generateCitySection('Хасково', 'haskovo', 'Хасково', 2, [[481, 490]], null, 5, 0);
   data += generateCitySection('Шумен', 'shumen', 'Шумен', 2, [[461, 470]], null, 5, 0);
   data += generateCitySection('Ямбол', 'iambol', 'Ямбол', 2, [[491, 500]], null, 5, 0);
-  let header = 'Град,Училище,Тип';
-  for(let j = 2017; j < 2017 + s[201].b.length; j++) {
-    header += ',' + j + ' - БЕЛ,' + j + ' - МАТ';
-  }
-  header += '\r\n';  
+  let header = generateDownloadCSVHeader();
   let a = document.getElementById('csvAll');
   a.setAttribute('download', 'nvo-data-all.csv');
   a.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(header + data));  
