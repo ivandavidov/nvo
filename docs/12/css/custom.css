@@ -1,0 +1,51 @@
+html {
+  scroll-behavior: smooth;
+}
+
+.container {
+  max-width: 1020px;
+}
+
+.button-scroll {
+  position: fixed;
+  bottom: 2%;
+  right: 2%;
+  z-index: 99;
+  display: none;
+  margin-bottom: 0px;
+}
+
+.button,
+button,
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+  padding-left: 12px;
+  padding-right: 12px;
+  margin-right: 5px;
+  text-transform: none;
+}
+
+.button:last-child,
+button:last-child,
+input[type="submit"]:last-child,
+input[type="reset"]:last-child,
+input[type="button"]:last-child {
+  margin-right: 0px;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:active {
+  text-decoration: none;
+}
