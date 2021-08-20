@@ -448,7 +448,7 @@ function generateCitySections() {
   data += generateCitySection('Видин', 'vidin', 'Видин', 2, [[441, 448]], null, 3, 0);
   data += generateCitySection('Враца', 'vratsa', 'Враца', 2, [[421, 432]], null, 5, 0);
   data += generateCitySection('Габрово', 'gabrovo', 'Габрово', 2, [[435, 440]], null, 3, 0);
-  data += generateCitySection('Добрич', 'dobrich', 'Добрич', 2, [[291, 306]], null, 5, 0);
+  data += generateCitySection('Добрич', 'dobrich', 'Добрич', 2, [[291, 304]], [[305, 306]], 5, 0);
   data += generateCitySection('Кюстендил', 'kiustendil', 'Кюстендил', 2, [[461, 468]], null, 3, 0);
   data += generateCitySection('Кърджали', 'kurdjali', 'Кърджали', 2, [[471, 482]], null, 5, 0);
   data += generateCitySection('Ловеч', 'lovech', 'Ловеч', 2, [[495, 502]], null, 3, 0);
