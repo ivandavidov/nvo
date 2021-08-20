@@ -158,6 +158,7 @@ function generateSchoolButtons(div, slices, topCount) {
       let b = document.createElement('button');
       b.id = 'b' + j;
       b.textContent = s[j].l;
+      b.title = s[j].n;      
       b.onclick = function() {toggleButton('' + j)};
       div.appendChild(b);
     }
