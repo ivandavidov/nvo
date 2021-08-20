@@ -256,6 +256,7 @@ function generateDownloadCSVHeader() {
 }
 
 function generateHTMLTable(el, hrName, puSchools, prSchools) {
+  let hide2019dzi2 = true;
   let div = document.createElement('div');
   generateRowWithText(div, '\u00A0');
   div.classList.add('row');
@@ -271,6 +272,9 @@ function generateHTMLTable(el, hrName, puSchools, prSchools) {
   for(let i = 0; i < 3; i++) {
     headers.push((16 + s[1].b.length - i) + '-Б');
     headers.push((16 + s[1].b.length - i) + '-2');
+  }
+  if(hide2019dzi2) {
+    headers.pop();
   }
   headers.forEach((header) => {
     let th = document.createElement('th');
@@ -321,6 +325,9 @@ function generateHTMLTable(el, hrName, puSchools, prSchools) {
       td = document.createElement('td');
       td.appendChild(document.createTextNode(s[o.i].m[totalYears - j - 1] ? s[o.i].m[totalYears - j - 1] : ''));
       tr.appendChild(td);
+    }
+    if(hide2019dzi2) {
+      tr.removeChild(tr.lastChild);
     }
   });
   div.appendChild(table);
