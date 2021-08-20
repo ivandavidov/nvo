@@ -441,8 +441,8 @@ function enableScrollButton() {
 function generateCitySections() {
   let data = generateCitySection('София', 'sofia', 'София', 1, [[1, 79]], [[79, 100]], 10, 10);
   data += generateCitySection('Пловдив', 'plovdiv', 'Пловдив', 1, [[101, 136]], [[137, 140]], 10, 0);
-  data += generateCitySection('Варна', 'varna', 'Варна', 1, [[141, 170]], null, 10, 0);
-  data += generateCitySection('Бургас', 'burgas', 'Бургас', 1, [[171, 199]], null, 10, 0);
+  data += generateCitySection('Варна', 'varna', 'Варна', 1, [[141, 165]], [[166, 170]], 10, 3);
+  data += generateCitySection('Бургас', 'burgas', 'Бургас', 1, [[171, 198]], [[199, 199]], 10, 0);
   data += generateCitySection('Благоевград', 'blagoevgrad', 'Благоевград', 2, [[391, 402]], null, 5, 0);
   data += generateCitySection('Велико Търново', 'veliko-turnovo', 'В. Търново', 2, [[405, 420]], null, 5, 0);
   data += generateCitySection('Видин', 'vidin', 'Видин', 2, [[441, 448]], null, 3, 0);
@@ -457,7 +457,7 @@ function generateCitySections() {
   data += generateCitySection('Перник', 'pernik', 'Перник', 2, [[325, 335]], null, 5, 0);
   data += generateCitySection('Плевен', 'pleven', 'Плевен', 2, [[245, 266]], null, 10, 0);
   data += generateCitySection('Разград', 'razgrad', 'Разград', 2, [[515, 524]], null, 5, 0);
-  data += generateCitySection('Русе', 'ruse', 'Русе', 2, [[201, 224]], null, 10, 0);
+  data += generateCitySection('Русе', 'ruse', 'Русе', 2, [[201, 222]], [[223, 224]], 10, 0);
   data += generateCitySection('Силистра', 'silistra', 'Силистра', 2, [[505, 514]], null, 5, 0);
   data += generateCitySection('Сливен', 'sliven', 'Сливен', 2, [[271, 286]], null, 5, 0);
   data += generateCitySection('Смолян', 'smolian', 'Смолян', 2, [[525, 532]], null, 3, 0);
