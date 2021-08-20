@@ -428,8 +428,8 @@ function calculateMedians() {
 }
 
 function setDefaultClickedButtons() {
-  setButtonState(2, true);
-  setButtonState(5, true);
+  setButtonState(1, true);
+  setButtonState(29, true);
 }
 
 function enableScrollButton() {
@@ -439,8 +439,8 @@ function enableScrollButton() {
 }
 
 function generateCitySections() {
-  let data = generateCitySection('София', 'sofia', 'София', 1, [[0, 100]], null, 10, 0);
-  data += generateCitySection('Пловдив', 'plovdiv', 'Пловдив', 1, [[101, 140]], null, 10, 0);
+  let data = generateCitySection('София', 'sofia', 'София', 1, [[1, 79]], [[79, 100]], 10, 10);
+  data += generateCitySection('Пловдив', 'plovdiv', 'Пловдив', 1, [[101, 136]], [[137, 140]], 10, 0);
   data += generateCitySection('Варна', 'varna', 'Варна', 1, [[141, 170]], null, 10, 0);
   data += generateCitySection('Бургас', 'burgas', 'Бургас', 1, [[171, 199]], null, 10, 0);
   data += generateCitySection('Благоевград', 'blagoevgrad', 'Благоевград', 2, [[391, 402]], null, 5, 0);
