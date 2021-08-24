@@ -447,7 +447,7 @@ function enableScrollButton() {
 }
 
 function generateCitySections() {
-  let data = generateCitySection('София', 'sofia', 'София', 1, [[1, 79]], [[79, 100]], 10, 10);
+  let data = generateCitySection('София', 'sofia', 'София', 1, [[1, 78]], [[79, 100]], 10, 10);
   data += generateCitySection('Пловдив', 'plovdiv', 'Пловдив', 1, [[101, 136]], [[137, 140]], 10, 0);
   data += generateCitySection('Варна', 'varna', 'Варна', 1, [[141, 165]], [[166, 170]], 10, 3);
   data += generateCitySection('Бургас', 'burgas', 'Бургас', 1, [[171, 198]], [[199, 199]], 10, 0);
