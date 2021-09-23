@@ -139,12 +139,12 @@ function getLayout(title, series) {
 function handleURL(indices) {
   let baseURL = window.location.href.split('?')[0].split('#')[0];
   if(indices.length === 0) {
-    document.cookie = 'i=;path=/;max-age=-1';
+    document.cookie = 'i12=;path=/;max-age=-1';
     window.history.pushState(indices, null, baseURL);
   } else {
     let endURL = indices.join(',');
-    document.cookie = 'i=' + endURL + ';path=/;max-age=' + 60 * 60 * 24 * 365;
-    window.history.pushState(indices, null, baseURL + '?i=' + endURL);
+    document.cookie = 'i12=' + endURL + ';path=/;max-age=' + 60 * 60 * 24 * 365;
+    window.history.pushState(indices, null, baseURL + '?i12=' + endURL);
   }
 }
 
@@ -454,14 +454,14 @@ function calculateMedians() {
 }
 
 function setDefaultClickedButtons() {
-  let i = window.location.search.split('?i=')[1];
+  let i = window.location.search.split('?i12=')[1];
   if(i) {
     i.split(',').forEach((i) => {
       setButtonState(i, true);
     });
     return;
   }
-  i = (document.cookie + ';').match(new RegExp('i=.*;'));
+  i = (document.cookie + ';').match(new RegExp('i12=.*;'));
   if(i) {
    i = i[0].split(/=|;/)[1];
   }
