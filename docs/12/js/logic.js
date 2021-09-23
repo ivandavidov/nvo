@@ -139,9 +139,12 @@ function getLayout(title, series) {
 function handleURL(indices) {
   let baseURL = window.location.href.split('?')[0].split('#')[0];
   if(indices.length === 0) {
+    document.cookie = 'i=;path=/;max-age=-1';
     window.history.pushState(indices, null, baseURL);
   } else {
-    window.history.pushState(indices, null, baseURL + '?i=' + indices.join(','));
+    let endURL = indices.join(',');
+    document.cookie = 'i=' + endURL + ';path=/;max-age=' + 60 * 60 * 24 * 365;
+    window.history.pushState(indices, null, baseURL + '?i=' + endURL);
   }
 }
 
@@ -456,10 +459,20 @@ function setDefaultClickedButtons() {
     i.split(',').forEach((i) => {
       setButtonState(i, true);
     });
-  } else {
-    setButtonState(1, true);
-    setButtonState(29, true);
+    return;
   }
+  i = (document.cookie + ';').match(new RegExp('i=.*;'));
+  if(i) {
+   i = i[0].split(/=|;/)[1];
+  }
+  if(i) {
+    i.split(',').forEach((i) => {
+      setButtonState(i, true);
+    });
+    return;
+  }
+  setButtonState(1, true);
+  setButtonState(29, true);
 }
 
 function enableScrollButton() {
