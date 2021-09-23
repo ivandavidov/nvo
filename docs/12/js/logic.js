@@ -10,6 +10,9 @@ function buttonEnabled(id) {
 }
 
 function setButtonState(id, state) {
+  if(button(id) === null) {
+    return;
+  }
   if(state === true) {
     button(id).classList.add('button-primary');
   } else {
@@ -20,9 +23,11 @@ function setButtonState(id, state) {
 function recalculate() {
   let tracesBel = [];
   let tracesMat = [];
+  let indices = [];
   let noSchool = {name: 'Изберете поне едно училище', data: [50, 50, 50, 50, 50]};
   s.forEach((o, i) => {
     if(buttonEnabled(i)) {
+      indices.push(i);
       tracesBel.push({name: o.n, data: o.b});
       tracesMat.push({name: o.n, data: o.m});
     }
@@ -31,7 +36,7 @@ function recalculate() {
     tracesBel.push(noSchool);
     tracesMat.push(noSchool);
   }
-  return {b: tracesBel, m: tracesMat};
+  return {b: tracesBel, m: tracesMat, i: indices};
 }
 
 function toggleButton(id) {
@@ -131,8 +136,18 @@ function getLayout(title, series) {
   }
 }
 
+function handleURL(indices) {
+  let baseURL = window.location.href.split('?')[0].split('#')[0];
+  if(indices.length === 0) {
+    window.history.pushState(indices, null, baseURL);
+  } else {
+    window.history.pushState(indices, null, baseURL + '?i=' + indices.join(','));
+  }
+}
+
 function redraw() {
   let traces = recalculate();
+  handleURL(traces.i);
   Highcharts.chart(chartb, getLayout('ДЗИ - Български език', traces.b));
   Highcharts.chart(chartm, getLayout('ДЗИ - Втора матура', traces.m));
 }
@@ -436,8 +451,15 @@ function calculateMedians() {
 }
 
 function setDefaultClickedButtons() {
-  setButtonState(1, true);
-  setButtonState(29, true);
+  let i = window.location.search.split('?i=')[1];
+  if(i) {
+    i.split(',').forEach((i) => {
+      setButtonState(i, true);
+    });
+  } else {
+    setButtonState(1, true);
+    setButtonState(29, true);
+  }
 }
 
 function enableScrollButton() {
