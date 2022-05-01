@@ -2,4 +2,4 @@
 *.class
 .idea/**
 *.iml
-target/**
+java/target/**
