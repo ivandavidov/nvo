@@ -176,7 +176,7 @@ function generateSchoolButtons(div, slices, topCount) {
       let b = document.createElement('button');
       b.id = 'b' + j;
       b.textContent = s[j].l;
-      b.title = s[j].n;      
+      b.title = s[j].n;
       b.onclick = function() {toggleButton('' + j)};
       div.appendChild(b);
     }
@@ -212,7 +212,7 @@ function generateDownloadForCity(city, schools, type) {
       if(!s[i]) {
         continue;
       }
-      let row = city + ',' + s[i].n + ',' + type
+      let row = city + ',"' + s[i].n + '",' + type
       for(let j = 2017; j < 2017 + s[201].b.length; j++) {
         row += ',' + (s[i].b[j - 2017] ? s[i].b[j - 2017] : '');
         row += ',' + (s[i].m[j - 2017] ? s[i].m[j - 2017] : '');
@@ -427,17 +427,22 @@ function calculateMedians() {
     let mb = 0;
     let mm = 0;
     let numYears = 3;
-    let divider = numYears;
+    let dividerB = numYears;
+    let dividerM = numYears;
     for(let i = 1; i <= numYears; i++) {
-      if(!o.b[o.b.length - i] || !o.m[o.m.length - i]) {
-        --divider;
-        continue;
+      if(!o.b[o.b.length - i]) {
+        --dividerB;
+      } else {
+        mb += o.b[o.b.length - i];
       }
-      mb += o.b[o.b.length - i];
-      mm += o.m[o.m.length - i];
+      if(!o.m[o.m.length - i]) {
+        --dividerM;
+      } else {
+        mm += o.m[o.m.length - i];
+      }
     }
-    o.mb = divider > 0 ? mb / divider : 0;
-    o.mm = divider > 0 ? mm / divider : 0;
+    o.mb = dividerB > 0 ? mb / dividerB : 0;
+    o.mm = dividerM > 0 ? mm / dividerM : 0;
   });
 }
 
