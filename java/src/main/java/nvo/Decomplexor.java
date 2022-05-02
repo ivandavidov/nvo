@@ -37,6 +37,9 @@ public class Decomplexor {
                 if(record.getSchool().startsWith("РУО")) {
                     continue;
                 }
+                if(record.getSchool().startsWith("Регионално управление на образованието")) {
+                    continue;
+                }
                 Map<String, School> schools = cities.computeIfAbsent(record.getCity(), k -> new HashMap<>());
                 School school = schools.get(record.getCode());
                 if(school == null) {
