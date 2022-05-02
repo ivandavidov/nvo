@@ -4,7 +4,6 @@ import java.io.File;
 import java.nio.file.Files;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -24,7 +23,9 @@ public class Decomplexor {
         String file19 = "C:\\Users\\Ivan\\Downloads\\nginx-1.21.1\\html\\nvo\\data\\dzi-2019.csv";
         String file20 = "C:\\Users\\Ivan\\Downloads\\nginx-1.21.1\\html\\nvo\\data\\dzi-2020.csv";
         String file21 = "C:\\Users\\Ivan\\Downloads\\nginx-1.21.1\\html\\nvo\\data\\dzi-2021.csv";
+
         String[] files = {file18, file19, file20, file21};
+
         Map<String, Map<String, School>> cities = new HashMap<>();
         for(int f = 0; f < files.length; f++) {
             List<String> lines = Files.readAllLines(new File(files[f]).toPath());
@@ -36,11 +37,7 @@ public class Decomplexor {
                 if(record.getSchool().startsWith("РУО")) {
                     continue;
                 }
-                Map<String, School> schools = cities.get(record.getCity());
-                if(schools == null) {
-                    schools = new HashMap<>();
-                    cities.put(record.getCity(), schools);
-                }
+                Map<String, School> schools = cities.computeIfAbsent(record.getCity(), k -> new HashMap<>());
                 School school = schools.get(record.getCode());
                 if(school == null) {
                     school = new School();
@@ -78,15 +75,11 @@ public class Decomplexor {
         Map<String, Set<School>> schools = new TreeMap<>();
         cities.forEach((city, schoolsMap) -> {
             Set<School> schoolSet = new TreeSet<>();
-            schoolsMap.forEach((code, school) -> {
-                schoolSet.add(school);
-            });
+            schoolsMap.forEach((code, school) -> schoolSet.add(school));
             schools.put(city, schoolSet);
         });
 
         System.out.println();
-
-        //printSchoolsByNVOResult(schools);
 
         printSchoolsByType(schools, "София", 1, 110);
         printSchoolsByType(schools, "Пловдив", 151, 210);
@@ -98,7 +91,6 @@ public class Decomplexor {
         printSchoolsByType(schools, "Враца", 361, 380);
         printSchoolsByType(schools, "Габрово", 381, 400);
         printSchoolsByType(schools, "Добрич", 411, 420);
-
         printSchoolsByType(schools, "Кюстендил", 421, 440);
         printSchoolsByType(schools, "Кърджали", 441, 460);
         printSchoolsByType(schools, "Ловеч", 461, 480);
@@ -122,9 +114,6 @@ public class Decomplexor {
 
     private void printSchoolsByType(Map<String, Set<School>> schools, String city, int start, int end) {
         final String template = "s[__index__] = {l: '__label__', n: '__name__', b: [null, __b18__, __b19__, __b20__, __b21__], m: [null, __m18__, __m19__, __m20__, __m21__]};\r\n";
-
-        List<School> nationalSchools = new LinkedList<>();
-        List<School> privateSchools = new LinkedList<>();
 
         Comparator<School> schoolsAlphaComparator = (o1, o2) -> {
             if(o1.getCode().equals(o2.getCode())) {
@@ -162,19 +151,6 @@ public class Decomplexor {
             }
         };
 
-//        Set<School> testSet = new TreeSet<>(schoolsAlphaComparator);
-//        testSet.add(new School("4", "22 СУ"));
-//        testSet.add(new School("1", "ПГ по текстил"));
-//        testSet.add(new School("5", "Дорис Тенеди"));
-//        testSet.add(new School("2", "2 АЕГ"));
-//        testSet.add(new School("3", "1 АЕГ"));
-//        for(School school : testSet) {
-//            System.out.println(school.getLabel());
-//        }
-//        if(1 == 1) {
-//            return;
-//        }
-
         Set<School> nationalSchoolsSet = new TreeSet<>(schoolsAlphaComparator);
         Set<School> privateSchoolsSet = new TreeSet<>(schoolsAlphaComparator);
         Set<School> schoolSet = schools.get("ГР." + city.toUpperCase());
@@ -187,29 +163,21 @@ public class Decomplexor {
                 if(privateSchoolsSet.contains(school)) {
                     System.out.println("private contains: " + school);
                 }
-                //privateSchools.add(school);
                 privateSchoolsSet.add(school);
             } else{
                 if(nationalSchoolsSet.contains(school)) {
                     System.out.println("national contains: " + school);
                 }
-                //nationalSchools.add(school);
                 nationalSchoolsSet.add(school);
             }
             ++counter;
         }
 
-        //System.out.println(nationalSchoolsSet.size());
-        //System.out.println(privateSchoolsSet.size());
-        privateSchools.addAll(privateSchoolsSet);
-        nationalSchools.addAll(nationalSchoolsSet);
-
         int index = start;
         StringBuilder sb = new StringBuilder();
         sb.append("// ").append(city).append(" - държавни училища").append("\r\n");
 
-        for(int i = 0; i < nationalSchools.size(); i++) {
-            School school = nationalSchools.get(i);
+        for (School school : nationalSchoolsSet) {
             String line = template.replace("__index__", "" + index)
                     .replace("__label__", school.getLabel())
                     .replace("__name__", school.getName())
@@ -225,12 +193,11 @@ public class Decomplexor {
             ++index;
         }
 
-        if(privateSchools.size() > 0) {
+        if(privateSchoolsSet.size() > 0) {
             sb.append("// ").append(city).append(" - частни училища").append("\r\n");
         }
 
-        for(int i = 0; i < privateSchools.size(); i++) {
-            School school = privateSchools.get(i);
+        for (School school : privateSchoolsSet) {
             String line = template.replace("__index__", "" + index)
                     .replace("__label__", school.getLabel())
                     .replace("__name__", school.getName())
@@ -301,7 +268,6 @@ public class Decomplexor {
         r.setSchool(school);
         r.setFirst(Double.valueOf(first));
         r.setSecond(Double.valueOf(second));
-        //System.out.println(r);
         return r;
     }
 

@@ -15,14 +15,7 @@ public class School implements Comparable<School> {
     List<Double> first = new ArrayList<>();
     List<Double> second = new ArrayList<>();
 
-    public School() {
-        // nothing
-    }
-
-    public School(String code, String label) {
-        this.code = code;
-        this.label = label;
-    }
+    public School() {}
 
     public boolean isPrivate() {
         return schoolCodes.containsKey(code) && schoolCodes.get(code)[0].equals("1");
@@ -69,26 +62,30 @@ public class School implements Comparable<School> {
     }
 
     public double calculateMedian() {
-        int delimiters = 0;
-        double sum = 0.0d;
-        for(int i = 1; i <=3; i++ ) {
+        double medianFirst = 0.0d;
+        double medianSecond = 0.0d;
+        int numYears = 3;
+        int dividerFirst = numYears;
+        int dividerSecond = numYears;
+
+        for(int i = 1; i <=numYears; i++ ) {
             int index = first.size() - i;
-            if(index < 0) {
-                break;
+            if(first.get(index) == null) {
+                --dividerFirst;
+            } else {
+                medianFirst += first.get(index);
             }
-            if(first.get(index) > 0.0d) {
-                ++delimiters;
-                sum += first.get(index);
-            }
-            if(second.get(index) > 0.0d) {
-                ++delimiters;
-                sum += second.get(index);
+            if(second.get(index) == null) {
+                --dividerSecond;
+            } else {
+                medianSecond += second.get(index);
             }
         }
-        if(delimiters > 0) {
-            return sum / delimiters;
-        }
-        return 0.0d;
+
+        medianFirst = dividerFirst > 0 ? medianFirst / dividerFirst : 0.0d;
+        medianSecond = dividerSecond > 0 ? medianSecond / dividerSecond : 0.0d;
+
+        return (medianFirst + medianSecond) / 2d;
     }
 
     @Override
