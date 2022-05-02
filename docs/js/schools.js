@@ -1,5 +1,6 @@
 // https://data.egov.bg/data/view/b56288b6-25aa-4049-9aa6-de2cd4cdabf8
 
+let baseSchoolIndex = 201;
 let s = [];
 
 // София

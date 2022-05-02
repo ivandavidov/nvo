@@ -24,7 +24,11 @@ function recalculate() {
   let tracesBel = [];
   let tracesMat = [];
   let indices = [];
-  let noSchool = {name: 'Изберете поне едно училище', data: [50, 50, 50, 50, 50]};
+  data50 = [];
+  for(let i = 0; i < s[baseSchoolIndex].b.length; i++) {
+    data50.push(50);
+  }
+  let noSchool = {name: 'Изберете поне едно училище', data: data50};
   s.forEach((o, i) => {
     if(buttonEnabled(i)) {
       indices.push(i);
@@ -84,7 +88,7 @@ function normalizeSeries(series) {
 
 function getLayout(title, series) {
   let removedYears = normalizeSeries(series);
-  let lastYear = 2016 + s[201].b.length - removedYears;
+  let lastYear = 2016 + s[baseSchoolIndex].b.length - removedYears;
   let categories = [];
   for(let i = 0; i < series[0].data.length; i++) {
     categories.push(lastYear - (series[0].data.length - i - 1) + '');
@@ -213,7 +217,7 @@ function generateDownloadForCity(city, schools, type) {
         continue;
       }
       let row = city + ',"' + s[i].n + '",' + type
-      for(let j = 2017; j < 2017 + s[201].b.length; j++) {
+      for(let j = 2017; j < 2017 + s[baseSchoolIndex].b.length; j++) {
         row += ',' + (s[i].b[j - 2017] ? s[i].b[j - 2017] : '');
         row += ',' + (s[i].m[j - 2017] ? s[i].m[j - 2017] : '');
       }
@@ -267,7 +271,7 @@ function generateCityMenu(pos, name, href) {
 
 function generateDownloadCSVHeader() {
   let header = 'Град,Училище,Тип';
-  for(let j = 2017; j < 2017 + s[201].b.length; j++) {
+  for(let j = 2017; j < 2017 + s[baseSchoolIndex].b.length; j++) {
     header += ',БЕЛ ' + (j -2000) + ',МАТ ' + (j -2000);
   }
   header += '\r\n';
@@ -288,8 +292,8 @@ function generateHTMLTable(el, hrName, puSchools, prSchools) {
   tHead.appendChild(headTr);
   let headers = ['№', 'Училище', 'Тип'];
   for(let i = 0; i < 3; i++) {
-    headers.push((16 + s[201].b.length - i) + ' Б');
-    headers.push((16 + s[201].b.length - i) + ' М');
+    headers.push((16 + s[baseSchoolIndex].b.length - i) + ' Б');
+    headers.push((16 + s[baseSchoolIndex].b.length - i) + ' М');
   }
   headers.forEach((header) => {
     let th = document.createElement('th');
