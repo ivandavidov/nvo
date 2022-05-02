@@ -70,12 +70,12 @@ public class School implements Comparable<School> {
 
         for(int i = 1; i <=numYears; i++ ) {
             int index = first.size() - i;
-            if(first.get(index) == null) {
+            if(first.get(index) == 0.0d) {
                 --dividerFirst;
             } else {
                 medianFirst += first.get(index);
             }
-            if(second.get(index) == null) {
+            if(second.get(index) == 0.0d) {
                 --dividerSecond;
             } else {
                 medianSecond += second.get(index);
@@ -234,6 +234,19 @@ public class School implements Comparable<School> {
         schoolCodes.put("2213131", new String[] {"0", "131 СУ", "131 СУ Климент Аркад. Тимирязев"});
         schoolCodes.put("2206410", new String[] {"0", "ПГ по аудио, видео и телек.", "ПГ по аудио, видое и телекомуникация"});
         schoolCodes.put("2213307", new String[] {"0", "Сп. у-ще ген. В. Стойчев", "Спортно у-ще ген. Владимир Стойчев"});
+        schoolCodes.put("2207069", new String[] {"0", "69 СУ", "69 СУ Димитър Маринов"});
+        schoolCodes.put("2220014", new String[] {"0", "14 СУ", "69 СУ Проф. Д-р Асен Златаров"});
+        schoolCodes.put("2204310", new String[] {"0", "5 СУ", "5 вечерно СУ Пеньо Пенев"});
+        schoolCodes.put("2203074", new String[] {"0", "74 СУ", "74 СУ Гоце Делчев"});
+        schoolCodes.put("2206409", new String[] {"0", "ПГ по трансп. и енерг.", "ПГ по транспорт и енергетика"});
+        schoolCodes.put("2208028", new String[] {"0", "28 СУ", "28 СУ Алеко Константинов"});
+        schoolCodes.put("2212040", new String[] {"0", "40 СУ", "40 СУ Луи Пастьор"});
+        schoolCodes.put("2212090", new String[] {"0", "90 СУ", "90 СУ Ген. Хосе де Сан Мартин"});
+        schoolCodes.put("2213010", new String[] {"0", "10 СУ", "10 СУ Теодор Траянов"});
+        schoolCodes.put("2216309", new String[] {"0", "Сменно-вечерна гимназия", "IV сменно-вечерна гимназия"});
+        schoolCodes.put("2219166", new String[] {"0", "Сп. у-ще В. Левски", "166 спортно у-ще Васил Левски"});
+        schoolCodes.put("2224121", new String[] {"0", "121 СУ", "121 СУ Георги Измирлиев"});
+        schoolCodes.put("_", new String[] {"0", "_", "_"});
 
         return schoolCodes;
     }
