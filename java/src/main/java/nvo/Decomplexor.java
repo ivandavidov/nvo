@@ -19,10 +19,10 @@ public class Decomplexor {
     }
 
     private void decomplex() throws Exception {
-        String file18 = "C:\\Users\\Ivan\\Downloads\\nginx-1.21.1\\html\\nvo\\data\\dzi-2018.csv";
-        String file19 = "C:\\Users\\Ivan\\Downloads\\nginx-1.21.1\\html\\nvo\\data\\dzi-2019.csv";
-        String file20 = "C:\\Users\\Ivan\\Downloads\\nginx-1.21.1\\html\\nvo\\data\\dzi-2020.csv";
-        String file21 = "C:\\Users\\Ivan\\Downloads\\nginx-1.21.1\\html\\nvo\\data\\dzi-2021.csv";
+        String file18 = "C:\\projects\\nvo\\data\\dzi-2018.csv";
+        String file19 = "C:\\projects\\nvo\\data\\dzi-2019.csv";
+        String file20 = "C:\\projects\\nvo\\data\\dzi-2020.csv";
+        String file21 = "C:\\projects\\nvo\\data\\dzi-2021.csv";
 
         String[] files = {file18, file19, file20, file21};
 
