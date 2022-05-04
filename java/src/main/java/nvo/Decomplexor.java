@@ -84,7 +84,7 @@ public class Decomplexor {
 
         System.out.println();
 
-        printSchoolsByType(schools, "София", 1, 110);
+        printSchoolsByType(schools, "София", 1, 150);
         printSchoolsByType(schools, "Пловдив", 151, 210);
         printSchoolsByType(schools, "Варна", 211, 260);
         printSchoolsByType(schools, "Бургас", 261, 310);

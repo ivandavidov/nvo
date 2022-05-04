@@ -476,7 +476,7 @@ function setDefaultClickedButtons() {
     return;
   }
   setButtonState(1, true);
-  setButtonState(37, true);
+  setButtonState(47, true);
 }
 
 function enableScrollButton() {
@@ -486,7 +486,7 @@ function enableScrollButton() {
 }
 
 function generateCitySections() {
-  let data = generateCitySection('София', 'sofia', 'София', 1, [[1, 89]], [[90, 110]], 10, 10);
+  let data = generateCitySection('София', 'sofia', 'София', 1, [[1, 125]], [[126, 149]], 10, 10);
   data += generateCitySection('Пловдив', 'plovdiv', 'Пловдив', 1, [[151, 191]], [[192, 196]], 10, 0);
   data += generateCitySection('Варна', 'varna', 'Варна', 1, [[211, 239]], [[240, 243]], 10, 3);
   data += generateCitySection('Бургас', 'burgas', 'Бургас', 1, [[261, 288]], [[289, 289]], 10, 0);
