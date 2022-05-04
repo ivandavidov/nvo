@@ -14,23 +14,44 @@ import java.util.TreeSet;
 
 public class Decomplexor {
     public static void main(String... args) throws Exception {
-        Decomplexor d = new Decomplexor();
-        d.decomplex();
+        if(args.length == 0) {
+            System.err.println("Expected argument true/false is not provided.");
+        } else {
+            Decomplexor d = new Decomplexor();
+            d.decomplex(Boolean.parseBoolean(args[0]));
+        }
     }
 
-    private void decomplex() throws Exception {
-        String file18 = "C:\\projects\\nvo\\data\\dzi-2018.csv";
-        String file19 = "C:\\projects\\nvo\\data\\dzi-2019.csv";
-        String file20 = "C:\\projects\\nvo\\data\\dzi-2020.csv";
-        String file21 = "C:\\projects\\nvo\\data\\dzi-2021.csv";
+    private void decomplex(boolean dzi) throws Exception {
+        String file18[];
+        String file19[];
+        String file20[];
+        String file21[];
 
-        String[] files = {file18, file19, file20, file21};
+        if(dzi) {
+            file18 = new String[] {"C:\\projects\\nvo\\data\\dzi-2018.csv", "n"};
+            file19 = new String[] {"C:\\projects\\nvo\\data\\dzi-2019.csv", "n"};
+            file20 = new String[] {"C:\\projects\\nvo\\data\\dzi-2020.csv", "n"};
+            file21 = new String[] {"C:\\projects\\nvo\\data\\dzi-2021.csv", "n"};
+        } else {
+            file18 = new String[] {"C:\\projects\\nvo\\data\\nvo-7-2018.csv", "n"};
+            file19 = new String[] {"C:\\projects\\nvo\\data\\nvo-7-2019.csv", "n"};
+            file20 = new String[] {"C:\\projects\\nvo\\data\\nvo-7-2020.csv", "n"};
+            file21 = new String[] {"C:\\projects\\nvo\\data\\nvo-7-2021.csv", "r"};
+        }
+
+        String[][] files = {file18, file19, file20, file21};
 
         Map<String, Map<String, School>> cities = new HashMap<>();
         for(int f = 0; f < files.length; f++) {
-            List<String> lines = Files.readAllLines(new File(files[f]).toPath());
+            List<String> lines = Files.readAllLines(new File((files[f])[0]).toPath());
             for(int i = 2; i < lines.size(); i++) {
-                Record record = lineToRecord(lines.get(i));
+                Record record;
+                if(dzi) {
+                    record = lineToRecord12(lines.get(i));
+                } else {
+                    record = lineToRecord7(lines.get(i), files[f][1]);
+                }
                 if(!record.getCity().toUpperCase().startsWith("ГР.")) {
                     continue;
                 }
@@ -84,33 +105,33 @@ public class Decomplexor {
 
         System.out.println();
 
-        printSchoolsByType(schools, "София", 1, 150);
-        printSchoolsByType(schools, "Пловдив", 151, 210);
-        printSchoolsByType(schools, "Варна", 211, 260);
-        printSchoolsByType(schools, "Бургас", 261, 310);
-        printSchoolsByType(schools, "Благоевград", 311, 330);
-        printSchoolsByType(schools, "Велико Търново", 331, 350);
-        printSchoolsByType(schools, "Видин", 351, 360);
-        printSchoolsByType(schools, "Враца", 361, 380);
-        printSchoolsByType(schools, "Габрово", 381, 400);
-        printSchoolsByType(schools, "Добрич", 411, 430);
-        printSchoolsByType(schools, "Кюстендил", 431, 450);
-        printSchoolsByType(schools, "Кърджали", 451, 470);
-        printSchoolsByType(schools, "Ловеч", 471, 490);
-        printSchoolsByType(schools, "Монтана", 491, 510);
-        printSchoolsByType(schools, "Пазарджик", 511, 530);
-        printSchoolsByType(schools, "Перник", 531, 550);
-        printSchoolsByType(schools, "Плевен", 551, 580);
-        printSchoolsByType(schools, "Разград", 581, 600);
-        printSchoolsByType(schools, "Русе", 601, 630);
-        printSchoolsByType(schools, "Силистра", 631, 650);
-        printSchoolsByType(schools, "Сливен", 651, 670);
-        printSchoolsByType(schools, "Смолян", 671, 690);
-        printSchoolsByType(schools, "Стара Загора", 691, 720);
-        printSchoolsByType(schools, "Търговище", 721, 740);
-        printSchoolsByType(schools, "Хасково", 741, 760);
-        printSchoolsByType(schools, "Шумен", 761, 790);
-        printSchoolsByType(schools, "Ямбол", 791, 810);
+        printSchoolsByType(schools, "София", 1, 300);
+        printSchoolsByType(schools, "Пловдив", 301, 400);
+        printSchoolsByType(schools, "Варна", 401, 500);
+        printSchoolsByType(schools, "Бургас", 501, 600);
+        printSchoolsByType(schools, "Благоевград", 601, 700);
+        printSchoolsByType(schools, "Велико Търново", 701, 800);
+        printSchoolsByType(schools, "Видин", 801, 900);
+        printSchoolsByType(schools, "Враца", 901, 1000);
+        printSchoolsByType(schools, "Габрово", 1001, 1100);
+        printSchoolsByType(schools, "Добрич", 1101, 1200);
+        printSchoolsByType(schools, "Кърджали", 1201, 1300);
+        printSchoolsByType(schools, "Кюстендил", 1301, 1400);
+        printSchoolsByType(schools, "Ловеч", 1401, 1500);
+        printSchoolsByType(schools, "Монтана", 1501, 1600);
+        printSchoolsByType(schools, "Пазарджик", 1601, 1700);
+        printSchoolsByType(schools, "Перник", 1701, 1800);
+        printSchoolsByType(schools, "Плевен", 1801, 1900);
+        printSchoolsByType(schools, "Разград", 1901, 2000);
+        printSchoolsByType(schools, "Русе", 2001, 2100);
+        printSchoolsByType(schools, "Силистра", 2101, 2200);
+        printSchoolsByType(schools, "Сливен", 2201, 2300);
+        printSchoolsByType(schools, "Смолян", 2301, 2400);
+        printSchoolsByType(schools, "Стара Загора", 2401, 2500);
+        printSchoolsByType(schools, "Търговище", 2501, 2600);
+        printSchoolsByType(schools, "Хасково", 2601, 2700);
+        printSchoolsByType(schools, "Шумен", 2701, 2800);
+        printSchoolsByType(schools, "Ямбол", 2801, 2900);
 
 //        printSchoolsByNVOResult(schools);
 
@@ -158,7 +179,7 @@ public class Decomplexor {
 
         Set<School> nationalSchoolsSet = new TreeSet<>(schoolsAlphaComparator);
         Set<School> privateSchoolsSet = new TreeSet<>(schoolsAlphaComparator);
-        Set<School> schoolSet = schools.get("ГР." + city.toUpperCase());
+        Set<School> schoolSet = schools.get("ГР." + city.toUpperCase().replace(" ", ""));
         int counter = start;
         for(School school : schoolSet) {
             if(counter > end) {
@@ -242,7 +263,6 @@ public class Decomplexor {
         Iterator<School> iterator = schoolSet.iterator();
         while(iterator.hasNext() && index <= end) {
             School school = iterator.next();
-            //System.out.println(school.getName());
             String line = template.replace("__index__", "" + index)
                     .replace("__private__", Boolean.toString(school.isPrivate()))
                     .replace("__code__", school.getCode())
@@ -262,18 +282,45 @@ public class Decomplexor {
         System.out.println(sb.toString());
     }
 
-    private Record lineToRecord(String line) {
+    private Record lineToRecord12(String line) {
         line = normalizeLine(line);
         String[] entries = line.split("\\|");
-        String city = normalizeEntry(entries[2]);
+        String city = normalizeEntry(entries[2]).replace(" ", "");
         String code = normalizeEntry(entries[3]).replace(" ", "");
         String school = normalizeEntry(entries[4]).replace('.', ' ');
         String first = normalizeEntry(entries[6]).replace(',', '.');
-        String second = null;
+        String second;
         if(entries.length > 34) {
             second = normalizeEntry(entries[34]).replace(',', '.');
         } else {
             second = "0.000";
+        }
+        Record r = new Record();
+        r.setCity(city);
+        r.setCode(code);
+        r.setSchool(school);
+        r.setFirst(Double.valueOf(first));
+        r.setSecond(Double.valueOf(second));
+        return r;
+    }
+
+    private Record lineToRecord7(String line, String mode) {
+        line = normalizeLine(line);
+        String[] entries = line.split("\\|");
+        String city = normalizeEntry(entries[2]).replace(" ", "");
+        String school;
+        String code;
+        if(mode.equals("n")) {
+            code = normalizeEntry(entries[3]).replace(" ", "").replace("-", "");
+            school = normalizeEntry(entries[4]).replace('.', ' ');
+        } else {
+            school = normalizeEntry(entries[3]).replace('.', ' ');
+            code = normalizeEntry(entries[4]).replace(" ", "");
+        }
+        String first = normalizeEntry(entries[6]).replace(',', '.');
+        String second = normalizeEntry(entries[8]).replace(',', '.');
+        if(second.trim().length() == 0) {
+            second = "0.00";
         }
         Record r = new Record();
         r.setCity(city);
@@ -291,6 +338,7 @@ public class Decomplexor {
     }
 
     private String normalizeLine(String line) {
+        line = line.replace(';', '|');
         StringBuilder sb = new StringBuilder(line.length());
         for(int i = 0; i < line.length(); i++) {
             if(line.charAt(i) == ',' && i > 0 && line.charAt(i - 1) == '"') {

@@ -1,11 +1,19 @@
 package nvo;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
+@Data
+@NoArgsConstructor
+@EqualsAndHashCode
+@ToString
 public class School implements Comparable<School> {
     private static final Map<String, String[]> schoolCodes = prepareSchoolCodes();
 
@@ -15,53 +23,19 @@ public class School implements Comparable<School> {
     List<Double> first = new ArrayList<>();
     List<Double> second = new ArrayList<>();
 
-    public School() {}
-
-    public boolean isPrivate() {
+    boolean isPrivate() {
         return schoolCodes.containsKey(code) && schoolCodes.get(code)[0].equals("1");
     }
 
-    public String getLabel() {
+    String getLabel() {
         return schoolCodes.containsKey(code) ? schoolCodes.get(code)[1] : code + ": " + label;
     }
 
-    public void setLabel(String label) {
-        this.label = label;
-    }
-
-    public String getName() {
+    String getName() {
         return schoolCodes.containsKey(code) ? schoolCodes.get(code)[2] : name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public List<Double> getFirst() {
-        return first;
-    }
-
-    public void setFirst(List<Double> first) {
-        this.first = first;
-    }
-
-    public List<Double> getSecond() {
-        return second;
-    }
-
-    public void setSecond(List<Double> second) {
-        this.second = second;
-    }
-
-    public double calculateMedian() {
+    private double calculateMedian() {
         double medianFirst = 0.0d;
         double medianSecond = 0.0d;
         int numYears = 3;
@@ -86,34 +60,6 @@ public class School implements Comparable<School> {
         medianSecond = dividerSecond > 0 ? medianSecond / dividerSecond : 0.0d;
 
         return (medianFirst + medianSecond) / 2d;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        School school = (School) o;
-        return label.equals(school.label) &&
-                name.equals(school.name) &&
-                code.equals(school.code) &&
-                first.equals(school.first) &&
-                second.equals(school.second);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(label, name, first, second, code);
-    }
-
-    @Override
-    public String toString() {
-        return "School {" +
-                "code='" + code + '\'' +
-                ", label='" + label + '\'' +
-                ", name='" + name + '\'' +
-                ", first=" + first +
-                ", second=" + second +
-                '}';
     }
 
     @Override
