@@ -93,24 +93,26 @@ public class Decomplexor {
         printSchoolsByType(schools, "Видин", 351, 360);
         printSchoolsByType(schools, "Враца", 361, 380);
         printSchoolsByType(schools, "Габрово", 381, 400);
-        printSchoolsByType(schools, "Добрич", 411, 420);
-        printSchoolsByType(schools, "Кюстендил", 421, 440);
-        printSchoolsByType(schools, "Кърджали", 441, 460);
-        printSchoolsByType(schools, "Ловеч", 461, 480);
-        printSchoolsByType(schools, "Монтана", 481, 500);
-        printSchoolsByType(schools, "Пазарджик", 501, 520);
-        printSchoolsByType(schools, "Перник", 521, 540);
-        printSchoolsByType(schools, "Плевен", 541, 570);
-        printSchoolsByType(schools, "Разград", 571, 590);
-        printSchoolsByType(schools, "Русе", 591, 620);
-        printSchoolsByType(schools, "Силистра", 621, 640);
-        printSchoolsByType(schools, "Сливен", 641, 660);
-        printSchoolsByType(schools, "Смолян", 661, 680);
-        printSchoolsByType(schools, "Стара Загора", 681, 720);
+        printSchoolsByType(schools, "Добрич", 411, 430);
+        printSchoolsByType(schools, "Кюстендил", 431, 450);
+        printSchoolsByType(schools, "Кърджали", 451, 470);
+        printSchoolsByType(schools, "Ловеч", 471, 490);
+        printSchoolsByType(schools, "Монтана", 491, 510);
+        printSchoolsByType(schools, "Пазарджик", 511, 530);
+        printSchoolsByType(schools, "Перник", 531, 550);
+        printSchoolsByType(schools, "Плевен", 551, 580);
+        printSchoolsByType(schools, "Разград", 581, 600);
+        printSchoolsByType(schools, "Русе", 601, 630);
+        printSchoolsByType(schools, "Силистра", 631, 650);
+        printSchoolsByType(schools, "Сливен", 651, 670);
+        printSchoolsByType(schools, "Смолян", 671, 690);
+        printSchoolsByType(schools, "Стара Загора", 691, 720);
         printSchoolsByType(schools, "Търговище", 721, 740);
         printSchoolsByType(schools, "Хасково", 741, 760);
         printSchoolsByType(schools, "Шумен", 761, 790);
         printSchoolsByType(schools, "Ямбол", 791, 810);
+
+//        printSchoolsByNVOResult(schools);
 
         System.out.println();
     }
@@ -164,14 +166,22 @@ public class Decomplexor {
             }
             if(school.isPrivate()) {
                 if(privateSchoolsSet.contains(school)) {
-                    System.out.println("private contains: " + school);
+                    System.out.println("*** private contains: " + school);
+                } else {
+                    privateSchoolsSet.add(school);
                 }
-                privateSchoolsSet.add(school);
             } else{
                 if(nationalSchoolsSet.contains(school)) {
-                    System.out.println("national contains: " + school);
+                    System.out.println("*** national contains: " + school);
+                    for(School dup: nationalSchoolsSet) {
+                        if(dup.hashCode() == school.hashCode()) {
+                            System.out.println("*** duplicate: " + dup);
+                        }
+                    }
+                } else {
+                    nationalSchoolsSet.add(school);
+                    //System.out.println("Added school: " + school);
                 }
-                nationalSchoolsSet.add(school);
             }
             ++counter;
         }
@@ -224,7 +234,7 @@ public class Decomplexor {
 
         int start = 1;
         int end = 100;
-        String city = "СОФИЯ";
+        String city = "СТАРА ЗАГОРА";
 
         StringBuilder sb = new StringBuilder();
         Set<School> schoolSet = schools.get("ГР." + city);

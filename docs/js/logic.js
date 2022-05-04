@@ -460,7 +460,7 @@ function setDefaultClickedButtons() {
   }
   i = (document.cookie + ';').match(new RegExp('i7=.*;'));
   if(i) {
-   i = i[0].split(/=|;/)[1];
+    i = i[0].split(/=|;/)[1];
   }
   if(i) {
     i.split(',').forEach((i) => {
