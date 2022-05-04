@@ -475,7 +475,7 @@ function setDefaultClickedButtons() {
     });
     return;
   }
-  setButtonState(1, true);
+  setButtonState(baseSchoolIndex, true);
   setButtonState(47, true);
 }
 
