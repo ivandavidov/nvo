@@ -189,6 +189,9 @@ public class Decomplexor {
             if(counter > end) {
                 break;
             }
+            if(eligibleForRemoval(school)) {
+                continue;
+            }
             if(school.isPrivate()) {
                 if(privateSchoolsSet.contains(school)) {
                     System.out.println("*** private contains: " + school);
@@ -252,6 +255,15 @@ public class Decomplexor {
         }
 
         System.out.println(sb.toString());
+    }
+
+    private boolean eligibleForRemoval(School school) {
+        return school.getFirst().get(school.getFirst().size() - 1) == 0.0d &&
+                school.getFirst().get(school.getFirst().size() - 2) == 0.0d &&
+                school.getFirst().get(school.getFirst().size() - 3) == 0.0d &&
+                school.getSecond().get(school.getSecond().size() - 1) == 0.0d &&
+                school.getSecond().get(school.getSecond().size() - 2) == 0.0d &&
+                school.getSecond().get(school.getSecond().size() - 3) == 0.0d;
     }
 
     private void printSchoolsByNVOResult(Map<String, Set<School>> schools) {

@@ -555,6 +555,25 @@ public class School implements Comparable<School> {
         schoolCodes.put("200255", new String[]{"0", "Вечерно СУ", "Вечерно СУ Захари Стоянов"});
         schoolCodes.put("200258", new String[]{"1", "Британика", "ЧПГ Британика"});
         schoolCodes.put("2902103", new String[]{"0", "НУМСИ", "НУМСИ Проф. Панчо Владигеров"});
+        schoolCodes.put("200205", new String[]{"0", "ОУ П. Славейков", "ОУ П. Славейков"});
+        schoolCodes.put("200206", new String[]{"0", "ОУ Kняз Борис І", "ОУ Св. Kняз Борис І"});
+        schoolCodes.put("200207", new String[]{"0", "ОУ Л. Каравелов", "ОУ Л. Каравелов"});
+        schoolCodes.put("200208", new String[]{"0", "ОУ Найден Геров", "ОУ Найден Геров"});
+        schoolCodes.put("200209", new String[]{"0", "ОУ А. Страшимиров", "ОУ Антон Страшимиров"});
+        schoolCodes.put("200210", new String[]{"0", "ОУ Св. Кл. Охридски", "ОУ Св. Климент Охридски"});
+        schoolCodes.put("200211", new String[]{"0", "ОУ Г. Бенковски", "ОУ Георги Бенковски"});
+        schoolCodes.put("200212", new String[]{"0", "ОУ П. Яворов", "ОУ П. К. Яворов"});
+        schoolCodes.put("200213", new String[]{"0", "ОУ Васил Априлов", "ОУ Васил Априлов"});
+        schoolCodes.put("200214", new String[]{"0", "ОУ Бр. Миладинови", "ОУ Братя Миладинови"});
+        schoolCodes.put("200215", new String[]{"0", "ОУ Елин Пелин", "ОУ Елин Пелин"});
+        schoolCodes.put("200216", new String[]{"0", "ОУ Васил Левски", "ОУ Васил Левски - Бургас"});
+        schoolCodes.put("200217", new String[]{"0", "ОУ Ботев - Сарафово", "ОУ Христо Ботев - Сарафово"});
+        schoolCodes.put("200218", new String[]{"0", "ОУ Ботев - Победа", "ОУ Христо Ботев - Победа"});
+        schoolCodes.put("200219", new String[]{"0", "ОУ Ботев - Езерово", "ОУ Христо Ботев - Д. Езерово"});
+        schoolCodes.put("200222", new String[]{"0", "ОУ Иван Вазов", "ОУ Иван Вазов"});
+        schoolCodes.put("200223", new String[]{"0", "ОУ Ботев - Ветрен", "ОУ Христо Ботев - Ветрен"});
+        schoolCodes.put("200241", new String[]{"0", "Коджакафалията", "ОУ А. Георгиев - Коджакафалията"});
+        schoolCodes.put("200259", new String[]{"1", "ПЧОУ", "Първо Частно Основно Училище"});
 
         return schoolCodes;
     }
