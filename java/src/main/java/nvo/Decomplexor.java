@@ -23,10 +23,10 @@ public class Decomplexor {
     }
 
     private void decomplex(boolean dzi) throws Exception {
-        String file18[];
-        String file19[];
-        String file20[];
-        String file21[];
+        String[] file18;
+        String[] file19;
+        String[] file20;
+        String[] file21;
 
         if(dzi) {
             file18 = new String[] {"C:\\projects\\nvo\\data\\dzi-2018.csv", "n"};
@@ -62,10 +62,14 @@ public class Decomplexor {
                     continue;
                 }
                 Map<String, School> schools = cities.computeIfAbsent(record.getCity(), k -> new HashMap<>());
-                School school = schools.get(record.getCode());
+                String schoolCode = School.fixedCodes.get(record.getCode());
+                if(schoolCode == null) {
+                    schoolCode = record.getCode();
+                }
+                School school = schools.get(schoolCode);
                 if(school == null) {
                     school = new School();
-                    schools.put(record.getCode(), school);
+                    schools.put(schoolCode, school);
                     for(int k = 0; k < f; k++) {
                         school.getFirst().add(0.000d);
                         school.getSecond().add(0.000d);
@@ -73,7 +77,7 @@ public class Decomplexor {
                 }
                 school.setName(record.getSchool());
                 school.setLabel(record.getSchool());
-                school.setCode(record.getCode());
+                school.setCode(schoolCode);
                 while(school.getFirst().size() <= f - 1) {
                     school.getFirst().add(0.000d);
                     school.getSecond().add(0.000d);
