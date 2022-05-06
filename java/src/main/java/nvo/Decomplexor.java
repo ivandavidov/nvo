@@ -109,7 +109,7 @@ public class Decomplexor {
 
         System.out.println();
 
-        printSchoolsByType(schools, "София", 1, 300);
+        printSchoolsByType(schools, "София",1, 300);
         printSchoolsByType(schools, "Пловдив", 301, 400);
         printSchoolsByType(schools, "Варна", 401, 500);
         printSchoolsByType(schools, "Бургас", 501, 600);
@@ -143,7 +143,9 @@ public class Decomplexor {
     }
 
     private void printSchoolsByType(Map<String, Set<School>> schools, String city, int start, int end) {
-        final String template = "s[__index__] = {l: '__label__', n: '__name__', b: [null, __b18__, __b19__, __b20__, __b21__], m: [null, __m18__, __m19__, __m20__, __m21__]};\r\n";
+        final String templateSchool = "s[__index__] = {l: '__label__', n: '__name__', b: [__b18__, __b19__, __b20__, __b21__], m: [__m18__, __m19__, __m20__, __m21__]};\r\n";
+        final String templateIndexIncl = "si['__city__'] = {n: [__n_begin__, __n_end__], p: [__p_begin__, __p_end__]};\r\n";
+        final String templateIndexExcl = "si['__city__'] = {n: [__n_begin__, __n_end__], p: null};\r\n";
 
         Comparator<School> schoolsAlphaComparator = (o1, o2) -> {
             if(o1.getCode().equals(o2.getCode())) {
@@ -214,12 +216,27 @@ public class Decomplexor {
             ++counter;
         }
 
-        int index = start;
+        String siLine;
+        if(privateSchoolsSet.size() > 0) {
+            siLine = templateIndexIncl.replace("__city__", city)
+                    .replace("__n_begin__", "" + start)
+                    .replace("__n_end__", "" + (start + nationalSchoolsSet.size() - 1))
+                    .replace("__p_begin__", "" + (start + nationalSchoolsSet.size()))
+                    .replace("__p_end__", "" + (start + nationalSchoolsSet.size() + privateSchoolsSet.size() - 1));
+        } else {
+            siLine = templateIndexExcl.replace("__city__", city)
+                    .replace("__n_begin__", "" + start)
+                    .replace("__n_end__", "" + (start + nationalSchoolsSet.size() - 1));
+        }
+
         StringBuilder sb = new StringBuilder();
+        sb.append("// ").append(city).append(" - индексация").append("\r\n");
+        sb.append(siLine);
         sb.append("// ").append(city).append(" - държавни училища").append("\r\n");
 
+        int index = start;
         for (School school : nationalSchoolsSet) {
-            String line = template.replace("__index__", "" + index)
+            String line = templateSchool.replace("__index__", "" + index)
                     .replace("__label__", school.getLabel())
                     .replace("__name__", school.getName())
                     .replace("__b18__", school.getFirst().get(0) > 0 ? "" + school.getFirst().get(0) : "null")
@@ -239,7 +256,7 @@ public class Decomplexor {
         }
 
         for (School school : privateSchoolsSet) {
-            String line = template.replace("__index__", "" + index)
+            String line = templateSchool.replace("__index__", "" + index)
                     .replace("__label__", school.getLabel())
                     .replace("__name__", school.getName())
                     .replace("__b18__", school.getFirst().get(0) > 0 ? "" + school.getFirst().get(0) : "null")

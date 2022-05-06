@@ -88,7 +88,7 @@ function normalizeSeries(series) {
 
 function getLayout(title, series) {
   let removedYears = normalizeSeries(series);
-  let lastYear = 2016 + s[baseSchoolIndex].b.length - removedYears;
+  let lastYear = firstYear - 1 + s[baseSchoolIndex].b.length - removedYears;
   let categories = [];
   for(let i = 0; i < series[0].data.length; i++) {
     categories.push(lastYear - (series[0].data.length - i - 1) + '');
@@ -129,7 +129,7 @@ function getLayout(title, series) {
       sourceWidth: 960,
       sourceHeight: 540,
       scale: 2,
-      filename: 'nvo-chart',
+      filename: exportPrefix + '-chart',
       buttons: {
         contextButton: {
           menuItems: ['printChart', 'separator', 'downloadPNG', 'downloadJPEG', 'downloadPDF', 'downloadSVG']
@@ -143,20 +143,20 @@ function getLayout(title, series) {
 function handleURL(indices) {
   let baseURL = window.location.href.split('?')[0].split('#')[0];
   if(indices.length === 0) {
-    document.cookie = 'i7=;path=/;max-age=-1';
+    document.cookie = cookieName + '=;path=/;max-age=-1';
     window.history.pushState(indices, null, baseURL);
   } else {
     let endURL = indices.join(',');
-    document.cookie = 'i7=' + endURL + ';path=/;max-age=' + 60 * 60 * 24 * 365;
-    window.history.pushState(indices, null, baseURL + '?i7=' + endURL);
+    document.cookie = cookieName + '=' + endURL + ';path=/;max-age=' + 60 * 60 * 24 * 365;
+    window.history.pushState(indices, null, baseURL + '?' + cookieName + '=' + endURL);
   }
 }
 
 function redraw() {
   let traces = recalculate();
   handleURL(traces.i);
-  Highcharts.chart(chartb, getLayout('НВО - Български език', traces.b));
-  Highcharts.chart(chartm, getLayout('НВО - Математика', traces.m));
+  Highcharts.chart(chartb, getLayout(chartBTitle, traces.b));
+  Highcharts.chart(chartm, getLayout(chartMTitle, traces.m));
 }
 
 function generateSchoolButtons(div, slices, topCount) {
@@ -169,21 +169,19 @@ function generateSchoolButtons(div, slices, topCount) {
     topBtn.textContent = 'Топ ' + topCount;
     div.appendChild(topBtn);
   }
-  for(let i = 0; i < slices.length; i++) {
-    for(let j = slices[i][0]; j <= slices[i][1]; j++) {
-      if(!s[j]) {
-        continue;
-      }
-      if(schools) {
-        schools.push(j);
-      }
-      let b = document.createElement('button');
-      b.id = 'b' + j;
-      b.textContent = s[j].l;
-      b.title = s[j].n;
-      b.onclick = function() {toggleButton('' + j)};
-      div.appendChild(b);
+  for(let j = slices[0]; j <= slices[1]; j++) {
+    if(!s[j]) {
+      continue;
     }
+    if(schools) {
+      schools.push(j);
+    }
+    let b = document.createElement('button');
+    b.id = 'b' + j;
+    b.textContent = s[j].l;
+    b.title = s[j].n;
+    b.onclick = function() {toggleButton('' + j)};
+    div.appendChild(b);
   }
   let topBtnClicked = () => {
     let setTopSchoolButtons = (state) => {
@@ -211,19 +209,17 @@ function generateSchoolButtons(div, slices, topCount) {
 
 function generateDownloadForCity(city, schools, type) {
   let data = '';
-  schools.forEach((range) => {
-    for(let i = range[0]; i <= range[1]; i++) {
-      if(!s[i]) {
-        continue;
-      }
-      let row = city + ',"' + s[i].n + '",' + type
-      for(let j = 2017; j < 2017 + s[baseSchoolIndex].b.length; j++) {
-        row += ',' + (s[i].b[j - 2017] ? s[i].b[j - 2017] : '');
-        row += ',' + (s[i].m[j - 2017] ? s[i].m[j - 2017] : '');
-      }
-      data += row + '\r\n';
+  for(let i = schools[0]; i <= schools[1]; i++) {
+    if(!s[i]) {
+      continue;
     }
-  });
+    let row = city + ',"' + s[i].n + '",' + type
+    for(let j = firstYear; j < firstYear + s[baseSchoolIndex].b.length; j++) {
+      row += ',' + (s[i].b[j - firstYear] ? s[i].b[j - firstYear] : '');
+      row += ',' + (s[i].m[j - firstYear] ? s[i].m[j - firstYear] : '');
+    }
+    data += row + '\r\n';
+  }
   return data;
 }
 
@@ -271,8 +267,8 @@ function generateCityMenu(pos, name, href) {
 
 function generateDownloadCSVHeader() {
   let header = 'Град,Училище,Тип';
-  for(let j = 2017; j < 2017 + s[baseSchoolIndex].b.length; j++) {
-    header += ',БЕЛ ' + (j -2000) + ',МАТ ' + (j -2000);
+  for(let j = firstYear; j < firstYear + s[baseSchoolIndex].b.length; j++) {
+    header += ',' + csvHeaderBel + ' ' + (j -2000) + ',' + csvHeaderMat + ' ' + (j -2000);
   }
   header += '\r\n';
   return header;
@@ -292,8 +288,11 @@ function generateHTMLTable(el, hrName, puSchools, prSchools) {
   tHead.appendChild(headTr);
   let headers = ['№', 'Училище', 'Тип'];
   for(let i = 0; i < 3; i++) {
-    headers.push((16 + s[baseSchoolIndex].b.length - i) + ' Б');
-    headers.push((16 + s[baseSchoolIndex].b.length - i) + ' М');
+    headers.push((firstYear - 2001 + s[baseSchoolIndex].b.length - i) + ' ' + csvHeaderB);
+    headers.push((firstYear - 2001 + s[baseSchoolIndex].b.length - i) + ' ' + csvHeaderM);
+  }
+  if(hide2019TableFix) { // Remove this when 2022 results are available.
+    headers.pop();
   }
   headers.forEach((header) => {
     let th = document.createElement('th');
@@ -303,23 +302,19 @@ function generateHTMLTable(el, hrName, puSchools, prSchools) {
   let tBody = document.createElement('tbody');
   table.appendChild(tBody);
   let schools = [];
-  puSchools.forEach((slice) => {
-    for(let i = slice[0]; i <= slice[1]; i++) {
+  for(let i = puSchools[0]; i <= puSchools[1]; i++) {
+    if(!s[i]) {
+      continue;
+    }
+    schools.push({i: i, t: 'Д'});
+  }
+  if(prSchools) {
+    for(let i = prSchools[0]; i <= prSchools[1]; i++) {
       if(!s[i]) {
         continue;
       }
-      schools.push({i: i, t: 'Д'});
+      schools.push({i: i, t: 'Ч'});
     }
-  });
-  if(prSchools) {
-    prSchools.forEach((slice) => {
-      for(let i = slice[0]; i <= slice[1]; i++) {
-        if(!s[i]) {
-          continue;
-        }
-        schools.push({i: i, t: 'Ч'});
-      }
-    });
   }
   let sortFunc = (o1, o2) => (s[o1.i].mb + s[o1.i].mm) / 2 < (s[o2.i].mb + s[o2.i].mm) / 2 ? 1 : -1;
   schools.sort(sortFunc);
@@ -344,6 +339,9 @@ function generateHTMLTable(el, hrName, puSchools, prSchools) {
       td = document.createElement('td');
       td.appendChild(document.createTextNode(s[o.i].m[totalYears - j - 1] ? s[o.i].m[totalYears - j - 1] : ''));
       tr.appendChild(td);
+    }
+    if(hide2019TableFix) { // Remove this when 2022 results are available.
+      tr.removeChild(tr.lastChild);
     }
   });
   div.appendChild(table);
@@ -373,12 +371,24 @@ function generateDownloadCSVLink(el, name, data) {
   a = document.createElement('a');
   a.style.cursor = 'pointer';
   a.appendChild(document.createTextNode('CSV'));
-  a.setAttribute('download', 'nvo-data-' + name +'.csv');
+  a.setAttribute('download', exportPrefix + '-data-' + name +'.csv');
   a.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(header + data));
   span.appendChild(a);    
 }
 
-function generateCitySection(name, hrName, btName, btPos, puSchools, prSchools, topPuCount, topPrCount) {
+function generateCitySection(name, hrName, btName, btPos) {
+  let puSchools = si[name].n;
+  let prSchools = si[name].p;
+  let topPuCount = 0;
+  if(puSchools[1] - puSchools[0] >= 4) {
+    topPuCount = 3;
+  }
+  if(puSchools[1] - puSchools[0] >= 9) {
+    topPuCount = 5;
+  }
+  if(puSchools[1] - puSchools[0] >= 19) {
+    topPuCount = 10;
+  }
   generateCityMenu(btPos, btName, hrName);
   let schoolsDivFragment = new DocumentFragment();
   generateRowWithHr(schoolsDivFragment, hrName);
@@ -391,6 +401,16 @@ function generateCitySection(name, hrName, btName, btPos, puSchools, prSchools, 
   generateSchoolButtons(puDiv, puSchools, topPuCount);
   let data = generateDownloadForCity(name, puSchools, 'Д');
   if(prSchools) {
+    let topPrCount = 0;
+    if(prSchools[1] - prSchools[0] >= 5) {
+      topPrCount = 3;
+    }
+    if(prSchools[1] - prSchools[0] >= 10) {
+      topPrCount = 5;
+    }
+    if(prSchools[1] - prSchools[0] >= 20) {
+      topPrCount = 10;
+    }
     generateRowWithText(schoolsDivFragment, '\u00A0');
     generateRowWithText(schoolsDivFragment, 'Частни училища');
     generateRowWithText(schoolsDivFragment, '\u00A0');
@@ -405,22 +425,27 @@ function generateCitySection(name, hrName, btName, btPos, puSchools, prSchools, 
 }
 
 function fixForYear2018() {
+  if(!fix2018) {
+    return;
+  }
+  let i = 2018 - firstYear;
+  if(i < 0) {
+    return;
+  }
   s.forEach((o) => {
-    if(o.b[1] !== null) {
-      o.b[1] = Math.floor(o.b[1] * 10000 / 65 + Number.EPSILON) / 100;
+    if(o.b[i] !== null) {
+      o.b[i] = Math.floor(o.b[i] * 10000 / 65 + Number.EPSILON) / 100;
     }
-    if(o.m[1] !== null) {
-      o.m[1] = Math.floor(o.m[1] * 10000 / 65 + Number.EPSILON) / 100;
+    if(o.m[i] !== null) {
+      o.m[i] = Math.floor(o.m[i] * 10000 / 65 + Number.EPSILON) / 100;
     }
   });  
 }
 
-function fixForYear2021() {
+function fixForMissingYears() {
   s.forEach((o) => {
-    if(o.b.length === 4) {
+    for(let i = o.b.length; i < s[baseSchoolIndex].b.length; i++) {
       o.b.push(null);
-    }
-    if(o.m.length === 4) {
       o.m.push(null);
     }
   });
@@ -451,14 +476,14 @@ function calculateMedians() {
 }
 
 function setDefaultClickedButtons() {
-  let i = window.location.search.split('?i7=')[1];
+  let i = window.location.search.split('?' + cookieName + '=')[1];
   if(i) {
     i.split(',').forEach((i) => {
       setButtonState(i, true);
     });
     return;
   }
-  i = (document.cookie + ';').match(new RegExp('i7=.*;'));
+  i = (document.cookie + ';').match(new RegExp(cookieName + '=.*;'));
   if(i) {
     i = i[0].split(/=|;/)[1];
   }
@@ -468,8 +493,8 @@ function setDefaultClickedButtons() {
     });
     return;
   }
-  setButtonState(20, true);
-  setButtonState(201, true);
+  setButtonState(baseSchoolIndex, true);
+  setButtonState(refSchoolIndex, true);
 }
 
 function enableScrollButton() {
@@ -479,36 +504,36 @@ function enableScrollButton() {
 }
 
 function generateCitySections() {
-  let data = generateCitySection('София', 'sofia', 'София', 1, [[201, 210], [1, 200]], [[211, 250]], 10, 10);
-  data += generateCitySection('Пловдив', 'plovdiv', 'Пловдив', 1, [[251, 285]], [[286, 290]], 10, 0);
-  data += generateCitySection('Варна', 'varna', 'Варна', 1, [[291, 320]], [[321, 330]], 10, 0);
-  data += generateCitySection('Бургас', 'burgas', 'Бургас', 1, [[331, 350]], [[351, 360]], 10, 0);
-  data += generateCitySection('Благоевград', 'blagoevgrad', 'Благоевград', 2, [[511, 520]], null, 5, 0);
-  data += generateCitySection('Велико Търново', 'veliko-turnovo', 'В. Търново', 2, [[521, 530]], null, 5, 0);
-  data += generateCitySection('Видин', 'vidin', 'Видин', 2, [[551, 560]], null, 5, 0);
-  data += generateCitySection('Враца', 'vratsa', 'Враца', 2, [[531, 540]], null, 5, 0);
-  data += generateCitySection('Габрово', 'gabrovo', 'Габрово', 2, [[541, 550]], null, 5, 0);
-  data += generateCitySection('Добрич', 'dobrich', 'Добрич', 2, [[441, 455]], [[456, 460]], 5, 0);
-  data += generateCitySection('Кърджали', 'kurdzhali', 'Кърджали', 2, [[581, 590]], null, 5, 0);
-  data += generateCitySection('Кюстендил', 'kiustendil', 'Кюстендил', 2, [[571, 580]], null, 5, 0);
-  data += generateCitySection('Ловеч', 'lovech', 'Ловеч', 2, [[601, 610]], null, 5, 0);
-  data += generateCitySection('Монтана', 'montana', 'Монтана', 2, [[561, 570]], null, 5, 0);
-  data += generateCitySection('Пазарджик', 'pazardzhik', 'Пазарджик', 2, [[501, 510 ]], null, 5, 0);
-  data += generateCitySection('Перник', 'pernik', 'Перник', 2, [[471, 480]], null, 5, 0);
-  data += generateCitySection('Плевен', 'pleven', 'Плевен', 2, [[401, 420]], null, 10, 0);
-  data += generateCitySection('Разград', 'razgrad', 'Разград', 2, [[621, 630]], null, 5, 0);
-  data += generateCitySection('Русе', 'ruse', 'Русе', 2, [[361, 378]], [[379, 380]], 10, 0);
-  data += generateCitySection('Силистра', 'silistra', 'Силистра', 2, [[611, 620]], null, 5, 0);
-  data += generateCitySection('Сливен', 'sliven', 'Сливен', 2, [[421, 435]], null, 5, 0);
-  data += generateCitySection('Смолян', 'smolian', 'Смолян', 2, [[631, 640]], null, 5, 0);
-  data += generateCitySection('Стара Загора', 'stara-zagora', 'Ст. Загора', 2, [[381, 395]], [[396, 400]], 10, 0);
-  data += generateCitySection('Търговище', 'turgovishte', 'Търговище', 2, [[591, 600]], null, 5, 0);
-  data += generateCitySection('Хасково', 'haskovo', 'Хасково', 2, [[481, 490]], null, 5, 0);
-  data += generateCitySection('Шумен', 'shumen', 'Шумен', 2, [[461, 470]], null, 5, 0);
-  data += generateCitySection('Ямбол', 'iambol', 'Ямбол', 2, [[491, 500]], null, 5, 0);
+  let data = generateCitySection('София', 'sofia', 'София', 1);
+  data += generateCitySection('Пловдив', 'plovdiv', 'Пловдив', 1);
+  data += generateCitySection('Варна', 'varna', 'Варна', 1);
+  data += generateCitySection('Бургас', 'burgas', 'Бургас', 1);
+  data += generateCitySection('Благоевград', 'blagoevgrad', 'Благоевград', 2);
+  data += generateCitySection('Велико Търново', 'veliko-turnovo', 'В. Търново', 2);
+  data += generateCitySection('Видин', 'vidin', 'Видин', 2);
+  data += generateCitySection('Враца', 'vratsa', 'Враца', 2);
+  data += generateCitySection('Габрово', 'gabrovo', 'Габрово', 2);
+  data += generateCitySection('Добрич', 'dobrich', 'Добрич', 2);
+  data += generateCitySection('Кърджали', 'kurdzhali', 'Кърджали', 2);
+  data += generateCitySection('Кюстендил', 'kiustendil', 'Кюстендил', 2);
+  data += generateCitySection('Ловеч', 'lovech', 'Ловеч', 2);
+  data += generateCitySection('Монтана', 'montana', 'Монтана', 2);
+  data += generateCitySection('Пазарджик', 'pazardzhik', 'Пазарджик', 2);
+  data += generateCitySection('Перник', 'pernik', 'Перник', 2);
+  data += generateCitySection('Плевен', 'pleven', 'Плевен', 2);
+  data += generateCitySection('Разград', 'razgrad', 'Разград', 2);
+  data += generateCitySection('Русе', 'ruse', 'Русе', 2);
+  data += generateCitySection('Силистра', 'silistra', 'Силистра', 2);
+  data += generateCitySection('Сливен', 'sliven', 'Сливен', 2);
+  data += generateCitySection('Смолян', 'smolian', 'Смолян', 2);
+  data += generateCitySection('Стара Загора', 'stara-zagora', 'Ст. Загора', 2);
+  data += generateCitySection('Търговище', 'turgovishte', 'Търговище', 2);
+  data += generateCitySection('Хасково', 'haskovo', 'Хасково', 2);
+  data += generateCitySection('Шумен', 'shumen', 'Шумен', 2);
+  data += generateCitySection('Ямбол', 'iambol', 'Ямбол', 2);
   let header = generateDownloadCSVHeader();
   let a = document.getElementById('csvAll');
-  a.setAttribute('download', 'nvo-data-all.csv');
+  a.setAttribute('download', exportPrefix + '-data-all.csv');
   a.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(header + data));  
 }
 
@@ -533,7 +558,7 @@ function initializeHighcharts() {
 
 function onLoad() {
   fixForYear2018();
-  fixForYear2021();
+  fixForMissingYears();
   calculateMedians();
   generateCitySections();
   enableScrollButton();
