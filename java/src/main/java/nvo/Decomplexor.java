@@ -15,29 +15,34 @@ import java.util.TreeSet;
 public class Decomplexor {
     public static void main(String... args) throws Exception {
         if(args.length == 0) {
-            System.err.println("Expected argument true/false is not provided.");
+            System.err.println("Expected argument 4/7/12 is not provided.");
         } else {
             Decomplexor d = new Decomplexor();
-            d.decomplex(Boolean.parseBoolean(args[0]));
+            d.decomplex(args[0]);
         }
     }
 
-    private void decomplex(boolean dzi) throws Exception {
+    private void decomplex(String mode) throws Exception {
         String[] file18;
         String[] file19;
         String[] file20;
         String[] file21;
 
-        if(dzi) {
+        if(mode.equals("12")) {
             file18 = new String[] {"C:\\projects\\nvo\\data\\dzi-2018.csv", "n"};
             file19 = new String[] {"C:\\projects\\nvo\\data\\dzi-2019.csv", "n"};
             file20 = new String[] {"C:\\projects\\nvo\\data\\dzi-2020.csv", "n"};
             file21 = new String[] {"C:\\projects\\nvo\\data\\dzi-2021.csv", "n"};
-        } else {
+        } else if(mode.equals("7")) {
             file18 = new String[] {"C:\\projects\\nvo\\data\\nvo-7-2018.csv", "n"};
             file19 = new String[] {"C:\\projects\\nvo\\data\\nvo-7-2019.csv", "n"};
             file20 = new String[] {"C:\\projects\\nvo\\data\\nvo-7-2020.csv", "n"};
             file21 = new String[] {"C:\\projects\\nvo\\data\\nvo-7-2021.csv", "r"};
+        } else {
+            file18 = new String[] {"C:\\projects\\nvo\\data\\nvo-4-2018-normalized.csv", "n"};
+            file19 = new String[] {"C:\\projects\\nvo\\data\\nvo-4-2019-normalized.csv", "n"};
+            file20 = new String[] {"C:\\projects\\nvo\\data\\nvo-4-2020-normalized.csv", "n"};
+            file21 = new String[] {"C:\\projects\\nvo\\data\\nvo-4-2021-normalized.csv", "r"};
         }
 
         String[][] files = {file18, file19, file20, file21};
@@ -47,10 +52,12 @@ public class Decomplexor {
             List<String> lines = Files.readAllLines(new File((files[f])[0]).toPath());
             for(int i = 2; i < lines.size(); i++) {
                 Record record;
-                if(dzi) {
+                if(mode.equals("12")) {
                     record = lineToRecord12(lines.get(i));
-                } else {
+                } else if(mode.equals("7")) {
                     record = lineToRecord7(lines.get(i), files[f][1]);
+                } else {
+                    record = lineToRecord4(lines.get(i));
                 }
                 if(!record.getCity().toUpperCase().startsWith("ГР.")) {
                     continue;
@@ -357,6 +364,26 @@ public class Decomplexor {
         }
         Record r = new Record();
         r.setCity(city);
+        r.setCode(code);
+        r.setSchool(school);
+        r.setFirst(Double.valueOf(first));
+        r.setSecond(Double.valueOf(second));
+        return r;
+    }
+
+    private Record lineToRecord4(String line) {
+        line = normalizeLine(line);
+        String[] entries = line.split("\\|");
+        String city = normalizeEntry(entries[0]).replace(" ", "");
+        String code = normalizeEntry(entries[1]).replace(" ", "").replace("-", "");
+        String school = normalizeEntry(entries[2]).replace('.', ' ');
+        String first = normalizeEntry(entries[3]).replace(',', '.');
+        String second = normalizeEntry(entries[4]).replace(',', '.');
+        if(second.trim().length() == 0) {
+            second = "0.00";
+        }
+        Record r = new Record();
+        r.setCity("ГР." + city.toUpperCase());
         r.setCode(code);
         r.setSchool(school);
         r.setFirst(Double.valueOf(first));
