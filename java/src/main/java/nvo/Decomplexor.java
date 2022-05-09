@@ -29,20 +29,20 @@ public class Decomplexor {
         String[] file21;
 
         if(mode.equals("12")) {
-            file18 = new String[] {"C:\\projects\\nvo\\data\\dzi-2018.csv", "n"};
-            file19 = new String[] {"C:\\projects\\nvo\\data\\dzi-2019.csv", "n"};
-            file20 = new String[] {"C:\\projects\\nvo\\data\\dzi-2020.csv", "n"};
-            file21 = new String[] {"C:\\projects\\nvo\\data\\dzi-2021.csv", "n"};
+            file18 = new String[] {"C:\\projects\\nvo\\data\\normalized\\dzi-2018-normalized.csv", "n"};
+            file19 = new String[] {"C:\\projects\\nvo\\data\\normalized\\dzi-2019-normalized.csv", "n"};
+            file20 = new String[] {"C:\\projects\\nvo\\data\\normalized\\dzi-2020-normalized.csv", "n"};
+            file21 = new String[] {"C:\\projects\\nvo\\data\\normalized\\dzi-2021-normalized.csv", "n"};
         } else if(mode.equals("7")) {
-            file18 = new String[] {"C:\\projects\\nvo\\data\\nvo-7-2018.csv", "n"};
-            file19 = new String[] {"C:\\projects\\nvo\\data\\nvo-7-2019.csv", "n"};
-            file20 = new String[] {"C:\\projects\\nvo\\data\\nvo-7-2020.csv", "n"};
-            file21 = new String[] {"C:\\projects\\nvo\\data\\nvo-7-2021.csv", "r"};
+            file18 = new String[] {"C:\\projects\\nvo\\data\\normalized\\nvo-7-2018-normalized.csv", "n"};
+            file19 = new String[] {"C:\\projects\\nvo\\data\\normalized\\nvo-7-2019-normalized.csv", "n"};
+            file20 = new String[] {"C:\\projects\\nvo\\data\\normalized\\nvo-7-2020-normalized.csv", "n"};
+            file21 = new String[] {"C:\\projects\\nvo\\data\\normalized\\nvo-7-2021-normalized.csv", "r"};
         } else {
-            file18 = new String[] {"C:\\projects\\nvo\\data\\nvo-4-2018-normalized.csv", "n"};
-            file19 = new String[] {"C:\\projects\\nvo\\data\\nvo-4-2019-normalized.csv", "n"};
-            file20 = new String[] {"C:\\projects\\nvo\\data\\nvo-4-2020-normalized.csv", "n"};
-            file21 = new String[] {"C:\\projects\\nvo\\data\\nvo-4-2021-normalized.csv", "r"};
+            file18 = new String[] {"C:\\projects\\nvo\\data\\normalized\\nvo-4-2018-normalized.csv", "n"};
+            file19 = new String[] {"C:\\projects\\nvo\\data\\normalized\\nvo-4-2019-normalized.csv", "n"};
+            file20 = new String[] {"C:\\projects\\nvo\\data\\normalized\\nvo-4-2020-normalized.csv", "n"};
+            file21 = new String[] {"C:\\projects\\nvo\\data\\normalized\\nvo-4-2021-normalized.csv", "r"};
         }
 
         String[][] files = {file18, file19, file20, file21};
@@ -51,17 +51,7 @@ public class Decomplexor {
         for(int f = 0; f < files.length; f++) {
             List<String> lines = Files.readAllLines(new File((files[f])[0]).toPath());
             for(int i = 2; i < lines.size(); i++) {
-                Record record;
-                if(mode.equals("12")) {
-                    record = lineToRecord12(lines.get(i));
-                } else if(mode.equals("7")) {
-                    record = lineToRecord7(lines.get(i), files[f][1]);
-                } else {
-                    record = lineToRecord4(lines.get(i));
-                }
-                if(!record.getCity().toUpperCase().startsWith("ГР.")) {
-                    continue;
-                }
+                Record record = lineToRecord4(lines.get(i));
                 if(record.getSchool().startsWith("РУО")) {
                     continue;
                 }
@@ -192,7 +182,7 @@ public class Decomplexor {
 
         Set<School> nationalSchoolsSet = new TreeSet<>(schoolsAlphaComparator);
         Set<School> privateSchoolsSet = new TreeSet<>(schoolsAlphaComparator);
-        Set<School> schoolSet = schools.get("ГР." + city.toUpperCase().replace(" ", ""));
+        Set<School> schoolSet = schools.get(city);
         int counter = start;
         for(School school : schoolSet) {
             if(counter > end) {
@@ -374,16 +364,16 @@ public class Decomplexor {
     private Record lineToRecord4(String line) {
         line = normalizeLine(line);
         String[] entries = line.split("\\|");
-        String city = normalizeEntry(entries[0]).replace(" ", "");
-        String code = normalizeEntry(entries[1]).replace(" ", "").replace("-", "");
-        String school = normalizeEntry(entries[2]).replace('.', ' ');
-        String first = normalizeEntry(entries[3]).replace(',', '.');
-        String second = normalizeEntry(entries[4]).replace(',', '.');
+        String city = entries[0].replaceAll("\"", "");
+        String code = entries[1].replaceAll("\"", "");
+        String school = entries[2].replaceAll("\"", "");
+        String first = entries[3].replaceAll("\"", "");
+        String second = entries[4].replaceAll("\"", "");
         if(second.trim().length() == 0) {
             second = "0.00";
         }
         Record r = new Record();
-        r.setCity("ГР." + city.toUpperCase());
+        r.setCity(city);
         r.setCode(code);
         r.setSchool(school);
         r.setFirst(Double.valueOf(first));

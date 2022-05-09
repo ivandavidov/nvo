@@ -10,4 +10,4 @@ let csvHeaderMat = 'ДЗИ-2';
 let csvHeaderB = 'Б';
 let csvHeaderM = '2';
 let baseSchoolIndex = 1; // 1 АЕГ
-let refSchoolIndex = 46; // 91 НЕГ
+let refSchoolIndex = 48; // 91 НЕГ

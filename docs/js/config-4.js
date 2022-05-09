@@ -9,5 +9,5 @@ let csvHeaderBel = 'БЕЛ';
 let csvHeaderMat = 'МАТ';
 let csvHeaderB = 'Б';
 let csvHeaderM = 'М';
-let baseSchoolIndex = 129; // 145 ОУ
+let baseSchoolIndex = 135; // 145 ОУ
 let refSchoolIndex = 18; // 20 ОУ
