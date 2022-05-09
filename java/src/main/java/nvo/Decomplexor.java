@@ -23,33 +23,33 @@ public class Decomplexor {
     }
 
     private void decomplex(String mode) throws Exception {
-        String[] file18;
-        String[] file19;
-        String[] file20;
-        String[] file21;
+        String file18;
+        String file19;
+        String file20;
+        String file21;
 
         if(mode.equals("12")) {
-            file18 = new String[] {"C:\\projects\\nvo\\data\\normalized\\dzi-2018-normalized.csv", "n"};
-            file19 = new String[] {"C:\\projects\\nvo\\data\\normalized\\dzi-2019-normalized.csv", "n"};
-            file20 = new String[] {"C:\\projects\\nvo\\data\\normalized\\dzi-2020-normalized.csv", "n"};
-            file21 = new String[] {"C:\\projects\\nvo\\data\\normalized\\dzi-2021-normalized.csv", "n"};
+            file18 = "C:\\projects\\nvo\\data\\normalized\\dzi-2018-normalized.csv";
+            file19 = "C:\\projects\\nvo\\data\\normalized\\dzi-2019-normalized.csv";
+            file20 = "C:\\projects\\nvo\\data\\normalized\\dzi-2020-normalized.csv";
+            file21 = "C:\\projects\\nvo\\data\\normalized\\dzi-2021-normalized.csv";
         } else if(mode.equals("7")) {
-            file18 = new String[] {"C:\\projects\\nvo\\data\\normalized\\nvo-7-2018-normalized.csv", "n"};
-            file19 = new String[] {"C:\\projects\\nvo\\data\\normalized\\nvo-7-2019-normalized.csv", "n"};
-            file20 = new String[] {"C:\\projects\\nvo\\data\\normalized\\nvo-7-2020-normalized.csv", "n"};
-            file21 = new String[] {"C:\\projects\\nvo\\data\\normalized\\nvo-7-2021-normalized.csv", "r"};
+            file18 = "C:\\projects\\nvo\\data\\normalized\\nvo-7-2018-normalized.csv";
+            file19 = "C:\\projects\\nvo\\data\\normalized\\nvo-7-2019-normalized.csv";
+            file20 = "C:\\projects\\nvo\\data\\normalized\\nvo-7-2020-normalized.csv";
+            file21 = "C:\\projects\\nvo\\data\\normalized\\nvo-7-2021-normalized.csv";
         } else {
-            file18 = new String[] {"C:\\projects\\nvo\\data\\normalized\\nvo-4-2018-normalized.csv", "n"};
-            file19 = new String[] {"C:\\projects\\nvo\\data\\normalized\\nvo-4-2019-normalized.csv", "n"};
-            file20 = new String[] {"C:\\projects\\nvo\\data\\normalized\\nvo-4-2020-normalized.csv", "n"};
-            file21 = new String[] {"C:\\projects\\nvo\\data\\normalized\\nvo-4-2021-normalized.csv", "r"};
+            file18 = "C:\\projects\\nvo\\data\\normalized\\nvo-4-2018-normalized.csv";
+            file19 = "C:\\projects\\nvo\\data\\normalized\\nvo-4-2019-normalized.csv";
+            file20 = "C:\\projects\\nvo\\data\\normalized\\nvo-4-2020-normalized.csv";
+            file21 = "C:\\projects\\nvo\\data\\normalized\\nvo-4-2021-normalized.csv";
         }
 
-        String[][] files = {file18, file19, file20, file21};
+        String[] files = {file18, file19, file20, file21};
 
         Map<String, Map<String, School>> cities = new HashMap<>();
         for(int f = 0; f < files.length; f++) {
-            List<String> lines = Files.readAllLines(new File((files[f])[0]).toPath());
+            List<String> lines = Files.readAllLines(new File((files[f])).toPath());
             for(int i = 2; i < lines.size(); i++) {
                 Record record = lineToRecord4(lines.get(i));
                 if(record.getSchool().startsWith("РУО")) {
@@ -207,7 +207,6 @@ public class Decomplexor {
                     }
                 } else {
                     nationalSchoolsSet.add(school);
-                    //System.out.println("Added school: " + school);
                 }
             }
             ++counter;
@@ -285,10 +284,10 @@ public class Decomplexor {
 
         int start = 1;
         int end = 100;
-        String city = "СТАРА ЗАГОРА";
+        String city = "Стара Загора";
 
         StringBuilder sb = new StringBuilder();
-        Set<School> schoolSet = schools.get("ГР." + city);
+        Set<School> schoolSet = schools.get(city);
         int index = start;
         Iterator<School> iterator = schoolSet.iterator();
         while(iterator.hasNext() && index <= end) {
@@ -312,55 +311,6 @@ public class Decomplexor {
         System.out.println(sb.toString());
     }
 
-    private Record lineToRecord12(String line) {
-        line = normalizeLine(line);
-        String[] entries = line.split("\\|");
-        String city = normalizeEntry(entries[2]).replace(" ", "");
-        String code = normalizeEntry(entries[3]).replace(" ", "");
-        String school = normalizeEntry(entries[4]).replace('.', ' ');
-        String first = normalizeEntry(entries[6]).replace(',', '.');
-        String second;
-        if(entries.length > 34) {
-            second = normalizeEntry(entries[34]).replace(',', '.');
-        } else {
-            second = "0.000";
-        }
-        Record r = new Record();
-        r.setCity(city);
-        r.setCode(code);
-        r.setSchool(school);
-        r.setFirst(Double.valueOf(first));
-        r.setSecond(Double.valueOf(second));
-        return r;
-    }
-
-    private Record lineToRecord7(String line, String mode) {
-        line = normalizeLine(line);
-        String[] entries = line.split("\\|");
-        String city = normalizeEntry(entries[2]).replace(" ", "");
-        String school;
-        String code;
-        if(mode.equals("n")) {
-            code = normalizeEntry(entries[3]).replace(" ", "").replace("-", "");
-            school = normalizeEntry(entries[4]).replace('.', ' ');
-        } else {
-            school = normalizeEntry(entries[3]).replace('.', ' ');
-            code = normalizeEntry(entries[4]).replace(" ", "");
-        }
-        String first = normalizeEntry(entries[6]).replace(',', '.');
-        String second = normalizeEntry(entries[8]).replace(',', '.');
-        if(second.trim().length() == 0) {
-            second = "0.00";
-        }
-        Record r = new Record();
-        r.setCity(city);
-        r.setCode(code);
-        r.setSchool(school);
-        r.setFirst(Double.valueOf(first));
-        r.setSecond(Double.valueOf(second));
-        return r;
-    }
-
     private Record lineToRecord4(String line) {
         line = normalizeLine(line);
         String[] entries = line.split("\\|");
@@ -379,12 +329,6 @@ public class Decomplexor {
         r.setFirst(Double.valueOf(first));
         r.setSecond(Double.valueOf(second));
         return r;
-    }
-
-    private String normalizeEntry(String entry) {
-        return entry.replaceAll("\"", " ")
-                .replaceAll(" +", " ")
-                .trim();
     }
 
     private String normalizeLine(String line) {
