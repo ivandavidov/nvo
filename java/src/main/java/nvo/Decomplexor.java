@@ -50,7 +50,7 @@ public class Decomplexor {
         Map<String, Map<String, School>> cities = new HashMap<>();
         for(int f = 0; f < files.length; f++) {
             List<String> lines = Files.readAllLines(new File((files[f])).toPath());
-            for(int i = 2; i < lines.size(); i++) {
+            for(int i = 1; i < lines.size(); i++) {
                 Record record = lineToRecord4(lines.get(i));
                 if(record.getSchool().startsWith("РУО")) {
                     continue;
