@@ -1,6 +1,7 @@
 let firstYear = 2018;
+let numYears = 4;
 let fix2018 = true;
-let hide2019TableFix = true;
+let hide2019TableFix = false;
 let cookieName = 'i7';
 let exportPrefix = 'nvo-7';
 let chartBTitle = 'НВО - Български език';

@@ -25,7 +25,7 @@ function recalculate() {
   let tracesMat = [];
   let indices = [];
   data50 = [];
-  for(let i = 0; i < s[baseSchoolIndex].b.length; i++) {
+  for(let i = 0; i < numYears; i++) {
     data50.push(50);
   }
   let noSchool = {name: 'Изберете поне едно училище', data: data50};
@@ -56,6 +56,9 @@ function toggleButton(id) {
 }
 
 function normalizeSeries(series) {
+  for(let i = 0; i < series.length; i++) {
+    series[i].data = series[i].data.slice(series[i].data.length - numYears, series[i].data.length);
+  }
   while(true) {
     let exitFlag = false;
     for(let i = 0; i < series.length; i++) {

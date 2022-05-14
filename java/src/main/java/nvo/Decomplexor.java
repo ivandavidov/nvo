@@ -13,6 +13,8 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 
 public class Decomplexor {
+    private static final boolean COMPRESSED = false;
+
     public static void main(String... args) throws Exception {
         if(args.length == 0) {
             System.err.println("Expected argument 4/7/12 is not provided.");
@@ -148,9 +150,18 @@ public class Decomplexor {
     }
 
     private void printSchoolsByType(Map<String, Set<School>> schools, String city, int start, int end) {
-        final String templateSchool = "s[__index__] = {l: '__label__', n: '__name__', b: [__b18__, __b19__, __b20__, __b21__], m: [__m18__, __m19__, __m20__, __m21__], bu: [__bu18__, __bu19__, __bu20__, __bu21__], mu: [__mu18__, __mu19__, __mu20__, __mu21__]};\r\n";
-        final String templateIndexIncl = "si['__city__'] = {n: [__n_begin__, __n_end__], p: [__p_begin__, __p_end__]};\r\n";
-        final String templateIndexExcl = "si['__city__'] = {n: [__n_begin__, __n_end__], p: null};\r\n";
+        final String templateSchool;
+        final String templateIndexIncl;
+        final String templateIndexExcl;
+        if(COMPRESSED) {
+            templateSchool = "s[__index__]={l:'__label__',n:'__name__',b:[__b18__,__b19__,__b20__,__b21__],m:[__m18__,__m19__,__m20__,__m21__],bu:[__bu18__,__bu19__,__bu20__,__bu21__],mu:[__mu18__,__mu19__,__mu20__,__mu21__]};";
+            templateIndexIncl = "si['__city__']={n:[__n_begin__,__n_end__],p:[__p_begin__,__p_end__]};";
+            templateIndexExcl = "si['__city__']={n:[__n_begin__,__n_end__],p:null};";
+        } else {
+            templateSchool = "s[__index__] = {l: '__label__', n: '__name__', b: [__b18__, __b19__, __b20__, __b21__], m: [__m18__, __m19__, __m20__, __m21__], bu: [__bu18__, __bu19__, __bu20__, __bu21__], mu: [__mu18__, __mu19__, __mu20__, __mu21__]};\r\n";
+            templateIndexIncl = "si['__city__'] = {n: [__n_begin__, __n_end__], p: [__p_begin__, __p_end__]};\r\n";
+            templateIndexExcl = "si['__city__'] = {n: [__n_begin__, __n_end__], p: null};\r\n";
+        }
 
         Comparator<School> schoolsAlphaComparator = (o1, o2) -> {
             if(o1.getCode().equals(o2.getCode())) {
@@ -234,9 +245,13 @@ public class Decomplexor {
         }
 
         StringBuilder sb = new StringBuilder();
-        sb.append("// ").append(city).append(" - индексация").append("\r\n");
+        if(!COMPRESSED) {
+            sb.append("// ").append(city).append(" - индексация").append("\r\n");
+        }
         sb.append(siLine);
-        sb.append("// ").append(city).append(" - държавни училища").append("\r\n");
+        if(!COMPRESSED) {
+            sb.append("// ").append(city).append(" - държавни училища").append("\r\n");
+        }
 
         int index = start;
         for (School school : nationalSchoolsSet) {
@@ -245,7 +260,7 @@ public class Decomplexor {
             ++index;
         }
 
-        if(privateSchoolsSet.size() > 0) {
+        if(privateSchoolsSet.size() > 0 && !COMPRESSED) {
             sb.append("// ").append(city).append(" - частни училища").append("\r\n");
         }
 
@@ -255,7 +270,11 @@ public class Decomplexor {
             ++index;
         }
 
-        System.out.println(sb.toString());
+        if(!COMPRESSED) {
+            System.out.println(sb.toString());
+        } else {
+            System.out.print(sb.toString());
+        }
     }
 
     private String getLine(String templateSchool, int index, School school) {

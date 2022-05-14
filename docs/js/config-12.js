@@ -1,4 +1,5 @@
 let firstYear = 2018;
+let numYears = 4;
 let fix2018 = false;
 let hide2019TableFix = true;
 let cookieName = 'i12';
