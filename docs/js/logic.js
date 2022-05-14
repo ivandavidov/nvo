@@ -217,6 +217,8 @@ function generateDownloadForCity(city, schools, type) {
     for(let j = firstYear; j < firstYear + s[baseSchoolIndex].b.length; j++) {
       row += ',' + (s[i].b[j - firstYear] ? s[i].b[j - firstYear] : '');
       row += ',' + (s[i].m[j - firstYear] ? s[i].m[j - firstYear] : '');
+      row += ',' + (s[i].bu[j - firstYear] ? s[i].bu[j - firstYear] : '');
+      row += ',' + (s[i].mu[j - firstYear] ? s[i].mu[j - firstYear] : '');
     }
     data += row + '\r\n';
   }
@@ -269,6 +271,7 @@ function generateDownloadCSVHeader() {
   let header = 'Град,Училище,Тип';
   for(let j = firstYear; j < firstYear + s[baseSchoolIndex].b.length; j++) {
     header += ',' + csvHeaderBel + ' ' + (j -2000) + ',' + csvHeaderMat + ' ' + (j -2000);
+    header += ',' + csvHeaderBel + '-УЧ. ' + (j -2000) + ',' + csvHeaderMat + '-УЧ. ' + (j -2000);
   }
   header += '\r\n';
   return header;
@@ -281,15 +284,14 @@ function generateHTMLTable(el, hrName, puSchools, prSchools) {
   div.id = 't' + hrName;
   div.style.display = 'none';
   let table = document.createElement('table');
-  //table.classList.add('u-full-width');
   let tHead = document.createElement('thead');
   table.appendChild(tHead);
   let headTr = document.createElement('tr');
   tHead.appendChild(headTr);
   let headers = ['№', 'Училище', 'Тип'];
   for(let i = 0; i < 3; i++) {
-    headers.push((firstYear - 2001 + s[baseSchoolIndex].b.length - i) + ' ' + csvHeaderB);
-    headers.push((firstYear - 2001 + s[baseSchoolIndex].b.length - i) + ' ' + csvHeaderM);
+    headers.push((firstYear - 2001 + s[baseSchoolIndex].b.length - i) + ' ' + csvHeaderB + ' / уч.');
+    headers.push((firstYear - 2001 + s[baseSchoolIndex].b.length - i) + ' ' + csvHeaderM + ' / уч.');
   }
   if(hide2019TableFix) { // Remove this when 2022 results are available.
     headers.pop();
@@ -334,10 +336,10 @@ function generateHTMLTable(el, hrName, puSchools, prSchools) {
     let totalYears = s[o.i].b.length;
     for(let j = 0; j < 3; j++) {
       td = document.createElement('td');
-      td.appendChild(document.createTextNode(s[o.i].b[totalYears - j - 1] ? s[o.i].b[totalYears - j - 1] : ''));
+      td.appendChild(document.createTextNode(s[o.i].b[totalYears - j - 1] ? s[o.i].b[totalYears - j - 1] + ' / ' + s[o.i].bu[totalYears - j - 1] : ''));
       tr.appendChild(td);
       td = document.createElement('td');
-      td.appendChild(document.createTextNode(s[o.i].m[totalYears - j - 1] ? s[o.i].m[totalYears - j - 1] : ''));
+      td.appendChild(document.createTextNode(s[o.i].m[totalYears - j - 1] ? s[o.i].m[totalYears - j - 1] + ' / ' + s[o.i].mu[totalYears - j - 1] : ''));
       tr.appendChild(td);
     }
     if(hide2019TableFix) { // Remove this when 2022 results are available.

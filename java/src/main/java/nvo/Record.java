@@ -15,6 +15,8 @@ class Record {
     private String city;
     private String code;
     private String school;
-    private Double first;
-    private Double second;
+    private Double belScore;
+    private Double matScore;
+    private Integer belStudents;
+    private Integer matStudents;
 }

@@ -51,7 +51,7 @@ public class Decomplexor {
         for(int f = 0; f < files.length; f++) {
             List<String> lines = Files.readAllLines(new File((files[f])).toPath());
             for(int i = 1; i < lines.size(); i++) {
-                Record record = lineToRecord4(lines.get(i));
+                Record record = lineToRecord(lines.get(i));
                 if(record.getSchool().startsWith("РУО")) {
                     continue;
                 }
@@ -68,27 +68,35 @@ public class Decomplexor {
                     school = new School();
                     schools.put(schoolCode, school);
                     for(int k = 0; k < f; k++) {
-                        school.getFirst().add(0.000d);
-                        school.getSecond().add(0.000d);
+                        school.getBelScore().add(0.000d);
+                        school.getMatScore().add(0.000d);
+                        school.getBelStudents().add(0);
+                        school.getMatStudents().add(0);
                     }
                 }
                 school.setName(record.getSchool());
                 school.setLabel(record.getSchool());
                 school.setCode(schoolCode);
-                while(school.getFirst().size() <= f - 1) {
-                    school.getFirst().add(0.000d);
-                    school.getSecond().add(0.000d);
+                while(school.getBelScore().size() <= f - 1) {
+                    school.getBelScore().add(0.000d);
+                    school.getMatScore().add(0.000d);
+                    school.getBelStudents().add(0);
+                    school.getMatStudents().add(0);
                 }
-                school.getFirst().add(record.getFirst());
-                school.getSecond().add(record.getSecond());
+                school.getBelScore().add(record.getBelScore());
+                school.getMatScore().add(record.getMatScore());
+                school.getBelStudents().add(record.getBelStudents());
+                school.getMatStudents().add(record.getMatStudents());
             }
             final int ff = f;
             cities.forEach((city, schools) -> {
                 List<String> codes = new LinkedList<>();
                 schools.forEach((code, school) -> {
-                    if(school.getFirst().size() < ff + 1) {
-                        school.getFirst().add(0.000d);
-                        school.getSecond().add(0.000d);
+                    if(school.getBelScore().size() < ff + 1) {
+                        school.getBelScore().add(0.000d);
+                        school.getMatScore().add(0.000d);
+                        school.getBelStudents().add(0);
+                        school.getMatStudents().add(0);
                         codes.add(code);
                     }
                 });
@@ -140,7 +148,7 @@ public class Decomplexor {
     }
 
     private void printSchoolsByType(Map<String, Set<School>> schools, String city, int start, int end) {
-        final String templateSchool = "s[__index__] = {l: '__label__', n: '__name__', b: [__b18__, __b19__, __b20__, __b21__], m: [__m18__, __m19__, __m20__, __m21__]};\r\n";
+        final String templateSchool = "s[__index__] = {l: '__label__', n: '__name__', b: [__b18__, __b19__, __b20__, __b21__], m: [__m18__, __m19__, __m20__, __m21__], bu: [__bu18__, __bu19__, __bu20__, __bu21__], mu: [__mu18__, __mu19__, __mu20__, __mu21__]};\r\n";
         final String templateIndexIncl = "si['__city__'] = {n: [__n_begin__, __n_end__], p: [__p_begin__, __p_end__]};\r\n";
         final String templateIndexExcl = "si['__city__'] = {n: [__n_begin__, __n_end__], p: null};\r\n";
 
@@ -232,17 +240,7 @@ public class Decomplexor {
 
         int index = start;
         for (School school : nationalSchoolsSet) {
-            String line = templateSchool.replace("__index__", "" + index)
-                    .replace("__label__", school.getLabel())
-                    .replace("__name__", school.getName())
-                    .replace("__b18__", school.getFirst().get(0) > 0 ? "" + school.getFirst().get(0) : "null")
-                    .replace("__b19__", school.getFirst().get(1) > 0 ? "" + school.getFirst().get(1) : "null")
-                    .replace("__b20__", school.getFirst().get(2) > 0 ? "" + school.getFirst().get(2) : "null")
-                    .replace("__b21__", school.getFirst().get(3) > 0 ? "" + school.getFirst().get(3) : "null")
-                    .replace("__m18__", school.getSecond().get(0) > 0 ? "" + school.getSecond().get(0) : "null")
-                    .replace("__m19__", school.getSecond().get(1) > 0 ? "" + school.getSecond().get(1) : "null")
-                    .replace("__m20__", school.getSecond().get(2) > 0 ? "" + school.getSecond().get(2) : "null")
-                    .replace("__m21__", school.getSecond().get(3) > 0 ? "" + school.getSecond().get(3) : "null");
+            String line = getLine(templateSchool, index, school);
             sb.append(line);
             ++index;
         }
@@ -252,17 +250,7 @@ public class Decomplexor {
         }
 
         for (School school : privateSchoolsSet) {
-            String line = templateSchool.replace("__index__", "" + index)
-                    .replace("__label__", school.getLabel())
-                    .replace("__name__", school.getName())
-                    .replace("__b18__", school.getFirst().get(0) > 0 ? "" + school.getFirst().get(0) : "null")
-                    .replace("__b19__", school.getFirst().get(1) > 0 ? "" + school.getFirst().get(1) : "null")
-                    .replace("__b20__", school.getFirst().get(2) > 0 ? "" + school.getFirst().get(2) : "null")
-                    .replace("__b21__", school.getFirst().get(3) > 0 ? "" + school.getFirst().get(3) : "null")
-                    .replace("__m18__", school.getSecond().get(0) > 0 ? "" + school.getSecond().get(0) : "null")
-                    .replace("__m19__", school.getSecond().get(1) > 0 ? "" + school.getSecond().get(1) : "null")
-                    .replace("__m20__", school.getSecond().get(2) > 0 ? "" + school.getSecond().get(2) : "null")
-                    .replace("__m21__", school.getSecond().get(3) > 0 ? "" + school.getSecond().get(3) : "null");
+            String line = getLine(templateSchool, index, school);
             sb.append(line);
             ++index;
         }
@@ -270,13 +258,35 @@ public class Decomplexor {
         System.out.println(sb.toString());
     }
 
+    private String getLine(String templateSchool, int index, School school) {
+        return templateSchool.replace("__index__", "" + index)
+                        .replace("__label__", school.getLabel())
+                        .replace("__name__", school.getName())
+                        .replace("__b18__", school.getBelScore().get(0) > 0 ? "" + school.getBelScore().get(0) : "null")
+                        .replace("__b19__", school.getBelScore().get(1) > 0 ? "" + school.getBelScore().get(1) : "null")
+                        .replace("__b20__", school.getBelScore().get(2) > 0 ? "" + school.getBelScore().get(2) : "null")
+                        .replace("__b21__", school.getBelScore().get(3) > 0 ? "" + school.getBelScore().get(3) : "null")
+                        .replace("__m18__", school.getMatScore().get(0) > 0 ? "" + school.getMatScore().get(0) : "null")
+                        .replace("__m19__", school.getMatScore().get(1) > 0 ? "" + school.getMatScore().get(1) : "null")
+                        .replace("__m20__", school.getMatScore().get(2) > 0 ? "" + school.getMatScore().get(2) : "null")
+                        .replace("__m21__", school.getMatScore().get(3) > 0 ? "" + school.getMatScore().get(3) : "null")
+                        .replace("__bu18__", school.getBelStudents().get(0) > 0 ? "" + school.getBelStudents().get(0) : "null")
+                        .replace("__bu19__", school.getBelStudents().get(1) > 0 ? "" + school.getBelStudents().get(1) : "null")
+                        .replace("__bu20__", school.getBelStudents().get(2) > 0 ? "" + school.getBelStudents().get(2) : "null")
+                        .replace("__bu21__", school.getBelStudents().get(3) > 0 ? "" + school.getBelStudents().get(3) : "null")
+                        .replace("__mu18__", school.getMatStudents().get(0) > 0 ? "" + school.getMatStudents().get(0) : "null")
+                        .replace("__mu19__", school.getMatStudents().get(1) > 0 ? "" + school.getMatStudents().get(1) : "null")
+                        .replace("__mu20__", school.getMatStudents().get(2) > 0 ? "" + school.getMatStudents().get(2) : "null")
+                        .replace("__mu21__", school.getMatStudents().get(3) > 0 ? "" + school.getMatStudents().get(3) : "null");
+    }
+
     private boolean eligibleForRemoval(School school) {
-        return school.getFirst().get(school.getFirst().size() - 1) == 0.0d &&
-                school.getFirst().get(school.getFirst().size() - 2) == 0.0d &&
-                school.getFirst().get(school.getFirst().size() - 3) == 0.0d &&
-                school.getSecond().get(school.getSecond().size() - 1) == 0.0d &&
-                school.getSecond().get(school.getSecond().size() - 2) == 0.0d &&
-                school.getSecond().get(school.getSecond().size() - 3) == 0.0d;
+        return school.getBelScore().get(school.getBelScore().size() - 1) == 0.0d &&
+                school.getBelScore().get(school.getBelScore().size() - 2) == 0.0d &&
+                school.getBelScore().get(school.getBelScore().size() - 3) == 0.0d &&
+                school.getMatScore().get(school.getMatScore().size() - 1) == 0.0d &&
+                school.getMatScore().get(school.getMatScore().size() - 2) == 0.0d &&
+                school.getMatScore().get(school.getMatScore().size() - 3) == 0.0d;
     }
 
     private void printSchoolsByNVOResult(Map<String, Set<School>> schools) {
@@ -297,37 +307,41 @@ public class Decomplexor {
                     .replace("__code__", school.getCode())
                     .replace("__label__", school.getLabel())
                     .replace("__name__", school.getName())
-                    .replace("__b18__", school.getFirst().get(0) > 0 ? "" + school.getFirst().get(0) : "null")
-                    .replace("__b19__", school.getFirst().get(1) > 0 ? "" + school.getFirst().get(1) : "null")
-                    .replace("__b20__", school.getFirst().get(2) > 0 ? "" + school.getFirst().get(2) : "null")
-                    .replace("__b21__", school.getFirst().get(3) > 0 ? "" + school.getFirst().get(3) : "null")
-                    .replace("__m18__", school.getSecond().get(0) > 0 ? "" + school.getSecond().get(0) : "null")
-                    .replace("__m19__", school.getSecond().get(1) > 0 ? "" + school.getSecond().get(1) : "null")
-                    .replace("__m20__", school.getSecond().get(2) > 0 ? "" + school.getSecond().get(2) : "null")
-                    .replace("__m21__", school.getSecond().get(3) > 0 ? "" + school.getSecond().get(3) : "null");
+                    .replace("__b18__", school.getBelScore().get(0) > 0 ? "" + school.getBelScore().get(0) : "null")
+                    .replace("__b19__", school.getBelScore().get(1) > 0 ? "" + school.getBelScore().get(1) : "null")
+                    .replace("__b20__", school.getBelScore().get(2) > 0 ? "" + school.getBelScore().get(2) : "null")
+                    .replace("__b21__", school.getBelScore().get(3) > 0 ? "" + school.getBelScore().get(3) : "null")
+                    .replace("__m18__", school.getMatScore().get(0) > 0 ? "" + school.getMatScore().get(0) : "null")
+                    .replace("__m19__", school.getMatScore().get(1) > 0 ? "" + school.getMatScore().get(1) : "null")
+                    .replace("__m20__", school.getMatScore().get(2) > 0 ? "" + school.getMatScore().get(2) : "null")
+                    .replace("__m21__", school.getMatScore().get(3) > 0 ? "" + school.getMatScore().get(3) : "null");
             sb.append(line);
             ++index;
         }
         System.out.println(sb.toString());
     }
 
-    private Record lineToRecord4(String line) {
+    private Record lineToRecord(String line) {
         line = normalizeLine(line);
         String[] entries = line.split("\\|");
         String city = entries[0].replaceAll("\"", "");
         String code = entries[1].replaceAll("\"", "");
         String school = entries[2].replaceAll("\"", "");
-        String first = entries[3].replaceAll("\"", "");
-        String second = entries[4].replaceAll("\"", "");
-        if(second.trim().length() == 0) {
-            second = "0.00";
+        String belScore = entries[3].replaceAll("\"", "");
+        String matScore = entries[4].replaceAll("\"", "");
+        String belStudents = entries[5].replaceAll("\"", "");
+        String matStudents = entries[6].replaceAll("\"", "");
+        if(matScore.trim().length() == 0) {
+            matScore = "0.00";
         }
         Record r = new Record();
         r.setCity(city);
         r.setCode(code);
         r.setSchool(school);
-        r.setFirst(Double.valueOf(first));
-        r.setSecond(Double.valueOf(second));
+        r.setBelScore(Double.valueOf(belScore));
+        r.setMatScore(Double.valueOf(matScore));
+        r.setBelStudents(Integer.valueOf(belStudents));
+        r.setMatStudents(Integer.valueOf(matStudents));
         return r;
     }
 

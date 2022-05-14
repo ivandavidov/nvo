@@ -21,8 +21,10 @@ public class School implements Comparable<School> {
     String label;
     String name;
     String code;
-    List<Double> first = new ArrayList<>();
-    List<Double> second = new ArrayList<>();
+    List<Double> belScore = new ArrayList<>();
+    List<Double> matScore = new ArrayList<>();
+    List<Integer> belStudents = new ArrayList<>();
+    List<Integer> matStudents = new ArrayList<>();
 
     boolean isPrivate() {
         return schoolCodes.containsKey(code) && schoolCodes.get(code)[0].equals("1");
@@ -44,16 +46,16 @@ public class School implements Comparable<School> {
         int dividerSecond = numYears;
 
         for(int i = 1; i <=numYears; i++ ) {
-            int index = first.size() - i;
-            if(first.get(index) == 0.0d) {
+            int index = belScore.size() - i;
+            if(belScore.get(index) == 0.0d) {
                 --dividerFirst;
             } else {
-                medianFirst += first.get(index);
+                medianFirst += belScore.get(index);
             }
-            if(second.get(index) == 0.0d) {
+            if(matScore.get(index) == 0.0d) {
                 --dividerSecond;
             } else {
-                medianSecond += second.get(index);
+                medianSecond += matScore.get(index);
             }
         }
 
