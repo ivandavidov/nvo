@@ -404,7 +404,7 @@ public class School implements Comparable<School> {
         schoolCodes.put("2218200", new String[] {"0", "200 ОУ", "200 ОУ Отец Паисий"});
         schoolCodes.put("2218201", new String[] {"0", "201 ОУ", "201 ОУ Св. Св. Кирил и Методий"});
         schoolCodes.put("2218202", new String[] {"0", "202 ОУ", "202 ОУ Христо Ботев"});
-        schoolCodes.put("2201400", new String[] {"0", "ПГТ - Банкя)", "ПГ по туризъм А. Константинов"});
+        schoolCodes.put("2201400", new String[] {"0", "ПГТ - Банкя", "ПГ по туризъм А. Константинов"});
 
         return schoolCodes;
     }
