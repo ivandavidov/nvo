@@ -453,6 +453,10 @@ function fixForMissingYears() {
       o.b.push(null);
       o.m.push(null);
     }
+    for(let i = o.bu.length; i < s[baseSchoolIndex].b.length; i++) {
+      o.bu.push(0);
+      o.mu.push(0);
+    }
   });
 }
 
