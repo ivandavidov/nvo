@@ -25,26 +25,31 @@ public class Decomplexor {
     }
 
     private void decomplex(String mode) throws Exception {
-        String file18;
-        String file19;
-        String file20;
-        String file21;
+        String file18 = null;
+        String file19 = null;
+        String file20 = null;
+        String file21 = null;
+
+        String basePath = "/Users/ivan/projects/nvo/data/normalized/";
 
         if(mode.equals("12")) {
-            file18 = "C:\\projects\\nvo\\data\\normalized\\dzi-2018-normalized.csv";
-            file19 = "C:\\projects\\nvo\\data\\normalized\\dzi-2019-normalized.csv";
-            file20 = "C:\\projects\\nvo\\data\\normalized\\dzi-2020-normalized.csv";
-            file21 = "C:\\projects\\nvo\\data\\normalized\\dzi-2021-normalized.csv";
+            file18 = basePath + "dzi-2018-normalized.csv";
+            file19 = basePath + "dzi-2019-normalized.csv";
+            file20 = basePath + "dzi-2020-normalized.csv";
+            file21 = basePath + "dzi-2021-normalized.csv";
         } else if(mode.equals("7")) {
-            file18 = "C:\\projects\\nvo\\data\\normalized\\nvo-7-2018-normalized.csv";
-            file19 = "C:\\projects\\nvo\\data\\normalized\\nvo-7-2019-normalized.csv";
-            file20 = "C:\\projects\\nvo\\data\\normalized\\nvo-7-2020-normalized.csv";
-            file21 = "C:\\projects\\nvo\\data\\normalized\\nvo-7-2021-normalized.csv";
+            file18 = basePath + "nvo-7-2018-normalized.csv";
+            file19 = basePath + "nvo-7-2019-normalized.csv";
+            file20 = basePath + "nvo-7-2020-normalized.csv";
+            file21 = basePath + "nvo-7-2021-normalized.csv";
+        } else if(mode.equals("4")) {
+            file18 = basePath + "nvo-4-2018-normalized.csv";
+            file19 = basePath + "nvo-4-2019-normalized.csv";
+            file20 = basePath + "nvo-4-2020-normalized.csv";
+            file21 = basePath + "nvo-4-2021-normalized.csv";
         } else {
-            file18 = "C:\\projects\\nvo\\data\\normalized\\nvo-4-2018-normalized.csv";
-            file19 = "C:\\projects\\nvo\\data\\normalized\\nvo-4-2019-normalized.csv";
-            file20 = "C:\\projects\\nvo\\data\\normalized\\nvo-4-2020-normalized.csv";
-            file21 = "C:\\projects\\nvo\\data\\normalized\\nvo-4-2021-normalized.csv";
+            System.out.println("Mode '" + mode + "' is not recognized.");
+            System.exit(0);
         }
 
         String[] files = {file18, file19, file20, file21};

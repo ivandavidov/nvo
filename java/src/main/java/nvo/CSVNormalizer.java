@@ -19,9 +19,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class CSVNormalizer {
-    private static final String BASE_DIR = "C:\\projects\\nvo\\data\\";
-    private static final String BASE_DIR_MON = BASE_DIR + "mon\\";
-    private static final String BASE_DIR_NORMALIZED = BASE_DIR + "normalized\\";
+    private static final String BASE_DIR = "/Users/ivan/projects/nvo/data/";
+    private static final String BASE_DIR_MON = BASE_DIR + "mon/";
+    private static final String BASE_DIR_NORMALIZED = BASE_DIR + "normalized/";
 
     public static void main(String... args) throws Exception {
         CSVNormalizer worker = new CSVNormalizer();
