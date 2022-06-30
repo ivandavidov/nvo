@@ -86,6 +86,7 @@ public class CSVNormalizer {
         }
 
         writeCSV(inputFileName, resultLines);
+        System.out.println("Normalized data: " + inputFileName);
     }
 
     private void writeCSV(String outputFileName, List<String[]> resultLines) throws IOException {

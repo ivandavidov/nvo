@@ -17,7 +17,7 @@ public class Decomplexor {
 
     public static void main(String... args) throws Exception {
         if(args.length == 0) {
-            System.err.println("Expected argument 4/7/12 is not provided.");
+            System.err.println("Expected argument normalize/4/7/12 is not provided.");
         } else {
             Decomplexor d = new Decomplexor();
             d.decomplex(args[0]);
@@ -32,7 +32,10 @@ public class Decomplexor {
 
         String basePath = "/Users/ivan/projects/nvo/data/normalized/";
 
-        if(mode.equals("12")) {
+        if(mode.equals("normalize")) {
+          CSVNormalizer.main(null);
+          System.exit(0);
+        } else if(mode.equals("12")) {
             file18 = basePath + "dzi-2018-normalized.csv";
             file19 = basePath + "dzi-2019-normalized.csv";
             file20 = basePath + "dzi-2020-normalized.csv";
