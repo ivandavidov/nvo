@@ -188,8 +188,10 @@ function generateSchoolButtons(div, slices, topCount) {
   }
   let topBtnClicked = () => {
     let setTopSchoolButtons = (state) => {
-      for(let i = 0; i < topCount; i++) {
-        if(!schools[i]) {
+      let skipped = 0;
+      for(let i = 0; i < (topCount + skipped); i++) {
+        if(!schools[i] || s[schools[i]].b[s[schools[i]].b.length - 1] === null) {
+          ++skipped;
           continue;
         }
         setButtonState(schools[i], state);
@@ -308,14 +310,14 @@ function generateHTMLTable(el, hrName, puSchools, prSchools) {
   table.appendChild(tBody);
   let schools = [];
   for(let i = puSchools[0]; i <= puSchools[1]; i++) {
-    if(!s[i]) {
+    if(!s[i] || s[i].b[s[i].b.length - 1] === null) {
       continue;
     }
     schools.push({i: i, t: 'Д'});
   }
   if(prSchools) {
     for(let i = prSchools[0]; i <= prSchools[1]; i++) {
-      if(!s[i]) {
+      if(!s[i] || s[i].b[s[i].b.length - 1] === null) {
         continue;
       }
       schools.push({i: i, t: 'Ч'});
@@ -360,7 +362,7 @@ function generateDownloadCSVLink(el, name, data) {
   let header = generateDownloadCSVHeader();
   let a = document.createElement('a');
   a.style.cursor = 'pointer';
-  a.appendChild(document.createTextNode('Таблица'));
+  a.appendChild(document.createTextNode('Класация'));
   a.onclick = (e) => {
     tableDiv = document.getElementById('t' + name);
     if(tableDiv.style.display === 'none') {
@@ -368,7 +370,7 @@ function generateDownloadCSVLink(el, name, data) {
       e.currentTarget.innerText = 'Затвори'
     } else {
       tableDiv.style.display = 'none';
-      e.currentTarget.innerText = 'Таблица'
+      e.currentTarget.innerText = 'Класация'
     }
   }
   span.appendChild(a);

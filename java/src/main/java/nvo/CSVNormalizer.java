@@ -15,6 +15,7 @@ import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,17 +26,19 @@ public class CSVNormalizer {
 
     public static void main(String... args) throws Exception {
         CSVNormalizer worker = new CSVNormalizer();
-        worker.reformat("nvo-4-2018", ',', "", 2, 3, 4, 10, 9, 6, 5);
-        worker.reformat("nvo-4-2019", ',', "", 2, 3, 4, 10, 9, 6, 5);
-        worker.reformat("nvo-4-2021", ',', "ГР.", 2, 3, 4, 6, 8, 5, 7);
-        worker.reformat("nvo-7-2018", ';', "ГР.", 2, 3, 4, 6, 8, 5, 7);
-        worker.reformat("nvo-7-2019", ';', "ГР. ", 2, 3, 4, 6, 8, 5, 7);
-        worker.reformat("nvo-7-2020", ';', "ГР.", 2, 3, 4, 6, 8, 5, 7);
-        worker.reformat("nvo-7-2021", ',', "ГР.", 2, 4, 3, 6, 8, 5, 7);
-        worker.reformat("dzi-2018", ',', "ГР.", 2, 3, 4, 6, 34, 5, 33);
-        worker.reformat("dzi-2019", ',', "ГР.", 2, 3, 4, 6, -1, 5, -1);
-        worker.reformat("dzi-2020", ',', "ГР.", 2, 3, 4, 6, 34, 5, 33);
-        worker.reformat("dzi-2021", ',', "ГР.", 2, 3, 4, 6, 34, 5, 33);
+//        worker.reformat("nvo-4-2018", ',', "", 2, 3, 4, 10, 9, 6, 5, 0, 0, 0, 0);
+//        worker.reformat("nvo-4-2019", ',', "", 2, 3, 4, 10, 9, 6, 5, 0, 0, 0, 0);
+//        worker.reformat("nvo-4-2021", ',', "ГР.", 2, 3, 4, 6, 8, 5, 7, 0, 0, 0, 0);
+//        worker.reformat("nvo-4-2022", ',', "ГР.", 2, 4, 3, 6, 8, 5, 7, 0, 0, 0, 0);
+//        worker.reformat("nvo-7-2018", ';', "ГР.", 2, 3, 4, 6, 8, 5, 7, 0, 0, 0, 0);
+//        worker.reformat("nvo-7-2019", ';', "ГР. ", 2, 3, 4, 6, 8, 5, 7, 0, 0, 0, 0);
+//        worker.reformat("nvo-7-2020", ';', "ГР.", 2, 3, 4, 6, 8, 5, 7, 0, 0, 0, 0);
+//        worker.reformat("nvo-7-2021", ',', "ГР.", 2, 4, 3, 6, 8, 5, 7, 0, 0, 0, 0);
+//        worker.reformat("dzi-2018", ',', "ГР.", 2, 3, 4, 6, 34, 5, 33, 0, 0, 0, 0);
+//        worker.reformat("dzi-2019", ',', "ГР.", 2, 3, 4, 6, -1, 5, -1, 8, 7, 32, 31);
+//        worker.reformat("dzi-2020", ',', "ГР.", 2, 3, 4, 6, 34, 5, 33, 0, 0, 0, 0);
+//        worker.reformat("dzi-2021", ',', "ГР.", 2, 3, 4, 6, 34, 5, 33, 0, 0, 0, 0);
+        worker.reformat("dzi-2022", ',', "ГР.", 2, 4, 3, 6, -1, 5, -1, 8, 7, 70, 69);
 
         Files.copy(Path.of(BASE_DIR_NORMALIZED + "nvo-4-2019-normalized.csv"),
                 Path.of(BASE_DIR_NORMALIZED + "nvo-4-2020-normalized.csv"),
@@ -51,7 +54,11 @@ public class CSVNormalizer {
                           int belPos,
                           int matPos,
                           int belNumPos,
-                          int matNumPos) throws Exception {
+                          int matNumPos,
+                          int firstSubjectPos,
+                          int firstSubjectNumPos,
+                          int lastSubjectPos,
+                          int lastSubjectNumPos) throws Exception {
         List<String[]> lines = readCSV(inputFileName, separator);
 
         String[] cities = {"София", "Пловдив", "Варна", "Бургас",
@@ -82,7 +89,11 @@ public class CSVNormalizer {
 
        List<String[]> resultLines = new ArrayList<>();
         for(String city : cities) {
-            resultLines.addAll(parseCity(lines, city, cityPrefix, cityPos, codePos, namePos, belPos, matPos, belNumPos, matNumPos));
+            resultLines.addAll(parseCity(lines, city, cityPrefix, cityPos,
+                    codePos, namePos,
+                    belPos, matPos, belNumPos, matNumPos,
+                    firstSubjectPos, firstSubjectNumPos,
+                    lastSubjectPos, lastSubjectNumPos));
         }
 
         writeCSV(inputFileName, resultLines);
@@ -116,23 +127,83 @@ public class CSVNormalizer {
         return lines;
     }
 
-    private List<String[]> parseCity(List<String[]> lines, String city, String cityPrefix, int cityPos, int codePos, int namePos, int belPos, int matPos, int belNumPos, int matNumPos) {
+    private List<String[]> parseCity(List<String[]> lines, String city, String cityPrefix, int cityPos,
+                                     int codePos, int namePos,
+                                     int belPos, int matPos, int belNumPos, int matNumPos,
+                                     int firstSubjectPos, int firstSubjectNumPos,
+                                     int lastSubjectPos, int lastSubjectNumPos) {
         final String cityPrefixFinal = city.equals("София") ? "" : cityPrefix;
         final String cityFinal = city.equals("София") ? "София-град" : city;
         final int cityPosFinal = city.equals("София") ? 0 : cityPos;
-        return lines.stream()
-                .filter(line -> (line[cityPosFinal]).equalsIgnoreCase(cityPrefixFinal + cityFinal))
-                .map(line -> new String[] {
-                        city,
-                        line[codePos].replaceAll(" ", "").replaceAll("-", ""),
-                        line[namePos].replaceAll("\"", "")
-                            .replaceAll("\\s+", " "),
-                        line[belPos].replace(',', '.'),
-                        matPos < 0 ? "0.000" : line[matPos].replace(',', '.'),
-                        line[belNumPos].replaceAll("\"", ""),
-                        matNumPos < 0 ? "0" :line[matNumPos].replaceAll("\"", "")
 
-                })
-                .collect(Collectors.toList());
+        List<String[]> schools = new LinkedList<>();
+        for(String[] line : lines) {
+            if(!line[cityPosFinal].equalsIgnoreCase(cityPrefixFinal + cityFinal)) {
+                continue;
+            }
+
+            double calculatedMat = 0.0d;
+            int calculatedAttendees = 0;
+
+            if(matPos < 0) {
+                double subjectsSum = 0.0d;
+                int counter = 0;
+
+                while(firstSubjectPos + counter <= lastSubjectPos) {
+                    String firstSubject = line[firstSubjectPos + counter];
+                    String attendeesStr = line[firstSubjectNumPos + counter];
+
+                    if(firstSubject.trim().equals("")) {
+                        firstSubject = "0.000";
+                    }
+
+                    if(attendeesStr.trim().equals("")) {
+                        attendeesStr = "0";
+                    }
+
+                    double subject = Double.parseDouble(firstSubject.replace(',', '.'));
+                    int attendees = Integer.parseInt(attendeesStr);
+
+                    subjectsSum += subject * attendees;
+                    calculatedAttendees += attendees;
+
+                    counter += 2;
+                }
+
+                calculatedMat = subjectsSum / calculatedAttendees;
+            }
+
+            String[] school = new String[7];
+
+            school[0] = city;
+            school[1] = line[codePos].replaceAll(" ", "").replaceAll("-", "");
+            school[2] = line[namePos].replaceAll("\"", "").replaceAll("\\s+", " ");
+            school[3] = line[belPos].replace(',', '.');
+
+            school[4] = matPos < 0 ? "" + (Math.floor(calculatedMat * 1000) / 1000) : line[matPos].replace(',', '.');
+            school[5] = line[belNumPos].replaceAll("\"", "");
+            school[6] = matNumPos < 0 ? "" + calculatedAttendees : line[matNumPos].replaceAll("\"", "");
+
+            if(!school[5].equals("")) {
+                schools.add(school);
+            }
+        }
+
+        return schools;
+
+//        return lines.stream()
+//                .filter(line -> (line[cityPosFinal]).equalsIgnoreCase(cityPrefixFinal + cityFinal))
+//                .map(line -> new String[] {
+//                        city,
+//                        line[codePos].replaceAll(" ", "").replaceAll("-", ""),
+//                        line[namePos].replaceAll("\"", "")
+//                            .replaceAll("\\s+", " "),
+//                        line[belPos].replace(',', '.'),
+//                        matPos < 0 ? "0.000" : line[matPos].replace(',', '.'),
+//                        line[belNumPos].replaceAll("\"", ""),
+//                        matNumPos < 0 ? "0" :line[matNumPos].replaceAll("\"", "")
+//
+//                })
+//                .collect(Collectors.toList());
     }
 }

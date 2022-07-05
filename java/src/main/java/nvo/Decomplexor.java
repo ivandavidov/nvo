@@ -15,6 +15,8 @@ import java.util.TreeSet;
 public class Decomplexor {
     private static final boolean COMPRESSED = false;
 
+    private String header = null;
+
     public static void main(String... args) throws Exception {
         if(args.length == 0) {
             System.err.println("Expected argument normalize/4/7/12 is not provided.");
@@ -25,10 +27,7 @@ public class Decomplexor {
     }
 
     private void decomplex(String mode) throws Exception {
-        String file18 = null;
-        String file19 = null;
-        String file20 = null;
-        String file21 = null;
+        String[] files = null;
 
         String basePath = "/Users/ivan/projects/nvo/data/normalized/";
 
@@ -36,26 +35,30 @@ public class Decomplexor {
           CSVNormalizer.main(null);
           System.exit(0);
         } else if(mode.equals("12")) {
-            file18 = basePath + "dzi-2018-normalized.csv";
-            file19 = basePath + "dzi-2019-normalized.csv";
-            file20 = basePath + "dzi-2020-normalized.csv";
-            file21 = basePath + "dzi-2021-normalized.csv";
+            String file18 = basePath + "dzi-2018-normalized.csv";
+            String file19 = basePath + "dzi-2019-normalized.csv";
+            String file20 = basePath + "dzi-2020-normalized.csv";
+            String file21 = basePath + "dzi-2021-normalized.csv";
+            String file22 = basePath + "dzi-2022-normalized.csv";
+            header = "";
+            files = new String[] {file18, file19, file20, file21, file22};
         } else if(mode.equals("7")) {
-            file18 = basePath + "nvo-7-2018-normalized.csv";
-            file19 = basePath + "nvo-7-2019-normalized.csv";
-            file20 = basePath + "nvo-7-2020-normalized.csv";
-            file21 = basePath + "nvo-7-2021-normalized.csv";
+            String file18 = basePath + "nvo-7-2018-normalized.csv";
+            String file19 = basePath + "nvo-7-2019-normalized.csv";
+            String file20 = basePath + "nvo-7-2020-normalized.csv";
+            String file21 = basePath + "nvo-7-2021-normalized.csv";
+            files = new String[] {file18, file19, file20, file21};
         } else if(mode.equals("4")) {
-            file18 = basePath + "nvo-4-2018-normalized.csv";
-            file19 = basePath + "nvo-4-2019-normalized.csv";
-            file20 = basePath + "nvo-4-2020-normalized.csv";
-            file21 = basePath + "nvo-4-2021-normalized.csv";
+            String file18 = basePath + "nvo-4-2018-normalized.csv";
+            String file19 = basePath + "nvo-4-2019-normalized.csv";
+            String file20 = basePath + "nvo-4-2020-normalized.csv";
+            String file21 = basePath + "nvo-4-2021-normalized.csv";
+            String file22 = basePath + "nvo-4-2022-normalized.csv";
+            files = new String[] {file18, file19, file20, file21, file22};
         } else {
             System.out.println("Mode '" + mode + "' is not recognized.");
             System.exit(0);
         }
-
-        String[] files = {file18, file19, file20, file21};
 
         Map<String, Map<String, School>> cities = new HashMap<>();
         for(int f = 0; f < files.length; f++) {
@@ -162,11 +165,11 @@ public class Decomplexor {
         final String templateIndexIncl;
         final String templateIndexExcl;
         if(COMPRESSED) {
-            templateSchool = "s[__index__]={l:'__label__',n:'__name__',b:[__b18__,__b19__,__b20__,__b21__],m:[__m18__,__m19__,__m20__,__m21__],bu:[__bu18__,__bu19__,__bu20__,__bu21__],mu:[__mu18__,__mu19__,__mu20__,__mu21__]};";
+            templateSchool = "s[__index__]={l:'__label__',n:'__name__',b:[__b18__,__b19__,__b20__,__b21__,__b22__],m:[__m18__,__m19__,__m20__,__m21__,__m22__],bu:[__bu18__,__bu19__,__bu20__,__bu21__,__bu22__],mu:[__mu18__,__mu19__,__mu20__,__mu21__,__mu22__]};";
             templateIndexIncl = "si['__city__']={n:[__n_begin__,__n_end__],p:[__p_begin__,__p_end__]};";
             templateIndexExcl = "si['__city__']={n:[__n_begin__,__n_end__],p:null};";
         } else {
-            templateSchool = "s[__index__] = {l: '__label__', n: '__name__', b: [__b18__, __b19__, __b20__, __b21__], m: [__m18__, __m19__, __m20__, __m21__], bu: [__bu18__, __bu19__, __bu20__, __bu21__], mu: [__mu18__, __mu19__, __mu20__, __mu21__]};\r\n";
+            templateSchool = "s[__index__] = {l: '__label__', n: '__name__', b: [__b18__, __b19__, __b20__, __b21__, __b22__], m: [__m18__, __m19__, __m20__, __m21__, __m22__], bu: [__bu18__, __bu19__, __bu20__, __bu21__, __bu22__], mu: [__mu18__, __mu19__, __mu20__, __mu21__, __mu22__]};\r\n";
             templateIndexIncl = "si['__city__'] = {n: [__n_begin__, __n_end__], p: [__p_begin__, __p_end__]};\r\n";
             templateIndexExcl = "si['__city__'] = {n: [__n_begin__, __n_end__], p: null};\r\n";
         }
@@ -293,18 +296,22 @@ public class Decomplexor {
                         .replace("__b19__", school.getBelScore().get(1) > 0 ? "" + school.getBelScore().get(1) : "null")
                         .replace("__b20__", school.getBelScore().get(2) > 0 ? "" + school.getBelScore().get(2) : "null")
                         .replace("__b21__", school.getBelScore().get(3) > 0 ? "" + school.getBelScore().get(3) : "null")
+                        .replace("__b22__", school.getBelScore().get(4) > 0 ? "" + school.getBelScore().get(4) : "null")
                         .replace("__m18__", school.getMatScore().get(0) > 0 ? "" + school.getMatScore().get(0) : "null")
                         .replace("__m19__", school.getMatScore().get(1) > 0 ? "" + school.getMatScore().get(1) : "null")
                         .replace("__m20__", school.getMatScore().get(2) > 0 ? "" + school.getMatScore().get(2) : "null")
                         .replace("__m21__", school.getMatScore().get(3) > 0 ? "" + school.getMatScore().get(3) : "null")
+                        .replace("__m22__", school.getMatScore().get(4) > 0 ? "" + school.getMatScore().get(4) : "null")
                         .replace("__bu18__", school.getBelStudents().get(0) > 0 ? "" + school.getBelStudents().get(0) : "null")
                         .replace("__bu19__", school.getBelStudents().get(1) > 0 ? "" + school.getBelStudents().get(1) : "null")
                         .replace("__bu20__", school.getBelStudents().get(2) > 0 ? "" + school.getBelStudents().get(2) : "null")
                         .replace("__bu21__", school.getBelStudents().get(3) > 0 ? "" + school.getBelStudents().get(3) : "null")
+                        .replace("__bu22__", school.getBelStudents().get(4) > 0 ? "" + school.getBelStudents().get(4) : "null")
                         .replace("__mu18__", school.getMatStudents().get(0) > 0 ? "" + school.getMatStudents().get(0) : "null")
                         .replace("__mu19__", school.getMatStudents().get(1) > 0 ? "" + school.getMatStudents().get(1) : "null")
                         .replace("__mu20__", school.getMatStudents().get(2) > 0 ? "" + school.getMatStudents().get(2) : "null")
-                        .replace("__mu21__", school.getMatStudents().get(3) > 0 ? "" + school.getMatStudents().get(3) : "null");
+                        .replace("__mu21__", school.getMatStudents().get(3) > 0 ? "" + school.getMatStudents().get(3) : "null")
+                        .replace("__mu22__", school.getMatStudents().get(4) > 0 ? "" + school.getMatStudents().get(4) : "null");
     }
 
     private boolean eligibleForRemoval(School school) {
