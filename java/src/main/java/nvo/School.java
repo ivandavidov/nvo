@@ -562,6 +562,7 @@ public class School implements Comparable<School> {
         schoolCodes.put("400120", new String[] {"1", "Монтесори Варна", "ЧОУ Монтесори Варна"});
         schoolCodes.put("400065", new String[] {"1", "Прогресивно обр. 2", "ОПУ Прогресивно обр. 2"});
         schoolCodes.put("400167", new String[] {"1", "Феникс", "ЧОУ Феникс 2020"});
+        schoolCodes.put("400132", new String[] {"1", "Демокр. образов.", "ЧОУ Демократично образование"});
 
         return schoolCodes;
     }

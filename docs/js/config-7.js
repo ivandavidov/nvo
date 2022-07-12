@@ -1,5 +1,5 @@
 let firstYear = 2018;
-let numYears = 4;
+let numYears = 5;
 let fix2018 = true;
 let hide2019TableFix = false;
 let cookieName = 'i7';
@@ -10,5 +10,5 @@ let csvHeaderBel = 'БЕЛ';
 let csvHeaderMat = 'МАТ';
 let csvHeaderB = 'Б';
 let csvHeaderM = 'М';
-let baseSchoolIndex = 163; // СМГ
+let baseSchoolIndex = 164; // СМГ
 let refSchoolIndex = 18;   // 20 ОУ
