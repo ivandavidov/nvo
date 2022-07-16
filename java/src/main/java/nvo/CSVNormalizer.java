@@ -34,16 +34,21 @@ public class CSVNormalizer {
 //        worker.reformat("nvo-7-2019", ';', "ГР. ", 2, 3, 4, 6, 8, 5, 7, 0, 0, 0, 0);
 //        worker.reformat("nvo-7-2020", ';', "ГР.", 2, 3, 4, 6, 8, 5, 7, 0, 0, 0, 0);
 //        worker.reformat("nvo-7-2021", ',', "ГР.", 2, 4, 3, 6, 8, 5, 7, 0, 0, 0, 0);
-        worker.reformat("nvo-7-2022", ';', "ГР.", 2, 4, 3, 6, 8, 5, 7, 0, 0, 0, 0);
+//        worker.reformat("nvo-7-2022", ';', "ГР.", 2, 4, 3, 6, 8, 5, 7, 0, 0, 0, 0);
+//        worker.reformat("nvo-10-2021", ',', "ГР.", 2, 4, 3, 6, 8, 5, 7, 0, 0, 0, 0);
+//        worker.reformat("nvo-10-2022", ';', "ГР.", 2, 4, 3, 6, 8, 5, 7, 0, 0, 0, 0);
 //        worker.reformat("dzi-2018", ',', "ГР.", 2, 3, 4, 6, 34, 5, 33, 0, 0, 0, 0);
 //        worker.reformat("dzi-2019", ',', "ГР.", 2, 3, 4, 6, -1, 5, -1, 8, 7, 32, 31);
 //        worker.reformat("dzi-2020", ',', "ГР.", 2, 3, 4, 6, 34, 5, 33, 0, 0, 0, 0);
 //        worker.reformat("dzi-2021", ',', "ГР.", 2, 3, 4, 6, 34, 5, 33, 0, 0, 0, 0);
 //        worker.reformat("dzi-2022", ',', "ГР.", 2, 4, 3, 6, -1, 5, -1, 8, 7, 70, 69);
 
-        Files.copy(Path.of(BASE_DIR_NORMALIZED + "nvo-4-2019-normalized.csv"),
-                Path.of(BASE_DIR_NORMALIZED + "nvo-4-2020-normalized.csv"),
-                StandardCopyOption.REPLACE_EXISTING);
+//        Files.copy(Path.of(BASE_DIR_NORMALIZED + "nvo-4-2019-normalized.csv"),
+//                Path.of(BASE_DIR_NORMALIZED + "nvo-4-2020-normalized.csv"),
+//                StandardCopyOption.REPLACE_EXISTING);
+//        Files.copy(Path.of(BASE_DIR_NORMALIZED + "nvo-10-2021-normalized.csv"),
+//                Path.of(BASE_DIR_NORMALIZED + "nvo-10-2020-normalized.csv"),
+//                StandardCopyOption.REPLACE_EXISTING);
     }
 
     private void reformat(String inputFileName,

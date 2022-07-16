@@ -42,6 +42,13 @@ public class Decomplexor {
             String file22 = basePath + "dzi-2022-normalized.csv";
             header = "";
             files = new String[] {file18, file19, file20, file21, file22};
+        } else if(mode.equals("10")) {
+            String file18 = basePath + "nvo-10-2018-normalized.csv";
+            String file19 = basePath + "nvo-10-2019-normalized.csv";
+            String file20 = basePath + "nvo-10-2020-normalized.csv";
+            String file21 = basePath + "nvo-10-2021-normalized.csv";
+            String file22 = basePath + "nvo-10-2022-normalized.csv";
+            files = new String[] {file18, file19, file20, file21, file22};
         } else if(mode.equals("7")) {
             String file18 = basePath + "nvo-7-2018-normalized.csv";
             String file19 = basePath + "nvo-7-2019-normalized.csv";

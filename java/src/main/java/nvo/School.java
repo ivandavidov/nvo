@@ -408,6 +408,7 @@ public class School implements Comparable<School> {
         schoolCodes.put("2218202", new String[] {"0", "202 ОУ", "202 ОУ Христо Ботев"});
         schoolCodes.put("2201400", new String[] {"0", "ПГТ - Банкя", "ПГ по туризъм А. Константинов"});
         schoolCodes.put("2200039", new String[] {"1", "Прир. науки и предпр.", "ЧГ по прир. науки и предпр. Асен Йорданов"});
+        schoolCodes.put("2200013", new String[] {"1", "СофтУни Светлина", "ЧПГ по дигитални науки СофтУни Светлина"});
 
         return schoolCodes;
     }
@@ -563,6 +564,7 @@ public class School implements Comparable<School> {
         schoolCodes.put("400065", new String[] {"1", "Прогресивно обр. 2", "ОПУ Прогресивно обр. 2"});
         schoolCodes.put("400167", new String[] {"1", "Феникс", "ЧОУ Феникс 2020"});
         schoolCodes.put("400132", new String[] {"1", "Демокр. образов.", "ЧОУ Демократично образование"});
+        schoolCodes.put("400104", new String[] {"0", "ПГ по комп. моделиране", "ПГ по комп. моделиране и комп. системи"});
 
         return schoolCodes;
     }
@@ -621,10 +623,7 @@ public class School implements Comparable<School> {
         schoolCodes.put("200201", new String[] {"0", "НУ М. Лъкатник", "НУ Михаил Лъкатник"});
         schoolCodes.put("200203", new String[] {"1", "Мария Монтесори", "ЧОУ Д-р Мария Монтесори"});
         schoolCodes.put("200226", new String[] {"0", "Обед. у-ще Кл. Охридски", "Обединено училище Св. Климент Охридски"});
-        schoolCodes.put("_", new String[] {"0", "_", "_"});
-        schoolCodes.put("_", new String[] {"0", "_", "_"});
-        schoolCodes.put("_", new String[] {"0", "_", "_"});
-        schoolCodes.put("_", new String[] {"0", "_", "_"});
+        schoolCodes.put("200120", new String[] {"0", "ПГ по компют. програм.", "ПГ по комп. програмиране и иновации"});
 
         return schoolCodes;
     }

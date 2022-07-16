@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>НВО след десети клас - графично сравнение на гимназиите</title>
+  <meta name="description" content="НВО след десети клас - графично сравнение на гимназиите в България">
+  <meta name="author" content="Иван Давидов">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="../css/normalize.css">
+  <link rel="stylesheet" href="../css/skeleton.css">
+  <link rel="stylesheet" href="../css/custom.css">
+  <link rel="icon" type="image/png" href="../images/favicon-12.png">
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+  <script src="../js/config-10.js"></script>
+  <script src="../js/schools-10.js"></script>
+  <script src="../js/logic.js"></script>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-V0P6LBF76F"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-V0P6LBF76F');
+  </script>
+</head>
+<body>
+  <div class="container">
+    <div class="row">&nbsp;</div>
+    <div class="row">
+      <h4>НВО след десети клас</h4>
+    </div>
+    <div class="row">
+      <a href="../4">НВО след четвърти клас</a>
+    </div>
+    <div class="row">
+      <a href="../">НВО след седми клас</a>
+    </div>
+    <div class="row">
+      НВО след десети клас
+    </div>
+    <div class="row">
+      <a href="../12">ДЗИ след дванадесети клас</a>
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="row">
+      <a id="csvAll">Всички данни в CSV формат</a>
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="row">
+      <a target="_blank" href="https://danybon.com">Данибон - блог и новини за българското образование</a>
+    </div>
+    <div class="row">
+      <a target="_blank" href="https://dideva.alle.bg">Ученически състезания, новини, статистики от НВО/ДЗИ</a>
+    </div>
+    <div class="row">
+      <a target="_blank" href="https://sabev03.github.io/info-1-klas">Информация за прием в първи клас</a>
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="row">
+      През 2020 г. няма проведени НВО изпити след 10 клас и съм преизползвал данните от 2021 г.
+      Топ гимназиите се изчисляват на база общ среден успех по БЕЛ и МАТ за последните три години.
+      Табличните данни за градовете са подредени по общ среден успех по БЕЛ и МАТ за последните три години.
+      Гимназиите с нулева последна година не присъстват в топ класациите и в табличните данни.
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="row">
+      За конструктивна обратна връзка можете да ме намерите в <a target="_blank" href="https://linkedin.com/in/ivandavidov">LinkedIn</a>.
+    </div>
+    <hr id="hrCharts">
+  </div>
+  <div id="chartb"></div>
+  <hr>
+  <div id="chartm"></div>
+  <div class="container">
+    <div class="row"><hr></div>
+    <div class="row" id="g1"></div>
+    <div class="row"><hr></div>
+    <div class="row" id="g2"></div>
+    <div id="schools"></div>
+    <div class="row"><hr></div>
+  </div>
+  <button id="btnTop" class="button-primary button-scroll">ДЗИ</button>
+  <script>onLoad();</script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+let firstYear = 2018;
+let numYears = 2;
+let fix2018 = false;
+let hide2019TableFix = false;
+let cookieName = 'i10';
+let exportPrefix = 'nvo';
+let chartBTitle = 'НВО - Български език';
+let chartMTitle = 'НВО - Математика';
+let csvHeaderBel = 'БЕЛ';
+let csvHeaderMat = 'МАТ';
+let csvHeaderB = 'Б';
+let csvHeaderM = 'М';
+let baseSchoolIndex = 1; // 1 АЕГ
+let refSchoolIndex = 51; // 91 НЕГ
