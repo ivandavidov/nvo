@@ -19,7 +19,7 @@ public class Decomplexor {
 
     public static void main(String... args) throws Exception {
         if(args.length == 0) {
-            System.err.println("Expected argument normalize/4/7/12 is not provided.");
+            System.err.println("Expected argument normalize/4/7/10/12 is not provided.");
         } else {
             Decomplexor d = new Decomplexor();
             d.decomplex(args[0]);
