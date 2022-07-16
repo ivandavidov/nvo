@@ -89,7 +89,7 @@ function normalizeSeries(series) {
   return counter;
 }
 
-function getLayout(title, series) {
+function getLayout(title, series, exportPrefix) {
   let removedYears = normalizeSeries(series);
   let lastYear = firstYear - 1 + s[baseSchoolIndex].b.length - removedYears;
   let categories = [];
@@ -158,8 +158,8 @@ function handleURL(indices) {
 function redraw() {
   let traces = recalculate();
   handleURL(traces.i);
-  Highcharts.chart(chartb, getLayout(chartBTitle, traces.b));
-  Highcharts.chart(chartm, getLayout(chartMTitle, traces.m));
+  Highcharts.chart(chartb, getLayout(chartBTitle, traces.b, exportPrefixBel));
+  Highcharts.chart(chartm, getLayout(chartMTitle, traces.m, exportPrefixMat));
 }
 
 function generateSchoolButtons(div, slices, topCount) {
