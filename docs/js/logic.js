@@ -261,6 +261,7 @@ function generateRowWithText(el, txt) {
   div.classList.add('row');
   div.appendChild(document.createTextNode(txt));
   el.appendChild(div);
+  return div;
 }
 
 function generateCityMenu(pos, name, href) {
@@ -282,8 +283,11 @@ function generateDownloadCSVHeader() {
   return header;
 }
 
-function generateHTMLTable(el, hrName, puSchools, prSchools) {
+function generateHTMLTable(el, hrName, puSchools, prSchools, name) {
   let div = document.createElement('div');
+  generateRowWithText(div, '\u00A0');
+  titleDiv = generateRowWithStrong(div, tableTitleName + ' - ' + name + ' - ' + tableTitleType);
+  titleDiv.style.textAlign = 'center';
   generateRowWithText(div, '\u00A0');
   div.classList.add('row');
   div.id = 't' + hrName;
@@ -400,7 +404,7 @@ function generateCitySection(name, hrName, btName, btPos) {
   let schoolsDivFragment = new DocumentFragment();
   generateRowWithHr(schoolsDivFragment, hrName);
   let cityDiv = generateRowWithStrong(schoolsDivFragment, name);
-  generateHTMLTable(schoolsDivFragment, hrName, puSchools, prSchools);
+  generateHTMLTable(schoolsDivFragment, hrName, puSchools, prSchools, name);
   generateRowWithText(schoolsDivFragment, '\u00A0');
   generateRowWithText(schoolsDivFragment, 'Държавни училища');
   generateRowWithText(schoolsDivFragment, '\u00A0');
