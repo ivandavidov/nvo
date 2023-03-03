@@ -329,7 +329,7 @@ function generateHTMLTable(el, hrName, puSchools, prSchools, name) {
   }
   let sortFunc = (o1, o2) => (s[o1.i].mb + s[o1.i].mm) / 2 < (s[o2.i].mb + s[o2.i].mm) / 2 ? 1 : -1;
   schools.sort(sortFunc);
-  let topRank = (s[schools[0].i].mb + s[schools[0].i].mm) / 2;
+  let topRank = (s[schools[0].i].mb + s[schools[0].i].mm - rankBase * 2) / 2;
   let counter = 0;
   let topRankDone = false;
   schools.forEach((o) => {
@@ -346,7 +346,7 @@ function generateHTMLTable(el, hrName, puSchools, prSchools, name) {
       td.appendChild(document.createTextNode(100));
       topRankDone = true;
     } else {
-      let rank = (s[o.i].mb + s[o.i].mm) / 2;
+      let rank = (s[o.i].mb + s[o.i].mm - rankBase * 2) / 2;
       let adjustedRank = (rank * 100) / topRank;
       td.appendChild(document.createTextNode((Math.round(adjustedRank * 100) / 100).toFixed(2)));
     }

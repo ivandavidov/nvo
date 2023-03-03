@@ -1,5 +1,6 @@
 let firstYear = 2018;
 let numYears = 5;
+let rankBase = 0;
 let fix2018 = false;
 let hide2019TableFix = false;
 let tableTitleName = 'Класация на училищата'
