@@ -297,7 +297,7 @@ function generateHTMLTable(el, hrName, puSchools, prSchools, name) {
   table.appendChild(tHead);
   let headTr = document.createElement('tr');
   tHead.appendChild(headTr);
-  let headers = ['№', 'Училище', 'Ранг', 'Тип'];
+  let headers = ['№', 'Училище', 'Ранг', 'Тип', '|'];
   for(let i = 0; i < 3; i++) {
     headers.push((firstYear - 2001 + s[baseSchoolIndex].b.length - i) + ' ' + csvHeaderB + ' / уч.');
     headers.push((firstYear - 2001 + s[baseSchoolIndex].b.length - i) + ' ' + csvHeaderM + ' / уч.');
@@ -353,6 +353,9 @@ function generateHTMLTable(el, hrName, puSchools, prSchools, name) {
     tr.appendChild(td);
     td = document.createElement('td');
     td.appendChild(document.createTextNode(o.t));
+    tr.appendChild(td);
+    td = document.createElement('td');
+    td.appendChild(document.createTextNode('|'));
     tr.appendChild(td);
     let totalYears = s[o.i].b.length;
     for(let j = 0; j < 3; j++) {
