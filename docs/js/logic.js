@@ -297,7 +297,7 @@ function generateHTMLTable(el, hrName, puSchools, prSchools, name) {
   table.appendChild(tHead);
   let headTr = document.createElement('tr');
   tHead.appendChild(headTr);
-  let headers = ['№', 'Училище', 'Тип'];
+  let headers = ['№', 'Училище', 'Ранг', 'Тип'];
   for(let i = 0; i < 3; i++) {
     headers.push((firstYear - 2001 + s[baseSchoolIndex].b.length - i) + ' ' + csvHeaderB + ' / уч.');
     headers.push((firstYear - 2001 + s[baseSchoolIndex].b.length - i) + ' ' + csvHeaderM + ' / уч.');
@@ -329,7 +329,9 @@ function generateHTMLTable(el, hrName, puSchools, prSchools, name) {
   }
   let sortFunc = (o1, o2) => (s[o1.i].mb + s[o1.i].mm) / 2 < (s[o2.i].mb + s[o2.i].mm) / 2 ? 1 : -1;
   schools.sort(sortFunc);
+  let topRank = (s[schools[0].i].mb + s[schools[0].i].mm) / 2;
   let counter = 0;
+  let topRankDone = false;
   schools.forEach((o) => {
     let tr = document.createElement('tr');
     tBody.appendChild(tr);
@@ -338,6 +340,16 @@ function generateHTMLTable(el, hrName, puSchools, prSchools, name) {
     tr.appendChild(td);
     td = document.createElement('td');
     td.appendChild(document.createTextNode(s[o.i].l));
+    tr.appendChild(td);
+    td = document.createElement('td');
+    if(!topRankDone) {
+      td.appendChild(document.createTextNode(100));
+      topRankDone = true;
+    } else {
+      let rank = (s[o.i].mb + s[o.i].mm) / 2;
+      let adjustedRank = (rank * 100) / topRank;
+      td.appendChild(document.createTextNode((Math.round(adjustedRank * 100) / 100).toFixed(2)));
+    }
     tr.appendChild(td);
     td = document.createElement('td');
     td.appendChild(document.createTextNode(o.t));
