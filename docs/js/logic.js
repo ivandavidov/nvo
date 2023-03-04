@@ -344,10 +344,29 @@ function generateHTMLTable(el, hrName, puSchools, prSchools, name) {
     td = document.createElement('td');
     if(!topRankDone) {
       td.appendChild(document.createTextNode(100));
+      td.style.backgroundColor = "#00ff30";
       topRankDone = true;
     } else {
       let rank = (s[o.i].mb + s[o.i].mm - rankBase * 2) / 2;
       let adjustedRank = (rank * 100) / topRank;
+      let redHex = "00";
+      let greenHex = "00";
+      let blueHex = "30";
+      if(adjustedRank >= (100 - rankRangeTop)) {
+        let red = Math.floor(255 - ((adjustedRank - (100 - rankRangeTop)) * 255) / rankRangeTop);
+        redHex = red.toString(16).padStart(2, '0');
+        greenHex = "ff";
+      } else if(adjustedRank < (100 - rankRangeTop) && adjustedRank >= rankRangeBottom) {
+        let green = Math.floor(127 + ((adjustedRank - rankRangeBottom) * 127) / (100 - rankRangeTop - rankRangeBottom));
+        redHex = "ff";
+        greenHex = green.toString(16).padStart(2, '0');
+      } else {
+        let green = Math.floor((adjustedRank * 127) / rankRangeBottom);
+        let red = Math.floor(191 + green / 2);
+        redHex = red.toString(16).padStart(2, '0');
+        greenHex = green.toString(16).padStart(2, '0');
+      }
+      td.style.backgroundColor = "#" + redHex + greenHex + blueHex;
       td.appendChild(document.createTextNode((Math.round(adjustedRank * 100) / 100).toFixed(2)));
     }
     tr.appendChild(td);
