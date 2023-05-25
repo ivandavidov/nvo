@@ -98,19 +98,35 @@ function getLayout(title, series, exportPrefix) {
   }
   return {
     title: {
-      text: title
+      text: title,
+      style: {
+        fontSize: '1.75em'
+      }
     },
     xAxis: {
-      categories: categories
+      categories: categories,
+      labels: {
+        style: {
+          fontSize: '1.5em'
+        }
+      }
     },
     yAxis: {
       title: {
         text: null
+      },
+      labels: {
+        style: {
+          fontSize: '1.5em'
+        }
       }
     },
     legend: {
       layout: 'horizontal',
-      align: 'left'
+      align: 'left',
+      itemStyle: {
+        fontSize: '1.5em'
+      }
     },
     chart: {
       animation: false,
@@ -125,10 +141,14 @@ function getLayout(title, series, exportPrefix) {
       enabled: true
     },
     tooltip: {
-      animation: false
+      animation: false,
+      style: {
+        fontSize: '1.5em'
+      }
     },
     exporting: {
       enabled: true,
+      allowHTML: true,
       sourceWidth: 960,
       sourceHeight: 540,
       scale: 2,
