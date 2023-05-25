@@ -119,7 +119,9 @@ function getLayout(title, series, exportPrefix) {
         style: {
           fontSize: '1.25em'
         }
-      }
+      },
+      floor: chartFloor,
+      ceiling: chartCeiling
     },
     legend: {
       layout: 'horizontal',
