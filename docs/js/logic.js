@@ -436,7 +436,7 @@ function generateDownloadCSVLink(el, name, data) {
   a.style.cursor = 'pointer';
   a.appendChild(document.createTextNode('CSV'));
   a.setAttribute('download', exportPrefix + '-data-' + name +'.csv');
-  a.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(header + data));
+  a.setAttribute('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(header + data));
   span.appendChild(a);    
 }
 
@@ -602,7 +602,7 @@ function generateCitySections() {
   let header = generateDownloadCSVHeader();
   let a = document.getElementById('csvAll');
   a.setAttribute('download', exportPrefix + '-data-all.csv');
-  a.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(header + data));  
+  a.setAttribute('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(header + data));
 }
 
 function initializeHighcharts() {
