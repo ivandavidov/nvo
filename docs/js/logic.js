@@ -320,7 +320,7 @@ function generateHTMLTable(el, hrName, puSchools, prSchools, name) {
   tHeadMedian.appendChild(headTrMedian);
   let headersMedian = [];
   if(si[name].mpb) {
-    headersMedian = ['Година', csvHeaderBel + ' - д', csvHeaderBel + ' - ч', csvHeaderMat + ' - д', , csvHeaderMat + ' - ч'];
+    headersMedian = ['Година', csvHeaderBel + '-д', csvHeaderBel + '-ч', csvHeaderMat + '-д', , csvHeaderMat + '-ч'];
   } else {
     headersMedian = ['Година', csvHeaderBel, csvHeaderMat];
   }
