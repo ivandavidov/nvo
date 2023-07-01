@@ -305,25 +305,41 @@ function generateDownloadCSVHeader() {
   return header;
 }
 
-function generateHTMLTable(el, hrName, puSchools, prSchools, name) {
-  let div = document.createElement('div');
-  generateRowWithText(div, '\u00A0');
-  let titleDiv = generateRowWithStrong(div, 'Средни резултати' + ' - ' + name + ' - ' + tableTitleType);
+function generateMedianTable(el, name) {
+  let titleDiv = generateRowWithStrong(el, 'Средни резултати' + ' - ' + name + ' - ' + tableTitleType);
   titleDiv.style.textAlign = 'center';
-  generateRowWithText(div, '\u00A0');
+  generateRowWithText(el, '\u00A0');
   let tableMedian = document.createElement('table');
   let tHeadMedian = document.createElement('thead');
   tableMedian.appendChild(tHeadMedian);
   tableMedian.style.marginLeft = 'auto';
   tableMedian.style.marginRight = 'auto';
-  let headTrMedian = document.createElement('tr');
-  tHeadMedian.appendChild(headTrMedian);
   let headersMedian = [];
   if(si[name].mpb) {
-    headersMedian = ['Година', csvHeaderBel + '-д', csvHeaderBel + '-ч', csvHeaderMat + '-д', , csvHeaderMat + '-ч'];
+    let headTrMedian = document.createElement('tr');
+    tHeadMedian.appendChild(headTrMedian);
+    let th = document.createElement('th');
+    th.style.borderBottom = 'none';
+    th.appendChild(document.createTextNode('\u00A0'));
+    headTrMedian.appendChild(th);
+    th = document.createElement('th');
+    th.style.borderBottom = 'none';
+    th.colSpan = 2;
+    th.style.textAlign = 'center';
+    th.appendChild(document.createTextNode('Държавни'));
+    headTrMedian.appendChild(th);
+    th = document.createElement('th');
+    th.style.borderBottom = 'none';
+    th.colSpan = 2;
+    th.style.textAlign = 'center';
+    th.appendChild(document.createTextNode('Частни'));
+    headTrMedian.appendChild(th);
+    headersMedian = ['Година', csvHeaderBel, csvHeaderMat, csvHeaderBel, csvHeaderMat];
   } else {
     headersMedian = ['Година', csvHeaderBel, csvHeaderMat];
   }
+  let headTrMedian = document.createElement('tr');
+  tHeadMedian.appendChild(headTrMedian);
   headersMedian.forEach((header) => {
     let th = document.createElement('th');
     th.appendChild(document.createTextNode(header));
@@ -340,21 +356,25 @@ function generateHTMLTable(el, hrName, puSchools, prSchools, name) {
     td = document.createElement('td');
     tr.appendChild(td);
     td.appendChild(document.createTextNode((Math.round(si[name].mnb[i] * 100) / 100).toFixed(2)));
+    td = document.createElement('td');
+    tr.appendChild(td);
+    td.appendChild(document.createTextNode((Math.round(si[name].mnm[i] * 100) / 100).toFixed(2)));
     if(si[name].mpb) {
       td = document.createElement('td');
       tr.appendChild(td);
       td.appendChild(document.createTextNode((Math.round(si[name].mpb[i] * 100) / 100).toFixed(2)));
-    }
-    td = document.createElement('td');
-    tr.appendChild(td);
-    td.appendChild(document.createTextNode((Math.round(si[name].mnm[i] * 100) / 100).toFixed(2)));
-    if(si[name].mpm) {
       td = document.createElement('td');
       tr.appendChild(td);
       td.appendChild(document.createTextNode((Math.round(si[name].mpm[i] * 100) / 100).toFixed(2)));
     }
   }
-  div.appendChild(tableMedian);
+  el.appendChild(tableMedian);
+}
+
+function generateHTMLTable(el, hrName, puSchools, prSchools, name) {
+  let div = document.createElement('div');
+  generateRowWithText(div, '\u00A0');
+  generateMedianTable(div, name);
   generateRowWithText(div, '\u00A0');
   generateRowWithText(div, '\u00A0');
   titleDiv = generateRowWithStrong(div, tableTitleName + ' - ' + name + ' - ' + tableTitleType);
