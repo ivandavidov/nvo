@@ -305,17 +305,81 @@ function generateDownloadCSVHeader() {
   return header;
 }
 
-function generateMedianTable(el, name) {
+function generateCityMedianTables(el, name) {
   let titleDiv = generateRowWithStrong(el, 'Средни резултати' + ' - ' + name + ' - ' + tableTitleType);
   titleDiv.style.textAlign = 'center';
   generateRowWithText(el, '\u00A0');
+  let medianMenu = generateRow(el);
+  medianMenu.style.display = 'flex';
+  medianMenu.style.alignItems = 'center';
+  medianMenu.style.justifyContent = 'center';
+  document.createElement('span');
+  let medianText = document.createElement('span');
+  medianText.textContent = 'Училища';
+  medianText.id = 'medianTextSchools'+ si[name].n[0];
+  medianText.style.display = 'block';
+  medianText.style.fontWeight = 'bold';
+  medianMenu.appendChild(medianText);
+  let a = document.createElement('a');
+  medianMenu.appendChild(a);
+  a.id = 'medianMenuSchools' + si[name].n[0];
+  a.style.display = 'none';
+  a.style.cursor = 'pointer';
+  a.appendChild(document.createTextNode('Училища'));
+  a.onclick = (e) => {
+    let element = document.getElementById('tableMedianSchools' + si[name].n[0]);
+    element.style.display = 'block';
+    element = document.getElementById('tableMedianAttendees' + si[name].n[0]);
+    element.style.display = 'none';
+    element = document.getElementById('medianMenuSchools' + si[name].n[0]);
+    element.style.display = 'none';
+    element = document.getElementById('medianTextSchools' + si[name].n[0]);
+    element.style.display = 'block';
+    element = document.getElementById('medianMenuAttendees' + si[name].n[0]);
+    element.style.display = 'block';
+    element = document.getElementById('medianTextAttendees' + si[name].n[0]);
+    element.style.display = 'none';
+  }
+  medianMenu.appendChild(document.createTextNode('\u00A0\u00A0\u00A0|\u00A0\u00A0\u00A0'));
+  medianText = document.createElement('span');
+  medianText.textContent = 'Ученици';
+  medianText.id = 'medianTextAttendees'+ si[name].n[0];
+  medianText.style.display = 'none';
+  medianText.style.fontWeight = 'bold';
+  medianMenu.appendChild(medianText);
+  a = document.createElement('a');
+  medianMenu.appendChild(a);
+  a.id = 'medianMenuAttendees' + si[name].n[0];
+  a.style.cursor = 'pointer';
+  a.style.display = 'block';
+  a.appendChild(document.createTextNode('Ученици'));
+  a.onclick = (e) => {
+    let element = document.getElementById('tableMedianSchools' + si[name].n[0]);
+    element.style.display = 'none';
+    element = document.getElementById('tableMedianAttendees' + si[name].n[0]);
+    element.style.display = 'block';
+    element = document.getElementById('medianMenuSchools' + si[name].n[0]);
+    element.style.display = 'block';
+    element = document.getElementById('medianTextSchools' + si[name].n[0]);
+    element.style.display = 'none';
+    element = document.getElementById('medianMenuAttendees' + si[name].n[0]);
+    element.style.display = 'none';
+    element = document.getElementById('medianTextAttendees' + si[name].n[0]);
+    element.style.display = 'block';
+  }
+  generateRowWithText(el, '\u00A0');
+  let tableMedianDiv = document.createElement('div');
+  tableMedianDiv.style.display = 'flex';
+  tableMedianDiv.style.alignItems = 'center';
+  tableMedianDiv.style.justifyContent = 'center';
   let tableMedian = document.createElement('table');
+  tableMedianDiv.appendChild(tableMedian);
+  tableMedian.id = 'tableMedianSchools' + si[name].n[0];
+  tableMedian.style.display = 'block';
   let tHeadMedian = document.createElement('thead');
   tableMedian.appendChild(tHeadMedian);
-  tableMedian.style.marginLeft = 'auto';
-  tableMedian.style.marginRight = 'auto';
   let headersMedian = [];
-  if(si[name].mpb) {
+  if(si[name].mpbs) {
     let headTrMedian = document.createElement('tr');
     tHeadMedian.appendChild(headTrMedian);
     let th = document.createElement('th');
@@ -355,26 +419,86 @@ function generateMedianTable(el, name) {
     td.appendChild(document.createTextNode(firstYear + i));
     td = document.createElement('td');
     tr.appendChild(td);
-    td.appendChild(document.createTextNode((Math.round(si[name].mnb[i] * 100) / 100).toFixed(2)));
+    td.appendChild(document.createTextNode((Math.round(si[name].mnbs[i] * 100) / 100).toFixed(2)));
     td = document.createElement('td');
     tr.appendChild(td);
-    td.appendChild(document.createTextNode((Math.round(si[name].mnm[i] * 100) / 100).toFixed(2)));
-    if(si[name].mpb) {
+    td.appendChild(document.createTextNode((Math.round(si[name].mnms[i] * 100) / 100).toFixed(2)));
+    if(si[name].mpbs) {
       td = document.createElement('td');
       tr.appendChild(td);
-      td.appendChild(document.createTextNode((Math.round(si[name].mpb[i] * 100) / 100).toFixed(2)));
+      td.appendChild(document.createTextNode((Math.round(si[name].mpbs[i] * 100) / 100).toFixed(2)));
       td = document.createElement('td');
       tr.appendChild(td);
-      td.appendChild(document.createTextNode((Math.round(si[name].mpm[i] * 100) / 100).toFixed(2)));
+      td.appendChild(document.createTextNode((Math.round(si[name].mpms[i] * 100) / 100).toFixed(2)));
     }
   }
-  el.appendChild(tableMedian);
+  el.appendChild(tableMedianDiv);
+  tableMedian = document.createElement('table');
+  tableMedian.id = 'tableMedianAttendees' + si[name].n[0];
+  tableMedian.style.display = 'none';
+  tHeadMedian = document.createElement('thead');
+  tableMedian.appendChild(tHeadMedian);
+  headersMedian = [];
+  if(si[name].mpba) {
+    let headTrMedian = document.createElement('tr');
+    tHeadMedian.appendChild(headTrMedian);
+    let th = document.createElement('th');
+    th.style.borderBottom = 'none';
+    th.appendChild(document.createTextNode('\u00A0'));
+    headTrMedian.appendChild(th);
+    th = document.createElement('th');
+    th.style.borderBottom = 'none';
+    th.colSpan = 2;
+    th.style.textAlign = 'center';
+    th.appendChild(document.createTextNode('Държавни'));
+    headTrMedian.appendChild(th);
+    th = document.createElement('th');
+    th.style.borderBottom = 'none';
+    th.colSpan = 2;
+    th.style.textAlign = 'center';
+    th.appendChild(document.createTextNode('Частни'));
+    headTrMedian.appendChild(th);
+    headersMedian = ['Година', csvHeaderBel, csvHeaderMat, csvHeaderBel, csvHeaderMat];
+  } else {
+    headersMedian = ['Година', csvHeaderBel, csvHeaderMat];
+  }
+  headTrMedian = document.createElement('tr');
+  tHeadMedian.appendChild(headTrMedian);
+  headersMedian.forEach((header) => {
+    let th = document.createElement('th');
+    th.appendChild(document.createTextNode(header));
+    headTrMedian.appendChild(th);
+  });
+  tBodyMedian = document.createElement('tbody');
+  tableMedian.appendChild(tBodyMedian);
+  for(let i = s[baseSchoolIndex].b.length - numYears; i < s[baseSchoolIndex].b.length; i++) {
+    let tr = document.createElement('tr');
+    tBodyMedian.appendChild(tr);
+    let td = document.createElement('td');
+    tr.appendChild(td);
+    td.appendChild(document.createTextNode(firstYear + i));
+    td = document.createElement('td');
+    tr.appendChild(td);
+    td.appendChild(document.createTextNode((Math.round(si[name].mnba[i] * 100) / 100).toFixed(2)));
+    td = document.createElement('td');
+    tr.appendChild(td);
+    td.appendChild(document.createTextNode((Math.round(si[name].mnma[i] * 100) / 100).toFixed(2)));
+    if(si[name].mpbs) {
+      td = document.createElement('td');
+      tr.appendChild(td);
+      td.appendChild(document.createTextNode((Math.round(si[name].mpba[i] * 100) / 100).toFixed(2)));
+      td = document.createElement('td');
+      tr.appendChild(td);
+      td.appendChild(document.createTextNode((Math.round(si[name].mpma[i] * 100) / 100).toFixed(2)));
+    }
+  }
+  tableMedianDiv.appendChild(tableMedian);
 }
 
 function generateHTMLTable(el, hrName, puSchools, prSchools, name) {
   let div = document.createElement('div');
   generateRowWithText(div, '\u00A0');
-  generateMedianTable(div, name);
+  generateCityMedianTables(div, name);
   generateRowWithText(div, '\u00A0');
   generateRowWithText(div, '\u00A0');
   titleDiv = generateRowWithStrong(div, tableTitleName + ' - ' + name + ' - ' + tableTitleType);
@@ -502,7 +626,7 @@ function generateDownloadCSVLink(el, name, data) {
     }
   }
   span.appendChild(a);
-  span.appendChild(document.createTextNode(' | '));
+  span.appendChild(document.createTextNode('\u00A0\u00A0\u00A0|\u00A0\u00A0\u00A0'));
   a = document.createElement('a');
   a.style.cursor = 'pointer';
   a.appendChild(document.createTextNode('CSV'));
@@ -614,12 +738,12 @@ function calculateSchoolMedians() {
   });
 }
 
-function calculateCityMedians() {
+function calculateCityMediansBySchool() {
   Object.keys(si).forEach((o) => {
-    si[o].mnb = [];
-    si[o].mnm = [];
-    si[o].mpb = null;
-    si[o].mpm = null;
+    si[o].mnbs = [];
+    si[o].mnms = [];
+    si[o].mpbs = null;
+    si[o].mpms = null;
     for(let i = 0; i < s[baseSchoolIndex].b.length; i++) {
       let sumNB = 0;
       let nullNB = 0;
@@ -637,12 +761,12 @@ function calculateCityMedians() {
           ++nullNM;
         }
       }
-      si[o].mnb[i] = sumNB / (si[o].n[1] - si[o].n[0] + 1 - nullNB);
-      si[o].mnm[i] = sumNM / (si[o].n[1] - si[o].n[0] + 1 - nullNM);
+      si[o].mnbs[i] = sumNB / (si[o].n[1] - si[o].n[0] + 1 - nullNB);
+      si[o].mnms[i] = sumNM / (si[o].n[1] - si[o].n[0] + 1 - nullNM);
     }
     if(si[o].p) {
-      si[o].mpb = [];
-      si[o].mpm = [];
+      si[o].mpbs = [];
+      si[o].mpms = [];
       for(let i = 0; i < s[baseSchoolIndex].m.length; i++) {
         let sumPB = 0;
         let nullPB = 0;
@@ -660,9 +784,58 @@ function calculateCityMedians() {
             ++nullPM;
           }
         }
-        si[o].mpb[i] = sumPB / (si[o].p[1] - si[o].p[0] + 1 - nullPB);
-        si[o].mpm[i] = sumPM / (si[o].p[1] - si[o].p[0] + 1 - nullPM);
+        si[o].mpbs[i] = sumPB / (si[o].p[1] - si[o].p[0] + 1 - nullPB);
+        si[o].mpms[i] = sumPM / (si[o].p[1] - si[o].p[0] + 1 - nullPM);
       }
+    }
+  });
+}
+
+function calculateCityMediansByAttendees() {
+  Object.keys(si).forEach((o) => {
+    si[o].mnba = [];
+    si[o].mnma = [];
+    si[o].mpba = null;
+    si[o].mpma = null;
+    for(let i = 0; i < s[baseSchoolIndex].b.length; i++) {
+      let sumNB = 0;
+      let attendeesNB = 0;
+      let sumNM = 0;
+      let attendeesNM = 0;
+      for(let j = si[o].n[0]; j <= si[o].n[1]; j++) {
+        if(s[j].b[i]) {
+          sumNB += s[j].b[i] * s[j].bu[i];
+          attendeesNB += s[j].bu[i];
+        }
+        if(s[j].m[i]) {
+          sumNM += s[j].m[i] * s[j].mu[i];
+          attendeesNM += s[j].mu[i];
+        }
+      }
+      si[o].mnba[i] = sumNB / attendeesNB;
+      si[o].mnma[i] = sumNM / attendeesNM;
+    }
+    if(si[o].p) {
+      si[o].mpba = [];
+      si[o].mpma = [];
+      for(let i = 0; i < s[baseSchoolIndex].m.length; i++) {
+        let sumPB = 0;
+        let attendeesPB = 0;
+        let sumPM = 0;
+        let attendeesPM = 0;
+        for(let j = si[o].p[0]; j <= si[o].p[1]; j++) {
+          if(s[j].b[i]) {
+            sumPB += s[j].b[i] * s[j].bu[i];
+            attendeesPB += s[j].bu[i];
+          }
+          if(s[j].m[i]) {
+            sumPM += s[j].m[i] * s[j].mu[i];
+            attendeesPM += s[j].mu[i];
+          }
+        }
+        si[o].mpba[i] = sumPB / attendeesPB;
+        si[o].mpma[i] = sumPM / attendeesPM;
+        }
     }
   });
 }
@@ -752,7 +925,8 @@ function onLoad() {
   fixForYear2018();
   fixForMissingYears();
   calculateSchoolMedians();
-  calculateCityMedians();
+  calculateCityMediansBySchool();
+  calculateCityMediansByAttendees();
   generateCitySections();
   enableScrollButton();
   setDefaultClickedButtons();
