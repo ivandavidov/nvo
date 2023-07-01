@@ -308,6 +308,55 @@ function generateDownloadCSVHeader() {
 function generateHTMLTable(el, hrName, puSchools, prSchools, name) {
   let div = document.createElement('div');
   generateRowWithText(div, '\u00A0');
+  let titleDiv = generateRowWithStrong(div, 'Средни резултати' + ' - ' + name + ' - ' + tableTitleType);
+  titleDiv.style.textAlign = 'center';
+  generateRowWithText(div, '\u00A0');
+  let tableMedian = document.createElement('table');
+  let tHeadMedian = document.createElement('thead');
+  tableMedian.appendChild(tHeadMedian);
+  tableMedian.style.marginLeft = 'auto';
+  tableMedian.style.marginRight = 'auto';
+  let headTrMedian = document.createElement('tr');
+  tHeadMedian.appendChild(headTrMedian);
+  let headersMedian = [];
+  if(si[name].mpb) {
+    headersMedian = ['Година', csvHeaderBel + ' - д', csvHeaderBel + ' - ч', csvHeaderMat + ' - д', , csvHeaderMat + ' - ч'];
+  } else {
+    headersMedian = ['Година', csvHeaderBel, csvHeaderMat];
+  }
+  headersMedian.forEach((header) => {
+    let th = document.createElement('th');
+    th.appendChild(document.createTextNode(header));
+    headTrMedian.appendChild(th);
+  });
+  let tBodyMedian = document.createElement('tbody');
+  tableMedian.appendChild(tBodyMedian);
+  for(let i = s[baseSchoolIndex].b.length - numYears; i < s[baseSchoolIndex].b.length; i++) {
+    let tr = document.createElement('tr');
+    tBodyMedian.appendChild(tr);
+    let td = document.createElement('td');
+    tr.appendChild(td);
+    td.appendChild(document.createTextNode(firstYear + i));
+    td = document.createElement('td');
+    tr.appendChild(td);
+    td.appendChild(document.createTextNode((Math.round(si[name].mnb[i] * 100) / 100).toFixed(2)));
+    if(si[name].mpb) {
+      td = document.createElement('td');
+      tr.appendChild(td);
+      td.appendChild(document.createTextNode((Math.round(si[name].mpb[i] * 100) / 100).toFixed(2)));
+    }
+    td = document.createElement('td');
+    tr.appendChild(td);
+    td.appendChild(document.createTextNode((Math.round(si[name].mnm[i] * 100) / 100).toFixed(2)));
+    if(si[name].mpm) {
+      td = document.createElement('td');
+      tr.appendChild(td);
+      td.appendChild(document.createTextNode((Math.round(si[name].mpm[i] * 100) / 100).toFixed(2)));
+    }
+  }
+  div.appendChild(tableMedian);
+  generateRowWithText(div, '\u00A0');
+  generateRowWithText(div, '\u00A0');
   titleDiv = generateRowWithStrong(div, tableTitleName + ' - ' + name + ' - ' + tableTitleType);
   titleDiv.style.textAlign = 'center';
   generateRowWithText(div, '\u00A0');
@@ -315,6 +364,8 @@ function generateHTMLTable(el, hrName, puSchools, prSchools, name) {
   div.id = 't' + hrName;
   div.style.display = 'none';
   let table = document.createElement('table');
+  table.style.marginLeft = 'auto';
+  table.style.marginRight = 'auto';
   let tHead = document.createElement('thead');
   table.appendChild(tHead);
   let headTr = document.createElement('tr');
@@ -519,7 +570,7 @@ function fixForMissingYears() {
   });
 }
 
-function calculateMedians() {
+function calculateSchoolMedians() {
   s.forEach((o) => {
     let mb = 0;
     let mm = 0;
@@ -540,6 +591,59 @@ function calculateMedians() {
     }
     o.mb = dividerB > 0 ? mb / dividerB : 0;
     o.mm = dividerM > 0 ? mm / dividerM : 0;
+  });
+}
+
+function calculateCityMedians() {
+  Object.keys(si).forEach((o) => {
+    si[o].mnb = [];
+    si[o].mnm = [];
+    si[o].mpb = null;
+    si[o].mpm = null;
+    for(let i = 0; i < s[baseSchoolIndex].b.length; i++) {
+      let sumNB = 0;
+      let nullNB = 0;
+      let sumNM = 0;
+      let nullNM = 0;
+      for(let j = si[o].n[0]; j <= si[o].n[1]; j++) {
+        if(s[j].b[i]) {
+          sumNB += s[j].b[i];
+        } else {
+          ++nullNB;
+        }
+        if(s[j].m[i]) {
+          sumNM += s[j].m[i];
+        } else {
+          ++nullNM;
+        }
+      }
+      si[o].mnb[i] = sumNB / (si[o].n[1] - si[o].n[0] + 1 - nullNB);
+      si[o].mnm[i] = sumNM / (si[o].n[1] - si[o].n[0] + 1 - nullNM);
+    }
+    if(si[o].p) {
+      si[o].mpb = [];
+      si[o].mpm = [];
+      for(let i = 0; i < s[baseSchoolIndex].m.length; i++) {
+        let sumPB = 0;
+        let nullPB = 0;
+        let sumPM = 0;
+        let nullPM = 0;
+        for(let j = si[o].p[0]; j <= si[o].p[1]; j++) {
+          if(s[j].b[i]) {
+            sumPB += s[j].b[i];
+          } else {
+            ++nullPB;
+          }
+          if(s[j].m[i]) {
+            sumPM += s[j].m[i];
+          } else {
+            ++nullPM;
+          }
+        }
+        si[o].mpb[i] = sumPB / (si[o].p[1] - si[o].p[0] + 1 - nullPB);
+        si[o].mpm[i] = sumPM / (si[o].p[1] - si[o].p[0] + 1 - nullPM);
+      }
+    }
   });
 }
 
@@ -627,7 +731,8 @@ function initializeHighcharts() {
 function onLoad() {
   fixForYear2018();
   fixForMissingYears();
-  calculateMedians();
+  calculateSchoolMedians();
+  calculateCityMedians();
   generateCitySections();
   enableScrollButton();
   setDefaultClickedButtons();
