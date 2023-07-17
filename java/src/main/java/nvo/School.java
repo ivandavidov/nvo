@@ -818,7 +818,6 @@ public class School implements Comparable<School> {
         schoolCodes.put("1001680", new String[]{"0", "ОУ Даскал Димитри", "ОУ Даскал Димитри"});
         schoolCodes.put("1001830", new String[]{"0", "ОУ Кирил и Методий", "ОУ Св. Св. Кирил и Методий"});
         schoolCodes.put("1000380", new String[] {"0", "НУ Кл. Охридски", "НУ Св. Климент Охридски"});
-        schoolCodes.put("_", new String[] {"0", "_", "_"});
 
         return schoolCodes;
     }
@@ -1080,12 +1079,6 @@ public class School implements Comparable<School> {
         schoolCodes.put("2000113", new String[]{"0", "ОУ Кирил и Методий", "ОУ Св. Св. Кирил и Методий"});
         schoolCodes.put("2000116", new String[]{"0", "ОУ Ел. Багряна", "ОУ Елисавета Багряна"});
         schoolCodes.put("2000102", new String[]{"0", "НУ Васил Левски", "НУ Васил Левски"});
-        schoolCodes.put("_", new String[]{"0", "_", "_"});
-        schoolCodes.put("_", new String[]{"0", "_", "_"});
-        schoolCodes.put("_", new String[]{"0", "_", "_"});
-        schoolCodes.put("_", new String[]{"0", "_", "_"});
-        schoolCodes.put("_", new String[]{"0", "_", "_"});
-        schoolCodes.put("_", new String[]{"0", "_", "_"});
 
         return schoolCodes;
     }
@@ -1147,6 +1140,8 @@ public class School implements Comparable<School> {
         schoolCodes.put("2400124", new String[]{"0", "НУ Кольо Ганчв", "НУ Кольо Ганчв"});
         schoolCodes.put("2400146", new String[]{"0", "НУ Д. Благоев", "НУ Димитър Благоев"});
         schoolCodes.put("2400147", new String[]{"0", "НУ Зора", "НУ Зора"});
+        schoolCodes.put("2400020", new String[]{"0", "ПГ по комп. науки", "ПГ по комп. науки и мат. анализ Проф. Минко Балкански"});
+
 
         return schoolCodes;
     }
@@ -1194,8 +1189,6 @@ public class School implements Comparable<School> {
         schoolCodes.put("2601010", new String[]{"0", "ОУ Иван Рилски", "ОУ Св. Иван Рилски"});
         schoolCodes.put("2601011", new String[]{"0", "ОУ Хр. Смирненски", "ОУ Христо Смирненски"});
         schoolCodes.put("2601001", new String[]{"0", "НУ Г. С. Раковски", "НУ Георги Сава Раковски"});
-        schoolCodes.put("_", new String[]{"0", "_", "_"});
-        schoolCodes.put("_", new String[]{"0", "_", "_"});
 
         return schoolCodes;
     }
