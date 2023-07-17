@@ -25,7 +25,7 @@ public class CSVNormalizer {
     private static final String BASE_DIR_NORMALIZED = BASE_DIR + "normalized/";
 
     public static void main(String... args) throws Exception {
-//        CSVNormalizer worker = new CSVNormalizer();
+        CSVNormalizer worker = new CSVNormalizer();
 //        worker.reformat("nvo-4-2018", ',', "", 2, 3, 4, 10, 9, 6, 5, 0, 0, 0, 0);
 //        worker.reformat("nvo-4-2019", ',', "", 2, 3, 4, 10, 9, 6, 5, 0, 0, 0, 0);
 //        worker.reformat("nvo-4-2021", ',', "ГР.", 2, 3, 4, 6, 8, 5, 7, 0, 0, 0, 0);
@@ -35,8 +35,10 @@ public class CSVNormalizer {
 //        worker.reformat("nvo-7-2020", ';', "ГР.", 2, 3, 4, 6, 8, 5, 7, 0, 0, 0, 0);
 //        worker.reformat("nvo-7-2021", ',', "ГР.", 2, 4, 3, 6, 8, 5, 7, 0, 0, 0, 0);
 //        worker.reformat("nvo-7-2022", ';', "ГР.", 2, 4, 3, 6, 8, 5, 7, 0, 0, 0, 0);
+//        worker.reformat("nvo-7-2023", ',', "ГР.", 2, 4, 3, 6, 8, 5, 7, 0, 0, 0, 0);
 //        worker.reformat("nvo-10-2021", ',', "ГР.", 2, 4, 3, 6, 8, 5, 7, 0, 0, 0, 0);
 //        worker.reformat("nvo-10-2022", ';', "ГР.", 2, 4, 3, 6, 8, 5, 7, 0, 0, 0, 0);
+        worker.reformat("nvo-10-2023", ',', "ГР.", 2, 4, 3, 6, 8, 5, 7, 0, 0, 0, 0);
 //        worker.reformat("dzi-2018", ',', "ГР.", 2, 3, 4, 6, 34, 5, 33, 0, 0, 0, 0);
 //        worker.reformat("dzi-2019", ',', "ГР.", 2, 3, 4, 6, -1, 5, -1, 8, 7, 32, 31);
 //        worker.reformat("dzi-2020", ',', "ГР.", 2, 3, 4, 6, 34, 5, 33, 0, 0, 0, 0);
@@ -190,7 +192,13 @@ public class CSVNormalizer {
             school[5] = line[belNumPos].replaceAll("\"", "");
             school[6] = matNumPos < 0 ? "" + calculatedAttendees : line[matNumPos].replaceAll("\"", "");
 
-            if(!school[5].equals("")) {
+            for(int i = 3; i <= 6; i++) {
+                if(school[i].equals("")) {
+                    school[i] = "0";
+                }
+            }
+
+            if(!school[3].equals("") || !school[4].equals("")) {
                 schools.add(school);
             }
         }

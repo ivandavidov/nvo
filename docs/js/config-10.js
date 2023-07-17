@@ -1,5 +1,5 @@
 let firstYear = 2018;
-let numYears = 2;
+let numYears = 3;
 let rankBase = 0;
 let rankRangeTop = 25;
 let rankRangeBottom = 50;
