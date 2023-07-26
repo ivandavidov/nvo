@@ -221,7 +221,7 @@ function generateSchoolButtons(div, slices, topCount) {
     }
     schools.sort(sortFunc);
     if(topBtn.classList.contains('button-primary')) {
-    setTopSchoolButtons(false);
+      setTopSchoolButtons(false);
       topBtn.classList.remove('button-primary');
     } else {
       setTopSchoolButtons(true);
@@ -896,6 +896,17 @@ function generateCitySections() {
   data += generateCitySection('Хасково', 'haskovo', 'Хасково', 2);
   data += generateCitySection('Шумен', 'shumen', 'Шумен', 2);
   data += generateCitySection('Ямбол', 'iambol', 'Ямбол', 2);
+  if(fixForMissingCities2023) {
+    document.getElementById('other-cities').style.display = 'none';
+  } else {
+    data += generateCitySection('Асеновград', 'asenovgrad', 'Асеновград', 3);
+    data += generateCitySection('Горна Оряховица', 'gorna-oryahovitsa', 'Г. Оряховица', 3);
+    data += generateCitySection('Димитровград', 'dimitrovgrad', 'Димитровград', 3);
+    data += generateCitySection('Дупница', 'dupnitsa', 'Дупница', 3);
+    data += generateCitySection('Казанлък', 'kazanluk', 'Казанлък', 3);
+    data += generateCitySection('Петрич', 'petrich', 'Петрич', 3);
+    data += generateCitySection('Самоков', 'samokov', 'Самоков', 3);
+  }
   let header = generateDownloadCSVHeader();
   let a = document.getElementById('csvAll');
   a.setAttribute('download', exportPrefix + '-data-all.csv');

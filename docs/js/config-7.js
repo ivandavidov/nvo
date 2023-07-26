@@ -5,6 +5,7 @@ let rankRangeTop = 25;
 let rankRangeBottom = 50;
 let fix2018 = true;
 let hide2019TableFix = false;
+let fixForMissingCities2023 = false;
 let tableTitleName = 'Класация на училищата'
 let tableTitleType = 'НВО след 7 клас'
 let cookieName = 'i7';

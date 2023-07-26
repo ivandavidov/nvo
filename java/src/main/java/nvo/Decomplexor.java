@@ -165,6 +165,14 @@ public class Decomplexor {
         printSchoolsByType(schools, "Шумен", 2701, 2800);
         printSchoolsByType(schools, "Ямбол", 2801, 2900);
 
+        printSchoolsByType(schools, "Асеновград", 2901, 3000);
+        printSchoolsByType(schools, "Горна Оряховица", 3001, 3100);
+        printSchoolsByType(schools, "Димитровград", 3101, 3200);
+        printSchoolsByType(schools, "Дупница", 3201, 3300);
+        printSchoolsByType(schools, "Казанлък", 3301, 3400);
+        printSchoolsByType(schools, "Петрич", 3401, 3500);
+        printSchoolsByType(schools, "Самоков", 3501, 3600);
+
 //        printSchoolsByNVOResult(schools);
 
         System.out.println();
