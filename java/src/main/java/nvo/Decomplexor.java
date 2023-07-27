@@ -40,8 +40,9 @@ public class Decomplexor {
             String file20 = basePath + "dzi-2020-normalized.csv";
             String file21 = basePath + "dzi-2021-normalized.csv";
             String file22 = basePath + "dzi-2022-normalized.csv";
+            String file23 = basePath + "dzi-2023-normalized.csv";
             header = "";
-            files = new String[] {file18, file19, file20, file21, file22};
+            files = new String[] {file18, file19, file20, file21, file22, file23};
         } else if(mode.equals("10")) {
             String file18 = basePath + "nvo-10-2018-normalized.csv";
             String file19 = basePath + "nvo-10-2019-normalized.csv";
@@ -64,7 +65,8 @@ public class Decomplexor {
             String file20 = basePath + "nvo-4-2020-normalized.csv";
             String file21 = basePath + "nvo-4-2021-normalized.csv";
             String file22 = basePath + "nvo-4-2022-normalized.csv";
-            files = new String[] {file18, file19, file20, file21, file22};
+            String file23 = basePath + "nvo-4-2023-normalized.csv";
+            files = new String[] {file18, file19, file20, file21, file22, file23};
         } else {
             System.out.println("Mode '" + mode + "' is not recognized.");
             System.exit(0);

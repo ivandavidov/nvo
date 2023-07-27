@@ -1,11 +1,11 @@
 let firstYear = 2018;
-let numYears = 5;
+let numYears = 6;
 let rankBase = 0;
 let rankRangeTop = 25;
 let rankRangeBottom = 50;
 let fix2018 = false;
 let hide2019TableFix = false;
-let fixForMissingCities2023 = true;
+let fixForMissingCities2023 = false;
 let tableTitleName = 'Класация на училищата'
 let tableTitleType = 'НВО след 4 клас'
 let cookieName = 'i4';
