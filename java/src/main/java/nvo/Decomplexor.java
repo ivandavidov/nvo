@@ -22,6 +22,8 @@ public class Decomplexor {
 
     private static Path of = null;
 
+    private static int index = 1;
+
     public static void main(String... args) throws Exception {
         if(args.length == 0) {
             System.err.println("Expected argument normalize/4/7/10/12 is not provided.");
@@ -154,52 +156,52 @@ public class Decomplexor {
         Files.writeString(of, "let si = [];" + "\r\n", StandardOpenOption.APPEND);
         Files.writeString(of, "let s = [];" + "\r\n\r\n", StandardOpenOption.APPEND);
 
-        printSchoolsByType(schools, "София",1, 300);
-        printSchoolsByType(schools, "Пловдив", 301, 400);
-        printSchoolsByType(schools, "Варна", 401, 500);
-        printSchoolsByType(schools, "Бургас", 501, 600);
-        printSchoolsByType(schools, "Благоевград", 601, 700);
-        printSchoolsByType(schools, "Велико Търново", 701, 800);
-        printSchoolsByType(schools, "Видин", 801, 900);
-        printSchoolsByType(schools, "Враца", 901, 1000);
-        printSchoolsByType(schools, "Габрово", 1001, 1100);
-        printSchoolsByType(schools, "Добрич", 1101, 1200);
-        printSchoolsByType(schools, "Кърджали", 1201, 1300);
-        printSchoolsByType(schools, "Кюстендил", 1301, 1400);
-        printSchoolsByType(schools, "Ловеч", 1401, 1500);
-        printSchoolsByType(schools, "Монтана", 1501, 1600);
-        printSchoolsByType(schools, "Пазарджик", 1601, 1700);
-        printSchoolsByType(schools, "Перник", 1701, 1800);
-        printSchoolsByType(schools, "Плевен", 1801, 1900);
-        printSchoolsByType(schools, "Разград", 1901, 2000);
-        printSchoolsByType(schools, "Русе", 2001, 2100);
-        printSchoolsByType(schools, "Силистра", 2101, 2200);
-        printSchoolsByType(schools, "Сливен", 2201, 2300);
-        printSchoolsByType(schools, "Смолян", 2301, 2400);
-        printSchoolsByType(schools, "Стара Загора", 2401, 2500);
-        printSchoolsByType(schools, "Търговище", 2501, 2600);
-        printSchoolsByType(schools, "Хасково", 2601, 2700);
-        printSchoolsByType(schools, "Шумен", 2701, 2800);
-        printSchoolsByType(schools, "Ямбол", 2801, 2900);
+        printSchoolsByType(schools, "София");
+        printSchoolsByType(schools, "Пловдив");
+        printSchoolsByType(schools, "Варна");
+        printSchoolsByType(schools, "Бургас");
+        printSchoolsByType(schools, "Благоевград");
+        printSchoolsByType(schools, "Велико Търново");
+        printSchoolsByType(schools, "Видин");
+        printSchoolsByType(schools, "Враца");
+        printSchoolsByType(schools, "Габрово");
+        printSchoolsByType(schools, "Добрич");
+        printSchoolsByType(schools, "Кърджали");
+        printSchoolsByType(schools, "Кюстендил");
+        printSchoolsByType(schools, "Ловеч");
+        printSchoolsByType(schools, "Монтана");
+        printSchoolsByType(schools, "Пазарджик");
+        printSchoolsByType(schools, "Перник");
+        printSchoolsByType(schools, "Плевен");
+        printSchoolsByType(schools, "Разград");
+        printSchoolsByType(schools, "Русе");
+        printSchoolsByType(schools, "Силистра");
+        printSchoolsByType(schools, "Сливен");
+        printSchoolsByType(schools, "Смолян");
+        printSchoolsByType(schools, "Стара Загора");
+        printSchoolsByType(schools, "Търговище");
+        printSchoolsByType(schools, "Хасково");
+        printSchoolsByType(schools, "Шумен");
+        printSchoolsByType(schools, "Ямбол");
 
-        printSchoolsByType(schools, "Асеновград", 2901, 3000);
-        printSchoolsByType(schools, "Велинград", 3001, 3100);
-        printSchoolsByType(schools, "Горна Оряховица", 3101, 3200);
-        printSchoolsByType(schools, "Димитровград", 3201, 3300);
-        printSchoolsByType(schools, "Дупница", 3301, 3400);
-        printSchoolsByType(schools, "Казанлък", 3401, 3500);
-        printSchoolsByType(schools, "Карлово", 3501, 3600);
-        printSchoolsByType(schools, "Петрич", 3601, 3700);
-        printSchoolsByType(schools, "Самоков", 3701, 3800);
-        printSchoolsByType(schools, "Сандански", 3801, 3900);
-        printSchoolsByType(schools, "Свищов", 3901, 4000);
+        printSchoolsByType(schools, "Асеновград");
+        printSchoolsByType(schools, "Велинград");
+        printSchoolsByType(schools, "Горна Оряховица");
+        printSchoolsByType(schools, "Димитровград");
+        printSchoolsByType(schools, "Дупница");
+        printSchoolsByType(schools, "Казанлък");
+        printSchoolsByType(schools, "Карлово");
+        printSchoolsByType(schools, "Петрич");
+        printSchoolsByType(schools, "Самоков");
+        printSchoolsByType(schools, "Сандански");
+        printSchoolsByType(schools, "Свищов");
 
 //        printSchoolsByNVOResult(schools);
 
         System.out.println();
     }
 
-    private void printSchoolsByType(Map<String, Set<School>> schools, String city, int start, int end) throws Exception {
+    private void printSchoolsByType(Map<String, Set<School>> schools, String city) throws Exception {
         final String templateSchool;
         final String templateIndexIncl;
         final String templateIndexExcl;
@@ -252,11 +254,7 @@ public class Decomplexor {
         Set<School> nationalSchoolsSet = new TreeSet<>(schoolsAlphaComparator);
         Set<School> privateSchoolsSet = new TreeSet<>(schoolsAlphaComparator);
         Set<School> schoolSet = schools.get(city);
-        int counter = start;
         for(School school : schoolSet) {
-            if(counter > end) {
-                break;
-            }
             if(eligibleForRemoval(school)) {
                 continue;
             }
@@ -278,20 +276,19 @@ public class Decomplexor {
                     nationalSchoolsSet.add(school);
                 }
             }
-            ++counter;
         }
 
         String siLine;
         if(privateSchoolsSet.size() > 0) {
             siLine = templateIndexIncl.replace("__city__", city)
-                    .replace("__n_begin__", "" + start)
-                    .replace("__n_end__", "" + (start + nationalSchoolsSet.size() - 1))
-                    .replace("__p_begin__", "" + (start + nationalSchoolsSet.size()))
-                    .replace("__p_end__", "" + (start + nationalSchoolsSet.size() + privateSchoolsSet.size() - 1));
+                    .replace("__n_begin__", "" + index)
+                    .replace("__n_end__", "" + (index + nationalSchoolsSet.size() - 1))
+                    .replace("__p_begin__", "" + (index + nationalSchoolsSet.size()))
+                    .replace("__p_end__", "" + (index + nationalSchoolsSet.size() + privateSchoolsSet.size() - 1));
         } else {
             siLine = templateIndexExcl.replace("__city__", city)
-                    .replace("__n_begin__", "" + start)
-                    .replace("__n_end__", "" + (start + nationalSchoolsSet.size() - 1));
+                    .replace("__n_begin__", "" + index)
+                    .replace("__n_end__", "" + (index + nationalSchoolsSet.size() - 1));
         }
 
         StringBuilder sb = new StringBuilder();
@@ -303,7 +300,7 @@ public class Decomplexor {
             sb.append("// ").append(city).append(" - държавни училища").append("\r\n");
         }
 
-        int index = start;
+        //int index = start;
         for (School school : nationalSchoolsSet) {
             String line = getLine(templateSchool, index, school);
             sb.append(line);
