@@ -2,6 +2,9 @@ package nvo;
 
 import java.io.File;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -17,6 +20,8 @@ public class Decomplexor {
 
     private String header = null;
 
+    private static Path of = null;
+
     public static void main(String... args) throws Exception {
         if(args.length == 0) {
             System.err.println("Expected argument normalize/4/7/10/12 is not provided.");
@@ -29,43 +34,47 @@ public class Decomplexor {
     private void decomplex(String mode) throws Exception {
         String[] files = null;
 
-        String basePath = "/Users/ivan/projects/nvo/data/normalized/";
+        String normalizedPath = "/Users/ivan/projects/nvo/data/normalized/";
+        String schoolsPath = "/Users/ivan/projects/nvo/docs/js/";
 
         if(mode.equals("normalize")) {
           CSVNormalizer.main(null);
           System.exit(0);
         } else if(mode.equals("12")) {
-            String file18 = basePath + "dzi-2018-normalized.csv";
-            String file19 = basePath + "dzi-2019-normalized.csv";
-            String file20 = basePath + "dzi-2020-normalized.csv";
-            String file21 = basePath + "dzi-2021-normalized.csv";
-            String file22 = basePath + "dzi-2022-normalized.csv";
-            String file23 = basePath + "dzi-2023-normalized.csv";
-            header = "";
+            header = "// https://data.egov.bg/data/view/066b4b04-d81d-444e-a61c-8ca0516079e4";
+            String file18 = normalizedPath + "dzi-2018-normalized.csv";
+            String file19 = normalizedPath + "dzi-2019-normalized.csv";
+            String file20 = normalizedPath + "dzi-2020-normalized.csv";
+            String file21 = normalizedPath + "dzi-2021-normalized.csv";
+            String file22 = normalizedPath + "dzi-2022-normalized.csv";
+            String file23 = normalizedPath + "dzi-2023-normalized.csv";
             files = new String[] {file18, file19, file20, file21, file22, file23};
         } else if(mode.equals("10")) {
-            String file18 = basePath + "nvo-10-2018-normalized.csv";
-            String file19 = basePath + "nvo-10-2019-normalized.csv";
-            String file20 = basePath + "nvo-10-2020-normalized.csv";
-            String file21 = basePath + "nvo-10-2021-normalized.csv";
-            String file22 = basePath + "nvo-10-2022-normalized.csv";
-            String file23 = basePath + "nvo-10-2023-normalized.csv";
+            header = "// https://data.egov.bg/data/view/2f801b2f-d4cb-4ddb-a23d-3e372339c80f";
+            String file18 = normalizedPath + "nvo-10-2018-normalized.csv";
+            String file19 = normalizedPath + "nvo-10-2019-normalized.csv";
+            String file20 = normalizedPath + "nvo-10-2020-normalized.csv";
+            String file21 = normalizedPath + "nvo-10-2021-normalized.csv";
+            String file22 = normalizedPath + "nvo-10-2022-normalized.csv";
+            String file23 = normalizedPath + "nvo-10-2023-normalized.csv";
             files = new String[] {file18, file19, file20, file21, file22, file23};
         } else if(mode.equals("7")) {
-            String file18 = basePath + "nvo-7-2018-normalized.csv";
-            String file19 = basePath + "nvo-7-2019-normalized.csv";
-            String file20 = basePath + "nvo-7-2020-normalized.csv";
-            String file21 = basePath + "nvo-7-2021-normalized.csv";
-            String file22 = basePath + "nvo-7-2022-normalized.csv";
-            String file23 = basePath + "nvo-7-2023-normalized.csv";
+            header = "// https://data.egov.bg/data/view/b56288b6-25aa-4049-9aa6-de2cd4cdabf8";
+            String file18 = normalizedPath + "nvo-7-2018-normalized.csv";
+            String file19 = normalizedPath + "nvo-7-2019-normalized.csv";
+            String file20 = normalizedPath + "nvo-7-2020-normalized.csv";
+            String file21 = normalizedPath + "nvo-7-2021-normalized.csv";
+            String file22 = normalizedPath + "nvo-7-2022-normalized.csv";
+            String file23 = normalizedPath + "nvo-7-2023-normalized.csv";
             files = new String[] {file18, file19, file20, file21, file22, file23};
         } else if(mode.equals("4")) {
-            String file18 = basePath + "nvo-4-2018-normalized.csv";
-            String file19 = basePath + "nvo-4-2019-normalized.csv";
-            String file20 = basePath + "nvo-4-2020-normalized.csv";
-            String file21 = basePath + "nvo-4-2021-normalized.csv";
-            String file22 = basePath + "nvo-4-2022-normalized.csv";
-            String file23 = basePath + "nvo-4-2023-normalized.csv";
+            header = "// https://data.egov.bg/data/view/5613e75f-2b1b-4244-9f54-b27580a91dfb";
+            String file18 = normalizedPath + "nvo-4-2018-normalized.csv";
+            String file19 = normalizedPath + "nvo-4-2019-normalized.csv";
+            String file20 = normalizedPath + "nvo-4-2020-normalized.csv";
+            String file21 = normalizedPath + "nvo-4-2021-normalized.csv";
+            String file22 = normalizedPath + "nvo-4-2022-normalized.csv";
+            String file23 = normalizedPath + "nvo-4-2023-normalized.csv";
             files = new String[] {file18, file19, file20, file21, file22, file23};
         } else {
             System.out.println("Mode '" + mode + "' is not recognized.");
@@ -139,6 +148,12 @@ public class Decomplexor {
 
         System.out.println();
 
+        of = Path.of(schoolsPath, "schools-" + mode + ".js");
+
+        Files.writeString(of, header + "\r\n\r\n", StandardOpenOption.TRUNCATE_EXISTING);
+        Files.writeString(of, "let si = [];" + "\r\n", StandardOpenOption.APPEND);
+        Files.writeString(of, "let s = [];" + "\r\n\r\n", StandardOpenOption.APPEND);
+
         printSchoolsByType(schools, "София",1, 300);
         printSchoolsByType(schools, "Пловдив", 301, 400);
         printSchoolsByType(schools, "Варна", 401, 500);
@@ -184,7 +199,7 @@ public class Decomplexor {
         System.out.println();
     }
 
-    private void printSchoolsByType(Map<String, Set<School>> schools, String city, int start, int end) {
+    private void printSchoolsByType(Map<String, Set<School>> schools, String city, int start, int end) throws Exception {
         final String templateSchool;
         final String templateIndexIncl;
         final String templateIndexExcl;
@@ -307,8 +322,10 @@ public class Decomplexor {
 
         if(!COMPRESSED) {
             System.out.println(sb.toString());
+            Files.writeString(of, sb.toString() + "\r\n", StandardOpenOption.APPEND);
         } else {
             System.out.print(sb.toString());
+            Files.writeString(of, sb.toString(), StandardOpenOption.APPEND);
         }
     }
 
