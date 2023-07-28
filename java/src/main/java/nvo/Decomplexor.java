@@ -168,12 +168,16 @@ public class Decomplexor {
         printSchoolsByType(schools, "Ямбол", 2801, 2900);
 
         printSchoolsByType(schools, "Асеновград", 2901, 3000);
-        printSchoolsByType(schools, "Горна Оряховица", 3001, 3100);
-        printSchoolsByType(schools, "Димитровград", 3101, 3200);
-        printSchoolsByType(schools, "Дупница", 3201, 3300);
-        printSchoolsByType(schools, "Казанлък", 3301, 3400);
-        printSchoolsByType(schools, "Петрич", 3401, 3500);
-        printSchoolsByType(schools, "Самоков", 3501, 3600);
+        printSchoolsByType(schools, "Велинград", 3001, 3100);
+        printSchoolsByType(schools, "Горна Оряховица", 3101, 3200);
+        printSchoolsByType(schools, "Димитровград", 3201, 3300);
+        printSchoolsByType(schools, "Дупница", 3301, 3400);
+        printSchoolsByType(schools, "Казанлък", 3401, 3500);
+        printSchoolsByType(schools, "Карлово", 3501, 3600);
+        printSchoolsByType(schools, "Петрич", 3601, 3700);
+        printSchoolsByType(schools, "Самоков", 3701, 3800);
+        printSchoolsByType(schools, "Сандански", 3801, 3900);
+        printSchoolsByType(schools, "Свищов", 3901, 4000);
 
 //        printSchoolsByNVOResult(schools);
 
