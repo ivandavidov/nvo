@@ -1303,7 +1303,7 @@ public class School implements Comparable<School> {
         schoolCodes.put("300202", new String[]{"0", "ОУ Кирил и Методий", "ОУ Св. Св. Кирил и Методий"});
         schoolCodes.put("300205", new String[]{"0", "ОУ ОУ П. Хилендарски", "ОУ Св. Паисий Хилендарски"});
         schoolCodes.put("300216", new String[]{"0", "СУ Г. Измирлиев", "СУ Георги Измирлиев"});
-        schoolCodes.put("300217", new String[]{"0", "ОУ СУ В. Грънчаров", "СУ Вичо Грънчаров"});
+        schoolCodes.put("300217", new String[]{"0", "СУ В. Грънчаров", "СУ Вичо Грънчаров"});
         schoolCodes.put("300218", new String[]{"0", "ПТГ В. Левски", "ПТГ Васил Левски"});
         schoolCodes.put("300219", new String[]{"0", "ПГ по електрот. и електрон.", "ПГ по електротехника и електроника"});
         schoolCodes.put("300220", new String[]{"0", "ПГ по хранит. техн.", "ПГ по хранителни технологии"});
