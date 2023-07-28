@@ -900,12 +900,16 @@ function generateCitySections() {
     document.getElementById('other-cities').style.display = 'none';
   } else {
     data += generateCitySection('Асеновград', 'asenovgrad', 'Асеновград', 3);
+    data += generateCitySection('Велинград', 'velingrad', 'Велинград', 3);
     data += generateCitySection('Горна Оряховица', 'gorna-oryahovitsa', 'Г. Оряховица', 3);
     data += generateCitySection('Димитровград', 'dimitrovgrad', 'Димитровград', 3);
     data += generateCitySection('Дупница', 'dupnitsa', 'Дупница', 3);
     data += generateCitySection('Казанлък', 'kazanluk', 'Казанлък', 3);
+    data += generateCitySection('Карлово', 'karlovo', 'Карлово', 3);
     data += generateCitySection('Петрич', 'petrich', 'Петрич', 3);
     data += generateCitySection('Самоков', 'samokov', 'Самоков', 3);
+    data += generateCitySection('Сандански', 'sandanski', 'Сандански', 3);
+    data += generateCitySection('Свищов', 'svishtov', 'Свищов', 3);
   }
   let header = generateDownloadCSVHeader();
   let a = document.getElementById('csvAll');
