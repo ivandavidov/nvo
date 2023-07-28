@@ -24,6 +24,8 @@ public class Decomplexor {
 
     private static int index = 1;
 
+    private static int numYears = 0;
+
     public static void main(String... args) throws Exception {
         if(args.length == 0) {
             System.err.println("Expected argument normalize/4/7/10/12 is not provided.");
@@ -82,6 +84,8 @@ public class Decomplexor {
             System.out.println("Mode '" + mode + "' is not recognized.");
             System.exit(0);
         }
+
+        numYears = files.length;
 
         Map<String, Map<String, School>> cities = new HashMap<>();
         for(int f = 0; f < files.length; f++) {
@@ -153,8 +157,7 @@ public class Decomplexor {
         of = Path.of(schoolsPath, "schools-" + mode + ".js");
 
         Files.writeString(of, header + "\r\n\r\n", StandardOpenOption.TRUNCATE_EXISTING);
-        Files.writeString(of, "let si = [];" + "\r\n", StandardOpenOption.APPEND);
-        Files.writeString(of, "let s = [];" + "\r\n\r\n", StandardOpenOption.APPEND);
+        Files.writeString(of, "let si = [];\r\nlet s = [];\r\n\r\n", StandardOpenOption.APPEND);
 
         printSchoolsByType(schools, "София");
         printSchoolsByType(schools, "Пловдив");
@@ -201,6 +204,26 @@ public class Decomplexor {
         System.out.println();
     }
 
+    private String generateSection(String base) {
+        StringBuffer sb = new StringBuffer();
+
+        sb.append(base).append(": [");
+
+        int current = 18;
+        boolean next = false;
+        for(int i = 0; i < numYears; i++) {
+            if(next) {
+                sb.append(", ");
+            } else {
+                next = true;
+            }
+            sb.append("__").append(base).append(current + i).append("__");
+        }
+
+        sb.append("]");
+
+        return sb.toString();
+    }
     private void printSchoolsByType(Map<String, Set<School>> schools, String city) throws Exception {
         final String templateSchool;
         final String templateIndexIncl;
@@ -210,7 +233,7 @@ public class Decomplexor {
             templateIndexIncl = "si['__city__']={n:[__n_begin__,__n_end__],p:[__p_begin__,__p_end__]};";
             templateIndexExcl = "si['__city__']={n:[__n_begin__,__n_end__],p:null};";
         } else {
-            templateSchool = "s[__index__] = {l: '__label__', n: '__name__', b: [__b18__, __b19__, __b20__, __b21__, __b22__, __b23__], m: [__m18__, __m19__, __m20__, __m21__, __m22__, __m23__], bu: [__bu18__, __bu19__, __bu20__, __bu21__, __bu22__, __bu23__], mu: [__mu18__, __mu19__, __mu20__, __mu21__, __mu22__, __mu23__]};\r\n";
+            templateSchool = "s[__index__] = {l: '__label__', n: '__name__', " + generateSection("b") + ", " + generateSection("m") + ", " + generateSection("bu") + ", " + generateSection("mu") + "};\r\n";
             templateIndexIncl = "si['__city__'] = {n: [__n_begin__, __n_end__], p: [__p_begin__, __p_end__]};\r\n";
             templateIndexExcl = "si['__city__'] = {n: [__n_begin__, __n_end__], p: null};\r\n";
         }
@@ -327,33 +350,19 @@ public class Decomplexor {
     }
 
     private String getLine(String templateSchool, int index, School school) {
-        return templateSchool.replace("__index__", "" + index)
-                        .replace("__label__", school.getLabel())
-                        .replace("__name__", school.getName())
-                        .replace("__b18__", school.getBelScore().get(0) > 0 ? "" + school.getBelScore().get(0) : "null")
-                        .replace("__b19__", school.getBelScore().get(1) > 0 ? "" + school.getBelScore().get(1) : "null")
-                        .replace("__b20__", school.getBelScore().get(2) > 0 ? "" + school.getBelScore().get(2) : "null")
-                        .replace("__b21__", school.getBelScore().get(3) > 0 ? "" + school.getBelScore().get(3) : "null")
-                        .replace("__b22__", school.getBelScore().get(4) > 0 ? "" + school.getBelScore().get(4) : "null")
-                        .replace("__b23__", school.getBelScore().get(5) > 0 ? "" + school.getBelScore().get(5) : "null")
-                        .replace("__m18__", school.getMatScore().get(0) > 0 ? "" + school.getMatScore().get(0) : "null")
-                        .replace("__m19__", school.getMatScore().get(1) > 0 ? "" + school.getMatScore().get(1) : "null")
-                        .replace("__m20__", school.getMatScore().get(2) > 0 ? "" + school.getMatScore().get(2) : "null")
-                        .replace("__m21__", school.getMatScore().get(3) > 0 ? "" + school.getMatScore().get(3) : "null")
-                        .replace("__m22__", school.getMatScore().get(4) > 0 ? "" + school.getMatScore().get(4) : "null")
-                        .replace("__m23__", school.getMatScore().get(5) > 0 ? "" + school.getMatScore().get(5) : "null")
-                        .replace("__bu18__", school.getBelStudents().get(0) > 0 ? "" + school.getBelStudents().get(0) : "null")
-                        .replace("__bu19__", school.getBelStudents().get(1) > 0 ? "" + school.getBelStudents().get(1) : "null")
-                        .replace("__bu20__", school.getBelStudents().get(2) > 0 ? "" + school.getBelStudents().get(2) : "null")
-                        .replace("__bu21__", school.getBelStudents().get(3) > 0 ? "" + school.getBelStudents().get(3) : "null")
-                        .replace("__bu22__", school.getBelStudents().get(4) > 0 ? "" + school.getBelStudents().get(4) : "null")
-                        .replace("__bu23__", school.getBelStudents().get(5) > 0 ? "" + school.getBelStudents().get(5) : "null")
-                        .replace("__mu18__", school.getMatStudents().get(0) > 0 ? "" + school.getMatStudents().get(0) : "null")
-                        .replace("__mu19__", school.getMatStudents().get(1) > 0 ? "" + school.getMatStudents().get(1) : "null")
-                        .replace("__mu20__", school.getMatStudents().get(2) > 0 ? "" + school.getMatStudents().get(2) : "null")
-                        .replace("__mu21__", school.getMatStudents().get(3) > 0 ? "" + school.getMatStudents().get(3) : "null")
-                        .replace("__mu22__", school.getMatStudents().get(4) > 0 ? "" + school.getMatStudents().get(4) : "null")
-                        .replace("__mu23__", school.getMatStudents().get(5) > 0 ? "" + school.getMatStudents().get(5) : "null");
+        templateSchool = templateSchool.replace("__index__", "" + index)
+                .replace("__label__", school.getLabel())
+                .replace("__name__", school.getName());
+
+        for(int i = 0; i < numYears; i++) {
+            templateSchool = templateSchool
+                    .replace("__b" + (18 + i) + "__", school.getBelScore().get(i) > 0 ? "" + school.getBelScore().get(i) : "null")
+                    .replace("__m" + (18 + i) + "__", school.getMatScore().get(i) > 0 ? "" + school.getMatScore().get(i) : "null")
+                    .replace("__bu" + (18 + i) + "__", school.getBelStudents().get(i) > 0 ? "" + school.getBelStudents().get(i) : "null")
+                    .replace("__mu" + (18 + i) + "__", school.getMatStudents().get(i) > 0 ? "" + school.getMatStudents().get(i) : "null");
+        }
+
+        return templateSchool;
     }
 
     private boolean eligibleForRemoval(School school) {
