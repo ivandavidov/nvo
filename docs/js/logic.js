@@ -936,7 +936,32 @@ function initializeHighcharts() {
   });
 }
 
+function calculateTimeTravel() {
+  let yearStr = window.location.search.split('year=')[1];
+  if(yearStr && yearStr.length >= 4) {
+    let year = yearStr.slice(0, 4);
+    currentYear = firstYear + s[baseSchoolIndex].b.length - 1
+    removeYears(currentYear - year);
+    numYears = 3;
+  }
+}
+
+function removeYears(numYears) {
+  for(let i = 0; i < numYears; i++) {
+    for(let j = 0; j < s.length; j++) {
+      if(!s[j]) {
+        continue;
+      }
+      s[j].b.pop();
+      s[j].m.pop();
+      s[j].bu.pop();
+      s[j].mu.pop();
+    }
+  }
+}
+
 function onLoad() {
+  calculateTimeTravel();
   fixForYear2018();
   fixForMissingYears();
   calculateSchoolMedians();
