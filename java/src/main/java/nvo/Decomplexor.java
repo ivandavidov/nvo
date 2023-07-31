@@ -195,6 +195,7 @@ public class Decomplexor {
         printSchoolsByType(schools, "Казанлък");
         printSchoolsByType(schools, "Карлово");
         printSchoolsByType(schools, "Петрич");
+        printSchoolsByType(schools, "Правец");
         printSchoolsByType(schools, "Самоков");
         printSchoolsByType(schools, "Сандански");
         printSchoolsByType(schools, "Свищов");

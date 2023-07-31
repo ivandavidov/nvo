@@ -907,6 +907,7 @@ function generateCitySections() {
     data += generateCitySection('Казанлък', 'kazanluk', 'Казанлък', 3);
     data += generateCitySection('Карлово', 'karlovo', 'Карлово', 3);
     data += generateCitySection('Петрич', 'petrich', 'Петрич', 3);
+    data += generateCitySection('Правец', 'pravets', 'Правец', 3);
     data += generateCitySection('Самоков', 'samokov', 'Самоков', 3);
     data += generateCitySection('Сандански', 'sandanski', 'Сандански', 3);
     data += generateCitySection('Свищов', 'svishtov', 'Свищов', 3);
