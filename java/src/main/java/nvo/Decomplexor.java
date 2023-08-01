@@ -187,6 +187,7 @@ public class Decomplexor {
         printSchoolsByType(schools, "Шумен");
         printSchoolsByType(schools, "Ямбол");
 
+        printSchoolsByType(schools, "Айтос");
         printSchoolsByType(schools, "Асеновград");
         printSchoolsByType(schools, "Велинград");
         printSchoolsByType(schools, "Горна Оряховица");
@@ -194,11 +195,15 @@ public class Decomplexor {
         printSchoolsByType(schools, "Дупница");
         printSchoolsByType(schools, "Казанлък");
         printSchoolsByType(schools, "Карлово");
+        printSchoolsByType(schools, "Луковит");
+        printSchoolsByType(schools, "Нова Загора");
+        printSchoolsByType(schools, "Обзор");
         printSchoolsByType(schools, "Петрич");
         printSchoolsByType(schools, "Правец");
         printSchoolsByType(schools, "Самоков");
         printSchoolsByType(schools, "Сандански");
         printSchoolsByType(schools, "Свищов");
+        printSchoolsByType(schools, "Севлиево");
 
 //        printSchoolsByNVOResult(schools);
 
@@ -278,6 +283,10 @@ public class Decomplexor {
         Set<School> nationalSchoolsSet = new TreeSet<>(schoolsAlphaComparator);
         Set<School> privateSchoolsSet = new TreeSet<>(schoolsAlphaComparator);
         Set<School> schoolSet = schools.get(city);
+        if(schoolSet == null) {
+            // No schools found
+            return;
+        }
         for(School school : schoolSet) {
             if(eligibleForRemoval(school)) {
                 continue;

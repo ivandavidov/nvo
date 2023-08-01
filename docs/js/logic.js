@@ -636,8 +636,32 @@ function generateDownloadCSVLink(el, name, data) {
 }
 
 function generateCitySection(name, hrName, btName, btPos) {
+  if(!si[name]) {
+    return '';
+  }
+  if(!si[name].n && !si[name[p]]) {
+    return '';
+  }
   let puSchools = si[name].n;
   let prSchools = si[name].p;
+  let hasSchools = false;
+  for(let i = puSchools[0]; i <= puSchools[1]; i++) {
+    if(s[i].b[s[i].b.length - 1] && s[i].m[s[i].m.length - 1]) {
+      hasSchools = true;
+      break;
+    }
+  }
+  if(prSchools) {
+    for(let i = prSchools[0]; i <= prSchools[1]; i++) {
+      if(s[i].b[s[i].b.length - 1] && s[i].m[s[i].m.length - 1]) {
+        hasSchools = true;
+        break;
+      }
+    }
+  }
+  if(!hasSchools) {
+    return '';
+  }
   let topPuCount = 0;
   if(puSchools[1] - puSchools[0] >= 4) {
     topPuCount = 3;
@@ -899,6 +923,7 @@ function generateCitySections() {
   if(fixForMissingCities2023) {
     document.getElementById('other-cities').style.display = 'none';
   } else {
+    data += generateCitySection('Айтос', 'aitos', 'Айтос', 3);
     data += generateCitySection('Асеновград', 'asenovgrad', 'Асеновград', 3);
     data += generateCitySection('Велинград', 'velingrad', 'Велинград', 3);
     data += generateCitySection('Горна Оряховица', 'gorna-oryahovitsa', 'Г. Оряховица', 3);
@@ -906,11 +931,15 @@ function generateCitySections() {
     data += generateCitySection('Дупница', 'dupnitsa', 'Дупница', 3);
     data += generateCitySection('Казанлък', 'kazanluk', 'Казанлък', 3);
     data += generateCitySection('Карлово', 'karlovo', 'Карлово', 3);
+    data += generateCitySection('Луковит', 'lukovit', 'Луковит', 3);
+    data += generateCitySection('Нова Загора', 'nova-zagora', 'Н. Загора', 3);
+    data += generateCitySection('Обзор', 'obzor', 'Обзор', 3);
     data += generateCitySection('Петрич', 'petrich', 'Петрич', 3);
     data += generateCitySection('Правец', 'pravets', 'Правец', 3);
     data += generateCitySection('Самоков', 'samokov', 'Самоков', 3);
     data += generateCitySection('Сандански', 'sandanski', 'Сандански', 3);
     data += generateCitySection('Свищов', 'svishtov', 'Свищов', 3);
+    data += generateCitySection('Севлиево', 'sevlievo', 'Севлиево', 3);
   }
   let header = generateDownloadCSVHeader();
   let a = document.getElementById('csvAll');
