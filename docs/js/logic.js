@@ -991,6 +991,7 @@ function generateCitySections() {
     data += generateCitySection('Сандански', 'sandanski', 'Сандански', 3);
     data += generateCitySection('Свищов', 'svishtov', 'Свищов', 3);
     data += generateCitySection('Севлиево', 'sevlievo', 'Севлиево', 3);
+    data += generateCitySection('Чирпан', 'chirpan', 'Чирпан', 3);
   }
   let header = generateDownloadCSVHeader();
   let a = document.getElementById('csvAll');
