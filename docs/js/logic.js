@@ -556,6 +556,8 @@ function generateHTMLTable(el, hrName, puSchools, prSchools, name) {
   headers.forEach((header) => {
     let th = document.createElement('th');
     th.appendChild(document.createTextNode(header));
+    th.style.overflow = 'hidden';
+    th.style.whiteSpace = 'nowrap';
     headTr.appendChild(th);
   });
   let tBody = document.createElement('tbody');
