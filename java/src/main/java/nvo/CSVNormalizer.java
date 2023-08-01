@@ -112,7 +112,8 @@ public class CSVNormalizer {
                 "Самоков",
                 "Сандански",
                 "Свищов",
-                "Севлиево"
+                "Севлиево",
+                "Чирпан"
         };
 
         List<String[]> resultLines = new ArrayList<>();

@@ -204,6 +204,7 @@ public class Decomplexor {
         printSchoolsByType(schools, "Сандански");
         printSchoolsByType(schools, "Свищов");
         printSchoolsByType(schools, "Севлиево");
+        printSchoolsByType(schools, "Чирпан");
 
 //        printSchoolsByNVOResult(schools);
 

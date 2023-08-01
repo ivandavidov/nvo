@@ -146,6 +146,7 @@ public class School implements Comparable<School> {
         schoolCodes.putAll(prepareSchoolCodesSandanski());
         schoolCodes.putAll(prepareSchoolCodesSvishtov());
         schoolCodes.putAll(prepareSchoolCodesSevlievo());
+        schoolCodes.putAll(prepareSchoolCodesChirpan());
 
         return schoolCodes;
     }
@@ -1510,6 +1511,18 @@ public class School implements Comparable<School> {
         schoolCodes.put("700318", new String[]{"0", "СУ Васил Левски", "СУ Васил Левски"});
         schoolCodes.put("700323", new String[]{"0", "ПГ по механоел.", "ПГ по механоелектротехника"});
         schoolCodes.put("700330", new String[]{"0", "ПГ Марин Попов", "ПГ Марин Попов"});
+
+        return schoolCodes;
+    }
+
+    private static Map<String, String[]> prepareSchoolCodesChirpan() {
+        Map<String, String[]> schoolCodes = new HashMap<>();
+
+        schoolCodes.put("2401178", new String[]{"0", "СУ Пейо Яворов", "СУ Пейо Яворов"});
+        schoolCodes.put("2401181", new String[]{"0", "ОУ Васил Левски", "ОУ Васил Левски"});
+        schoolCodes.put("2401182", new String[]{"0", "ОУ Кирил и Методий", "ОУ Св. Св. Кирил и Методий"});
+        schoolCodes.put("2401189", new String[]{"0", "НУ Кл. Охридски", "НУ Св. Климент Охридски"});
+        schoolCodes.put("2401179", new String[]{"0", "ПГ по селско стоп.", "ПГ по селско стопанство"});
 
         return schoolCodes;
     }
