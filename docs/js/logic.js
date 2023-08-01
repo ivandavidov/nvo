@@ -437,6 +437,8 @@ function generateCityMedianTables(el, name) {
   tHeadMedian.appendChild(headTrMedian);
   headersMedian.forEach((header) => {
     let th = document.createElement('th');
+    th.style.overflow = 'hidden';
+    th.style.whiteSpace = 'nowrap';
     th.appendChild(document.createTextNode(header));
     headTrMedian.appendChild(th);
   });
@@ -497,6 +499,8 @@ function generateCityMedianTables(el, name) {
   tHeadMedian.appendChild(headTrMedian);
   headersMedian.forEach((header) => {
     let th = document.createElement('th');
+    th.style.overflow = 'hidden';
+    th.style.whiteSpace = 'nowrap';
     th.appendChild(document.createTextNode(header));
     headTrMedian.appendChild(th);
   });
