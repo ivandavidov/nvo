@@ -184,15 +184,22 @@ function redraw() {
   Highcharts.chart(chartm, getLayout(chartMTitle, traces.m, exportPrefixMat));
 }
 
-function generateSchoolButtons(div, slices, topCount) {
+function generateSchoolButtons(div, slices, topCount, secondCount) {
   let schools = null;
   let topBtn = null;
+  let secondBtn = null;
   let sortFunc = (i1, i2) => (s[i1].mb + s[i1].mm) / 2 < (s[i2].mb + s[i2].mm) / 2 ? 1 : -1;  
   if(topCount && topCount > 0) {
     schools = [];
     topBtn = document.createElement('button');
     topBtn.textContent = 'Топ ' + topCount;
     div.appendChild(topBtn);
+  }
+  if(secondCount && secondCount > 0) {
+    schools = [];
+    secondBtn = document.createElement('button');
+    secondBtn.textContent = 'Топ ' + (topCount + 1) + ' - ' + (topCount + secondCount);
+    div.appendChild(secondBtn);
   }
   for(let j = slices[0]; j <= slices[1]; j++) {
     if(!s[j]) {
@@ -229,8 +236,32 @@ function generateSchoolButtons(div, slices, topCount) {
     }
     redraw();
   }
+  let secondBtnClicked = () => {
+    let setSecondSchoolButtons = (state) => {
+      let skipped = 0;
+      for(let i = topCount; i < (topCount + secondCount + skipped); i++) {
+        if(!schools[i] || s[schools[i]].b[s[schools[i]].b.length - 1] === null) {
+          ++skipped;
+          continue;
+        }
+        setButtonState(schools[i], state);
+      }
+    }
+    schools.sort(sortFunc);
+    if(secondBtn.classList.contains('button-primary')) {
+      setSecondSchoolButtons(false);
+      secondBtn.classList.remove('button-primary');
+    } else {
+      setSecondSchoolButtons(true);
+      secondBtn.classList.add('button-primary');
+    }
+    redraw();
+  }
   if(topCount && topCount > 0) {
     topBtn.onclick = () => topBtnClicked();
+  }
+  if(secondCount && secondCount > 0) {
+    secondBtn.onclick = () => secondBtnClicked();
   }
 }
 
@@ -514,7 +545,7 @@ function generateHTMLTable(el, hrName, puSchools, prSchools, name) {
   table.appendChild(tHead);
   let headTr = document.createElement('tr');
   tHead.appendChild(headTr);
-  let headers = ['№', 'Училище', 'Тип', 'Ранг'];
+  let headers = ['№', 'Училище', 'Тип / №', 'Ранг'];
   for(let i = 0; i < 3; i++) {
     headers.push((firstYear - 2001 + s[baseSchoolIndex].b.length - i) + ' ' + csvHeaderB + ' / уч.');
     headers.push((firstYear - 2001 + s[baseSchoolIndex].b.length - i) + ' ' + csvHeaderM + ' / уч.');
@@ -548,6 +579,8 @@ function generateHTMLTable(el, hrName, puSchools, prSchools, name) {
   schools.sort(sortFunc);
   let topRank = (s[schools[0].i].mb + s[schools[0].i].mm - rankBase * 2) / 2;
   let counter = 0;
+  let counterPu = 0;
+  let counterPr = 0;
   let topRankDone = false;
   schools.forEach((o) => {
     let tr = document.createElement('tr');
@@ -559,7 +592,7 @@ function generateHTMLTable(el, hrName, puSchools, prSchools, name) {
     td.appendChild(document.createTextNode(s[o.i].l));
     tr.appendChild(td);
     td = document.createElement('td');
-    td.appendChild(document.createTextNode(o.t));
+    td.appendChild(document.createTextNode(o.t + ' / ' + (o.t === 'Д' ? ++counterPu : ++counterPr)));
     tr.appendChild(td);
     td = document.createElement('td');
     if(!topRankDone) {
@@ -663,6 +696,7 @@ function generateCitySection(name, hrName, btName, btPos) {
     return '';
   }
   let topPuCount = 0;
+  let secondPuCount = 0;
   if(puSchools[1] - puSchools[0] >= 4) {
     topPuCount = 3;
   }
@@ -671,6 +705,9 @@ function generateCitySection(name, hrName, btName, btPos) {
   }
   if(puSchools[1] - puSchools[0] >= 19) {
     topPuCount = 10;
+  }
+  if(puSchools[1] - puSchools[0] >= 29) {
+    secondPuCount = 10;
   }
   generateCityMenu(btPos, btName, hrName);
   let schoolsDivFragment = new DocumentFragment();
@@ -681,24 +718,28 @@ function generateCitySection(name, hrName, btName, btPos) {
   generateRowWithText(schoolsDivFragment, 'Държавни училища');
   generateRowWithText(schoolsDivFragment, '\u00A0');
   let puDiv = generateRow(schoolsDivFragment);
-  generateSchoolButtons(puDiv, puSchools, topPuCount);
+  generateSchoolButtons(puDiv, puSchools, topPuCount, secondPuCount);
   let data = generateDownloadForCity(name, puSchools, 'Д');
   if(prSchools) {
     let topPrCount = 0;
-    if(prSchools[1] - prSchools[0] >= 5) {
+    let secondPrCount = 0;
+    if(prSchools[1] - prSchools[0] >= 4) {
       topPrCount = 3;
     }
-    if(prSchools[1] - prSchools[0] >= 10) {
+    if(prSchools[1] - prSchools[0] >= 9) {
       topPrCount = 5;
     }
-    if(prSchools[1] - prSchools[0] >= 20) {
+    if(prSchools[1] - prSchools[0] >= 19) {
       topPrCount = 10;
+    }
+    if(prSchools[1] - prSchools[0] >= 29) {
+      secondPrCount = 10;
     }
     generateRowWithText(schoolsDivFragment, '\u00A0');
     generateRowWithText(schoolsDivFragment, 'Частни училища');
     generateRowWithText(schoolsDivFragment, '\u00A0');
     let prDiv = generateRow(schoolsDivFragment);
-    generateSchoolButtons(prDiv, prSchools, topPrCount);
+    generateSchoolButtons(prDiv, prSchools, topPrCount, secondPrCount);
     data += generateDownloadForCity(name, prSchools, 'Ч');
   }
   generateDownloadCSVLink(cityDiv, hrName, data);
