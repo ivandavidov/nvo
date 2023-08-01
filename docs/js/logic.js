@@ -632,9 +632,13 @@ function generateHTMLTable(el, hrName, puSchools, prSchools, name) {
     let totalYears = s[o.i].b.length;
     for(let j = 0; j < 3; j++) {
       td = document.createElement('td');
+      td.style.overflow = 'hidden';
+      td.style.whiteSpace = 'nowrap';
       td.appendChild(document.createTextNode(s[o.i].b[totalYears - j - 1] ? s[o.i].b[totalYears - j - 1] + ' / ' + s[o.i].bu[totalYears - j - 1] : ''));
       tr.appendChild(td);
       td = document.createElement('td');
+      td.style.overflow = 'hidden';
+      td.style.whiteSpace = 'nowrap';
       td.appendChild(document.createTextNode(s[o.i].m[totalYears - j - 1] ? s[o.i].m[totalYears - j - 1] + ' / ' + s[o.i].mu[totalYears - j - 1] : ''));
       tr.appendChild(td);
     }
