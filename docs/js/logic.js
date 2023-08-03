@@ -978,6 +978,7 @@ function generateCitySections() {
   } else {
     data += generateCitySection('Айтос', 'aitos', 'Айтос', 3);
     data += generateCitySection('Асеновград', 'asenovgrad', 'Асеновград', 3);
+    data += generateCitySection('Банкя', 'bankia', 'Банкя', 3);
     data += generateCitySection('Ботевград', 'botevgrad', 'Ботевград', 3);
     data += generateCitySection('Велинград', 'velingrad', 'Велинград', 3);
     data += generateCitySection('Горна Оряховица', 'gorna-oryahovitsa', 'Г. Оряховица', 3);
@@ -988,6 +989,7 @@ function generateCitySections() {
     data += generateCitySection('Казанлък', 'kazanluk', 'Казанлък', 3);
     data += generateCitySection('Карлово', 'karlovo', 'Карлово', 3);
     data += generateCitySection('Карнобат', 'karnobat', 'Карнобат', 3);
+    data += generateCitySection('Костинброд', 'kostinbrod', 'Костинброд', 3);
     data += generateCitySection('Лом', 'lom', 'Лом', 3);
     data += generateCitySection('Луковит', 'lukovit', 'Луковит', 3);
     data += generateCitySection('Несебър', 'nesebar', 'Несебър', 3);

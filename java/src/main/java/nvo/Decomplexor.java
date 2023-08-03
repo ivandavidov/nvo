@@ -189,6 +189,7 @@ public class Decomplexor {
 
         printSchoolsByType(schools, "Айтос");
         printSchoolsByType(schools, "Асеновград");
+        printSchoolsByType(schools, "Банкя");
         printSchoolsByType(schools, "Ботевград");
         printSchoolsByType(schools, "Велинград");
         printSchoolsByType(schools, "Горна Оряховица");
@@ -199,6 +200,7 @@ public class Decomplexor {
         printSchoolsByType(schools, "Казанлък");
         printSchoolsByType(schools, "Карлово");
         printSchoolsByType(schools, "Карнобат");
+        printSchoolsByType(schools, "Костинброд");
         printSchoolsByType(schools, "Лом");
         printSchoolsByType(schools, "Луковит");
         printSchoolsByType(schools, "Несебър");
