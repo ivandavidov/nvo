@@ -189,21 +189,38 @@ public class Decomplexor {
 
         printSchoolsByType(schools, "Айтос");
         printSchoolsByType(schools, "Асеновград");
+        printSchoolsByType(schools, "Ботевград");
         printSchoolsByType(schools, "Велинград");
         printSchoolsByType(schools, "Горна Оряховица");
+        printSchoolsByType(schools, "Гоце Делчев");
         printSchoolsByType(schools, "Димитровград");
         printSchoolsByType(schools, "Дупница");
+        printSchoolsByType(schools, "Ихтиман");
         printSchoolsByType(schools, "Казанлък");
         printSchoolsByType(schools, "Карлово");
+        printSchoolsByType(schools, "Карнобат");
+        printSchoolsByType(schools, "Лом");
         printSchoolsByType(schools, "Луковит");
+        printSchoolsByType(schools, "Несебър");
         printSchoolsByType(schools, "Нова Загора");
+        printSchoolsByType(schools, "Нови Искър");
         printSchoolsByType(schools, "Обзор");
+        printSchoolsByType(schools, "Панагюрище");
         printSchoolsByType(schools, "Петрич");
+        printSchoolsByType(schools, "Пещера");
+        printSchoolsByType(schools, "Поморие");
+        printSchoolsByType(schools, "Попово");
         printSchoolsByType(schools, "Правец");
+        printSchoolsByType(schools, "Радомир");
+        printSchoolsByType(schools, "Раковски");
         printSchoolsByType(schools, "Самоков");
         printSchoolsByType(schools, "Сандански");
+        printSchoolsByType(schools, "Свиленград");
         printSchoolsByType(schools, "Свищов");
+        printSchoolsByType(schools, "Своге");
         printSchoolsByType(schools, "Севлиево");
+        printSchoolsByType(schools, "Троян");
+        printSchoolsByType(schools, "Харманли");
         printSchoolsByType(schools, "Чирпан");
 
 //        printSchoolsByNVOResult(schools);

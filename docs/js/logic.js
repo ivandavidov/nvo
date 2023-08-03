@@ -603,6 +603,7 @@ function generateHTMLTable(el, hrName, puSchools, prSchools, name) {
     td = document.createElement('td');
     if(!topRankDone) {
       td.appendChild(document.createTextNode(100));
+      td.title = 'Среден резултат = ' + topRank.toFixed(2);
       td.style.backgroundColor = "#00ff30";
       topRankDone = true;
     } else {
@@ -626,6 +627,7 @@ function generateHTMLTable(el, hrName, puSchools, prSchools, name) {
         greenHex = green.toString(16).padStart(2, '0');
       }
       td.style.backgroundColor = "#" + redHex + greenHex + blueHex;
+      td.title = 'Среден резултат = ' + rank.toFixed(2);
       td.appendChild(document.createTextNode((Math.round(adjustedRank * 100) / 100).toFixed(2)));
     }
     tr.appendChild(td);
@@ -976,21 +978,38 @@ function generateCitySections() {
   } else {
     data += generateCitySection('Айтос', 'aitos', 'Айтос', 3);
     data += generateCitySection('Асеновград', 'asenovgrad', 'Асеновград', 3);
+    data += generateCitySection('Ботевград', 'botevgrad', 'Ботевград', 3);
     data += generateCitySection('Велинград', 'velingrad', 'Велинград', 3);
     data += generateCitySection('Горна Оряховица', 'gorna-oryahovitsa', 'Г. Оряховица', 3);
+    data += generateCitySection('Гоце Делчев', 'gotse-delchev', 'Гоце Делчев', 3);
     data += generateCitySection('Димитровград', 'dimitrovgrad', 'Димитровград', 3);
     data += generateCitySection('Дупница', 'dupnitsa', 'Дупница', 3);
+    data += generateCitySection('Ихтиман', 'ihtiman', 'Ихтиман', 3);
     data += generateCitySection('Казанлък', 'kazanluk', 'Казанлък', 3);
     data += generateCitySection('Карлово', 'karlovo', 'Карлово', 3);
+    data += generateCitySection('Карнобат', 'karnobat', 'Карнобат', 3);
+    data += generateCitySection('Лом', 'lom', 'Лом', 3);
     data += generateCitySection('Луковит', 'lukovit', 'Луковит', 3);
+    data += generateCitySection('Несебър', 'nesebar', 'Несебър', 3);
     data += generateCitySection('Нова Загора', 'nova-zagora', 'Н. Загора', 3);
+    data += generateCitySection('Нови Искър', 'novi-iskar', 'Нови Искър', 3);
     data += generateCitySection('Обзор', 'obzor', 'Обзор', 3);
+    data += generateCitySection('Панагюрище', 'panagiurishte', 'Панагюрище', 3);
     data += generateCitySection('Петрич', 'petrich', 'Петрич', 3);
+    data += generateCitySection('Пещера', 'peshtera', 'Пещера', 3);
+    data += generateCitySection('Поморие', 'pomorie', 'Поморие', 3);
+    data += generateCitySection('Попово', 'popovo', 'Попово', 3);
     data += generateCitySection('Правец', 'pravets', 'Правец', 3);
+    data += generateCitySection('Радомир', 'radomir', 'Радомир', 3);
+    data += generateCitySection('Раковски', 'rakovski', 'Раковски', 3);
     data += generateCitySection('Самоков', 'samokov', 'Самоков', 3);
     data += generateCitySection('Сандански', 'sandanski', 'Сандански', 3);
+    data += generateCitySection('Свиленград', 'svilengrad', 'Свиленград', 3);
     data += generateCitySection('Свищов', 'svishtov', 'Свищов', 3);
+    data += generateCitySection('Своге', 'svoge', 'Своге', 3);
     data += generateCitySection('Севлиево', 'sevlievo', 'Севлиево', 3);
+    data += generateCitySection('Троян', 'troyan', 'Троян', 3);
+    data += generateCitySection('Харманли', 'harmanli', 'Харманли', 3);
     data += generateCitySection('Чирпан', 'chirpan', 'Чирпан', 3);
   }
   let header = generateDownloadCSVHeader();
