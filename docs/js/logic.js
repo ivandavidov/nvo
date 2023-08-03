@@ -991,7 +991,7 @@ function generateCitySections() {
     data += generateCitySection('Лом', 'lom', 'Лом', 3);
     data += generateCitySection('Луковит', 'lukovit', 'Луковит', 3);
     data += generateCitySection('Несебър', 'nesebar', 'Несебър', 3);
-    data += generateCitySection('Нова Загора', 'nova-zagora', 'Н. Загора', 3);
+    data += generateCitySection('Нова Загора', 'nova-zagora', 'Нова Загора', 3);
     data += generateCitySection('Нови Искър', 'novi-iskar', 'Нови Искър', 3);
     data += generateCitySection('Обзор', 'obzor', 'Обзор', 3);
     data += generateCitySection('Панагюрище', 'panagiurishte', 'Панагюрище', 3);
