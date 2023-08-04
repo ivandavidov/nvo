@@ -192,6 +192,7 @@ public class School implements Comparable<School> {
         schoolCodes.putAll(prepareSchoolCodesDimitrovgrad());
         schoolCodes.putAll(prepareSchoolCodesDupnitsa());
         schoolCodes.putAll(prepareSchoolCodesIhtiman());
+        schoolCodes.putAll(prepareSchoolCodesKavarna());
         schoolCodes.putAll(prepareSchoolCodesKazanluk());
         schoolCodes.putAll(prepareSchoolCodesKarlovo());
         schoolCodes.putAll(prepareSchoolCodesKarnobat());
@@ -202,6 +203,7 @@ public class School implements Comparable<School> {
         schoolCodes.putAll(prepareSchoolCodesNesebar());
         schoolCodes.putAll(prepareSchoolCodesNovaZagora());
         // Novi Iskar - part of Sofia
+        schoolCodes.putAll(prepareSchoolCodesNoviPazar());
         schoolCodes.putAll(prepareSchoolCodesObzor());
         schoolCodes.putAll(prepareSchoolCodesPanagiurishte());
         schoolCodes.putAll(prepareSchoolCodesPetrich());
@@ -221,6 +223,7 @@ public class School implements Comparable<School> {
         schoolCodes.putAll(prepareSchoolCodesSvishtov());
         schoolCodes.putAll(prepareSchoolCodesSvoge());
         schoolCodes.putAll(prepareSchoolCodesSevlievo());
+        schoolCodes.putAll(prepareSchoolCodesStamboliiski());
         schoolCodes.putAll(prepareSchoolCodesTroyan());
         schoolCodes.putAll(prepareSchoolCodesHarmanli());
         schoolCodes.putAll(prepareSchoolCodesChervenBriag());
@@ -1503,6 +1506,16 @@ public class School implements Comparable<School> {
         return schoolCodes;
     }
 
+    private static Map<String, String[]> prepareSchoolCodesKavarna() {
+        Map<String, String[]> schoolCodes = new HashMap<>();
+
+        schoolCodes.put("800080", new String[]{"0", "ОУ Йордан Йовков", "ОУ Йордан Йовков"});
+        schoolCodes.put("800082", new String[]{"0", "СУ Стефан Караджа", "СУ Стефан Караджа"});
+        schoolCodes.put("800086", new String[]{"0", "Земеделска гимн.", "Професионална земеделска гимназия"});
+
+        return schoolCodes;
+    }
+
     private static Map<String, String[]> prepareSchoolCodesKazanluk() {
         Map<String, String[]> schoolCodes = new HashMap<>();
 
@@ -1616,6 +1629,18 @@ public class School implements Comparable<School> {
         schoolCodes.put("2000305", new String[]{"0", SU_HRISTO_BOTEV, SU_HRISTO_BOTEV});
         schoolCodes.put("2000306", new String[]{"0", PG_SELSKO_STOPANSTVO_SHORT, PG_SELSKO_STOPANSTVO_LONG});
         schoolCodes.put("2000307", new String[]{"0", "ПГ по техника", "ПГ по техника и технологии"});
+
+        return schoolCodes;
+    }
+
+    private static Map<String, String[]> prepareSchoolCodesNoviPazar() {
+        Map<String, String[]> schoolCodes = new HashMap<>();
+
+        schoolCodes.put("2700047", new String[]{"0", SU_VASIL_LEVSKI, SU_VASIL_LEVSKI});
+        schoolCodes.put("2700071", new String[]{"0", "СУ Хан Исперих", "СУ Хан Исперих"});
+        schoolCodes.put("2700194", new String[]{"0", OU_NIKOLA_VAPTSAROV_SHORT, OU_NIKOLA_VAPTSAROV_LONG});
+        schoolCodes.put("2700220", new String[]{"0", PG_SELSKO_STOPANSTVO_SHORT, PG_SELSKO_STOPANSTVO_LONG});
+        schoolCodes.put("2700224", new String[]{"0", "ПГ по хим. техн.", "ПГ по химични технологии"});
 
         return schoolCodes;
     }
@@ -1848,6 +1873,16 @@ public class School implements Comparable<School> {
         schoolCodes.put("700318", new String[]{"0", SU_VASIL_LEVSKI, SU_VASIL_LEVSKI});
         schoolCodes.put("700323", new String[]{"0", "ПГ по механоел.", "ПГ по механоелектротехника"});
         schoolCodes.put("700330", new String[]{"0", "ПГ Марин Попов", "ПГ Марин Попов"});
+
+        return schoolCodes;
+    }
+
+    private static Map<String, String[]> prepareSchoolCodesStamboliiski() {
+        Map<String, String[]> schoolCodes = new HashMap<>();
+
+        schoolCodes.put("1602904", new String[]{"0", "ОбУ Христо Ботев", "ОбУ Христо Ботев"});
+        schoolCodes.put("1602905", new String[]{"0", OU_HRISTO_SMIRNENSKI_SHORT, OU_HRISTO_SMIRNENSKI_LONG});
+        schoolCodes.put("1602907", new String[]{"0", SU_OTEC_PAISII, SU_OTEC_PAISII});
 
         return schoolCodes;
     }

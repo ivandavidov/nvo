@@ -987,6 +987,7 @@ function generateCitySections() {
     data += generateCitySection('Димитровград', 'dimitrovgrad', 'Димитровград', 3);
     data += generateCitySection('Дупница', 'dupnitsa', 'Дупница', 3);
     data += generateCitySection('Ихтиман', 'ihtiman', 'Ихтиман', 3);
+    data += generateCitySection('Каварна', 'kavarna', 'Каварна', 3);
     data += generateCitySection('Казанлък', 'kazanluk', 'Казанлък', 3);
     data += generateCitySection('Карлово', 'karlovo', 'Карлово', 3);
     data += generateCitySection('Карнобат', 'karnobat', 'Карнобат', 3);
@@ -996,6 +997,7 @@ function generateCitySections() {
     data += generateCitySection('Несебър', 'nesebar', 'Несебър', 3);
     data += generateCitySection('Нова Загора', 'nova-zagora', 'Нова Загора', 3);
     data += generateCitySection('Нови Искър', 'novi-iskar', 'Нови Искър', 3);
+    data += generateCitySection('Нови пазар', 'novi-pazar', 'Нови пазар', 3);
     data += generateCitySection('Обзор', 'obzor', 'Обзор', 3);
     data += generateCitySection('Панагюрище', 'panagiurishte', 'Панагюрище', 3);
     data += generateCitySection('Петрич', 'petrich', 'Петрич', 3);
@@ -1014,6 +1016,7 @@ function generateCitySections() {
     data += generateCitySection('Свищов', 'svishtov', 'Свищов', 3);
     data += generateCitySection('Своге', 'svoge', 'Своге', 3);
     data += generateCitySection('Севлиево', 'sevlievo', 'Севлиево', 3);
+    data += generateCitySection('Стамболийски', 'stanbiliiski', 'Стамболийски', 3);
     data += generateCitySection('Троян', 'troyan', 'Троян', 3);
     data += generateCitySection('Харманли', 'harmanli', 'Харманли', 3);
     data += generateCitySection('Червен бряг', 'cherven-briag', 'Червен бряг', 3);
