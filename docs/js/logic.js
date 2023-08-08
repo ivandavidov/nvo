@@ -40,6 +40,9 @@ function recalculate() {
     tracesBel.push(noSchool);
     tracesMat.push(noSchool);
   }
+  let sortFunc = (t1, t2) => (t1.data[t1.data.length - 1]) < (t2.data[t2.data.length - 1]) ? 1 : -1;
+  tracesBel.sort(sortFunc);
+  tracesMat.sort(sortFunc);  
   return {b: tracesBel, m: tracesMat, i: indices};
 }
 
