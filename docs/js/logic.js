@@ -598,7 +598,16 @@ function generateHTMLTable(el, hrName, puSchools, prSchools, name) {
     td.appendChild(document.createTextNode(++counter));
     tr.appendChild(td);
     td = document.createElement('td');
-    td.appendChild(document.createTextNode(s[o.i].l));
+    if(s[o.i].w) {
+      let a = document.createElement('a');
+      a.appendChild(document.createTextNode(s[o.i].l));
+      a.href = s[o.i].w;
+      a.target = '_blank';
+      td.appendChild(a);
+    } else {
+      td.appendChild(document.createTextNode(s[o.i].l));
+    }
+    td.title = s[o.i].n;
     tr.appendChild(td);
     td = document.createElement('td');
     td.appendChild(document.createTextNode(o.t + ' / ' + (o.t === 'Д' ? ++counterPu : ++counterPr)));

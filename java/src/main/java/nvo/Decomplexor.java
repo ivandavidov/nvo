@@ -116,6 +116,10 @@ public class Decomplexor {
                 }
                 school.setName(record.getSchool());
                 school.setLabel(record.getSchool());
+                if(School.schoolCodes.get(schoolCode) != null
+                        && School.schoolCodes.get(schoolCode).length > 3) {
+                    school.setWebsite(School.schoolCodes.get(schoolCode)[3]);
+                }
                 school.setCode(schoolCode);
                 while(school.getBelScore().size() <= f - 1) {
                     school.getBelScore().add(0.000d);
@@ -270,7 +274,7 @@ public class Decomplexor {
             templateIndexIncl = "si['__city__']={n:[__n_begin__,__n_end__],p:[__p_begin__,__p_end__]};";
             templateIndexExcl = "si['__city__']={n:[__n_begin__,__n_end__],p:null};";
         } else {
-            templateSchool = "s[__index__] = {l: '__label__', n: '__name__', " + generateSection("b") + ", " + generateSection("m") + ", " + generateSection("bu") + ", " + generateSection("mu") + "};\r\n";
+            templateSchool = "s[__index__] = {l: '__label__', n: '__name__', " + generateSection("b") + ", " + generateSection("m") + ", " + generateSection("bu") + ", " + generateSection("mu") + ", w: __website__};\r\n";
             templateIndexIncl = "si['__city__'] = {n: [__n_begin__, __n_end__], p: [__p_begin__, __p_end__]};\r\n";
             templateIndexExcl = "si['__city__'] = {n: [__n_begin__, __n_end__], p: null};\r\n";
         }
@@ -393,7 +397,8 @@ public class Decomplexor {
     private String getLine(String templateSchool, int index, School school) {
         templateSchool = templateSchool.replace("__index__", "" + index)
                 .replace("__label__", school.getLabel())
-                .replace("__name__", school.getName());
+                .replace("__name__", school.getName())
+                .replace("__website__", school.getWebsite() != null ? "'" + school.getWebsite() + "'": "null");
 
         for(int i = 0; i < numYears; i++) {
             templateSchool = templateSchool
