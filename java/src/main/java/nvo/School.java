@@ -1006,27 +1006,27 @@ public class School implements Comparable<School> {
     private static Map<String, String[]> prepareSchoolCodesPernik() {
         Map<String, String[]> schoolCodes = new HashMap<>();
 
-        schoolCodes.put("1403213", new String[]{"0", "5 СУ", "5 СУ Петко Рачов Славейков"});
-        schoolCodes.put("1403214", new String[]{"0", "6 СУ", "6 СУ Св. Св. Кирил и Методий"});
-        schoolCodes.put("1403216", new String[]{"0", "СУРИЧЕ", "СУРИЧЕ Д-р Петър Берон"});
-        schoolCodes.put("1403217", new String[]{"0", "Спортно у-ще", "Спортно у-ще Олимпиец"});
-        schoolCodes.put("1403219", new String[]{"0", "ПМГ", "ПМГ Христо Смирненски"});
-        schoolCodes.put("1403220", new String[]{"0", "ГПЧЕ", "ГПЧЕ Симеон Радев"});
-        schoolCodes.put("1403233", new String[]{"0", "ПГ по енергетика", "ПГ по енергетика и минна промишленост"});
-        schoolCodes.put("1403234", new String[]{"0", "ПГ по техника", "ПГ по техника и строителство"});
-        schoolCodes.put("1403235", new String[]{"0", "ПГ Мария Кюри", "Технологична ПГ Мария Кюри"});
-        schoolCodes.put("1403236", new String[]{"0", "ПГ по икономика", "ПГ по икономика"});
-        schoolCodes.put("1403237", new String[]{"0", "ПГ по облекло", "Професионална гимназия по облекло и туризъм"});
-        schoolCodes.put("1403201", new String[]{"0", "ОУ Св. Ив. Рилски", "ОУ Св. Ив. Рилски"});
-        schoolCodes.put("1403202", new String[]{"0", "7 ОУ", "7 ОУ Георги С. Раковски"});
-        schoolCodes.put("1403203", new String[]{"0", "8 ОУ", "8 ОУ Кракра Пернишки"});
-        schoolCodes.put("1403204", new String[]{"0", "ОбУ Темелко Ненков", "ОбУ Темелко Ненков"});
-        schoolCodes.put("1403205", new String[]{"0", "10 ОУ", "10 ОУ Ал. Константинов"});
-        schoolCodes.put("1403206", new String[]{"0", "11 ОУ", "11 ОУ Елин Пелин"});
-        schoolCodes.put("1403207", new String[]{"0", "12 ОУ", "12 ОУ Васил Левски"});
-        schoolCodes.put("1403208", new String[]{"0", "13 ОУ", "13 ОУ Св. Св. Кирил и Методий"});
-        schoolCodes.put("1403211", new String[]{"0", "ОУ К. К. Философ", "ОУ Св. Конст. К. Философ"});
-        schoolCodes.put("1403215", new String[]{"0", "16 ОУ", "16 ОУ Св. Св. Кирил и Методий"});
+        schoolCodes.put("1403213", new String[]{"0", "5 СУ", "5 СУ Петко Рачов Славейков", "http://5supernik.bg"});
+        schoolCodes.put("1403214", new String[]{"0", "6 СУ", "6 СУ Св. Св. Кирил и Методий", "http://6su-pernik.eu"});
+        schoolCodes.put("1403216", new String[]{"0", "СУРИЧЕ П. Берон", "СУРИЧЕ Д-р Петър Берон", "http://suberon-pernik.com"});
+        schoolCodes.put("1403217", new String[]{"0", "СпУ Олимпиец", "Спортно у-ще Олимпиец", "http://sportnopernik.com"});
+        schoolCodes.put("1403219", new String[]{"0", "ПМГ", "ПМГ Христо Смирненски", "http://pmg-pernik.com"});
+        schoolCodes.put("1403220", new String[]{"0", "ГПЧЕ", "ГПЧЕ Симеон Радев", "http://simeonradev.org"});
+        schoolCodes.put("1403233", new String[]{"0", "ПГ по техн. и енерг.", "ПГ по техника и енергетика", "http://pgtehristobotev.com"});
+        schoolCodes.put("1403234", new String[]{"0", "ПГ по техн. и строит.", "ПГ по техника и строителство", "http://pgts.info"});
+        schoolCodes.put("1403235", new String[]{"0", "ПГ Мария Кюри", "Технологична ПГ Мария Кюри", "http://tpg-pk.eu"});
+        schoolCodes.put("1403236", new String[]{"0", "ПГ по икономика", "ПГ по икономика", "http://pgi-pernik.bg-schools.com"});
+        schoolCodes.put("1403237", new String[]{"0", "ПГ по облекло", "Професионална гимназия по облекло и туризъм", "http://pgotpernik.com"});
+        schoolCodes.put("1403201", new String[]{"0", "ОУ Иван Рилски", "ОУ Св. Иван Рилски", "http://ouivanrilski.com"});
+        schoolCodes.put("1403202", new String[]{"0", "7 ОУ", "7 ОУ Георги С. Раковски", "http://7ou-pernik.com"});
+        schoolCodes.put("1403203", new String[]{"0", "8 ОУ", "8 ОУ Кракра Пернишки", "http://8oupernik.com"});
+        schoolCodes.put("1403204", new String[]{"0", "ОбУ Темелко Ненков", "ОбУ Темелко Ненков", "http://facebook.com/SUTemelkoNenkov/"});
+        schoolCodes.put("1403205", new String[]{"0", "10 ОУ", "10 ОУ Ал. Константинов", "http://10ou.net"});
+        schoolCodes.put("1403206", new String[]{"0", "11 ОУ", "11 ОУ Елин Пелин", "http://11ouelinpelin-pernik.com"});
+        schoolCodes.put("1403207", new String[]{"0", "12 ОУ", "12 ОУ Васил Левски", "http://12ou-pernik.com"});
+        schoolCodes.put("1403208", new String[]{"0", "13 ОУ", "13 ОУ Св. Св. Кирил и Методий", "http://13oupernik.weebly.com"});
+        schoolCodes.put("1403211", new String[]{"0", "ОУ К. К. Философ", "ОУ Св. Конст. К. Философ", "http://ou-kkfilosof.com"});
+        schoolCodes.put("1403215", new String[]{"0", "16 ОУ", "16 ОУ Св. Св. Кирил и Методий", "http://16ou-pernik.com"});
 
         return schoolCodes;
     }
