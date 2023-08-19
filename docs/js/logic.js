@@ -169,8 +169,9 @@ function getLayout(title, series, exportPrefix) {
 }
 
 function handleURL(indices) {
-  let anchor = window.location.href.split('#')[1];
-  let baseURL = window.location.href.split('?')[0].split('#')[0];
+  let url = new URL(window.location.href);
+  let anchor = url.hash;
+  let baseURL = url.origin;
   if(indices.length === 0) {
     document.cookie = cookieName + '=;path=/;max-age=-1';
     window.history.pushState(indices, null, anchor ? baseURL + '#' + anchor : baseURL);
