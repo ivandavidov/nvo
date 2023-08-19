@@ -177,10 +177,10 @@ function handleURL(indices) {
     window.history.pushState(indices, null, anchor ? baseURL + '#' + anchor : baseURL);
   } else {
     let endURL = indices.join(',');
+    document.cookie = cookieName + '=' + endURL + ';path=/;max-age=' + 60 * 60 * 24 * 365;
     if(anchor) {
       endURL += '#' + anchor;
     }
-    document.cookie = cookieName + '=' + endURL + ';path=/;max-age=' + 60 * 60 * 24 * 365;
     window.history.pushState(indices, null, baseURL + '?' + cookieName + '=' + endURL);
   }
 }
