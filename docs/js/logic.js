@@ -170,8 +170,8 @@ function getLayout(title, series, exportPrefix) {
 
 function handleURL(indices) {
   let url = new URL(window.location.href);
-  let anchor = url.hash;
-  let baseURL = url.origin;
+  let anchor = url.hash.replace('#', '');
+  let baseURL = url.origin + url.pathname;
   if(indices.length === 0) {
     document.cookie = cookieName + '=;path=/;max-age=-1';
     window.history.pushState(indices, null, anchor ? baseURL + '#' + anchor : baseURL);
@@ -935,7 +935,8 @@ function calculateCityMediansByAttendees() {
 }
 
 function setDefaultClickedButtons() {
-  let i = window.location.search.split('?' + cookieName + '=')[1];
+  let url = new URL(window.location.href);
+  let i = url.searchParams.get(cookieName);
   if(i) {
     i.split(',').forEach((i) => {
       setButtonState(i, true);
@@ -944,7 +945,7 @@ function setDefaultClickedButtons() {
   }
   i = (document.cookie + ';').match(new RegExp(cookieName + '=.*;'));
   if(i) {
-    i = i[0].split(/=|;/)[1];
+    i = i[0].split(/=|;/)[1].split('#')[0];
   }
   if(i) {
     i.split(',').forEach((i) => {
