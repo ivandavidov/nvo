@@ -169,12 +169,16 @@ function getLayout(title, series, exportPrefix) {
 }
 
 function handleURL(indices) {
+  let anchor = window.location.href.split('#')[1];
   let baseURL = window.location.href.split('?')[0].split('#')[0];
   if(indices.length === 0) {
     document.cookie = cookieName + '=;path=/;max-age=-1';
-    window.history.pushState(indices, null, baseURL);
+    window.history.pushState(indices, null, anchor ? baseURL + '#' + anchor : baseURL);
   } else {
     let endURL = indices.join(',');
+    if(anchor) {
+      endURL += '#' + anchor;
+    }
     document.cookie = cookieName + '=' + endURL + ';path=/;max-age=' + 60 * 60 * 24 * 365;
     window.history.pushState(indices, null, baseURL + '?' + cookieName + '=' + endURL);
   }
