@@ -22,3 +22,4 @@ let csvHeaderB = 'Б';
 let csvHeaderM = 'М';
 let baseSchoolIndex = 135; // 145 ОУ
 let refSchoolIndex = 39;   // 41 ОУ
+let disabledEntries = []; // ??? ЧОУ Томас Едисън (София)

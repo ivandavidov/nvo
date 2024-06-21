@@ -543,8 +543,104 @@ function generateHTMLTable(el, hrName, puSchools, prSchools, name) {
   generateRowWithText(div, '\u00A0');
   generateCityMedianTables(div, name);
   generateRowWithText(div, '\u00A0');
+  if(prSchools) {
+    let fn = (lbl) => {
+      let tBody = document.getElementById('tbl-' + si[name].n[0]);
+      let trs = tBody.getElementsByTagName('tr');
+      let counter = 0;
+      for(let i = 0; i < trs.length; i++) {
+        let tds = trs[i].getElementsByTagName('td');
+        if(!lbl || tds[2].textContent.startsWith(lbl) ) {
+          trs[i].style.display = 'table-row';
+          tds[0].textContent = ++counter;
+          let color = null;
+          let rank = 0;
+          if(!lbl) {
+            color = tds[3].bgAll;
+            rank = tds[3].rankAll;
+          } else if(lbl === 'Д') {
+            color = tds[3].bgPu;
+            rank = tds[3].rankPu;
+          } else {
+            color = tds[3].bgPr;
+            rank = tds[3].rankPr;
+          }
+          tds[3].style.backgroundColor = color;
+          tds[3].textContent = rank;
+        } else {
+          trs[i].style.display = 'none';
+        }
+      }
+    }
+    let menuTitleDiv = generateRow(div);
+    menuTitleDiv.style.display = 'flex';
+    menuTitleDiv.style.alignItems = 'center';
+    menuTitleDiv.style.justifyContent = 'center';
+    let aAll = document.createElement('a');
+    aAll.id = 'menu-all-a-' + si[name].n[0];
+    aAll.style.display = 'none';
+    aAll.style.cursor = 'pointer';
+    aAll.appendChild(document.createTextNode('Всички'));
+    aAll.onclick = (e) => {
+      document.getElementById('menu-all-a-' + si[name].n[0]).style.display = 'none';
+      document.getElementById('menu-all-txt-' + si[name].n[0]).style.display = 'block';
+      document.getElementById('menu-pu-a-' + si[name].n[0]).style.display = 'block';
+      document.getElementById('menu-pu-txt-' + si[name].n[0]).style.display = 'none';
+      document.getElementById('menu-pr-a-' + si[name].n[0]).style.display = 'block';
+      document.getElementById('menu-pr-txt-' + si[name].n[0]).style.display = 'none';
+      fn(null);
+    }
+    menuTitleDiv.appendChild(aAll);
+    let txtAll = document.createElement('span');
+    txtAll.textContent = 'Всички';
+    txtAll.id = 'menu-all-txt-' + si[name].n[0];
+    txtAll.style.display = 'block';
+    menuTitleDiv.appendChild(txtAll);
+    let aPu = document.createElement('a');
+    aPu.id = 'menu-pu-a-' + si[name].n[0];
+    aPu.style.display = 'block';
+    aPu.style.cursor = 'pointer';
+    aPu.appendChild(document.createTextNode('Държавни'));
+    aPu.onclick = (e) => {
+      document.getElementById('menu-all-a-' + si[name].n[0]).style.display = 'block';
+      document.getElementById('menu-all-txt-' + si[name].n[0]).style.display = 'none';
+      document.getElementById('menu-pu-a-' + si[name].n[0]).style.display = 'none';
+      document.getElementById('menu-pu-txt-' + si[name].n[0]).style.display = 'block';
+      document.getElementById('menu-pr-a-' + si[name].n[0]).style.display = 'block';
+      document.getElementById('menu-pr-txt-' + si[name].n[0]).style.display = 'none';
+      fn('Д');
+    }
+    menuTitleDiv.appendChild(document.createTextNode('\u00A0\u00A0\u00A0|\u00A0\u00A0\u00A0'));
+    menuTitleDiv.appendChild(aPu);
+    let txtPu = document.createElement('span');
+    txtPu.textContent = 'Държавни';
+    txtPu.id = 'menu-pu-txt-' + si[name].n[0];
+    txtPu.style.display = 'none';
+    menuTitleDiv.appendChild(txtPu);
+    let aPr = document.createElement('a');
+    aPr.id = 'menu-pr-a-' + si[name].n[0];
+    aPr.style.display = 'block';
+    aPr.style.cursor = 'pointer';
+    aPr.appendChild(document.createTextNode('Частни'));
+    aPr.onclick = (e) => {
+      document.getElementById('menu-all-a-' + si[name].n[0]).style.display = 'block';
+      document.getElementById('menu-all-txt-' + si[name].n[0]).style.display = 'none';
+      document.getElementById('menu-pu-a-' + si[name].n[0]).style.display = 'block';
+      document.getElementById('menu-pu-txt-' + si[name].n[0]).style.display = 'none';
+      document.getElementById('menu-pr-a-' + si[name].n[0]).style.display = 'none';
+      document.getElementById('menu-pr-txt-' + si[name].n[0]).style.display = 'block';
+      fn('Ч');
+    }
+    menuTitleDiv.appendChild(document.createTextNode('\u00A0\u00A0\u00A0|\u00A0\u00A0\u00A0'));
+    menuTitleDiv.appendChild(aPr);
+    let txtPr = document.createElement('span');
+    txtPr.textContent = 'Частни';
+    txtPr.id = 'menu-pr-txt-' + si[name].n[0];
+    txtPr.style.display = 'none';
+    menuTitleDiv.appendChild(txtPr);
+  }
   generateRowWithText(div, '\u00A0');
-  titleDiv = generateRowWithStrong(div, tableTitleName + ' - ' + name + ' - ' + tableTitleType);
+  let titleDiv = generateRowWithStrong(div, tableTitleName + ' - ' + name + ' - ' + tableTitleType);
   titleDiv.style.textAlign = 'center';
   generateRowWithText(div, '\u00A0');
   div.classList.add('row');
@@ -573,6 +669,7 @@ function generateHTMLTable(el, hrName, puSchools, prSchools, name) {
     headTr.appendChild(th);
   });
   let tBody = document.createElement('tbody');
+  tBody.id = 'tbl-' + si[name].n[0];
   table.appendChild(tBody);
   let schools = [];
   for(let i = puSchools[0]; i <= puSchools[1]; i++) {
@@ -591,7 +688,23 @@ function generateHTMLTable(el, hrName, puSchools, prSchools, name) {
   }
   let sortFunc = (o1, o2) => (s[o1.i].mb + s[o1.i].mm) / 2 < (s[o2.i].mb + s[o2.i].mm) / 2 ? 1 : -1;
   schools.sort(sortFunc);
-  let topRank = (s[schools[0].i].mb + s[schools[0].i].mm - rankBase * 2) / 2;
+  let topRankAll = (s[schools[0].i].mb + s[schools[0].i].mm - rankBase * 2) / 2;
+  let topRankPu = null;
+  let topRankPr = null;
+  if(prSchools) {
+    for(let i = 0; i < schools.length; i++) {
+      if(schools[i].t === 'Д') {
+        topRankPu = (s[schools[i].i].mb + s[schools[i].i].mm - rankBase * 2) / 2;
+        break;
+      }
+    }
+    for(let i = 0; i < schools.length; i++) {
+      if(schools[i].t === 'Ч') {
+        topRankPr = (s[schools[i].i].mb + s[schools[i].i].mm - rankBase * 2) / 2;
+        break;
+      }
+    }
+  }
   let counter = 0;
   let counterPu = 0;
   let counterPr = 0;
@@ -620,32 +733,60 @@ function generateHTMLTable(el, hrName, puSchools, prSchools, name) {
     td = document.createElement('td');
     if(!topRankDone) {
       td.appendChild(document.createTextNode(100));
-      td.title = 'Среден резултат = ' + topRank.toFixed(2);
-      td.style.backgroundColor = "#00ff30";
+      td.title = 'Среден резултат = ' + topRankAll.toFixed(2);
+      td.bgAll = '#00ff30';
+      td.rankAll = '100';
+      td.rankPu = o.t === 'Д' ? '100' : 'none';
+      td.rankPr = o.t === 'Ч' ? '100' : 'none';
+      td.bgPu = o.t === 'Д' ? '#00ff30': 'none';
+      td.bgPr = o.t === 'Ч' ? '#00ff30': 'none';
+      td.style.backgroundColor = td.bgAll;
       topRankDone = true;
     } else {
-      let rank = (s[o.i].mb + s[o.i].mm - rankBase * 2) / 2;
-      let adjustedRank = (rank * 100) / topRank;
-      let redHex = "00";
-      let greenHex = "00";
-      let blueHex = "30";
-      if(adjustedRank >= (100 - rankRangeTop)) {
-        let red = Math.floor(255 - ((adjustedRank - (100 - rankRangeTop)) * 255) / rankRangeTop);
-        redHex = red.toString(16).padStart(2, '0');
-        greenHex = "ff";
-      } else if(adjustedRank < (100 - rankRangeTop) && adjustedRank >= rankRangeBottom) {
-        let green = Math.floor(127 + ((adjustedRank - rankRangeBottom) * 127) / (100 - rankRangeTop - rankRangeBottom));
-        redHex = "ff";
-        greenHex = green.toString(16).padStart(2, '0');
-      } else {
-        let green = Math.floor((adjustedRank * 127) / rankRangeBottom);
-        let red = Math.floor(191 + green / 2);
-        redHex = red.toString(16).padStart(2, '0');
-        greenHex = green.toString(16).padStart(2, '0');
+      let calculateAdjustedRankData = (topRank) => {
+        let adjustedRank = (rank * 100) / topRank;
+        let redHex = '00';
+        let greenHex = '00';
+        let blueHex = '30';
+        if(adjustedRank >= (100 - rankRangeTop)) {
+          let red = Math.floor(255 - ((adjustedRank - (100 - rankRangeTop)) * 255) / rankRangeTop);
+          redHex = red.toString(16).padStart(2, '0');
+          greenHex = 'ff';
+        } else if(adjustedRank < (100 - rankRangeTop) && adjustedRank >= rankRangeBottom) {
+          let green = Math.floor(127 + ((adjustedRank - rankRangeBottom) * 127) / (100 - rankRangeTop - rankRangeBottom));
+          redHex = 'ff';
+          greenHex = green.toString(16).padStart(2, '0');
+        } else {
+          let green = Math.floor((adjustedRank * 127) / rankRangeBottom);
+          let red = Math.floor(191 + green / 2);
+          redHex = red.toString(16).padStart(2, '0');
+          greenHex = green.toString(16).padStart(2, '0');
+        }
+        return {
+          'adjustedRank': adjustedRank,
+          'redHex': redHex,
+          'greenHex': greenHex,
+          'blueHex': blueHex
+        }
       }
-      td.style.backgroundColor = "#" + redHex + greenHex + blueHex;
+      let rank = (s[o.i].mb + s[o.i].mm - rankBase * 2) / 2;
       td.title = 'Среден резултат = ' + rank.toFixed(2);
-      td.appendChild(document.createTextNode((Math.round(adjustedRank * 100) / 100).toFixed(2)));
+      let ardAll = calculateAdjustedRankData(topRankAll);
+      td.bgAll = '#' + ardAll.redHex + ardAll.greenHex + ardAll.blueHex;
+      td.rankAll = (Math.round(ardAll.adjustedRank * 100) / 100).toFixed(2);
+      let ardPu = calculateAdjustedRankData(topRankPu);
+      td.bgPu = '#' + ardPu.redHex + ardPu.greenHex + ardPu.blueHex;
+      td.rankPu = (Math.round(ardPu.adjustedRank * 100) / 100).toFixed(2);
+      if(topRankPr) {
+        let ardPr = calculateAdjustedRankData(topRankPr);
+        td.bgPr = '#' + ardPr.redHex + ardPr.greenHex + ardPr.blueHex;
+        td.rankPr = (Math.round(ardPr.adjustedRank * 100) / 100).toFixed(2);
+      } else {
+        td.bgPr = 'none';
+        td.rankPr = 0;
+      }
+      td.style.backgroundColor = td.bgAll;
+      td.textContent = td.rankAll;
     }
     tr.appendChild(td);
     let totalYears = s[o.i].b.length;
@@ -1075,6 +1216,19 @@ function calculateTimeTravel() {
   }
 }
 
+function disableEntries() {
+  if(!disabledEntries) {
+    return;
+  }
+  for(let i = 0; i < disabledEntries.length; i++) {
+    let school = s[disabledEntries[i]];
+    school.b[school.b.length - 1] = null;
+    school.m[school.m.length - 1] = null;
+    school.bu[school.bu.length - 1] = null;
+    school.mu[school.mu.length - 1] = null;
+  }
+}
+
 function removeYears(numYears) {
   for(let i = 0; i < numYears; i++) {
     for(let j = 0; j < s.length; j++) {
@@ -1093,6 +1247,7 @@ function onLoad() {
   calculateTimeTravel();
   fixForYear2018();
   fixForMissingYears();
+  disableEntries();
   calculateSchoolMedians();
   calculateCityMediansBySchool();
   calculateCityMediansByAttendees();

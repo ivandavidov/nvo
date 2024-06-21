@@ -42,7 +42,7 @@ public class Decomplexor {
         String schoolsPath = "/Users/ivan/projects/nvo/docs/js/";
 
         if(mode.equals("normalize")) {
-          CSVNormalizer.main(null);
+          CSVNormalizer.main((String)null);
           System.exit(0);
         } else if(mode.equals("12")) {
             header = "// https://data.egov.bg/data/view/066b4b04-d81d-444e-a61c-8ca0516079e4";

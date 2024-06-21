@@ -22,3 +22,4 @@ let csvHeaderB = 'Б';
 let csvHeaderM = 'М';
 let baseSchoolIndex = 1; // 1 АЕГ
 let refSchoolIndex = 51; // 91 НЕГ
+let disabledEntries = null;

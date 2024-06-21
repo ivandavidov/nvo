@@ -4,3 +4,4 @@
 *.iml
 java/target/**
 **/.DS_Store
+.vscode/**
