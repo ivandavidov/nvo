@@ -31,6 +31,7 @@ public class CSVNormalizer {
         worker.reformat("nvo-4-2021", ',', "ГР.", 2, 3, 4, 6, 8, 5, 7, 0, 0, 0, 0);
         worker.reformat("nvo-4-2022", ',', "ГР.", 2, 4, 3, 6, 8, 5, 7, 0, 0, 0, 0);
         worker.reformat("nvo-4-2023", ',', "ГР.", 2, 4, 3, 6, 8, 5, 7, 0, 0, 0, 0);
+        worker.reformat("nvo-4-2024", ',', "ГР.", 2, 4, 3, 6, 8, 5, 7, 0, 0, 0, 0);
         worker.reformat("nvo-7-2018", ';', "ГР.", 2, 3, 4, 6, 8, 5, 7, 0, 0, 0, 0);
         worker.reformat("nvo-7-2019", ';', "ГР. ", 2, 3, 4, 6, 8, 5, 7, 0, 0, 0, 0);
         worker.reformat("nvo-7-2020", ';', "ГР.", 2, 3, 4, 6, 8, 5, 7, 0, 0, 0, 0);

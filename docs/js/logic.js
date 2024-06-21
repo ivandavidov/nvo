@@ -776,11 +776,11 @@ function generateHTMLTable(el, hrName, puSchools, prSchools, name) {
       td.rankAll = (Math.round(ardAll.adjustedRank * 100) / 100).toFixed(2);
       let ardPu = calculateAdjustedRankData(topRankPu);
       td.bgPu = '#' + ardPu.redHex + ardPu.greenHex + ardPu.blueHex;
-      td.rankPu = (Math.round(ardPu.adjustedRank * 100) / 100).toFixed(2);
+      td.rankPu = ardPu.adjustedRank === 100 ? '100' : (Math.round(ardPu.adjustedRank * 100) / 100).toFixed(2);
       if(topRankPr) {
         let ardPr = calculateAdjustedRankData(topRankPr);
         td.bgPr = '#' + ardPr.redHex + ardPr.greenHex + ardPr.blueHex;
-        td.rankPr = (Math.round(ardPr.adjustedRank * 100) / 100).toFixed(2);
+        td.rankPr = ardPr.adjustedRank === 100 ? '100' : (Math.round(ardPr.adjustedRank * 100) / 100).toFixed(2);
       } else {
         td.bgPr = 'none';
         td.rankPr = 0;

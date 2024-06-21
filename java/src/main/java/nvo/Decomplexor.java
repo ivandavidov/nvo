@@ -79,7 +79,8 @@ public class Decomplexor {
             String file21 = normalizedPath + "nvo-4-2021-normalized.csv";
             String file22 = normalizedPath + "nvo-4-2022-normalized.csv";
             String file23 = normalizedPath + "nvo-4-2023-normalized.csv";
-            files = new String[] {file18, file19, file20, file21, file22, file23};
+            String file24 = normalizedPath + "nvo-4-2024-normalized.csv";
+            files = new String[] {file18, file19, file20, file21, file22, file23, file24};
         } else {
             System.out.println("Mode '" + mode + "' is not recognized.");
             System.exit(0);
