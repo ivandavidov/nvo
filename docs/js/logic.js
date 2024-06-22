@@ -345,9 +345,6 @@ function generateDownloadCSVHeader() {
 }
 
 function generateCityMedianTables(el, name) {
-  let titleDiv = generateRowWithStrong(el, 'Средни резултати' + ' - ' + name + ' - ' + tableTitleType);
-  titleDiv.style.textAlign = 'center';
-  generateRowWithText(el, '\u00A0');
   let medianMenu = generateRow(el);
   medianMenu.style.display = 'flex';
   medianMenu.style.alignItems = 'center';
@@ -357,7 +354,6 @@ function generateCityMedianTables(el, name) {
   medianText.textContent = 'Училища';
   medianText.id = 'medianTextSchools'+ si[name].n[0];
   medianText.style.display = 'block';
-  medianText.style.fontWeight = 'bold';
   medianMenu.appendChild(medianText);
   let a = document.createElement('a');
   medianMenu.appendChild(a);
@@ -384,7 +380,6 @@ function generateCityMedianTables(el, name) {
   medianText.textContent = 'Ученици';
   medianText.id = 'medianTextAttendees'+ si[name].n[0];
   medianText.style.display = 'none';
-  medianText.style.fontWeight = 'bold';
   medianMenu.appendChild(medianText);
   a = document.createElement('a');
   medianMenu.appendChild(a);
@@ -406,6 +401,9 @@ function generateCityMedianTables(el, name) {
     element = document.getElementById('medianTextAttendees' + si[name].n[0]);
     element.style.display = 'block';
   }
+  generateRowWithText(el, '\u00A0');
+  let titleDiv = generateRowWithStrong(el, 'Средни резултати' + ' - ' + name + ' - ' + tableTitleType);
+  titleDiv.style.textAlign = 'center';
   generateRowWithText(el, '\u00A0');
   let tableMedianDiv = document.createElement('div');
   tableMedianDiv.style.display = 'flex';
