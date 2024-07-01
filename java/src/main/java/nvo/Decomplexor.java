@@ -62,7 +62,8 @@ public class Decomplexor {
             String file21 = normalizedPath + "nvo-10-2021-normalized.csv";
             String file22 = normalizedPath + "nvo-10-2022-normalized.csv";
             String file23 = normalizedPath + "nvo-10-2023-normalized.csv";
-            files = new String[] {file18, file19, file20, file21, file22, file23};
+            String file24 = normalizedPath + "nvo-10-2024-normalized.csv";
+            files = new String[] {file18, file19, file20, file21, file22, file23, file24};
         } else if(mode.equals("7")) {
             header = "// https://data.egov.bg/data/view/b56288b6-25aa-4049-9aa6-de2cd4cdabf8";
             String file18 = normalizedPath + "nvo-7-2018-normalized.csv";
