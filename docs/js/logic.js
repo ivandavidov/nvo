@@ -743,6 +743,9 @@ function generateHTMLTable(el, hrName, puSchools, prSchools, name) {
     } else {
       let calculateAdjustedRankData = (topRank) => {
         let adjustedRank = (rank * 100) / topRank;
+        if(adjustedRank > 100) {
+          adjustedRank = 100;
+        }
         let redHex = '00';
         let greenHex = '00';
         let blueHex = '30';
