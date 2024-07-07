@@ -482,7 +482,7 @@ public class School implements Comparable<School> {
         schoolCodes.put("2204676", new String[] {"1", "Кралица София Исп.", "ЧСУ Кралица София Испанска", "http://ispanskouchilishte.com"});
         schoolCodes.put("2200021", new String[] {"1", "Роналд Лаудер", "ЧСУ Роналд Лаудер", "http://lauderschool.bg"});
         schoolCodes.put("2200023", new String[] {"1", "Константин-Кирил", "ЧСУ Константин-Кирил Философ", "http://kkf.bg"});
-        schoolCodes.put("2200024", new String[] {"1", "Наука за деца", "ЧНУ Наука за деца", "http://izzi.academy"});
+        schoolCodes.put("2200024", new String[] {"1", "Наука за деца", "ЧСУ Наука за деца", "http://izzi.academy"});
         schoolCodes.put("2202705", new String[] {"1", "Откривател", "ЧОУ Откривател", "http://montessorischools.bg"});
         schoolCodes.put("2214098", new String[] {"0", "98 НУ", "98 НУ Св. Св. Кирил и Методий", "http://nu98.org"});
         schoolCodes.put("2221621", new String[] {"1", "Питагор", "ЧОУ Питагор", "http://pitagor-school.eu"});
