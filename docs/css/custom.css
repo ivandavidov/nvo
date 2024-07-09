@@ -6,7 +6,7 @@ html {
   max-width: 1280px;
 }
 
-.button-scroll {
+.buttons-fixed {
   position: fixed;
   bottom: 2%;
   right: 2%;

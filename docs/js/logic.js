@@ -200,12 +200,14 @@ function generateSchoolButtons(div, slices, topCount, secondCount) {
   if(topCount && topCount > 0) {
     schools = [];
     topBtn = document.createElement('button');
+    topBtn.classList.add('mbtn');
     topBtn.textContent = 'Топ ' + topCount;
     div.appendChild(topBtn);
   }
   if(secondCount && secondCount > 0) {
     schools = [];
     secondBtn = document.createElement('button');
+    secondBtn.classList.add('mbtn');
     secondBtn.textContent = 'Топ ' + (topCount + 1) + ' - ' + (topCount + secondCount);
     div.appendChild(secondBtn);
   }
@@ -1099,11 +1101,27 @@ function setDefaultClickedButtons() {
   setButtonState(refSchoolIndex, true);
 }
 
-function enableScrollButton() {
+function enableFixedButtons() {
+  let divFixedButtons = document.getElementById('divFixedButtons');
+  divFixedButtons.style.display = 'flex';
+  divFixedButtons.style.displayFlex = 'wrap';
+  let btnClear = document.getElementById('btnClear');
+  btnClear.style.display = 'block';
+  btnClear.onclick = () => {
+    s.forEach((o, i) => {
+      setButtonState(i, false);
+    });
+    let mBtns = document.getElementsByClassName('mbtn');
+    for(let mBtn of mBtns) {
+      mBtn.classList.remove('button-primary');
+    }
+    redraw();
+  };
   let btnTop = document.getElementById('btnTop');
   btnTop.style.display = 'block';
   btnTop.onclick = () => document.getElementById('hrCharts').scrollIntoView();
 }
+
 
 function generateCitySections() {
   let data = generateCitySection('София', 'sofia', 'София', 1);
@@ -1253,7 +1271,7 @@ function onLoad() {
   calculateCityMediansBySchool();
   calculateCityMediansByAttendees();
   generateCitySections();
-  enableScrollButton();
+  enableFixedButtons();
   setDefaultClickedButtons();
   initializeHighcharts();
   redraw();
