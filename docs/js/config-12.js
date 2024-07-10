@@ -14,6 +14,7 @@ let exportPrefixBel = exportPrefix + '-bel';
 let exportPrefixMat = exportPrefix + '-dzi-2';
 let chartFloor = 0;
 let chartCeiling = 6;
+let chartNoSchool = 4;
 let chartBTitle = '12 клас - ДЗИ - Български език';
 let chartMTitle = '12 клас - ДЗИ - Втора матура';
 let csvHeaderBel = 'ДЗИ-Б';

@@ -24,11 +24,11 @@ function recalculate() {
   let tracesBel = [];
   let tracesMat = [];
   let indices = [];
-  data50 = [];
+  let dataNoSchool = [];
   for(let i = 0; i < numYears; i++) {
-    data50.push(50);
+    dataNoSchool.push(chartNoSchool);
   }
-  let noSchool = {name: 'Изберете поне едно училище', data: data50};
+  let noSchool = {name: 'Изберете поне едно училище', data: dataNoSchool};
   s.forEach((o, i) => {
     if(buttonEnabled(i)) {
       indices.push(i);

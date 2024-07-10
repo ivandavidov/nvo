@@ -14,6 +14,7 @@ let exportPrefixBel = exportPrefix + '-bel';
 let exportPrefixMat = exportPrefix + '-mat';
 let chartFloor = 0;
 let chartCeiling = 100;
+let chartNoSchool = 50;
 let chartBTitle = '10 клас - НВО - Български език';
 let chartMTitle = '10 клас - НВО - Математика';
 let csvHeaderBel = 'БЕЛ';
