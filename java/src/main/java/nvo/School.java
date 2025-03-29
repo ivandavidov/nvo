@@ -764,25 +764,25 @@ public class School implements Comparable<School> {
     private static Map<String, String[]> prepareSchoolCodesVelikoTurnovo() {
         Map<String, String[]> schoolCodes = new HashMap<>();
 
-        schoolCodes.put("300121", new String[]{"0", "Хуманитарна гимн.", "Профилирана Хуманитарна гимназия"});
-        schoolCodes.put("300122", new String[]{"0", "ПМГ В. Друмев", "ПМГ Васил Друмев"});
-        schoolCodes.put("300123", new String[]{"0", "ЕГ", "ЕГ. Проф. д-р Асен Златаров"});
-        schoolCodes.put("300124", new String[]{"0", "СУ Е. Станев", "СУ Емилиян Станев"});
-        schoolCodes.put("300125", new String[]{"0", "СУ В. Благоева", "СУ Вела Благоева"});
-        schoolCodes.put("300126", new String[]{"0", "СУ В. Комаров", "СУ Владимир Комаров"});
-        schoolCodes.put("300127", new String[]{"0", "СУ Г. Раковски", "СУ Георги Раковски"});
-        schoolCodes.put("300128", new String[]{"0", "ПГ по строителство", "ПГ по строителство архитектура и геодезия"});
-        schoolCodes.put("300129", new String[]{"0", "ПГ по икономика", "Старопрестолна ПГ по икономика"});
-        schoolCodes.put("300130", new String[]{"0", "ПГ по електроника", "ПГ по електроника"});
-        schoolCodes.put("300131", new String[]{"0", "ПГ по моден дизайн", "ПГ по моден дизайн"});
-        schoolCodes.put("300132", new String[]{"0", "ПГ по туризъм", "ПГ по туризъм"});
+        schoolCodes.put("300121", new String[]{"0", "Хуманитарна гимн.", "Профилирана Хуманитарна гимназия", "http://phg-vt.com"});
+        schoolCodes.put("300122", new String[]{"0", "ПМГ В. Друмев", "ПМГ Васил Друмев", "http://pmgvt.org"});
+        schoolCodes.put("300123", new String[]{"0", "ЕГ", "ЕГ. Проф. д-р Асен Златаров", "http://ezikovavt.com"});
+        schoolCodes.put("300124", new String[]{"0", "СУ Е. Станев", "СУ Емилиян Станев", "http://em-stanev.org"});
+        schoolCodes.put("300125", new String[]{"0", "СУ В. Благоева", "СУ Вела Благоева", "http://velavt.net"});
+        schoolCodes.put("300126", new String[]{"0", "СУ В. Комаров", "СУ Владимир Комаров", "http://su-komarov.com"});
+        schoolCodes.put("300127", new String[]{"0", "СУ Г. Раковски", "СУ Георги Раковски", "http://sourakovski.weebly.com"});
+        schoolCodes.put("300128", new String[]{"0", "ПГ по строителство", "ПГ по строителство архитектура и геодезия", "http://pgsagapvt.alle.bg"});
+        schoolCodes.put("300129", new String[]{"0", "ПГ по икономика", "Старопрестолна ПГ по икономика", "http://sgivt.com"});
+        schoolCodes.put("300130", new String[]{"0", "ПГ по електроника", "ПГ по електроника", "http://pgevtpopov.com"});
+        schoolCodes.put("300131", new String[]{"0", "ПГ по моден дизайн", "ПГ по моден дизайн", "http://pgmdvt.com"});
+        schoolCodes.put("300132", new String[]{"0", "ПГ по туризъм", "ПГ по туризъм", "http://vtpgt.com"});
         schoolCodes.put("300141", new String[]{"1", "АК-Арукс", "ЧПГ АК-Аркус", "http://ac-arcus.com"});
-        schoolCodes.put("300143", new String[]{"0", "СпУ Г. Живков", "Спортно училище Героги Живков"});
-        schoolCodes.put("300101", new String[]{"0", OU_HRISTO_BOTEV, OU_HRISTO_BOTEV});
-        schoolCodes.put("300102", new String[]{"0", "ОУ Бачо Киро", "ОУ Бачо Киро"});
-        schoolCodes.put("300103", new String[]{"0", "ОУ Св. П. Евтимий", "ОУ Св. Патриарх Евтимий"});
-        schoolCodes.put("300104", new String[]{"0", "ОУ Д. Благоев", "ОУ Димитър Благоев"});
-        schoolCodes.put("300105", new String[]{"0", OU_PETKO_SLAVEIKOV_SHORT, OU_PETKO_SLAVEIKOV_LONG});
+        schoolCodes.put("300143", new String[]{"0", "СпУ Г. Живков", "Спортно училище Героги Живков", "http://sportnovt.com"});
+        schoolCodes.put("300101", new String[]{"0", OU_HRISTO_BOTEV, OU_HRISTO_BOTEV, "http://ou-botev-vt.com"});
+        schoolCodes.put("300102", new String[]{"0", "ОУ Бачо Киро", "ОУ Бачо Киро", "http://bacho-kiro.com"});
+        schoolCodes.put("300103", new String[]{"0", "ОУ Св. П. Евтимий", "ОУ Св. Патриарх Евтимий", "http://oupe-vt.com"});
+        schoolCodes.put("300104", new String[]{"0", "ОУ Д. Благоев", "ОУ Димитър Благоев", "http://ou-blagoev.com"});
+        schoolCodes.put("300105", new String[]{"0", OU_PETKO_SLAVEIKOV_SHORT, OU_PETKO_SLAVEIKOV_LONG, "http://prsvt.org"});
 
         return schoolCodes;
     }
