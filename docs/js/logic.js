@@ -1262,7 +1262,16 @@ function removeYears(numYears) {
   }
 }
 
+function generateJoke() {
+  let j = randomJoke();
+  let divJoke = document.getElementById('jokeQuote');
+  let divAuthor = document.getElementById('jokeAuthor');
+  divJoke.innerText = '"' + j.q + '"';
+  divAuthor.innerText = j.a;
+}
+
 function onLoad() {
+  generateJoke();
   calculateTimeTravel();
   fixForYear2018();
   fixForMissingYears();

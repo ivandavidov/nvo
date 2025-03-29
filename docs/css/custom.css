@@ -49,3 +49,25 @@ a:hover {
 a:active {
   text-decoration: none;
 }
+
+.quote-container {
+  float: left;
+  max-width: 600px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-left: 4px solid #ccc;
+  border-radius: 5px;
+}
+
+.quote {
+  font-style: italic;
+  color: #888;
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.author {
+  text-align: right;
+  color: #888;
+  font-size: 0.9em;
+}
