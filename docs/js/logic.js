@@ -733,7 +733,7 @@ function generateHTMLTable(el, hrName, puSchools, prSchools, name) {
     td = document.createElement('td');
     if(!topRankDone) {
       td.appendChild(document.createTextNode(100));
-      td.title = 'Среден резултат = ' + topRankAll.toFixed(2);
+      td.title = 'Среден резултат = ' + (topRankAll + rankBase).toFixed(2);
       td.bgAll = '#00ff30';
       td.rankAll = '100';
       td.rankPu = o.t === 'Д' ? '100' : 'none';
@@ -773,7 +773,7 @@ function generateHTMLTable(el, hrName, puSchools, prSchools, name) {
         }
       }
       let rank = (s[o.i].mb + s[o.i].mm - rankBase * 2) / 2;
-      td.title = 'Среден резултат = ' + rank.toFixed(2);
+      td.title = 'Среден резултат = ' + (rank + rankBase).toFixed(2);
       let ardAll = calculateAdjustedRankData(topRankAll);
       td.bgAll = '#' + ardAll.redHex + ardAll.greenHex + ardAll.blueHex;
       td.rankAll = (Math.round(ardAll.adjustedRank * 100) / 100).toFixed(2);
