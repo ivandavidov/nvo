@@ -3,7 +3,6 @@ package nvo;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -38,8 +37,8 @@ public class Decomplexor {
     private void decomplex(String mode) throws Exception {
         String[] files = null;
 
-        String normalizedPath = "/Users/ivan/projects/nvo/data/normalized/";
-        String schoolsPath = "/Users/ivan/projects/nvo/docs/js/";
+        String normalizedPath = "/Users/ivandavidov/projects/nvo/data/normalized/";
+        String schoolsPath = "/Users/ivandavidov/projects/nvo/docs/js/";
 
         if(mode.equals("normalize")) {
           CSVNormalizer.main((String)null);
@@ -164,8 +163,8 @@ public class Decomplexor {
 
         of = Path.of(schoolsPath, "schools-" + mode + ".js");
 
-        Files.writeString(of, header + "\r\n\r\n", StandardOpenOption.TRUNCATE_EXISTING);
-        Files.writeString(of, "let si = [];\r\nlet s = [];\r\n\r\n", StandardOpenOption.APPEND);
+        Files.writeString(of, header + "\n\n", StandardOpenOption.TRUNCATE_EXISTING);
+        Files.writeString(of, "let si = [];\nlet s = [];\n\n", StandardOpenOption.APPEND);
 
         printSchoolsByType(schools, "София");
         printSchoolsByType(schools, "Пловдив");
@@ -278,9 +277,9 @@ public class Decomplexor {
             templateIndexIncl = "si['__city__']={n:[__n_begin__,__n_end__],p:[__p_begin__,__p_end__]};";
             templateIndexExcl = "si['__city__']={n:[__n_begin__,__n_end__],p:null};";
         } else {
-            templateSchool = "s[__index__] = {l: '__label__', n: '__name__', " + generateSection("b") + ", " + generateSection("m") + ", " + generateSection("bu") + ", " + generateSection("mu") + ", w: __website__};\r\n";
-            templateIndexIncl = "si['__city__'] = {n: [__n_begin__, __n_end__], p: [__p_begin__, __p_end__]};\r\n";
-            templateIndexExcl = "si['__city__'] = {n: [__n_begin__, __n_end__], p: null};\r\n";
+            templateSchool = "s[__index__] = {l: '__label__', n: '__name__', " + generateSection("b") + ", " + generateSection("m") + ", " + generateSection("bu") + ", " + generateSection("mu") + ", w: __website__};\n";
+            templateIndexIncl = "si['__city__'] = {n: [__n_begin__, __n_end__], p: [__p_begin__, __p_end__]};\n";
+            templateIndexExcl = "si['__city__'] = {n: [__n_begin__, __n_end__], p: null};\n";
         }
 
         Comparator<School> schoolsAlphaComparator = (o1, o2) -> {
@@ -365,11 +364,11 @@ public class Decomplexor {
 
         StringBuilder sb = new StringBuilder();
         if(!COMPRESSED) {
-            sb.append("// ").append(city).append(" - индексация").append("\r\n");
+            sb.append("// ").append(city).append(" - индексация").append("\n");
         }
         sb.append(siLine);
         if(!COMPRESSED) {
-            sb.append("// ").append(city).append(" - държавни училища").append("\r\n");
+            sb.append("// ").append(city).append(" - държавни училища").append("\n");
         }
 
         //int index = start;
@@ -380,7 +379,7 @@ public class Decomplexor {
         }
 
         if(privateSchoolsSet.size() > 0 && !COMPRESSED) {
-            sb.append("// ").append(city).append(" - частни училища").append("\r\n");
+            sb.append("// ").append(city).append(" - частни училища").append("\n");
         }
 
         for (School school : privateSchoolsSet) {
@@ -391,7 +390,7 @@ public class Decomplexor {
 
         if(!COMPRESSED) {
             System.out.println(sb.toString());
-            Files.writeString(of, sb.toString() + "\r\n", StandardOpenOption.APPEND);
+            Files.writeString(of, sb.toString() + "\n", StandardOpenOption.APPEND);
         } else {
             System.out.print(sb.toString());
             Files.writeString(of, sb.toString(), StandardOpenOption.APPEND);
@@ -425,7 +424,7 @@ public class Decomplexor {
     }
 
     private void printSchoolsByNVOResult(Map<String, Set<School>> schools) {
-        final String template = "s[__index__] = {p: __private__, c: __code__, '__label__', n: '__name__', b: [null, __b18__, __b19__, __b20__, __b21__], m: [null, __m18__, __m19__, __m20__, __m21__]};\r\n";
+        final String template = "s[__index__] = {p: __private__, c: __code__, '__label__', n: '__name__', b: [null, __b18__, __b19__, __b20__, __b21__], m: [null, __m18__, __m19__, __m20__, __m21__]};\n";
 
         int start = 1;
         int end = 100;

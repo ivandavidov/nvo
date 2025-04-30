@@ -13,14 +13,12 @@ import java.io.StringWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class CSVNormalizer {
-    private static final String BASE_DIR = "/Users/ivan/projects/nvo/data/";
+    private static final String BASE_DIR = "/Users/ivandavidov/projects/nvo/data/";
     private static final String BASE_DIR_MON = BASE_DIR + "mon/";
     private static final String BASE_DIR_NORMALIZED = BASE_DIR + "normalized/";
 
