@@ -18,7 +18,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class CSVNormalizer {
-    private static final String BASE_DIR = "/Users/ivandavidov/projects/nvo/data/";
+    private static final String BASE_DIR = "/Users/mac/projects/nvo/data/";
     private static final String BASE_DIR_MON = BASE_DIR + "mon/";
     private static final String BASE_DIR_NORMALIZED = BASE_DIR + "normalized/";
 

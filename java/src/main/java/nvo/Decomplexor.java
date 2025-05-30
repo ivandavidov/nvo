@@ -37,8 +37,8 @@ public class Decomplexor {
     private void decomplex(String mode) throws Exception {
         String[] files = null;
 
-        String normalizedPath = "/Users/ivandavidov/projects/nvo/data/normalized/";
-        String schoolsPath = "/Users/ivandavidov/projects/nvo/docs/js/";
+        String normalizedPath = "/Users/mac/projects/nvo/data/normalized/";
+        String schoolsPath = "/Users/mac/projects/nvo/docs/js/";
 
         if(mode.equals("normalize")) {
           CSVNormalizer.main((String)null);
