@@ -515,6 +515,7 @@ public class School implements Comparable<School> {
         schoolCodes.put("2200022", new String[] {"1", "Милеа", "ЧНУ Милеа", "http://school.milea.bg"});
         schoolCodes.put("2200031", new String[] {"1", "Канадско Мече", "ЧНУ Канадско мече", "http://maplebear-cee.com/bg/find-location/sofia"});
         schoolCodes.put("2200045", new String[] {"1", "Фюжън", "ЧОУ Фюжън", "http://school.fusion.bg"});
+        schoolCodes.put("2200034", new String[] {"1", "Дени Дидро", "ЧСУ Дени Дидро", "http://denisdiderot.bg"});
 
         return schoolCodes;
     }
