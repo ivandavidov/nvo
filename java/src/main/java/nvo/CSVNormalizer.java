@@ -204,7 +204,16 @@ public class CSVNormalizer {
         List<String[]> schools = new LinkedList<>();
         for(String[] line : lines) {
             if(!line[cityPosFinal].equalsIgnoreCase(cityPrefixFinal + cityFinal)) {
-                continue;
+                // Check if this is the wrong county or if this is not a private school
+                if(!line[0].toUpperCase().contains(city.toUpperCase()) || (
+                                                        !line[namePos].toUpperCase().contains("ЧАСТН")
+                                                     && !line[namePos].toUpperCase().contains("ЧНУ")
+                                                     && !line[namePos].toUpperCase().contains("ЧОУ")
+                                                     && !line[namePos].toUpperCase().contains("ЧСУ")
+                                                     )
+                ) {
+                    continue;
+                }
             }
 
             double calculatedMat = 0.0d;
