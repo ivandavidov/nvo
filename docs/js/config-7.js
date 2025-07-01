@@ -1,5 +1,5 @@
 let firstYear = 2018;
-let numYears = 7;
+let numYears = 8;
 let rankBase = 0;
 let rankRangeTop = 25;
 let rankRangeBottom = 50;
@@ -21,6 +21,6 @@ let csvHeaderBel = 'БЕЛ';
 let csvHeaderMat = 'МАТ';
 let csvHeaderB = 'Б';
 let csvHeaderM = 'М';
-let baseSchoolIndex = 166; // СМГ
+let baseSchoolIndex = 167; // СМГ
 let refSchoolIndex = 39;   // 41 ОУ
 let disabledEntries = []; // ??? ЧОУ Томас Едисън (София)
