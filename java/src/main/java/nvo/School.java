@@ -43,7 +43,7 @@ public class School implements Comparable<School> {
     public static final String OU_NIKOLA_VAPTSAROV_LONG = "ОУ Никола Вапцаров";
     public static final String OU_OTEC_PAISII = "ОУ Отец Паисий";
     public static final String OU_PETAR_BERON_SHORT = "OУ Петър Берон";
-    public static final String OU_PETAR_BERON_LONG = "OУ Д-р Петър Перон";
+    public static final String OU_PETAR_BERON_LONG = "OУ Д-р Петър Берон";
     public static final String OU_PETKO_SLAVEIKOV_SHORT = "OУ Петко Славейков";
     public static final String OU_PETKO_SLAVEIKOV_LONG = "OУ Петко Рачов Славейков";
     public static final String OU_HRISTO_BOTEV = "ОУ Христо Ботев";
@@ -65,7 +65,7 @@ public class School implements Comparable<School> {
     public static final String SU_PEIO_YAVOROV_SHORT = "СУ Пейо Яворов";
     public static final String SU_PEIO_YAVOROV_LONG = "СУ Пейо Крачолов Яворов";
     public static final String SU_PETAR_BERON_SHORT = "СУ Петър Берон";
-    public static final String SU_PETAR_BERON_LONG = "СУ Д-р Петър Перон";
+    public static final String SU_PETAR_BERON_LONG = "СУ Д-р Петър Берон";
     public static final String SU_OTEC_PAISII = "СУ Отец Паисий";
     public static final String SU_HRISTO_BOTEV = "СУ Христо Ботев";
 
