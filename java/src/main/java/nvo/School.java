@@ -425,7 +425,7 @@ public class School implements Comparable<School> {
         schoolCodes.put("2211139", new String[] {"0", "139 ОУ", "139 ОУ Захарий Круша", "http://139ou.com"});
         schoolCodes.put("2211518", new String[] {"1", "Петър Берон", "ЧОУ Д-р Петър Берон", "http://pberon.com"});
         schoolCodes.put("2211519", new String[] {"1", "Банкерче", "ЧОУ Банкерче", "http://bankerche.com"});
-        schoolCodes.put("2211564", new String[] {"1", "Българско Школо", "ЧСОУ Българско Школо", "http://bgshkolo.com"});
+        schoolCodes.put("2211564", new String[] {"1", "Българско школо", "ЧСОУ Българско школо", "http://bgshkolo.com"});
         schoolCodes.put("2211598", new String[] {"1", "Никатор", "ЧСУ Никатор", "http://ruliceum.org"});
         schoolCodes.put("2212027", new String[] {"0", "27 СУ", "27 СУ Акад. Георги Караславов", "http://27su.eu"});
         schoolCodes.put("2212033", new String[] {"0", "33 ОУ", "33 ОУ Санкт Петербург", "http://33-ou.com"});
@@ -446,7 +446,7 @@ public class School implements Comparable<School> {
         schoolCodes.put("2216129", new String[] {"0", "129 ОУ", "129 ОУ Антим I", "http://129ou-sofia.eu"});
         schoolCodes.put("2217053", new String[] {"0", "53 ОУ", "53 ОУ Николай Хрелков", "http://53ou.com"});
         schoolCodes.put("2217072", new String[] {"0", "72 ОУ", "72 ОУ Христо Ботев", "http://ou72.org"});
-        schoolCodes.put("2217525", new String[] {"1", "Мария Монтесори", "ЧОУ Д-р Мария Монтесори", "http://montessori-bg.org"});
+        schoolCodes.put("2217525", new String[] {"1", "Стремеж", "ЧОУ Стремеж", "http://stremezh-education.com"});
         schoolCodes.put("2217575", new String[] {"1", "Евростар", "ЧСУ Евростар"});
         schoolCodes.put("2217722", new String[] {"1", "Томас Едисън", "ЧОУ Томас Едисън", "http://edisonschool.eu"});
         schoolCodes.put("2218083", new String[] {"0", "83 ОУ", "83 ОУ Елин Пелин", "http://83ou.org"});
