@@ -11,6 +11,22 @@
   <link rel="stylesheet" href="css/skeleton.css">
   <link rel="stylesheet" href="css/custom.css">
   <link rel="icon" type="image/png" href="images/favicon-7.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/favicon-7.png">
+  <link rel="canonical" href="https://ivandavidov.github.io/nvo/">
+
+  <!-- SEO / Social Media -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ivandavidov.github.io/nvo/">
+  <meta property="og:title" content="НВО след 7 клас – класации на училищата в България">
+  <meta property="og:description" content="Визуални графики и статистики за резултатите от НВО след 7 клас в училищата. Сравнете училищата по БЕЛ и математика.">
+  <meta property="og:image" content="https://ivandavidov.github.io/nvo/images/social-preview.svg">
+  <meta property="og:locale" content="bg_BG">
+  <meta property="og:site_name" content="НВО Навигатор">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="НВО след 7 клас – класации на училищата">
+  <meta name="twitter:description" content="Визуални графики и статистики за резултатите от НВО след 7 клас в училищата.">
+  <meta name="twitter:image" content="https://ivandavidov.github.io/nvo/images/social-preview.svg">
+
   <script src="js/highcharts.js" defer></script>
   <script src="js/exporting.js" defer></script>
   <script src="js/accessibility.js" defer></script>
@@ -18,14 +34,22 @@
   <script src="js/schools-7.js" defer></script>
   <script src="js/jokes.js" defer></script>
   <script src="js/logic.js" defer></script>
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-V0P6LBF76F"></script>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google-analytics.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com; font-src 'self'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <!-- Google Tag (GA4) with Consent Mode v2 -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      'analytics_storage': 'denied',
+      'ad_storage': 'denied',
+      'wait_for_update': 500
+    });
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-V0P6LBF76F"></script>
+  <script>
     gtag('js', new Date());
-
-    gtag('config', 'G-V0P6LBF76F');
+    gtag('config', 'G-V0P6LBF76F', {'anonymize_ip': true});
   </script>
   <script type="application/ld+json">
     {
