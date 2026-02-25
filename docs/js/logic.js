@@ -597,10 +597,7 @@ function generateCityMedianTables(el, name) {
 }
 
 function calculateAdjustedRankData(rank, topRank) {
-  let adjustedRank = safeDivide(rank * 100, topRank, 0);
-  if(adjustedRank > 100) {
-    adjustedRank = 100;
-  }
+  let adjustedRank = normalizeRankValue(safeDivide(rank * 100, topRank, 0));
   let redHex = '00';
   let greenHex = '00';
   let blueHex = '30';
@@ -619,6 +616,24 @@ function calculateAdjustedRankData(rank, topRank) {
     greenHex = green.toString(16).padStart(2, '0');
   }
   return { adjustedRank, redHex, greenHex, blueHex };
+}
+
+function normalizeRankValue(value) {
+  if(!Number.isFinite(value)) {
+    return 0;
+  }
+  let clamped = Math.min(100, Math.max(0, value));
+  return Math.round((clamped + Number.EPSILON) * 100) / 100;
+}
+
+function formatRankValue(value) {
+  if(!Number.isFinite(value)) {
+    return '';
+  }
+  if(Number.isInteger(value)) {
+    return String(value);
+  }
+  return value.toFixed(2).replace(/\.?0+$/, '');
 }
 
 function calculateTopRanks(schools, hasPrivate) {
@@ -711,40 +726,220 @@ function generateTableFilterMenu(div, name, fn) {
   menuTitleDiv.appendChild(txtPr);
 }
 
+function getRankValueForFilter(td, filterLabel) {
+  if(!td) {
+    return Number.NEGATIVE_INFINITY;
+  }
+  let value = null;
+  if(filterLabel === 'Д') {
+    value = td.rankPu;
+  } else if(filterLabel === 'Ч') {
+    value = td.rankPr;
+  } else {
+    value = td.rankAll;
+  }
+  let parsed = Number.parseFloat(value);
+  return Number.isFinite(parsed) ? parsed : Number.NEGATIVE_INFINITY;
+}
+
+function updateRankCellForFilter(td, filterLabel) {
+  if(!td) {
+    return;
+  }
+  if(filterLabel === 'Д') {
+    td.style.backgroundColor = td.bgPu;
+    td.textContent = formatRankValue(td.rankPu);
+  } else if(filterLabel === 'Ч') {
+    td.style.backgroundColor = td.bgPr;
+    td.textContent = formatRankValue(td.rankPr);
+  } else {
+    td.style.backgroundColor = td.bgAll;
+    td.textContent = formatRankValue(td.rankAll);
+  }
+}
+
+function getYearCellSortValue(td) {
+  if(!td) {
+    return { hasValue: false, value: 0 };
+  }
+  let text = td.textContent.trim();
+  if(!text) {
+    return { hasValue: false, value: 0 };
+  }
+  let match = text.match(/-?\d+(?:[.,]\d+)?/);
+  if(!match) {
+    return { hasValue: false, value: 0 };
+  }
+  let parsed = Number.parseFloat(match[0].replace(',', '.'));
+  if(!Number.isFinite(parsed)) {
+    return { hasValue: false, value: 0 };
+  }
+  return { hasValue: true, value: parsed };
+}
+
+function compareRowsByColumn(r1, r2, sortColumn, sortDirection, filterLabel) {
+  let tds1 = r1.getElementsByTagName('td');
+  let tds2 = r2.getElementsByTagName('td');
+  let cmp = 0;
+  if(sortColumn === 1) {
+    let n1 = tds1[1] ? tds1[1].textContent.trim() : '';
+    let n2 = tds2[1] ? tds2[1].textContent.trim() : '';
+    cmp = n1.localeCompare(n2, 'bg');
+  } else if(sortColumn === 2) {
+    let m1 = tds1[2] ? tds1[2].textContent.match(/^(\S+)\s*\/\s*(\d+)/) : null;
+    let m2 = tds2[2] ? tds2[2].textContent.match(/^(\S+)\s*\/\s*(\d+)/) : null;
+    let typeOrder = {'Д': 0, 'Ч': 1};
+    let t1 = m1 && m1[1] ? (typeOrder[m1[1]] !== undefined ? typeOrder[m1[1]] : 2) : 2;
+    let t2 = m2 && m2[1] ? (typeOrder[m2[1]] !== undefined ? typeOrder[m2[1]] : 2) : 2;
+    cmp = t1 - t2;
+    if(cmp === 0) {
+      let ord1 = m1 ? Number.parseInt(m1[2], 10) : Number.MAX_SAFE_INTEGER;
+      let ord2 = m2 ? Number.parseInt(m2[2], 10) : Number.MAX_SAFE_INTEGER;
+      cmp = ord1 - ord2;
+    }
+  } else if(sortColumn === 3) {
+    let r1v = getRankValueForFilter(tds1[3], filterLabel);
+    let r2v = getRankValueForFilter(tds2[3], filterLabel);
+    cmp = r1v - r2v;
+  } else {
+    let y1 = getYearCellSortValue(tds1[sortColumn]);
+    let y2 = getYearCellSortValue(tds2[sortColumn]);
+    if(!y1.hasValue && !y2.hasValue) {
+      let r1v = getRankValueForFilter(tds1[3], filterLabel);
+      let r2v = getRankValueForFilter(tds2[3], filterLabel);
+      if(r1v !== r2v) {
+        let rankCmp = r1v - r2v;
+        return sortDirection === 'asc' ? rankCmp : -rankCmp;
+      }
+      let n1 = tds1[1] ? tds1[1].textContent.trim() : '';
+      let n2 = tds2[1] ? tds2[1].textContent.trim() : '';
+      return n1.localeCompare(n2, 'bg');
+    } else if(!y1.hasValue) {
+      return 1;
+    } else if(!y2.hasValue) {
+      return -1;
+    } else {
+      cmp = y1.value - y2.value;
+    }
+  }
+  if(cmp === 0) {
+    let n1 = tds1[1] ? tds1[1].textContent.trim() : '';
+    let n2 = tds2[1] ? tds2[1].textContent.trim() : '';
+    cmp = n1.localeCompare(n2, 'bg');
+  }
+  return sortDirection === 'asc' ? cmp : -cmp;
+}
+
+function renumberVisibleRows(tBody) {
+  let rows = tBody.getElementsByTagName('tr');
+  let counter = 0;
+  for(let i = 0; i < rows.length; i++) {
+    if(rows[i].style.display === 'none') {
+      continue;
+    }
+    let tds = rows[i].getElementsByTagName('td');
+    if(tds[0]) {
+      tds[0].textContent = ++counter;
+    }
+  }
+}
+
+function updateNoDataSeparator(tBody, state) {
+  let rows = tBody.getElementsByTagName('tr');
+  for(let i = 0; i < rows.length; i++) {
+    let tds = rows[i].getElementsByTagName('td');
+    for(let j = 0; j < tds.length; j++) {
+      tds[j].style.borderTop = '';
+    }
+  }
+  if(state.sortColumn <= 3) {
+    return;
+  }
+  for(let i = 0; i < rows.length; i++) {
+    if(rows[i].style.display === 'none') {
+      continue;
+    }
+    let tds = rows[i].getElementsByTagName('td');
+    let yearCell = tds[state.sortColumn];
+    let yearValue = getYearCellSortValue(yearCell);
+    if(!yearValue.hasValue) {
+      for(let j = 0; j < tds.length; j++) {
+        tds[j].style.borderTop = '3px solid #555';
+      }
+      return;
+    }
+  }
+}
+
+function updateSortHeaders(table, sortColumn, sortDirection) {
+  let ths = table.querySelectorAll('thead th');
+  for(let i = 0; i < ths.length; i++) {
+    let th = ths[i];
+    if(th.dataset.sortable !== '1') {
+      continue;
+    }
+    let baseText = th.dataset.baseText || th.textContent;
+    if(i === sortColumn) {
+      th.textContent = baseText + (sortDirection === 'asc' ? ' ▲' : ' ▼');
+    } else {
+      th.textContent = baseText;
+    }
+  }
+}
+
+function applyRankingTableState(table, tBody, state) {
+  let rows = Array.from(tBody.getElementsByTagName('tr'));
+  rows.sort((r1, r2) => compareRowsByColumn(r1, r2, state.sortColumn, state.sortDirection, state.filterLabel));
+  rows.forEach((row) => {
+    let tds = row.getElementsByTagName('td');
+    let visible = !state.filterLabel || (tds[2] && tds[2].textContent.startsWith(state.filterLabel));
+    row.style.display = visible ? 'table-row' : 'none';
+    updateRankCellForFilter(tds[3], state.filterLabel);
+    tBody.appendChild(row);
+  });
+  renumberVisibleRows(tBody);
+  updateNoDataSeparator(tBody, state);
+  updateSortHeaders(table, state.sortColumn, state.sortDirection);
+}
+
+function enableRankingTableSorting(table, tBody, state) {
+  let ths = table.querySelectorAll('thead th');
+  for(let i = 0; i < ths.length; i++) {
+    let th = ths[i];
+    th.dataset.baseText = th.textContent;
+    if(i === 0) {
+      continue;
+    }
+    th.dataset.sortable = '1';
+    th.style.cursor = 'pointer';
+    th.onclick = () => {
+      if(state.sortColumn === i) {
+        state.sortDirection = state.sortDirection === 'asc' ? 'desc' : 'asc';
+      } else {
+        state.sortColumn = i;
+        state.sortDirection = (i === 1 || i === 2) ? 'asc' : 'desc';
+      }
+      applyRankingTableState(table, tBody, state);
+    };
+  }
+}
+
 function generateHTMLTable(el, hrName, puSchools, prSchools, name) {
   let div = document.createElement('div');
+  let rankingState = { sortColumn: 3, sortDirection: 'desc', filterLabel: null };
   generateRowWithText(div, '\u00A0');
   generateCityMedianTables(div, name);
   generateRowWithText(div, '\u00A0');
   if(prSchools) {
     let fn = (lbl) => {
+      rankingState.filterLabel = lbl;
       let tBody = document.getElementById('tbl-' + si[name].n[0]);
       if(!tBody) { return; }
-      let trs = tBody.getElementsByTagName('tr');
-      let counter = 0;
-      for(let i = 0; i < trs.length; i++) {
-        let tds = trs[i].getElementsByTagName('td');
-        if(!lbl || tds[2].textContent.startsWith(lbl) ) {
-          trs[i].style.display = 'table-row';
-          tds[0].textContent = ++counter;
-          let color = null;
-          let rank = 0;
-          if(!lbl) {
-            color = tds[3].bgAll;
-            rank = tds[3].rankAll;
-          } else if(lbl === 'Д') {
-            color = tds[3].bgPu;
-            rank = tds[3].rankPu;
-          } else {
-            color = tds[3].bgPr;
-            rank = tds[3].rankPr;
-          }
-          tds[3].style.backgroundColor = color;
-          tds[3].textContent = rank;
-        } else {
-          trs[i].style.display = 'none';
-        }
+      let table = tBody.closest('table');
+      if(!table) {
+        return;
       }
+      applyRankingTableState(table, tBody, rankingState);
     }
     generateTableFilterMenu(div, name, fn);
   }
@@ -826,12 +1021,12 @@ function generateHTMLTable(el, hrName, puSchools, prSchools, name) {
       tr.appendChild(td);
       td = document.createElement('td');
       if(!topRankDone) {
-        td.appendChild(document.createTextNode(100));
+        td.appendChild(document.createTextNode('100'));
         td.title = 'Среден резултат = ' + (topRankAll + rankBase).toFixed(2);
         td.bgAll = '#00ff30';
-        td.rankAll = '100';
-        td.rankPu = o.t === 'Д' ? '100' : 'none';
-        td.rankPr = o.t === 'Ч' ? '100' : 'none';
+        td.rankAll = 100;
+        td.rankPu = o.t === 'Д' ? 100 : null;
+        td.rankPr = o.t === 'Ч' ? 100 : null;
         td.bgPu = o.t === 'Д' ? '#00ff30': 'none';
         td.bgPr = o.t === 'Ч' ? '#00ff30': 'none';
         td.style.backgroundColor = td.bgAll;
@@ -841,20 +1036,20 @@ function generateHTMLTable(el, hrName, puSchools, prSchools, name) {
         td.title = 'Среден резултат = ' + (rank + rankBase).toFixed(2);
         let ardAll = calculateAdjustedRankData(rank, topRankAll);
         td.bgAll = '#' + ardAll.redHex + ardAll.greenHex + ardAll.blueHex;
-        td.rankAll = (Math.round(ardAll.adjustedRank * 100) / 100).toFixed(2);
+        td.rankAll = normalizeRankValue(ardAll.adjustedRank);
         let ardPu = calculateAdjustedRankData(rank, topRankPu);
         td.bgPu = '#' + ardPu.redHex + ardPu.greenHex + ardPu.blueHex;
-        td.rankPu = ardPu.adjustedRank === 100 ? '100' : (Math.round(ardPu.adjustedRank * 100) / 100).toFixed(2);
+        td.rankPu = normalizeRankValue(ardPu.adjustedRank);
         if(topRankPr) {
           let ardPr = calculateAdjustedRankData(rank, topRankPr);
           td.bgPr = '#' + ardPr.redHex + ardPr.greenHex + ardPr.blueHex;
-          td.rankPr = ardPr.adjustedRank === 100 ? '100' : (Math.round(ardPr.adjustedRank * 100) / 100).toFixed(2);
+          td.rankPr = normalizeRankValue(ardPr.adjustedRank);
         } else {
           td.bgPr = 'none';
-          td.rankPr = 0;
+          td.rankPr = null;
         }
         td.style.backgroundColor = td.bgAll;
-        td.textContent = td.rankAll;
+        td.textContent = formatRankValue(td.rankAll);
       }
       tr.appendChild(td);
       let totalYears = s[o.i].b.length;
@@ -875,6 +1070,8 @@ function generateHTMLTable(el, hrName, puSchools, prSchools, name) {
       }
     });
     div.appendChild(table);
+    enableRankingTableSorting(table, tBody, rankingState);
+    applyRankingTableState(table, tBody, rankingState);
     div.dataset.tableBuilt = '1';
   };
   el.appendChild(div);
