@@ -5,6 +5,7 @@ const CHART_EXPORT_HEIGHT = 540;
 const CHART_EXPORT_SCALE = 2;
 const COOKIE_MAX_AGE_SECONDS = 60 * 60 * 24 * 365; // 1 year
 const RESIZE_REDRAW_DEBOUNCE_MS = 150;
+const NAV_FIRST_YEAR = 2020;
 const SCHOOL_THRESHOLD_SMALL = 4;
 const SCHOOL_THRESHOLD_MEDIUM = 9;
 const SCHOOL_THRESHOLD_LARGE = 19;
@@ -364,6 +365,31 @@ function generateDownloadCSVHeader() {
   }
   header += '\r\n';
   return header;
+}
+
+function generateYearNavigation() {
+  let latestYear = firstYear + s[baseSchoolIndex].b.length - 1;
+  let endYear = latestYear - 1;
+  let navItems = document.querySelectorAll('.years-nav[data-year-base]');
+  navItems.forEach((el) => {
+    let baseHref = el.getAttribute('data-year-base');
+    if(!baseHref || endYear < NAV_FIRST_YEAR) {
+      el.textContent = '';
+      return;
+    }
+    el.textContent = '';
+    el.appendChild(document.createTextNode('('));
+    for(let year = endYear; year >= NAV_FIRST_YEAR; year--) {
+      if(year < endYear) {
+        el.appendChild(document.createTextNode(', '));
+      }
+      let a = document.createElement('a');
+      a.href = baseHref + year;
+      a.textContent = year;
+      el.appendChild(a);
+    }
+    el.appendChild(document.createTextNode(')'));
+  });
 }
 
 function setCsvDownloadLink(link, filename, csvContent) {
@@ -1239,6 +1265,7 @@ function generateJoke() {
 
 function onLoad() {
   generateJoke();
+  generateYearNavigation();
   calculateTimeTravel();
   fixForYear2018();
   fixForMissingYears();
