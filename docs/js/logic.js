@@ -17,6 +17,10 @@ let chartBelInstance = null;
 let chartMatInstance = null;
 let resizeRedrawTimeout = null;
 
+function safeDivide(numerator, denominator, fallback = 0) {
+  return denominator ? numerator / denominator : fallback;
+}
+
 function button(id) {
   return document.getElementById('b' + id);
 }
@@ -180,14 +184,14 @@ function handleURL(indices) {
   let baseURL = url.origin + url.pathname;
   if(indices.length === 0) {
     document.cookie = cookieName + '=;path=/;max-age=-1';
-    window.history.pushState(indices, null, anchor ? baseURL + '#' + anchor : baseURL);
+    window.history.replaceState(indices, null, anchor ? baseURL + '#' + anchor : baseURL);
   } else {
     let endURL = indices.join(',');
     document.cookie = cookieName + '=' + endURL + ';path=/;max-age=' + COOKIE_MAX_AGE_SECONDS;
     if(anchor) {
       endURL += '#' + anchor;
     }
-    window.history.pushState(indices, null, baseURL + '?' + cookieName + '=' + endURL);
+    window.history.replaceState(indices, null, baseURL + '?' + cookieName + '=' + endURL);
   }
 }
 
@@ -362,6 +366,25 @@ function generateDownloadCSVHeader() {
   return header;
 }
 
+function setCsvDownloadLink(link, filename, csvContent) {
+  if(!link) {
+    return;
+  }
+  link.setAttribute('download', filename);
+  if(window.Blob && window.URL && window.URL.createObjectURL) {
+    let oldUrl = link.dataset.csvObjectUrl;
+    if(oldUrl) {
+      window.URL.revokeObjectURL(oldUrl);
+    }
+    let blob = new Blob([csvContent], {type: 'text/csv;charset=utf-8;'});
+    let objectUrl = window.URL.createObjectURL(blob);
+    link.setAttribute('href', objectUrl);
+    link.dataset.csvObjectUrl = objectUrl;
+    return;
+  }
+  link.setAttribute('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(csvContent));
+}
+
 function createMedianTableHeader(tHead, hasPrivate) {
   if(hasPrivate) {
     let headTrMedian = document.createElement('tr');
@@ -497,7 +520,7 @@ function generateCityMedianTables(el, name) {
 }
 
 function calculateAdjustedRankData(rank, topRank) {
-  let adjustedRank = (rank * 100) / topRank;
+  let adjustedRank = safeDivide(rank * 100, topRank, 0);
   if(adjustedRank > 100) {
     adjustedRank = 100;
   }
@@ -798,8 +821,7 @@ function generateDownloadCSVLink(el, name, data) {
   a = document.createElement('a');
   a.style.cursor = 'pointer';
   a.appendChild(document.createTextNode('CSV'));
-  a.setAttribute('download', exportPrefix + '-data-' + name +'.csv');
-  a.setAttribute('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(header + data));
+  setCsvDownloadLink(a, exportPrefix + '-data-' + name + '.csv', header + data);
   span.appendChild(a);    
 }
 
@@ -935,8 +957,8 @@ function calculateCityMediansBySchool() {
           ++nullNM;
         }
       }
-      si[o].mnbs[i] = sumNB / (si[o].n[1] - si[o].n[0] + 1 - nullNB);
-      si[o].mnms[i] = sumNM / (si[o].n[1] - si[o].n[0] + 1 - nullNM);
+      si[o].mnbs[i] = safeDivide(sumNB, si[o].n[1] - si[o].n[0] + 1 - nullNB, 0);
+      si[o].mnms[i] = safeDivide(sumNM, si[o].n[1] - si[o].n[0] + 1 - nullNM, 0);
     }
     if(si[o].p) {
       si[o].mpbs = [];
@@ -958,8 +980,8 @@ function calculateCityMediansBySchool() {
             ++nullPM;
           }
         }
-        si[o].mpbs[i] = sumPB / (si[o].p[1] - si[o].p[0] + 1 - nullPB);
-        si[o].mpms[i] = sumPM / (si[o].p[1] - si[o].p[0] + 1 - nullPM);
+        si[o].mpbs[i] = safeDivide(sumPB, si[o].p[1] - si[o].p[0] + 1 - nullPB, 0);
+        si[o].mpms[i] = safeDivide(sumPM, si[o].p[1] - si[o].p[0] + 1 - nullPM, 0);
       }
     }
   });
@@ -986,8 +1008,8 @@ function calculateCityMediansByAttendees() {
           attendeesNM += s[j].mu[i];
         }
       }
-      si[o].mnba[i] = sumNB / attendeesNB;
-      si[o].mnma[i] = sumNM / attendeesNM;
+      si[o].mnba[i] = safeDivide(sumNB, attendeesNB, 0);
+      si[o].mnma[i] = safeDivide(sumNM, attendeesNM, 0);
     }
     if(si[o].p) {
       si[o].mpba = [];
@@ -1007,8 +1029,8 @@ function calculateCityMediansByAttendees() {
             attendeesPM += s[j].mu[i];
           }
         }
-        si[o].mpba[i] = sumPB / attendeesPB;
-        si[o].mpma[i] = sumPM / attendeesPM;
+        si[o].mpba[i] = safeDivide(sumPB, attendeesPB, 0);
+        si[o].mpma[i] = safeDivide(sumPM, attendeesPM, 0);
         }
     }
   });
@@ -1147,8 +1169,7 @@ function generateCitySections() {
   let header = generateDownloadCSVHeader();
   let a = document.getElementById('csvAll');
   if(a) {
-    a.setAttribute('download', exportPrefix + '-data-all.csv');
-    a.setAttribute('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(header + data));
+    setCsvDownloadLink(a, exportPrefix + '-data-all.csv', header + data);
   }
 }
 
