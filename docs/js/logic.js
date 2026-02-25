@@ -338,6 +338,65 @@ function generateDownloadCSVHeader() {
   return header;
 }
 
+function createMedianTableHeader(tHead, hasPrivate) {
+  if(hasPrivate) {
+    let headTrMedian = document.createElement('tr');
+    tHead.appendChild(headTrMedian);
+    let th = document.createElement('th');
+    th.style.borderBottom = 'none';
+    th.appendChild(document.createTextNode('\u00A0'));
+    headTrMedian.appendChild(th);
+    th = document.createElement('th');
+    th.style.borderBottom = 'none';
+    th.colSpan = 2;
+    th.style.textAlign = 'center';
+    th.appendChild(document.createTextNode('Държавни'));
+    headTrMedian.appendChild(th);
+    th = document.createElement('th');
+    th.style.borderBottom = 'none';
+    th.colSpan = 2;
+    th.style.textAlign = 'center';
+    th.appendChild(document.createTextNode('Частни'));
+    headTrMedian.appendChild(th);
+  }
+  let headers = hasPrivate
+    ? ['Година', csvHeaderBel, csvHeaderMat, csvHeaderBel, csvHeaderMat]
+    : ['Година', csvHeaderBel, csvHeaderMat];
+  let headTrMedian = document.createElement('tr');
+  tHead.appendChild(headTrMedian);
+  headers.forEach((header) => {
+    let th = document.createElement('th');
+    th.style.overflow = 'hidden';
+    th.style.whiteSpace = 'nowrap';
+    th.appendChild(document.createTextNode(header));
+    headTrMedian.appendChild(th);
+  });
+}
+
+function createMedianTableBody(tBody, name, hasPrivate, pubBelKey, pubMatKey, priBelKey, priMatKey) {
+  for(let i = s[baseSchoolIndex].b.length - numYears; i < s[baseSchoolIndex].b.length; i++) {
+    let tr = document.createElement('tr');
+    tBody.appendChild(tr);
+    let td = document.createElement('td');
+    tr.appendChild(td);
+    td.appendChild(document.createTextNode(firstYear + i));
+    td = document.createElement('td');
+    tr.appendChild(td);
+    td.appendChild(document.createTextNode((Math.round(si[name][pubBelKey][i] * 100) / 100).toFixed(2)));
+    td = document.createElement('td');
+    tr.appendChild(td);
+    td.appendChild(document.createTextNode((Math.round(si[name][pubMatKey][i] * 100) / 100).toFixed(2)));
+    if(hasPrivate) {
+      td = document.createElement('td');
+      tr.appendChild(td);
+      td.appendChild(document.createTextNode((Math.round(si[name][priBelKey][i] * 100) / 100).toFixed(2)));
+      td = document.createElement('td');
+      tr.appendChild(td);
+      td.appendChild(document.createTextNode((Math.round(si[name][priMatKey][i] * 100) / 100).toFixed(2)));
+    }
+  }
+}
+
 function generateCityMedianTables(el, name) {
   let medianMenu = generateRow(el);
   medianMenu.style.display = 'flex';
@@ -396,125 +455,136 @@ function generateCityMedianTables(el, name) {
   tableMedianSchools.style.display = 'block';
   let tHeadMedian = document.createElement('thead');
   tableMedianSchools.appendChild(tHeadMedian);
-  let headersMedian = [];
-  if(si[name].mpbs) {
-    let headTrMedian = document.createElement('tr');
-    tHeadMedian.appendChild(headTrMedian);
-    let th = document.createElement('th');
-    th.style.borderBottom = 'none';
-    th.appendChild(document.createTextNode('\u00A0'));
-    headTrMedian.appendChild(th);
-    th = document.createElement('th');
-    th.style.borderBottom = 'none';
-    th.colSpan = 2;
-    th.style.textAlign = 'center';
-    th.appendChild(document.createTextNode('Държавни'));
-    headTrMedian.appendChild(th);
-    th = document.createElement('th');
-    th.style.borderBottom = 'none';
-    th.colSpan = 2;
-    th.style.textAlign = 'center';
-    th.appendChild(document.createTextNode('Частни'));
-    headTrMedian.appendChild(th);
-    headersMedian = ['Година', csvHeaderBel, csvHeaderMat, csvHeaderBel, csvHeaderMat];
-  } else {
-    headersMedian = ['Година', csvHeaderBel, csvHeaderMat];
-  }
-  let headTrMedian = document.createElement('tr');
-  tHeadMedian.appendChild(headTrMedian);
-  headersMedian.forEach((header) => {
-    let th = document.createElement('th');
-    th.style.overflow = 'hidden';
-    th.style.whiteSpace = 'nowrap';
-    th.appendChild(document.createTextNode(header));
-    headTrMedian.appendChild(th);
-  });
+  createMedianTableHeader(tHeadMedian, !!si[name].mpbs);
   let tBodyMedian = document.createElement('tbody');
   tableMedianSchools.appendChild(tBodyMedian);
-  for(let i = s[baseSchoolIndex].b.length - numYears; i < s[baseSchoolIndex].b.length; i++) {
-    let tr = document.createElement('tr');
-    tBodyMedian.appendChild(tr);
-    let td = document.createElement('td');
-    tr.appendChild(td);
-    td.appendChild(document.createTextNode(firstYear + i));
-    td = document.createElement('td');
-    tr.appendChild(td);
-    td.appendChild(document.createTextNode((Math.round(si[name].mnbs[i] * 100) / 100).toFixed(2)));
-    td = document.createElement('td');
-    tr.appendChild(td);
-    td.appendChild(document.createTextNode((Math.round(si[name].mnms[i] * 100) / 100).toFixed(2)));
-    if(si[name].mpbs) {
-      td = document.createElement('td');
-      tr.appendChild(td);
-      td.appendChild(document.createTextNode((Math.round(si[name].mpbs[i] * 100) / 100).toFixed(2)));
-      td = document.createElement('td');
-      tr.appendChild(td);
-      td.appendChild(document.createTextNode((Math.round(si[name].mpms[i] * 100) / 100).toFixed(2)));
-    }
-  }
+  createMedianTableBody(tBodyMedian, name, !!si[name].mpbs, 'mnbs', 'mnms', 'mpbs', 'mpms');
   el.appendChild(tableMedianDiv);
   let tableMedianAttendees = document.createElement('table');
   tableMedianAttendees.id = 'tableMedianAttendees' + si[name].n[0];
   tableMedianAttendees.style.display = 'none';
   tHeadMedian = document.createElement('thead');
   tableMedianAttendees.appendChild(tHeadMedian);
-  headersMedian = [];
-  if(si[name].mpba) {
-    let headTrMedian = document.createElement('tr');
-    tHeadMedian.appendChild(headTrMedian);
-    let th = document.createElement('th');
-    th.style.borderBottom = 'none';
-    th.appendChild(document.createTextNode('\u00A0'));
-    headTrMedian.appendChild(th);
-    th = document.createElement('th');
-    th.style.borderBottom = 'none';
-    th.colSpan = 2;
-    th.style.textAlign = 'center';
-    th.appendChild(document.createTextNode('Държавни'));
-    headTrMedian.appendChild(th);
-    th = document.createElement('th');
-    th.style.borderBottom = 'none';
-    th.colSpan = 2;
-    th.style.textAlign = 'center';
-    th.appendChild(document.createTextNode('Частни'));
-    headTrMedian.appendChild(th);
-    headersMedian = ['Година', csvHeaderBel, csvHeaderMat, csvHeaderBel, csvHeaderMat];
-  } else {
-    headersMedian = ['Година', csvHeaderBel, csvHeaderMat];
-  }
-  headTrMedian = document.createElement('tr');
-  tHeadMedian.appendChild(headTrMedian);
-  headersMedian.forEach((header) => {
-    let th = document.createElement('th');
-    th.style.overflow = 'hidden';
-    th.style.whiteSpace = 'nowrap';
-    th.appendChild(document.createTextNode(header));
-    headTrMedian.appendChild(th);
-  });
+  createMedianTableHeader(tHeadMedian, !!si[name].mpba);
   tBodyMedian = document.createElement('tbody');
   tableMedianAttendees.appendChild(tBodyMedian);
-  for(let i = s[baseSchoolIndex].b.length - numYears; i < s[baseSchoolIndex].b.length; i++) {
-    let tr = document.createElement('tr');
-    tBodyMedian.appendChild(tr);
-    let td = document.createElement('td');
-    tr.appendChild(td);
-    td.appendChild(document.createTextNode(firstYear + i));
-    td = document.createElement('td');
-    tr.appendChild(td);
-    td.appendChild(document.createTextNode((Math.round(si[name].mnba[i] * 100) / 100).toFixed(2)));
-    td = document.createElement('td');
-    tr.appendChild(td);
-    td.appendChild(document.createTextNode((Math.round(si[name].mnma[i] * 100) / 100).toFixed(2)));
-    if(si[name].mpbs) {
-      td = document.createElement('td');
-      tr.appendChild(td);
-      td.appendChild(document.createTextNode((Math.round(si[name].mpba[i] * 100) / 100).toFixed(2)));
-      td = document.createElement('td');
-      tr.appendChild(td);
-      td.appendChild(document.createTextNode((Math.round(si[name].mpma[i] * 100) / 100).toFixed(2)));
+  createMedianTableBody(tBodyMedian, name, !!si[name].mpbs, 'mnba', 'mnma', 'mpba', 'mpma');
+  tableMedianDiv.appendChild(tableMedianAttendees);
+}
+
+function calculateAdjustedRankData(rank, topRank) {
+  let adjustedRank = (rank * 100) / topRank;
+  if(adjustedRank > 100) {
+    adjustedRank = 100;
+  }
+  let redHex = '00';
+  let greenHex = '00';
+  let blueHex = '30';
+  if(adjustedRank >= (100 - rankRangeTop)) {
+    let red = Math.floor(255 - ((adjustedRank - (100 - rankRangeTop)) * 255) / rankRangeTop);
+    redHex = red.toString(16).padStart(2, '0');
+    greenHex = 'ff';
+  } else if(adjustedRank < (100 - rankRangeTop) && adjustedRank >= rankRangeBottom) {
+    let green = Math.floor(127 + ((adjustedRank - rankRangeBottom) * 127) / (100 - rankRangeTop - rankRangeBottom));
+    redHex = 'ff';
+    greenHex = green.toString(16).padStart(2, '0');
+  } else {
+    let green = Math.floor((adjustedRank * 127) / rankRangeBottom);
+    let red = Math.floor(191 + green / 2);
+    redHex = red.toString(16).padStart(2, '0');
+    greenHex = green.toString(16).padStart(2, '0');
+  }
+  return { adjustedRank, redHex, greenHex, blueHex };
+}
+
+function calculateTopRanks(schools, hasPrivate) {
+  let topRankAll = (s[schools[0].i].mb + s[schools[0].i].mm - rankBase * 2) / 2;
+  let topRankPu = null;
+  let topRankPr = null;
+  if(hasPrivate) {
+    for(let i = 0; i < schools.length; i++) {
+      if(schools[i].t === 'Д') {
+        topRankPu = (s[schools[i].i].mb + s[schools[i].i].mm - rankBase * 2) / 2;
+        break;
+      }
+    }
+    for(let i = 0; i < schools.length; i++) {
+      if(schools[i].t === 'Ч') {
+        topRankPr = (s[schools[i].i].mb + s[schools[i].i].mm - rankBase * 2) / 2;
+        break;
+      }
     }
   }
-  tableMedianDiv.appendChild(tableMedianAttendees);
+  return { topRankAll, topRankPu, topRankPr };
+}
+
+function generateTableFilterMenu(div, name, fn) {
+  let menuTitleDiv = generateRow(div);
+  menuTitleDiv.style.display = 'flex';
+  menuTitleDiv.style.alignItems = 'center';
+  menuTitleDiv.style.justifyContent = 'center';
+  let aAll = document.createElement('a');
+  aAll.id = 'menu-all-a-' + si[name].n[0];
+  aAll.style.display = 'none';
+  aAll.style.cursor = 'pointer';
+  aAll.appendChild(document.createTextNode('Всички'));
+  aAll.onclick = () => {
+    aAll.style.display = 'none';
+    txtAll.style.display = 'block';
+    aPu.style.display = 'block';
+    txtPu.style.display = 'none';
+    aPr.style.display = 'block';
+    txtPr.style.display = 'none';
+    fn(null);
+  }
+  menuTitleDiv.appendChild(aAll);
+  let txtAll = document.createElement('span');
+  txtAll.textContent = 'Всички';
+  txtAll.id = 'menu-all-txt-' + si[name].n[0];
+  txtAll.style.display = 'block';
+  menuTitleDiv.appendChild(txtAll);
+  let aPu = document.createElement('a');
+  aPu.id = 'menu-pu-a-' + si[name].n[0];
+  aPu.style.display = 'block';
+  aPu.style.cursor = 'pointer';
+  aPu.appendChild(document.createTextNode('Държавни'));
+  aPu.onclick = () => {
+    aAll.style.display = 'block';
+    txtAll.style.display = 'none';
+    aPu.style.display = 'none';
+    txtPu.style.display = 'block';
+    aPr.style.display = 'block';
+    txtPr.style.display = 'none';
+    fn('Д');
+  }
+  menuTitleDiv.appendChild(document.createTextNode('\u00A0\u00A0\u00A0|\u00A0\u00A0\u00A0'));
+  menuTitleDiv.appendChild(aPu);
+  let txtPu = document.createElement('span');
+  txtPu.textContent = 'Държавни';
+  txtPu.id = 'menu-pu-txt-' + si[name].n[0];
+  txtPu.style.display = 'none';
+  menuTitleDiv.appendChild(txtPu);
+  let aPr = document.createElement('a');
+  aPr.id = 'menu-pr-a-' + si[name].n[0];
+  aPr.style.display = 'block';
+  aPr.style.cursor = 'pointer';
+  aPr.appendChild(document.createTextNode('Частни'));
+  aPr.onclick = () => {
+    aAll.style.display = 'block';
+    txtAll.style.display = 'none';
+    aPu.style.display = 'block';
+    txtPu.style.display = 'none';
+    aPr.style.display = 'none';
+    txtPr.style.display = 'block';
+    fn('Ч');
+  }
+  menuTitleDiv.appendChild(document.createTextNode('\u00A0\u00A0\u00A0|\u00A0\u00A0\u00A0'));
+  menuTitleDiv.appendChild(aPr);
+  let txtPr = document.createElement('span');
+  txtPr.textContent = 'Частни';
+  txtPr.id = 'menu-pr-txt-' + si[name].n[0];
+  txtPr.style.display = 'none';
+  menuTitleDiv.appendChild(txtPr);
 }
 
 function generateHTMLTable(el, hrName, puSchools, prSchools, name) {
@@ -552,72 +622,7 @@ function generateHTMLTable(el, hrName, puSchools, prSchools, name) {
         }
       }
     }
-    let menuTitleDiv = generateRow(div);
-    menuTitleDiv.style.display = 'flex';
-    menuTitleDiv.style.alignItems = 'center';
-    menuTitleDiv.style.justifyContent = 'center';
-    let aAll = document.createElement('a');
-    aAll.id = 'menu-all-a-' + si[name].n[0];
-    aAll.style.display = 'none';
-    aAll.style.cursor = 'pointer';
-    aAll.appendChild(document.createTextNode('Всички'));
-    aAll.onclick = (e) => {
-      aAll.style.display = 'none';
-      txtAll.style.display = 'block';
-      aPu.style.display = 'block';
-      txtPu.style.display = 'none';
-      aPr.style.display = 'block';
-      txtPr.style.display = 'none';
-      fn(null);
-    }
-    menuTitleDiv.appendChild(aAll);
-    let txtAll = document.createElement('span');
-    txtAll.textContent = 'Всички';
-    txtAll.id = 'menu-all-txt-' + si[name].n[0];
-    txtAll.style.display = 'block';
-    menuTitleDiv.appendChild(txtAll);
-    let aPu = document.createElement('a');
-    aPu.id = 'menu-pu-a-' + si[name].n[0];
-    aPu.style.display = 'block';
-    aPu.style.cursor = 'pointer';
-    aPu.appendChild(document.createTextNode('Държавни'));
-    aPu.onclick = (e) => {
-      aAll.style.display = 'block';
-      txtAll.style.display = 'none';
-      aPu.style.display = 'none';
-      txtPu.style.display = 'block';
-      aPr.style.display = 'block';
-      txtPr.style.display = 'none';
-      fn('Д');
-    }
-    menuTitleDiv.appendChild(document.createTextNode('\u00A0\u00A0\u00A0|\u00A0\u00A0\u00A0'));
-    menuTitleDiv.appendChild(aPu);
-    let txtPu = document.createElement('span');
-    txtPu.textContent = 'Държавни';
-    txtPu.id = 'menu-pu-txt-' + si[name].n[0];
-    txtPu.style.display = 'none';
-    menuTitleDiv.appendChild(txtPu);
-    let aPr = document.createElement('a');
-    aPr.id = 'menu-pr-a-' + si[name].n[0];
-    aPr.style.display = 'block';
-    aPr.style.cursor = 'pointer';
-    aPr.appendChild(document.createTextNode('Частни'));
-    aPr.onclick = (e) => {
-      aAll.style.display = 'block';
-      txtAll.style.display = 'none';
-      aPu.style.display = 'block';
-      txtPu.style.display = 'none';
-      aPr.style.display = 'none';
-      txtPr.style.display = 'block';
-      fn('Ч');
-    }
-    menuTitleDiv.appendChild(document.createTextNode('\u00A0\u00A0\u00A0|\u00A0\u00A0\u00A0'));
-    menuTitleDiv.appendChild(aPr);
-    let txtPr = document.createElement('span');
-    txtPr.textContent = 'Частни';
-    txtPr.id = 'menu-pr-txt-' + si[name].n[0];
-    txtPr.style.display = 'none';
-    menuTitleDiv.appendChild(txtPr);
+    generateTableFilterMenu(div, name, fn);
   }
   generateRowWithText(div, '\u00A0');
   let titleDiv = generateRowWithStrong(div, tableTitleName + ' - ' + name + ' - ' + tableTitleType);
@@ -653,38 +658,18 @@ function generateHTMLTable(el, hrName, puSchools, prSchools, name) {
   table.appendChild(tBody);
   let schools = [];
   for(let i = puSchools[0]; i <= puSchools[1]; i++) {
-    if(!s[i] || s[i].b[s[i].b.length - 1] === null) {
-      continue;
-    }
+    if(!s[i] || s[i].b[s[i].b.length - 1] === null) { continue; }
     schools.push({i: i, t: 'Д'});
   }
   if(prSchools) {
     for(let i = prSchools[0]; i <= prSchools[1]; i++) {
-      if(!s[i] || s[i].b[s[i].b.length - 1] === null) {
-        continue;
-      }
+      if(!s[i] || s[i].b[s[i].b.length - 1] === null) { continue; }
       schools.push({i: i, t: 'Ч'});
     }
   }
   let sortFunc = (o1, o2) => (s[o1.i].mb + s[o1.i].mm) / 2 < (s[o2.i].mb + s[o2.i].mm) / 2 ? 1 : -1;
   schools.sort(sortFunc);
-  let topRankAll = (s[schools[0].i].mb + s[schools[0].i].mm - rankBase * 2) / 2;
-  let topRankPu = null;
-  let topRankPr = null;
-  if(prSchools) {
-    for(let i = 0; i < schools.length; i++) {
-      if(schools[i].t === 'Д') {
-        topRankPu = (s[schools[i].i].mb + s[schools[i].i].mm - rankBase * 2) / 2;
-        break;
-      }
-    }
-    for(let i = 0; i < schools.length; i++) {
-      if(schools[i].t === 'Ч') {
-        topRankPr = (s[schools[i].i].mb + s[schools[i].i].mm - rankBase * 2) / 2;
-        break;
-      }
-    }
-  }
+  const { topRankAll, topRankPu, topRankPr } = calculateTopRanks(schools, !!prSchools);
   let counter = 0;
   let counterPu = 0;
   let counterPr = 0;
@@ -723,45 +708,16 @@ function generateHTMLTable(el, hrName, puSchools, prSchools, name) {
       td.style.backgroundColor = td.bgAll;
       topRankDone = true;
     } else {
-      let calculateAdjustedRankData = (topRank) => {
-        let adjustedRank = (rank * 100) / topRank;
-        if(adjustedRank > 100) {
-          adjustedRank = 100;
-        }
-        let redHex = '00';
-        let greenHex = '00';
-        let blueHex = '30';
-        if(adjustedRank >= (100 - rankRangeTop)) {
-          let red = Math.floor(255 - ((adjustedRank - (100 - rankRangeTop)) * 255) / rankRangeTop);
-          redHex = red.toString(16).padStart(2, '0');
-          greenHex = 'ff';
-        } else if(adjustedRank < (100 - rankRangeTop) && adjustedRank >= rankRangeBottom) {
-          let green = Math.floor(127 + ((adjustedRank - rankRangeBottom) * 127) / (100 - rankRangeTop - rankRangeBottom));
-          redHex = 'ff';
-          greenHex = green.toString(16).padStart(2, '0');
-        } else {
-          let green = Math.floor((adjustedRank * 127) / rankRangeBottom);
-          let red = Math.floor(191 + green / 2);
-          redHex = red.toString(16).padStart(2, '0');
-          greenHex = green.toString(16).padStart(2, '0');
-        }
-        return {
-          'adjustedRank': adjustedRank,
-          'redHex': redHex,
-          'greenHex': greenHex,
-          'blueHex': blueHex
-        }
-      }
       let rank = (s[o.i].mb + s[o.i].mm - rankBase * 2) / 2;
       td.title = 'Среден резултат = ' + (rank + rankBase).toFixed(2);
-      let ardAll = calculateAdjustedRankData(topRankAll);
+      let ardAll = calculateAdjustedRankData(rank, topRankAll);
       td.bgAll = '#' + ardAll.redHex + ardAll.greenHex + ardAll.blueHex;
       td.rankAll = (Math.round(ardAll.adjustedRank * 100) / 100).toFixed(2);
-      let ardPu = calculateAdjustedRankData(topRankPu);
+      let ardPu = calculateAdjustedRankData(rank, topRankPu);
       td.bgPu = '#' + ardPu.redHex + ardPu.greenHex + ardPu.blueHex;
       td.rankPu = ardPu.adjustedRank === 100 ? '100' : (Math.round(ardPu.adjustedRank * 100) / 100).toFixed(2);
       if(topRankPr) {
-        let ardPr = calculateAdjustedRankData(topRankPr);
+        let ardPr = calculateAdjustedRankData(rank, topRankPr);
         td.bgPr = '#' + ardPr.redHex + ardPr.greenHex + ardPr.blueHex;
         td.rankPr = ardPr.adjustedRank === 100 ? '100' : (Math.round(ardPr.adjustedRank * 100) / 100).toFixed(2);
       } else {
