@@ -17,6 +17,8 @@ const SCHOOL_SECOND_COUNT = 10;
 let chartBelInstance = null;
 let chartMatInstance = null;
 let resizeRedrawTimeout = null;
+let pendingSelectedButtonIds = null;
+let rankingTableBuilders = {};
 
 function safeDivide(numerator, denominator, fallback = 0) {
   return denominator ? numerator / denominator : fallback;
@@ -44,6 +46,55 @@ function setButtonState(id, state) {
   } else {
     btn.classList.remove('button-primary');
   }
+}
+
+function getDefaultClickedButtonIds() {
+  let url = new URL(window.location.href);
+  let indices = url.searchParams.get(cookieName);
+  if(indices) {
+    return indices.split(',').map((i) => i.split('#')[0]).filter((i) => i !== '');
+  }
+  let cookieMatch = (document.cookie + ';').match(new RegExp(cookieName + '=.*;'));
+  if(cookieMatch) {
+    let cookieIndices = cookieMatch[0].split(/=|;/)[1].split('#')[0];
+    if(cookieIndices) {
+      return cookieIndices.split(',').filter((i) => i !== '');
+    }
+  }
+  return [String(baseSchoolIndex), String(refSchoolIndex)];
+}
+
+function applyPendingSelectedButtons() {
+  if(!pendingSelectedButtonIds || pendingSelectedButtonIds.size === 0) {
+    return false;
+  }
+  let changed = false;
+  [...pendingSelectedButtonIds].forEach((id) => {
+    if(button(id)) {
+      setButtonState(id, true);
+      pendingSelectedButtonIds.delete(id);
+      changed = true;
+    }
+  });
+  if(pendingSelectedButtonIds.size === 0) {
+    pendingSelectedButtonIds = null;
+  }
+  return changed;
+}
+
+function cityContainsSchoolIndex(cityName, schoolIndex) {
+  if(!si[cityName]) {
+    return false;
+  }
+  let pu = si[cityName].n;
+  if(pu && schoolIndex >= pu[0] && schoolIndex <= pu[1]) {
+    return true;
+  }
+  let pr = si[cityName].p;
+  if(pr && schoolIndex >= pr[0] && schoolIndex <= pr[1]) {
+    return true;
+  }
+  return false;
 }
 
 function recalculate() {
@@ -704,122 +755,128 @@ function generateHTMLTable(el, hrName, puSchools, prSchools, name) {
   div.classList.add('row');
   div.id = 't' + hrName;
   div.style.display = 'none';
-  let table = document.createElement('table');
-  table.style.marginLeft = 'auto';
-  table.style.marginRight = 'auto';
-  let tHead = document.createElement('thead');
-  table.appendChild(tHead);
-  let headTr = document.createElement('tr');
-  tHead.appendChild(headTr);
-  let headers = ['№', 'Училище', 'Тип / №', 'Ранг'];
-  for(let i = 0; i < 3; i++) {
-    headers.push((firstYear - 2001 + s[baseSchoolIndex].b.length - i) + ' ' + csvHeaderB + ' / уч.');
-    headers.push((firstYear - 2001 + s[baseSchoolIndex].b.length - i) + ' ' + csvHeaderM + ' / уч.');
-  }
-  if(hide2019TableFix) { // Remove this when 2022 results are available.
-    headers.pop();
-  }
-  headers.forEach((header) => {
-    let th = document.createElement('th');
-    th.appendChild(document.createTextNode(header));
-    th.style.overflow = 'hidden';
-    th.style.whiteSpace = 'nowrap';
-    headTr.appendChild(th);
-  });
-  let tBody = document.createElement('tbody');
-  tBody.id = 'tbl-' + si[name].n[0];
-  table.appendChild(tBody);
-  let schools = [];
-  for(let i = puSchools[0]; i <= puSchools[1]; i++) {
-    if(!s[i] || s[i].b[s[i].b.length - 1] === null) { continue; }
-    schools.push({i: i, t: 'Д'});
-  }
-  if(prSchools) {
-    for(let i = prSchools[0]; i <= prSchools[1]; i++) {
-      if(!s[i] || s[i].b[s[i].b.length - 1] === null) { continue; }
-      schools.push({i: i, t: 'Ч'});
+  rankingTableBuilders[hrName] = () => {
+    if(div.dataset.tableBuilt === '1') {
+      return;
     }
-  }
-  let sortFunc = (o1, o2) => (s[o1.i].mb + s[o1.i].mm) / 2 < (s[o2.i].mb + s[o2.i].mm) / 2 ? 1 : -1;
-  schools.sort(sortFunc);
-  const { topRankAll, topRankPu, topRankPr } = calculateTopRanks(schools, !!prSchools);
-  let counter = 0;
-  let counterPu = 0;
-  let counterPr = 0;
-  let topRankDone = false;
-  schools.forEach((o) => {
-    let tr = document.createElement('tr');
-    tBody.appendChild(tr);
-    let td = document.createElement('td');
-    td.appendChild(document.createTextNode(++counter));
-    tr.appendChild(td);
-    td = document.createElement('td');
-    if(s[o.i].w) {
-      let a = document.createElement('a');
-      a.appendChild(document.createTextNode(s[o.i].l));
-      a.href = s[o.i].w;
-      a.target = '_blank';
-      a.rel = 'noopener noreferrer';
-      td.appendChild(a);
-    } else {
-      td.appendChild(document.createTextNode(s[o.i].l));
-    }
-    td.title = s[o.i].n;
-    tr.appendChild(td);
-    td = document.createElement('td');
-    td.appendChild(document.createTextNode(o.t + ' / ' + (o.t === 'Д' ? ++counterPu : ++counterPr)));
-    tr.appendChild(td);
-    td = document.createElement('td');
-    if(!topRankDone) {
-      td.appendChild(document.createTextNode(100));
-      td.title = 'Среден резултат = ' + (topRankAll + rankBase).toFixed(2);
-      td.bgAll = '#00ff30';
-      td.rankAll = '100';
-      td.rankPu = o.t === 'Д' ? '100' : 'none';
-      td.rankPr = o.t === 'Ч' ? '100' : 'none';
-      td.bgPu = o.t === 'Д' ? '#00ff30': 'none';
-      td.bgPr = o.t === 'Ч' ? '#00ff30': 'none';
-      td.style.backgroundColor = td.bgAll;
-      topRankDone = true;
-    } else {
-      let rank = (s[o.i].mb + s[o.i].mm - rankBase * 2) / 2;
-      td.title = 'Среден резултат = ' + (rank + rankBase).toFixed(2);
-      let ardAll = calculateAdjustedRankData(rank, topRankAll);
-      td.bgAll = '#' + ardAll.redHex + ardAll.greenHex + ardAll.blueHex;
-      td.rankAll = (Math.round(ardAll.adjustedRank * 100) / 100).toFixed(2);
-      let ardPu = calculateAdjustedRankData(rank, topRankPu);
-      td.bgPu = '#' + ardPu.redHex + ardPu.greenHex + ardPu.blueHex;
-      td.rankPu = ardPu.adjustedRank === 100 ? '100' : (Math.round(ardPu.adjustedRank * 100) / 100).toFixed(2);
-      if(topRankPr) {
-        let ardPr = calculateAdjustedRankData(rank, topRankPr);
-        td.bgPr = '#' + ardPr.redHex + ardPr.greenHex + ardPr.blueHex;
-        td.rankPr = ardPr.adjustedRank === 100 ? '100' : (Math.round(ardPr.adjustedRank * 100) / 100).toFixed(2);
-      } else {
-        td.bgPr = 'none';
-        td.rankPr = 0;
-      }
-      td.style.backgroundColor = td.bgAll;
-      td.textContent = td.rankAll;
-    }
-    tr.appendChild(td);
-    let totalYears = s[o.i].b.length;
-    for(let j = 0; j < 3; j++) {
-      td = document.createElement('td');
-      td.style.overflow = 'hidden';
-      td.style.whiteSpace = 'nowrap';
-      td.appendChild(document.createTextNode(s[o.i].b[totalYears - j - 1] ? s[o.i].b[totalYears - j - 1] + ' / ' + s[o.i].bu[totalYears - j - 1] : ''));
-      tr.appendChild(td);
-      td = document.createElement('td');
-      td.style.overflow = 'hidden';
-      td.style.whiteSpace = 'nowrap';
-      td.appendChild(document.createTextNode(s[o.i].m[totalYears - j - 1] ? s[o.i].m[totalYears - j - 1] + ' / ' + s[o.i].mu[totalYears - j - 1] : ''));
-      tr.appendChild(td);
+    let table = document.createElement('table');
+    table.style.marginLeft = 'auto';
+    table.style.marginRight = 'auto';
+    let tHead = document.createElement('thead');
+    table.appendChild(tHead);
+    let headTr = document.createElement('tr');
+    tHead.appendChild(headTr);
+    let headers = ['№', 'Училище', 'Тип / №', 'Ранг'];
+    for(let i = 0; i < 3; i++) {
+      headers.push((firstYear - 2001 + s[baseSchoolIndex].b.length - i) + ' ' + csvHeaderB + ' / уч.');
+      headers.push((firstYear - 2001 + s[baseSchoolIndex].b.length - i) + ' ' + csvHeaderM + ' / уч.');
     }
     if(hide2019TableFix) { // Remove this when 2022 results are available.
-      tr.removeChild(tr.lastChild);
+      headers.pop();
     }
-  });
-  div.appendChild(table);
+    headers.forEach((header) => {
+      let th = document.createElement('th');
+      th.appendChild(document.createTextNode(header));
+      th.style.overflow = 'hidden';
+      th.style.whiteSpace = 'nowrap';
+      headTr.appendChild(th);
+    });
+    let tBody = document.createElement('tbody');
+    tBody.id = 'tbl-' + si[name].n[0];
+    table.appendChild(tBody);
+    let schools = [];
+    for(let i = puSchools[0]; i <= puSchools[1]; i++) {
+      if(!s[i] || s[i].b[s[i].b.length - 1] === null) { continue; }
+      schools.push({i: i, t: 'Д'});
+    }
+    if(prSchools) {
+      for(let i = prSchools[0]; i <= prSchools[1]; i++) {
+        if(!s[i] || s[i].b[s[i].b.length - 1] === null) { continue; }
+        schools.push({i: i, t: 'Ч'});
+      }
+    }
+    let sortFunc = (o1, o2) => (s[o1.i].mb + s[o1.i].mm) / 2 < (s[o2.i].mb + s[o2.i].mm) / 2 ? 1 : -1;
+    schools.sort(sortFunc);
+    const { topRankAll, topRankPu, topRankPr } = calculateTopRanks(schools, !!prSchools);
+    let counter = 0;
+    let counterPu = 0;
+    let counterPr = 0;
+    let topRankDone = false;
+    schools.forEach((o) => {
+      let tr = document.createElement('tr');
+      tBody.appendChild(tr);
+      let td = document.createElement('td');
+      td.appendChild(document.createTextNode(++counter));
+      tr.appendChild(td);
+      td = document.createElement('td');
+      if(s[o.i].w) {
+        let a = document.createElement('a');
+        a.appendChild(document.createTextNode(s[o.i].l));
+        a.href = s[o.i].w;
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+        td.appendChild(a);
+      } else {
+        td.appendChild(document.createTextNode(s[o.i].l));
+      }
+      td.title = s[o.i].n;
+      tr.appendChild(td);
+      td = document.createElement('td');
+      td.appendChild(document.createTextNode(o.t + ' / ' + (o.t === 'Д' ? ++counterPu : ++counterPr)));
+      tr.appendChild(td);
+      td = document.createElement('td');
+      if(!topRankDone) {
+        td.appendChild(document.createTextNode(100));
+        td.title = 'Среден резултат = ' + (topRankAll + rankBase).toFixed(2);
+        td.bgAll = '#00ff30';
+        td.rankAll = '100';
+        td.rankPu = o.t === 'Д' ? '100' : 'none';
+        td.rankPr = o.t === 'Ч' ? '100' : 'none';
+        td.bgPu = o.t === 'Д' ? '#00ff30': 'none';
+        td.bgPr = o.t === 'Ч' ? '#00ff30': 'none';
+        td.style.backgroundColor = td.bgAll;
+        topRankDone = true;
+      } else {
+        let rank = (s[o.i].mb + s[o.i].mm - rankBase * 2) / 2;
+        td.title = 'Среден резултат = ' + (rank + rankBase).toFixed(2);
+        let ardAll = calculateAdjustedRankData(rank, topRankAll);
+        td.bgAll = '#' + ardAll.redHex + ardAll.greenHex + ardAll.blueHex;
+        td.rankAll = (Math.round(ardAll.adjustedRank * 100) / 100).toFixed(2);
+        let ardPu = calculateAdjustedRankData(rank, topRankPu);
+        td.bgPu = '#' + ardPu.redHex + ardPu.greenHex + ardPu.blueHex;
+        td.rankPu = ardPu.adjustedRank === 100 ? '100' : (Math.round(ardPu.adjustedRank * 100) / 100).toFixed(2);
+        if(topRankPr) {
+          let ardPr = calculateAdjustedRankData(rank, topRankPr);
+          td.bgPr = '#' + ardPr.redHex + ardPr.greenHex + ardPr.blueHex;
+          td.rankPr = ardPr.adjustedRank === 100 ? '100' : (Math.round(ardPr.adjustedRank * 100) / 100).toFixed(2);
+        } else {
+          td.bgPr = 'none';
+          td.rankPr = 0;
+        }
+        td.style.backgroundColor = td.bgAll;
+        td.textContent = td.rankAll;
+      }
+      tr.appendChild(td);
+      let totalYears = s[o.i].b.length;
+      for(let j = 0; j < 3; j++) {
+        td = document.createElement('td');
+        td.style.overflow = 'hidden';
+        td.style.whiteSpace = 'nowrap';
+        td.appendChild(document.createTextNode(s[o.i].b[totalYears - j - 1] ? s[o.i].b[totalYears - j - 1] + ' / ' + s[o.i].bu[totalYears - j - 1] : ''));
+        tr.appendChild(td);
+        td = document.createElement('td');
+        td.style.overflow = 'hidden';
+        td.style.whiteSpace = 'nowrap';
+        td.appendChild(document.createTextNode(s[o.i].m[totalYears - j - 1] ? s[o.i].m[totalYears - j - 1] + ' / ' + s[o.i].mu[totalYears - j - 1] : ''));
+        tr.appendChild(td);
+      }
+      if(hide2019TableFix) { // Remove this when 2022 results are available.
+        tr.removeChild(tr.lastChild);
+      }
+    });
+    div.appendChild(table);
+    div.dataset.tableBuilt = '1';
+  };
   el.appendChild(div);
 }
 
@@ -835,6 +892,9 @@ function generateDownloadCSVLink(el, name, data) {
     let tableDiv = document.getElementById('t' + name);
     if(!tableDiv) { return; }
     if(tableDiv.style.display === 'none') {
+      if(rankingTableBuilders[name]) {
+        rankingTableBuilders[name]();
+      }
       tableDiv.style.display = 'block';
       e.currentTarget.innerText = 'Затвори'
     } else {
@@ -851,7 +911,7 @@ function generateDownloadCSVLink(el, name, data) {
   span.appendChild(a);    
 }
 
-function generateCitySection(name, hrName, btName, btPos) {
+function generateCityData(name) {
   if(!si[name]) {
     return '';
   }
@@ -860,6 +920,118 @@ function generateCitySection(name, hrName, btName, btPos) {
   }
   let puSchools = si[name].n;
   let prSchools = si[name].p;
+  if(!puSchools) {
+    return '';
+  }
+  let hasSchools = false;
+  for(let i = puSchools[0]; i <= puSchools[1]; i++) {
+    if(s[i].b[s[i].b.length - 1] && s[i].m[s[i].m.length - 1]) {
+      hasSchools = true;
+      break;
+    }
+  }
+  if(prSchools) {
+    for(let i = prSchools[0]; i <= prSchools[1]; i++) {
+      if(s[i].b[s[i].b.length - 1] && s[i].m[s[i].m.length - 1]) {
+        hasSchools = true;
+        break;
+      }
+    }
+  }
+  if(!hasSchools) {
+    return '';
+  }
+  let data = generateDownloadForCity(name, puSchools, 'Д');
+  if(prSchools) {
+    data += generateDownloadForCity(name, prSchools, 'Ч');
+  }
+  return data;
+}
+
+function createCityPlaceholder(hrName) {
+  let schoolsDiv = document.getElementById('schools');
+  if(!schoolsDiv) {
+    return;
+  }
+  let placeholder = document.createElement('div');
+  placeholder.classList.add('row');
+  placeholder.id = 'ph-' + hrName;
+  placeholder.dataset.hrName = hrName;
+  let hr = document.createElement('hr');
+  hr.id = hrName;
+  placeholder.appendChild(hr);
+  schoolsDiv.appendChild(placeholder);
+}
+
+function renderLazyCitySection(entry) {
+  if(!entry || entry.rendered) {
+    return;
+  }
+  let placeholder = document.getElementById('ph-' + entry.hrName);
+  generateCitySection(entry.name, entry.hrName, entry.btName, entry.btPos, true, entry.data, placeholder);
+  if(placeholder) {
+    placeholder.remove();
+  }
+  entry.rendered = true;
+  let changed = applyPendingSelectedButtons();
+  if(changed && chartBelInstance && chartMatInstance) {
+    redraw();
+  }
+}
+
+function initLazyCitySections(entries) {
+  if(!entries || entries.length === 0) {
+    return;
+  }
+  let byHrName = {};
+  entries.forEach((entry) => {
+    byHrName[entry.hrName] = entry;
+  });
+  let renderByHash = () => {
+    let hrName = window.location.hash.replace('#', '');
+    if(hrName && byHrName[hrName]) {
+      renderLazyCitySection(byHrName[hrName]);
+    }
+  };
+  renderByHash();
+  window.addEventListener('hashchange', renderByHash);
+  if(!('IntersectionObserver' in window)) {
+    entries.forEach((entry) => renderLazyCitySection(entry));
+    return;
+  }
+  let observer = new IntersectionObserver((rows) => {
+    rows.forEach((row) => {
+      if(!row.isIntersecting) {
+        return;
+      }
+      let hrName = row.target.dataset.hrName;
+      if(!hrName || !byHrName[hrName]) {
+        return;
+      }
+      renderLazyCitySection(byHrName[hrName]);
+      observer.unobserve(row.target);
+    });
+  }, { rootMargin: '400px 0px' });
+  entries.forEach((entry) => {
+    let placeholder = document.getElementById('ph-' + entry.hrName);
+    if(placeholder) {
+      observer.observe(placeholder);
+    }
+  });
+}
+
+function generateCitySection(name, hrName, btName, btPos, skipMenu, precomputedData, mountBeforeNode) {
+  if(!si[name]) {
+    return '';
+  }
+  if(!si[name].n && !si[name].p) {
+    return '';
+  }
+  let puSchools = si[name].n;
+  let prSchools = si[name].p;
+  if(!puSchools) {
+    return '';
+  }
   let hasSchools = false;
   for(let i = puSchools[0]; i <= puSchools[1]; i++) {
     if(s[i].b[s[i].b.length - 1] && s[i].m[s[i].m.length - 1]) {
@@ -879,7 +1051,9 @@ function generateCitySection(name, hrName, btName, btPos) {
     return '';
   }
   const { topCount: topPuCount, secondCount: secondPuCount } = getSchoolCounts(puSchools);
-  generateCityMenu(btPos, btName, hrName);
+  if(!skipMenu) {
+    generateCityMenu(btPos, btName, hrName);
+  }
   let schoolsDivFragment = document.createDocumentFragment();
   generateRowWithHr(schoolsDivFragment, hrName);
   let cityDiv = generateRowWithStrong(schoolsDivFragment, name);
@@ -889,7 +1063,7 @@ function generateCitySection(name, hrName, btName, btPos) {
   generateRowWithText(schoolsDivFragment, '\u00A0');
   let puDiv = generateRow(schoolsDivFragment);
   generateSchoolButtons(puDiv, puSchools, topPuCount, secondPuCount);
-  let data = generateDownloadForCity(name, puSchools, 'Д');
+  let data = precomputedData ? precomputedData : generateDownloadForCity(name, puSchools, 'Д');
   if(prSchools) {
     const { topCount: topPrCount, secondCount: secondPrCount } = getSchoolCounts(prSchools);
     generateRowWithText(schoolsDivFragment, '\u00A0');
@@ -897,11 +1071,19 @@ function generateCitySection(name, hrName, btName, btPos) {
     generateRowWithText(schoolsDivFragment, '\u00A0');
     let prDiv = generateRow(schoolsDivFragment);
     generateSchoolButtons(prDiv, prSchools, topPrCount, secondPrCount);
-    data += generateDownloadForCity(name, prSchools, 'Ч');
+    if(!precomputedData) {
+      data += generateDownloadForCity(name, prSchools, 'Ч');
+    }
   }
   generateDownloadCSVLink(cityDiv, hrName, data);
   let schoolsDiv = document.getElementById('schools');
-  if(schoolsDiv) { schoolsDiv.appendChild(schoolsDivFragment); }
+  if(schoolsDiv) {
+    if(mountBeforeNode && mountBeforeNode.parentNode === schoolsDiv) {
+      schoolsDiv.insertBefore(schoolsDivFragment, mountBeforeNode);
+    } else {
+      schoolsDiv.appendChild(schoolsDivFragment);
+    }
+  }
   return data;
 }
 
@@ -1063,26 +1245,16 @@ function calculateCityMediansByAttendees() {
 }
 
 function setDefaultClickedButtons() {
-  let url = new URL(window.location.href);
-  let i = url.searchParams.get(cookieName);
-  if(i) {
-    i.split(',').forEach((i) => {
-      setButtonState(i, true);
-    });
-    return;
-  }
-  i = (document.cookie + ';').match(new RegExp(cookieName + '=.*;'));
-  if(i) {
-    i = i[0].split(/=|;/)[1].split('#')[0];
-  }
-  if(i) {
-    i.split(',').forEach((i) => {
-      setButtonState(i, true);
-    });
-    return;
-  }
-  setButtonState(baseSchoolIndex, true);
-  setButtonState(refSchoolIndex, true);
+  let indices = getDefaultClickedButtonIds();
+  pendingSelectedButtonIds = new Set();
+  indices.forEach((id) => {
+    if(button(id)) {
+      setButtonState(id, true);
+    } else {
+      pendingSelectedButtonIds.add(id);
+    }
+  });
+  applyPendingSelectedButtons();
 }
 
 function enableFixedButtons() {
@@ -1098,6 +1270,7 @@ function enableFixedButtons() {
       s.forEach((_, i) => {
         setButtonState(i, false);
       });
+      pendingSelectedButtonIds = null;
       let mBtns = document.getElementsByClassName('mbtn');
       for(let mBtn of mBtns) {
         mBtn.classList.remove('button-primary');
@@ -1115,88 +1288,122 @@ function enableFixedButtons() {
 
 
 function generateCitySections() {
-  let data = generateCitySection('София', 'sofia', 'София', 1);
-  data += generateCitySection('Пловдив', 'plovdiv', 'Пловдив', 1);
-  data += generateCitySection('Варна', 'varna', 'Варна', 1);
-  data += generateCitySection('Бургас', 'burgas', 'Бургас', 1);
-  data += generateCitySection('Благоевград', 'blagoevgrad', 'Благоевград', 2);
-  data += generateCitySection('Велико Търново', 'veliko-turnovo', 'В. Търново', 2);
-  data += generateCitySection('Видин', 'vidin', 'Видин', 2);
-  data += generateCitySection('Враца', 'vratsa', 'Враца', 2);
-  data += generateCitySection('Габрово', 'gabrovo', 'Габрово', 2);
-  data += generateCitySection('Добрич', 'dobrich', 'Добрич', 2);
-  data += generateCitySection('Кърджали', 'kurdzhali', 'Кърджали', 2);
-  data += generateCitySection('Кюстендил', 'kiustendil', 'Кюстендил', 2);
-  data += generateCitySection('Ловеч', 'lovech', 'Ловеч', 2);
-  data += generateCitySection('Монтана', 'montana', 'Монтана', 2);
-  data += generateCitySection('Пазарджик', 'pazardzhik', 'Пазарджик', 2);
-  data += generateCitySection('Перник', 'pernik', 'Перник', 2);
-  data += generateCitySection('Плевен', 'pleven', 'Плевен', 2);
-  data += generateCitySection('Разград', 'razgrad', 'Разград', 2);
-  data += generateCitySection('Русе', 'ruse', 'Русе', 2);
-  data += generateCitySection('Силистра', 'silistra', 'Силистра', 2);
-  data += generateCitySection('Сливен', 'sliven', 'Сливен', 2);
-  data += generateCitySection('Смолян', 'smolian', 'Смолян', 2);
-  data += generateCitySection('Стара Загора', 'stara-zagora', 'Ст. Загора', 2);
-  data += generateCitySection('Търговище', 'turgovishte', 'Търговище', 2);
-  data += generateCitySection('Хасково', 'haskovo', 'Хасково', 2);
-  data += generateCitySection('Шумен', 'shumen', 'Шумен', 2);
-  data += generateCitySection('Ямбол', 'iambol', 'Ямбол', 2);
+  let data = '';
+  let lazyEntries = [];
+  let selectedIndices = getDefaultClickedButtonIds()
+    .map((i) => Number.parseInt(i, 10))
+    .filter((i) => Number.isInteger(i));
+  let addCity = (name, hrName, btName, btPos) => {
+    let cityData = generateCityData(name);
+    if(!cityData) {
+      return;
+    }
+    data += cityData;
+    generateCityMenu(btPos, btName, hrName);
+    createCityPlaceholder(hrName);
+    lazyEntries.push({
+      name: name,
+      hrName: hrName,
+      btName: btName,
+      btPos: btPos,
+      data: cityData,
+      rendered: false
+    });
+  };
+  addCity('София', 'sofia', 'София', 1);
+  addCity('Пловдив', 'plovdiv', 'Пловдив', 1);
+  addCity('Варна', 'varna', 'Варна', 1);
+  addCity('Бургас', 'burgas', 'Бургас', 1);
+  addCity('Благоевград', 'blagoevgrad', 'Благоевград', 2);
+  addCity('Велико Търново', 'veliko-turnovo', 'В. Търново', 2);
+  addCity('Видин', 'vidin', 'Видин', 2);
+  addCity('Враца', 'vratsa', 'Враца', 2);
+  addCity('Габрово', 'gabrovo', 'Габрово', 2);
+  addCity('Добрич', 'dobrich', 'Добрич', 2);
+  addCity('Кърджали', 'kurdzhali', 'Кърджали', 2);
+  addCity('Кюстендил', 'kiustendil', 'Кюстендил', 2);
+  addCity('Ловеч', 'lovech', 'Ловеч', 2);
+  addCity('Монтана', 'montana', 'Монтана', 2);
+  addCity('Пазарджик', 'pazardzhik', 'Пазарджик', 2);
+  addCity('Перник', 'pernik', 'Перник', 2);
+  addCity('Плевен', 'pleven', 'Плевен', 2);
+  addCity('Разград', 'razgrad', 'Разград', 2);
+  addCity('Русе', 'ruse', 'Русе', 2);
+  addCity('Силистра', 'silistra', 'Силистра', 2);
+  addCity('Сливен', 'sliven', 'Сливен', 2);
+  addCity('Смолян', 'smolian', 'Смолян', 2);
+  addCity('Стара Загора', 'stara-zagora', 'Ст. Загора', 2);
+  addCity('Търговище', 'turgovishte', 'Търговище', 2);
+  addCity('Хасково', 'haskovo', 'Хасково', 2);
+  addCity('Шумен', 'shumen', 'Шумен', 2);
+  addCity('Ямбол', 'iambol', 'Ямбол', 2);
   if(fixForMissingCities2023) {
     let otherCities = document.getElementById('other-cities');
     if(otherCities) { otherCities.style.display = 'none'; }
   } else {
-    data += generateCitySection('Айтос', 'aitos', 'Айтос', 3);
-    data += generateCitySection('Асеновград', 'asenovgrad', 'Асеновград', 3);
-    data += generateCitySection('Банкя', 'bankia', 'Банкя', 3);
-    data += generateCitySection('Берковица', 'berkovitsa', 'Берковица', 3);
-    data += generateCitySection('Ботевград', 'botevgrad', 'Ботевград', 3);
-    data += generateCitySection('Велинград', 'velingrad', 'Велинград', 3);
-    data += generateCitySection('Горна Оряховица', 'gorna-oryahovitsa', 'Г. Оряховица', 3);
-    data += generateCitySection('Гоце Делчев', 'gotse-delchev', 'Гоце Делчев', 3);
-    data += generateCitySection('Димитровград', 'dimitrovgrad', 'Димитровград', 3);
-    data += generateCitySection('Дупница', 'dupnitsa', 'Дупница', 3);
-    data += generateCitySection('Ихтиман', 'ihtiman', 'Ихтиман', 3);
-    data += generateCitySection('Каварна', 'kavarna', 'Каварна', 3);
-    data += generateCitySection('Казанлък', 'kazanluk', 'Казанлък', 3);
-    data += generateCitySection('Карлово', 'karlovo', 'Карлово', 3);
-    data += generateCitySection('Карнобат', 'karnobat', 'Карнобат', 3);
-    data += generateCitySection('Костинброд', 'kostinbrod', 'Костинброд', 3);
-    data += generateCitySection('Лом', 'lom', 'Лом', 3);
-    data += generateCitySection('Луковит', 'lukovit', 'Луковит', 3);
-    data += generateCitySection('Несебър', 'nesebar', 'Несебър', 3);
-    data += generateCitySection('Нова Загора', 'nova-zagora', 'Нова Загора', 3);
-    data += generateCitySection('Нови Искър', 'novi-iskar', 'Нови Искър', 3);
-    data += generateCitySection('Нови пазар', 'novi-pazar', 'Нови пазар', 3);
-    data += generateCitySection('Обзор', 'obzor', 'Обзор', 3);
-    data += generateCitySection('Панагюрище', 'panagiurishte', 'Панагюрище', 3);
-    data += generateCitySection('Петрич', 'petrich', 'Петрич', 3);
-    data += generateCitySection('Пещера', 'peshtera', 'Пещера', 3);
-    data += generateCitySection('Поморие', 'pomorie', 'Поморие', 3);
-    data += generateCitySection('Попово', 'popovo', 'Попово', 3);
-    data += generateCitySection('Правец', 'pravets', 'Правец', 3);
-    data += generateCitySection('Провадия', 'provadia', 'Провадия', 3);
-    data += generateCitySection('Първомай', 'purvomai', 'Първомай', 3);
-    data += generateCitySection('Раднево', 'radnevo', 'Раднево', 3);
-    data += generateCitySection('Радомир', 'radomir', 'Радомир', 3);
-    data += generateCitySection('Раковски', 'rakovski', 'Раковски', 3);
-    data += generateCitySection('Самоков', 'samokov', 'Самоков', 3);
-    data += generateCitySection('Сандански', 'sandanski', 'Сандански', 3);
-    data += generateCitySection('Свиленград', 'svilengrad', 'Свиленград', 3);
-    data += generateCitySection('Свищов', 'svishtov', 'Свищов', 3);
-    data += generateCitySection('Своге', 'svoge', 'Своге', 3);
-    data += generateCitySection('Севлиево', 'sevlievo', 'Севлиево', 3);
-    data += generateCitySection('Стамболийски', 'stanbiliiski', 'Стамболийски', 3);
-    data += generateCitySection('Троян', 'troyan', 'Троян', 3);
-    data += generateCitySection('Харманли', 'harmanli', 'Харманли', 3);
-    data += generateCitySection('Червен бряг', 'cherven-briag', 'Червен бряг', 3);
-    data += generateCitySection('Чирпан', 'chirpan', 'Чирпан', 3);
+    addCity('Айтос', 'aitos', 'Айтос', 3);
+    addCity('Асеновград', 'asenovgrad', 'Асеновград', 3);
+    addCity('Банкя', 'bankia', 'Банкя', 3);
+    addCity('Берковица', 'berkovitsa', 'Берковица', 3);
+    addCity('Ботевград', 'botevgrad', 'Ботевград', 3);
+    addCity('Велинград', 'velingrad', 'Велинград', 3);
+    addCity('Горна Оряховица', 'gorna-oryahovitsa', 'Г. Оряховица', 3);
+    addCity('Гоце Делчев', 'gotse-delchev', 'Гоце Делчев', 3);
+    addCity('Димитровград', 'dimitrovgrad', 'Димитровград', 3);
+    addCity('Дупница', 'dupnitsa', 'Дупница', 3);
+    addCity('Ихтиман', 'ihtiman', 'Ихтиман', 3);
+    addCity('Каварна', 'kavarna', 'Каварна', 3);
+    addCity('Казанлък', 'kazanluk', 'Казанлък', 3);
+    addCity('Карлово', 'karlovo', 'Карлово', 3);
+    addCity('Карнобат', 'karnobat', 'Карнобат', 3);
+    addCity('Костинброд', 'kostinbrod', 'Костинброд', 3);
+    addCity('Лом', 'lom', 'Лом', 3);
+    addCity('Луковит', 'lukovit', 'Луковит', 3);
+    addCity('Несебър', 'nesebar', 'Несебър', 3);
+    addCity('Нова Загора', 'nova-zagora', 'Нова Загора', 3);
+    addCity('Нови Искър', 'novi-iskar', 'Нови Искър', 3);
+    addCity('Нови пазар', 'novi-pazar', 'Нови пазар', 3);
+    addCity('Обзор', 'obzor', 'Обзор', 3);
+    addCity('Панагюрище', 'panagiurishte', 'Панагюрище', 3);
+    addCity('Петрич', 'petrich', 'Петрич', 3);
+    addCity('Пещера', 'peshtera', 'Пещера', 3);
+    addCity('Поморие', 'pomorie', 'Поморие', 3);
+    addCity('Попово', 'popovo', 'Попово', 3);
+    addCity('Правец', 'pravets', 'Правец', 3);
+    addCity('Провадия', 'provadia', 'Провадия', 3);
+    addCity('Първомай', 'purvomai', 'Първомай', 3);
+    addCity('Раднево', 'radnevo', 'Раднево', 3);
+    addCity('Радомир', 'radomir', 'Радомир', 3);
+    addCity('Раковски', 'rakovski', 'Раковски', 3);
+    addCity('Самоков', 'samokov', 'Самоков', 3);
+    addCity('Сандански', 'sandanski', 'Сандански', 3);
+    addCity('Свиленград', 'svilengrad', 'Свиленград', 3);
+    addCity('Свищов', 'svishtov', 'Свищов', 3);
+    addCity('Своге', 'svoge', 'Своге', 3);
+    addCity('Севлиево', 'sevlievo', 'Севлиево', 3);
+    addCity('Стамболийски', 'stanbiliiski', 'Стамболийски', 3);
+    addCity('Троян', 'troyan', 'Троян', 3);
+    addCity('Харманли', 'harmanli', 'Харманли', 3);
+    addCity('Червен бряг', 'cherven-briag', 'Червен бряг', 3);
+    addCity('Чирпан', 'chirpan', 'Чирпан', 3);
   }
   let header = generateDownloadCSVHeader();
   let a = document.getElementById('csvAll');
   if(a) {
     setCsvDownloadLink(a, exportPrefix + '-data-all.csv', header + data);
   }
+  if(lazyEntries.length > 0) {
+    renderLazyCitySection(lazyEntries[0]);
+    lazyEntries.forEach((entry) => {
+      if(entry.rendered) {
+        return;
+      }
+      if(selectedIndices.some((i) => cityContainsSchoolIndex(entry.name, i))) {
+        renderLazyCitySection(entry);
+      }
+    });
+  }
+  initLazyCitySections(lazyEntries);
 }
 
 function initializeHighcharts() {
@@ -1219,13 +1426,24 @@ function initializeHighcharts() {
 }
 
 function calculateTimeTravel() {
-  let yearStr = window.location.search.split('year=')[1];
-  if(yearStr && yearStr.length >= 4) {
-    let year = yearStr.slice(0, 4);
-    currentYear = firstYear + s[baseSchoolIndex].b.length - 1
-    removeYears(currentYear - year);
-    numYears = 3;
+  let url = new URL(window.location.href);
+  let yearParam = url.searchParams.get('year');
+  if(!yearParam) {
+    return;
   }
+  let parsedYear = Number.parseInt(yearParam, 10);
+  if(!Number.isInteger(parsedYear)) {
+    return;
+  }
+  let currentYear = firstYear + s[baseSchoolIndex].b.length - 1;
+  let minYear = Math.max(NAV_FIRST_YEAR, firstYear);
+  let maxYear = currentYear - 1;
+  if(maxYear < minYear) {
+    return;
+  }
+  let targetYear = Math.min(Math.max(parsedYear, minYear), maxYear);
+  removeYears(currentYear - targetYear);
+  numYears = 3;
 }
 
 function disableEntries() {
@@ -1280,8 +1498,10 @@ function onLoad() {
   redraw();
 }
 
-if(document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', onLoad);
-} else {
-  onLoad();
+if(!window.__NVO_TEST_MODE__) {
+  if(document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', onLoad);
+  } else {
+    onLoad();
+  }
 }
