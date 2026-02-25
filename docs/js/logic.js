@@ -1165,9 +1165,6 @@ function createCityPlaceholder(hrName) {
   placeholder.classList.add('row');
   placeholder.id = 'ph-' + hrName;
   placeholder.dataset.hrName = hrName;
-  let hr = document.createElement('hr');
-  hr.id = hrName;
-  placeholder.appendChild(hr);
   schoolsDiv.appendChild(placeholder);
 }
 
@@ -1195,10 +1192,23 @@ function initLazyCitySections(entries) {
   entries.forEach((entry) => {
     byHrName[entry.hrName] = entry;
   });
+  let scrollToAnchor = (hrName) => {
+    let anchor = document.getElementById(hrName);
+    if(anchor) {
+      anchor.scrollIntoView();
+    }
+  };
   let renderByHash = () => {
     let hrName = window.location.hash.replace('#', '');
     if(hrName && byHrName[hrName]) {
-      renderLazyCitySection(byHrName[hrName]);
+      let targetIndex = entries.findIndex((entry) => entry.hrName === hrName);
+      if(targetIndex < 0) {
+        return;
+      }
+      for(let i = 0; i <= targetIndex; i++) {
+        renderLazyCitySection(entries[i]);
+      }
+      requestAnimationFrame(() => scrollToAnchor(hrName));
     }
   };
   renderByHash();
