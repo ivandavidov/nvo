@@ -995,11 +995,11 @@ function initLazyCitySections(entries) {
   };
   renderByHash();
   window.addEventListener('hashchange', renderByHash);
-  if(!('IntersectionObserver' in window)) {
+  if(typeof window.IntersectionObserver !== 'function') {
     entries.forEach((entry) => renderLazyCitySection(entry));
     return;
   }
-  let observer = new IntersectionObserver((rows) => {
+  let observer = new window.IntersectionObserver((rows) => {
     rows.forEach((row) => {
       if(!row.isIntersecting) {
         return;
