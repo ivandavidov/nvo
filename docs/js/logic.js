@@ -784,7 +784,18 @@ function compareRowsByColumn(r1, r2, sortColumn, sortDirection, filterLabel) {
   if(sortColumn === 1) {
     let n1 = tds1[1] ? tds1[1].textContent.trim() : '';
     let n2 = tds2[1] ? tds2[1].textContent.trim() : '';
-    cmp = n1.localeCompare(n2, 'bg');
+    let m1 = n1.match(/^\s*(\d+)/);
+    let m2 = n2.match(/^\s*(\d+)/);
+    if(m1 && m2) {
+      let c1 = Number.parseInt(m1[1], 10);
+      let c2 = Number.parseInt(m2[1], 10);
+      cmp = c1 - c2;
+      if(cmp === 0) {
+        cmp = n1.localeCompare(n2, 'bg');
+      }
+    } else {
+      cmp = n1.localeCompare(n2, 'bg');
+    }
   } else if(sortColumn === 2) {
     let m1 = tds1[2] ? tds1[2].textContent.match(/^(\S+)\s*\/\s*(\d+)/) : null;
     let m2 = tds2[2] ? tds2[2].textContent.match(/^(\S+)\s*\/\s*(\d+)/) : null;
