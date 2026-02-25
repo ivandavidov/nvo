@@ -686,6 +686,7 @@ function generateHTMLTable(el, hrName, puSchools, prSchools, name) {
       a.appendChild(document.createTextNode(s[o.i].l));
       a.href = s[o.i].w;
       a.target = '_blank';
+      a.rel = 'noopener noreferrer';
       td.appendChild(a);
     } else {
       td.appendChild(document.createTextNode(s[o.i].l));
@@ -782,7 +783,7 @@ function generateCitySection(name, hrName, btName, btPos) {
   if(!si[name]) {
     return '';
   }
-  if(!si[name].n && !si[name[p]]) {
+  if(!si[name].n && !si[name].p) {
     return '';
   }
   let puSchools = si[name].n;
