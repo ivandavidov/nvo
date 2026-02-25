@@ -4,6 +4,7 @@ const CHART_EXPORT_WIDTH = 960;
 const CHART_EXPORT_HEIGHT = 540;
 const CHART_EXPORT_SCALE = 2;
 const COOKIE_MAX_AGE_SECONDS = 60 * 60 * 24 * 365; // 1 year
+const RESIZE_REDRAW_DEBOUNCE_MS = 150;
 const SCHOOL_THRESHOLD_SMALL = 4;
 const SCHOOL_THRESHOLD_MEDIUM = 9;
 const SCHOOL_THRESHOLD_LARGE = 19;
@@ -12,6 +13,9 @@ const SCHOOL_TOP_COUNT_SMALL = 3;
 const SCHOOL_TOP_COUNT_MEDIUM = 5;
 const SCHOOL_TOP_COUNT_LARGE = 10;
 const SCHOOL_SECOND_COUNT = 10;
+let chartBelInstance = null;
+let chartMatInstance = null;
+let resizeRedrawTimeout = null;
 
 function button(id) {
   return document.getElementById('b' + id);
@@ -190,8 +194,28 @@ function handleURL(indices) {
 function redraw() {
   let traces = recalculate();
   handleURL(traces.i);
-  Highcharts.chart(chartb, getLayout(chartBTitle, traces.b, exportPrefixBel));
-  Highcharts.chart(chartm, getLayout(chartMTitle, traces.m, exportPrefixMat));
+  let belLayout = getLayout(chartBTitle, traces.b, exportPrefixBel);
+  let matLayout = getLayout(chartMTitle, traces.m, exportPrefixMat);
+  if(chartBelInstance) {
+    chartBelInstance.update(belLayout, true, true, false);
+  } else {
+    chartBelInstance = Highcharts.chart('chartb', belLayout);
+  }
+  if(chartMatInstance) {
+    chartMatInstance.update(matLayout, true, true, false);
+  } else {
+    chartMatInstance = Highcharts.chart('chartm', matLayout);
+  }
+}
+
+function debounceRedrawOnResize() {
+  if(resizeRedrawTimeout) {
+    clearTimeout(resizeRedrawTimeout);
+  }
+  resizeRedrawTimeout = setTimeout(() => {
+    resizeRedrawTimeout = null;
+    redraw();
+  }, RESIZE_REDRAW_DEBOUNCE_MS);
 }
 
 function getSchoolCounts(schools) {
@@ -1129,7 +1153,7 @@ function generateCitySections() {
 }
 
 function initializeHighcharts() {
-  window.onresize = redraw;
+  window.addEventListener('resize', debounceRedrawOnResize);
   Highcharts.setOptions({
     lang: {
       downloadPNG: 'Свали като PNG',
@@ -1206,4 +1230,10 @@ function onLoad() {
   setDefaultClickedButtons();
   initializeHighcharts();
   redraw();
+}
+
+if(document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', onLoad);
+} else {
+  onLoad();
 }
