@@ -3,6 +3,11 @@ const CHART_MIN_HEIGHT_PX = 500;
 const CHART_EXPORT_WIDTH = 960;
 const CHART_EXPORT_HEIGHT = 540;
 const CHART_EXPORT_SCALE = 2;
+const TABLE_PDF_PAGE_MARGIN_PT = 30;
+const TABLE_PDF_TITLE_Y_PT = 28;
+const TABLE_PDF_TABLE_START_Y_PT = 40;
+const TABLE_PDF_FONT_FILE = 'NotoSans-Regular.ttf';
+const TABLE_PDF_FONT_NAME = 'NotoSans';
 const COOKIE_MAX_AGE_SECONDS = 60 * 60 * 24 * 365; // 1 year
 const RESIZE_REDRAW_DEBOUNCE_MS = 150;
 const NAV_FIRST_YEAR = 2020;
@@ -20,6 +25,7 @@ let resizeRedrawTimeout = null;
 let pendingSelectedButtonIds = null;
 let rankingTableBuilders = {};
 let selectedSchoolIndices = new Set();
+let pdfFontBase64Promise = null;
 
 function safeDivide(numerator, denominator, fallback = 0) {
   return denominator ? numerator / denominator : fallback;
@@ -463,6 +469,149 @@ function setCsvDownloadLink(link, filename, csvContent) {
     return;
   }
   link.setAttribute('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(csvContent));
+}
+
+function getVisibleRankingTableRows(table) {
+  if(!table || !table.tBodies || table.tBodies.length === 0) {
+    return [];
+  }
+  let rows = [];
+  let trs = table.tBodies[0].rows;
+  for(let i = 0; i < trs.length; i++) {
+    if(trs[i].style.display === 'none') {
+      continue;
+    }
+    let cells = [];
+    for(let j = 0; j < trs[i].cells.length; j++) {
+      cells.push(trs[i].cells[j].textContent.trim());
+    }
+    rows.push(cells);
+  }
+  return rows;
+}
+
+function getRankingTableHeaders(table) {
+  if(!table || !table.tHead || table.tHead.rows.length === 0) {
+    return [];
+  }
+  let headers = [];
+  let ths = table.tHead.rows[0].cells;
+  for(let i = 0; i < ths.length; i++) {
+    headers.push((ths[i].dataset.baseText || ths[i].textContent || '').trim());
+  }
+  return headers;
+}
+
+function setPdfLinkBusyState(link, busy) {
+  if(!link) {
+    return;
+  }
+  link.style.pointerEvents = busy ? 'none' : 'auto';
+  link.style.opacity = busy ? '0.55' : '1';
+}
+
+function getRankingTableElement(tableDiv, cityName) {
+  if(!tableDiv) {
+    return null;
+  }
+  if(si[cityName] && si[cityName].n) {
+    let rankingBody = document.getElementById('tbl-' + si[cityName].n[0]);
+    if(rankingBody) {
+      let rankingTable = rankingBody.closest('table');
+      if(rankingTable && tableDiv.contains(rankingTable)) {
+        return rankingTable;
+      }
+    }
+  }
+  let tables = tableDiv.getElementsByTagName('table');
+  if(tables.length > 0) {
+    return tables[tables.length - 1];
+  }
+  return null;
+}
+
+function convertArrayBufferToBase64(buffer) {
+  let bytes = new Uint8Array(buffer);
+  let chunkSize = 0x8000;
+  let binary = '';
+  for(let i = 0; i < bytes.length; i += chunkSize) {
+    binary += String.fromCharCode.apply(null, bytes.subarray(i, i + chunkSize));
+  }
+  return window.btoa(binary);
+}
+
+function getPdfFontBase64() {
+  if(pdfFontBase64Promise) {
+    return pdfFontBase64Promise;
+  }
+  pdfFontBase64Promise = (async () => {
+    let response = await fetch(pdfFontUrl);
+    if(!response.ok) {
+      throw new Error('Font download failed: ' + response.status + ' (' + pdfFontUrl + ')');
+    }
+    let buffer = await response.arrayBuffer();
+    return convertArrayBufferToBase64(buffer);
+  })();
+  return pdfFontBase64Promise;
+}
+
+async function exportRankingTableToPdf(tableKey, cityName, linkEl) {
+  let jsPdfNs = window.jspdf;
+  if(!jsPdfNs || !jsPdfNs.jsPDF || !jsPdfNs.jsPDF.API || typeof jsPdfNs.jsPDF.API.autoTable !== 'function') {
+    return;
+  }
+  setPdfLinkBusyState(linkEl, true);
+  try {
+    let tableDiv = document.getElementById('t' + tableKey);
+    if(!tableDiv) {
+      return;
+    }
+    if(tableDiv.dataset.tableBuilt !== '1' && rankingTableBuilders[tableKey]) {
+      rankingTableBuilders[tableKey]();
+    }
+    let table = getRankingTableElement(tableDiv, cityName);
+    if(!table) {
+      return;
+    }
+    let headers = getRankingTableHeaders(table);
+    let bodyRows = getVisibleRankingTableRows(table);
+    if(headers.length === 0 || bodyRows.length === 0) {
+      return;
+    }
+    let doc = new jsPdfNs.jsPDF({
+      orientation: 'landscape',
+      unit: 'pt',
+      format: 'a4'
+    });
+    let fontBase64 = await getPdfFontBase64();
+    doc.addFileToVFS(TABLE_PDF_FONT_FILE, fontBase64);
+    doc.addFont(TABLE_PDF_FONT_FILE, TABLE_PDF_FONT_NAME, 'normal');
+    doc.setFont(TABLE_PDF_FONT_NAME, 'normal');
+    let title = tableTitleName + ' - ' + cityName + ' - ' + tableTitleType;
+    doc.setFontSize(12);
+    doc.text(title, TABLE_PDF_PAGE_MARGIN_PT, TABLE_PDF_TITLE_Y_PT);
+    doc.autoTable({
+      head: [headers],
+      body: bodyRows,
+      startY: TABLE_PDF_TABLE_START_Y_PT,
+      margin: { left: TABLE_PDF_PAGE_MARGIN_PT, right: TABLE_PDF_PAGE_MARGIN_PT },
+      theme: 'grid',
+      styles: {
+        font: TABLE_PDF_FONT_NAME,
+        fontSize: 8,
+        cellPadding: 3,
+        overflow: 'linebreak'
+      },
+      headStyles: {
+        font: TABLE_PDF_FONT_NAME,
+        fillColor: [230, 230, 230],
+        textColor: 20
+      }
+    });
+    doc.save(exportPrefix + '-ranking-' + tableKey + '.pdf');
+  } finally {
+    setPdfLinkBusyState(linkEl, false);
+  }
 }
 
 function createMedianTableHeader(tHead, hasPrivate) {
@@ -1091,7 +1240,7 @@ function generateHTMLTable(el, hrName, puSchools, prSchools, name) {
   el.appendChild(div);
 }
 
-function generateDownloadCSVLink(el, name, data) {
+function generateDownloadCSVLink(el, tableKey, cityName, data) {
   let span = document.createElement('span');
   span.classList.add('u-pull-right');
   el.appendChild(span);
@@ -1100,11 +1249,11 @@ function generateDownloadCSVLink(el, name, data) {
   a.style.cursor = 'pointer';
   a.appendChild(document.createTextNode('Класация'));
   a.onclick = (e) => {
-    let tableDiv = document.getElementById('t' + name);
+    let tableDiv = document.getElementById('t' + tableKey);
     if(!tableDiv) { return; }
     if(tableDiv.style.display === 'none') {
-      if(rankingTableBuilders[name]) {
-        rankingTableBuilders[name]();
+      if(rankingTableBuilders[tableKey]) {
+        rankingTableBuilders[tableKey]();
       }
       tableDiv.style.display = 'block';
       e.currentTarget.innerText = 'Затвори'
@@ -1118,8 +1267,24 @@ function generateDownloadCSVLink(el, name, data) {
   a = document.createElement('a');
   a.style.cursor = 'pointer';
   a.appendChild(document.createTextNode('CSV'));
-  setCsvDownloadLink(a, exportPrefix + '-data-' + name + '.csv', header + data);
-  span.appendChild(a);    
+  setCsvDownloadLink(a, exportPrefix + '-data-' + tableKey + '.csv', header + data);
+  span.appendChild(a);
+  span.appendChild(document.createTextNode('\u00A0\u00A0\u00A0|\u00A0\u00A0\u00A0'));
+  a = document.createElement('a');
+  a.style.cursor = 'pointer';
+  a.href = '#';
+  a.appendChild(document.createTextNode('PDF'));
+  a.onclick = async (e) => {
+    e.preventDefault();
+    try {
+      await exportRankingTableToPdf(tableKey, cityName, e.currentTarget);
+    } catch(err) {
+      // Keep UI responsive and surface a clear message instead of an unhandled rejection.
+      console.error(err);
+      alert('Грешка при генериране на PDF. Моля опитайте отново.');
+    }
+  };
+  span.appendChild(a);
 }
 
 function generateCityData(name) {
@@ -1296,7 +1461,7 @@ function generateCitySection(name, hrName, btName, btPos, skipMenu, precomputedD
       data += generateDownloadForCity(name, prSchools, 'Ч');
     }
   }
-  generateDownloadCSVLink(cityDiv, hrName, data);
+  generateDownloadCSVLink(cityDiv, hrName, name, data);
   let schoolsDiv = document.getElementById('schools');
   if(schoolsDiv) {
     if(mountBeforeNode && mountBeforeNode.parentNode === schoolsDiv) {
