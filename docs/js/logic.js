@@ -19,6 +19,7 @@ let chartMatInstance = null;
 let resizeRedrawTimeout = null;
 let pendingSelectedButtonIds = null;
 let rankingTableBuilders = {};
+let selectedSchoolIndices = new Set();
 
 function safeDivide(numerator, denominator, fallback = 0) {
   return denominator ? numerator / denominator : fallback;
@@ -43,8 +44,10 @@ function setButtonState(id, state) {
   }
   if(state === true) {
     btn.classList.add('button-primary');
+    selectedSchoolIndices.add(Number(id));
   } else {
     btn.classList.remove('button-primary');
+    selectedSchoolIndices.delete(Number(id));
   }
 }
 
@@ -106,11 +109,11 @@ function recalculate() {
     dataNoSchool.push(chartNoSchool);
   }
   let noSchool = {name: 'Изберете поне едно училище', data: dataNoSchool};
-  s.forEach((o, i) => {
-    if(buttonEnabled(i)) {
+  selectedSchoolIndices.forEach((i) => {
+    if(s[i]) {
       indices.push(i);
-      tracesBel.push({name: o.n, data: o.b});
-      tracesMat.push({name: o.n, data: o.m});
+      tracesBel.push({name: s[i].n, data: s[i].b});
+      tracesMat.push({name: s[i].n, data: s[i].m});
     }
   });
   if(tracesBel.length === 0 || tracesMat.length === 0) {
@@ -119,7 +122,7 @@ function recalculate() {
   }
   let sortFunc = (t1, t2) => (t1.data[t1.data.length - 1]) < (t2.data[t2.data.length - 1]) ? 1 : -1;
   tracesBel.sort(sortFunc);
-  tracesMat.sort(sortFunc);  
+  tracesMat.sort(sortFunc);
   return {b: tracesBel, m: tracesMat, i: indices};
 }
 
@@ -777,9 +780,7 @@ function getYearCellSortValue(td) {
   return { hasValue: true, value: parsed };
 }
 
-function compareRowsByColumn(r1, r2, sortColumn, sortDirection, filterLabel) {
-  let tds1 = r1.getElementsByTagName('td');
-  let tds2 = r2.getElementsByTagName('td');
+function compareRowsByColumn(tds1, tds2, sortColumn, sortDirection, filterLabel) {
   let cmp = 0;
   if(sortColumn === 1) {
     let n1 = tds1[1] ? tds1[1].textContent.trim() : '';
@@ -899,10 +900,10 @@ function updateSortHeaders(table, sortColumn, sortDirection) {
 }
 
 function applyRankingTableState(table, tBody, state) {
-  let rows = Array.from(tBody.getElementsByTagName('tr'));
-  rows.sort((r1, r2) => compareRowsByColumn(r1, r2, state.sortColumn, state.sortDirection, state.filterLabel));
-  rows.forEach((row) => {
-    let tds = row.getElementsByTagName('td');
+  let rows = Array.from(tBody.getElementsByTagName('tr'))
+    .map(row => ({ row, tds: row.getElementsByTagName('td') }));
+  rows.sort((a, b) => compareRowsByColumn(a.tds, b.tds, state.sortColumn, state.sortDirection, state.filterLabel));
+  rows.forEach(({ row, tds }) => {
     let visible = !state.filterLabel || (tds[2] && tds[2].textContent.startsWith(state.filterLabel));
     row.style.display = visible ? 'table-row' : 'none';
     updateRankCellForFilter(tds[3], state.filterLabel);
@@ -935,6 +936,131 @@ function enableRankingTableSorting(table, tBody, state) {
   }
 }
 
+function buildRankingTable(div, name, puSchools, prSchools, rankingState) {
+  if(div.dataset.tableBuilt === '1') {
+    return;
+  }
+  let table = document.createElement('table');
+  table.style.marginLeft = 'auto';
+  table.style.marginRight = 'auto';
+  let tHead = document.createElement('thead');
+  table.appendChild(tHead);
+  let headTr = document.createElement('tr');
+  tHead.appendChild(headTr);
+  let headers = ['№', 'Училище', 'Тип / №', 'Ранг'];
+  for(let i = 0; i < 3; i++) {
+    headers.push((firstYear - 2001 + s[baseSchoolIndex].b.length - i) + ' ' + csvHeaderB + ' / уч.');
+    headers.push((firstYear - 2001 + s[baseSchoolIndex].b.length - i) + ' ' + csvHeaderM + ' / уч.');
+  }
+  if(hide2019TableFix) { // Remove this when 2022 results are available.
+    headers.pop();
+  }
+  headers.forEach((header) => {
+    let th = document.createElement('th');
+    th.appendChild(document.createTextNode(header));
+    th.style.overflow = 'hidden';
+    th.style.whiteSpace = 'nowrap';
+    headTr.appendChild(th);
+  });
+  let tBody = document.createElement('tbody');
+  tBody.id = 'tbl-' + si[name].n[0];
+  table.appendChild(tBody);
+  let schools = [];
+  for(let i = puSchools[0]; i <= puSchools[1]; i++) {
+    if(!s[i] || s[i].b[s[i].b.length - 1] === null) { continue; }
+    schools.push({i: i, t: 'Д'});
+  }
+  if(prSchools) {
+    for(let i = prSchools[0]; i <= prSchools[1]; i++) {
+      if(!s[i] || s[i].b[s[i].b.length - 1] === null) { continue; }
+      schools.push({i: i, t: 'Ч'});
+    }
+  }
+  let sortFunc = (o1, o2) => (s[o1.i].mb + s[o1.i].mm) / 2 < (s[o2.i].mb + s[o2.i].mm) / 2 ? 1 : -1;
+  schools.sort(sortFunc);
+  const { topRankAll, topRankPu, topRankPr } = calculateTopRanks(schools, !!prSchools);
+  let counter = 0;
+  let counterPu = 0;
+  let counterPr = 0;
+  let topRankDone = false;
+  schools.forEach((o) => {
+    let tr = document.createElement('tr');
+    tBody.appendChild(tr);
+    let td = document.createElement('td');
+    td.appendChild(document.createTextNode(++counter));
+    tr.appendChild(td);
+    td = document.createElement('td');
+    if(s[o.i].w) {
+      let a = document.createElement('a');
+      a.appendChild(document.createTextNode(s[o.i].l));
+      a.href = s[o.i].w;
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+      td.appendChild(a);
+    } else {
+      td.appendChild(document.createTextNode(s[o.i].l));
+    }
+    td.title = s[o.i].n;
+    tr.appendChild(td);
+    td = document.createElement('td');
+    td.appendChild(document.createTextNode(o.t + ' / ' + (o.t === 'Д' ? ++counterPu : ++counterPr)));
+    tr.appendChild(td);
+    td = document.createElement('td');
+    if(!topRankDone) {
+      td.appendChild(document.createTextNode('100'));
+      td.title = 'Среден резултат = ' + (topRankAll + rankBase).toFixed(2);
+      td.bgAll = '#00ff30';
+      td.rankAll = 100;
+      td.rankPu = o.t === 'Д' ? 100 : null;
+      td.rankPr = o.t === 'Ч' ? 100 : null;
+      td.bgPu = o.t === 'Д' ? '#00ff30': 'none';
+      td.bgPr = o.t === 'Ч' ? '#00ff30': 'none';
+      td.style.backgroundColor = td.bgAll;
+      topRankDone = true;
+    } else {
+      let rank = (s[o.i].mb + s[o.i].mm - rankBase * 2) / 2;
+      td.title = 'Среден резултат = ' + (rank + rankBase).toFixed(2);
+      let ardAll = calculateAdjustedRankData(rank, topRankAll);
+      td.bgAll = '#' + ardAll.redHex + ardAll.greenHex + ardAll.blueHex;
+      td.rankAll = normalizeRankValue(ardAll.adjustedRank);
+      let ardPu = calculateAdjustedRankData(rank, topRankPu);
+      td.bgPu = '#' + ardPu.redHex + ardPu.greenHex + ardPu.blueHex;
+      td.rankPu = normalizeRankValue(ardPu.adjustedRank);
+      if(topRankPr) {
+        let ardPr = calculateAdjustedRankData(rank, topRankPr);
+        td.bgPr = '#' + ardPr.redHex + ardPr.greenHex + ardPr.blueHex;
+        td.rankPr = normalizeRankValue(ardPr.adjustedRank);
+      } else {
+        td.bgPr = 'none';
+        td.rankPr = null;
+      }
+      td.style.backgroundColor = td.bgAll;
+      td.textContent = formatRankValue(td.rankAll);
+    }
+    tr.appendChild(td);
+    let totalYears = s[o.i].b.length;
+    for(let j = 0; j < 3; j++) {
+      td = document.createElement('td');
+      td.style.overflow = 'hidden';
+      td.style.whiteSpace = 'nowrap';
+      td.appendChild(document.createTextNode(s[o.i].b[totalYears - j - 1] ? s[o.i].b[totalYears - j - 1] + ' / ' + s[o.i].bu[totalYears - j - 1] : ''));
+      tr.appendChild(td);
+      td = document.createElement('td');
+      td.style.overflow = 'hidden';
+      td.style.whiteSpace = 'nowrap';
+      td.appendChild(document.createTextNode(s[o.i].m[totalYears - j - 1] ? s[o.i].m[totalYears - j - 1] + ' / ' + s[o.i].mu[totalYears - j - 1] : ''));
+      tr.appendChild(td);
+    }
+    if(hide2019TableFix) { // Remove this when 2022 results are available.
+      tr.removeChild(tr.lastChild);
+    }
+  });
+  div.appendChild(table);
+  enableRankingTableSorting(table, tBody, rankingState);
+  applyRankingTableState(table, tBody, rankingState);
+  div.dataset.tableBuilt = '1';
+}
+
 function generateHTMLTable(el, hrName, puSchools, prSchools, name) {
   let div = document.createElement('div');
   let rankingState = { sortColumn: 3, sortDirection: 'desc', filterLabel: null };
@@ -961,130 +1087,7 @@ function generateHTMLTable(el, hrName, puSchools, prSchools, name) {
   div.classList.add('row');
   div.id = 't' + hrName;
   div.style.display = 'none';
-  rankingTableBuilders[hrName] = () => {
-    if(div.dataset.tableBuilt === '1') {
-      return;
-    }
-    let table = document.createElement('table');
-    table.style.marginLeft = 'auto';
-    table.style.marginRight = 'auto';
-    let tHead = document.createElement('thead');
-    table.appendChild(tHead);
-    let headTr = document.createElement('tr');
-    tHead.appendChild(headTr);
-    let headers = ['№', 'Училище', 'Тип / №', 'Ранг'];
-    for(let i = 0; i < 3; i++) {
-      headers.push((firstYear - 2001 + s[baseSchoolIndex].b.length - i) + ' ' + csvHeaderB + ' / уч.');
-      headers.push((firstYear - 2001 + s[baseSchoolIndex].b.length - i) + ' ' + csvHeaderM + ' / уч.');
-    }
-    if(hide2019TableFix) { // Remove this when 2022 results are available.
-      headers.pop();
-    }
-    headers.forEach((header) => {
-      let th = document.createElement('th');
-      th.appendChild(document.createTextNode(header));
-      th.style.overflow = 'hidden';
-      th.style.whiteSpace = 'nowrap';
-      headTr.appendChild(th);
-    });
-    let tBody = document.createElement('tbody');
-    tBody.id = 'tbl-' + si[name].n[0];
-    table.appendChild(tBody);
-    let schools = [];
-    for(let i = puSchools[0]; i <= puSchools[1]; i++) {
-      if(!s[i] || s[i].b[s[i].b.length - 1] === null) { continue; }
-      schools.push({i: i, t: 'Д'});
-    }
-    if(prSchools) {
-      for(let i = prSchools[0]; i <= prSchools[1]; i++) {
-        if(!s[i] || s[i].b[s[i].b.length - 1] === null) { continue; }
-        schools.push({i: i, t: 'Ч'});
-      }
-    }
-    let sortFunc = (o1, o2) => (s[o1.i].mb + s[o1.i].mm) / 2 < (s[o2.i].mb + s[o2.i].mm) / 2 ? 1 : -1;
-    schools.sort(sortFunc);
-    const { topRankAll, topRankPu, topRankPr } = calculateTopRanks(schools, !!prSchools);
-    let counter = 0;
-    let counterPu = 0;
-    let counterPr = 0;
-    let topRankDone = false;
-    schools.forEach((o) => {
-      let tr = document.createElement('tr');
-      tBody.appendChild(tr);
-      let td = document.createElement('td');
-      td.appendChild(document.createTextNode(++counter));
-      tr.appendChild(td);
-      td = document.createElement('td');
-      if(s[o.i].w) {
-        let a = document.createElement('a');
-        a.appendChild(document.createTextNode(s[o.i].l));
-        a.href = s[o.i].w;
-        a.target = '_blank';
-        a.rel = 'noopener noreferrer';
-        td.appendChild(a);
-      } else {
-        td.appendChild(document.createTextNode(s[o.i].l));
-      }
-      td.title = s[o.i].n;
-      tr.appendChild(td);
-      td = document.createElement('td');
-      td.appendChild(document.createTextNode(o.t + ' / ' + (o.t === 'Д' ? ++counterPu : ++counterPr)));
-      tr.appendChild(td);
-      td = document.createElement('td');
-      if(!topRankDone) {
-        td.appendChild(document.createTextNode('100'));
-        td.title = 'Среден резултат = ' + (topRankAll + rankBase).toFixed(2);
-        td.bgAll = '#00ff30';
-        td.rankAll = 100;
-        td.rankPu = o.t === 'Д' ? 100 : null;
-        td.rankPr = o.t === 'Ч' ? 100 : null;
-        td.bgPu = o.t === 'Д' ? '#00ff30': 'none';
-        td.bgPr = o.t === 'Ч' ? '#00ff30': 'none';
-        td.style.backgroundColor = td.bgAll;
-        topRankDone = true;
-      } else {
-        let rank = (s[o.i].mb + s[o.i].mm - rankBase * 2) / 2;
-        td.title = 'Среден резултат = ' + (rank + rankBase).toFixed(2);
-        let ardAll = calculateAdjustedRankData(rank, topRankAll);
-        td.bgAll = '#' + ardAll.redHex + ardAll.greenHex + ardAll.blueHex;
-        td.rankAll = normalizeRankValue(ardAll.adjustedRank);
-        let ardPu = calculateAdjustedRankData(rank, topRankPu);
-        td.bgPu = '#' + ardPu.redHex + ardPu.greenHex + ardPu.blueHex;
-        td.rankPu = normalizeRankValue(ardPu.adjustedRank);
-        if(topRankPr) {
-          let ardPr = calculateAdjustedRankData(rank, topRankPr);
-          td.bgPr = '#' + ardPr.redHex + ardPr.greenHex + ardPr.blueHex;
-          td.rankPr = normalizeRankValue(ardPr.adjustedRank);
-        } else {
-          td.bgPr = 'none';
-          td.rankPr = null;
-        }
-        td.style.backgroundColor = td.bgAll;
-        td.textContent = formatRankValue(td.rankAll);
-      }
-      tr.appendChild(td);
-      let totalYears = s[o.i].b.length;
-      for(let j = 0; j < 3; j++) {
-        td = document.createElement('td');
-        td.style.overflow = 'hidden';
-        td.style.whiteSpace = 'nowrap';
-        td.appendChild(document.createTextNode(s[o.i].b[totalYears - j - 1] ? s[o.i].b[totalYears - j - 1] + ' / ' + s[o.i].bu[totalYears - j - 1] : ''));
-        tr.appendChild(td);
-        td = document.createElement('td');
-        td.style.overflow = 'hidden';
-        td.style.whiteSpace = 'nowrap';
-        td.appendChild(document.createTextNode(s[o.i].m[totalYears - j - 1] ? s[o.i].m[totalYears - j - 1] + ' / ' + s[o.i].mu[totalYears - j - 1] : ''));
-        tr.appendChild(td);
-      }
-      if(hide2019TableFix) { // Remove this when 2022 results are available.
-        tr.removeChild(tr.lastChild);
-      }
-    });
-    div.appendChild(table);
-    enableRankingTableSorting(table, tBody, rankingState);
-    applyRankingTableState(table, tBody, rankingState);
-    div.dataset.tableBuilt = '1';
-  };
+  rankingTableBuilders[hrName] = () => buildRankingTable(div, name, puSchools, prSchools, rankingState);
   el.appendChild(div);
 }
 
@@ -1485,9 +1488,7 @@ function enableFixedButtons() {
   if(btnClear) {
     btnClear.style.display = 'block';
     btnClear.onclick = () => {
-      s.forEach((_, i) => {
-        setButtonState(i, false);
-      });
+      [...selectedSchoolIndices].forEach((i) => setButtonState(i, false));
       pendingSelectedButtonIds = null;
       let mBtns = document.getElementsByClassName('mbtn');
       for(let mBtn of mBtns) {

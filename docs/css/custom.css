@@ -12,7 +12,7 @@ html {
   right: 2%;
   z-index: 99;
   display: none;
-  margin-bottom: 0px;
+  margin-bottom: 0;
 }
 
 .button,
@@ -31,13 +31,10 @@ button:last-child,
 input[type="submit"]:last-child,
 input[type="reset"]:last-child,
 input[type="button"]:last-child {
-  margin-right: 0px;
+  margin-right: 0;
 }
 
-a:link {
-  text-decoration: none;
-}
-
+a:link,
 a:visited {
   text-decoration: none;
 }
