@@ -3,6 +3,7 @@
 const TABLE_ROWS        = 15;
 const STABLE_MIN_SCORES = 4;
 const ALL_CITIES_VALUE  = '__all__';
+const CITY_SEPARATOR_LABEL = '────';
 const FEATURED_CITIES   = ['София', 'Пловдив', 'Варна', 'Бургас'];
 const OBLAST_CITIES     = [
   'Благоевград', 'Бургас', 'Варна', 'Велико Търново', 'Видин', 'Враца', 'Габрово',
@@ -53,6 +54,10 @@ async function loadGrade(grade) {
     }
   }
 
+  // Визуализира се прозорец от последните `numYears` години,
+  // броено назад от последната налична година с данни.
+  applyConfiguredYearWindow(data);
+
   // Изгражда map: индекс на училище → град
   data.cityMap = buildCityMap(data.si);
 
@@ -61,6 +66,38 @@ async function loadGrade(grade) {
 
   _cache[grade] = data;
   return data;
+}
+
+function applyConfiguredYearWindow(data) {
+  let maxLen = 0;
+  eachSchool(data.s, sch => {
+    maxLen = Math.max(maxLen, (sch.b && sch.b.length) || 0, (sch.m && sch.m.length) || 0);
+  });
+  if (maxLen === 0) return;
+
+  let last = -1;
+  outer: for (let yr = maxLen - 1; yr >= 0; yr--) {
+    for (let i = 0; i < data.s.length; i++) {
+      const sch = data.s[i];
+      if (sch && (sch.b[yr] != null || sch.m[yr] != null)) { last = yr; break outer; }
+    }
+  }
+  if (last < 0) return;
+
+  const span = Math.max(1, data.numYears || 1);
+  const start = Math.max(0, last - span + 1);
+  const end = last + 1;
+  const newNumYears = end - start;
+
+  eachSchool(data.s, sch => {
+    sch.b = (sch.b || []).slice(start, end);
+    sch.m = (sch.m || []).slice(start, end);
+    sch.bu = (sch.bu || []).slice(start, end);
+    sch.mu = (sch.mu || []).slice(start, end);
+  });
+
+  data.firstYear += start;
+  data.numYears = newNumYears;
 }
 
 // ─── Помощни функции ──────────────────────────────────────────────────────────
@@ -165,6 +202,111 @@ function buildOrderedCityOptions(si) {
     .sort(sortBg);
 
   return { featured, oblast, other };
+}
+
+function percentile(sorted, p) {
+  if (!sorted.length) return null;
+  const i = (p / 100) * (sorted.length - 1);
+  const lo = Math.floor(i);
+  const hi = Math.ceil(i);
+  return sorted[lo] + (sorted[hi] - sorted[lo]) * (i - lo);
+}
+
+function combinedScoreAtYear(sch, yr) {
+  const b = sch.b[yr];
+  const m = sch.m[yr];
+  if (b != null && m != null) return (b + m) / 2;
+  if (b != null) return b;
+  if (m != null) return m;
+  return null;
+}
+
+function combinedSeries(sch, yearsCount) {
+  const vals = [];
+  for (let yr = 0; yr < yearsCount; yr++) {
+    vals.push(combinedScoreAtYear(sch, yr));
+  }
+  return vals;
+}
+
+function movingAverage(arr, window) {
+  const res = [];
+  for (let i = 0; i < arr.length; i++) {
+    const from = Math.max(0, i - window + 1);
+    const part = arr.slice(from, i + 1).filter(v => v != null);
+    res.push(part.length ? +avg(part).toFixed(2) : null);
+  }
+  return res;
+}
+
+function isDziGrade() {
+  return _activeGrade === 12;
+}
+
+function gradeLabel() {
+  if (_activeGrade === 4) return 'НВО 4 клас';
+  if (_activeGrade === 7) return 'НВО 7 клас';
+  if (_activeGrade === 10) return 'НВО 10 клас';
+  return 'ДЗИ 12 клас';
+}
+
+function setSectionBaseTitle(id, title) {
+  const el = document.getElementById(id);
+  if (el) el.dataset.baseTitle = title;
+}
+
+function applyGradeSuffixToSectionTitles() {
+  const prefix = gradeLabel() + ' - ';
+  document.querySelectorAll('#stats-content .stat-section h5').forEach(h => {
+    if (!h.dataset.baseTitle) {
+      h.dataset.baseTitle = h.textContent.replace(/\s+-\s+(НВО 4 клас|НВО 7 клас|НВО 10 клас|ДЗИ 12 клас)$/, '');
+    }
+    h.textContent = prefix + h.dataset.baseTitle;
+  });
+}
+
+function subjectTerms(data) {
+  const bRaw = data.chartBTitle.split(' - ').pop();
+  const mRaw = data.chartMTitle.split(' - ').pop();
+  if (isDziGrade()) {
+    return {
+      bAxis: 'БЕЛ (средна)',
+      mAxis: 'ДЗИ-2 (средна)',
+      bShort: 'БЕЛ',
+      mShort: 'ДЗИ-2',
+      bTooltip: 'БЕЛ',
+      mTooltip: 'ДЗИ-2'
+    };
+  }
+  return {
+    bAxis: 'БЕЛ (средна)',
+    mAxis: 'МАТ (средна)',
+    bShort: bRaw,
+    mShort: mRaw,
+    bTooltip: 'БЕЛ',
+    mTooltip: 'МАТ'
+  };
+}
+
+function updateTerminologyUI() {
+  const noteBelMat = document.getElementById('note-bel-mat');
+  const detailGap = document.getElementById('detail-bel-mat-gap');
+
+  if (isDziGrade()) {
+    setSectionBaseTitle('title-bel-mat', 'Матура по БЕЛ спрямо ДЗИ-2');
+    if (noteBelMat) noteBelMat.textContent = 'Всяка точка е училище със среден резултат по двете матури.';
+    setSectionBaseTitle('title-bel-mat-gap', 'Най-голяма разлика между двете матури');
+    if (detailGap) detailGap.textContent = 'Таблиците показват училища с ясно изразен превес в едната матура. Лявата е за по-силен резултат на матурата по БЕЛ, дясната за по-силен резултат на ДЗИ-2.';
+    setSectionBaseTitle('title-profile-stability', 'Стабилност на профила (БЕЛ спрямо ДЗИ-2)');
+  } else {
+    setSectionBaseTitle('title-bel-mat', 'БЕЛ спрямо МАТ');
+    if (noteBelMat) noteBelMat.textContent = 'Всяка точка е училище със среден резултат по двата предмета.';
+    setSectionBaseTitle('title-bel-mat-gap', 'Най-голяма разлика между двата предмета');
+    if (detailGap) detailGap.textContent = 'Таблиците са полезни, ако търсите училище с по-изразен профил. Лявата е за превес на БЕЛ, дясната за превес на МАТ.';
+    setSectionBaseTitle('title-profile-stability', 'Стабилност на предметния профил (БЕЛ-МАТ)');
+  }
+
+  applyGradeSuffixToSectionTitles();
 }
 
 // ─── Изчисления ───────────────────────────────────────────────────────────────
@@ -588,6 +730,294 @@ function computeStable(data) {
   return rows.sort((a, b) => a.std - b.std).slice(0, TABLE_ROWS);
 }
 
+function computeRankStability(data) {
+  const years = buildYears(data);
+  const ranksBySchool = {};
+  for (let yr = 0; yr < years.length; yr++) {
+    const rows = [];
+    eachSchool(data.s, (sch, idx) => {
+      const v = combinedScoreAtYear(sch, yr);
+      if (v != null) rows.push({ idx, v });
+    });
+    rows.sort((a, b) => b.v - a.v);
+    rows.forEach((r, i) => {
+      if (!ranksBySchool[r.idx]) ranksBySchool[r.idx] = [];
+      ranksBySchool[r.idx].push(i + 1);
+    });
+  }
+  const points = [];
+  Object.keys(ranksBySchool).forEach(k => {
+    const idx = +k;
+    const ranks = ranksBySchool[idx];
+    if (ranks.length < 3) return;
+    points.push({
+      x: +avg(ranks).toFixed(2),
+      y: +stdDev(ranks).toFixed(2),
+      name: schoolLabel(data.s[idx], idx, data.cityMap)
+    });
+  });
+  return points;
+}
+
+function computeSmoothedNationalTrend(data) {
+  const { years, bel, mat } = computeNationalAverage(data);
+  return {
+    years,
+    belRaw: bel,
+    matRaw: mat,
+    belSmooth: movingAverage(bel, 3),
+    matSmooth: movingAverage(mat, 3)
+  };
+}
+
+function computeConfidenceVsSize(data) {
+  const years = buildYears(data);
+  const points = [];
+  eachSchool(data.s, (sch, idx) => {
+    const scores = [];
+    const counts = [];
+    for (let yr = 0; yr < years.length; yr++) {
+      const score = combinedScoreAtYear(sch, yr);
+      if (score == null) continue;
+      const participants = Math.max((sch.bu && sch.bu[yr]) || 0, (sch.mu && sch.mu[yr]) || 0);
+      if (participants <= 0) continue;
+      scores.push(score);
+      counts.push(participants);
+    }
+    if (scores.length < 3) return;
+    const sd = stdDev(scores);
+    if (sd == null) return;
+    const ci95 = 1.96 * sd / Math.sqrt(scores.length);
+    points.push({
+      x: +avg(counts).toFixed(0),
+      y: +ci95.toFixed(2),
+      name: schoolLabel(sch, idx, data.cityMap)
+    });
+  });
+  return points;
+}
+
+function computeDeltaFromBenchmarks(data) {
+  const cityAgg = {};
+  let bS = 0, bW = 0, mS = 0, mW = 0;
+  eachSchool(data.s, (sch, idx) => {
+    const city = data.cityMap[idx];
+    if (!cityAgg[city]) cityAgg[city] = { bS: 0, bW: 0, mS: 0, mW: 0 };
+    const c = cityAgg[city];
+    sch.b.forEach((v, yr) => {
+      if (v == null) return;
+      const w = (sch.bu && sch.bu[yr]) || 1;
+      bS += v * w; bW += w;
+      c.bS += v * w; c.bW += w;
+    });
+    sch.m.forEach((v, yr) => {
+      if (v == null) return;
+      const w = (sch.mu && sch.mu[yr]) || 1;
+      mS += v * w; mW += w;
+      c.mS += v * w; c.mW += w;
+    });
+  });
+  const nationalAvg = (bW > 0 && mW > 0) ? (bS / bW + mS / mW) / 2 : null;
+  if (nationalAvg == null) return { over: [], under: [] };
+
+  const rows = [];
+  eachSchool(data.s, (sch, idx) => {
+    const b = avg(sch.b);
+    const m = avg(sch.m);
+    if (b == null || m == null) return;
+    const city = data.cityMap[idx];
+    const c = cityAgg[city];
+    const cityAvg = c && c.bW > 0 && c.mW > 0 ? (c.bS / c.bW + c.mS / c.mW) / 2 : null;
+    rows.push({
+      name: schoolLabel(sch, idx, data.cityMap),
+      schoolAvg: +((b + m) / 2).toFixed(2),
+      deltaNational: +(((b + m) / 2 - nationalAvg).toFixed(2)),
+      deltaCity: cityAvg == null ? null : +(((b + m) / 2 - cityAvg).toFixed(2))
+    });
+  });
+  rows.sort((a, b) => b.deltaNational - a.deltaNational);
+  return {
+    over: rows.slice(0, TABLE_ROWS),
+    under: rows.slice(-TABLE_ROWS).reverse()
+  };
+}
+
+function computeCityConvergence(data) {
+  const years = buildYears(data);
+  const spread = [];
+  const p90p10 = [];
+  for (let yr = 0; yr < years.length; yr++) {
+    const cityAcc = {};
+    eachSchool(data.s, (sch, idx) => {
+      const score = combinedScoreAtYear(sch, yr);
+      if (score == null) return;
+      const city = data.cityMap[idx] || '(без град)';
+      if (!cityAcc[city]) cityAcc[city] = { s: 0, w: 0 };
+      const w = Math.max((sch.bu && sch.bu[yr]) || 0, (sch.mu && sch.mu[yr]) || 0, 1);
+      cityAcc[city].s += score * w;
+      cityAcc[city].w += w;
+    });
+    const cityVals = Object.values(cityAcc).filter(v => v.w > 0).map(v => v.s / v.w).sort((a, b) => a - b);
+    if (cityVals.length < 2) {
+      spread.push(null);
+      p90p10.push(null);
+      continue;
+    }
+    spread.push(+(cityVals[cityVals.length - 1] - cityVals[0]).toFixed(2));
+    p90p10.push(+(percentile(cityVals, 90) - percentile(cityVals, 10)).toFixed(2));
+  }
+  return { years, spread, p90p10 };
+}
+
+function computeSubjectProfileStability(data) {
+  const years = buildYears(data);
+  const points = [];
+  eachSchool(data.s, (sch, idx) => {
+    const gaps = [];
+    for (let yr = 0; yr < years.length; yr++) {
+      if (sch.b[yr] != null && sch.m[yr] != null) gaps.push(sch.b[yr] - sch.m[yr]);
+    }
+    if (gaps.length < 3) return;
+    points.push({
+      x: +avg(gaps).toFixed(2),
+      y: +stdDev(gaps).toFixed(2),
+      name: schoolLabel(sch, idx, data.cityMap)
+    });
+  });
+  return points;
+}
+
+function computeQuadrantMigration(data) {
+  const years = buildYears(data);
+  const quadrantNames = ['Шампиони', 'Изгряващи', 'В упадък', 'Проблемни'];
+  if (years.length < 3) return { quadrantNames, matrix: [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]] };
+
+  const yearMedians = [];
+  for (let yr = 0; yr < years.length; yr++) {
+    const scores = [];
+    eachSchool(data.s, sch => {
+      const s = combinedScoreAtYear(sch, yr);
+      if (s != null) scores.push(s);
+    });
+    scores.sort((a, b) => a - b);
+    yearMedians[yr] = percentile(scores, 50);
+  }
+
+  const matrix = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]];
+  function quadrant(score, change, median) {
+    if (score >= median && change >= 0) return 0;
+    if (score < median && change >= 0) return 1;
+    if (score >= median && change < 0) return 2;
+    return 3;
+  }
+
+  eachSchool(data.s, sch => {
+    for (let yr = 2; yr < years.length; yr++) {
+      const y0 = combinedScoreAtYear(sch, yr - 2);
+      const y1 = combinedScoreAtYear(sch, yr - 1);
+      const y2 = combinedScoreAtYear(sch, yr);
+      if (y0 == null || y1 == null || y2 == null) continue;
+      const prevQ = quadrant(y1, y1 - y0, yearMedians[yr - 1]);
+      const currQ = quadrant(y2, y2 - y1, yearMedians[yr]);
+      matrix[prevQ][currQ]++;
+    }
+  });
+  return { quadrantNames, matrix };
+}
+
+function computeCityInequalityIndex(data) {
+  const byCity = {};
+  eachSchool(data.s, (sch, idx) => {
+    const b = avg(sch.b), m = avg(sch.m);
+    if (b == null || m == null) return;
+    const city = data.cityMap[idx];
+    if (!byCity[city]) byCity[city] = [];
+    byCity[city].push((b + m) / 2);
+  });
+  const rows = [];
+  Object.keys(byCity).forEach(city => {
+    const vals = byCity[city].sort((a, b) => a - b);
+    if (vals.length < 5) return;
+    rows.push({
+      city,
+      spread: +(percentile(vals, 90) - percentile(vals, 10)).toFixed(2)
+    });
+  });
+  return rows.sort((a, b) => b.spread - a.spread);
+}
+
+function computePersistentDeciles(data) {
+  const years = buildYears(data);
+  const topCnt = {}, bottomCnt = {}, seenCnt = {};
+  for (let yr = 0; yr < years.length; yr++) {
+    const rows = [];
+    eachSchool(data.s, (sch, idx) => {
+      const v = combinedScoreAtYear(sch, yr);
+      if (v == null) return;
+      rows.push({ idx, v });
+      seenCnt[idx] = (seenCnt[idx] || 0) + 1;
+    });
+    rows.sort((a, b) => b.v - a.v);
+    if (!rows.length) continue;
+    const n = Math.max(1, Math.ceil(rows.length * 0.1));
+    rows.slice(0, n).forEach(r => { topCnt[r.idx] = (topCnt[r.idx] || 0) + 1; });
+    rows.slice(-n).forEach(r => { bottomCnt[r.idx] = (bottomCnt[r.idx] || 0) + 1; });
+  }
+  function mkRows(counter) {
+    return Object.keys(counter).map(k => {
+      const idx = +k;
+      const count = counter[idx];
+      const seen = seenCnt[idx] || 1;
+      return {
+        name: schoolLabel(data.s[idx], idx, data.cityMap),
+        count,
+        seen,
+        ratio: +((count / seen) * 100).toFixed(1)
+      };
+    }).sort((a, b) => b.count - a.count || b.ratio - a.ratio).slice(0, TABLE_ROWS);
+  }
+  return { top: mkRows(topCnt), bottom: mkRows(bottomCnt) };
+}
+
+function computeCompositeScore(data) {
+  const years = buildYears(data);
+  const rows = [];
+  eachSchool(data.s, (sch, idx) => {
+    const series = combinedSeries(sch, years.length).filter(v => v != null);
+    const recent = combinedSeries(sch, years.length).slice(-TREND_YEARS).filter(v => v != null);
+    if (series.length < 3 || recent.length < 2) return;
+    const level = avg(series);
+    const stability = stdDev(recent);
+    if (level == null || stability == null) return;
+    const trend = recent[recent.length - 1] - recent[0];
+    rows.push({
+      name: schoolLabel(sch, idx, data.cityMap),
+      level,
+      stability,
+      trend
+    });
+  });
+  if (!rows.length) return [];
+
+  const lvlVals = rows.map(r => r.level);
+  const stabVals = rows.map(r => r.stability);
+  const trVals = rows.map(r => r.trend);
+  const minMax = vals => ({ min: Math.min(...vals), max: Math.max(...vals) });
+  const lvlMM = minMax(lvlVals), stabMM = minMax(stabVals), trMM = minMax(trVals);
+  const norm = (v, mm) => mm.max === mm.min ? 0.5 : (v - mm.min) / (mm.max - mm.min);
+
+  rows.forEach(r => {
+    const lvl = norm(r.level, lvlMM);
+    const st = 1 - norm(r.stability, stabMM);
+    const tr = norm(r.trend, trMM);
+    r.score = +(100 * (0.5 * lvl + 0.25 * st + 0.25 * tr)).toFixed(2);
+    r.level = +r.level.toFixed(2);
+    r.stability = +r.stability.toFixed(2);
+    r.trend = +r.trend.toFixed(2);
+  });
+  return rows.sort((a, b) => b.score - a.score).slice(0, TABLE_ROWS);
+}
+
 // ─── Рендиране на графики ─────────────────────────────────────────────────────
 
 function chart(id, config) {
@@ -751,13 +1181,14 @@ function renderBelMatScatter(data) {
   const pts = computeBelMatScatter(data);
   const xb = axisBounds(pts.map(p => p.x), data);
   const yb = axisBounds(pts.map(p => p.y), data);
+  const t = subjectTerms(data);
   chart('chart-bel-mat', {
     chart: { type: 'scatter' },
-    xAxis: { title: { text: 'БЕЛ (средна)' }, min: xb.min, max: xb.max },
-    yAxis: { title: { text: 'МАТ (средна)' }, min: yb.min, max: yb.max },
+    xAxis: { title: { text: t.bAxis }, min: xb.min, max: xb.max },
+    yAxis: { title: { text: t.mAxis }, min: yb.min, max: yb.max },
     tooltip: {
       formatter() {
-        return '<b>' + this.point.name + '</b><br>БЕЛ: ' + this.x + '<br>МАТ: ' + this.y;
+        return '<b>' + this.point.name + '</b><br>' + t.bTooltip + ': ' + this.x + '<br>' + t.mTooltip + ': ' + this.y;
       }
     },
     plotOptions: { scatter: { marker: { radius: 3, symbol: 'circle' } } },
@@ -766,8 +1197,9 @@ function renderBelMatScatter(data) {
 }
 
 function renderBelMatGap(data) {
-  const bLabel = data.chartBTitle.split(' - ').pop();
-  const mLabel = data.chartMTitle.split(' - ').pop();
+  const t = subjectTerms(data);
+  const bLabel = t.bShort;
+  const mLabel = t.mShort;
   document.getElementById('lbl-bel-leads').textContent = bLabel + ' > ' + mLabel;
   document.getElementById('lbl-mat-leads').textContent = mLabel + ' > ' + bLabel;
 
@@ -800,16 +1232,38 @@ function renderQuadrantScatter(data) {
       title: { text: 'Средна оценка (всички години)' },
       min: xb.min, max: xb.max,
       plotLines: [{ value: medianAvg, color: '#999', dashStyle: 'Dot', width: 1, zIndex: 3,
-        label: { text: 'медиана', style: { color: '#999', fontSize: '0.9em' }, align: 'right', y: 12 } }]
+        label: {
+          text: 'Медиана',
+          rotation: 0,
+          align: 'center',
+          y: 14,
+          style: { color: '#666', fontSize: '0.9em', textOutline: 'none' }
+        } }]
     },
     yAxis: {
       title: { text: 'Промяна (последни ' + TREND_YEARS + ' год.)' },
       min: -yAbs, max: yAbs,
-      plotLines: [{ value: 0, color: '#999', dashStyle: 'Dot', width: 1, zIndex: 3 }]
+      plotLines: [{ value: 0, color: '#999', dashStyle: 'Dot', width: 1, zIndex: 3 }],
+      plotBands: [
+        {
+          from: 0,
+          to: yAbs,
+          color: 'rgba(39,174,96,0.04)',
+          label: { text: 'Подобрение (↑)', align: 'right', x: -10, y: 16, style: { color: '#27ae60', fontSize: '0.9em' } }
+        },
+        {
+          from: -yAbs,
+          to: 0,
+          color: 'rgba(192,57,43,0.04)',
+          label: { text: 'Влошаване (↓)', align: 'right', x: -10, y: -8, style: { color: '#c0392b', fontSize: '0.9em' } }
+        }
+      ]
     },
     tooltip: {
       formatter() {
-        return '<b>' + this.point.name + '</b><br>Средна: ' + this.x + '<br>Промяна: ' + this.y;
+        const direction = this.y > 0 ? 'подобрение' : this.y < 0 ? 'влошаване' : 'без промяна';
+        const sign = this.y > 0 ? '+' : '';
+        return '<b>' + this.point.name + '</b><br>Средна: ' + this.x + '<br>Промяна: ' + sign + this.y + ' (' + direction + ')';
       }
     },
     plotOptions: { scatter: { marker: { radius: 3, symbol: 'circle' } } },
@@ -835,7 +1289,7 @@ function renderSizeScatter(data) {
       }
     },
     plotOptions: { scatter: { marker: { radius: 3, symbol: 'circle' } } },
-    series: [{ name: 'Училища', color: 'rgba(200,80,30,0.35)', data: pts }]
+    series: [{ name: 'Училища', color: 'rgba(200,80,30,0.35)', data: pts, showInLegend: false }]
   });
 }
 
@@ -874,6 +1328,100 @@ function renderImprovementRate(data) {
       { name: 'Стабилни',     data: stable,   color: 'rgba(150,150,150,0.6)' },
       { name: 'Влошили се',   data: declined, color: 'rgba(192,57,43,0.8)'   }
     ]
+  });
+}
+
+function renderRankStability(data) {
+  const pts = computeRankStability(data);
+  chart('chart-rank-stability', {
+    chart: { type: 'scatter' },
+    xAxis: { title: { text: 'Среден ранг (по-ниско = по-добре)' }, reversed: true, min: 1 },
+    yAxis: { title: { text: 'σ на ранга' }, min: 0 },
+    tooltip: {
+      formatter() {
+        return '<b>' + this.point.name + '</b><br>Среден ранг: ' + this.x + '<br>σ: ' + this.y;
+      }
+    },
+    plotOptions: { scatter: { marker: { radius: 3, symbol: 'circle' } } },
+    series: [{ name: 'Училища', color: 'rgba(41,128,185,0.35)', data: pts, showInLegend: false }]
+  });
+}
+
+function renderSmoothedNationalTrend(data) {
+  const { years, belRaw, matRaw, belSmooth, matSmooth } = computeSmoothedNationalTrend(data);
+  const yb = axisBounds(belRaw.concat(matRaw), data);
+  const bLabel = data.chartBTitle.split(' - ').pop();
+  const mLabel = data.chartMTitle.split(' - ').pop();
+  chart('chart-smoothed-trend', {
+    xAxis: { categories: years },
+    yAxis: { title: { text: null }, min: yb.min, max: yb.max },
+    tooltip: { valueDecimals: 2, shared: true },
+    series: [
+      { name: bLabel + ' (сурова)', data: belRaw, color: 'rgba(39,174,96,0.35)', dashStyle: 'ShortDot' },
+      { name: bLabel + ' (MA3)', data: belSmooth, color: '#27ae60', lineWidth: 3 },
+      { name: mLabel + ' (сурова)', data: matRaw, color: 'rgba(52,152,219,0.35)', dashStyle: 'ShortDot' },
+      { name: mLabel + ' (MA3)', data: matSmooth, color: '#2980b9', lineWidth: 3 }
+    ]
+  });
+}
+
+function renderConfidenceVsSize(data) {
+  const pts = computeConfidenceVsSize(data);
+  chart('chart-confidence-size', {
+    chart: { type: 'scatter' },
+    xAxis: { title: { text: 'Среден брой ученици' }, min: 0 },
+    yAxis: { title: { text: '95% интервал (± точки)' }, min: 0 },
+    tooltip: {
+      formatter() {
+        return '<b>' + this.point.name + '</b><br>Ученици: ' + this.x + '<br>CI95: ±' + this.y;
+      }
+    },
+    plotOptions: { scatter: { marker: { radius: 3, symbol: 'circle' } } },
+    series: [{ name: 'Училища', color: 'rgba(192,57,43,0.35)', data: pts, showInLegend: false }]
+  });
+}
+
+function renderCityConvergence(data) {
+  const { years, spread, p90p10 } = computeCityConvergence(data);
+  chart('chart-city-convergence', {
+    xAxis: { categories: years },
+    yAxis: { title: { text: 'Точки' }, min: 0 },
+    tooltip: { valueDecimals: 2, shared: true },
+    series: [
+      { name: 'Разлика лидер-изоставащ', data: spread, color: '#8e44ad' },
+      { name: 'P90-P10 между градовете', data: p90p10, color: '#16a085', dashStyle: 'ShortDot' }
+    ]
+  });
+}
+
+function renderSubjectProfileStability(data) {
+  const pts = computeSubjectProfileStability(data);
+  const t = subjectTerms(data);
+  chart('chart-profile-stability', {
+    chart: { type: 'scatter' },
+    xAxis: {
+      title: { text: 'Средна разлика ' + t.bShort + ' - ' + t.mShort },
+      plotLines: [{ value: 0, color: '#999', dashStyle: 'Dot', width: 1, zIndex: 3 }]
+    },
+    yAxis: { title: { text: 'σ на разликата' }, min: 0 },
+    tooltip: {
+      formatter() {
+        return '<b>' + this.point.name + '</b><br>Средна разлика: ' + this.x + '<br>σ: ' + this.y;
+      }
+    },
+    plotOptions: { scatter: { marker: { radius: 3, symbol: 'circle' } } },
+    series: [{ name: 'Училища', color: 'rgba(52,73,94,0.35)', data: pts, showInLegend: false }]
+  });
+}
+
+function renderCityInequalityIndex(data) {
+  const rows = computeCityInequalityIndex(data);
+  chart('chart-city-inequality-index', {
+    chart: { type: 'bar', height: Math.max(320, rows.length * 22 + 80) },
+    xAxis: { categories: rows.map(r => r.city) },
+    yAxis: { title: { text: 'P90-P10' }, min: 0 },
+    tooltip: { valueDecimals: 2 },
+    series: [{ name: 'Неравенство', data: rows.map(r => r.spread), showInLegend: false, color: 'rgba(142,68,173,0.7)' }]
   });
 }
 
@@ -932,24 +1480,118 @@ function stableTable(rows) {
   document.getElementById('tbl-stable').innerHTML = html + '</tbody>';
 }
 
+function deltaBenchmarkTables(data) {
+  const { over, under } = computeDeltaFromBenchmarks(data);
+  let h1 = '<thead><tr><th>#</th><th>Училище</th><th>Средна</th><th>Δ нац.</th><th>Δ град</th></tr></thead><tbody>';
+  over.forEach((r, i) => {
+    const dCity = r.deltaCity == null ? '—' : (r.deltaCity > 0 ? '+' : '') + r.deltaCity.toFixed(2);
+    const dNat = (r.deltaNational > 0 ? '+' : '') + r.deltaNational.toFixed(2);
+    const cls = r.deltaNational >= 0 ? 'pos' : 'neg';
+    h1 += '<tr><td>' + (i + 1) + '</td><td>' + r.name +
+      '</td><td>' + r.schoolAvg.toFixed(2) + '</td><td class="' + cls + '">' + dNat +
+      '</td><td>' + dCity + '</td></tr>';
+  });
+  document.getElementById('tbl-delta-over').innerHTML = h1 + '</tbody>';
+
+  let h2 = '<thead><tr><th>#</th><th>Училище</th><th>Средна</th><th>Δ нац.</th><th>Δ град</th></tr></thead><tbody>';
+  under.forEach((r, i) => {
+    const dCity = r.deltaCity == null ? '—' : (r.deltaCity > 0 ? '+' : '') + r.deltaCity.toFixed(2);
+    const dNat = (r.deltaNational > 0 ? '+' : '') + r.deltaNational.toFixed(2);
+    const cls = r.deltaNational >= 0 ? 'pos' : 'neg';
+    h2 += '<tr><td>' + (i + 1) + '</td><td>' + r.name +
+      '</td><td>' + r.schoolAvg.toFixed(2) + '</td><td class="' + cls + '">' + dNat +
+      '</td><td>' + dCity + '</td></tr>';
+  });
+  document.getElementById('tbl-delta-under').innerHTML = h2 + '</tbody>';
+}
+
+function quadrantMigrationTable(data) {
+  const { quadrantNames, matrix } = computeQuadrantMigration(data);
+  let allTransitions = 0;
+  let stableTransitions = 0;
+  matrix.forEach((row, i) => {
+    row.forEach((v, j) => {
+      allTransitions += v;
+      if (i === j) stableTransitions += v;
+    });
+  });
+  const stablePct = allTransitions > 0 ? +(stableTransitions / allTransitions * 100).toFixed(1) : 0;
+  const summary = document.getElementById('quadrant-migration-summary');
+  if (summary) {
+    summary.textContent = allTransitions > 0
+      ? 'Общо преходи: ' + allTransitions + '. Останали в същата група: ' + stableTransitions + ' (' + stablePct + '%).'
+      : 'Няма достатъчно данни за преходи между групите.';
+  }
+
+  let html = '<thead><tr><th>От група \\ Към група</th>';
+  quadrantNames.forEach(name => { html += '<th>Към: ' + name + '</th>'; });
+  html += '<th>Общо</th></tr></thead><tbody>';
+  matrix.forEach((row, i) => {
+    const total = row.reduce((a, b) => a + b, 0);
+    html += '<tr><td><strong>От: ' + quadrantNames[i] + '</strong></td>';
+    row.forEach((v, j) => {
+      const pct = total > 0 ? +(v / total * 100).toFixed(1) : 0;
+      const cls = i === j ? ' class="pos"' : '';
+      html += '<td' + cls + '>' + v + ' <span style="color:#666">(' + pct + '%)</span></td>';
+    });
+    html += '<td><strong>' + total + '</strong></td></tr>';
+  });
+  html += '</tbody>';
+  document.getElementById('tbl-quadrant-migration').innerHTML = html;
+}
+
+function persistentDecilesTables(data) {
+  const { top, bottom } = computePersistentDeciles(data);
+  let h1 = '<thead><tr><th>#</th><th>Училище</th><th>Топ 10%</th><th>Години</th><th>%</th></tr></thead><tbody>';
+  top.forEach((r, i) => {
+    h1 += '<tr><td>' + (i + 1) + '</td><td>' + r.name +
+      '</td><td>' + r.count + '</td><td>' + r.seen + '</td><td>' + r.ratio.toFixed(1) + '%</td></tr>';
+  });
+  document.getElementById('tbl-persistent-top').innerHTML = h1 + '</tbody>';
+
+  let h2 = '<thead><tr><th>#</th><th>Училище</th><th>Дъно 10%</th><th>Години</th><th>%</th></tr></thead><tbody>';
+  bottom.forEach((r, i) => {
+    h2 += '<tr><td>' + (i + 1) + '</td><td>' + r.name +
+      '</td><td>' + r.count + '</td><td>' + r.seen + '</td><td>' + r.ratio.toFixed(1) + '%</td></tr>';
+  });
+  document.getElementById('tbl-persistent-bottom').innerHTML = h2 + '</tbody>';
+}
+
+function compositeScoreTable(data) {
+  const rows = computeCompositeScore(data);
+  let html = '<thead><tr><th>#</th><th>Училище</th><th>Индекс</th><th>Ниво</th><th>Стабилност (σ)</th><th>Тренд</th></tr></thead><tbody>';
+  rows.forEach((r, i) => {
+    const tr = (r.trend > 0 ? '+' : '') + r.trend.toFixed(2);
+    html += '<tr><td>' + (i + 1) + '</td><td>' + r.name +
+      '</td><td><strong>' + r.score.toFixed(2) + '</strong></td><td>' + r.level.toFixed(2) +
+      '</td><td>' + r.stability.toFixed(2) + '</td><td>' + tr + '</td></tr>';
+  });
+  document.getElementById('tbl-composite').innerHTML = html + '</tbody>';
+}
+
 const SECTION_DEFS = [
   { key: 'participation', anchorId: 'chart-participation', filterable: true, render: d => renderParticipation(d) },
   { key: 'national', anchorId: 'chart-national', filterable: true, render: d => renderNationalAverage(d) },
+  { key: 'smoothed-trend', anchorId: 'chart-smoothed-trend', filterable: true, render: d => renderSmoothedNationalTrend(d) },
   { key: 'yoy', anchorId: 'chart-yoy', filterable: true, render: d => renderYearOverYear(d) },
+  { key: 'improvement-rate', anchorId: 'chart-improvement-rate', filterable: true, render: d => renderImprovementRate(d) },
   { key: 'percentile', anchorId: 'chart-percentile-fan', filterable: true, render: d => renderPercentileFan(d) },
   { key: 'inequality', anchorId: 'chart-inequality', filterable: true, render: d => renderInequalityTrend(d) },
   { key: 'pubpriv', anchorId: 'chart-pubpriv', filterable: true, render: d => renderPublicPrivate(d) },
   { key: 'city-rank', anchorId: 'chart-city', filterable: false, render: d => renderCityRankings(d) },
+  { key: 'city-inequality-index', anchorId: 'chart-city-inequality-index', filterable: false, render: d => renderCityInequalityIndex(d) },
+  { key: 'city-convergence', anchorId: 'chart-city-convergence', filterable: false, render: d => renderCityConvergence(d) },
   { key: 'city-concentration', anchorId: 'chart-city-concentration', filterable: false, render: d => renderTopCityConcentration(d) },
   { key: 'distribution', anchorId: 'chart-dist', filterable: true, render: d => renderDistribution(d) },
   { key: 'size-distribution', anchorId: 'chart-size-dist', filterable: true, render: d => renderSizeDistribution(d) },
   { key: 'bel-mat', anchorId: 'chart-bel-mat', filterable: true, render: d => renderBelMatScatter(d) },
   { key: 'bel-mat-gap', anchorId: 'tbl-bel-leads', filterable: true, render: d => renderBelMatGap(d) },
-  { key: 'quadrant', anchorId: 'chart-quadrant', filterable: true, render: d => renderQuadrantScatter(d) },
+  { key: 'profile-stability', anchorId: 'chart-profile-stability', filterable: true, render: d => renderSubjectProfileStability(d) },
   { key: 'size', anchorId: 'chart-size', filterable: true, render: d => renderSizeScatter(d) },
   { key: 'stability-size', anchorId: 'chart-stability-size', filterable: true, render: d => renderStabilityVsSize(d) },
-  { key: 'top', anchorId: 'tbl-top', filterable: true, render: d => topTable(computeTopSchools(d), d) },
-  { key: 'large-schools', anchorId: 'tbl-large-schools', filterable: true, render: d => largeSchoolsTable(computeTopLargeSchools(d), d) },
+  { key: 'confidence-size', anchorId: 'chart-confidence-size', filterable: true, render: d => renderConfidenceVsSize(d) },
+  { key: 'quadrant', anchorId: 'chart-quadrant', filterable: true, render: d => renderQuadrantScatter(d) },
+  { key: 'quadrant-migration', anchorId: 'tbl-quadrant-migration', filterable: true, render: d => quadrantMigrationTable(d) },
   {
     key: 'trend',
     anchorId: 'tbl-improved',
@@ -960,9 +1602,14 @@ const SECTION_DEFS = [
       trendTable('tbl-declined', tr.declined);
     }
   },
-  { key: 'improvement-rate', anchorId: 'chart-improvement-rate', filterable: true, render: d => renderImprovementRate(d) },
   { key: 'consistent', anchorId: 'tbl-consistent', filterable: true, render: d => consistentTable(computeConsistentlyImproving(d)) },
-  { key: 'stable', anchorId: 'tbl-stable', filterable: true, render: d => stableTable(computeStable(d)) }
+  { key: 'stable', anchorId: 'tbl-stable', filterable: true, render: d => stableTable(computeStable(d)) },
+  { key: 'rank-stability', anchorId: 'chart-rank-stability', filterable: true, render: d => renderRankStability(d) },
+  { key: 'top', anchorId: 'tbl-top', filterable: true, render: d => topTable(computeTopSchools(d), d) },
+  { key: 'large-schools', anchorId: 'tbl-large-schools', filterable: true, render: d => largeSchoolsTable(computeTopLargeSchools(d), d) },
+  { key: 'delta-benchmark', anchorId: 'tbl-delta-over', filterable: true, render: d => deltaBenchmarkTables(d) },
+  { key: 'persistent-deciles', anchorId: 'tbl-persistent-top', filterable: true, render: d => persistentDecilesTables(d) },
+  { key: 'composite', anchorId: 'tbl-composite', filterable: true, render: d => compositeScoreTable(d) }
 ];
 
 function ensureCitySelectors() {
@@ -1004,7 +1651,7 @@ function syncCitySelectors(data) {
     if (featured.length || oblast.length || other.length) {
       const sep0 = document.createElement('option');
       sep0.disabled = true;
-      sep0.textContent = '──────────';
+      sep0.textContent = CITY_SEPARATOR_LABEL;
       sel.appendChild(sep0);
     }
 
@@ -1018,7 +1665,7 @@ function syncCitySelectors(data) {
     if (oblast.length || other.length) {
       const sep1 = document.createElement('option');
       sep1.disabled = true;
-      sep1.textContent = '──────────';
+      sep1.textContent = CITY_SEPARATOR_LABEL;
       sel.appendChild(sep1);
     }
 
@@ -1032,7 +1679,7 @@ function syncCitySelectors(data) {
     if (oblast.length && other.length) {
       const sep2 = document.createElement('option');
       sep2.disabled = true;
-      sep2.textContent = '──────────';
+      sep2.textContent = CITY_SEPARATOR_LABEL;
       sel.appendChild(sep2);
     }
 
@@ -1093,6 +1740,7 @@ async function activate(grade) {
   try {
     const data = await loadGrade(grade);
     _activeData = data;
+    updateTerminologyUI();
     ensureCitySelectors();
     syncCitySelectors(data);
 
