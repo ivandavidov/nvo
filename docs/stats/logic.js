@@ -293,10 +293,10 @@ function updateTerminologyUI() {
   const detailGap = document.getElementById('detail-bel-mat-gap');
 
   if (isDziGrade()) {
-    setSectionBaseTitle('title-bel-mat', 'Матура по БЕЛ спрямо ДЗИ-2');
-    if (noteBelMat) noteBelMat.textContent = 'Всяка точка е училище със среден резултат по двете матури.';
-    setSectionBaseTitle('title-bel-mat-gap', 'Най-голяма разлика между двете матури');
-    if (detailGap) detailGap.textContent = 'Таблиците показват училища с ясно изразен превес в едната матура. Лявата е за по-силен резултат на матурата по БЕЛ, дясната за по-силен резултат на ДЗИ-2.';
+    setSectionBaseTitle('title-bel-mat', 'Зрелостен изпит по БЕЛ спрямо ДЗИ-2');
+    if (noteBelMat) noteBelMat.textContent = 'Всяка точка е училище със среден резултат по двата зрелостни изпита.';
+    setSectionBaseTitle('title-bel-mat-gap', 'Най-голяма разлика между двата зрелостни изпита');
+    if (detailGap) detailGap.textContent = 'Таблиците показват училища с ясно изразен превес в единия зрелостен изпит. Лявата е за по-силен резултат на зрелостния изпит по БЕЛ, дясната за по-силен резултат на ДЗИ-2.';
     setSectionBaseTitle('title-profile-stability', 'Стабилност на профила (БЕЛ спрямо ДЗИ-2)');
   } else {
     setSectionBaseTitle('title-bel-mat', 'БЕЛ спрямо МАТ');
