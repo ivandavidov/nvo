@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8">
+  <title>Плъзгащ Пъзел</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../css/fonts.css">
+  <link rel="stylesheet" href="../../css/normalize.css">
+  <link rel="stylesheet" href="../../css/skeleton.css">
+  <link rel="stylesheet" href="../../css/custom.css">
+  <style>
+    .panel { max-width: 360px; margin: 0 auto; text-align:center; }
+    #board { display:grid; grid-template-columns:repeat(4,1fr); gap:6px; margin:16px 0; }
+    .tile { aspect-ratio:1; border-radius:8px; font-size:1.7rem; font-weight:bold;
+            display:flex; align-items:center; justify-content:center;
+            user-select:none; transition:background .1s; }
+    .tile.filled { background:#2980b9; color:#fff; cursor:pointer; }
+    .tile.filled:hover { background:#1a6fa0; }
+    .tile.empty { background:#ecf0f1; }
+    #info { color:#666; margin-bottom:6px; }
+    #msg { font-weight:bold; min-height:1.8rem; margin-bottom:8px; color:#27ae60; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row" style="margin-top:2rem"><a href="../">← Към игрите</a></div>
+    <div class="row panel">
+      <h4>Плъзгащ Пъзел</h4>
+      <div id="msg"></div>
+      <div id="info">Ходове: <strong id="cnt">0</strong></div>
+      <div id="board"></div>
+      <button class="button" id="reset" style="width:100%">Ново разбъркване</button>
+    </div>
+  </div>
+<script>
+'use strict';
+const N = 4;
+let tiles, moves;
+
+function isSolvable(arr) {
+  let inv = 0;
+  const a = arr.filter(x => x !== 0);
+  for (let i = 0; i < a.length; i++)
+    for (let j = i+1; j < a.length; j++)
+      if (a[i] > a[j]) inv++;
+  const blankRow = Math.floor(arr.indexOf(0) / N);
+  return (inv + (N - blankRow)) % 2 === 0;
+}
+
+function shuffle() {
+  let arr = Array.from({length:N*N}, (_,i) => i);
+  do {
+    for (let i = arr.length-1; i > 0; i--) {
+      const j = Math.floor(Math.random()*(i+1));
+      [arr[i],arr[j]] = [arr[j],arr[i]];
+    }
+  } while (!isSolvable(arr) || arr.every((_,i) => arr[i]===i));
+  return arr;
+}
+
+function isSolved() {
+  for (let i = 0; i < N*N-1; i++) if (tiles[i] !== i+1) return false;
+  return tiles[N*N-1] === 0;
+}
+
+function click(idx) {
+  const blank = tiles.indexOf(0);
+  const r1=Math.floor(idx/N), c1=idx%N, r2=Math.floor(blank/N), c2=blank%N;
+  if (Math.abs(r1-r2)+Math.abs(c1-c2) !== 1) return;
+  [tiles[idx],tiles[blank]] = [tiles[blank],tiles[idx]];
+  moves++;
+  document.getElementById('cnt').textContent = String(moves);
+  render();
+  if (isSolved()) document.getElementById('msg').textContent = '🎉 Браво! Решен за '+moves+' хода!';
+}
+
+function render() {
+  const el = document.getElementById('board');
+  el.innerHTML = '';
+  tiles.forEach((v,i) => {
+    const d = document.createElement('div');
+    if (v === 0) {
+      d.className = 'tile empty';
+    } else {
+      d.className = 'tile filled';
+      d.textContent = String(v);
+      d.onclick = () => click(i);
+    }
+    el.appendChild(d);
+  });
+}
+
+function reset() {
+  tiles = shuffle(); moves = 0;
+  document.getElementById('cnt').textContent = '0';
+  document.getElementById('msg').textContent = '';
+  render();
+}
+
+document.getElementById('reset').onclick = reset;
+reset();
+</script>
+</body>
+</html>

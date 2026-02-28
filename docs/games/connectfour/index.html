@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8">
+  <title>Connect Four</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../css/fonts.css">
+  <link rel="stylesheet" href="../../css/normalize.css">
+  <link rel="stylesheet" href="../../css/skeleton.css">
+  <link rel="stylesheet" href="../../css/custom.css">
+  <style>
+    .panel { max-width: 420px; margin: 0 auto; }
+    canvas { display:block; margin:0 auto; border:1px solid #ccc; cursor:pointer; touch-action:none; }
+    #msg { text-align:center; font-size:1.1rem; font-weight:bold; margin:8px 0; min-height:1.8rem; }
+    #score { text-align:center; color:#666; font-size:.9rem; margin-bottom:6px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row" style="margin-top:2rem"><a href="../">← Към игрите</a></div>
+    <div class="row panel">
+      <h4>Connect Four</h4>
+      <div id="msg">Твой ред (червен)</div>
+      <div id="score">Победи: <span id="pw">0</span> · Загуби: <span id="pl">0</span> · Равни: <span id="pd">0</span></div>
+      <canvas id="c" width="392" height="340"></canvas>
+      <div style="margin-top:8px;text-align:center;">
+        <button class="button" id="reset">Нова игра</button>
+      </div>
+    </div>
+  </div>
+<script>
+'use strict';
+const COLS=7, ROWS=6, SZ=56;
+const canvas=document.getElementById('c');
+const ctx=canvas.getContext('2d');
+let grid, turn, over, hover=-1, scores={w:0,l:0,d:0};
+
+function reset(){
+  grid=Array.from({length:ROWS},()=>Array(COLS).fill(0));
+  turn=1; over=false; hover=-1;
+  setMsg('Твой ред (червен)'); draw();
+}
+
+function setMsg(t){document.getElementById('msg').textContent=t;}
+function updScore(){
+  document.getElementById('pw').textContent=scores.w;
+  document.getElementById('pl').textContent=scores.l;
+  document.getElementById('pd').textContent=scores.d;
+}
+
+function draw() {
+  ctx.fillStyle='#2980b9';
+  ctx.fillRect(0,0,COLS*SZ,ROWS*SZ);
+  for(let r=0;r<ROWS;r++) for(let c=0;c<COLS;c++){
+    const x=c*SZ+SZ/2, y=r*SZ+SZ/2;
+    ctx.beginPath(); ctx.arc(x,y,SZ/2-4,0,Math.PI*2);
+    if(grid[r][c]===1) ctx.fillStyle='#e74c3c';
+    else if(grid[r][c]===2) ctx.fillStyle='#f1c40f';
+    else ctx.fillStyle=(c===hover&&!over)?'#7fb3d6':'#ecf0f1';
+    ctx.fill();
+  }
+}
+
+function drop(col, player) {
+  for(let r=ROWS-1;r>=0;r--) if(!grid[r][col]){grid[r][col]=player;return r;}
+  return -1;
+}
+
+function check4(p) {
+  for(let r=0;r<ROWS;r++) for(let c=0;c<COLS;c++){
+    if(c+3<COLS && [0,1,2,3].every(i=>grid[r][c+i]===p)) return true;
+    if(r+3<ROWS && [0,1,2,3].every(i=>grid[r+i][c]===p)) return true;
+    if(r+3<ROWS&&c+3<COLS && [0,1,2,3].every(i=>grid[r+i][c+i]===p)) return true;
+    if(r+3<ROWS&&c-3>=0 && [0,1,2,3].every(i=>grid[r+i][c-i]===p)) return true;
+  }
+  return false;
+}
+
+function validCols(g){return Array.from({length:COLS},(_,i)=>i).filter(c=>g[0][c]===0);}
+
+function scoreWindow(w, p) {
+  const opp=p===1?2:1;
+  const pc=w.filter(x=>x===p).length, ec=w.filter(x=>x===0).length, oc=w.filter(x=>x===opp).length;
+  if(pc===4) return 100;
+  if(pc===3&&ec===1) return 5;
+  if(pc===2&&ec===2) return 2;
+  if(oc===3&&ec===1) return -4;
+  return 0;
+}
+
+function heuristic(g, p) {
+  let s=0;
+  // center column bonus
+  const center=Array.from({length:ROWS},(_,r)=>g[r][3]);
+  s+=center.filter(x=>x===p).length*3;
+  for(let r=0;r<ROWS;r++) for(let c=0;c<COLS;c++){
+    if(c+3<COLS) s+=scoreWindow([g[r][c],g[r][c+1],g[r][c+2],g[r][c+3]],p);
+    if(r+3<ROWS) s+=scoreWindow([g[r][c],g[r+1][c],g[r+2][c],g[r+3][c]],p);
+    if(r+3<ROWS&&c+3<COLS) s+=scoreWindow([g[r][c],g[r+1][c+1],g[r+2][c+2],g[r+3][c+3]],p);
+    if(r+3<ROWS&&c-3>=0) s+=scoreWindow([g[r][c],g[r+1][c-1],g[r+2][c-2],g[r+3][c-3]],p);
+  }
+  return s;
+}
+
+function check4g(g,p){
+  for(let r=0;r<ROWS;r++) for(let c=0;c<COLS;c++){
+    if(c+3<COLS && [0,1,2,3].every(i=>g[r][c+i]===p)) return true;
+    if(r+3<ROWS && [0,1,2,3].every(i=>g[r+i][c]===p)) return true;
+    if(r+3<ROWS&&c+3<COLS && [0,1,2,3].every(i=>g[r+i][c+i]===p)) return true;
+    if(r+3<ROWS&&c-3>=0 && [0,1,2,3].every(i=>g[r+i][c-i]===p)) return true;
+  }
+  return false;
+}
+
+function minimax(g, depth, alpha, beta, isMax) {
+  const vc=validCols(g);
+  if(check4g(g,2)) return {col:-1,score:10000+depth};
+  if(check4g(g,1)) return {col:-1,score:-10000-depth};
+  if(depth===0||vc.length===0) return {col:-1,score:heuristic(g,2)};
+  if(isMax){
+    let best={col:-1,score:-Infinity};
+    for(const c of vc){
+      const ng=g.map(r=>[...r]);
+      for(let r=ROWS-1;r>=0;r--){if(!ng[r][c]){ng[r][c]=2;break;}}
+      const res=minimax(ng,depth-1,alpha,beta,false);
+      if(res.score>best.score) best={col:c,score:res.score};
+      alpha=Math.max(alpha,best.score); if(alpha>=beta) break;
+    }
+    return best;
+  } else {
+    let best={col:-1,score:Infinity};
+    for(const c of vc){
+      const ng=g.map(r=>[...r]);
+      for(let r=ROWS-1;r>=0;r--){if(!ng[r][c]){ng[r][c]=1;break;}}
+      const res=minimax(ng,depth-1,alpha,beta,true);
+      if(res.score<best.score) best={col:c,score:res.score};
+      beta=Math.min(beta,best.score); if(alpha>=beta) break;
+    }
+    return best;
+  }
+}
+
+function colFromEvent(e){
+  const rect=canvas.getBoundingClientRect();
+  const cx=e.touches?e.touches[0].clientX:e.clientX;
+  return Math.floor((cx-rect.left)/rect.width*COLS);
+}
+
+canvas.addEventListener('mousemove',e=>{
+  if(over||turn!==1) return;
+  hover=colFromEvent(e); draw();
+});
+canvas.addEventListener('mouseleave',()=>{hover=-1; draw();});
+
+canvas.addEventListener('click', e=>{
+  if(over||turn!==1) return;
+  const col=colFromEvent(e);
+  if(col<0||col>=COLS||grid[0][col]!==0) return;
+  drop(col,1); draw();
+  if(check4(1)){over=true;scores.w++;updScore();setMsg('Ти спечели! 🎉');return;}
+  if(validCols(grid).length===0){over=true;scores.d++;updScore();setMsg('Равенство!');return;}
+  turn=2; setMsg('AI мисли...');
+  setTimeout(()=>{
+    const res=minimax(grid,5,-Infinity,Infinity,true);
+    if(res.col>=0) drop(res.col,2);
+    draw();
+    if(check4(2)){over=true;scores.l++;updScore();setMsg('AI спечели!');}
+    else if(validCols(grid).length===0){over=true;scores.d++;updScore();setMsg('Равенство!');}
+    else{turn=1;setMsg('Твой ред (червен)');}
+  },60);
+});
+
+document.getElementById('reset').onclick=reset;
+reset();
+</script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8">
+  <title>Flappy Bird</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../css/fonts.css">
+  <link rel="stylesheet" href="../../css/normalize.css">
+  <link rel="stylesheet" href="../../css/skeleton.css">
+  <link rel="stylesheet" href="../../css/custom.css">
+  <style>
+    .panel { max-width: 360px; margin: 0 auto; text-align:center; }
+    canvas { display:block; margin:0 auto; border:1px solid #ccc; cursor:pointer; }
+    #hint { color:#888; font-size:.85rem; margin-top:6px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row" style="margin-top:2rem"><a href="../">← Към игрите</a></div>
+    <div class="row panel">
+      <h4>Flappy Bird</h4>
+      <canvas id="c" width="340" height="420"></canvas>
+      <div id="hint">Клик / Space / пръст за прелитане</div>
+    </div>
+  </div>
+<script>
+'use strict';
+const W=340, H=420, GAP=120, PIPE_W=48, SPEED=2.8, GRAVITY=0.38, FLAP=-7;
+const canvas=document.getElementById('c');
+const ctx=canvas.getContext('2d');
+
+let bird, pipes, score, best, state, animId, frame;
+
+function reset() {
+  bird={x:80, y:H/2, vy:0, r:14};
+  pipes=[]; score=0; state='idle'; frame=0;
+  if(animId) cancelAnimationFrame(animId);
+  animId=requestAnimationFrame(loop);
+}
+
+function flap() {
+  if(state==='idle'){state='running';}
+  if(state==='dead'){reset();return;}
+  if(state==='running') bird.vy=FLAP;
+}
+
+function addPipe() {
+  const topH=60+Math.random()*(H-GAP-120);
+  pipes.push({x:W, topH, scored:false});
+}
+
+function loop() {
+  frame++;
+  update();
+  draw();
+  animId=requestAnimationFrame(loop);
+}
+
+function update() {
+  if(state!=='running') return;
+  bird.vy+=GRAVITY; bird.y+=bird.vy;
+  if(bird.y-bird.r<=0){bird.y=bird.r; bird.vy=0;}
+  if(bird.y+bird.r>=H-40){state='dead'; return;}
+
+  if(frame%90===0) addPipe();
+  pipes.forEach(p=>{
+    p.x-=SPEED;
+    if(!p.scored && p.x+PIPE_W<bird.x){
+      p.scored=true; score++;
+      if(!best||score>best) best=score;
+    }
+  });
+  pipes=pipes.filter(p=>p.x>-PIPE_W-10);
+
+  for(const p of pipes){
+    const bx=bird.x, by=bird.y, br=bird.r-2;
+    if(bx+br>p.x && bx-br<p.x+PIPE_W){
+      if(by-br<p.topH || by+br>p.topH+GAP){ state='dead'; return; }
+    }
+  }
+}
+
+function draw() {
+  // sky
+  ctx.fillStyle='#87CEEB'; ctx.fillRect(0,0,W,H);
+  // ground
+  ctx.fillStyle='#8B6914'; ctx.fillRect(0,H-40,W,40);
+  ctx.fillStyle='#5a8f1c'; ctx.fillRect(0,H-40,W,10);
+
+  // pipes
+  pipes.forEach(p=>{
+    ctx.fillStyle='#2ecc71';
+    ctx.fillRect(p.x,0,PIPE_W,p.topH);
+    ctx.fillRect(p.x,p.topH+GAP,PIPE_W,H-p.topH-GAP);
+    ctx.fillStyle='#27ae60';
+    ctx.fillRect(p.x-4,p.topH-18,PIPE_W+8,18);
+    ctx.fillRect(p.x-4,p.topH+GAP,PIPE_W+8,18);
+  });
+
+  // bird
+  ctx.fillStyle='#f1c40f';
+  ctx.beginPath(); ctx.arc(bird.x,bird.y,bird.r,0,Math.PI*2); ctx.fill();
+  ctx.fillStyle='#e67e22';
+  ctx.beginPath(); ctx.arc(bird.x,bird.y,bird.r,0,Math.PI*2); ctx.fill();
+  ctx.fillStyle='#f1c40f';
+  ctx.beginPath(); ctx.arc(bird.x-2,bird.y-2,bird.r-3,0,Math.PI*2); ctx.fill();
+  // eye
+  ctx.fillStyle='#fff'; ctx.beginPath(); ctx.arc(bird.x+5,bird.y-4,5,0,Math.PI*2); ctx.fill();
+  ctx.fillStyle='#000'; ctx.beginPath(); ctx.arc(bird.x+6,bird.y-4,2.5,0,Math.PI*2); ctx.fill();
+  // beak
+  ctx.fillStyle='#e67e22';
+  ctx.beginPath(); ctx.moveTo(bird.x+bird.r-2,bird.y+1); ctx.lineTo(bird.x+bird.r+8,bird.y); ctx.lineTo(bird.x+bird.r-2,bird.y+5); ctx.fill();
+
+  // score
+  ctx.fillStyle='#fff'; ctx.font='bold 28px sans-serif'; ctx.textAlign='center';
+  if(state==='running'||state==='dead') ctx.fillText(String(score),W/2,40);
+
+  if(state==='idle'){
+    ctx.fillStyle='rgba(0,0,0,0.35)'; ctx.fillRect(0,0,W,H);
+    ctx.fillStyle='#fff'; ctx.font='bold 22px sans-serif';
+    ctx.fillText('Клик за начало',W/2,H/2);
+  }
+  if(state==='dead'){
+    ctx.fillStyle='rgba(0,0,0,0.45)'; ctx.fillRect(0,0,W,H);
+    ctx.fillStyle='#e74c3c'; ctx.font='bold 26px sans-serif';
+    ctx.fillText('Край!',W/2,H/2-30);
+    ctx.fillStyle='#fff'; ctx.font='20px sans-serif';
+    ctx.fillText('Точки: '+score+(best?' · Рекорд: '+best:''),W/2,H/2+4);
+    ctx.font='16px sans-serif';
+    ctx.fillText('Клик за нова игра',W/2,H/2+36);
+  }
+}
+
+canvas.addEventListener('click', flap);
+canvas.addEventListener('touchstart', e=>{e.preventDefault();flap();},{passive:false});
+document.addEventListener('keydown', e=>{if(e.code==='Space'){e.preventDefault();flap();}});
+reset();
+</script>
+</body>
+</html>

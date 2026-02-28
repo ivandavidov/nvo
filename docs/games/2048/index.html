@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8">
+  <title>2048</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../css/fonts.css">
+  <link rel="stylesheet" href="../../css/normalize.css">
+  <link rel="stylesheet" href="../../css/skeleton.css">
+  <link rel="stylesheet" href="../../css/custom.css">
+  <style>
+    .wrap { max-width: 520px; margin: 0 auto; }
+    .bar { display:flex; justify-content:space-between; margin-bottom:8px; color:#555; }
+    .grid { background:#bbada0; border-radius:8px; padding:8px; display:grid; grid-template-columns:repeat(4,1fr); gap:8px; }
+    .cell { aspect-ratio:1/1; border-radius:6px; background:#cdc1b4; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:1.5rem; color:#776e65; }
+    .c0 { color: transparent; }
+    .c2 { background:#eee4da; } .c4 { background:#ede0c8; }
+    .c8 { background:#f2b179; color:#fff; } .c16{ background:#f59563; color:#fff; }
+    .c32{ background:#f67c5f; color:#fff; } .c64{ background:#f65e3b; color:#fff; }
+    .c128{ background:#edcf72; color:#fff; font-size:1.2rem; }
+    .c256{ background:#edcc61; color:#fff; font-size:1.2rem; }
+    .c512{ background:#edc850; color:#fff; font-size:1.2rem; }
+    .c1024{ background:#edc53f; color:#fff; font-size:1rem; }
+    .c2048{ background:#edc22e; color:#fff; font-size:1rem; }
+    .ctrl { margin-top:10px; text-align:center; color:#666; }
+    .touch { margin-top:10px; display:grid; gap:6px; grid-template-columns:repeat(3,1fr); }
+    .touch button { margin:0; height:38px; padding:0; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row" style="margin-top:2rem"><a href="../">← Към игрите</a></div>
+    <div class="row wrap">
+      <h4>2048</h4>
+      <div class="bar"><span>Точки: <strong id="score">0</strong></span><button id="reset" class="button">Нова игра</button></div>
+      <div id="grid" class="grid"></div>
+      <div class="ctrl">Клавиши: ← ↑ → ↓</div>
+      <div class="touch">
+        <div></div><button id="up" class="button">↑</button><div></div>
+        <button id="left" class="button">←</button><button id="down" class="button">↓</button><button id="right" class="button">→</button>
+      </div>
+    </div>
+  </div>
+  <script>
+  'use strict';
+  const N = 4;
+  let board = [], score = 0;
+  const grid = document.getElementById('grid');
+  const scoreEl = document.getElementById('score');
+
+  function reset(){
+    board = Array.from({length:N},()=>Array(N).fill(0));
+    score = 0;
+    addRandom(); addRandom();
+    render();
+  }
+
+  function addRandom(){
+    const free = [];
+    for(let r=0;r<N;r++) for(let c=0;c<N;c++) if(board[r][c]===0) free.push([r,c]);
+    if(!free.length) return;
+    const [r,c] = free[(Math.random()*free.length)|0];
+    board[r][c] = Math.random()<0.9 ? 2 : 4;
+  }
+
+  function compress(row){
+    const arr = row.filter(v=>v);
+    for(let i=0;i<arr.length-1;i++){
+      if(arr[i]===arr[i+1]){ arr[i]*=2; score += arr[i]; arr[i+1]=0; i++; }
+    }
+    const out = arr.filter(v=>v);
+    while(out.length<N) out.push(0);
+    return out;
+  }
+
+  function moveLeft(){
+    let moved = false;
+    for(let r=0;r<N;r++){
+      const old = board[r].slice();
+      board[r] = compress(board[r]);
+      if(old.join()!==board[r].join()) moved = true;
+    }
+    return moved;
+  }
+
+  function rotate(){
+    const n = Array.from({length:N},()=>Array(N).fill(0));
+    for(let r=0;r<N;r++) for(let c=0;c<N;c++) n[c][N-1-r]=board[r][c];
+    board = n;
+  }
+
+  function move(dir){
+    let moved = false;
+    const turns = {left:0, up:3, right:2, down:1}[dir];
+    for(let i=0;i<turns;i++) rotate();
+    moved = moveLeft();
+    for(let i=0;i<(4-turns)%4;i++) rotate();
+    if(moved){ addRandom(); render(); if(isGameOver()) alert('Край. Точки: ' + score); }
+  }
+
+  function isGameOver(){
+    for(let r=0;r<N;r++) for(let c=0;c<N;c++) if(board[r][c]===0) return false;
+    for(let r=0;r<N;r++) for(let c=0;c<N;c++){
+      if(r+1<N && board[r][c]===board[r+1][c]) return false;
+      if(c+1<N && board[r][c]===board[r][c+1]) return false;
+    }
+    return true;
+  }
+
+  function render(){
+    scoreEl.textContent = String(score);
+    grid.innerHTML = '';
+    for(let r=0;r<N;r++) for(let c=0;c<N;c++){
+      const v = board[r][c];
+      const d = document.createElement('div');
+      d.className = 'cell c' + (v||0);
+      d.textContent = v || '0';
+      grid.appendChild(d);
+    }
+  }
+
+  document.addEventListener('keydown', e => {
+    if(e.key==='ArrowLeft') move('left');
+    if(e.key==='ArrowRight') move('right');
+    if(e.key==='ArrowUp') move('up');
+    if(e.key==='ArrowDown') move('down');
+  });
+  document.getElementById('left').onclick = ()=>move('left');
+  document.getElementById('right').onclick = ()=>move('right');
+  document.getElementById('up').onclick = ()=>move('up');
+  document.getElementById('down').onclick = ()=>move('down');
+  document.getElementById('reset').onclick = reset;
+  reset();
+  </script>
+</body>
+</html>

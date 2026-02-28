@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8">
+  <title>Minesweeper</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../css/fonts.css">
+  <link rel="stylesheet" href="../../css/normalize.css">
+  <link rel="stylesheet" href="../../css/skeleton.css">
+  <link rel="stylesheet" href="../../css/custom.css">
+  <style>
+    .wrap { max-width: 560px; margin: 0 auto; }
+    .bar { display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; }
+    .board { display:grid; grid-template-columns: repeat(10, 1fr); gap: 2px; background:#999; padding:2px; border-radius:6px; }
+    .cell { height: 32px; border:0; margin:0; padding:0; background:#ddd; font-weight:700; }
+    .cell.open { background:#f7f7f7; }
+    .cell.flag { background:#ffe8a1; }
+    .n1{color:#1971c2}.n2{color:#2b8a3e}.n3{color:#c92a2a}.n4{color:#5f3dc4}.n5{color:#862e9c}.n6{color:#0b7285}.n7{color:#495057}.n8{color:#212529}
+    .mode { margin-left: 8px; }
+    .hint { color:#666; margin-top:8px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row" style="margin-top:2rem"><a href="../">← Към игрите</a></div>
+    <div class="row wrap">
+      <h4>Minesweeper</h4>
+      <div class="bar">
+        <div>Мини: <strong id="minesLeft">15</strong></div>
+        <div>
+          <label class="mode"><input type="checkbox" id="flagMode"> Флаг режим</label>
+          <button id="reset" class="button">Нова игра</button>
+        </div>
+      </div>
+      <div id="board" class="board"></div>
+      <div class="hint">Desktop: ляв бутон = отваряне, десен = флаг. Mobile: включи „Флаг режим“.</div>
+    </div>
+  </div>
+  <script>
+  'use strict';
+  const R=10, C=10, MINES=15;
+  const boardEl = document.getElementById('board');
+  const minesLeftEl = document.getElementById('minesLeft');
+  const flagModeEl = document.getElementById('flagMode');
+  let g, opened, flagged, over;
+
+  function init(){
+    g = Array.from({length:R},()=>Array.from({length:C},()=>({m:0,o:0,f:0,n:0})));
+    opened = 0; flagged = 0; over = false;
+    let m = 0;
+    while(m<MINES){
+      const r = (Math.random()*R)|0, c = (Math.random()*C)|0;
+      if(g[r][c].m) continue;
+      g[r][c].m = 1; m++;
+    }
+    for(let r=0;r<R;r++) for(let c=0;c<C;c++){
+      if(g[r][c].m) continue;
+      let n=0;
+      for(let dr=-1;dr<=1;dr++) for(let dc=-1;dc<=1;dc++){
+        if(!dr&&!dc) continue;
+        const rr=r+dr, cc=c+dc;
+        if(rr>=0&&cc>=0&&rr<R&&cc<C&&g[rr][cc].m) n++;
+      }
+      g[r][c].n = n;
+    }
+    render();
+  }
+
+  function reveal(r,c){
+    const cell = g[r][c];
+    if(cell.o||cell.f||over) return;
+    cell.o = 1; opened++;
+    if(cell.m){ over = true; showMines(); alert('Край.'); return; }
+    if(cell.n===0){
+      for(let dr=-1;dr<=1;dr++) for(let dc=-1;dc<=1;dc++){
+        const rr=r+dr, cc=c+dc;
+        if(rr>=0&&cc>=0&&rr<R&&cc<C) reveal(rr,cc);
+      }
+    }
+    if(opened === R*C - MINES){ over = true; alert('Победа!'); }
+  }
+
+  function toggleFlag(r,c){
+    const cell = g[r][c];
+    if(cell.o||over) return;
+    cell.f = cell.f ? 0 : 1;
+    flagged += cell.f ? 1 : -1;
+    minesLeftEl.textContent = String(MINES - flagged);
+  }
+
+  function showMines(){
+    for(let r=0;r<R;r++) for(let c=0;c<C;c++) if(g[r][c].m) g[r][c].o = 1;
+    render();
+  }
+
+  function render(){
+    boardEl.innerHTML = '';
+    for(let r=0;r<R;r++) for(let c=0;c<C;c++){
+      const cell = g[r][c];
+      const b = document.createElement('button');
+      b.className = 'cell' + (cell.o ? ' open' : '') + (cell.f ? ' flag' : '');
+      if(cell.o){
+        if(cell.m) b.textContent = '💣';
+        else if(cell.n>0){ b.textContent = String(cell.n); b.classList.add('n'+cell.n); }
+        else b.textContent = '';
+      } else {
+        b.textContent = cell.f ? '🚩' : '';
+      }
+      b.addEventListener('click',()=>{
+        if(flagModeEl.checked) toggleFlag(r,c); else reveal(r,c);
+        render();
+      });
+      b.addEventListener('contextmenu',(e)=>{
+        e.preventDefault();
+        toggleFlag(r,c);
+        render();
+      });
+      boardEl.appendChild(b);
+    }
+    minesLeftEl.textContent = String(MINES - flagged);
+  }
+
+  document.getElementById('reset').onclick = init;
+  init();
+  </script>
+</body>
+</html>

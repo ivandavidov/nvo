@@ -428,11 +428,13 @@ function generateDownloadCSVHeader() {
 }
 
 function generateYearNavigation() {
-  let latestYear = firstYear + s[baseSchoolIndex].b.length - 1;
-  let endYear = latestYear - 1;
+  let fallbackLatestYear = firstYear + s[baseSchoolIndex].b.length - 1;
   let navItems = document.querySelectorAll('.years-nav[data-year-base]');
   navItems.forEach((el) => {
     let baseHref = el.getAttribute('data-year-base');
+    let configuredLastYear = Number.parseInt(el.getAttribute('data-year-last'), 10);
+    let latestYear = Number.isFinite(configuredLastYear) ? configuredLastYear : fallbackLatestYear;
+    let endYear = latestYear - 1;
     if(!baseHref || endYear < NAV_FIRST_YEAR) {
       el.textContent = '';
       return;

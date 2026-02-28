@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8">
+  <title>Pong</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../css/fonts.css">
+  <link rel="stylesheet" href="../../css/normalize.css">
+  <link rel="stylesheet" href="../../css/skeleton.css">
+  <link rel="stylesheet" href="../../css/custom.css">
+  <style>
+    .wrap { max-width: 640px; margin:0 auto; }
+    canvas { width:100%; max-width:600px; height:auto; border:1px solid #ccc; background:#fff; display:block; margin:0 auto; }
+    .bar { display:flex; justify-content:space-between; margin-bottom:8px; color:#555; }
+    .ctrl { margin-top:10px; display:grid; grid-template-columns:repeat(2,1fr); gap:8px; max-width:600px; margin-left:auto; margin-right:auto; }
+    .ctrl button { margin:0; height:38px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row" style="margin-top:2rem"><a href="../">← Към игрите</a></div>
+    <div class="row wrap">
+      <h4>Pong</h4>
+      <div class="bar"><span>Играч: <strong id="left">0</strong></span><span>Компютър: <strong id="right">0</strong></span></div>
+      <canvas id="c" width="600" height="360"></canvas>
+      <div style="text-align:center; color:#666; margin-top:8px;">Клавиши: W/S или ↑/↓</div>
+      <div class="ctrl">
+        <button id="up" class="button">Нагоре</button>
+        <button id="down" class="button">Надолу</button>
+      </div>
+    </div>
+  </div>
+  <script>
+  'use strict';
+  const c = document.getElementById('c');
+  const x = c.getContext('2d');
+  const H = c.height, W = c.width;
+  const paddleH = 72, paddleW = 10, ballR = 7;
+  let p1 = (H-paddleH)/2, p2 = (H-paddleH)/2, v1 = 0;
+  let bx = W/2, by = H/2, bvx = 4, bvy = 2;
+  let s1 = 0, s2 = 0;
+
+  function resetBall(dir){ bx=W/2; by=H/2; bvx=4*dir; bvy=(Math.random()*4)-2; }
+
+  function step(){
+    p1 = Math.max(0, Math.min(H-paddleH, p1 + v1));
+    const target = by - paddleH/2;
+    p2 += Math.max(-3, Math.min(3, target - p2));
+    p2 = Math.max(0, Math.min(H-paddleH, p2));
+
+    bx += bvx; by += bvy;
+    if(by < ballR || by > H-ballR) bvy *= -1;
+
+    if(bx - ballR < 20 + paddleW && by > p1 && by < p1 + paddleH){ bvx = Math.abs(bvx) + 0.12; bvy += (by - (p1+paddleH/2))*0.03; }
+    if(bx + ballR > W - 20 - paddleW && by > p2 && by < p2 + paddleH){ bvx = -Math.abs(bvx) - 0.12; bvy += (by - (p2+paddleH/2))*0.03; }
+
+    if(bx < 0){ s2++; document.getElementById('right').textContent = s2; resetBall(1); }
+    if(bx > W){ s1++; document.getElementById('left').textContent = s1; resetBall(-1); }
+  }
+
+  function draw(){
+    x.fillStyle='#fff'; x.fillRect(0,0,W,H);
+    x.strokeStyle='#ddd'; x.setLineDash([6,6]); x.beginPath(); x.moveTo(W/2,0); x.lineTo(W/2,H); x.stroke(); x.setLineDash([]);
+    x.fillStyle='#3498db'; x.fillRect(20,p1,paddleW,paddleH);
+    x.fillStyle='#e67e22'; x.fillRect(W-20-paddleW,p2,paddleW,paddleH);
+    x.fillStyle='#333'; x.beginPath(); x.arc(bx,by,ballR,0,Math.PI*2); x.fill();
+  }
+
+  function loop(){ step(); draw(); requestAnimationFrame(loop); }
+
+  function setMove(v){ v1 = v; }
+  document.addEventListener('keydown',e=>{
+    if(e.key==='w'||e.key==='W'||e.key==='ArrowUp') setMove(-5);
+    if(e.key==='s'||e.key==='S'||e.key==='ArrowDown') setMove(5);
+  });
+  document.addEventListener('keyup',e=>{
+    if(['w','W','s','S','ArrowUp','ArrowDown'].includes(e.key)) setMove(0);
+  });
+
+  document.getElementById('up').addEventListener('touchstart',()=>setMove(-5),{passive:true});
+  document.getElementById('down').addEventListener('touchstart',()=>setMove(5),{passive:true});
+  document.getElementById('up').addEventListener('touchend',()=>setMove(0),{passive:true});
+  document.getElementById('down').addEventListener('touchend',()=>setMove(0),{passive:true});
+  document.getElementById('up').onmousedown = ()=>setMove(-5);
+  document.getElementById('down').onmousedown = ()=>setMove(5);
+  document.getElementById('up').onmouseup = ()=>setMove(0);
+  document.getElementById('down').onmouseup = ()=>setMove(0);
+  document.getElementById('up').onmouseleave = ()=>setMove(0);
+  document.getElementById('down').onmouseleave = ()=>setMove(0);
+
+  loop();
+  </script>
+</body>
+</html>

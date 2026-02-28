@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8">
+  <title>Memory</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../css/fonts.css">
+  <link rel="stylesheet" href="../../css/normalize.css">
+  <link rel="stylesheet" href="../../css/skeleton.css">
+  <link rel="stylesheet" href="../../css/custom.css">
+  <style>
+    .wrap { max-width: 640px; margin: 0 auto; }
+    .bar { display:flex; justify-content:space-between; margin-bottom:8px; color:#555; }
+    .board { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; }
+    .card {
+      aspect-ratio: 4/5;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background:#f0f0f0;
+      font-size: 2rem;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      user-select:none;
+    }
+    .card.open, .card.matched { background:#fff; }
+    .card.matched { border-color:#27ae60; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row" style="margin-top:2rem"><a href="../">← Към игрите</a></div>
+    <div class="row wrap">
+      <h4>Memory</h4>
+      <div class="bar">
+        <span>Ходове: <strong id="moves">0</strong></span>
+        <button id="reset" class="button">Нова игра</button>
+      </div>
+      <div id="board" class="board"></div>
+    </div>
+  </div>
+  <script>
+  'use strict';
+  const ICONS = ['🍎','🍌','🍇','🍒','🍉','🍍','🥝','🍓'];
+  const boardEl = document.getElementById('board');
+  const movesEl = document.getElementById('moves');
+  let cards = [], open = [], lock = false, moves = 0, matched = 0;
+
+  function shuffle(arr){
+    for(let i=arr.length-1;i>0;i--){
+      const j = (Math.random()*(i+1))|0;
+      [arr[i],arr[j]] = [arr[j],arr[i]];
+    }
+    return arr;
+  }
+
+  function init(){
+    const pool = shuffle(ICONS.concat(ICONS));
+    cards = pool.map((v,i)=>({id:i,v,open:false,matched:false}));
+    open = []; lock = false; moves = 0; matched = 0;
+    movesEl.textContent = '0';
+    render();
+  }
+
+  function clickCard(i){
+    const c = cards[i];
+    if(lock || c.open || c.matched) return;
+    c.open = true;
+    open.push(i);
+    render();
+    if(open.length < 2) return;
+    moves++; movesEl.textContent = String(moves);
+    const [a,b] = open;
+    if(cards[a].v === cards[b].v){
+      cards[a].matched = cards[b].matched = true;
+      matched += 2;
+      open = [];
+      if(matched === cards.length) setTimeout(()=>alert('Победа! Ходове: ' + moves), 40);
+      render();
+      return;
+    }
+    lock = true;
+    setTimeout(()=>{
+      cards[a].open = cards[b].open = false;
+      open = [];
+      lock = false;
+      render();
+    }, 650);
+  }
+
+  function render(){
+    boardEl.innerHTML = '';
+    cards.forEach((c,i)=>{
+      const b = document.createElement('button');
+      b.className = 'card' + (c.open?' open':'') + (c.matched?' matched':'');
+      b.textContent = c.open || c.matched ? c.v : '•';
+      b.onclick = ()=>clickCard(i);
+      boardEl.appendChild(b);
+    });
+  }
+
+  document.getElementById('reset').onclick = init;
+  init();
+  </script>
+</body>
+</html>

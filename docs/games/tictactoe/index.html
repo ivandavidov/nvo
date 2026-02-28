@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8">
+  <title>Морски Шах</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../css/fonts.css">
+  <link rel="stylesheet" href="../../css/normalize.css">
+  <link rel="stylesheet" href="../../css/skeleton.css">
+  <link rel="stylesheet" href="../../css/custom.css">
+  <style>
+    .panel { max-width: 340px; margin: 0 auto; }
+    #board { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin:16px 0; }
+    .cell { aspect-ratio:1; border:2px solid #ccc; border-radius:8px; font-size:2.8rem; font-weight:bold;
+            display:flex; align-items:center; justify-content:center; cursor:pointer;
+            background:#f9f9f9; transition:background .12s; user-select:none; }
+    .cell:hover:not(.taken) { background:#eef4ff; }
+    .cell.x { color:#e74c3c; cursor:default; }
+    .cell.o { color:#3498db; cursor:default; }
+    .cell.win { background:#ffeaa7; }
+    #msg { text-align:center; font-size:1.15rem; font-weight:bold; min-height:2rem; margin-bottom:4px; }
+    #score { text-align:center; color:#666; margin-bottom:8px; font-size:.9rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row" style="margin-top:2rem"><a href="../">← Към игрите</a></div>
+    <div class="row panel">
+      <h4>Морски Шах</h4>
+      <div id="msg">Твой ред (X)</div>
+      <div id="score">Победи: <span id="pw">0</span> · Загуби: <span id="pl">0</span> · Равни: <span id="pd">0</span></div>
+      <div id="board"></div>
+      <button class="button" id="reset" style="width:100%">Нова игра</button>
+    </div>
+  </div>
+<script>
+'use strict';
+const WIN_LINES = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+let board, over, scores = {w:0,l:0,d:0};
+
+function checkWinner(b) {
+  for (const [a,c,d] of WIN_LINES) if (b[a] && b[a]===b[c] && b[a]===b[d]) return {winner:b[a], line:[a,c,d]};
+  return b.includes(null) ? null : {winner:'draw'};
+}
+
+function minimax(b, isMax, alpha, beta) {
+  const res = checkWinner(b);
+  if (res) { if (res.winner==='O') return 10; if (res.winner==='X') return -10; return 0; }
+  const moves = b.reduce((a,v,i)=>v?a:[...a,i],[]);
+  if (isMax) {
+    let best = -Infinity;
+    for (const m of moves) {
+      b[m] = 'O'; best = Math.max(best, minimax(b, false, alpha, beta)); b[m] = null;
+      alpha = Math.max(alpha, best); if (alpha >= beta) break;
+    }
+    return best;
+  } else {
+    let best = Infinity;
+    for (const m of moves) {
+      b[m] = 'X'; best = Math.min(best, minimax(b, true, alpha, beta)); b[m] = null;
+      beta = Math.min(beta, best); if (alpha >= beta) break;
+    }
+    return best;
+  }
+}
+
+function aiMove() {
+  let best = -Infinity, move = -1;
+  board.forEach((v,i) => {
+    if (v) return;
+    board[i] = 'O';
+    const s = minimax(board, false, -Infinity, Infinity);
+    board[i] = null;
+    if (s > best) { best = s; move = i; }
+  });
+  if (move >= 0) board[move] = 'O';
+}
+
+function render(winLine=[]) {
+  const el = document.getElementById('board');
+  el.innerHTML = '';
+  board.forEach((v,i) => {
+    const cell = document.createElement('div');
+    cell.className = 'cell' + (v?' '+v.toLowerCase()+' taken':'') + (winLine.includes(i)?' win':'');
+    cell.textContent = v||'';
+    if (!v && !over) cell.onclick = () => click(i);
+    el.appendChild(cell);
+  });
+}
+
+function setMsg(t) { document.getElementById('msg').textContent = t; }
+function updScore() {
+  document.getElementById('pw').textContent = scores.w;
+  document.getElementById('pl').textContent = scores.l;
+  document.getElementById('pd').textContent = scores.d;
+}
+
+function click(i) {
+  if (over || board[i]) return;
+  board[i] = 'X';
+  let res = checkWinner(board);
+  if (res) { render(res.winner==='draw'?[]:res.line); finish(res.winner); return; }
+  aiMove();
+  res = checkWinner(board);
+  render(res && res.winner!=='draw' ? res.line : []);
+  if (res) finish(res.winner); else setMsg('Твой ред (X)');
+}
+
+function finish(w) {
+  over = true;
+  if (w==='draw') { setMsg('Равенство!'); scores.d++; }
+  else if (w==='X') { setMsg('Ти спечели! 🎉'); scores.w++; }
+  else { setMsg('AI спечели!'); scores.l++; }
+  updScore();
+}
+
+function newGame() {
+  board = Array(9).fill(null); over = false;
+  setMsg('Твой ред (X)'); render();
+}
+
+document.getElementById('reset').onclick = newGame;
+newGame();
+</script>
+</body>
+</html>

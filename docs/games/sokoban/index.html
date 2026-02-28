@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8">
+  <title>Сокобан</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../css/fonts.css">
+  <link rel="stylesheet" href="../../css/normalize.css">
+  <link rel="stylesheet" href="../../css/skeleton.css">
+  <link rel="stylesheet" href="../../css/custom.css">
+  <style>
+    .panel { max-width: 440px; margin: 0 auto; text-align:center; }
+    canvas { display:block; margin:0 auto; border:1px solid #ccc; background:#c8a96e; }
+    .meta { display:flex; justify-content:space-between; margin-bottom:6px; color:#555; align-items:center; }
+    .ctrl { display:grid; grid-template-columns:repeat(3,48px); gap:6px; margin:10px auto 0; width:fit-content; }
+    .ctrl button { width:48px; height:48px; padding:0; font-size:1.3rem; }
+    #msg { min-height:1.8rem; font-weight:bold; color:#27ae60; margin-bottom:4px; }
+    #hint { color:#888; font-size:.82rem; margin-top:6px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row" style="margin-top:2rem"><a href="../">← Към игрите</a></div>
+    <div class="row panel">
+      <h4>Сокобан</h4>
+      <div class="meta">
+        <span>Ниво: <strong id="lvlNum">1</strong> / 5</span>
+        <span>Ходове: <strong id="moves">0</strong></span>
+        <button class="button" style="margin:0" id="undoBtn">↩ Назад</button>
+      </div>
+      <div id="msg"></div>
+      <canvas id="c"></canvas>
+      <div id="hint">Стрелки / WASD за движение · ↩ за отмяна</div>
+      <div class="ctrl">
+        <div></div><button class="button" id="bU">↑</button><div></div>
+        <button class="button" id="bL">←</button>
+        <button class="button" id="bD">↓</button>
+        <button class="button" id="bR">→</button>
+      </div>
+      <div style="margin-top:10px;display:flex;gap:8px;justify-content:center;">
+        <button class="button" id="restartBtn">Рестарт</button>
+        <button class="button" id="nextBtn" style="display:none">Следващо →</button>
+      </div>
+    </div>
+  </div>
+<script>
+'use strict';
+// Symbols: '#'=wall, ' '=floor, '@'=player, '$'=box, '.'=target, '*'=box-on-target, '+'=player-on-target
+const LEVELS = [
+  // Level 1 - push right once
+  ['#####',
+   '#   #',
+   '#@$.#',
+   '#   #',
+   '#####'],
+  // Level 2 - push up twice
+  ['######',
+   '# .  #',
+   '#    #',
+   '# $  #',
+   '# @  #',
+   '######'],
+  // Level 3 - push left then up
+  ['#######',
+   '# .   #',
+   '#     #',
+   '#   $ #',
+   '#  @  #',
+   '#######'],
+  // Level 4 - navigate around
+  ['########',
+   '# .    #',
+   '#      #',
+   '#   $  #',
+   '#      #',
+   '#    @ #',
+   '########'],
+  // Level 5 - two boxes
+  ['######',
+   '# .. #',
+   '# $$ #',
+   '#  @ #',
+   '######'],
+];
+
+const SZ=48;
+const canvas=document.getElementById('c');
+const ctx=canvas.getContext('2d');
+
+let level=0, grid, playerR, playerC, moves, history;
+
+function parseLevel(idx) {
+  const raw=LEVELS[idx];
+  const rows=raw.length, cols=Math.max(...raw.map(r=>r.length));
+  grid=[]; playerR=-1; playerC=-1; moves=0; history=[];
+  document.getElementById('moves').textContent='0';
+  document.getElementById('msg').textContent='';
+  document.getElementById('nextBtn').style.display='none';
+  for(let r=0;r<rows;r++){
+    grid[r]=[];
+    for(let c=0;c<cols;c++){
+      const ch=raw[r][c]||' ';
+      grid[r][c]=ch;
+      if(ch==='@'){playerR=r;playerC=c;}
+      if(ch==='+'){playerR=r;playerC=c;}
+    }
+  }
+  canvas.width=cols*SZ; canvas.height=rows*SZ;
+  document.getElementById('lvlNum').textContent=String(idx+1);
+  draw();
+}
+
+function cell(r,c){return grid[r]&&grid[r][c]!==undefined?grid[r][c]:'#';}
+function isBox(ch){return ch==='$'||ch==='*';}
+function isTarget(ch){return ch==='.'||ch==='*'||ch==='+';}
+function isFloor(ch){return ch===' '||ch==='.';}
+function isPlayer(ch){return ch==='@'||ch==='+';}
+
+function move(dr,dc){
+  const nr=playerR+dr, nc=playerC+dc;
+  const dest=cell(nr,nc);
+  if(dest==='#') return;
+  const state=grid.map(r=>[...r]);
+  if(isBox(dest)){
+    const br=nr+dr, bc=nc+dc;
+    const beyond=cell(br,bc);
+    if(beyond==='#'||isBox(beyond)) return;
+    // move box: place on target or floor
+    grid[br][bc]=isTarget(beyond)?'*':'$';
+    // vacate box cell: was target underneath box?
+    grid[nr][nc]=isTarget(dest)?'.':' ';
+  }
+  // vacate player cell: was target underneath player?
+  grid[playerR][playerC]=isTarget(grid[playerR][playerC])?'.':' ';
+  // place player
+  grid[nr][nc]=isTarget(dest)?'+':'@';
+  playerR=nr; playerC=nc;
+  moves++; document.getElementById('moves').textContent=String(moves);
+  history.push(state);
+  draw();
+  checkWin();
+}
+
+function undo(){
+  if(!history.length) return;
+  grid=history.pop();
+  moves=Math.max(0,moves-1);
+  document.getElementById('moves').textContent=String(moves);
+  // restore player position
+  for(let r=0;r<grid.length;r++) for(let c=0;c<grid[r].length;c++)
+    if(grid[r][c]==='@'||grid[r][c]==='+'){playerR=r;playerC=c;}
+  document.getElementById('msg').textContent='';
+  document.getElementById('nextBtn').style.display='none';
+  draw();
+}
+
+function checkWin(){
+  const allPlaced=grid.every(row=>row.every(ch=>ch!=='$'));
+  if(allPlaced){
+    document.getElementById('msg').textContent='🎉 Ниво '+( level+1)+' решено за '+moves+' хода!';
+    if(level<LEVELS.length-1) document.getElementById('nextBtn').style.display='inline-block';
+    else document.getElementById('msg').textContent+=' Завършил си всички нива!';
+  }
+}
+
+const COLORS={
+  '#':'#5d3a1a','wall':'#8B6914',' ':'#d4a96a','.':'#d4a96a',
+  '$':'#e74c3c','*':'#27ae60','@':'#3498db','+':'#3498db'
+};
+
+function draw(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  for(let r=0;r<grid.length;r++) for(let c=0;c<grid[r].length;c++){
+    const ch=grid[r][c];
+    const x=c*SZ, y=r*SZ;
+    if(ch===' '||ch==='.'||ch==='@'||ch==='+'||ch==='$'||ch==='*'){
+      ctx.fillStyle='#d4a96a'; ctx.fillRect(x,y,SZ,SZ);
+    } else {
+      ctx.fillStyle='#8B6914'; ctx.fillRect(x,y,SZ,SZ);
+      ctx.fillStyle='#6b4c0e'; ctx.fillRect(x+2,y+2,SZ-4,SZ-4);
+    }
+    const cx=x+SZ/2, cy=y+SZ/2;
+    if(ch==='.'||ch==='+'||ch==='*'){
+      ctx.strokeStyle='#c0392b'; ctx.lineWidth=3;
+      ctx.beginPath();
+      ctx.arc(cx,cy,SZ/2-10,0,Math.PI*2);
+      ctx.stroke();
+    }
+    if(ch==='$'||ch==='*'){
+      ctx.fillStyle=ch==='*'?'#27ae60':'#e74c3c';
+      ctx.beginPath(); ctx.roundRect(x+6,y+6,SZ-12,SZ-12,6); ctx.fill();
+      ctx.fillStyle='rgba(255,255,255,0.3)';
+      ctx.beginPath(); ctx.roundRect(x+8,y+8,SZ-24,8,3); ctx.fill();
+    }
+    if(ch==='@'||ch==='+'){
+      ctx.fillStyle='#3498db';
+      ctx.beginPath(); ctx.arc(cx,cy-4,10,0,Math.PI*2); ctx.fill();
+      ctx.fillStyle='#2980b9';
+      ctx.beginPath();
+      ctx.ellipse(cx,cy+10,10,12,0,0,Math.PI);
+      ctx.fill();
+    }
+  }
+}
+
+document.addEventListener('keydown',e=>{
+  const map={ArrowUp:[-1,0],ArrowDown:[1,0],ArrowLeft:[0,-1],ArrowRight:[0,1],
+             w:[-1,0],s:[1,0],a:[0,-1],d:[0,1]};
+  if(map[e.key]){e.preventDefault();move(...map[e.key]);}
+  if(e.key==='z'||e.key==='Z'||(e.ctrlKey&&e.key==='z')){e.preventDefault();undo();}
+});
+
+document.getElementById('bU').onclick=()=>move(-1,0);
+document.getElementById('bD').onclick=()=>move(1,0);
+document.getElementById('bL').onclick=()=>move(0,-1);
+document.getElementById('bR').onclick=()=>move(0,1);
+document.getElementById('undoBtn').onclick=undo;
+document.getElementById('restartBtn').onclick=()=>parseLevel(level);
+document.getElementById('nextBtn').onclick=()=>{level++;parseLevel(level);};
+
+parseLevel(0);
+</script>
+</body>
+</html>

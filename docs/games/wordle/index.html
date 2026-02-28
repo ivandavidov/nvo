@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8">
+  <title>Уърдъл БГ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../css/fonts.css">
+  <link rel="stylesheet" href="../../css/normalize.css">
+  <link rel="stylesheet" href="../../css/skeleton.css">
+  <link rel="stylesheet" href="../../css/custom.css">
+  <style>
+    .panel { max-width: 380px; margin: 0 auto; text-align:center; }
+    #grid { display:inline-grid; grid-template-rows:repeat(6,1fr); gap:6px; margin:12px 0; }
+    .row { display:grid; grid-template-columns:repeat(5,1fr); gap:6px; }
+    .tile { width:52px; height:52px; border:2px solid #ccc; border-radius:4px;
+            display:flex; align-items:center; justify-content:center;
+            font-size:1.6rem; font-weight:bold; text-transform:uppercase;
+            transition:background .25s, border-color .25s, color .25s; }
+    .tile.filled { border-color:#888; }
+    .tile.correct { background:#27ae60; border-color:#27ae60; color:#fff; }
+    .tile.present { background:#e67e22; border-color:#e67e22; color:#fff; }
+    .tile.absent  { background:#95a5a6; border-color:#95a5a6; color:#fff; }
+    #keyboard { display:flex; flex-direction:column; gap:6px; align-items:center; margin-bottom:12px; }
+    .kb-row { display:flex; gap:4px; }
+    .key { min-width:32px; height:42px; padding:0 6px; border:1px solid #ccc; border-radius:4px;
+           background:#ecf0f1; font-size:.85rem; font-weight:bold; cursor:pointer;
+           display:flex; align-items:center; justify-content:center; user-select:none;
+           transition:background .2s, color .2s; }
+    .key.correct { background:#27ae60; color:#fff; border-color:#27ae60; }
+    .key.present { background:#e67e22; color:#fff; border-color:#e67e22; }
+    .key.absent  { background:#bdc3c7; color:#fff; border-color:#bdc3c7; }
+    .key.wide { min-width:52px; font-size:.75rem; }
+    #msg { min-height:1.8rem; font-weight:bold; margin-bottom:6px; font-size:1rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row" style="margin-top:2rem"><a href="../">← Към игрите</a></div>
+    <div class="row panel">
+      <h4>Уърдъл БГ</h4>
+      <p style="color:#666;font-size:.85rem;margin-bottom:4px;">Познай 5-буквената дума за 6 опита.<br>🟩 правилна позиция · 🟧 грешна позиция · ⬜ не е в думата</p>
+      <div id="msg"></div>
+      <div id="grid"></div>
+      <div id="keyboard"></div>
+      <button class="button" id="newBtn" style="width:100%">Нова дума</button>
+    </div>
+  </div>
+<script>
+'use strict';
+const WORDS = [
+  'МАСКА','КНИГА','СЛОВО','ПРАВА','ТАЙНА','ЗЕЛЕН','ЗЛАТО','КАРТА','КОРАБ','КУКЛА',
+  'ЛЕГЛО','ЛЕСНО','МЕТЛА','МЕЧТА','МЛЯКО','МРЕЖА','НАЧИН','НЕЖЕН','ОГНЕН','ОКОЛО',
+  'ОСТЪР','ПАРЧЕ','ПЕВЕЦ','ПЕТЕЛ','ПОЛЕТ','ПОТОК','ПРАВО','ПЧЕЛА','РАМКА','РЕЖИМ',
+  'РИБАР','РОКЛЯ','РОМАН','СЕЗОН','СКАЛА','СЛАНА','СОЛЕН','СОЧЕН','СРЕДА','СТЕНА',
+  'СХЕМА','ТИКВА','ТРЪБА','ТЪМНО','ФИНАЛ','ФОРМА','ХРАНА','ХУБАВ','ЦВЕТЕ','ЦЕЛТА',
+  'ЧАНТА','ЧЕРЕН','ШКОЛА','ЖИВОТ','ГЛАВА','ГОРЕН','ДЪСКА','ВОЙНА','БЕЛЕГ','КОЗЕЛ',
+  'КУПОЛ','ЛЮЛЯК','ЛОВЕЦ','МОГЪЩ','КАМЪК','ДВАМА','НОЩЕН','ПЕЧАЛ','ДВЕРИ','ПРАГА',
+  'БЛАТО','БРОДА','ВЯТЪР','ГАРВАН','ДЕБЕЛ','ЗЕМЕН','ИЗТОК','КЛАДА','ЛАНЕЦ','НАРОД',
+  'ОБРЕД','ПЛАХА','РАЗВОД','СЯНКА','ТЪМЕН','УСПЕХ','ХЛЯБА','ЦИТАТ','ЧАЛГА','ШУМЕН'
+].filter(w=>w.length===5);
+
+const KEYBOARD_ROWS = [
+  ['Я','В','Е','Р','Т','Ъ','У','И','О','П'],
+  ['А','С','Д','Ф','Г','Х','Й','К','Л'],
+  ['ENTER','З','Ь','Ц','Ж','Б','Н','М','⌫']
+];
+
+let target, guesses, current, over;
+const keyState = {};
+
+function newGame() {
+  target = WORDS[Math.floor(Math.random()*WORDS.length)];
+  guesses = []; current = ''; over = false;
+  Object.keys(keyState).forEach(k=>delete keyState[k]);
+  document.getElementById('msg').textContent = '';
+  buildGrid(); buildKeyboard();
+}
+
+function buildGrid() {
+  const el = document.getElementById('grid');
+  el.innerHTML = '';
+  for (let r=0;r<6;r++){
+    const row = document.createElement('div');
+    row.className='row'; row.id='row'+r;
+    for (let c=0;c<5;c++){
+      const tile=document.createElement('div');
+      tile.className='tile'; tile.id='tile'+r+'_'+c;
+      row.appendChild(tile);
+    }
+    el.appendChild(row);
+  }
+  render();
+}
+
+function buildKeyboard() {
+  const el = document.getElementById('keyboard');
+  el.innerHTML = '';
+  KEYBOARD_ROWS.forEach(row=>{
+    const div=document.createElement('div');
+    div.className='kb-row';
+    row.forEach(k=>{
+      const btn=document.createElement('div');
+      btn.className='key'+(k.length>1?' wide':'');
+      btn.textContent=k; btn.dataset.key=k;
+      btn.onclick=()=>handleKey(k);
+      if(keyState[k]) btn.classList.add(keyState[k]);
+      el.appendChild(btn);
+    });
+    el.appendChild(div);
+  });
+}
+
+function render() {
+  for (let r=0;r<6;r++){
+    const guess = guesses[r]||'';
+    const isCurrent = r===guesses.length && !over;
+    for (let c=0;c<5;c++){
+      const tile=document.getElementById('tile'+r+'_'+c);
+      if (!tile) continue;
+      tile.className='tile';
+      if (r<guesses.length){
+        // evaluated
+        tile.textContent=guesses[r][c]||'';
+        tile.classList.add(evalGuess(guesses[r])[c]);
+        tile.classList.add('filled');
+      } else if (isCurrent){
+        tile.textContent=current[c]||'';
+        if(current[c]) tile.classList.add('filled');
+      } else {
+        tile.textContent='';
+      }
+    }
+  }
+}
+
+function evalGuess(guess) {
+  const result=Array(5).fill('absent');
+  const targetArr=[...target];
+  const used=Array(5).fill(false);
+  // correct
+  for(let i=0;i<5;i++) if(guess[i]===targetArr[i]){result[i]='correct';used[i]=true;}
+  // present
+  for(let i=0;i<5;i++){
+    if(result[i]==='correct') continue;
+    for(let j=0;j<5;j++){
+      if(!used[j]&&guess[i]===targetArr[j]){result[i]='present';used[j]=true;break;}
+    }
+  }
+  return result;
+}
+
+function updateKeyboard(guess) {
+  const res=evalGuess(guess);
+  const PRIORITY={correct:3,present:2,absent:1};
+  guess.split('').forEach((ch,i)=>{
+    const prev=PRIORITY[keyState[ch]]||0;
+    if((PRIORITY[res[i]]||0)>prev) keyState[ch]=res[i];
+  });
+  buildKeyboard();
+}
+
+function handleKey(k) {
+  if(over) return;
+  if(k==='⌫'||k==='Backspace'){current=current.slice(0,-1);}
+  else if(k==='ENTER'||k==='Enter'){submit();}
+  else if(current.length<5&&k.length===1){current+=k.toUpperCase();}
+  render();
+}
+
+function submit() {
+  if(current.length<5){document.getElementById('msg').textContent='Въведи 5 букви';return;}
+  if(!WORDS.includes(current)){document.getElementById('msg').textContent='Думата не е в списъка';return;}
+  guesses.push(current);
+  updateKeyboard(current);
+  render();
+  if(current===target){
+    over=true;
+    const msgs=['Отлично!','Страхотно!','Браво!','Добре!','Успя!','Фу, едва!'];
+    document.getElementById('msg').textContent=msgs[guesses.length-1]||'Браво!';
+    return;
+  }
+  current='';
+  if(guesses.length===6){
+    over=true;
+    document.getElementById('msg').textContent='Думата беше: '+target;
+  } else {
+    document.getElementById('msg').textContent='';
+  }
+}
+
+document.addEventListener('keydown',e=>{
+  if(e.ctrlKey||e.altKey||e.metaKey) return;
+  if(e.key==='Backspace') handleKey('⌫');
+  else if(e.key==='Enter') handleKey('ENTER');
+  else if(e.key.length===1) handleKey(e.key.toUpperCase());
+});
+document.getElementById('newBtn').onclick=newGame;
+newGame();
+</script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8">
+  <title>Simon Says</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../css/fonts.css">
+  <link rel="stylesheet" href="../../css/normalize.css">
+  <link rel="stylesheet" href="../../css/skeleton.css">
+  <link rel="stylesheet" href="../../css/custom.css">
+  <style>
+    .panel { max-width: 360px; margin: 0 auto; text-align: center; }
+    #grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:20px auto; max-width:280px; }
+    .btn { aspect-ratio:1; border-radius:16px; cursor:pointer; transition:filter .1s; border:none; outline:none; }
+    .btn:active, .btn.lit { filter:brightness(1.6) saturate(1.3); }
+    #msg { font-size:1.1rem; font-weight:bold; min-height:2rem; margin-bottom:8px; }
+    #level { color:#666; margin-bottom:12px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row" style="margin-top:2rem"><a href="../">← Към игрите</a></div>
+    <div class="row panel">
+      <h4>Simon Says</h4>
+      <div id="msg">Натисни Старт</div>
+      <div id="level">Ниво: <strong id="lvl">0</strong></div>
+      <div id="grid">
+        <button class="btn" id="b0" style="background:#27ae60"></button>
+        <button class="btn" id="b1" style="background:#2980b9"></button>
+        <button class="btn" id="b2" style="background:#e74c3c"></button>
+        <button class="btn" id="b3" style="background:#f39c12"></button>
+      </div>
+      <button class="button" id="startBtn" style="width:100%">Старт</button>
+    </div>
+  </div>
+<script>
+'use strict';
+const COLORS = ['#27ae60','#2980b9','#e74c3c','#f39c12'];
+const SOUNDS = [261.6, 329.6, 392, 523.3]; // C4 E4 G4 C5
+let sequence, playerSeq, level, accepting, audioCtx;
+
+function getAudio() {
+  if (!audioCtx) audioCtx = new (window.AudioContext||window.webkitAudioContext)();
+  return audioCtx;
+}
+
+function playTone(freq, dur=300) {
+  const ac = getAudio();
+  const o = ac.createOscillator();
+  const g = ac.createGain();
+  o.connect(g); g.connect(ac.destination);
+  o.frequency.value = freq;
+  g.gain.setValueAtTime(0.4, ac.currentTime);
+  g.gain.exponentialRampToValueAtTime(0.001, ac.currentTime + dur/1000);
+  o.start(); o.stop(ac.currentTime + dur/1000);
+}
+
+function light(idx, on) {
+  const btn = document.getElementById('b'+idx);
+  if (on) btn.classList.add('lit'); else btn.classList.remove('lit');
+}
+
+function setMsg(t) { document.getElementById('msg').textContent = t; }
+
+async function playSequence() {
+  accepting = false;
+  setMsg('Гледай...');
+  await delay(600);
+  for (const idx of sequence) {
+    light(idx, true); playTone(SOUNDS[idx]);
+    await delay(450);
+    light(idx, false);
+    await delay(200);
+  }
+  accepting = true;
+  playerSeq = [];
+  setMsg('Твой ред!');
+}
+
+function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+async function nextLevel() {
+  level++;
+  document.getElementById('lvl').textContent = String(level);
+  sequence.push(Math.floor(Math.random()*4));
+  await playSequence();
+}
+
+async function playerClick(idx) {
+  if (!accepting) return;
+  light(idx, true); playTone(SOUNDS[idx], 200);
+  await delay(200); light(idx, false);
+  playerSeq.push(idx);
+  const pos = playerSeq.length - 1;
+  if (playerSeq[pos] !== sequence[pos]) {
+    accepting = false;
+    playTone(110, 600);
+    setMsg('Грешка! Край на ниво ' + level);
+    await delay(1500);
+    level = 0; sequence = [];
+    document.getElementById('lvl').textContent = '0';
+    setMsg('Натисни Старт');
+    document.getElementById('startBtn').disabled = false;
+    return;
+  }
+  if (playerSeq.length === sequence.length) {
+    setMsg('Браво! ✓');
+    await delay(700);
+    nextLevel();
+  }
+}
+
+document.getElementById('startBtn').onclick = async function() {
+  this.disabled = true;
+  level = 0; sequence = [];
+  await nextLevel();
+};
+
+for (let i = 0; i < 4; i++)
+  document.getElementById('b'+i).addEventListener('click', () => playerClick(i));
+</script>
+</body>
+</html>

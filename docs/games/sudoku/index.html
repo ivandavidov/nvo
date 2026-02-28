@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8">
+  <title>Судоку</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../css/fonts.css">
+  <link rel="stylesheet" href="../../css/normalize.css">
+  <link rel="stylesheet" href="../../css/skeleton.css">
+  <link rel="stylesheet" href="../../css/custom.css">
+  <style>
+    .panel { max-width: 420px; margin: 0 auto; text-align:center; }
+    #board { display:inline-grid; grid-template-columns:repeat(9,1fr); gap:1px;
+             background:#888; border:2px solid #333; margin:12px 0; }
+    .cell { width:40px; height:40px; border:none; text-align:center; font-size:1.1rem;
+            font-family:inherit; outline:none; cursor:pointer; background:#fff;
+            transition:background .1s; caret-color:transparent; }
+    .cell.given { font-weight:bold; color:#222; background:#f0f0f0; }
+    .cell.user { color:#2980b9; }
+    .cell.error { background:#ffe0e0; color:#e74c3c; }
+    .cell.selected { background:#d4eaff; }
+    .cell.hint-row { background:#f5f5ff; }
+    /* thick borders for 3x3 boxes */
+    .cell:nth-child(3n+1):not(:nth-child(9n+1)) { border-left:2px solid #333; }
+    .cell:nth-child(n+19):nth-child(-n+27),
+    .cell:nth-child(n+46):nth-child(-n+54) { border-top:2px solid #333; }
+    #numpad { display:flex; gap:6px; justify-content:center; flex-wrap:wrap; margin-bottom:12px; }
+    #numpad button { width:36px; height:36px; padding:0; font-size:1rem; font-weight:bold; }
+    #msg { min-height:1.8rem; font-weight:bold; color:#27ae60; margin-bottom:6px; }
+    .diff-btns { display:flex; gap:6px; justify-content:center; margin-bottom:8px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row" style="margin-top:2rem"><a href="../">← Към игрите</a></div>
+    <div class="row panel">
+      <h4>Судоку</h4>
+      <div class="diff-btns">
+        <button class="button" onclick="newGame(30)">Лесно</button>
+        <button class="button" onclick="newGame(42)">Средно</button>
+        <button class="button" onclick="newGame(52)">Трудно</button>
+      </div>
+      <div id="msg"></div>
+      <div id="board"></div>
+      <div id="numpad"></div>
+      <div style="display:flex;gap:8px;justify-content:center;">
+        <button class="button" id="clearBtn">Изтрий</button>
+        <button class="button" id="checkBtn">Провери</button>
+        <button class="button" id="solveBtn">Решение</button>
+      </div>
+    </div>
+  </div>
+<script>
+'use strict';
+let puzzle, solution, given, selected=null;
+
+// --- Sudoku generator ---
+function generateSolved() {
+  const g = Array.from({length:9},()=>Array(9).fill(0));
+  fill(g, 0);
+  return g;
+}
+
+function fill(g, pos) {
+  if (pos === 81) return true;
+  const r=Math.floor(pos/9), c=pos%9;
+  const nums=[1,2,3,4,5,6,7,8,9].sort(()=>Math.random()-.5);
+  for (const n of nums) {
+    if (canPlace(g,r,c,n)) {
+      g[r][c]=n;
+      if (fill(g,pos+1)) return true;
+      g[r][c]=0;
+    }
+  }
+  return false;
+}
+
+function canPlace(g,r,c,n) {
+  for(let i=0;i<9;i++){
+    if(g[r][i]===n||g[i][c]===n) return false;
+  }
+  const br=Math.floor(r/3)*3, bc=Math.floor(c/3)*3;
+  for(let i=0;i<3;i++) for(let j=0;j<3;j++) if(g[br+i][bc+j]===n) return false;
+  return true;
+}
+
+function removeCells(g, count) {
+  const p = g.map(r=>[...r]);
+  let removed = 0;
+  const cells = Array.from({length:81},(_,i)=>i).sort(()=>Math.random()-.5);
+  for (const idx of cells) {
+    if (removed >= count) break;
+    const r=Math.floor(idx/9), c=idx%9;
+    const bak=p[r][c]; p[r][c]=0; removed++;
+    // basic check: don't remove if it makes puzzle ambiguous (simplified: just count removals)
+  }
+  return p;
+}
+
+function newGame(removeCount=36) {
+  solution = generateSolved();
+  puzzle = removeCells(solution, removeCount);
+  given = puzzle.map(r=>r.map(v=>v!==0));
+  selected = null;
+  document.getElementById('msg').textContent='';
+  render();
+}
+
+function render() {
+  const el = document.getElementById('board');
+  el.innerHTML='';
+  for(let r=0;r<9;r++) for(let c=0;c<9;c++){
+    const cell=document.createElement('input');
+    cell.type='text'; cell.maxLength=1;
+    cell.readOnly=true;
+    const idx=r*9+c;
+    const val=puzzle[r][c];
+    cell.className='cell' + (given[r][c]?' given':' user') +
+      (selected===idx?' selected':(selected!==null&&(Math.floor(selected/9)===r||selected%9===c)?' hint-row':''));
+    if(given[r][c]&&val) cell.className+=' error'.replace(' error','');
+    cell.value=val||'';
+    if(val&&!given[r][c]&&solution[r][c]!==val) cell.className+=' error';
+    cell.onclick=()=>{selected=idx;render();};
+    el.appendChild(cell);
+  }
+}
+
+function inputNum(n) {
+  if(selected===null) return;
+  const r=Math.floor(selected/9), c=selected%9;
+  if(given[r][c]) return;
+  puzzle[r][c]=n;
+  render();
+  if(puzzle.every((row,ri)=>row.every((v,ci)=>v===solution[ri][ci]))){
+    document.getElementById('msg').textContent='🎉 Браво! Судокуто е решено!';
+  }
+}
+
+// Numpad
+const np=document.getElementById('numpad');
+for(let i=1;i<=9;i++){
+  const btn=document.createElement('button');
+  btn.className='button'; btn.textContent=String(i);
+  btn.onclick=()=>inputNum(i);
+  np.appendChild(btn);
+}
+
+document.getElementById('clearBtn').onclick=()=>{
+  if(selected===null) return;
+  const r=Math.floor(selected/9),c=selected%9;
+  if(!given[r][c]){puzzle[r][c]=0;render();}
+};
+document.getElementById('checkBtn').onclick=()=>{
+  let wrong=0;
+  for(let r=0;r<9;r++) for(let c=0;c<9;c++)
+    if(!given[r][c]&&puzzle[r][c]&&puzzle[r][c]!==solution[r][c]) wrong++;
+  document.getElementById('msg').textContent=wrong?wrong+' грешни клетки':'Всичко е правилно!';
+  render();
+};
+document.getElementById('solveBtn').onclick=()=>{
+  puzzle=solution.map(r=>[...r]);
+  render();
+  document.getElementById('msg').textContent='Решението е показано.';
+};
+
+document.addEventListener('keydown',e=>{
+  if(selected===null) return;
+  if(e.key>='1'&&e.key<='9') inputNum(parseInt(e.key));
+  if(e.key==='Backspace'||e.key==='Delete'){
+    const r=Math.floor(selected/9),c=selected%9;
+    if(!given[r][c]){puzzle[r][c]=0;render();}
+  }
+  const moves={ArrowUp:-9,ArrowDown:9,ArrowLeft:-1,ArrowRight:1};
+  if(moves[e.key]!==undefined){
+    e.preventDefault();
+    selected=Math.max(0,Math.min(80,selected+moves[e.key]));
+    render();
+  }
+});
+
+newGame(36);
+</script>
+</body>
+</html>
