@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8">
+  <title>Лабиринт</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../css/fonts.css">
+  <link rel="stylesheet" href="../../css/normalize.css">
+  <link rel="stylesheet" href="../../css/skeleton.css">
+  <link rel="stylesheet" href="../../css/custom.css">
+  <style>
+    .panel{max-width:520px;margin:0 auto}
+    canvas{width:100%;max-width:400px;display:block;margin:0 auto;border:1px solid #ccc;background:#fff}
+    .meta{display:flex;justify-content:space-between;margin-bottom:8px;color:#555;flex-wrap:wrap;gap:4px}
+    .ctrl{margin-top:10px;display:grid;gap:6px;grid-template-columns:repeat(3,1fr);max-width:200px;margin-left:auto;margin-right:auto}
+    .ctrl button{margin:0;padding:0;height:38px}
+    .opts{display:flex;gap:8px;align-items:center;margin-bottom:10px;flex-wrap:wrap}
+    .opts label{margin:0;font-size:.9em}
+    .opts select{margin:0;height:32px;padding:0 6px}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row" style="margin-top:2rem"><a href="../">&larr; Към игрите</a></div>
+    <div class="row panel">
+      <h4>Лабиринт</h4>
+      <div class="opts">
+        <label>Трудност:</label>
+        <select id="diff"><option value="10">Лесен</option><option value="15" selected>Среден</option><option value="20">Труден</option></select>
+        <button class="button" id="newMaze">Нов лабиринт</button>
+      </div>
+      <div class="meta"><span>Ходове: <strong id="moves">0</strong></span><span>Време: <strong id="timer">0:00</strong></span></div>
+      <canvas id="c" width="400" height="400"></canvas>
+      <div style="margin-top:6px;color:#666;text-align:center;font-size:.9em">Клавиши: ← ↑ → ↓</div>
+      <div class="ctrl">
+        <div></div><button class="button" id="up">↑</button><div></div>
+        <button class="button" id="left">←</button><button class="button" id="down">↓</button><button class="button" id="right">→</button>
+      </div>
+    </div>
+  </div>
+<script>
+'use strict';
+const cv=document.getElementById('c'),ctx=cv.getContext('2d');
+let N,walls,px,py,moves,won,startTime,timerInt;
+
+function init(){
+  N=+document.getElementById('diff').value;
+  walls=Array.from({length:N},()=>Array.from({length:N},()=>({t:true,r:true,b:true,l:true})));
+  generate();px=0;py=0;moves=0;won=false;
+  clearInterval(timerInt);startTime=null;
+  document.getElementById('moves').textContent='0';document.getElementById('timer').textContent='0:00';
+  draw()
+}
+
+function generate(){
+  const vis=Array.from({length:N},()=>Array(N).fill(false));
+  const stack=[];vis[0][0]=true;stack.push([0,0]);
+  while(stack.length){
+    const[r,c]=stack[stack.length-1];
+    const nb=[];
+    if(r>0&&!vis[r-1][c])nb.push([r-1,c,'t','b']);
+    if(r<N-1&&!vis[r+1][c])nb.push([r+1,c,'b','t']);
+    if(c>0&&!vis[r][c-1])nb.push([r,c-1,'l','r']);
+    if(c<N-1&&!vis[r][c+1])nb.push([r,c+1,'r','l']);
+    if(!nb.length){stack.pop();continue}
+    const[nr,nc,w1,w2]=nb[Math.floor(Math.random()*nb.length)];
+    walls[r][c][w1]=false;walls[nr][nc][w2]=false;
+    vis[nr][nc]=true;stack.push([nr,nc])
+  }
+}
+
+function draw(){
+  const sz=400/N;ctx.clearRect(0,0,400,400);
+  ctx.fillStyle='#e8f5e9';ctx.fillRect((N-1)*sz,(N-1)*sz,sz,sz);
+  ctx.fillStyle='#dcedc8';ctx.fillRect(px*sz,py*sz,sz,sz);
+  ctx.strokeStyle='#333';ctx.lineWidth=Math.max(1,3-N*0.1);
+  for(let r=0;r<N;r++)for(let c=0;c<N;c++){const x=c*sz,y=r*sz,w=walls[r][c];
+    if(w.t){ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x+sz,y);ctx.stroke()}
+    if(w.r){ctx.beginPath();ctx.moveTo(x+sz,y);ctx.lineTo(x+sz,y+sz);ctx.stroke()}
+    if(w.b){ctx.beginPath();ctx.moveTo(x,y+sz);ctx.lineTo(x+sz,y+sz);ctx.stroke()}
+    if(w.l){ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x,y+sz);ctx.stroke()}
+  }
+  ctx.fillStyle='#e74c3c';ctx.beginPath();ctx.arc(px*sz+sz/2,py*sz+sz/2,sz*0.3,0,Math.PI*2);ctx.fill();
+  ctx.fillStyle='#27ae60';ctx.font='bold '+Math.floor(sz*0.5)+'px sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';
+  ctx.fillText('★',(N-1)*sz+sz/2,(N-1)*sz+sz/2);
+  if(won){ctx.fillStyle='rgba(255,255,255,0.8)';ctx.fillRect(60,170,280,60);ctx.fillStyle='#2b8a3e';ctx.font='bold 22px sans-serif';ctx.fillText('Браво! Намери изхода!',200,205)}
+}
+
+function move(dx,dy){
+  if(won)return;
+  if(!startTime){startTime=Date.now();timerInt=setInterval(()=>{const e=Math.floor((Date.now()-startTime)/1000);document.getElementById('timer').textContent=Math.floor(e/60)+':'+String(e%60).padStart(2,'0')},200)}
+  const w=walls[py][px];
+  if(dx===-1&&w.l)return;if(dx===1&&w.r)return;if(dy===-1&&w.t)return;if(dy===1&&w.b)return;
+  px+=dx;py+=dy;moves++;document.getElementById('moves').textContent=moves;
+  if(px===N-1&&py===N-1){won=true;clearInterval(timerInt)}
+  draw()
+}
+
+document.addEventListener('keydown',e=>{if(e.key==='ArrowLeft')move(-1,0);if(e.key==='ArrowRight')move(1,0);if(e.key==='ArrowUp')move(0,-1);if(e.key==='ArrowDown')move(0,1)});
+document.getElementById('left').onclick=()=>move(-1,0);
+document.getElementById('right').onclick=()=>move(1,0);
+document.getElementById('up').onclick=()=>move(0,-1);
+document.getElementById('down').onclick=()=>move(0,1);
+document.getElementById('newMaze').onclick=init;
+document.getElementById('diff').onchange=init;
+init();
+</script>
+</body>
+</html>

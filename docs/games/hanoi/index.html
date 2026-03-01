@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8">
+  <title>Ханойски кули</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../css/fonts.css">
+  <link rel="stylesheet" href="../../css/normalize.css">
+  <link rel="stylesheet" href="../../css/skeleton.css">
+  <link rel="stylesheet" href="../../css/custom.css">
+  <style>
+    .panel{max-width:520px;margin:0 auto;text-align:center}
+    canvas{width:100%;max-width:480px;display:block;margin:0 auto;cursor:pointer}
+    .meta{display:flex;justify-content:space-between;margin-bottom:8px;color:#555;flex-wrap:wrap;gap:4px}
+    .opts{display:flex;gap:8px;align-items:center;margin-bottom:10px;flex-wrap:wrap}
+    .opts label{margin:0;font-size:.9em}
+    .opts select{margin:0;height:32px;padding:0 6px}
+    #msg{font-size:1.1rem;font-weight:bold;min-height:2rem;margin-bottom:4px;color:#2b8a3e}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row" style="margin-top:2rem"><a href="../">&larr; Към игрите</a></div>
+    <div class="row panel">
+      <h4>Ханойски кули</h4>
+      <div id="msg"></div>
+      <div class="opts">
+        <label>Дискове:</label>
+        <select id="ndisks"><option>3</option><option>4</option><option selected>5</option><option>6</option><option>7</option><option>8</option></select>
+        <button class="button" id="newGame">Нова игра</button>
+      </div>
+      <div class="meta"><span>Ходове: <strong id="moves">0</strong></span><span>Минимум: <strong id="minMoves">31</strong></span></div>
+      <canvas id="c" width="480" height="280"></canvas>
+      <div style="margin-top:6px;color:#666;font-size:.9em">Кликни стълб за да вземеш/пуснеш диск</div>
+    </div>
+  </div>
+<script>
+'use strict';
+const cv=document.getElementById('c'),ctx=cv.getContext('2d');
+const W=480,H=280;
+const colors=['#e74c3c','#e67e22','#f1c40f','#2ecc71','#3498db','#9b59b6','#1abc9c','#e84393'];
+let pegs,nDisks,moves,selected,won;
+
+function init(){
+  nDisks=+document.getElementById('ndisks').value;
+  pegs=[[],[],[]];for(let i=nDisks;i>=1;i--)pegs[0].push(i);
+  moves=0;selected=-1;won=false;
+  document.getElementById('moves').textContent='0';
+  document.getElementById('minMoves').textContent=String((1<<nDisks)-1);
+  document.getElementById('msg').textContent='';draw()
+}
+
+function draw(){
+  ctx.clearRect(0,0,W,H);
+  ctx.fillStyle='#8B4513';ctx.fillRect(0,H-20,W,20);
+  const pw=W/3;
+  for(let p=0;p<3;p++){
+    const cx=pw*p+pw/2;
+    ctx.fillStyle=p===selected?'#e67e22':'#a0522d';
+    ctx.fillRect(cx-4,40,8,H-60);
+    pegs[p].forEach((d,i)=>{
+      const dw=20+d*(pw-40)/nDisks;
+      const dy=H-22-i*24-24;
+      ctx.fillStyle=colors[(d-1)%colors.length];
+      ctx.beginPath();ctx.roundRect(cx-dw/2,dy,dw,22,4);ctx.fill();
+      ctx.strokeStyle='rgba(0,0,0,0.2)';ctx.stroke()
+    })
+  }
+  if(won){ctx.fillStyle='rgba(255,255,255,0.85)';ctx.fillRect(100,100,280,60);ctx.fillStyle='#2b8a3e';ctx.font='bold 20px sans-serif';ctx.textAlign='center';ctx.fillText('Браво! Успя за '+moves+' хода!',W/2,137)}
+}
+
+cv.onclick=e=>{
+  if(won)return;
+  const rect=cv.getBoundingClientRect();
+  const x=(e.clientX-rect.left)*(W/rect.width);
+  const p=Math.min(2,Math.floor(x/(W/3)));
+  if(selected===-1){if(pegs[p].length)selected=p;draw();return}
+  if(p===selected){selected=-1;draw();return}
+  const disk=pegs[selected][pegs[selected].length-1];
+  if(pegs[p].length&&pegs[p][pegs[p].length-1]<disk){selected=-1;draw();return}
+  pegs[p].push(pegs[selected].pop());selected=-1;moves++;
+  document.getElementById('moves').textContent=moves;
+  if(pegs[2].length===nDisks){won=true;document.getElementById('msg').textContent='Браво!'}
+  draw()
+};
+
+document.getElementById('newGame').onclick=init;
+document.getElementById('ndisks').onchange=init;
+init();
+</script>
+</body>
+</html>

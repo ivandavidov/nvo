@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8">
+  <title>Doodle Jump</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../css/fonts.css">
+  <link rel="stylesheet" href="../../css/normalize.css">
+  <link rel="stylesheet" href="../../css/skeleton.css">
+  <link rel="stylesheet" href="../../css/custom.css">
+  <style>
+    .panel{max-width:520px;margin:0 auto;text-align:center}
+    canvas{width:100%;max-width:360px;display:block;margin:0 auto;border:1px solid #ccc;background:#e8f4fd}
+    .meta{display:flex;justify-content:space-between;margin-bottom:8px;color:#555}
+    .ctrl{margin-top:10px;display:flex;gap:8px;justify-content:center}
+    .ctrl button{margin:0;padding:0 20px;height:38px}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row" style="margin-top:2rem"><a href="../">&larr; Към игрите</a></div>
+    <div class="row panel">
+      <h4>Doodle Jump</h4>
+      <div class="meta"><span>Точки: <strong id="score">0</strong></span><span>Рекорд: <strong id="best">0</strong></span></div>
+      <canvas id="c" width="360" height="560"></canvas>
+      <div style="margin-top:6px;color:#666;font-size:.9em">Клавиши: ← →</div>
+      <div class="ctrl">
+        <button class="button" id="left">←</button>
+        <button class="button" id="restart">Нова игра</button>
+        <button class="button" id="right">→</button>
+      </div>
+    </div>
+  </div>
+<script>
+'use strict';
+const cv=document.getElementById('c'),ctx=cv.getContext('2d'),W=360,H=560;
+let plats,px,py,vy,score,best=0,over,keys={};
+const PW=60,PH=10,GRAVITY=0.35,JUMP=-10;
+
+function init(){
+  plats=[];px=W/2;py=H-60;vy=JUMP;score=0;over=false;
+  document.getElementById('score').textContent='0';
+  for(let i=0;i<8;i++)plats.push({x:Math.random()*(W-PW),y:H-i*70,type:Math.random()<0.15&&i>2?'break':'normal'});
+  loop()
+}
+
+function loop(){
+  if(over)return;
+  update();draw();requestAnimationFrame(loop)
+}
+
+function update(){
+  if(keys.left)px-=5;if(keys.right)px+=5;
+  if(px<-15)px=W;if(px>W+15)px=0;
+  vy+=GRAVITY;py+=vy;
+  if(vy>0){
+    plats.forEach(p=>{
+      if(px+15>p.x&&px-15<p.x+PW&&py+20>=p.y&&py+20<=p.y+PH+vy+1){
+        if(p.type==='break'){p.broken=true}
+        else{vy=JUMP}
+      }
+    })
+  }
+  if(py<H/3){
+    const shift=H/3-py;py=H/3;score+=Math.floor(shift);
+    document.getElementById('score').textContent=score;
+    plats.forEach(p=>p.y+=shift);
+    plats=plats.filter(p=>p.y<H+20);
+    while(plats.length<8){
+      const topY=Math.min(...plats.map(p=>p.y));
+      plats.push({x:Math.random()*(W-PW),y:topY-60-Math.random()*30,type:Math.random()<0.2?'break':'normal'})
+    }
+  }
+  if(py>H+40){
+    over=true;if(score>best){best=score;document.getElementById('best').textContent=best}
+    drawGameOver()
+  }
+}
+
+function draw(){
+  ctx.fillStyle='#e8f4fd';ctx.fillRect(0,0,W,H);
+  plats.forEach(p=>{
+    if(p.broken)return;
+    ctx.fillStyle=p.type==='break'?'#e67e22':'#27ae60';
+    ctx.fillRect(p.x,p.y,PW,PH);
+  });
+  ctx.fillStyle='#e74c3c';
+  ctx.beginPath();ctx.arc(px,py,15,0,Math.PI*2);ctx.fill();
+  ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(px-4,py-4,3,0,Math.PI*2);ctx.fill();
+  ctx.beginPath();ctx.arc(px+4,py-4,3,0,Math.PI*2);ctx.fill()
+}
+
+function drawGameOver(){
+  draw();
+  ctx.fillStyle='rgba(255,255,255,0.85)';ctx.fillRect(60,220,240,80);
+  ctx.fillStyle='#333';ctx.font='bold 22px sans-serif';ctx.textAlign='center';
+  ctx.fillText('Край! '+score+' точки',W/2,255);
+  ctx.font='16px sans-serif';ctx.fillText('Натисни "Нова игра"',W/2,280)
+}
+
+document.addEventListener('keydown',e=>{if(e.key==='ArrowLeft')keys.left=true;if(e.key==='ArrowRight')keys.right=true});
+document.addEventListener('keyup',e=>{if(e.key==='ArrowLeft')keys.left=false;if(e.key==='ArrowRight')keys.right=false});
+document.getElementById('left').onpointerdown=()=>{keys.left=true};document.getElementById('left').onpointerup=()=>{keys.left=false};
+document.getElementById('right').onpointerdown=()=>{keys.right=true};document.getElementById('right').onpointerup=()=>{keys.right=false};
+document.getElementById('restart').onclick=init;
+init();
+</script>
+</body>
+</html>

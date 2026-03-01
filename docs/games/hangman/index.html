@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8">
+  <title>Бесеница</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../css/fonts.css">
+  <link rel="stylesheet" href="../../css/normalize.css">
+  <link rel="stylesheet" href="../../css/skeleton.css">
+  <link rel="stylesheet" href="../../css/custom.css">
+  <style>
+    .panel{max-width:520px;margin:0 auto;text-align:center}
+    canvas{display:block;margin:0 auto 12px}
+    #word{font-size:2rem;letter-spacing:.5rem;margin-bottom:12px;font-weight:bold;min-height:3rem}
+    #category{color:#888;font-size:.95em;margin-bottom:8px}
+    .kb{display:flex;flex-wrap:wrap;justify-content:center;gap:4px;margin-bottom:12px}
+    .kb button{min-width:32px;height:36px;padding:0 6px;margin:0;font-size:.95rem}
+    .kb button:disabled{opacity:.4;cursor:default}
+    .kb button.correct{background:#27ae60;color:#fff;border-color:#27ae60}
+    .kb button.wrong{background:#c0392b;color:#fff;border-color:#c0392b}
+    .meta{display:flex;justify-content:space-between;margin-bottom:8px;color:#555}
+    #msg{font-size:1.1rem;font-weight:bold;min-height:2rem;margin-bottom:8px}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row" style="margin-top:2rem"><a href="../">&larr; Към игрите</a></div>
+    <div class="row panel">
+      <h4>Бесеница</h4>
+      <div id="msg"></div>
+      <div class="meta"><span>Победи: <strong id="wins">0</strong></span><span>Загуби: <strong id="losses">0</strong></span></div>
+      <canvas id="c" width="200" height="200"></canvas>
+      <div id="category"></div>
+      <div id="word"></div>
+      <div id="kb" class="kb"></div>
+      <button class="button" id="newWord">Нова дума</button>
+    </div>
+  </div>
+<script>
+'use strict';
+const words={
+  'Животни':['котка','куче','слон','жираф','делфин','пеперуда','костенурка','крокодил','папагал','пингвин'],
+  'География':['планина','река','океан','пустиня','остров','вулкан','водопад','езеро','долина','ледник'],
+  'Храна':['ябълка','портокал','шоколад','сладолед','баница','кифла','круша','диня','череша','тиква'],
+  'Училище':['учител','ученик','тетрадка','молив','класна','дъска','компютър','домашно','изпит','урок']
+};
+const cats=Object.keys(words);
+const letters='АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЬЮЯ';
+const cv=document.getElementById('c'),ctx=cv.getContext('2d');
+let target,category,guessed,wrong,wins=0,losses=0,over;
+
+function init(){
+  category=cats[Math.floor(Math.random()*cats.length)];
+  const pool=words[category];
+  target=pool[Math.floor(Math.random()*pool.length)].toUpperCase();
+  guessed=new Set();wrong=0;over=false;
+  document.getElementById('msg').textContent='';
+  document.getElementById('category').textContent='Категория: '+category;
+  buildKb();renderWord();drawHangman()
+}
+
+function buildKb(){
+  const kb=document.getElementById('kb');kb.innerHTML='';
+  letters.split('').forEach(l=>{
+    const b=document.createElement('button');b.className='button';b.textContent=l;
+    b.onclick=()=>guess(l,b);kb.appendChild(b)
+  })
+}
+
+function guess(l,btn){
+  if(over||guessed.has(l))return;
+  guessed.add(l);
+  if(target.includes(l)){btn.classList.add('correct');btn.disabled=true}
+  else{wrong++;btn.classList.add('wrong');btn.disabled=true}
+  renderWord();drawHangman();
+  if(target.split('').every(c=>guessed.has(c))){
+    over=true;wins++;document.getElementById('wins').textContent=wins;
+    document.getElementById('msg').innerHTML='<span style="color:#27ae60">Браво!</span>'
+  }else if(wrong>=6){
+    over=true;losses++;document.getElementById('losses').textContent=losses;
+    document.getElementById('msg').innerHTML='<span style="color:#c0392b">Думата беше: '+target+'</span>';
+    document.querySelectorAll('#kb button').forEach(b=>b.disabled=true)
+  }
+}
+
+function renderWord(){
+  document.getElementById('word').textContent=target.split('').map(c=>guessed.has(c)?c:'_').join(' ')
+}
+
+function drawHangman(){
+  ctx.clearRect(0,0,200,200);ctx.strokeStyle='#333';ctx.lineWidth=3;ctx.lineCap='round';
+  ctx.beginPath();ctx.moveTo(20,180);ctx.lineTo(80,180);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(50,180);ctx.lineTo(50,30);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(50,30);ctx.lineTo(130,30);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(130,30);ctx.lineTo(130,50);ctx.stroke();
+  if(wrong>=1){ctx.beginPath();ctx.arc(130,65,15,0,Math.PI*2);ctx.stroke()}
+  if(wrong>=2){ctx.beginPath();ctx.moveTo(130,80);ctx.lineTo(130,130);ctx.stroke()}
+  if(wrong>=3){ctx.beginPath();ctx.moveTo(130,90);ctx.lineTo(110,115);ctx.stroke()}
+  if(wrong>=4){ctx.beginPath();ctx.moveTo(130,90);ctx.lineTo(150,115);ctx.stroke()}
+  if(wrong>=5){ctx.beginPath();ctx.moveTo(130,130);ctx.lineTo(110,160);ctx.stroke()}
+  if(wrong>=6){ctx.beginPath();ctx.moveTo(130,130);ctx.lineTo(150,160);ctx.stroke()}
+}
+
+document.getElementById('newWord').onclick=init;
+init();
+</script>
+</body>
+</html>

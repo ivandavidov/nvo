@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8">
+  <title>Скорост на писане</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../css/fonts.css">
+  <link rel="stylesheet" href="../../css/normalize.css">
+  <link rel="stylesheet" href="../../css/skeleton.css">
+  <link rel="stylesheet" href="../../css/custom.css">
+  <style>
+    .panel{max-width:580px;margin:0 auto}
+    #text{font-size:1.25rem;line-height:1.8;background:#f9f9f9;border:1px solid #ddd;border-radius:8px;padding:16px;margin-bottom:12px;min-height:100px;user-select:none}
+    #text .correct{color:#27ae60}
+    #text .wrong{color:#c0392b;text-decoration:underline}
+    #text .cursor{border-bottom:2px solid #333}
+    #text .pending{color:#999}
+    #input{width:100%;font-size:1.1rem;padding:8px;margin-bottom:8px}
+    .meta{display:flex;justify-content:space-between;margin-bottom:8px;color:#555;flex-wrap:wrap;gap:6px}
+    #result{font-size:1.1rem;font-weight:bold;min-height:2rem;margin-bottom:8px;color:#2b8a3e}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row" style="margin-top:2rem"><a href="../">&larr; Към игрите</a></div>
+    <div class="row panel">
+      <h4>Скорост на писане</h4>
+      <div id="result"></div>
+      <div class="meta"><span>Думи/мин: <strong id="wpm">0</strong></span><span>Точност: <strong id="acc">100%</strong></span><span>Време: <strong id="timer">60</strong>с</span></div>
+      <div id="text"></div>
+      <input type="text" id="input" placeholder="Започни да пишеш тук..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+      <button class="button" id="newTest">Нов тест</button>
+    </div>
+  </div>
+<script>
+'use strict';
+const texts=[
+  "Който рано рани два пъти печели. Знанието е сила а невежеството е слабост.",
+  "Два пъти мери един път режи. Капка по капка вир става.",
+  "Не е злато всичко което блести. Тихите води са най-дълбоки.",
+  "По-добре късно отколкото никога. Учението е светлина а неучението е тъмнина.",
+  "България е красива страна с богата история и култура. Планините и морето привличат туристи.",
+  "Слънцето грее ярко над полето. Децата играят весело в парка и се смеят.",
+  "Книгите са прозорец към света. Четенето развива въображението и обогатява речника.",
+  "Математиката е царица на науките. Числата крият красота и хармония в себе си.",
+  "Пролетта идва с топло време и цветя. Птиците пеят по дърветата в градината.",
+  "Музиката лекува душата и носи радост. Всеки може да намери своя любим жанр."
+];
+let target,pos,correct,total,started,timer,timeLeft;
+
+function init(){
+  target=texts[Math.floor(Math.random()*texts.length)];
+  pos=0;correct=0;total=0;started=false;timeLeft=60;
+  clearInterval(timer);
+  document.getElementById('timer').textContent='60';
+  document.getElementById('wpm').textContent='0';
+  document.getElementById('acc').textContent='100%';
+  document.getElementById('result').textContent='';
+  document.getElementById('input').value='';
+  document.getElementById('input').disabled=false;
+  document.getElementById('input').focus();
+  renderText()
+}
+
+function renderText(){
+  let h='';
+  for(let i=0;i<target.length;i++){
+    if(i<pos){
+      // check what user typed at this position
+      h+='<span class="correct">'+esc(target[i])+'</span>'
+    }else if(i===pos){
+      h+='<span class="cursor">'+esc(target[i])+'</span>'
+    }else{
+      h+='<span class="pending">'+esc(target[i])+'</span>'
+    }
+  }
+  document.getElementById('text').innerHTML=h
+}
+
+function esc(c){return c==='<'?'&lt;':c==='>'?'&gt;':c==='&'?'&amp;':c}
+
+const inp=document.getElementById('input');
+inp.addEventListener('input',()=>{
+  if(pos>=target.length)return;
+  if(!started){started=true;timer=setInterval(tick,1000)}
+  const v=inp.value;
+  if(!v.length)return;
+  const ch=v[v.length-1];
+  total++;
+  if(ch===target[pos]){correct++;pos++;renderText();updateStats()}
+  inp.value='';
+  if(pos>=target.length)finish()
+});
+
+function tick(){timeLeft--;document.getElementById('timer').textContent=timeLeft;if(timeLeft<=0)finish()}
+
+function updateStats(){
+  const elapsed=60-timeLeft||1;
+  const words=pos/5;
+  const wpm=Math.round(words/(elapsed/60));
+  document.getElementById('wpm').textContent=wpm;
+  document.getElementById('acc').textContent=total?Math.round(correct/total*100)+'%':'100%'
+}
+
+function finish(){
+  clearInterval(timer);inp.disabled=true;updateStats();
+  const elapsed=60-timeLeft||1;const words=pos/5;const wpm=Math.round(words/(elapsed/60));
+  const acc=total?Math.round(correct/total*100):100;
+  let rating='';if(wpm>=40)rating='Отлично!';else if(wpm>=25)rating='Добре!';else if(wpm>=15)rating='Средно';else rating='Опитай пак!';
+  document.getElementById('result').textContent=wpm+' думи/мин, '+acc+'% точност — '+rating
+}
+
+document.getElementById('newTest').onclick=init;
+init();
+</script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8">
+  <title>Frogger</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../css/fonts.css">
+  <link rel="stylesheet" href="../../css/normalize.css">
+  <link rel="stylesheet" href="../../css/skeleton.css">
+  <link rel="stylesheet" href="../../css/custom.css">
+  <style>
+    .panel{max-width:520px;margin:0 auto;text-align:center}
+    canvas{width:100%;max-width:400px;display:block;margin:0 auto;border:1px solid #555}
+    .meta{display:flex;justify-content:space-between;margin-bottom:8px;color:#555}
+    .ctrl{margin-top:8px;display:grid;gap:6px;grid-template-columns:repeat(3,1fr);max-width:200px;margin-left:auto;margin-right:auto}
+    .ctrl button{margin:0;padding:0;height:38px}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row" style="margin-top:2rem"><a href="../">&larr; Към игрите</a></div>
+    <div class="row panel">
+      <h4>Frogger</h4>
+      <div class="meta"><span>Точки: <strong id="score">0</strong></span><span>Живот: <strong id="lives">3</strong></span></div>
+      <canvas id="c" width="400" height="520"></canvas>
+      <div style="margin-top:6px;color:#666;font-size:.9em">Клавиши: ← ↑ → ↓</div>
+      <div class="ctrl">
+        <div></div><button class="button" id="up">↑</button><div></div>
+        <button class="button" id="left">←</button><button class="button" id="down">↓</button><button class="button" id="right">→</button>
+      </div>
+      <button class="button" style="margin-top:8px" id="restart">Нова игра</button>
+    </div>
+  </div>
+<script>
+'use strict';
+const cv=document.getElementById('c'),ctx=cv.getContext('2d'),W=400,H=520;
+const ROWS=13,RH=H/ROWS,COLS=10,CW=W/COLS;
+let frog,lanes,score,lives,over,reached;
+
+function init(){
+  score=0;lives=3;over=false;reached=Array(COLS).fill(false);
+  document.getElementById('score').textContent='0';document.getElementById('lives').textContent='3';
+  frog={col:4,row:12};
+  lanes=[];
+  // row 0: goal, rows 1-5: river (logs), row 6: safe, rows 7-11: road (cars), row 12: start
+  for(let r=1;r<=5;r++){
+    const dir=r%2===0?1:-1;const speed=(0.5+Math.random()*1.5)*dir;const w=2+Math.floor(Math.random()*2);
+    const obs=[];for(let i=0;i<3;i++)obs.push({x:i*(W/3)+Math.random()*40,w:w*CW});
+    lanes[r]={type:'river',speed,obs}
+  }
+  for(let r=7;r<=11;r++){
+    const dir=r%2===0?1:-1;const speed=(1+Math.random()*2)*dir;
+    const obs=[];for(let i=0;i<2+Math.floor(Math.random()*2);i++)obs.push({x:i*(W/3)+Math.random()*60,w:CW*(1+Math.floor(Math.random()*2))});
+    lanes[r]={type:'road',speed,obs}
+  }
+  loop()
+}
+
+function loop(){if(over)return;update();draw();requestAnimationFrame(loop)}
+
+function update(){
+  for(let r=1;r<=11;r++){
+    if(!lanes[r])continue;
+    lanes[r].obs.forEach(o=>{
+      o.x+=lanes[r].speed;
+      if(lanes[r].speed>0&&o.x>W+o.w)o.x=-o.w;
+      if(lanes[r].speed<0&&o.x<-o.w)o.x=W
+    })
+  }
+  const fr=frog.row,fx=frog.col*CW;
+  if(fr>=7&&fr<=11){
+    const lane=lanes[fr];
+    if(lane){const hit=lane.obs.some(o=>fx+CW>o.x+4&&fx<o.x+o.w-4);if(hit)die()}
+  }
+  if(fr>=1&&fr<=5){
+    const lane=lanes[fr];
+    if(lane){
+      const on=lane.obs.find(o=>fx+CW>o.x+6&&fx<o.x+o.w-6);
+      if(on){frog.col+=lanes[fr].speed/CW;if(frog.col<0||frog.col>=COLS)die()}
+      else die()
+    }
+  }
+  if(fr===0){
+    const col=Math.round(frog.col);
+    if(col>=0&&col<COLS&&!reached[col]){
+      reached[col]=true;score+=100;document.getElementById('score').textContent=score;
+      if(reached.every(Boolean)){score+=500;document.getElementById('score').textContent=score;reached=Array(COLS).fill(false)}
+    }
+    frog.col=4;frog.row=12
+  }
+}
+
+function die(){
+  lives--;document.getElementById('lives').textContent=lives;frog.col=4;frog.row=12;
+  if(lives<=0){over=true;drawGameOver()}
+}
+
+function draw(){
+  // goal row
+  ctx.fillStyle='#1a5276';ctx.fillRect(0,0,W,RH);
+  reached.forEach((v,i)=>{if(v){ctx.fillStyle='#27ae60';ctx.fillRect(i*CW+4,4,CW-8,RH-8)}});
+  // river
+  ctx.fillStyle='#2980b9';ctx.fillRect(0,RH,W,5*RH);
+  for(let r=1;r<=5;r++){if(!lanes[r])continue;ctx.fillStyle='#8B4513';lanes[r].obs.forEach(o=>{ctx.fillRect(o.x,r*RH+2,o.w,RH-4)})}
+  // safe zone
+  ctx.fillStyle='#27ae60';ctx.fillRect(0,6*RH,W,RH);
+  // road
+  ctx.fillStyle='#333';ctx.fillRect(0,7*RH,W,5*RH);
+  for(let r=7;r<=11;r++){ctx.strokeStyle='#555';ctx.setLineDash([15,15]);ctx.beginPath();ctx.moveTo(0,r*RH);ctx.lineTo(W,r*RH);ctx.stroke();ctx.setLineDash([])}
+  for(let r=7;r<=11;r++){if(!lanes[r])continue;ctx.fillStyle='#c0392b';lanes[r].obs.forEach(o=>{ctx.fillRect(o.x,r*RH+4,o.w,RH-8)})}
+  // start
+  ctx.fillStyle='#27ae60';ctx.fillRect(0,12*RH,W,RH);
+  // frog
+  ctx.fillStyle='#2ecc71';
+  const fx=frog.col*CW,fy=frog.row*RH;
+  ctx.beginPath();ctx.arc(fx+CW/2,fy+RH/2,CW*0.4,0,Math.PI*2);ctx.fill();
+  ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(fx+CW/2-4,fy+RH/2-4,3,0,Math.PI*2);ctx.fill();
+  ctx.beginPath();ctx.arc(fx+CW/2+4,fy+RH/2-4,3,0,Math.PI*2);ctx.fill()
+}
+
+function drawGameOver(){
+  draw();ctx.fillStyle='rgba(0,0,0,0.7)';ctx.fillRect(0,0,W,H);
+  ctx.fillStyle='#fff';ctx.font='bold 26px sans-serif';ctx.textAlign='center';
+  ctx.fillText('Край! '+score+' точки',W/2,250);ctx.font='16px sans-serif';ctx.fillText('Натисни "Нова игра"',W/2,280)
+}
+
+function move(dc,dr){
+  if(over)return;const nc=Math.round(frog.col)+dc,nr=frog.row+dr;
+  if(nc<0||nc>=COLS||nr<0||nr>12)return;frog.col=nc;frog.row=nr
+}
+
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowLeft'){move(-1,0);e.preventDefault()}if(e.key==='ArrowRight'){move(1,0);e.preventDefault()}
+  if(e.key==='ArrowUp'){move(0,-1);e.preventDefault()}if(e.key==='ArrowDown'){move(0,1);e.preventDefault()}
+});
+document.getElementById('left').onclick=()=>move(-1,0);
+document.getElementById('right').onclick=()=>move(1,0);
+document.getElementById('up').onclick=()=>move(0,-1);
+document.getElementById('down').onclick=()=>move(0,1);
+document.getElementById('restart').onclick=init;
+init();
+</script>
+</body>
+</html>

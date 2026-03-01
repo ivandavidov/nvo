@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8">
+  <title>Mastermind</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../css/fonts.css">
+  <link rel="stylesheet" href="../../css/normalize.css">
+  <link rel="stylesheet" href="../../css/skeleton.css">
+  <link rel="stylesheet" href="../../css/custom.css">
+  <style>
+    .panel{max-width:520px;margin:0 auto;text-align:center}
+    .colors{display:flex;justify-content:center;gap:8px;margin-bottom:12px}
+    .colors .dot{width:36px;height:36px;border-radius:50%;cursor:pointer;border:3px solid transparent;transition:border-color .15s}
+    .colors .dot.sel{border-color:#333}
+    .guess-row{display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:6px}
+    .guess-row .slot{width:36px;height:36px;border-radius:50%;border:2px solid #ccc;cursor:pointer;transition:background .1s}
+    .guess-row .slot.filled{border-color:#888}
+    .hint-box{display:grid;grid-template-columns:repeat(2,12px);gap:3px;margin-left:8px}
+    .hint-box .pin{width:12px;height:12px;border-radius:50%;background:#ddd;border:1px solid #ccc}
+    .hint-box .pin.black{background:#333}
+    .hint-box .pin.white{background:#fff;border-color:#999}
+    .meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+    #msg{font-size:1.1rem;font-weight:bold;min-height:2rem;margin-bottom:8px}
+    .board{margin-bottom:12px}
+    .answer{display:flex;justify-content:center;gap:6px;margin-bottom:12px}
+    .answer .dot{width:36px;height:36px;border-radius:50%;border:2px solid #888}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row" style="margin-top:2rem"><a href="../">&larr; Към игрите</a></div>
+    <div class="row panel">
+      <h4>Mastermind</h4>
+      <div id="msg">Познай цветовата комбинация!</div>
+      <div class="meta"><span>Опит: <strong id="round">1</strong>/10</span><button class="button" id="newGame">Нова игра</button></div>
+      <div id="palette" class="colors"></div>
+      <div id="current" class="guess-row" style="margin-bottom:16px"></div>
+      <button class="button" id="submitGuess" style="margin-bottom:16px">Провери</button>
+      <div id="board" class="board"></div>
+      <div id="answer" class="answer" style="display:none"></div>
+    </div>
+  </div>
+<script>
+'use strict';
+const COLORS=['#e74c3c','#3498db','#2ecc71','#f39c12','#9b59b6','#e84393'];
+const SLOTS=4,MAX=10;
+let secret,current,history,selectedColor,over;
+
+function init(){
+  secret=Array.from({length:SLOTS},()=>COLORS[Math.floor(Math.random()*COLORS.length)]);
+  current=Array(SLOTS).fill(null);history=[];selectedColor=COLORS[0];over=false;
+  document.getElementById('msg').textContent='Познай цветовата комбинация!';
+  document.getElementById('round').textContent='1';
+  document.getElementById('answer').style.display='none';
+  buildPalette();renderCurrent();renderBoard()
+}
+
+function buildPalette(){
+  const p=document.getElementById('palette');p.innerHTML='';
+  COLORS.forEach(c=>{
+    const d=document.createElement('div');d.className='dot'+(c===selectedColor?' sel':'');
+    d.style.background=c;d.onclick=()=>{selectedColor=c;buildPalette()};p.appendChild(d)
+  })
+}
+
+function renderCurrent(){
+  const row=document.getElementById('current');row.innerHTML='';
+  current.forEach((c,i)=>{
+    const s=document.createElement('div');s.className='slot'+(c?' filled':'');
+    if(c)s.style.background=c;s.onclick=()=>{current[i]=selectedColor;renderCurrent()};row.appendChild(s)
+  })
+}
+
+function getHints(guess,secret){
+  const s=secret.slice(),g=guess.slice();let black=0,white=0;
+  for(let i=0;i<SLOTS;i++)if(g[i]===s[i]){black++;s[i]=g[i]=null}
+  for(let i=0;i<SLOTS;i++){if(!g[i])continue;const j=s.indexOf(g[i]);if(j!==-1){white++;s[j]=null}}
+  return{black,white}
+}
+
+function renderBoard(){
+  const b=document.getElementById('board');b.innerHTML='';
+  history.forEach(h=>{
+    const row=document.createElement('div');row.className='guess-row';
+    h.guess.forEach(c=>{const s=document.createElement('div');s.className='slot filled';s.style.background=c;row.appendChild(s)});
+    const hb=document.createElement('div');hb.className='hint-box';
+    for(let i=0;i<h.hints.black;i++){const p=document.createElement('div');p.className='pin black';hb.appendChild(p)}
+    for(let i=0;i<h.hints.white;i++){const p=document.createElement('div');p.className='pin white';hb.appendChild(p)}
+    for(let i=h.hints.black+h.hints.white;i<SLOTS;i++){const p=document.createElement('div');p.className='pin';hb.appendChild(p)}
+    row.appendChild(hb);b.appendChild(row)
+  })
+}
+
+document.getElementById('submitGuess').onclick=()=>{
+  if(over)return;
+  if(current.some(c=>!c))return;
+  const hints=getHints(current,secret);
+  history.push({guess:current.slice(),hints});
+  document.getElementById('round').textContent=Math.min(history.length+1,MAX);
+  if(hints.black===SLOTS){
+    over=true;document.getElementById('msg').innerHTML='<span style="color:#27ae60">Браво! Позна за '+history.length+' опита!</span>';showAnswer()
+  }else if(history.length>=MAX){
+    over=true;document.getElementById('msg').innerHTML='<span style="color:#c0392b">Край! Не позна.</span>';showAnswer()
+  }
+  current=Array(SLOTS).fill(null);renderCurrent();renderBoard()
+};
+
+function showAnswer(){
+  const a=document.getElementById('answer');a.style.display='flex';a.innerHTML='';
+  secret.forEach(c=>{const d=document.createElement('div');d.className='dot';d.style.background=c;a.appendChild(d)})
+}
+
+document.getElementById('newGame').onclick=init;
+init();
+</script>
+</body>
+</html>

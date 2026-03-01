@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8">
+  <title>Тест за реакция</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../css/fonts.css">
+  <link rel="stylesheet" href="../../css/normalize.css">
+  <link rel="stylesheet" href="../../css/skeleton.css">
+  <link rel="stylesheet" href="../../css/custom.css">
+  <style>
+    .panel{max-width:520px;margin:0 auto;text-align:center}
+    #box{width:100%;height:220px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;font-weight:bold;color:#fff;cursor:pointer;user-select:none;transition:background .2s;margin-bottom:16px}
+    .wait{background:#c0392b}
+    .go{background:#27ae60}
+    .early{background:#e67e22}
+    .done{background:#3498db}
+    table{margin:12px auto;width:100%}
+    table td,table th{padding:4px 8px;font-size:.95em}
+    #result{font-size:1.3rem;font-weight:bold;min-height:2rem;margin-bottom:8px}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row" style="margin-top:2rem"><a href="../">&larr; Към игрите</a></div>
+    <div class="row panel">
+      <h4>Тест за реакция</h4>
+      <div id="result"></div>
+      <div id="box" class="wait" onclick="handleClick()">Кликни за начало</div>
+      <div id="history"></div>
+      <button class="button" id="newTest" style="display:none">Нов тест</button>
+    </div>
+  </div>
+<script>
+'use strict';
+let state='idle',round=0,results=[],greenTime,delayTimer;
+
+function handleClick(){
+  if(state==='idle'){startRound();return}
+  if(state==='waiting'){clearTimeout(delayTimer);tooEarly();return}
+  if(state==='green'){const ms=Date.now()-greenTime;results.push(ms);showResult(ms);return}
+  if(state==='result'||state==='early'){startRound();return}
+  if(state==='done'){return}
+}
+
+function startRound(){
+  if(round>=5){finish();return}
+  state='waiting';const box=document.getElementById('box');
+  box.className='wait';box.textContent='Изчакай зеления цвят...';
+  document.getElementById('result').textContent='Рунд '+(round+1)+' от 5';
+  delayTimer=setTimeout(()=>{state='green';greenTime=Date.now();box.className='go';box.textContent='НАТИСНИ!'},2000+Math.random()*3000)
+}
+
+function tooEarly(){
+  state='early';const box=document.getElementById('box');
+  box.className='early';box.textContent='Твърде рано! Кликни за нов опит.'
+}
+
+function showResult(ms){
+  round++;state='result';const box=document.getElementById('box');
+  box.className='done';box.textContent=ms+' ms';
+  renderHistory();
+  if(round>=5)setTimeout(finish,800);
+}
+
+function renderHistory(){
+  if(!results.length)return;
+  let h='<table><tr><th>Рунд</th><th>Време</th></tr>';
+  results.forEach((r,i)=>{h+='<tr><td>'+(i+1)+'</td><td>'+r+' ms</td></tr>'});
+  h+='</table>';document.getElementById('history').innerHTML=h
+}
+
+function finish(){
+  state='done';const avg=Math.round(results.reduce((a,b)=>a+b,0)/results.length);
+  let rating='';if(avg<200)rating='Светкавица!';else if(avg<300)rating='Отлично!';else if(avg<400)rating='Добре!';else if(avg<500)rating='Средно';else rating='Бавно';
+  document.getElementById('result').innerHTML='Средно: <strong>'+avg+' ms</strong> — '+rating;
+  const box=document.getElementById('box');box.className='done';box.textContent='Готово!';
+  renderHistory();document.getElementById('newTest').style.display=''
+}
+
+document.getElementById('newTest').onclick=()=>{round=0;results=[];state='idle';
+  document.getElementById('box').className='wait';document.getElementById('box').textContent='Кликни за начало';
+  document.getElementById('result').textContent='';document.getElementById('history').innerHTML='';
+  document.getElementById('newTest').style.display='none'
+};
+</script>
+</body>
+</html>

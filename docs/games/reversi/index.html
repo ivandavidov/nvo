@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8">
+  <title>Реверси</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../css/fonts.css">
+  <link rel="stylesheet" href="../../css/normalize.css">
+  <link rel="stylesheet" href="../../css/skeleton.css">
+  <link rel="stylesheet" href="../../css/custom.css">
+  <style>
+    .panel{max-width:520px;margin:0 auto;text-align:center}
+    canvas{width:100%;max-width:400px;display:block;margin:0 auto;cursor:pointer}
+    .meta{display:flex;justify-content:space-between;margin-bottom:8px;color:#555}
+    #msg{font-size:1.1rem;font-weight:bold;min-height:2rem;margin-bottom:8px;color:#333}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row" style="margin-top:2rem"><a href="../">&larr; Към игрите</a></div>
+    <div class="row panel">
+      <h4>Реверси</h4>
+      <div id="msg">Твой ред (черни)</div>
+      <div class="meta"><span>&#9899; Черни: <strong id="bs">2</strong></span><span>&#9898; Бели: <strong id="ws">2</strong></span></div>
+      <canvas id="c" width="400" height="400"></canvas>
+      <button class="button" style="margin-top:10px" id="newGame">Нова игра</button>
+    </div>
+  </div>
+<script>
+'use strict';
+const cv=document.getElementById('c'),ctx=cv.getContext('2d'),SZ=400,CS=SZ/8;
+const DIRS=[[-1,-1],[-1,0],[-1,1],[0,-1],[0,1],[1,-1],[1,0],[1,1]];
+let board,turn,gameOver;
+
+function init(){
+  board=Array.from({length:8},()=>Array(8).fill(0));
+  board[3][3]=1;board[3][4]=-1;board[4][3]=-1;board[4][4]=1;
+  turn=-1;gameOver=false;
+  document.getElementById('msg').textContent='Твой ред (черни)';
+  updateScore();draw()
+}
+
+function getFlips(b,r,c,color){
+  if(b[r][c]!==0)return[];
+  const all=[];
+  DIRS.forEach(([dr,dc])=>{
+    const line=[];let nr=r+dr,nc=c+dc;
+    while(nr>=0&&nr<8&&nc>=0&&nc<8&&b[nr][nc]===-color){line.push([nr,nc]);nr+=dr;nc+=dc}
+    if(nr>=0&&nr<8&&nc>=0&&nc<8&&b[nr][nc]===color&&line.length)all.push(...line)
+  });
+  return all
+}
+
+function validMoves(b,color){
+  const moves=[];
+  for(let r=0;r<8;r++)for(let c=0;c<8;c++){if(getFlips(b,r,c,color).length)moves.push([r,c])}
+  return moves
+}
+
+function place(b,r,c,color){
+  const nb=b.map(r=>r.slice());nb[r][c]=color;
+  getFlips(b,r,c,color).forEach(([fr,fc])=>{nb[fr][fc]=color});
+  return nb
+}
+
+function count(b,color){let n=0;for(let r=0;r<8;r++)for(let c=0;c<8;c++)if(b[r][c]===color)n++;return n}
+
+function updateScore(){
+  document.getElementById('bs').textContent=count(board,-1);
+  document.getElementById('ws').textContent=count(board,1)
+}
+
+const WEIGHTS=[[100,-20,10,5,5,10,-20,100],[-20,-50,-2,-2,-2,-2,-50,-20],[10,-2,-1,-1,-1,-1,-2,10],[5,-2,-1,-1,-1,-1,-2,5],[5,-2,-1,-1,-1,-1,-2,5],[10,-2,-1,-1,-1,-1,-2,10],[-20,-50,-2,-2,-2,-2,-50,-20],[100,-20,10,5,5,10,-20,100]];
+
+function aiEval(b){let s=0;for(let r=0;r<8;r++)for(let c=0;c<8;c++)if(b[r][c]===1)s+=WEIGHTS[r][c];else if(b[r][c]===-1)s-=WEIGHTS[r][c];return s}
+
+function aiMove(){
+  const moves=validMoves(board,1);
+  if(!moves.length){checkPass();return}
+  let best=-Infinity,bm=moves[0];
+  moves.forEach(([r,c])=>{const nb=place(board,r,c,1);const s=aiEval(nb);if(s>best){best=s;bm=[r,c]}});
+  board=place(board,bm[0],bm[1],1);updateScore();
+  turn=-1;
+  if(!validMoves(board,-1).length){if(!validMoves(board,1).length)endGame();else{document.getElementById('msg').textContent='Няма ход за теб. AI пак играе.';setTimeout(()=>{turn=1;aiMove()},400);return}}
+  else document.getElementById('msg').textContent='Твой ред (черни)';
+  draw()
+}
+
+function checkPass(){
+  if(!validMoves(board,-1).length&&!validMoves(board,1).length){endGame();return}
+  turn=-turn;
+  if(turn===1){document.getElementById('msg').textContent='AI мисли...';setTimeout(aiMove,400)}
+  else document.getElementById('msg').textContent='Твой ред (черни)';draw()
+}
+
+function endGame(){
+  gameOver=true;const b=count(board,-1),w=count(board,1);
+  if(b>w)document.getElementById('msg').textContent='Победи! '+b+':'+w;
+  else if(w>b)document.getElementById('msg').textContent='AI победи! '+w+':'+b;
+  else document.getElementById('msg').textContent='Равно! '+b+':'+w;draw()
+}
+
+function draw(){
+  ctx.fillStyle='#2e7d32';ctx.fillRect(0,0,SZ,SZ);
+  ctx.strokeStyle='#1b5e20';ctx.lineWidth=1;
+  for(let i=0;i<=8;i++){ctx.beginPath();ctx.moveTo(i*CS,0);ctx.lineTo(i*CS,SZ);ctx.stroke();ctx.beginPath();ctx.moveTo(0,i*CS);ctx.lineTo(SZ,i*CS);ctx.stroke()}
+  for(let r=0;r<8;r++)for(let c=0;c<8;c++){
+    if(board[r][c]!==0){
+      ctx.beginPath();ctx.arc(c*CS+CS/2,r*CS+CS/2,CS*0.4,0,Math.PI*2);
+      ctx.fillStyle=board[r][c]===-1?'#111':'#eee';ctx.fill();ctx.strokeStyle=board[r][c]===-1?'#000':'#bbb';ctx.lineWidth=1.5;ctx.stroke()
+    }
+  }
+  if(!gameOver&&turn===-1){
+    validMoves(board,-1).forEach(([r,c])=>{ctx.beginPath();ctx.arc(c*CS+CS/2,r*CS+CS/2,5,0,Math.PI*2);ctx.fillStyle='rgba(0,0,0,0.3)';ctx.fill()})
+  }
+}
+
+cv.onclick=e=>{
+  if(turn!==- 1||gameOver)return;
+  const rect=cv.getBoundingClientRect();
+  const c=Math.floor((e.clientX-rect.left)*(8/rect.width));
+  const r=Math.floor((e.clientY-rect.top)*(8/rect.height));
+  if(r<0||r>7||c<0||c>7)return;
+  if(!getFlips(board,r,c,-1).length)return;
+  board=place(board,r,c,-1);updateScore();
+  turn=1;document.getElementById('msg').textContent='AI мисли...';draw();
+  setTimeout(aiMove,400)
+};
+
+document.getElementById('newGame').onclick=init;
+init();
+</script>
+</body>
+</html>

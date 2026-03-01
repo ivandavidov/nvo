@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8">
+  <title>Дама</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../css/fonts.css">
+  <link rel="stylesheet" href="../../css/normalize.css">
+  <link rel="stylesheet" href="../../css/skeleton.css">
+  <link rel="stylesheet" href="../../css/custom.css">
+  <style>
+    .panel{max-width:520px;margin:0 auto;text-align:center}
+    canvas{width:100%;max-width:400px;display:block;margin:0 auto;cursor:pointer}
+    .meta{display:flex;justify-content:space-between;margin-bottom:8px;color:#555}
+    #msg{font-size:1.1rem;font-weight:bold;min-height:2rem;margin-bottom:8px;color:#333}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row" style="margin-top:2rem"><a href="../">&larr; Към игрите</a></div>
+    <div class="row panel">
+      <h4>Дама</h4>
+      <div id="msg">Твой ред (бели)</div>
+      <div class="meta"><span>Взети от теб: <strong id="pcap">0</strong></span><span>Взети от AI: <strong id="acap">0</strong></span></div>
+      <canvas id="c" width="400" height="400"></canvas>
+      <button class="button" style="margin-top:10px" id="newGame">Нова игра</button>
+    </div>
+  </div>
+<script>
+'use strict';
+const cv=document.getElementById('c'),ctx=cv.getContext('2d'),SZ=400,CS=SZ/8;
+let board,sel,validMoves,turn,pcap,acap,gameOver;
+
+function P(r,c,color,king){return{r,c,color,king:!!king}}
+
+function init(){
+  board=Array.from({length:8},()=>Array(8).fill(null));
+  for(let r=0;r<3;r++)for(let c=0;c<8;c++)if((r+c)%2===1)board[r][c]={color:'b',king:false};
+  for(let r=5;r<8;r++)for(let c=0;c<8;c++)if((r+c)%2===1)board[r][c]={color:'w',king:false};
+  sel=null;validMoves=[];turn='w';pcap=0;acap=0;gameOver=false;
+  document.getElementById('pcap').textContent='0';
+  document.getElementById('acap').textContent='0';
+  document.getElementById('msg').textContent='Твой ред (бели)';draw()
+}
+
+function getMoves(b,r,c){
+  const p=b[r][c];if(!p)return[];
+  const moves=[];const dirs=[];
+  if(p.color==='w'||p.king)dirs.push([-1,-1],[-1,1]);
+  if(p.color==='b'||p.king)dirs.push([1,-1],[1,1]);
+  const opp=p.color==='w'?'b':'w';
+  dirs.forEach(([dr,dc])=>{
+    const nr=r+dr,nc=c+dc;
+    if(nr<0||nr>7||nc<0||nc>7)return;
+    if(!b[nr][nc])moves.push({r:nr,c:nc,caps:[]});
+    else if(b[nr][nc].color===opp){
+      const jr=nr+dr,jc=nc+dc;
+      if(jr>=0&&jr<=7&&jc>=0&&jc<=7&&!b[jr][jc])moves.push({r:jr,c:jc,caps:[{r:nr,c:nc}]})
+    }
+  });
+  return moves
+}
+
+function getJumps(b,r,c,chain){
+  const p=b[r][c];if(!p)return[];
+  const dirs=[];
+  if(p.color==='w'||p.king)dirs.push([-1,-1],[-1,1]);
+  if(p.color==='b'||p.king)dirs.push([1,-1],[1,1]);
+  const opp=p.color==='w'?'b':'w';
+  let jumps=[];
+  dirs.forEach(([dr,dc])=>{
+    const mr=r+dr,mc=c+dc,jr=r+2*dr,jc=c+2*dc;
+    if(jr<0||jr>7||jc<0||jc>7)return;
+    if(b[mr][mc]&&b[mr][mc].color===opp&&!b[jr][jc]&&!chain.some(x=>x.r===mr&&x.c===mc)){
+      const nb=copyBoard(b);nb[jr][jc]=nb[r][c];nb[r][c]=null;nb[mr][mc]=null;
+      const nc=[...chain,{r:mr,c:mc}];
+      const further=getJumps(nb,jr,jc,nc);
+      if(further.length)further.forEach(f=>jumps.push(f));
+      else jumps.push({r:jr,c:jc,caps:nc})
+    }
+  });
+  return jumps
+}
+
+function allMoves(b,color){
+  let moves=[],jumps=[];
+  for(let r=0;r<8;r++)for(let c=0;c<8;c++){
+    if(!b[r][c]||b[r][c].color!==color)continue;
+    const j=getJumps(b,r,c,[]);
+    if(j.length)j.forEach(m=>{m.fr=r;m.fc=c;jumps.push(m)});
+    else{const mv=getMoves(b,r,c).filter(m=>m.caps.length===0);mv.forEach(m=>{m.fr=r;m.fc=c;moves.push(m)})}
+  }
+  return jumps.length?jumps:moves
+}
+
+function copyBoard(b){return b.map(r=>r.map(c=>c?{...c}:null))}
+
+function applyMove(b,m){
+  const nb=copyBoard(b);
+  nb[m.r][m.c]=nb[m.fr][m.fc];nb[m.fr][m.fc]=null;
+  m.caps.forEach(cp=>{nb[cp.r][cp.c]=null});
+  if(nb[m.r][m.c].color==='w'&&m.r===0)nb[m.r][m.c].king=true;
+  if(nb[m.r][m.c].color==='b'&&m.r===7)nb[m.r][m.c].king=true;
+  return nb
+}
+
+function evaluate(b){
+  let s=0;
+  for(let r=0;r<8;r++)for(let c=0;c<8;c++){
+    if(!b[r][c])continue;
+    const v=b[r][c].king?5:1;
+    s+=b[r][c].color==='b'?v:-v
+  }
+  return s
+}
+
+function minimax(b,depth,alpha,beta,maximizing){
+  const color=maximizing?'b':'w';
+  const moves=allMoves(b,color);
+  if(depth===0||!moves.length)return{score:evaluate(b)};
+  let best=maximizing?-999:999,bestM=moves[0];
+  for(const m of moves){
+    const nb=applyMove(b,m);
+    const{score}=minimax(nb,depth-1,alpha,beta,!maximizing);
+    if(maximizing){if(score>best){best=score;bestM=m}alpha=Math.max(alpha,score)}
+    else{if(score<best){best=score;bestM=m}beta=Math.min(beta,score)}
+    if(beta<=alpha)break
+  }
+  return{score:best,move:bestM}
+}
+
+function draw(){
+  for(let r=0;r<8;r++)for(let c=0;c<8;c++){
+    ctx.fillStyle=(r+c)%2===0?'#f0d9b5':'#b58863';
+    ctx.fillRect(c*CS,r*CS,CS,CS);
+    if(sel&&sel.r===r&&sel.c===c){ctx.fillStyle='rgba(255,255,0,0.4)';ctx.fillRect(c*CS,r*CS,CS,CS)}
+  }
+  validMoves.forEach(m=>{ctx.fillStyle='rgba(0,200,0,0.3)';ctx.fillRect(m.c*CS,m.r*CS,CS,CS)});
+  for(let r=0;r<8;r++)for(let c=0;c<8;c++){
+    const p=board[r][c];if(!p)continue;
+    const cx=c*CS+CS/2,cy=r*CS+CS/2;
+    ctx.beginPath();ctx.arc(cx,cy,CS*0.38,0,Math.PI*2);
+    ctx.fillStyle=p.color==='w'?'#f5f5f5':'#222';ctx.fill();
+    ctx.strokeStyle=p.color==='w'?'#999':'#555';ctx.lineWidth=2;ctx.stroke();
+    if(p.king){ctx.fillStyle=p.color==='w'?'#d4a017':'#f5c518';ctx.font='bold 18px sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('K',cx,cy)}
+  }
+}
+
+cv.onclick=e=>{
+  if(turn!=='w'||gameOver)return;
+  const rect=cv.getBoundingClientRect();
+  const c=Math.floor((e.clientX-rect.left)*(8/rect.width));
+  const r=Math.floor((e.clientY-rect.top)*(8/rect.height));
+  if(r<0||r>7||c<0||c>7)return;
+  const moves=allMoves(board,'w');
+  if(sel){
+    const m=validMoves.find(v=>v.r===r&&v.c===c);
+    if(m){
+      m.fr=sel.r;m.fc=sel.c;
+      board=applyMove(board,m);pcap+=m.caps.length;
+      document.getElementById('pcap').textContent=pcap;
+      sel=null;validMoves=[];draw();
+      if(!allMoves(board,'b').length){gameOver=true;document.getElementById('msg').textContent='Победи!';return}
+      turn='b';document.getElementById('msg').textContent='AI мисли...';
+      setTimeout(aiMove,300);return
+    }
+  }
+  if(board[r][c]&&board[r][c].color==='w'){
+    const pm=moves.filter(m=>m.fr===r&&m.fc===c);
+    if(pm.length){sel={r,c};validMoves=pm}else{sel=null;validMoves=[]}
+  }else{sel=null;validMoves=[]}
+  draw()
+};
+
+function aiMove(){
+  const{move}=minimax(board,4,-999,999,true);
+  if(!move){gameOver=true;document.getElementById('msg').textContent='Победи!';draw();return}
+  board=applyMove(board,move);acap+=move.caps.length;
+  document.getElementById('acap').textContent=acap;
+  if(!allMoves(board,'w').length){gameOver=true;document.getElementById('msg').textContent='AI победи!'}
+  else{turn='w';document.getElementById('msg').textContent='Твой ред (бели)'}
+  draw()
+}
+
+document.getElementById('newGame').onclick=init;
+init();
+</script>
+</body>
+</html>

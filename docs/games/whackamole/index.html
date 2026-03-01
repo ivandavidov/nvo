@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8">
+  <title>Whack-a-Mole</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../css/fonts.css">
+  <link rel="stylesheet" href="../../css/normalize.css">
+  <link rel="stylesheet" href="../../css/skeleton.css">
+  <link rel="stylesheet" href="../../css/custom.css">
+  <style>
+    .panel{max-width:520px;margin:0 auto;text-align:center}
+    .board{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px auto;max-width:340px}
+    .hole{aspect-ratio:1;background:#8B4513;border-radius:50%;cursor:crosshair;display:flex;align-items:center;justify-content:center;font-size:3rem;border:3px solid #654321;position:relative;overflow:hidden;user-select:none;transition:background .1s}
+    .hole.hit{background:#27ae60}
+    .hole .mole{display:none}
+    .hole.active .mole{display:block;animation:pop .15s}
+    @keyframes pop{from{transform:scale(0)}to{transform:scale(1)}}
+    .meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+    #msg{font-size:1.2rem;font-weight:bold;min-height:2rem;margin-bottom:8px;color:#333}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row" style="margin-top:2rem"><a href="../">&larr; Към игрите</a></div>
+    <div class="row panel">
+      <h4>Whack-a-Mole</h4>
+      <div id="msg">Натисни Старт!</div>
+      <div class="meta"><span>Точки: <strong id="score">0</strong></span><span>Време: <strong id="timer">30</strong>с</span></div>
+      <div id="board" class="board"></div>
+      <button class="button" id="startBtn" style="margin-top:10px">Старт</button>
+    </div>
+  </div>
+<script>
+'use strict';
+let score,timeLeft,gameTimer,moleTimer,active;
+const board=document.getElementById('board');
+
+function buildBoard(){
+  board.innerHTML='';
+  for(let i=0;i<9;i++){
+    const h=document.createElement('div');h.className='hole';h.dataset.i=i;
+    h.innerHTML='<span class="mole">&#x1F439;</span>';
+    h.onclick=()=>whack(i);board.appendChild(h)
+  }
+}
+
+function init(){
+  score=0;timeLeft=30;active=-1;
+  document.getElementById('score').textContent='0';
+  document.getElementById('timer').textContent='30';
+  document.getElementById('msg').textContent='';
+  buildBoard();
+  clearInterval(gameTimer);clearTimeout(moleTimer);
+  gameTimer=setInterval(()=>{timeLeft--;document.getElementById('timer').textContent=timeLeft;if(timeLeft<=0)endGame()},1000);
+  showMole()
+}
+
+function showMole(){
+  if(timeLeft<=0)return;
+  document.querySelectorAll('.hole').forEach(h=>h.classList.remove('active'));
+  let n;do{n=Math.floor(Math.random()*9)}while(n===active);
+  active=n;board.children[n].classList.add('active');
+  const delay=Math.max(400,1000-score*15);
+  moleTimer=setTimeout(()=>{board.children[n].classList.remove('active');active=-1;showMole()},delay)
+}
+
+function whack(i){
+  if(i!==active||timeLeft<=0)return;
+  score++;document.getElementById('score').textContent=score;
+  const h=board.children[i];h.classList.remove('active');h.classList.add('hit');
+  setTimeout(()=>h.classList.remove('hit'),200);
+  active=-1;clearTimeout(moleTimer);showMole()
+}
+
+function endGame(){
+  clearInterval(gameTimer);clearTimeout(moleTimer);
+  document.querySelectorAll('.hole').forEach(h=>h.classList.remove('active'));
+  active=-1;
+  let rating='';
+  if(score>=25)rating='Невероятно!';else if(score>=18)rating='Отлично!';else if(score>=12)rating='Добре!';else if(score>=6)rating='Средно';else rating='Опитай пак!';
+  document.getElementById('msg').textContent='Край! '+score+' точки. '+rating;
+  document.getElementById('startBtn').textContent='Нова игра'
+}
+
+buildBoard();
+document.getElementById('startBtn').onclick=init;
+</script>
+</body>
+</html>

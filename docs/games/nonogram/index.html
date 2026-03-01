@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8">
+  <title>Нонограм</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../css/fonts.css">
+  <link rel="stylesheet" href="../../css/normalize.css">
+  <link rel="stylesheet" href="../../css/skeleton.css">
+  <link rel="stylesheet" href="../../css/custom.css">
+  <style>
+    .panel{max-width:520px;margin:0 auto;text-align:center}
+    table.nono{border-collapse:collapse;margin:12px auto}
+    table.nono td,table.nono th{width:36px;height:36px;text-align:center;vertical-align:middle;font-size:.85rem;padding:0;border:1px solid #ccc}
+    table.nono .clue{background:#f0f0f0;border:1px solid #ddd;font-weight:600;font-size:.8rem;white-space:pre-line}
+    table.nono .gcell{cursor:pointer;background:#fff;transition:background .1s;user-select:none}
+    table.nono .gcell.filled{background:#333}
+    table.nono .gcell.marked{background:#fff;color:#c0392b;font-weight:bold;font-size:1rem}
+    table.nono .corner{background:transparent;border:none}
+    .meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+    #msg{font-size:1.1rem;font-weight:bold;min-height:2rem;margin-bottom:8px;color:#2b8a3e}
+    .hint{color:#888;font-size:.9em;margin-bottom:8px}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row" style="margin-top:2rem"><a href="../">&larr; Към игрите</a></div>
+    <div class="row panel">
+      <h4>Нонограм</h4>
+      <div id="msg"></div>
+      <div class="meta"><span>Време: <strong id="timer">0:00</strong></span><button class="button" id="newGame">Нова игра</button></div>
+      <div class="hint">Ляв клик — запълни, десен клик — маркирай (X)</div>
+      <div id="board"></div>
+    </div>
+  </div>
+<script>
+'use strict';
+const S=5;
+let solution,state,won,startTime,timerInt;
+
+function clues(line){const g=[];let c=0;line.forEach(v=>{if(v){c++}else{if(c)g.push(c);c=0}});if(c)g.push(c);return g.length?g:[0]}
+function genSolution(){const s=Array.from({length:S},()=>Array(S).fill(false));let filled=0;for(let r=0;r<S;r++)for(let c=0;c<S;c++){s[r][c]=Math.random()<0.55;if(s[r][c])filled++}if(filled<5||filled>20)return genSolution();return s}
+
+function init(){
+  solution=genSolution();state=Array.from({length:S},()=>Array(S).fill(0));won=false;
+  clearInterval(timerInt);startTime=null;document.getElementById('timer').textContent='0:00';
+  document.getElementById('msg').textContent='';render()
+}
+
+function startTimer(){if(startTime)return;startTime=Date.now();timerInt=setInterval(()=>{const e=Math.floor((Date.now()-startTime)/1000);document.getElementById('timer').textContent=Math.floor(e/60)+':'+String(e%60).padStart(2,'0')},200)}
+
+function render(){
+  const rowClues=[];for(let r=0;r<S;r++)rowClues.push(clues(solution[r]));
+  const colClues=[];for(let c=0;c<S;c++){const col=[];for(let r=0;r<S;r++)col.push(solution[r][c]);colClues.push(clues(col))}
+  const maxR=Math.max(...rowClues.map(c=>c.length));
+  const maxC=Math.max(...colClues.map(c=>c.length));
+  let h='<table class="nono">';
+  for(let cr=0;cr<maxC;cr++){h+='<tr>';for(let i=0;i<maxR;i++)h+='<td class="corner"></td>';
+    for(let c=0;c<S;c++){const cl=colClues[c];const idx=cr-(maxC-cl.length);h+='<td class="clue">'+(idx>=0?cl[idx]:'')+'</td>'}h+='</tr>'}
+  for(let r=0;r<S;r++){h+='<tr>';const rc=rowClues[r];for(let i=0;i<maxR;i++){const idx=i-(maxR-rc.length);h+='<td class="clue">'+(idx>=0?rc[idx]:'')+'</td>'}
+    for(let c=0;c<S;c++){const v=state[r][c];const cls=v===1?'gcell filled':v===2?'gcell marked':'gcell';h+='<td class="'+cls+'" data-r="'+r+'" data-c="'+c+'">'+(v===2?'X':'')+'</td>'}h+='</tr>'}
+  h+='</table>';document.getElementById('board').innerHTML=h;
+  document.querySelectorAll('.gcell').forEach(td=>{td.onclick=e=>cellClick(+td.dataset.r,+td.dataset.c,false);td.oncontextmenu=e=>{e.preventDefault();cellClick(+td.dataset.r,+td.dataset.c,true)}})
+}
+
+function cellClick(r,c,right){
+  if(won)return;startTimer();
+  if(right){state[r][c]=state[r][c]===2?0:2}else{state[r][c]=state[r][c]===1?0:1}
+  render();checkWin()
+}
+
+function checkWin(){
+  for(let r=0;r<S;r++)for(let c=0;c<S;c++){if(solution[r][c]&&state[r][c]!==1)return;if(!solution[r][c]&&state[r][c]===1)return}
+  won=true;clearInterval(timerInt);document.getElementById('msg').textContent='Браво! Пъзелът е решен!'
+}
+
+document.getElementById('newGame').onclick=init;
+init();
+</script>
+</body>
+</html>
