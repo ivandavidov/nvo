@@ -1,24 +1,3 @@
-const CHART_HEIGHT_PERCENT = 85 / 100;
-const CHART_MIN_HEIGHT_PX = 500;
-const CHART_EXPORT_WIDTH = 960;
-const CHART_EXPORT_HEIGHT = 540;
-const CHART_EXPORT_SCALE = 2;
-const TABLE_PDF_PAGE_MARGIN_PT = 30;
-const TABLE_PDF_TITLE_Y_PT = 28;
-const TABLE_PDF_TABLE_START_Y_PT = 40;
-const TABLE_PDF_FONT_FILE = 'NotoSans-Regular.ttf';
-const TABLE_PDF_FONT_NAME = 'NotoSans';
-const COOKIE_MAX_AGE_SECONDS = 60 * 60 * 24 * 365; // 1 year
-const RESIZE_REDRAW_DEBOUNCE_MS = 150;
-const NAV_FIRST_YEAR = 2020;
-const SCHOOL_THRESHOLD_SMALL = 4;
-const SCHOOL_THRESHOLD_MEDIUM = 9;
-const SCHOOL_THRESHOLD_LARGE = 19;
-const SCHOOL_THRESHOLD_XLARGE = 29;
-const SCHOOL_TOP_COUNT_SMALL = 3;
-const SCHOOL_TOP_COUNT_MEDIUM = 5;
-const SCHOOL_TOP_COUNT_LARGE = 10;
-const SCHOOL_SECOND_COUNT = 10;
 let chartBelInstance = null;
 let chartMatInstance = null;
 let resizeRedrawTimeout = null;
@@ -432,7 +411,8 @@ function generateYearNavigation() {
   let navItems = document.querySelectorAll('.years-nav[data-year-base]');
   navItems.forEach((el) => {
     let baseHref = el.getAttribute('data-year-base');
-    let configuredLastYear = Number.parseInt(el.getAttribute('data-year-last'), 10);
+    let grade = el.getAttribute('data-year-grade');
+    let configuredLastYear = grade && typeof latestYearByGrade !== 'undefined' ? latestYearByGrade[grade] : null;
     let latestYear = Number.isFinite(configuredLastYear) ? configuredLastYear : fallbackLatestYear;
     let endYear = latestYear - 1;
     if(!baseHref || endYear < NAV_FIRST_YEAR) {
