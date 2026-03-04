@@ -5,3 +5,4 @@
 java/target/**
 **/.DS_Store
 .vscode/**
+.claude/**
