@@ -105,6 +105,10 @@
 }
 
 .games-theme.touch-device.games-detail {
+  padding-bottom: calc(76px + env(safe-area-inset-bottom, 0px));
+}
+
+.games-theme.touch-device.games-detail.touchpad-open {
   padding-bottom: calc(150px + env(safe-area-inset-bottom, 0px));
 }
 
@@ -139,16 +143,65 @@
 }
 
 .games-theme.touch-device.games-detail .touchpad-global {
+  display: none;
+}
+
+.games-theme.touch-device.games-detail .touchpad-global.is-visible {
   display: grid;
 }
 
+.touchpad-toggle {
+  position: fixed;
+  right: 0.85rem;
+  bottom: calc(0.85rem + env(safe-area-inset-bottom, 0px));
+  z-index: 1290;
+  display: none;
+  margin: 0;
+  min-height: 42px;
+  padding: 0 14px;
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.96);
+  color: var(--color-primary-dark);
+  font-weight: 700;
+  box-shadow: var(--shadow-sm);
+}
+
+.games-theme.touch-device.games-detail .touchpad-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.touchpad-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
 .touchpad-title {
+  flex: 1;
   font-size: 0.72rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   font-weight: 700;
   color: var(--color-text-light);
-  text-align: center;
+  text-align: left;
+}
+
+.touchpad-close {
+  margin: 0;
+  min-width: 24px;
+  min-height: 24px;
+  padding: 0;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-alt);
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+  font-weight: 700;
+  line-height: 1;
 }
 
 .touchpad-grid {
@@ -198,6 +251,14 @@
     gap: 0.35rem;
     padding: 0.55rem;
     bottom: calc(0.6rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .touchpad-toggle {
+    right: 0.6rem;
+    bottom: calc(0.6rem + env(safe-area-inset-bottom, 0px));
+    min-height: 40px;
+    padding: 0 12px;
+    font-size: 0.95rem;
   }
 
   .touchpad-grid {

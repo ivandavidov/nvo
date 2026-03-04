@@ -19,8 +19,13 @@
 
   var pad = document.createElement('div');
   pad.className = 'touchpad-global';
+  pad.id = 'touchpad-global';
+  pad.setAttribute('aria-hidden', 'true');
   pad.innerHTML = [
-    '<div class="touchpad-title">Touch контроли</div>',
+    '<div class="touchpad-title-row">',
+    '  <div class="touchpad-title">Touch контроли</div>',
+    '  <button type="button" class="touchpad-close" aria-label="Скрий touch контролите">x</button>',
+    '</div>',
     '<div class="touchpad-grid">',
     '  <button type="button" data-btn="up" aria-label="Нагоре">▲</button>',
     '  <button type="button" data-btn="space" aria-label="Действие">●</button>',
@@ -31,6 +36,38 @@
     '</div>'
   ].join('');
   document.body.appendChild(pad);
+
+  var toggle = document.createElement('button');
+  toggle.type = 'button';
+  toggle.className = 'touchpad-toggle';
+  toggle.textContent = 'Контроли';
+  toggle.setAttribute('aria-label', 'Покажи touch контролите');
+  toggle.setAttribute('aria-controls', 'touchpad-global');
+  toggle.setAttribute('aria-expanded', 'false');
+  document.body.appendChild(toggle);
+
+  var closeButton = pad.querySelector('.touchpad-close');
+
+  function setPadVisible(visible) {
+    var isVisible = Boolean(visible);
+    pad.classList.toggle('is-visible', isVisible);
+    document.body.classList.toggle('touchpad-open', isVisible);
+    pad.setAttribute('aria-hidden', isVisible ? 'false' : 'true');
+    toggle.setAttribute('aria-expanded', isVisible ? 'true' : 'false');
+    toggle.setAttribute('aria-label', isVisible ? 'Скрий touch контролите' : 'Покажи touch контролите');
+  }
+
+  toggle.addEventListener('click', function (e) {
+    e.preventDefault();
+    setPadVisible(!pad.classList.contains('is-visible'));
+  });
+
+  if (closeButton) {
+    closeButton.addEventListener('click', function (e) {
+      e.preventDefault();
+      setPadVisible(false);
+    });
+  }
 
   var keyMap = {
     left: { code: 'ArrowLeft', key: 'ArrowLeft', hold: true },
@@ -202,4 +239,6 @@
   pad.addEventListener('contextmenu', function (e) {
     e.preventDefault();
   });
+
+  setPadVisible(false);
 })();
