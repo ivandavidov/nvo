@@ -4,10 +4,9 @@
   <meta charset="utf-8">
   <title>Space Invaders</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="../../css/fonts.css">
   <link rel="stylesheet" href="../../css/normalize.css">
-  <link rel="stylesheet" href="../../css/skeleton.css">
   <link rel="stylesheet" href="../../css/custom.css">
+  <link rel="stylesheet" href="../games.css">
   <style>
     .panel { max-width: 440px; margin: 0 auto; }
     canvas { display:block; margin:0 auto; border:1px solid #ccc; background:#0a0a1a; }
@@ -15,28 +14,30 @@
     .btns { margin-top:8px; display:flex; gap:8px; justify-content:center; }
     #hint { text-align:center; color:#888; font-size:.85rem; margin-top:6px; }
   </style>
+  <script src="../games-header.js" defer></script>
+  <script src="../games-touch.js" defer></script>
 </head>
-<body>
+<body class="games-theme">
   <div class="container">
-    <div class="row" style="margin-top:2rem"><a href="../">← Към игрите</a></div>
-    <div class="row panel">
-      <h4>Space Invaders</h4>
-      <div class="meta">
-        <span>Точки: <strong id="score">0</strong></span>
-        <span>Живота: <strong id="lives">3</strong></span>
-        <span>Вълна: <strong id="wave">1</strong></span>
-      </div>
-      <canvas id="c" width="400" height="380"></canvas>
-      <div id="hint">← → за движение · Space / бутон за стрелба</div>
-      <div class="btns">
-        <button class="button" id="leftBtn">←</button>
-        <button class="button" id="fireBtn">🔥 Стреляй</button>
-        <button class="button" id="rightBtn">→</button>
-      </div>
-      <div style="margin-top:8px;text-align:center;">
-        <button class="button" id="resetBtn">Нова игра</button>
-      </div>
-    </div>
+  <div class="row" style="margin-top:2rem"><a href="../">← Към игрите</a></div>
+  <div class="row panel">
+  <h4>Space Invaders</h4>
+  <div class="meta">
+  <span>Точки: <strong id="score">0</strong></span>
+  <span>Живота: <strong id="lives">3</strong></span>
+  <span>Вълна: <strong id="wave">1</strong></span>
+  </div>
+  <canvas id="c" width="400" height="380"></canvas>
+  <div id="hint">← → за движение · Space / бутон за стрелба</div>
+  <div class="btns">
+  <button class="button" id="leftBtn">←</button>
+  <button class="button" id="fireBtn">🔥 Стреляй</button>
+  <button class="button" id="rightBtn">→</button>
+  </div>
+  <div style="margin-top:8px;text-align:center;">
+  <button class="button" id="resetBtn">Нова игра</button>
+  </div>
+  </div>
   </div>
 <script>
 'use strict';

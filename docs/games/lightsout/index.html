@@ -4,10 +4,9 @@
   <meta charset="utf-8">
   <title>Lights Out</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="../../css/fonts.css">
   <link rel="stylesheet" href="../../css/normalize.css">
-  <link rel="stylesheet" href="../../css/skeleton.css">
   <link rel="stylesheet" href="../../css/custom.css">
+  <link rel="stylesheet" href="../games.css">
   <style>
     .panel{max-width:520px;margin:0 auto;text-align:center}
     .board{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin:16px auto;max-width:300px}
@@ -16,16 +15,18 @@
     .meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
     #msg{font-size:1.1rem;font-weight:bold;min-height:2rem;margin-bottom:8px;color:#2b8a3e}
   </style>
+  <script src="../games-header.js" defer></script>
+  <script src="../games-touch.js" defer></script>
 </head>
-<body>
+<body class="games-theme">
   <div class="container">
-    <div class="row" style="margin-top:2rem"><a href="../">&larr; Към игрите</a></div>
-    <div class="row panel">
-      <h4>Lights Out</h4>
-      <div id="msg"></div>
-      <div class="meta"><span>Ходове: <strong id="moves">0</strong></span><button class="button" id="newGame">Нова игра</button></div>
-      <div id="board" class="board"></div>
-    </div>
+  <div class="row" style="margin-top:2rem"><a href="../">&larr; Към игрите</a></div>
+  <div class="row panel">
+  <h4>Lights Out</h4>
+  <div id="msg"></div>
+  <div class="meta"><span>Ходове: <strong id="moves">0</strong></span><button class="button" id="newGame">Нова игра</button></div>
+  <div id="board" class="board"></div>
+  </div>
   </div>
 <script>
 'use strict';

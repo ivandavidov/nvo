@@ -4,10 +4,9 @@
   <meta charset="utf-8">
   <title>Тест за реакция</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="../../css/fonts.css">
   <link rel="stylesheet" href="../../css/normalize.css">
-  <link rel="stylesheet" href="../../css/skeleton.css">
   <link rel="stylesheet" href="../../css/custom.css">
+  <link rel="stylesheet" href="../games.css">
   <style>
     .panel{max-width:520px;margin:0 auto;text-align:center}
     #box{width:100%;height:220px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;font-weight:bold;color:#fff;cursor:pointer;user-select:none;transition:background .2s;margin-bottom:16px}
@@ -19,17 +18,19 @@
     table td,table th{padding:4px 8px;font-size:.95em}
     #result{font-size:1.3rem;font-weight:bold;min-height:2rem;margin-bottom:8px}
   </style>
+  <script src="../games-header.js" defer></script>
+  <script src="../games-touch.js" defer></script>
 </head>
-<body>
+<body class="games-theme">
   <div class="container">
-    <div class="row" style="margin-top:2rem"><a href="../">&larr; Към игрите</a></div>
-    <div class="row panel">
-      <h4>Тест за реакция</h4>
-      <div id="result"></div>
-      <div id="box" class="wait" onclick="handleClick()">Кликни за начало</div>
-      <div id="history"></div>
-      <button class="button" id="newTest" style="display:none">Нов тест</button>
-    </div>
+  <div class="row" style="margin-top:2rem"><a href="../">&larr; Към игрите</a></div>
+  <div class="row panel">
+  <h4>Тест за реакция</h4>
+  <div id="result"></div>
+  <div id="box" class="wait" onclick="handleClick()">Кликни за начало</div>
+  <div id="history"></div>
+  <button class="button" id="newTest" style="display:none">Нов тест</button>
+  </div>
   </div>
 <script>
 'use strict';

@@ -4,24 +4,25 @@
   <meta charset="utf-8">
   <title>Flappy Bird</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="../../css/fonts.css">
   <link rel="stylesheet" href="../../css/normalize.css">
-  <link rel="stylesheet" href="../../css/skeleton.css">
   <link rel="stylesheet" href="../../css/custom.css">
+  <link rel="stylesheet" href="../games.css">
   <style>
     .panel { max-width: 360px; margin: 0 auto; text-align:center; }
     canvas { display:block; margin:0 auto; border:1px solid #ccc; cursor:pointer; }
     #hint { color:#888; font-size:.85rem; margin-top:6px; }
   </style>
+  <script src="../games-header.js" defer></script>
+  <script src="../games-touch.js" defer></script>
 </head>
-<body>
+<body class="games-theme">
   <div class="container">
-    <div class="row" style="margin-top:2rem"><a href="../">← Към игрите</a></div>
-    <div class="row panel">
-      <h4>Flappy Bird</h4>
-      <canvas id="c" width="340" height="420"></canvas>
-      <div id="hint">Клик / Space / пръст за прелитане</div>
-    </div>
+  <div class="row" style="margin-top:2rem"><a href="../">← Към игрите</a></div>
+  <div class="row panel">
+  <h4>Flappy Bird</h4>
+  <canvas id="c" width="340" height="420"></canvas>
+  <div id="hint">Клик / Space / пръст за прелитане</div>
+  </div>
   </div>
 <script>
 'use strict';

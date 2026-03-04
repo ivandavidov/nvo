@@ -1,0 +1,219 @@
+/* Games section theme aligned with current site design */
+
+.games-theme {
+  background: var(--color-bg);
+}
+
+.games-theme .container {
+  padding-top: calc(var(--header-height) + 1rem);
+}
+
+.games-theme .container > .row {
+  margin-bottom: 0.85rem;
+}
+
+.games-theme .container > .row:first-of-type {
+  margin-top: 0 !important;
+}
+
+.games-theme .container > .row > h4 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--color-primary-dark);
+  margin: 0 0 0.25rem;
+  letter-spacing: -0.03em;
+}
+
+.games-theme .container > .row > p {
+  color: var(--color-text-muted);
+  margin: 0 0 1rem;
+}
+
+.games-theme .container > .row a[href="../"],
+.games-theme .container > .row a[href="../../"],
+.games-theme .container > .row a[href="."] {
+  font-weight: 600;
+}
+
+.games-theme .row.panel,
+.games-theme .row.game-wrap,
+.games-theme .row .panel,
+.games-theme .row .game-wrap {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-lg);
+  padding: 1rem;
+  box-shadow: var(--shadow-md);
+}
+
+.games-theme .game-box,
+.games-theme .board,
+.games-theme .game-board,
+.games-theme .controls,
+.games-theme .status,
+.games-theme .hud,
+.games-theme .panel,
+.games-theme .box {
+  background-color: transparent;
+}
+
+.games-theme canvas {
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  background: #fff;
+  box-shadow: var(--shadow-sm);
+}
+
+.games-theme .button,
+.games-theme button {
+  border-radius: var(--radius-full);
+}
+
+.games-theme .games-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.games-theme .game-card {
+  border: 1px solid var(--color-border) !important;
+  border-radius: var(--radius-md);
+  background: var(--color-surface) !important;
+  padding: 1rem;
+  box-shadow: var(--shadow-sm) !important;
+  min-height: 140px;
+}
+
+.games-theme .game-card h5 {
+  margin: 0 0 0.35rem;
+  color: var(--color-text);
+  font-size: 1.12rem;
+}
+
+.games-theme .game-card p {
+  margin: 0 0 0.75rem;
+  color: var(--color-text-muted);
+}
+
+.games-theme .mobile-controls button {
+  border-radius: var(--radius-md);
+}
+
+.games-theme.touch-device {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.games-theme.touch-device.games-detail {
+  padding-bottom: calc(150px + env(safe-area-inset-bottom, 0px));
+}
+
+.games-theme.touch-device button,
+.games-theme.touch-device .button,
+.games-theme.touch-device [role="button"],
+.games-theme.touch-device .key {
+  min-height: 44px;
+}
+
+.games-theme.touch-device canvas {
+  max-width: 100%;
+  height: auto;
+  touch-action: none;
+}
+
+.touchpad-global {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: calc(0.85rem + env(safe-area-inset-bottom, 0px));
+  z-index: 1300;
+  display: none;
+  gap: 0.45rem;
+  padding: 0.65rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: var(--shadow-lg);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.games-theme.touch-device.games-detail .touchpad-global {
+  display: grid;
+}
+
+.touchpad-title {
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--color-text-light);
+  text-align: center;
+}
+
+.touchpad-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(46px, 1fr));
+  gap: 0.45rem;
+}
+
+.touchpad-grid button {
+  height: 46px;
+  min-width: 46px;
+  margin: 0;
+  padding: 0;
+  font-size: 1.1rem;
+  line-height: 1;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-alt);
+  color: var(--color-text);
+  font-weight: 700;
+}
+
+.touchpad-grid button.active {
+  background: var(--color-primary-lighter);
+  border-color: var(--color-primary-light);
+  color: var(--color-primary-dark);
+}
+
+@media (max-width: 600px) {
+  .games-theme .container {
+    padding-top: calc(var(--header-height) + 0.75rem);
+  }
+
+  .games-theme .container > .row > h4 {
+    font-size: 1.6rem;
+  }
+
+  .games-theme .row.panel,
+  .games-theme .row.game-wrap,
+  .games-theme .row .panel,
+  .games-theme .row .game-wrap,
+  .games-theme .game-card {
+    padding: 0.85rem;
+  }
+
+  .touchpad-global {
+    gap: 0.35rem;
+    padding: 0.55rem;
+    bottom: calc(0.6rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .touchpad-grid {
+    gap: 0.35rem;
+    grid-template-columns: repeat(3, minmax(42px, 1fr));
+  }
+
+  .touchpad-grid button {
+    height: 42px;
+    min-width: 42px;
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 1100px) {
+  .games-theme .container {
+    max-width: 860px;
+  }
+}

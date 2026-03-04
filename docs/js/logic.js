@@ -6,6 +6,79 @@ let rankingTableBuilders = {};
 let selectedSchoolIndices = new Set();
 let pdfFontBase64Promise = null;
 
+function getAppBasePath() {
+  let pathname = window.location.pathname || '/';
+  let match = pathname.match(/^(.*\/)(?:4|7|10|12|stats)(?:\/|$)/);
+  if(match && match[1]) {
+    return match[1];
+  }
+  if(pathname.endsWith('/')) {
+    return pathname;
+  }
+  let lastSlash = pathname.lastIndexOf('/');
+  return lastSlash >= 0 ? pathname.slice(0, lastSlash + 1) : '/';
+}
+
+function resolveAssetPath(pathFromAppRoot) {
+  if(!pathFromAppRoot) {
+    return pathFromAppRoot;
+  }
+  if(/^(?:[a-z]+:)?\/\//i.test(pathFromAppRoot) || pathFromAppRoot.startsWith('data:') || pathFromAppRoot.startsWith('/')) {
+    return pathFromAppRoot;
+  }
+  let normalized = pathFromAppRoot.replace(/^\.?\//, '');
+  return new URL(normalized, window.location.origin + getAppBasePath()).toString();
+}
+
+function getCurrentGradeFromPath() {
+  let pathname = window.location.pathname || '';
+  let match = pathname.match(/\/(4|7|10|12)(?:\/|$)/);
+  return match ? Number.parseInt(match[1], 10) : 7;
+}
+
+function getGradePagePath(grade) {
+  let parsed = Number.parseInt(grade, 10);
+  if(![4, 7, 10, 12].includes(parsed)) {
+    return resolveAssetPath('7/');
+  }
+  return resolveAssetPath(parsed + '/');
+}
+
+function getStatsPagePath(grade) {
+  let parsed = Number.parseInt(grade, 10);
+  let safeGrade = [4, 7, 10, 12].includes(parsed) ? parsed : 7;
+  return resolveAssetPath('stats/?grade=' + safeGrade);
+}
+
+function applyNavigationPaths() {
+  let currentGrade = getCurrentGradeFromPath();
+
+  let gradeTabs = document.querySelectorAll('.grade-tabs a[data-grade]');
+  gradeTabs.forEach((a) => {
+    let grade = Number.parseInt(a.getAttribute('data-grade'), 10);
+    if(!Number.isInteger(grade)) {
+      return;
+    }
+    a.href = getGradePagePath(grade);
+    a.classList.toggle('active', grade === currentGrade);
+  });
+
+  let gradeLinks = document.querySelectorAll('a[data-grade-link]');
+  gradeLinks.forEach((a) => {
+    let grade = Number.parseInt(a.getAttribute('data-grade-link'), 10);
+    if(!Number.isInteger(grade)) {
+      return;
+    }
+    a.href = getGradePagePath(grade);
+  });
+
+  let statsLinks = document.querySelectorAll('a[data-stats-grade]');
+  statsLinks.forEach((a) => {
+    let grade = Number.parseInt(a.getAttribute('data-stats-grade'), 10);
+    a.href = getStatsPagePath(grade);
+  });
+}
+
 function safeDivide(numerator, denominator, fallback = 0) {
   return denominator ? numerator / denominator : fallback;
 }
@@ -127,13 +200,14 @@ function normalizeSeries(series) {
   for(let i = 0; i < series.length; i++) {
     series[i].data = series[i].data.slice(series[i].data.length - numYears, series[i].data.length);
   }
-  while(!series.some(s => s.data[0])) {
+  let hasAnyValues = () => series.some((s) => s.data && s.data.length > 0);
+  while(hasAnyValues() && !series.some(s => s.data[0])) {
     for(let i = 0; i < series.length; i++) {
       series[i].data = series[i].data.slice(1);
     }
   }
   let counter = 0;
-  while(!series.some(s => s.data[s.data.length - 1])) {
+  while(hasAnyValues() && !series.some(s => s.data[s.data.length - 1])) {
     for(let i = 0; i < series.length; i++) {
       series[i].data = series[i].data.slice(0, series[i].data.length - 1);
     }
@@ -307,13 +381,13 @@ function generateSchoolButtons(div, slices, topCount, secondCount) {
     div.appendChild(b);
   }
   let setSchoolButtons = (start, count, state) => {
-    let skipped = 0;
-    for(let i = start; i < (start + count + skipped); i++) {
-      if(!schools[i] || s[schools[i]].b[s[schools[i]].b.length - 1] === null) {
-        ++skipped;
+    let selected = 0;
+    for(let i = start; i < schools.length && selected < count; i++) {
+      if(!schools[i] || !s[schools[i]] || s[schools[i]].b[s[schools[i]].b.length - 1] === null) {
         continue;
       }
       setButtonState(schools[i], state);
+      ++selected;
     }
   }
   let handleGroupBtnClick = (btn, start, count) => {
@@ -408,17 +482,21 @@ function generateDownloadCSVHeader() {
 
 function generateYearNavigation() {
   let fallbackLatestYear = firstYear + s[baseSchoolIndex].b.length - 1;
-  let navItems = document.querySelectorAll('.years-nav[data-year-base]');
+  let navItems = document.querySelectorAll('.years-nav[data-year-grade]');
   navItems.forEach((el) => {
-    let baseHref = el.getAttribute('data-year-base');
-    let grade = el.getAttribute('data-year-grade');
-    let configuredLastYear = grade && typeof latestYearByGrade !== 'undefined' ? latestYearByGrade[grade] : null;
-    let latestYear = Number.isFinite(configuredLastYear) ? configuredLastYear : fallbackLatestYear;
-    let endYear = latestYear - 1;
-    if(!baseHref || endYear < NAV_FIRST_YEAR) {
+    let grade = Number.parseInt(el.getAttribute('data-year-grade'), 10);
+    if(!Number.isInteger(grade)) {
       el.textContent = '';
       return;
     }
+    let configuredLastYear = typeof latestYearByGrade !== 'undefined' ? latestYearByGrade[grade] : null;
+    let latestYear = Number.isFinite(configuredLastYear) ? configuredLastYear : fallbackLatestYear;
+    let endYear = latestYear - 1;
+    if(endYear < NAV_FIRST_YEAR) {
+      el.textContent = '';
+      return;
+    }
+    let baseHref = getGradePagePath(grade) + '?year=';
     el.textContent = '';
     el.appendChild(document.createTextNode('('));
     for(let year = endYear; year >= NAV_FIRST_YEAR; year--) {
@@ -527,9 +605,10 @@ function getPdfFontBase64() {
     return pdfFontBase64Promise;
   }
   pdfFontBase64Promise = (async () => {
-    let response = await fetch(pdfFontUrl);
+    let fontUrl = resolveAssetPath('fonts/' + TABLE_PDF_FONT_FILE);
+    let response = await fetch(fontUrl);
     if(!response.ok) {
-      throw new Error('Font download failed: ' + response.status + ' (' + pdfFontUrl + ')');
+      throw new Error('Font download failed: ' + response.status + ' (' + fontUrl + ')');
     }
     let buffer = await response.arrayBuffer();
     return convertArrayBufferToBase64(buffer);
@@ -1083,9 +1162,6 @@ function buildRankingTable(div, name, puSchools, prSchools, rankingState) {
     headers.push((firstYear - 2001 + s[baseSchoolIndex].b.length - i) + ' ' + csvHeaderB + ' / уч.');
     headers.push((firstYear - 2001 + s[baseSchoolIndex].b.length - i) + ' ' + csvHeaderM + ' / уч.');
   }
-  if(hide2019TableFix) { // Remove this when 2022 results are available.
-    headers.pop();
-  }
   headers.forEach((header) => {
     let th = document.createElement('th');
     th.appendChild(document.createTextNode(header));
@@ -1181,9 +1257,6 @@ function buildRankingTable(div, name, puSchools, prSchools, rankingState) {
       td.style.whiteSpace = 'nowrap';
       td.appendChild(document.createTextNode(s[o.i].m[totalYears - j - 1] ? s[o.i].m[totalYears - j - 1] + ' / ' + s[o.i].mu[totalYears - j - 1] : ''));
       tr.appendChild(td);
-    }
-    if(hide2019TableFix) { // Remove this when 2022 results are available.
-      tr.removeChild(tr.lastChild);
     }
   });
   div.appendChild(table);
@@ -1703,56 +1776,51 @@ function generateCitySections() {
   addCity('Хасково', 'haskovo', 'Хасково', 2);
   addCity('Шумен', 'shumen', 'Шумен', 2);
   addCity('Ямбол', 'iambol', 'Ямбол', 2);
-  if(fixForMissingCities2023) {
-    let otherCities = document.getElementById('other-cities');
-    if(otherCities) { otherCities.style.display = 'none'; }
-  } else {
-    addCity('Айтос', 'aitos', 'Айтос', 3);
-    addCity('Асеновград', 'asenovgrad', 'Асеновград', 3);
-    addCity('Банкя', 'bankia', 'Банкя', 3);
-    addCity('Берковица', 'berkovitsa', 'Берковица', 3);
-    addCity('Ботевград', 'botevgrad', 'Ботевград', 3);
-    addCity('Велинград', 'velingrad', 'Велинград', 3);
-    addCity('Горна Оряховица', 'gorna-oryahovitsa', 'Г. Оряховица', 3);
-    addCity('Гоце Делчев', 'gotse-delchev', 'Гоце Делчев', 3);
-    addCity('Димитровград', 'dimitrovgrad', 'Димитровград', 3);
-    addCity('Дупница', 'dupnitsa', 'Дупница', 3);
-    addCity('Ихтиман', 'ihtiman', 'Ихтиман', 3);
-    addCity('Каварна', 'kavarna', 'Каварна', 3);
-    addCity('Казанлък', 'kazanluk', 'Казанлък', 3);
-    addCity('Карлово', 'karlovo', 'Карлово', 3);
-    addCity('Карнобат', 'karnobat', 'Карнобат', 3);
-    addCity('Костинброд', 'kostinbrod', 'Костинброд', 3);
-    addCity('Лом', 'lom', 'Лом', 3);
-    addCity('Луковит', 'lukovit', 'Луковит', 3);
-    addCity('Несебър', 'nesebar', 'Несебър', 3);
-    addCity('Нова Загора', 'nova-zagora', 'Нова Загора', 3);
-    addCity('Нови Искър', 'novi-iskar', 'Нови Искър', 3);
-    addCity('Нови пазар', 'novi-pazar', 'Нови пазар', 3);
-    addCity('Обзор', 'obzor', 'Обзор', 3);
-    addCity('Панагюрище', 'panagiurishte', 'Панагюрище', 3);
-    addCity('Петрич', 'petrich', 'Петрич', 3);
-    addCity('Пещера', 'peshtera', 'Пещера', 3);
-    addCity('Поморие', 'pomorie', 'Поморие', 3);
-    addCity('Попово', 'popovo', 'Попово', 3);
-    addCity('Правец', 'pravets', 'Правец', 3);
-    addCity('Провадия', 'provadia', 'Провадия', 3);
-    addCity('Първомай', 'purvomai', 'Първомай', 3);
-    addCity('Раднево', 'radnevo', 'Раднево', 3);
-    addCity('Радомир', 'radomir', 'Радомир', 3);
-    addCity('Раковски', 'rakovski', 'Раковски', 3);
-    addCity('Самоков', 'samokov', 'Самоков', 3);
-    addCity('Сандански', 'sandanski', 'Сандански', 3);
-    addCity('Свиленград', 'svilengrad', 'Свиленград', 3);
-    addCity('Свищов', 'svishtov', 'Свищов', 3);
-    addCity('Своге', 'svoge', 'Своге', 3);
-    addCity('Севлиево', 'sevlievo', 'Севлиево', 3);
-    addCity('Стамболийски', 'stanbiliiski', 'Стамболийски', 3);
-    addCity('Троян', 'troyan', 'Троян', 3);
-    addCity('Харманли', 'harmanli', 'Харманли', 3);
-    addCity('Червен бряг', 'cherven-briag', 'Червен бряг', 3);
-    addCity('Чирпан', 'chirpan', 'Чирпан', 3);
-  }
+  addCity('Айтос', 'aitos', 'Айтос', 3);
+  addCity('Асеновград', 'asenovgrad', 'Асеновград', 3);
+  addCity('Банкя', 'bankia', 'Банкя', 3);
+  addCity('Берковица', 'berkovitsa', 'Берковица', 3);
+  addCity('Ботевград', 'botevgrad', 'Ботевград', 3);
+  addCity('Велинград', 'velingrad', 'Велинград', 3);
+  addCity('Горна Оряховица', 'gorna-oryahovitsa', 'Г. Оряховица', 3);
+  addCity('Гоце Делчев', 'gotse-delchev', 'Гоце Делчев', 3);
+  addCity('Димитровград', 'dimitrovgrad', 'Димитровград', 3);
+  addCity('Дупница', 'dupnitsa', 'Дупница', 3);
+  addCity('Ихтиман', 'ihtiman', 'Ихтиман', 3);
+  addCity('Каварна', 'kavarna', 'Каварна', 3);
+  addCity('Казанлък', 'kazanluk', 'Казанлък', 3);
+  addCity('Карлово', 'karlovo', 'Карлово', 3);
+  addCity('Карнобат', 'karnobat', 'Карнобат', 3);
+  addCity('Костинброд', 'kostinbrod', 'Костинброд', 3);
+  addCity('Лом', 'lom', 'Лом', 3);
+  addCity('Луковит', 'lukovit', 'Луковит', 3);
+  addCity('Несебър', 'nesebar', 'Несебър', 3);
+  addCity('Нова Загора', 'nova-zagora', 'Нова Загора', 3);
+  addCity('Нови Искър', 'novi-iskar', 'Нови Искър', 3);
+  addCity('Нови пазар', 'novi-pazar', 'Нови пазар', 3);
+  addCity('Обзор', 'obzor', 'Обзор', 3);
+  addCity('Панагюрище', 'panagiurishte', 'Панагюрище', 3);
+  addCity('Петрич', 'petrich', 'Петрич', 3);
+  addCity('Пещера', 'peshtera', 'Пещера', 3);
+  addCity('Поморие', 'pomorie', 'Поморие', 3);
+  addCity('Попово', 'popovo', 'Попово', 3);
+  addCity('Правец', 'pravets', 'Правец', 3);
+  addCity('Провадия', 'provadia', 'Провадия', 3);
+  addCity('Първомай', 'purvomai', 'Първомай', 3);
+  addCity('Раднево', 'radnevo', 'Раднево', 3);
+  addCity('Радомир', 'radomir', 'Радомир', 3);
+  addCity('Раковски', 'rakovski', 'Раковски', 3);
+  addCity('Самоков', 'samokov', 'Самоков', 3);
+  addCity('Сандански', 'sandanski', 'Сандански', 3);
+  addCity('Свиленград', 'svilengrad', 'Свиленград', 3);
+  addCity('Свищов', 'svishtov', 'Свищов', 3);
+  addCity('Своге', 'svoge', 'Своге', 3);
+  addCity('Севлиево', 'sevlievo', 'Севлиево', 3);
+  addCity('Стамболийски', 'stanbiliiski', 'Стамболийски', 3);
+  addCity('Троян', 'troyan', 'Троян', 3);
+  addCity('Харманли', 'harmanli', 'Харманли', 3);
+  addCity('Червен бряг', 'cherven-briag', 'Червен бряг', 3);
+  addCity('Чирпан', 'chirpan', 'Чирпан', 3);
   let header = generateDownloadCSVHeader();
   let a = document.getElementById('csvAll');
   if(a) {
@@ -1848,6 +1916,7 @@ function generateJoke() {
 }
 
 function onLoad() {
+  applyNavigationPaths();
   generateJoke();
   generateYearNavigation();
   calculateTimeTravel();

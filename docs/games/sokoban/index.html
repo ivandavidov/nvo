@@ -4,10 +4,9 @@
   <meta charset="utf-8">
   <title>Сокобан</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="../../css/fonts.css">
   <link rel="stylesheet" href="../../css/normalize.css">
-  <link rel="stylesheet" href="../../css/skeleton.css">
   <link rel="stylesheet" href="../../css/custom.css">
+  <link rel="stylesheet" href="../games.css">
   <style>
     .panel { max-width: 440px; margin: 0 auto; text-align:center; }
     canvas { display:block; margin:0 auto; border:1px solid #ccc; background:#c8a96e; }
@@ -17,31 +16,33 @@
     #msg { min-height:1.8rem; font-weight:bold; color:#27ae60; margin-bottom:4px; }
     #hint { color:#888; font-size:.82rem; margin-top:6px; }
   </style>
+  <script src="../games-header.js" defer></script>
+  <script src="../games-touch.js" defer></script>
 </head>
-<body>
+<body class="games-theme">
   <div class="container">
-    <div class="row" style="margin-top:2rem"><a href="../">← Към игрите</a></div>
-    <div class="row panel">
-      <h4>Сокобан</h4>
-      <div class="meta">
-        <span>Ниво: <strong id="lvlNum">1</strong> / 5</span>
-        <span>Ходове: <strong id="moves">0</strong></span>
-        <button class="button" style="margin:0" id="undoBtn">↩ Назад</button>
-      </div>
-      <div id="msg"></div>
-      <canvas id="c"></canvas>
-      <div id="hint">Стрелки / WASD за движение · ↩ за отмяна</div>
-      <div class="ctrl">
-        <div></div><button class="button" id="bU">↑</button><div></div>
-        <button class="button" id="bL">←</button>
-        <button class="button" id="bD">↓</button>
-        <button class="button" id="bR">→</button>
-      </div>
-      <div style="margin-top:10px;display:flex;gap:8px;justify-content:center;">
-        <button class="button" id="restartBtn">Рестарт</button>
-        <button class="button" id="nextBtn" style="display:none">Следващо →</button>
-      </div>
-    </div>
+  <div class="row" style="margin-top:2rem"><a href="../">← Към игрите</a></div>
+  <div class="row panel">
+  <h4>Сокобан</h4>
+  <div class="meta">
+  <span>Ниво: <strong id="lvlNum">1</strong> / 5</span>
+  <span>Ходове: <strong id="moves">0</strong></span>
+  <button class="button" style="margin:0" id="undoBtn">↩ Назад</button>
+  </div>
+  <div id="msg"></div>
+  <canvas id="c"></canvas>
+  <div id="hint">Стрелки / WASD за движение · ↩ за отмяна</div>
+  <div class="ctrl">
+  <div></div><button class="button" id="bU">↑</button><div></div>
+  <button class="button" id="bL">←</button>
+  <button class="button" id="bD">↓</button>
+  <button class="button" id="bR">→</button>
+  </div>
+  <div style="margin-top:10px;display:flex;gap:8px;justify-content:center;">
+  <button class="button" id="restartBtn">Рестарт</button>
+  <button class="button" id="nextBtn" style="display:none">Следващо →</button>
+  </div>
+  </div>
   </div>
 <script>
 'use strict';

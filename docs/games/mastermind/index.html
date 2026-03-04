@@ -4,10 +4,9 @@
   <meta charset="utf-8">
   <title>Mastermind</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="../../css/fonts.css">
   <link rel="stylesheet" href="../../css/normalize.css">
-  <link rel="stylesheet" href="../../css/skeleton.css">
   <link rel="stylesheet" href="../../css/custom.css">
+  <link rel="stylesheet" href="../games.css">
   <style>
     .panel{max-width:520px;margin:0 auto;text-align:center}
     .colors{display:flex;justify-content:center;gap:8px;margin-bottom:12px}
@@ -26,20 +25,22 @@
     .answer{display:flex;justify-content:center;gap:6px;margin-bottom:12px}
     .answer .dot{width:36px;height:36px;border-radius:50%;border:2px solid #888}
   </style>
+  <script src="../games-header.js" defer></script>
+  <script src="../games-touch.js" defer></script>
 </head>
-<body>
+<body class="games-theme">
   <div class="container">
-    <div class="row" style="margin-top:2rem"><a href="../">&larr; Към игрите</a></div>
-    <div class="row panel">
-      <h4>Mastermind</h4>
-      <div id="msg">Познай цветовата комбинация!</div>
-      <div class="meta"><span>Опит: <strong id="round">1</strong>/10</span><button class="button" id="newGame">Нова игра</button></div>
-      <div id="palette" class="colors"></div>
-      <div id="current" class="guess-row" style="margin-bottom:16px"></div>
-      <button class="button" id="submitGuess" style="margin-bottom:16px">Провери</button>
-      <div id="board" class="board"></div>
-      <div id="answer" class="answer" style="display:none"></div>
-    </div>
+  <div class="row" style="margin-top:2rem"><a href="../">&larr; Към игрите</a></div>
+  <div class="row panel">
+  <h4>Mastermind</h4>
+  <div id="msg">Познай цветовата комбинация!</div>
+  <div class="meta"><span>Опит: <strong id="round">1</strong>/10</span><button class="button" id="newGame">Нова игра</button></div>
+  <div id="palette" class="colors"></div>
+  <div id="current" class="guess-row" style="margin-bottom:16px"></div>
+  <button class="button" id="submitGuess" style="margin-bottom:16px">Провери</button>
+  <div id="board" class="board"></div>
+  <div id="answer" class="answer" style="display:none"></div>
+  </div>
   </div>
 <script>
 'use strict';

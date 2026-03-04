@@ -4,10 +4,9 @@
   <meta charset="utf-8">
   <title>Морски Шах</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="../../css/fonts.css">
   <link rel="stylesheet" href="../../css/normalize.css">
-  <link rel="stylesheet" href="../../css/skeleton.css">
   <link rel="stylesheet" href="../../css/custom.css">
+  <link rel="stylesheet" href="../games.css">
   <style>
     .panel { max-width: 340px; margin: 0 auto; }
     #board { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin:16px 0; }
@@ -21,17 +20,19 @@
     #msg { text-align:center; font-size:1.15rem; font-weight:bold; min-height:2rem; margin-bottom:4px; }
     #score { text-align:center; color:#666; margin-bottom:8px; font-size:.9rem; }
   </style>
+  <script src="../games-header.js" defer></script>
+  <script src="../games-touch.js" defer></script>
 </head>
-<body>
+<body class="games-theme">
   <div class="container">
-    <div class="row" style="margin-top:2rem"><a href="../">← Към игрите</a></div>
-    <div class="row panel">
-      <h4>Морски Шах</h4>
-      <div id="msg">Твой ред (X)</div>
-      <div id="score">Победи: <span id="pw">0</span> · Загуби: <span id="pl">0</span> · Равни: <span id="pd">0</span></div>
-      <div id="board"></div>
-      <button class="button" id="reset" style="width:100%">Нова игра</button>
-    </div>
+  <div class="row" style="margin-top:2rem"><a href="../">← Към игрите</a></div>
+  <div class="row panel">
+  <h4>Морски Шах</h4>
+  <div id="msg">Твой ред (X)</div>
+  <div id="score">Победи: <span id="pw">0</span> · Загуби: <span id="pl">0</span> · Равни: <span id="pd">0</span></div>
+  <div id="board"></div>
+  <button class="button" id="reset" style="width:100%">Нова игра</button>
+  </div>
   </div>
 <script>
 'use strict';

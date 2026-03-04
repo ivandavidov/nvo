@@ -4,9 +4,7 @@
   <meta charset="utf-8">
   <title>Статистики – НВО и ДЗИ</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="../css/fonts.css">
   <link rel="stylesheet" href="../css/normalize.css">
-  <link rel="stylesheet" href="../css/skeleton.css">
   <link rel="stylesheet" href="../css/custom.css">
   <link rel="icon" type="image/png" href="../images/favicon-7.png">
   <!-- unsafe-eval е необходим за зареждане на данните в изолиран скоуп чрез new Function() -->
@@ -29,10 +27,48 @@
   </script>
   <script src="../js/highcharts.js"></script>
   <style>
-    .grade-btn { margin: 0 0.4rem 0.5rem 0; }
-    .grade-btn.active { background: #33c3f0; border-color: #1eaedb; color: #fff; }
+    .stats-filter-wrap { margin-bottom: 0.2rem; }
+    .stats-filter-label {
+      margin: 0 0 0.65rem;
+      color: #475569;
+      font-size: 0.95rem;
+      font-weight: 600;
+      line-height: 1.35;
+    }
+    .stats-filter-hint {
+      margin: 0.75rem 0 0;
+      color: #64748b;
+      font-size: 0.9rem;
+      line-height: 1.45;
+    }
+    .stats-filter-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      align-items: center;
+    }
+    .grade-btn {
+      margin: 0;
+      padding: 0.45rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid #cbd5e1;
+      background: #f8fafc;
+      color: #334155;
+      font-weight: 600;
+      min-height: auto;
+      line-height: 1.2;
+    }
+    .grade-btn:hover { background: #eef2ff; border-color: #94a3b8; }
+    .grade-btn.active { background: #0ea5e9; border-color: #0284c7; color: #fff; }
     .stat-section { margin-bottom: 3.5rem; }
-    .stat-section h5 { border-bottom: 1px solid #e1e1e1; padding-bottom: 0.4rem; margin-bottom: 0.4rem; }
+    .stat-section h5 {
+      font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.55rem);
+      font-weight: 700;
+      line-height: 1.25;
+      border-bottom: 1px solid #e1e1e1;
+      padding-bottom: 0.45rem;
+      margin-bottom: 0.55rem;
+    }
     .section-city-filter { margin: 0 0 0.7rem; display: flex; align-items: center; gap: 0.6rem; }
     .section-city-filter label { margin: 0; color: #444; font-size: 0.95em; }
     .city-filter-select { margin: 0; min-width: 210px; height: 34px; padding: 0 8px; }
@@ -48,22 +84,44 @@
   </style>
 </head>
 <body>
-  <div class="container">
-
-    <div style="margin:2rem 0 0.5rem">
-      <a id="back-link" href="../">← Обратно</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="site-brand" href="../" aria-label="Начало">
+        <svg class="site-logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        <span class="site-name">НВО и ДЗИ</span>
+      </a>
+      <nav class="grade-tabs">
+        <a href="../4" class="grade-tab">4 клас</a>
+        <a href="../7" class="grade-tab">7 клас</a>
+        <a href="../10" class="grade-tab">10 клас</a>
+        <a href="../12" class="grade-tab">12 клас</a>
+      </nav>
     </div>
+  </header>
 
-    <h3>Обобщена статистика – НВО и ДЗИ</h3>
+  <main>
+    <div class="container">
+      <section class="hero-section">
+        <h1 class="page-title"><a class="page-title-link" href="">Обобщена статистика – НВО и ДЗИ</a></h1>
+        <div class="card hero-card">
+          <div style="margin:0 0 1.1rem">
+            <a id="back-link" href="../7">← Обратно</a>
+          </div>
 
-    <div style="margin-bottom:2rem">
-      <button class="button grade-btn" data-grade="4">НВО 4 клас</button>
-      <button class="button grade-btn" data-grade="7">НВО 7 клас</button>
-      <button class="button grade-btn" data-grade="10">НВО 10 клас</button>
-      <button class="button grade-btn" data-grade="12">ДЗИ 12 клас</button>
-    </div>
+          <div class="stats-filter-wrap">
+            <p class="stats-filter-label">Покажи статистики за:</p>
+            <div class="stats-filter-buttons">
+              <button class="button grade-btn" data-grade="4">4 клас</button>
+              <button class="button grade-btn" data-grade="7">7 клас</button>
+              <button class="button grade-btn" data-grade="10">10 клас</button>
+              <button class="button grade-btn" data-grade="12">12 клас</button>
+            </div>
+            <p class="stats-filter-hint">Това променя само данните в тази страница.</p>
+          </div>
+        </div>
+      </section>
 
-    <div id="loading">Зареждане...</div>
+      <div id="loading">Зареждане...</div>
 
     <div id="stats-content" style="display:none">
 
@@ -352,8 +410,9 @@
         <table id="tbl-composite" class="u-full-width"></table>
       </div>
 
-    </div><!-- #stats-content -->
-  </div><!-- .container -->
+      </div><!-- #stats-content -->
+    </div><!-- .container -->
+  </main>
 
   <script src="logic.js"></script>
 </body>

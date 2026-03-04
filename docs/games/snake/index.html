@@ -4,10 +4,9 @@
   <meta charset="utf-8">
   <title>Snake</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="../../css/fonts.css">
   <link rel="stylesheet" href="../../css/normalize.css">
-  <link rel="stylesheet" href="../../css/skeleton.css">
   <link rel="stylesheet" href="../../css/custom.css">
+  <link rel="stylesheet" href="../games.css">
   <style>
     .panel { max-width: 520px; margin: 0 auto; }
     canvas { width: 100%; max-width: 360px; display:block; margin: 0 auto; border:1px solid #ccc; background:#fff; image-rendering: pixelated; }
@@ -16,24 +15,26 @@
     .ctrl button { margin:0; padding:0; height:38px; }
     .ctrl .wide { grid-column: span 3; }
   </style>
+  <script src="../games-header.js" defer></script>
+  <script src="../games-touch.js" defer></script>
 </head>
-<body>
+<body class="games-theme">
   <div class="container">
-    <div class="row" style="margin-top:2rem"><a href="../">← Към игрите</a></div>
-    <div class="row panel">
-      <h4>Snake</h4>
-      <div class="meta"><span>Точки: <strong id="score">0</strong></span><span>Скорост: <strong id="speed">1x</strong></span></div>
-      <canvas id="c" width="360" height="360"></canvas>
-      <div style="margin-top:8px; color:#666; text-align:center;">Клавиши: ← ↑ → ↓, Space за пауза</div>
-      <div class="ctrl">
-        <button id="up" class="button">↑</button>
-        <button id="pause" class="button">Пауза</button>
-        <button id="reset" class="button">Нова игра</button>
-        <button id="left" class="button">←</button>
-        <button id="down" class="button">↓</button>
-        <button id="right" class="button">→</button>
-      </div>
-    </div>
+  <div class="row" style="margin-top:2rem"><a href="../">← Към игрите</a></div>
+  <div class="row panel">
+  <h4>Snake</h4>
+  <div class="meta"><span>Точки: <strong id="score">0</strong></span><span>Скорост: <strong id="speed">1x</strong></span></div>
+  <canvas id="c" width="360" height="360"></canvas>
+  <div style="margin-top:8px; color:#666; text-align:center;">Клавиши: ← ↑ → ↓, Space за пауза</div>
+  <div class="ctrl">
+  <button id="up" class="button">↑</button>
+  <button id="pause" class="button">Пауза</button>
+  <button id="reset" class="button">Нова игра</button>
+  <button id="left" class="button">←</button>
+  <button id="down" class="button">↓</button>
+  <button id="right" class="button">→</button>
+  </div>
+  </div>
   </div>
   <script>
   'use strict';

@@ -4,10 +4,9 @@
   <meta charset="utf-8">
   <title>Бесеница</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="../../css/fonts.css">
   <link rel="stylesheet" href="../../css/normalize.css">
-  <link rel="stylesheet" href="../../css/skeleton.css">
   <link rel="stylesheet" href="../../css/custom.css">
+  <link rel="stylesheet" href="../games.css">
   <style>
     .panel{max-width:520px;margin:0 auto;text-align:center}
     canvas{display:block;margin:0 auto 12px}
@@ -21,20 +20,22 @@
     .meta{display:flex;justify-content:space-between;margin-bottom:8px;color:#555}
     #msg{font-size:1.1rem;font-weight:bold;min-height:2rem;margin-bottom:8px}
   </style>
+  <script src="../games-header.js" defer></script>
+  <script src="../games-touch.js" defer></script>
 </head>
-<body>
+<body class="games-theme">
   <div class="container">
-    <div class="row" style="margin-top:2rem"><a href="../">&larr; Към игрите</a></div>
-    <div class="row panel">
-      <h4>Бесеница</h4>
-      <div id="msg"></div>
-      <div class="meta"><span>Победи: <strong id="wins">0</strong></span><span>Загуби: <strong id="losses">0</strong></span></div>
-      <canvas id="c" width="200" height="200"></canvas>
-      <div id="category"></div>
-      <div id="word"></div>
-      <div id="kb" class="kb"></div>
-      <button class="button" id="newWord">Нова дума</button>
-    </div>
+  <div class="row" style="margin-top:2rem"><a href="../">&larr; Към игрите</a></div>
+  <div class="row panel">
+  <h4>Бесеница</h4>
+  <div id="msg"></div>
+  <div class="meta"><span>Победи: <strong id="wins">0</strong></span><span>Загуби: <strong id="losses">0</strong></span></div>
+  <canvas id="c" width="200" height="200"></canvas>
+  <div id="category"></div>
+  <div id="word"></div>
+  <div id="kb" class="kb"></div>
+  <button class="button" id="newWord">Нова дума</button>
+  </div>
   </div>
 <script>
 'use strict';

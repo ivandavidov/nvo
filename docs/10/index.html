@@ -6,26 +6,19 @@
   <meta name="description" content="Визуални графики, класации и статистики за резултатите от НВО след 10 клас в училищата в България. Сравнете градове, училища и успехи по БЕЛ и математика за последните години.">
   <meta name="author" content="Иван Давидов">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="../css/fonts.css">
   <link rel="stylesheet" href="../css/normalize.css">
-  <link rel="stylesheet" href="../css/skeleton.css">
   <link rel="stylesheet" href="../css/custom.css">
   <link rel="icon" type="image/png" href="../images/favicon-10.png">
   <link rel="apple-touch-icon" sizes="180x180" href="../images/favicon-10.png">
   <link rel="canonical" href="https://ivandavidov.github.io/nvo/10/">
 
-  <!-- SEO / Social Media -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://ivandavidov.github.io/nvo/10/">
   <meta property="og:title" content="НВО след 10 клас – класации на училищата в България">
   <meta property="og:description" content="Визуални графики и статистики за резултатите от НВО след 10 клас в училищата. Сравнете училищата по БЕЛ и математика.">
   <meta property="og:image" content="https://ivandavidov.github.io/nvo/images/social-preview.svg">
   <meta property="og:locale" content="bg_BG">
-  <meta property="og:site_name" content="НВО Навигатор">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="НВО след 10 клас – класации на училищата">
-  <meta name="twitter:description" content="Визуални графики и статистики за резултатите от НВО след 10 клас в училищата.">
-  <meta name="twitter:image" content="https://ivandavidov.github.io/nvo/images/social-preview.svg">
+  <meta property="og:site_name" content="НВО и ДЗИ">
 
   <script src="../js/highcharts.js" defer></script>
   <script src="../js/exporting.js" defer></script>
@@ -39,7 +32,6 @@
   <script src="../js/logic.js" defer></script>
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google-analytics.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com; font-src 'self'">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <!-- Google Tag (GA4) with Consent Mode v2 -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -54,135 +46,138 @@
     gtag('js', new Date());
     gtag('config', 'G-V0P6LBF76F', {'anonymize_ip': true});
   </script>
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      "name": "НВО след 10 клас – класации и статистики",
-      "description": "Графики, класации и статистики за резултатите от НВО след 10 клас в училищата в България.",
-      "author": {
-        "@type": "Person",
-        "name": "Иван Давидов"
-      }
-    }
-  </script>
 </head>
 <body>
-  <div class="container">
-    <div class="row">&nbsp;</div>
-    <div class="row">
-      <h4>НВО след 10 клас</h4>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="site-brand" href="../" aria-label="Начало">
+        <svg class="site-logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        <span class="site-name">НВО и ДЗИ</span>
+      </a>
+      <nav class="grade-tabs">
+        <a href="#" class="grade-tab" data-grade="4">4 клас</a>
+        <a href="#" class="grade-tab" data-grade="7">7 клас</a>
+        <a href="#" class="grade-tab active" data-grade="10">10 клас</a>
+        <a href="#" class="grade-tab" data-grade="12">12 клас</a>
+      </nav>
     </div>
-    <div class="row">
-      <div class="quote-container">
-        <div id="jokeQuote" class="quote">&nbsp;</div>
-        <div id="jokeAuthor" class="author">&nbsp;</div>
+  </header>
+
+  <main>
+    <div class="container">
+      <section class="hero-section">
+        <h1 class="page-title"><a class="page-title-link" href="">НВО след 10 клас</a></h1>
+        <p class="page-subtitle">Графики, класации и статистики</p>
+        <div class="card hero-card">
+          <div class="hero-grid">
+            <div class="hero-left">
+              <h3 class="card-title">Навигация</h3>
+              <div class="nav-links-grid">
+                <div class="nav-link-item">
+                  <a href="#" data-grade-link="4">НВО след 4 клас</a>
+                  <span class="years-nav" data-year-grade="4"></span>
+                </div>
+                <div class="nav-link-item">
+                  <a href="#" data-grade-link="7">НВО след 7 клас</a>
+                  <span class="years-nav" data-year-grade="7"></span>
+                </div>
+                <div class="nav-link-item">
+                  <a href="#" data-grade-link="10">НВО след 10 клас</a>
+                  <span class="years-nav" data-year-grade="10"></span>
+                </div>
+                <div class="nav-link-item">
+                  <a href="#" data-grade-link="12">ДЗИ след 12 клас</a>
+                  <span class="years-nav" data-year-grade="12"></span>
+                </div>
+              </div>
+              <div class="nav-extra">
+                <a href="#" data-stats-grade="10">Обобщена статистика</a>
+                <a id="csvAll">Всички данни (CSV)</a>
+                <a href="../games/">Време за релакс</a>
+              </div>
+              <div class="nav-section-label">Полезни връзки</div>
+              <div class="nav-extra">
+                <a target="_blank" rel="noopener noreferrer" href="https://danybon.com">Данибон</a>
+                <a target="_blank" rel="noopener noreferrer" href="https://dideva.alle.bg">Дидева</a>
+                <a target="_blank" rel="noopener noreferrer" href="https://nvonavigator.streamlit.app">НВО навигатор за София</a>
+                <a target="_blank" rel="noopener noreferrer" href="https://sabev03.eu">Прием в 1 клас</a>
+                <a target="_blank" rel="noopener noreferrer" href="https://izberi-gymnazia.info">Избери гимназия</a>
+              </div>
+              <div class="nav-section-label">Отворени данни</div>
+              <div class="nav-extra">
+                <a target="_blank" rel="noopener noreferrer" href="https://data.egov.bg/data/view/5613e75f-2b1b-4244-9f54-b27580a91dfb">4 клас</a>
+                <a target="_blank" rel="noopener noreferrer" href="https://data.egov.bg/data/view/b56288b6-25aa-4049-9aa6-de2cd4cdabf8">7 клас</a>
+                <a target="_blank" rel="noopener noreferrer" href="https://data.egov.bg/data/view/2f801b2f-d4cb-4ddb-a23d-3e372339c80f">10 клас</a>
+                <a target="_blank" rel="noopener noreferrer" href="https://data.egov.bg/data/view/066b4b04-d81d-444e-a61c-8ca0516079e4">12 клас</a>
+              </div>
+            </div>
+            <div class="hero-right">
+              <h3 class="card-title">Методология</h3>
+              <p>
+                През 2020 г. няма проведени НВО изпити след 10 клас и са преизползвани данните от 2021 г.
+                Топ гимназиите се изчисляват на база общ среден успех по БЕЛ и МАТ за последните три години.
+              </p>
+              <p>
+                Табличните данни за градовете са подредени по общ среден успех по БЕЛ и МАТ за последните три години.
+                Гимназиите с нулева последна година не присъстват в топ класациите и в табличните данни.
+                Средните резултати за градовете се изчислят на база училище или на база успехите на учениците.
+              </p>
+              <div class="nav-section-label">Контакти</div>
+              <p>
+                <a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/groups/3423312924552271">Facebook група</a> &middot;
+                <a target="_blank" rel="noopener noreferrer" href="https://linkedin.com/in/ivandavidov">LinkedIn</a>
+              </p>
+              <div class="nav-section-label">Подкрепа</div>
+              <p class="crypto-info">
+                <strong>BTC:</strong> bc1q6fzgg277t8fex00flafx4mw7u54lvh0c9g3qaf<br>
+                <strong>ETH:</strong> 0x4ad101C3c9abf9899bD31845731ba7394E2Be4C8
+                (<a target="_blank" rel="noopener noreferrer" href="https://ens.app/davidov.eth">davidov.eth</a>)
+              </p>
+            </div>
+          </div>
+          <div class="quote-strip">
+            <span id="jokeQuote" class="quote">&nbsp;</span>
+            <span class="quote-sep">&mdash;</span>
+            <span id="jokeAuthor" class="author">&nbsp;</span>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <hr id="hrCharts" class="section-divider">
+    <section class="charts-section">
+      <div id="chartb"></div>
+      <div class="chart-separator"></div>
+      <div id="chartm"></div>
+    </section>
+
+    <div class="container">
+      <section class="city-nav-section">
+        <div class="row"><hr></div>
+        <div class="row"><strong>Областни градове</strong></div>
+        <div class="row">&nbsp;</div>
+        <div class="row" id="g1"></div>
+        <div class="row">&nbsp;</div>
+        <div class="row" id="g2"></div>
+        <div id="other-cities">
+          <div class="row">&nbsp;</div>
+          <div class="row"><strong>Други градове</strong></div>
+          <div class="row">&nbsp;</div>
+          <div class="row" id="g3"></div>
+        </div>
+      </section>
+
+      <div id="schools"></div>
+      <div class="row"><hr></div>
+    </div>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p class="footer-minimal">&copy; НВО и ДЗИ</p>
       </div>
-    </div>
-    <div class="row">&nbsp;</div>
-    <div class="row">
-      <a href="../4">НВО след 4 клас</a>
-      <span class="years-nav" data-year-base="../4?year=" data-year-grade="4"></span>
-    </div>
-    <div class="row">
-      <a href="../">НВО след 7 клас</a>
-      <span class="years-nav" data-year-base="../?year=" data-year-grade="7"></span>
-    </div>
-    <div class="row">
-      <a href=".">НВО след 10 клас</a>
-      <span class="years-nav" data-year-base="?year=" data-year-grade="10"></span>
-    </div>
-    <div class="row">
-      <a href="../12">ДЗИ след 12 клас</a>
-      <span class="years-nav" data-year-base="../12?year=" data-year-grade="12"></span>
-    </div>
-    <div class="row">&nbsp;</div>
-    <div class="row">
-      <a href="../stats?grade=10">Обобщена статистика – НВО и ДЗИ</a>
-    </div>
-    <div class="row">
-      <a href="../games">Време за релакс</a>
-    </div>
-    <div class="row">&nbsp;</div>
-    <div class="row">
-      <a id="csvAll">Всички данни в CSV формат</a>
-    </div>
-    <div class="row">&nbsp;</div>
-    <div class="row">
-      ~ <a target="_blank" rel="noopener noreferrer" href="https://data.egov.bg/data/view/5613e75f-2b1b-4244-9f54-b27580a91dfb">Портал за отворени данни - 4 клас</a>
-    </div>
-    <div class="row">
-      ~ <a target="_blank" rel="noopener noreferrer" href="https://data.egov.bg/data/view/b56288b6-25aa-4049-9aa6-de2cd4cdabf8">Портал за отворени данни - 7 клас</a>
-    </div>
-    <div class="row">
-      ~ <a target="_blank" rel="noopener noreferrer" href="https://data.egov.bg/data/view/2f801b2f-d4cb-4ddb-a23d-3e372339c80f">Портал за отворени данни - 10 клас</a>
-    </div>
-    <div class="row">
-      ~ <a target="_blank" rel="noopener noreferrer" href="https://data.egov.bg/data/view/066b4b04-d81d-444e-a61c-8ca0516079e4">Портал за отворени данни - 12 клас</a>
-    </div>
-    <div class="row">&nbsp;</div>
-    <div class="row">
-      ~ <a target="_blank" rel="noopener noreferrer" href="https://danybon.com">Данибон - блог и новини за българското образование</a>
-    </div>
-    <div class="row">
-      ~ <a target="_blank" rel="noopener noreferrer" href="https://dideva.alle.bg">Дидева - състезания, новини, статистики от НВО/ДЗИ</a>
-    </div>
-    <div class="row">
-      ~ <a target="_blank" rel="noopener noreferrer" href="https://nvonavigator.streamlit.app">НВО навигатор за град София</a>
-    </div>
-    <div class="row">
-      ~ <a target="_blank" rel="noopener noreferrer" href="https://sabev03.eu">Информация за прием в първи клас</a>
-    </div>
-    <div class="row">
-      ~ <a target="_blank" rel="noopener noreferrer" href="https://izberi-gymnazia.info">Избери гимназия - сайт на Атанас Карашенски</a>
-    </div>
-    <div class="row">&nbsp;</div>
-    <div class="row">
-      През 2020 г. няма проведени НВО изпити след 10 клас и съм преизползвал данните от 2021 г.
-      Топ гимназиите се изчисляват на база общ среден успех по БЕЛ и МАТ за последните три години.
-      Табличните данни за градовете са подредени по общ среден успех по БЕЛ и МАТ за последните три години.
-      Гимназиите с нулева последна година не присъстват в топ класациите и в табличните данни.
-      Средните резултати за градовете се изчислят на база училище или на база успехите на учениците.
-    </div>
-    <div class="row">&nbsp;</div>
-    <div class="row">
-      За конструктивна обратна връзка можете да пишете в тази <a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/groups/3423312924552271">Facebook група</a>
-      или да ме намерите в <a target="_blank" rel="noopener noreferrer" href="https://linkedin.com/in/ivandavidov">LinkedIn</a>.
-    </div>
-    <div class="row">&nbsp;</div>
-    <div class="row">
-      Ако намирате информацията в сайта за полезна, можете да изразите своята подкрепа с крипто дарение.
-      Ако информацията не ви е полезна, можете да се отърсите от този шок с крипто дарение.
-      Статистиката показва, че и в двата случая ще се почувствате по-добре, ако направите крипто дарение.
-    </div>
-    <div class="row">&nbsp;</div>
-    <div class="row">
-      <ul>
-        <li><b>BTC:</b> bc1q6fzgg277t8fex00flafx4mw7u54lvh0c9g3qaf</li>
-        <li><b>ETH:</b> 0x4ad101C3c9abf9899bD31845731ba7394E2Be4C8 - <a target="_blank" rel="noopener noreferrer" href="https://ens.app/davidov.eth">davidov.eth</a></li>
-      </ul>
-    </div>
-    <hr id="hrCharts">
-  </div>
-  <div id="chartb"></div>
-  <hr>
-  <div id="chartm"></div>
-  <div class="container">
-    <div class="row"><hr></div>
-    <div class="row"><strong>Областни градове</strong></div>
-    <div class="row">&nbsp;</div>
-    <div class="row" id="g1"></div>
-    <div class="row">&nbsp;</div>
-    <div class="row" id="g2"></div>
-    <div id="other-cities">
-      <div class="row">&nbsp;</div>
-      <div class="row"><strong>Други градове</strong></div>
-      <div class="row">&nbsp;</div>
-      <div class="row" id="g3"></div>
-    </div>
-    <div id="schools"></div>
-    <div class="row"><hr></div>
-  </div>
+    </footer>
+  </main>
+
   <div id="divFixedButtons" class="buttons-fixed">
     <button id="btnClear" class="button-primary">Изчисти</button>
     <button id="btnTop" class="button-primary">НВО</button>

@@ -4,10 +4,9 @@
   <meta charset="utf-8">
   <title>Скорост на писане</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="../../css/fonts.css">
   <link rel="stylesheet" href="../../css/normalize.css">
-  <link rel="stylesheet" href="../../css/skeleton.css">
   <link rel="stylesheet" href="../../css/custom.css">
+  <link rel="stylesheet" href="../games.css">
   <style>
     .panel{max-width:580px;margin:0 auto}
     #text{font-size:1.25rem;line-height:1.8;background:#f9f9f9;border:1px solid #ddd;border-radius:8px;padding:16px;margin-bottom:12px;min-height:100px;user-select:none}
@@ -19,18 +18,20 @@
     .meta{display:flex;justify-content:space-between;margin-bottom:8px;color:#555;flex-wrap:wrap;gap:6px}
     #result{font-size:1.1rem;font-weight:bold;min-height:2rem;margin-bottom:8px;color:#2b8a3e}
   </style>
+  <script src="../games-header.js" defer></script>
+  <script src="../games-touch.js" defer></script>
 </head>
-<body>
+<body class="games-theme">
   <div class="container">
-    <div class="row" style="margin-top:2rem"><a href="../">&larr; Към игрите</a></div>
-    <div class="row panel">
-      <h4>Скорост на писане</h4>
-      <div id="result"></div>
-      <div class="meta"><span>Думи/мин: <strong id="wpm">0</strong></span><span>Точност: <strong id="acc">100%</strong></span><span>Време: <strong id="timer">60</strong>с</span></div>
-      <div id="text"></div>
-      <input type="text" id="input" placeholder="Започни да пишеш тук..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
-      <button class="button" id="newTest">Нов тест</button>
-    </div>
+  <div class="row" style="margin-top:2rem"><a href="../">&larr; Към игрите</a></div>
+  <div class="row panel">
+  <h4>Скорост на писане</h4>
+  <div id="result"></div>
+  <div class="meta"><span>Думи/мин: <strong id="wpm">0</strong></span><span>Точност: <strong id="acc">100%</strong></span><span>Време: <strong id="timer">60</strong>с</span></div>
+  <div id="text"></div>
+  <input type="text" id="input" placeholder="Започни да пишеш тук..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <button class="button" id="newTest">Нов тест</button>
+  </div>
   </div>
 <script>
 'use strict';

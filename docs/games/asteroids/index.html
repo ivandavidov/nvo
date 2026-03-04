@@ -4,10 +4,9 @@
   <meta charset="utf-8">
   <title>Asteroids</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="../../css/fonts.css">
   <link rel="stylesheet" href="../../css/normalize.css">
-  <link rel="stylesheet" href="../../css/skeleton.css">
   <link rel="stylesheet" href="../../css/custom.css">
+  <link rel="stylesheet" href="../games.css">
   <style>
     .panel{max-width:520px;margin:0 auto;text-align:center}
     canvas{width:100%;max-width:400px;display:block;margin:0 auto;border:1px solid #333;background:#111}
@@ -15,23 +14,25 @@
     .ctrl{margin-top:8px;display:grid;gap:6px;grid-template-columns:repeat(4,1fr);max-width:280px;margin-left:auto;margin-right:auto}
     .ctrl button{margin:0;padding:0;height:36px;font-size:.9rem}
   </style>
+  <script src="../games-header.js" defer></script>
+  <script src="../games-touch.js" defer></script>
 </head>
-<body>
+<body class="games-theme">
   <div class="container">
-    <div class="row" style="margin-top:2rem"><a href="../">&larr; Към игрите</a></div>
-    <div class="row panel">
-      <h4>Asteroids</h4>
-      <div class="meta"><span>Точки: <strong id="score">0</strong></span><span>Живот: <strong id="lives">3</strong></span></div>
-      <canvas id="c" width="400" height="400"></canvas>
-      <div style="margin-top:6px;color:#666;font-size:.9em">← → завъртане, ↑ газ, Space стрелба</div>
-      <div class="ctrl">
-        <button class="button" id="bl">←</button>
-        <button class="button" id="bu">↑</button>
-        <button class="button" id="br">→</button>
-        <button class="button" id="bf">🔫</button>
-      </div>
-      <button class="button" style="margin-top:8px" id="restart">Нова игра</button>
-    </div>
+  <div class="row" style="margin-top:2rem"><a href="../">&larr; Към игрите</a></div>
+  <div class="row panel">
+  <h4>Asteroids</h4>
+  <div class="meta"><span>Точки: <strong id="score">0</strong></span><span>Живот: <strong id="lives">3</strong></span></div>
+  <canvas id="c" width="400" height="400"></canvas>
+  <div style="margin-top:6px;color:#666;font-size:.9em">← → завъртане, ↑ газ, Space стрелба</div>
+  <div class="ctrl">
+  <button class="button" id="bl">←</button>
+  <button class="button" id="bu">↑</button>
+  <button class="button" id="br">→</button>
+  <button class="button" id="bf">🔫</button>
+  </div>
+  <button class="button" style="margin-top:8px" id="restart">Нова игра</button>
+  </div>
   </div>
 <script>
 'use strict';

@@ -27,15 +27,29 @@ let _activeGrade = 7;
 async function loadGrade(grade) {
   if (_cache[grade]) return _cache[grade];
 
-  const [cfgText, schoolsText] = await Promise.all([
+  const [globalCfgText, cfgText, schoolsText] = await Promise.all([
+    fetch('../js/config-global.js').then(r => r.text()),
     fetch('../js/config-' + grade + '.js').then(r => r.text()),
     fetch('../js/schools-' + grade + '.js').then(r => r.text())
   ]);
 
+  const sandboxWindow = {};
   const data = new Function(
-    cfgText + '\n' + schoolsText + '\n' +
-    'return {s,si,firstYear,numYears,chartBTitle,chartMTitle,chartFloor,chartCeiling,fix2018};'
-  )();
+    '__sandboxWindow',
+    'const window = __sandboxWindow;\n' +
+    globalCfgText + '\n' + cfgText + '\n' + schoolsText + '\n' +
+    'return {' +
+      's,' +
+      'si,' +
+      'firstYear: (typeof firstYear !== "undefined" ? firstYear : window.firstYear),' +
+      'numYears: (typeof numYears !== "undefined" ? numYears : window.numYears),' +
+      'chartBTitle: (typeof chartBTitle !== "undefined" ? chartBTitle : window.chartBTitle),' +
+      'chartMTitle: (typeof chartMTitle !== "undefined" ? chartMTitle : window.chartMTitle),' +
+      'chartFloor: (typeof chartFloor !== "undefined" ? chartFloor : window.chartFloor),' +
+      'chartCeiling: (typeof chartCeiling !== "undefined" ? chartCeiling : window.chartCeiling),' +
+      'fix2018: (typeof fix2018 !== "undefined" ? fix2018 : window.fix2018)' +
+    '};'
+  )(sandboxWindow);
 
   // 2018: резултатите са по 65-точкова скала → нормализиране към 0-100
   // (идентична логика с fixForYear2018() в основния logic.js)
@@ -1714,7 +1728,7 @@ function updateBackLink(grade) {
   const target = grade === 4 ? '../4'
     : grade === 10 ? '../10'
     : grade === 12 ? '../12'
-    : '../';
+    : '../7';
   backLink.href = target;
 }
 

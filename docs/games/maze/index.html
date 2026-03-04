@@ -4,10 +4,9 @@
   <meta charset="utf-8">
   <title>Лабиринт</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="../../css/fonts.css">
   <link rel="stylesheet" href="../../css/normalize.css">
-  <link rel="stylesheet" href="../../css/skeleton.css">
   <link rel="stylesheet" href="../../css/custom.css">
+  <link rel="stylesheet" href="../games.css">
   <style>
     .panel{max-width:520px;margin:0 auto}
     canvas{width:100%;max-width:400px;display:block;margin:0 auto;border:1px solid #ccc;background:#fff}
@@ -18,25 +17,27 @@
     .opts label{margin:0;font-size:.9em}
     .opts select{margin:0;height:32px;padding:0 6px}
   </style>
+  <script src="../games-header.js" defer></script>
+  <script src="../games-touch.js" defer></script>
 </head>
-<body>
+<body class="games-theme">
   <div class="container">
-    <div class="row" style="margin-top:2rem"><a href="../">&larr; Към игрите</a></div>
-    <div class="row panel">
-      <h4>Лабиринт</h4>
-      <div class="opts">
-        <label>Трудност:</label>
-        <select id="diff"><option value="10">Лесен</option><option value="15" selected>Среден</option><option value="20">Труден</option></select>
-        <button class="button" id="newMaze">Нов лабиринт</button>
-      </div>
-      <div class="meta"><span>Ходове: <strong id="moves">0</strong></span><span>Време: <strong id="timer">0:00</strong></span></div>
-      <canvas id="c" width="400" height="400"></canvas>
-      <div style="margin-top:6px;color:#666;text-align:center;font-size:.9em">Клавиши: ← ↑ → ↓</div>
-      <div class="ctrl">
-        <div></div><button class="button" id="up">↑</button><div></div>
-        <button class="button" id="left">←</button><button class="button" id="down">↓</button><button class="button" id="right">→</button>
-      </div>
-    </div>
+  <div class="row" style="margin-top:2rem"><a href="../">&larr; Към игрите</a></div>
+  <div class="row panel">
+  <h4>Лабиринт</h4>
+  <div class="opts">
+  <label>Трудност:</label>
+  <select id="diff"><option value="10">Лесен</option><option value="15" selected>Среден</option><option value="20">Труден</option></select>
+  <button class="button" id="newMaze">Нов лабиринт</button>
+  </div>
+  <div class="meta"><span>Ходове: <strong id="moves">0</strong></span><span>Време: <strong id="timer">0:00</strong></span></div>
+  <canvas id="c" width="400" height="400"></canvas>
+  <div style="margin-top:6px;color:#666;text-align:center;font-size:.9em">Клавиши: ← ↑ → ↓</div>
+  <div class="ctrl">
+  <div></div><button class="button" id="up">↑</button><div></div>
+  <button class="button" id="left">←</button><button class="button" id="down">↓</button><button class="button" id="right">→</button>
+  </div>
+  </div>
   </div>
 <script>
 'use strict';

@@ -4,11 +4,10 @@
   <meta charset="utf-8">
   <title>Мини Тетрис</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="../css/fonts.css">
-  <link rel="stylesheet" href="../css/normalize.css">
-  <link rel="stylesheet" href="../css/skeleton.css">
-  <link rel="stylesheet" href="../css/custom.css">
-  <link rel="icon" type="image/png" href="../images/favicon-7.png">
+  <link rel="stylesheet" href="../../css/normalize.css">
+  <link rel="stylesheet" href="../../css/custom.css">
+  <link rel="stylesheet" href="../games.css">
+  <link rel="icon" type="image/png" href="../../images/favicon-7.png">
   <style>
     .game-wrap {
       max-width: 540px;
@@ -64,36 +63,37 @@
       line-height: 38px;
     }
   </style>
+  <script src="../games-header.js" defer></script>
+  <script src="../games-touch.js" defer></script>
 </head>
-<body>
+<body class="games-theme">
   <div class="container">
-    <div class="row" style="margin-top:2rem">
-      <a href="../">← Обратно</a>
-    </div>
-    <div class="row">
-      <h4>Мини Тетрис</h4>
-    </div>
-    <div class="row game-wrap">
-      <div class="game-box u-full-width">
-        <div class="game-top">
-          <div class="game-stats">Точки: <strong id="score">0</strong></div>
-          <div>
-            <button id="btnPause" class="button">Пауза</button>
-            <button id="btnReset" class="button">Нова игра</button>
-          </div>
-        </div>
-        <canvas id="tetris" width="200" height="400" aria-label="Тетрис игрално поле"></canvas>
-        <div class="controls">Клавиши: ← → движение, ↑ завъртане, ↓ ускоряване, Space пускане</div>
-        <div class="mobile-controls">
-          <button id="mLeft" class="button">←</button>
-          <button id="mRotate" class="button">↻</button>
-          <button id="mRight" class="button">→</button>
-          <button id="mDrop" class="button" style="grid-column: span 3">Пускане</button>
-        </div>
-      </div>
-    </div>
+  <div class="row" style="margin-top:2rem">
+  <a href="../">← Обратно</a>
   </div>
-
+  <div class="row">
+  <h4>Мини Тетрис</h4>
+  </div>
+  <div class="row game-wrap">
+  <div class="game-box u-full-width">
+  <div class="game-top">
+  <div class="game-stats">Точки: <strong id="score">0</strong></div>
+  <div>
+  <button id="btnPause" class="button">Пауза</button>
+  <button id="btnReset" class="button">Нова игра</button>
+  </div>
+  </div>
+  <canvas id="tetris" width="200" height="400" aria-label="Тетрис игрално поле"></canvas>
+  <div class="controls">Клавиши: ← → движение, ↑ завъртане, ↓ ускоряване, Space пускане</div>
+  <div class="mobile-controls">
+  <button id="mLeft" class="button">←</button>
+  <button id="mRotate" class="button">↻</button>
+  <button id="mRight" class="button">→</button>
+  <button id="mDrop" class="button" style="grid-column: span 3">Пускане</button>
+  </div>
+  </div>
+  </div>
+  </div>
   <script>
   'use strict';
 

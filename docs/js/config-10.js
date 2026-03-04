@@ -1,27 +1,10 @@
-let firstYear = 2018;
-let numYears = 5;
-let rankBase = 0;
-let rankRangeTop = 25;
-let rankRangeBottom = 50;
-let fix2018 = false;
-let hide2019TableFix = false;
-let fixForMissingCities2023 = false;
-let tableTitleName = 'Класация на училищата'
-let tableTitleType = 'НВО след 10 клас'
-let cookieName = 'i10';
-let exportPrefix = 'nvo-10';
-let exportPrefixBel = exportPrefix + '-bel';
-let exportPrefixMat = exportPrefix + '-mat';
-let chartFloor = 0;
-let chartCeiling = 100;
-let chartNoSchool = 50;
-let chartBTitle = '10 клас - НВО - Български език';
-let chartMTitle = '10 клас - НВО - Математика';
-let csvHeaderBel = 'БЕЛ';
-let csvHeaderMat = 'МАТ';
-let csvHeaderB = 'Б';
-let csvHeaderM = 'М';
-let baseSchoolIndex = 1; // 1 АЕГ
-let refSchoolIndex = 51; // 91 НЕГ
-let disabledEntries = [];
-let pdfFontUrl = '../fonts/NotoSans-Regular.ttf';
+applyGradeConfig({
+  numYears: 5,
+  tableTitleType: 'НВО след 10 клас',
+  cookieName: 'i10',
+  exportPrefix: 'nvo-10',
+  chartBTitle: '10 клас - НВО - Български език',
+  chartMTitle: '10 клас - НВО - Математика',
+  baseSchoolIndex: 1,
+  refSchoolIndex: 51
+})

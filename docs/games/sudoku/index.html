@@ -4,10 +4,9 @@
   <meta charset="utf-8">
   <title>Судоку</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="../../css/fonts.css">
   <link rel="stylesheet" href="../../css/normalize.css">
-  <link rel="stylesheet" href="../../css/skeleton.css">
   <link rel="stylesheet" href="../../css/custom.css">
+  <link rel="stylesheet" href="../games.css">
   <style>
     .panel { max-width: 420px; margin: 0 auto; text-align:center; }
     #board { display:inline-grid; grid-template-columns:repeat(9,1fr); gap:1px;
@@ -29,26 +28,28 @@
     #msg { min-height:1.8rem; font-weight:bold; color:#27ae60; margin-bottom:6px; }
     .diff-btns { display:flex; gap:6px; justify-content:center; margin-bottom:8px; }
   </style>
+  <script src="../games-header.js" defer></script>
+  <script src="../games-touch.js" defer></script>
 </head>
-<body>
+<body class="games-theme">
   <div class="container">
-    <div class="row" style="margin-top:2rem"><a href="../">← Към игрите</a></div>
-    <div class="row panel">
-      <h4>Судоку</h4>
-      <div class="diff-btns">
-        <button class="button" onclick="newGame(30)">Лесно</button>
-        <button class="button" onclick="newGame(42)">Средно</button>
-        <button class="button" onclick="newGame(52)">Трудно</button>
-      </div>
-      <div id="msg"></div>
-      <div id="board"></div>
-      <div id="numpad"></div>
-      <div style="display:flex;gap:8px;justify-content:center;">
-        <button class="button" id="clearBtn">Изтрий</button>
-        <button class="button" id="checkBtn">Провери</button>
-        <button class="button" id="solveBtn">Решение</button>
-      </div>
-    </div>
+  <div class="row" style="margin-top:2rem"><a href="../">← Към игрите</a></div>
+  <div class="row panel">
+  <h4>Судоку</h4>
+  <div class="diff-btns">
+  <button class="button" onclick="newGame(30)">Лесно</button>
+  <button class="button" onclick="newGame(42)">Средно</button>
+  <button class="button" onclick="newGame(52)">Трудно</button>
+  </div>
+  <div id="msg"></div>
+  <div id="board"></div>
+  <div id="numpad"></div>
+  <div style="display:flex;gap:8px;justify-content:center;">
+  <button class="button" id="clearBtn">Изтрий</button>
+  <button class="button" id="checkBtn">Провери</button>
+  <button class="button" id="solveBtn">Решение</button>
+  </div>
+  </div>
   </div>
 <script>
 'use strict';

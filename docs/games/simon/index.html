@@ -4,10 +4,9 @@
   <meta charset="utf-8">
   <title>Simon Says</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="../../css/fonts.css">
   <link rel="stylesheet" href="../../css/normalize.css">
-  <link rel="stylesheet" href="../../css/skeleton.css">
   <link rel="stylesheet" href="../../css/custom.css">
+  <link rel="stylesheet" href="../games.css">
   <style>
     .panel { max-width: 360px; margin: 0 auto; text-align: center; }
     #grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:20px auto; max-width:280px; }
@@ -16,22 +15,24 @@
     #msg { font-size:1.1rem; font-weight:bold; min-height:2rem; margin-bottom:8px; }
     #level { color:#666; margin-bottom:12px; }
   </style>
+  <script src="../games-header.js" defer></script>
+  <script src="../games-touch.js" defer></script>
 </head>
-<body>
+<body class="games-theme">
   <div class="container">
-    <div class="row" style="margin-top:2rem"><a href="../">← Към игрите</a></div>
-    <div class="row panel">
-      <h4>Simon Says</h4>
-      <div id="msg">Натисни Старт</div>
-      <div id="level">Ниво: <strong id="lvl">0</strong></div>
-      <div id="grid">
-        <button class="btn" id="b0" style="background:#27ae60"></button>
-        <button class="btn" id="b1" style="background:#2980b9"></button>
-        <button class="btn" id="b2" style="background:#e74c3c"></button>
-        <button class="btn" id="b3" style="background:#f39c12"></button>
-      </div>
-      <button class="button" id="startBtn" style="width:100%">Старт</button>
-    </div>
+  <div class="row" style="margin-top:2rem"><a href="../">← Към игрите</a></div>
+  <div class="row panel">
+  <h4>Simon Says</h4>
+  <div id="msg">Натисни Старт</div>
+  <div id="level">Ниво: <strong id="lvl">0</strong></div>
+  <div id="grid">
+  <button class="btn" id="b0" style="background:#27ae60"></button>
+  <button class="btn" id="b1" style="background:#2980b9"></button>
+  <button class="btn" id="b2" style="background:#e74c3c"></button>
+  <button class="btn" id="b3" style="background:#f39c12"></button>
+  </div>
+  <button class="button" id="startBtn" style="width:100%">Старт</button>
+  </div>
   </div>
 <script>
 'use strict';

@@ -1,27 +1,17 @@
-let firstYear = 2018;
-let numYears = 8;
-let rankBase = 2;
-let rankRangeTop = 25;
-let rankRangeBottom = 50;
-let fix2018 = false;
-let hide2019TableFix = false;
-let fixForMissingCities2023 = false;
-let tableTitleName = 'Класация на гимназиите'
-let tableTitleType = 'ДЗИ след 12 клас'
-let cookieName = 'i12';
-let exportPrefix = 'dzi-12';
-let exportPrefixBel = exportPrefix + '-bel';
-let exportPrefixMat = exportPrefix + '-dzi-2';
-let chartFloor = 0;
-let chartCeiling = 6;
-let chartNoSchool = 4;
-let chartBTitle = '12 клас - ДЗИ - Български език';
-let chartMTitle = '12 клас - ДЗИ - Втора матура';
-let csvHeaderBel = 'ДЗИ-Б';
-let csvHeaderMat = 'ДЗИ-2';
-let csvHeaderB = 'Б';
-let csvHeaderM = '2';
-let baseSchoolIndex = 1; // 1 АЕГ
-let refSchoolIndex = 51; // 91 НЕГ
-let disabledEntries = [];
-let pdfFontUrl = '../fonts/NotoSans-Regular.ttf';
+applyGradeConfig({
+  rankBase: 2,
+  tableTitleName: 'Класация на гимназиите',
+  tableTitleType: 'ДЗИ след 12 клас',
+  cookieName: 'i12',
+  exportPrefix: 'dzi-12',
+  exportPrefixMat: 'dzi-12-dzi-2',
+  chartCeiling: 6,
+  chartNoSchool: 4,
+  chartBTitle: '12 клас - ДЗИ - Български език',
+  chartMTitle: '12 клас - ДЗИ - Втора матура',
+  csvHeaderBel: 'ДЗИ-Б',
+  csvHeaderMat: 'ДЗИ-2',
+  csvHeaderM: '2',
+  baseSchoolIndex: 1,
+  refSchoolIndex: 51
+})

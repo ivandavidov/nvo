@@ -4,10 +4,9 @@
   <meta charset="utf-8">
   <title>Ханойски кули</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="../../css/fonts.css">
   <link rel="stylesheet" href="../../css/normalize.css">
-  <link rel="stylesheet" href="../../css/skeleton.css">
   <link rel="stylesheet" href="../../css/custom.css">
+  <link rel="stylesheet" href="../games.css">
   <style>
     .panel{max-width:520px;margin:0 auto;text-align:center}
     canvas{width:100%;max-width:480px;display:block;margin:0 auto;cursor:pointer}
@@ -17,22 +16,24 @@
     .opts select{margin:0;height:32px;padding:0 6px}
     #msg{font-size:1.1rem;font-weight:bold;min-height:2rem;margin-bottom:4px;color:#2b8a3e}
   </style>
+  <script src="../games-header.js" defer></script>
+  <script src="../games-touch.js" defer></script>
 </head>
-<body>
+<body class="games-theme">
   <div class="container">
-    <div class="row" style="margin-top:2rem"><a href="../">&larr; Към игрите</a></div>
-    <div class="row panel">
-      <h4>Ханойски кули</h4>
-      <div id="msg"></div>
-      <div class="opts">
-        <label>Дискове:</label>
-        <select id="ndisks"><option>3</option><option>4</option><option selected>5</option><option>6</option><option>7</option><option>8</option></select>
-        <button class="button" id="newGame">Нова игра</button>
-      </div>
-      <div class="meta"><span>Ходове: <strong id="moves">0</strong></span><span>Минимум: <strong id="minMoves">31</strong></span></div>
-      <canvas id="c" width="480" height="280"></canvas>
-      <div style="margin-top:6px;color:#666;font-size:.9em">Кликни стълб за да вземеш/пуснеш диск</div>
-    </div>
+  <div class="row" style="margin-top:2rem"><a href="../">&larr; Към игрите</a></div>
+  <div class="row panel">
+  <h4>Ханойски кули</h4>
+  <div id="msg"></div>
+  <div class="opts">
+  <label>Дискове:</label>
+  <select id="ndisks"><option>3</option><option>4</option><option selected>5</option><option>6</option><option>7</option><option>8</option></select>
+  <button class="button" id="newGame">Нова игра</button>
+  </div>
+  <div class="meta"><span>Ходове: <strong id="moves">0</strong></span><span>Минимум: <strong id="minMoves">31</strong></span></div>
+  <canvas id="c" width="480" height="280"></canvas>
+  <div style="margin-top:6px;color:#666;font-size:.9em">Кликни стълб за да вземеш/пуснеш диск</div>
+  </div>
   </div>
 <script>
 'use strict';

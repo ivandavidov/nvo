@@ -4,10 +4,9 @@
   <meta charset="utf-8">
   <title>Whack-a-Mole</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="../../css/fonts.css">
   <link rel="stylesheet" href="../../css/normalize.css">
-  <link rel="stylesheet" href="../../css/skeleton.css">
   <link rel="stylesheet" href="../../css/custom.css">
+  <link rel="stylesheet" href="../games.css">
   <style>
     .panel{max-width:520px;margin:0 auto;text-align:center}
     .board{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px auto;max-width:340px}
@@ -19,17 +18,19 @@
     .meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
     #msg{font-size:1.2rem;font-weight:bold;min-height:2rem;margin-bottom:8px;color:#333}
   </style>
+  <script src="../games-header.js" defer></script>
+  <script src="../games-touch.js" defer></script>
 </head>
-<body>
+<body class="games-theme">
   <div class="container">
-    <div class="row" style="margin-top:2rem"><a href="../">&larr; Към игрите</a></div>
-    <div class="row panel">
-      <h4>Whack-a-Mole</h4>
-      <div id="msg">Натисни Старт!</div>
-      <div class="meta"><span>Точки: <strong id="score">0</strong></span><span>Време: <strong id="timer">30</strong>с</span></div>
-      <div id="board" class="board"></div>
-      <button class="button" id="startBtn" style="margin-top:10px">Старт</button>
-    </div>
+  <div class="row" style="margin-top:2rem"><a href="../">&larr; Към игрите</a></div>
+  <div class="row panel">
+  <h4>Whack-a-Mole</h4>
+  <div id="msg">Натисни Старт!</div>
+  <div class="meta"><span>Точки: <strong id="score">0</strong></span><span>Време: <strong id="timer">30</strong>с</span></div>
+  <div id="board" class="board"></div>
+  <button class="button" id="startBtn" style="margin-top:10px">Старт</button>
+  </div>
   </div>
 <script>
 'use strict';

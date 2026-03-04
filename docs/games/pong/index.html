@@ -4,10 +4,9 @@
   <meta charset="utf-8">
   <title>Pong</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="../../css/fonts.css">
   <link rel="stylesheet" href="../../css/normalize.css">
-  <link rel="stylesheet" href="../../css/skeleton.css">
   <link rel="stylesheet" href="../../css/custom.css">
+  <link rel="stylesheet" href="../games.css">
   <style>
     .wrap { max-width: 640px; margin:0 auto; }
     canvas { width:100%; max-width:600px; height:auto; border:1px solid #ccc; background:#fff; display:block; margin:0 auto; }
@@ -15,20 +14,22 @@
     .ctrl { margin-top:10px; display:grid; grid-template-columns:repeat(2,1fr); gap:8px; max-width:600px; margin-left:auto; margin-right:auto; }
     .ctrl button { margin:0; height:38px; }
   </style>
+  <script src="../games-header.js" defer></script>
+  <script src="../games-touch.js" defer></script>
 </head>
-<body>
+<body class="games-theme">
   <div class="container">
-    <div class="row" style="margin-top:2rem"><a href="../">← Към игрите</a></div>
-    <div class="row wrap">
-      <h4>Pong</h4>
-      <div class="bar"><span>Играч: <strong id="left">0</strong></span><span>Компютър: <strong id="right">0</strong></span></div>
-      <canvas id="c" width="600" height="360"></canvas>
-      <div style="text-align:center; color:#666; margin-top:8px;">Клавиши: W/S или ↑/↓</div>
-      <div class="ctrl">
-        <button id="up" class="button">Нагоре</button>
-        <button id="down" class="button">Надолу</button>
-      </div>
-    </div>
+  <div class="row" style="margin-top:2rem"><a href="../">← Към игрите</a></div>
+  <div class="row wrap">
+  <h4>Pong</h4>
+  <div class="bar"><span>Играч: <strong id="left">0</strong></span><span>Компютър: <strong id="right">0</strong></span></div>
+  <canvas id="c" width="600" height="360"></canvas>
+  <div style="text-align:center; color:#666; margin-top:8px;">Клавиши: W/S или ↑/↓</div>
+  <div class="ctrl">
+  <button id="up" class="button">Нагоре</button>
+  <button id="down" class="button">Надолу</button>
+  </div>
+  </div>
   </div>
   <script>
   'use strict';

@@ -4,10 +4,9 @@
   <meta charset="utf-8">
   <title>Плъзгащ Пъзел</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="../../css/fonts.css">
   <link rel="stylesheet" href="../../css/normalize.css">
-  <link rel="stylesheet" href="../../css/skeleton.css">
   <link rel="stylesheet" href="../../css/custom.css">
+  <link rel="stylesheet" href="../games.css">
   <style>
     .panel { max-width: 360px; margin: 0 auto; text-align:center; }
     #board { display:grid; grid-template-columns:repeat(4,1fr); gap:6px; margin:16px 0; }
@@ -20,17 +19,19 @@
     #info { color:#666; margin-bottom:6px; }
     #msg { font-weight:bold; min-height:1.8rem; margin-bottom:8px; color:#27ae60; }
   </style>
+  <script src="../games-header.js" defer></script>
+  <script src="../games-touch.js" defer></script>
 </head>
-<body>
+<body class="games-theme">
   <div class="container">
-    <div class="row" style="margin-top:2rem"><a href="../">← Към игрите</a></div>
-    <div class="row panel">
-      <h4>Плъзгащ Пъзел</h4>
-      <div id="msg"></div>
-      <div id="info">Ходове: <strong id="cnt">0</strong></div>
-      <div id="board"></div>
-      <button class="button" id="reset" style="width:100%">Ново разбъркване</button>
-    </div>
+  <div class="row" style="margin-top:2rem"><a href="../">← Към игрите</a></div>
+  <div class="row panel">
+  <h4>Плъзгащ Пъзел</h4>
+  <div id="msg"></div>
+  <div id="info">Ходове: <strong id="cnt">0</strong></div>
+  <div id="board"></div>
+  <button class="button" id="reset" style="width:100%">Ново разбъркване</button>
+  </div>
   </div>
 <script>
 'use strict';
