@@ -170,8 +170,8 @@ function recalculate() {
   selectedSchoolIndices.forEach((i) => {
     if(s[i]) {
       indices.push(i);
-      tracesBel.push({name: s[i].n, data: s[i].b});
-      tracesMat.push({name: s[i].n, data: s[i].m});
+      tracesBel.push({name: s[i].n, data: s[i].b, schoolIndex: i, subject: 'b'});
+      tracesMat.push({name: s[i].n, data: s[i].m, schoolIndex: i, subject: 'm'});
     }
   });
   if(tracesBel.length === 0 || tracesMat.length === 0) {
@@ -273,6 +273,47 @@ function getLayout(title, series, exportPrefix) {
       animation: false,
       style: {
         fontSize: '1.25em'
+      },
+      formatter: function() {
+        let options = this.series && this.series.userOptions ? this.series.userOptions : {};
+        let yearValue = this.category;
+        if(yearValue === undefined || yearValue === null || yearValue === '') {
+          yearValue = this.x;
+        }
+        if((yearValue === undefined || yearValue === null || yearValue === '') && this.series && this.series.xAxis && this.point && Number.isInteger(this.point.x)) {
+          let categories = this.series.xAxis.categories || [];
+          if(categories[this.point.x] !== undefined) {
+            yearValue = categories[this.point.x];
+          }
+        }
+        let yearText = yearValue === undefined || yearValue === null || yearValue === '' ? '-' : String(yearValue);
+        let year = Number.parseInt(yearText, 10);
+        let students = null;
+        if(Number.isInteger(options.schoolIndex)) {
+          if(!Number.isFinite(year) && this.series && this.series.xAxis && this.point && Number.isInteger(this.point.x)) {
+            let categories = this.series.xAxis.categories || [];
+            if(categories[this.point.x] !== undefined) {
+              yearText = String(categories[this.point.x]);
+              year = Number.parseInt(yearText, 10);
+            }
+          }
+          let yearIndex = Number.isFinite(year) ? year - firstYear : -1;
+          let school = s[options.schoolIndex];
+          if(school && yearIndex >= 0) {
+            let counts = options.subject === 'b' ? school.bu : school.mu;
+            if(counts && yearIndex < counts.length) {
+              students = counts[yearIndex];
+            }
+          }
+        }
+        let valueText = this.y === null || this.y === undefined ? '-' : Highcharts.numberFormat(this.y, 2, '.', '');
+        let points = '<b>' + this.series.name + '</b>';
+        points += '<br/>Година: <b>' + yearText + '</b>';
+        points += '<br/>Резултат: <b>' + valueText + '</b>';
+        if(students !== null && students !== undefined && students !== '') {
+          points += '<br/>Ученици: <b>' + students + '</b>';
+        }
+        return points;
       }
     },
     exporting: {
