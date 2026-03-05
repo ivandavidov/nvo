@@ -103,6 +103,19 @@ document.addEventListener('keydown',e=>{if(e.key==='ArrowLeft')keys.left=true;if
 document.addEventListener('keyup',e=>{if(e.key==='ArrowLeft')keys.left=false;if(e.key==='ArrowRight')keys.right=false});
 document.getElementById('left').onpointerdown=()=>{keys.left=true};document.getElementById('left').onpointerup=()=>{keys.left=false};
 document.getElementById('right').onpointerdown=()=>{keys.right=true};document.getElementById('right').onpointerup=()=>{keys.right=false};
+
+// Touch: докосване на лявата/дясната половина на canvas → непрекъснато движение
+(function(){
+  function applyTouch(e) {
+    const rect=cv.getBoundingClientRect();
+    const cx=(e.touches[0].clientX-rect.left)/rect.width;
+    keys.left=cx<0.5; keys.right=cx>=0.5;
+  }
+  cv.addEventListener('touchstart', e => { e.preventDefault(); applyTouch(e); }, {passive:false});
+  cv.addEventListener('touchmove',  e => { e.preventDefault(); applyTouch(e); }, {passive:false});
+  cv.addEventListener('touchend',   () => { keys.left=false; keys.right=false; }, {passive:true});
+})();
+
 document.getElementById('restart').onclick=init;
 init();
 </script>

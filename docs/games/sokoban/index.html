@@ -219,6 +219,17 @@ document.getElementById('undoBtn').onclick=undo;
 document.getElementById('restartBtn').onclick=()=>parseLevel(level);
 document.getElementById('nextBtn').onclick=()=>{level++;parseLevel(level);};
 
+// Swipe
+(function(){
+  let tx, ty;
+  document.addEventListener('touchstart', e => { tx=e.touches[0].clientX; ty=e.touches[0].clientY; }, {passive:true});
+  document.addEventListener('touchend', e => {
+    const dx=e.changedTouches[0].clientX-tx, dy=e.changedTouches[0].clientY-ty;
+    if(Math.abs(dx)<20 && Math.abs(dy)<20) return;
+    if(Math.abs(dx)>Math.abs(dy)) { move(0, dx>0?1:-1); } else { move(dy>0?1:-1, 0); }
+  }, {passive:true});
+})();
+
 parseLevel(0);
 </script>
 </body>

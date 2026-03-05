@@ -99,6 +99,24 @@ function reset() {
 }
 
 document.getElementById('reset').onclick = reset;
+
+// Swipe: суайп върху борда → плъзга съседната плочка в посоката на суайпа
+(function(){
+  const board = document.getElementById('board');
+  let tx, ty;
+  board.addEventListener('touchstart', e => { tx=e.touches[0].clientX; ty=e.touches[0].clientY; }, {passive:true});
+  board.addEventListener('touchend', e => {
+    const dx=e.changedTouches[0].clientX-tx, dy=e.changedTouches[0].clientY-ty;
+    if(Math.abs(dx)<10 && Math.abs(dy)<10) return;
+    const blank=tiles.indexOf(0), br=Math.floor(blank/N), bc=blank%N;
+    let tr, tc;
+    // суайп надясно → плочката вляво от празното се мести надясно
+    if(Math.abs(dx)>Math.abs(dy)) { tr=br; tc=dx>0?bc-1:bc+1; }
+    else { tc=bc; tr=dy>0?br-1:br+1; }
+    if(tr>=0&&tr<N&&tc>=0&&tc<N) click(tr*N+tc);
+  }, {passive:true});
+})();
+
 reset();
 </script>
 </body>

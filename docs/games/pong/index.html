@@ -89,6 +89,20 @@
   document.getElementById('up').onmouseleave = ()=>setMove(0);
   document.getElementById('down').onmouseleave = ()=>setMove(0);
 
+  // Drag по canvas → директно позициониране на ракетата по Y
+  (function(){
+    function trackY(e) {
+      const rect=c.getBoundingClientRect();
+      const scaleY=H/rect.height;
+      const cy=(e.touches[0].clientY-rect.top)*scaleY;
+      p1=Math.max(0, Math.min(H-paddleH, cy-paddleH/2));
+      v1=0;
+    }
+    c.addEventListener('touchstart', e => { e.preventDefault(); trackY(e); }, {passive:false});
+    c.addEventListener('touchmove',  e => { e.preventDefault(); trackY(e); }, {passive:false});
+    c.addEventListener('touchend',   () => { v1=0; }, {passive:true});
+  })();
+
   loop();
   </script>
 </body>

@@ -308,6 +308,21 @@
     }
   });
 
+  // Swipe: ляво/дясно → движение, бързо надолу → hardDrop, бавно надолу → стъпка, нагоре/tap → завъртане
+  (function(){
+    let tx, ty;
+    document.addEventListener('touchstart', e => { tx=e.touches[0].clientX; ty=e.touches[0].clientY; }, {passive:true});
+    document.addEventListener('touchend', e => {
+      if(gameOver || paused) return;
+      const dx=e.changedTouches[0].clientX-tx, dy=e.changedTouches[0].clientY-ty;
+      if(Math.abs(dx)<15 && Math.abs(dy)<15) { tryRotate(); return; }
+      if(Math.abs(dx)>Math.abs(dy)) { tryMove(dx>0?1:-1, 0); }
+      else if(dy>60) { hardDrop(); }
+      else if(dy>0) { stepDown(); }
+      else { tryRotate(); }
+    }, {passive:true});
+  })();
+
   btnPause.addEventListener('click', () => {
     if (gameOver) return;
     paused = !paused;
