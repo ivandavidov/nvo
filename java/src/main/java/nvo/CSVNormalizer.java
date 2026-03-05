@@ -77,86 +77,10 @@ public class CSVNormalizer {
                           int lastSubjectNumPos) throws Exception {
         List<String[]> lines = readCSV(inputFileName, separator);
 
-        String[] cities = {"София", "Пловдив", "Варна", "Бургас",
-                "Благоевград",
-                "Велико Търново",
-                "Видин",
-                "Враца",
-                "Габрово",
-                "Добрич",
-                "Кърджали",
-                "Кюстендил",
-                "Ловеч",
-                "Монтана",
-                "Пазарджик",
-                "Перник",
-                "Плевен",
-                "Разград",
-                "Русе",
-                "Силистра",
-                "Сливен",
-                "Смолян",
-                "Стара Загора",
-                "Търговище",
-                "Хасково",
-                "Шумен",
-                "Ямбол",
-
-                "Айтос",
-                "Асеновград",
-                "Балчик",
-                "Банкя",
-                "Банско",
-                "Берковица",
-                "Ботевград",
-                "Велинград",
-                "Горна Оряховица",
-                "Гоце Делчев",
-                "Димитровград",
-                "Дупница",
-                "Ихтиман",
-                "Каварна",
-                "Казанлък",
-                "Карлово",
-                "Карнобат",
-                "Козлодуй",
-                "Костинброд",
-                "Лом",
-                "Луковит",
-                "Несебър",
-                "Нова Загора",
-                "Нови Искър",
-                "Нови пазар",
-                "Обзор",
-                "Панагюрище",
-                "Петрич",
-                "Пещера",
-                "Поморие",
-                "Попово",
-                "Правец",
-                "Провадия",
-                "Първомай",
-                "Раднево",
-                "Радомир",
-                "Разлог",
-                "Раковски",
-                "Самоков",
-                "Сандански",
-                "Свиленград",
-                "Свищов",
-                "Своге",
-                "Севлиево",
-                "Стамболийски",
-                "Троян",
-                "Харманли",
-                "Червен бряг",
-                "Чирпан"
-        };
-
         List<String[]> resultLines = new ArrayList<>();
-        for(String city : cities) {
+        for(Cities.City city : Cities.ORDERED) {
             //System.out.println("*** " + inputFileName + " ||| " + city + " ***");
-            resultLines.addAll(parseCity(lines, city, cityPrefix, cityPos,
+            resultLines.addAll(parseCity(lines, city.fullName(), cityPrefix, cityPos,
                 codePos, namePos,
                 belPos, matPos, belNumPos, matNumPos,
                 firstSubjectPos, firstSubjectNumPos,
@@ -246,7 +170,9 @@ public class CSVNormalizer {
                     counter += 2;
                 }
 
-                calculatedMat = subjectsSum / calculatedAttendees;
+                if(calculatedAttendees > 0) {
+                    calculatedMat = subjectsSum / calculatedAttendees;
+                }
             }
 
             String[] school = new String[7];

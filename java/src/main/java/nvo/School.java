@@ -119,7 +119,35 @@ public class School implements Comparable<School> {
 
     @Override
     public int compareTo(School o) {
-        return calculateMedian() < o.calculateMedian() ? 1 : -1;
+        int byMedian = Double.compare(o.calculateMedian(), calculateMedian());
+        if(byMedian != 0) {
+            return byMedian;
+        }
+
+        int byCode = compareNullable(code, o.code);
+        if(byCode != 0) {
+            return byCode;
+        }
+
+        int byName = compareNullable(name, o.name);
+        if(byName != 0) {
+            return byName;
+        }
+
+        return compareNullable(label, o.label);
+    }
+
+    private static int compareNullable(String first, String second) {
+        if(first == null && second == null) {
+            return 0;
+        }
+        if(first == null) {
+            return -1;
+        }
+        if(second == null) {
+            return 1;
+        }
+        return first.compareTo(second);
     }
 
     private static Map<String, String> prepareFixedCodes() {

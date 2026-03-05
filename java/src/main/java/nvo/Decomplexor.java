@@ -170,82 +170,9 @@ public class Decomplexor {
         Files.writeString(of, header + "\n\n", StandardOpenOption.TRUNCATE_EXISTING);
         Files.writeString(of, "let si = [];\nlet s = [];\n\n", StandardOpenOption.APPEND);
 
-        printSchoolsByType(schools, "София");
-        printSchoolsByType(schools, "Пловдив");
-        printSchoolsByType(schools, "Варна");
-        printSchoolsByType(schools, "Бургас");
-        printSchoolsByType(schools, "Благоевград");
-        printSchoolsByType(schools, "Велико Търново");
-        printSchoolsByType(schools, "Видин");
-        printSchoolsByType(schools, "Враца");
-        printSchoolsByType(schools, "Габрово");
-        printSchoolsByType(schools, "Добрич");
-        printSchoolsByType(schools, "Кърджали");
-        printSchoolsByType(schools, "Кюстендил");
-        printSchoolsByType(schools, "Ловеч");
-        printSchoolsByType(schools, "Монтана");
-        printSchoolsByType(schools, "Пазарджик");
-        printSchoolsByType(schools, "Перник");
-        printSchoolsByType(schools, "Плевен");
-        printSchoolsByType(schools, "Разград");
-        printSchoolsByType(schools, "Русе");
-        printSchoolsByType(schools, "Силистра");
-        printSchoolsByType(schools, "Сливен");
-        printSchoolsByType(schools, "Смолян");
-        printSchoolsByType(schools, "Стара Загора");
-        printSchoolsByType(schools, "Търговище");
-        printSchoolsByType(schools, "Хасково");
-        printSchoolsByType(schools, "Шумен");
-        printSchoolsByType(schools, "Ямбол");
-
-        printSchoolsByType(schools, "Айтос");
-        printSchoolsByType(schools, "Асеновград");
-        printSchoolsByType(schools, "Балчик");
-        printSchoolsByType(schools, "Банкя");
-        printSchoolsByType(schools, "Берковица");
-        printSchoolsByType(schools, "Ботевград");
-        printSchoolsByType(schools, "Велинград");
-        printSchoolsByType(schools, "Горна Оряховица");
-        printSchoolsByType(schools, "Гоце Делчев");
-        printSchoolsByType(schools, "Димитровград");
-        printSchoolsByType(schools, "Дупница");
-        printSchoolsByType(schools, "Ихтиман");
-        printSchoolsByType(schools, "Каварна");
-        printSchoolsByType(schools, "Казанлък");
-        printSchoolsByType(schools, "Карлово");
-        printSchoolsByType(schools, "Карнобат");
-        printSchoolsByType(schools, "Козлодуй");
-        printSchoolsByType(schools, "Костинброд");
-        printSchoolsByType(schools, "Лом");
-        printSchoolsByType(schools, "Луковит");
-        printSchoolsByType(schools, "Несебър");
-        printSchoolsByType(schools, "Нова Загора");
-        printSchoolsByType(schools, "Нови Искър");
-        printSchoolsByType(schools, "Нови пазар");
-        printSchoolsByType(schools, "Обзор");
-        printSchoolsByType(schools, "Панагюрище");
-        printSchoolsByType(schools, "Петрич");
-        printSchoolsByType(schools, "Пещера");
-        printSchoolsByType(schools, "Поморие");
-        printSchoolsByType(schools, "Попово");
-        printSchoolsByType(schools, "Правец");
-        printSchoolsByType(schools, "Провадия");
-        printSchoolsByType(schools, "Първомай");
-        printSchoolsByType(schools, "Раднево");
-        printSchoolsByType(schools, "Радомир");
-        printSchoolsByType(schools, "Разлог");
-        printSchoolsByType(schools, "Раковски");
-        printSchoolsByType(schools, "Самоков");
-        printSchoolsByType(schools, "Сандански");
-        printSchoolsByType(schools, "Свиленград");
-        printSchoolsByType(schools, "Свищов");
-        printSchoolsByType(schools, "Своге");
-        printSchoolsByType(schools, "Севлиево");
-        printSchoolsByType(schools, "Стамболийски");
-        printSchoolsByType(schools, "Троян");
-        printSchoolsByType(schools, "Харманли");
-        printSchoolsByType(schools, "Червен бряг");
-        printSchoolsByType(schools, "Чирпан");
+        for(Cities.City city : Cities.ORDERED) {
+            printSchoolsByType(schools, city);
+        }
 
 //        printSchoolsByNVOResult(schools);
 
@@ -272,18 +199,19 @@ public class Decomplexor {
 
         return sb.toString();
     }
-    private void printSchoolsByType(Map<String, Set<School>> schools, String city) throws Exception {
+    private void printSchoolsByType(Map<String, Set<School>> schools, Cities.City cityMeta) throws Exception {
+        String city = cityMeta.fullName();
         final String templateSchool;
         final String templateIndexIncl;
         final String templateIndexExcl;
         if(COMPRESSED) {
             templateSchool = "s[__index__]={l:'__label__',n:'__name__',b:[__b18__,__b19__,__b20__,__b21__,__b22__,__b23__],m:[__m18__,__m19__,__m20__,__m21__,__m22__,__m23__],bu:[__bu18__,__bu19__,__bu20__,__bu21__,__bu22__,__bu23__],mu:[__mu18__,__mu19__,__mu20__,__mu21__,__mu22__,__mu23__]};";
-            templateIndexIncl = "si['__city__']={n:[__n_begin__,__n_end__],p:[__p_begin__,__p_end__]};";
-            templateIndexExcl = "si['__city__']={n:[__n_begin__,__n_end__],p:null};";
+            templateIndexIncl = "si['__city__']={n:[__n_begin__,__n_end__],p:[__p_begin__,__p_end__],l:'__city_label__',h:'__city_href__',o:__city_order__,i:__city_index__};";
+            templateIndexExcl = "si['__city__']={n:[__n_begin__,__n_end__],p:null,l:'__city_label__',h:'__city_href__',o:__city_order__,i:__city_index__};";
         } else {
             templateSchool = "s[__index__] = {l: '__label__', n: '__name__', " + generateSection("b") + ", " + generateSection("m") + ", " + generateSection("bu") + ", " + generateSection("mu") + ", w: __website__};\n";
-            templateIndexIncl = "si['__city__'] = {n: [__n_begin__, __n_end__], p: [__p_begin__, __p_end__]};\n";
-            templateIndexExcl = "si['__city__'] = {n: [__n_begin__, __n_end__], p: null};\n";
+            templateIndexIncl = "si['__city__'] = {n: [__n_begin__, __n_end__], p: [__p_begin__, __p_end__], l: '__city_label__', h: '__city_href__', o: __city_order__, i: __city_index__};\n";
+            templateIndexExcl = "si['__city__'] = {n: [__n_begin__, __n_end__], p: null, l: '__city_label__', h: '__city_href__', o: __city_order__, i: __city_index__};\n";
         }
 
         Comparator<School> schoolsAlphaComparator = (o1, o2) -> {
@@ -359,11 +287,19 @@ public class Decomplexor {
                     .replace("__n_begin__", "" + index)
                     .replace("__n_end__", "" + (index + nationalSchoolsSet.size() - 1))
                     .replace("__p_begin__", "" + (index + nationalSchoolsSet.size()))
-                    .replace("__p_end__", "" + (index + nationalSchoolsSet.size() + privateSchoolsSet.size() - 1));
+                    .replace("__p_end__", "" + (index + nationalSchoolsSet.size() + privateSchoolsSet.size() - 1))
+                    .replace("__city_label__", cityMeta.shortName())
+                    .replace("__city_href__", cityMeta.hrefName())
+                    .replace("__city_order__", "" + cityMeta.orderPosition())
+                    .replace("__city_index__", "" + cityMeta.i());
         } else {
             siLine = templateIndexExcl.replace("__city__", city)
                     .replace("__n_begin__", "" + index)
-                    .replace("__n_end__", "" + (index + nationalSchoolsSet.size() - 1));
+                    .replace("__n_end__", "" + (index + nationalSchoolsSet.size() - 1))
+                    .replace("__city_label__", cityMeta.shortName())
+                    .replace("__city_href__", cityMeta.hrefName())
+                    .replace("__city_order__", "" + cityMeta.orderPosition())
+                    .replace("__city_index__", "" + cityMeta.i());
         }
 
         StringBuilder sb = new StringBuilder();

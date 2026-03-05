@@ -144,18 +144,103 @@ function applyPendingSelectedButtons() {
 }
 
 function cityContainsSchoolIndex(cityName, schoolIndex) {
-  if(!si[cityName]) {
+  let schoolGroups = getCitySchoolGroups(cityName);
+  if(!schoolGroups) {
     return false;
   }
-  let pu = si[cityName].n;
+  let pu = schoolGroups.puSchools;
   if(pu && schoolIndex >= pu[0] && schoolIndex <= pu[1]) {
     return true;
   }
-  let pr = si[cityName].p;
+  let pr = schoolGroups.prSchools;
   if(pr && schoolIndex >= pr[0] && schoolIndex <= pr[1]) {
     return true;
   }
   return false;
+}
+
+function getCitySchoolGroups(cityName) {
+  let cityData = si[cityName];
+  if(!cityData) {
+    return null;
+  }
+  if(!Array.isArray(cityData.n) || cityData.n.length < 2) {
+    return null;
+  }
+  return {
+    puSchools: cityData.n,
+    prSchools: Array.isArray(cityData.p) && cityData.p.length >= 2 ? cityData.p : null
+  };
+}
+
+function hasSchoolsWithLatestYearData(schoolRange) {
+  if(!Array.isArray(schoolRange) || schoolRange.length < 2) {
+    return false;
+  }
+  let start = schoolRange[0];
+  let end = schoolRange[1];
+  if(!Number.isInteger(start) || !Number.isInteger(end) || end < start) {
+    return false;
+  }
+  for(let i = start; i <= end; i++) {
+    if(s[i] && s[i].b[s[i].b.length - 1] && s[i].m[s[i].m.length - 1]) {
+      return true;
+    }
+  }
+  return false;
+}
+
+function hasRenderableCitySchools(puSchools, prSchools) {
+  return hasSchoolsWithLatestYearData(puSchools) || hasSchoolsWithLatestYearData(prSchools);
+}
+
+function fallbackCityHrefName(cityName) {
+  return String(cityName || '')
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, '-');
+}
+
+function cityMenuOrderPosition(value) {
+  let parsed = Number.parseInt(value, 10);
+  if(Number.isInteger(parsed) && parsed >= 1 && parsed <= 3) {
+    return parsed;
+  }
+  return 3;
+}
+
+function cityRenderOrderIndex(value) {
+  let parsed = Number.parseInt(value, 10);
+  if(Number.isInteger(parsed) && parsed >= 0) {
+    return parsed;
+  }
+  return null;
+}
+
+function getRenderableCitiesFromData() {
+  let cities = [];
+  Object.keys(si).forEach((name) => {
+    let cityData = si[name] || {};
+    let renderOrderIndex = cityRenderOrderIndex(cityData.i);
+    if(renderOrderIndex === null) {
+      console.warn('Skipping city "' + name + '" because render index "i" is missing in schools data.');
+      return;
+    }
+    let cityCsvData = generateCityData(name);
+    if(!cityCsvData) {
+      return;
+    }
+    cities.push({
+      name: name,
+      hrName: cityData.h ? String(cityData.h) : fallbackCityHrefName(name),
+      btName: cityData.l ? String(cityData.l) : String(name),
+      btPos: cityMenuOrderPosition(cityData.o),
+      i: renderOrderIndex,
+      data: cityCsvData
+    });
+  });
+  cities.sort((c1, c2) => c1.i - c2.i);
+  return cities;
 }
 
 function recalculate() {
@@ -1384,33 +1469,13 @@ function generateDownloadCSVLink(el, tableKey, cityName, data) {
 }
 
 function generateCityData(name) {
-  if(!si[name]) {
+  let schoolGroups = getCitySchoolGroups(name);
+  if(!schoolGroups) {
     return '';
   }
-  if(!si[name].n && !si[name].p) {
-    return '';
-  }
-  let puSchools = si[name].n;
-  let prSchools = si[name].p;
-  if(!puSchools) {
-    return '';
-  }
-  let hasSchools = false;
-  for(let i = puSchools[0]; i <= puSchools[1]; i++) {
-    if(s[i].b[s[i].b.length - 1] && s[i].m[s[i].m.length - 1]) {
-      hasSchools = true;
-      break;
-    }
-  }
-  if(prSchools) {
-    for(let i = prSchools[0]; i <= prSchools[1]; i++) {
-      if(s[i].b[s[i].b.length - 1] && s[i].m[s[i].m.length - 1]) {
-        hasSchools = true;
-        break;
-      }
-    }
-  }
-  if(!hasSchools) {
+  let puSchools = schoolGroups.puSchools;
+  let prSchools = schoolGroups.prSchools;
+  if(!hasRenderableCitySchools(puSchools, prSchools)) {
     return '';
   }
   let data = generateDownloadForCity(name, puSchools, 'Д');
@@ -1503,33 +1568,13 @@ function initLazyCitySections(entries) {
 }
 
 function generateCitySection(name, hrName, btName, btPos, skipMenu, precomputedData, mountBeforeNode) {
-  if(!si[name]) {
+  let schoolGroups = getCitySchoolGroups(name);
+  if(!schoolGroups) {
     return '';
   }
-  if(!si[name].n && !si[name].p) {
-    return '';
-  }
-  let puSchools = si[name].n;
-  let prSchools = si[name].p;
-  if(!puSchools) {
-    return '';
-  }
-  let hasSchools = false;
-  for(let i = puSchools[0]; i <= puSchools[1]; i++) {
-    if(s[i].b[s[i].b.length - 1] && s[i].m[s[i].m.length - 1]) {
-      hasSchools = true;
-      break;
-    }
-  }
-  if(prSchools) {
-    for(let i = prSchools[0]; i <= prSchools[1]; i++) {
-      if(s[i].b[s[i].b.length - 1] && s[i].m[s[i].m.length - 1]) {
-        hasSchools = true;
-        break;
-      }
-    }
-  }
-  if(!hasSchools) {
+  let puSchools = schoolGroups.puSchools;
+  let prSchools = schoolGroups.prSchools;
+  if(!precomputedData && !hasRenderableCitySchools(puSchools, prSchools)) {
     return '';
   }
   const { topCount: topPuCount, secondCount: secondPuCount } = getSchoolCounts(puSchools);
@@ -1770,98 +1815,23 @@ function enableFixedButtons() {
 function generateCitySections() {
   let data = '';
   let lazyEntries = [];
+  let cities = getRenderableCitiesFromData();
   let selectedIndices = getDefaultClickedButtonIds()
     .map((i) => Number.parseInt(i, 10))
     .filter((i) => Number.isInteger(i));
-  let addCity = (name, hrName, btName, btPos) => {
-    let cityData = generateCityData(name);
-    if(!cityData) {
-      return;
-    }
-    data += cityData;
-    generateCityMenu(btPos, btName, hrName);
-    createCityPlaceholder(hrName);
+  cities.forEach((city) => {
+    data += city.data;
+    generateCityMenu(city.btPos, city.btName, city.hrName);
+    createCityPlaceholder(city.hrName);
     lazyEntries.push({
-      name: name,
-      hrName: hrName,
-      btName: btName,
-      btPos: btPos,
-      data: cityData,
+      name: city.name,
+      hrName: city.hrName,
+      btName: city.btName,
+      btPos: city.btPos,
+      data: city.data,
       rendered: false
     });
-  };
-  addCity('София', 'sofia', 'София', 1);
-  addCity('Пловдив', 'plovdiv', 'Пловдив', 1);
-  addCity('Варна', 'varna', 'Варна', 1);
-  addCity('Бургас', 'burgas', 'Бургас', 1);
-  addCity('Благоевград', 'blagoevgrad', 'Благоевград', 2);
-  addCity('Велико Търново', 'veliko-turnovo', 'В. Търново', 2);
-  addCity('Видин', 'vidin', 'Видин', 2);
-  addCity('Враца', 'vratsa', 'Враца', 2);
-  addCity('Габрово', 'gabrovo', 'Габрово', 2);
-  addCity('Добрич', 'dobrich', 'Добрич', 2);
-  addCity('Кърджали', 'kurdzhali', 'Кърджали', 2);
-  addCity('Кюстендил', 'kiustendil', 'Кюстендил', 2);
-  addCity('Ловеч', 'lovech', 'Ловеч', 2);
-  addCity('Монтана', 'montana', 'Монтана', 2);
-  addCity('Пазарджик', 'pazardzhik', 'Пазарджик', 2);
-  addCity('Перник', 'pernik', 'Перник', 2);
-  addCity('Плевен', 'pleven', 'Плевен', 2);
-  addCity('Разград', 'razgrad', 'Разград', 2);
-  addCity('Русе', 'ruse', 'Русе', 2);
-  addCity('Силистра', 'silistra', 'Силистра', 2);
-  addCity('Сливен', 'sliven', 'Сливен', 2);
-  addCity('Смолян', 'smolian', 'Смолян', 2);
-  addCity('Стара Загора', 'stara-zagora', 'Ст. Загора', 2);
-  addCity('Търговище', 'turgovishte', 'Търговище', 2);
-  addCity('Хасково', 'haskovo', 'Хасково', 2);
-  addCity('Шумен', 'shumen', 'Шумен', 2);
-  addCity('Ямбол', 'iambol', 'Ямбол', 2);
-  addCity('Айтос', 'aitos', 'Айтос', 3);
-  addCity('Асеновград', 'asenovgrad', 'Асеновград', 3);
-  addCity('Банкя', 'bankia', 'Банкя', 3);
-  addCity('Берковица', 'berkovitsa', 'Берковица', 3);
-  addCity('Ботевград', 'botevgrad', 'Ботевград', 3);
-  addCity('Велинград', 'velingrad', 'Велинград', 3);
-  addCity('Горна Оряховица', 'gorna-oryahovitsa', 'Г. Оряховица', 3);
-  addCity('Гоце Делчев', 'gotse-delchev', 'Гоце Делчев', 3);
-  addCity('Димитровград', 'dimitrovgrad', 'Димитровград', 3);
-  addCity('Дупница', 'dupnitsa', 'Дупница', 3);
-  addCity('Ихтиман', 'ihtiman', 'Ихтиман', 3);
-  addCity('Каварна', 'kavarna', 'Каварна', 3);
-  addCity('Казанлък', 'kazanluk', 'Казанлък', 3);
-  addCity('Карлово', 'karlovo', 'Карлово', 3);
-  addCity('Карнобат', 'karnobat', 'Карнобат', 3);
-  addCity('Костинброд', 'kostinbrod', 'Костинброд', 3);
-  addCity('Лом', 'lom', 'Лом', 3);
-  addCity('Луковит', 'lukovit', 'Луковит', 3);
-  addCity('Несебър', 'nesebar', 'Несебър', 3);
-  addCity('Нова Загора', 'nova-zagora', 'Нова Загора', 3);
-  addCity('Нови Искър', 'novi-iskar', 'Нови Искър', 3);
-  addCity('Нови пазар', 'novi-pazar', 'Нови пазар', 3);
-  addCity('Обзор', 'obzor', 'Обзор', 3);
-  addCity('Панагюрище', 'panagiurishte', 'Панагюрище', 3);
-  addCity('Петрич', 'petrich', 'Петрич', 3);
-  addCity('Пещера', 'peshtera', 'Пещера', 3);
-  addCity('Поморие', 'pomorie', 'Поморие', 3);
-  addCity('Попово', 'popovo', 'Попово', 3);
-  addCity('Правец', 'pravets', 'Правец', 3);
-  addCity('Провадия', 'provadia', 'Провадия', 3);
-  addCity('Първомай', 'purvomai', 'Първомай', 3);
-  addCity('Раднево', 'radnevo', 'Раднево', 3);
-  addCity('Радомир', 'radomir', 'Радомир', 3);
-  addCity('Раковски', 'rakovski', 'Раковски', 3);
-  addCity('Самоков', 'samokov', 'Самоков', 3);
-  addCity('Сандански', 'sandanski', 'Сандански', 3);
-  addCity('Свиленград', 'svilengrad', 'Свиленград', 3);
-  addCity('Свищов', 'svishtov', 'Свищов', 3);
-  addCity('Своге', 'svoge', 'Своге', 3);
-  addCity('Севлиево', 'sevlievo', 'Севлиево', 3);
-  addCity('Стамболийски', 'stanbiliiski', 'Стамболийски', 3);
-  addCity('Троян', 'troyan', 'Троян', 3);
-  addCity('Харманли', 'harmanli', 'Харманли', 3);
-  addCity('Червен бряг', 'cherven-briag', 'Червен бряг', 3);
-  addCity('Чирпан', 'chirpan', 'Чирпан', 3);
+  });
   let header = generateDownloadCSVHeader();
   let a = document.getElementById('csvAll');
   if(a) {
