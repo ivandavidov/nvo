@@ -79,6 +79,21 @@ function applyNavigationPaths() {
   });
 }
 
+function toggleOtherCities() {
+  let content = document.getElementById('other-cities-content');
+  let toggle = document.getElementById('other-cities-toggle');
+  if(!content || !toggle) {
+    return;
+  }
+  if(content.classList.contains('other-cities-collapsed')) {
+    content.classList.remove('other-cities-collapsed');
+    toggle.textContent = 'Затвори \u25B2';
+  } else {
+    content.classList.add('other-cities-collapsed');
+    toggle.textContent = 'Отвори \u25BC';
+  }
+}
+
 function safeDivide(numerator, denominator, fallback = 0) {
   return denominator ? numerator / denominator : fallback;
 }

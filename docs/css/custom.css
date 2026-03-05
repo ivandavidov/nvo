@@ -416,6 +416,24 @@ img {
   font-size: 0.85rem;
 }
 
+.other-cities-collapsed {
+  display: none;
+}
+
+.other-cities-toggle {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-primary);
+  cursor: pointer;
+  text-decoration: none;
+  user-select: none;
+}
+
+.other-cities-toggle:hover {
+  color: var(--color-primary-dark);
+  text-decoration: underline;
+}
+
 /* --- Buttons (Skeleton replacement) --- */
 .button,
 button,

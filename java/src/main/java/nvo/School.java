@@ -258,6 +258,50 @@ public class School implements Comparable<School> {
         schoolCodes.putAll(prepareSchoolCodesChervenBriag());
         schoolCodes.putAll(prepareSchoolCodesChirpan());
 
+        schoolCodes.putAll(prepareSchoolCodesYakoruda());
+        schoolCodes.putAll(prepareSchoolCodesBansko());
+        schoolCodes.putAll(prepareSchoolCodesSimitli());
+        schoolCodes.putAll(prepareSchoolCodesTeteven());
+        schoolCodes.putAll(prepareSchoolCodesVarshets());
+        schoolCodes.putAll(prepareSchoolCodesRakitovo());
+        schoolCodes.putAll(prepareSchoolCodesLevski());
+        schoolCodes.putAll(prepareSchoolCodesSopot());
+        schoolCodes.putAll(prepareSchoolCodesIsperih());
+        schoolCodes.putAll(prepareSchoolCodesDulovo());
+        schoolCodes.putAll(prepareSchoolCodesKotel());
+        schoolCodes.putAll(prepareSchoolCodesDevin());
+        schoolCodes.putAll(prepareSchoolCodesPirdop());
+        schoolCodes.putAll(prepareSchoolCodesGulyubovo());
+        schoolCodes.putAll(prepareSchoolCodesOmurtag());
+        schoolCodes.putAll(prepareSchoolCodesSimeonovgrad());
+        schoolCodes.putAll(prepareSchoolCodesVelikiPreslav());
+        schoolCodes.putAll(prepareSchoolCodesElhovo());
+        schoolCodes.putAll(prepareSchoolCodesAksakovo());
+        schoolCodes.putAll(prepareSchoolCodesBelogradchik());
+        schoolCodes.putAll(prepareSchoolCodesByalaSlatina());
+        schoolCodes.putAll(prepareSchoolCodesGeneralToshevo());
+        schoolCodes.putAll(prepareSchoolCodesDevnya());
+        schoolCodes.putAll(prepareSchoolCodesDolniChiflik());
+        schoolCodes.putAll(prepareSchoolCodesDryanovo());
+        schoolCodes.putAll(prepareSchoolCodesDulgopol());
+        schoolCodes.putAll(prepareSchoolCodesElena());
+        schoolCodes.putAll(prepareSchoolCodesKrumovgrad());
+        schoolCodes.putAll(prepareSchoolCodesLyaskovets());
+        schoolCodes.putAll(prepareSchoolCodesMezdra());
+        schoolCodes.putAll(prepareSchoolCodesMomchilgrad());
+        schoolCodes.putAll(prepareSchoolCodesOryahovo());
+        schoolCodes.putAll(prepareSchoolCodesPavlikeni());
+        schoolCodes.putAll(prepareSchoolCodesSredets());
+        schoolCodes.putAll(prepareSchoolCodesStrazhitsa());
+        schoolCodes.putAll(prepareSchoolCodesSuvorov());
+        schoolCodes.putAll(prepareSchoolCodesTervel());
+        schoolCodes.putAll(prepareSchoolCodesTryavna());
+        schoolCodes.putAll(prepareSchoolCodesTsarevo());
+        schoolCodes.putAll(prepareSchoolCodesSopol());
+        schoolCodes.putAll(prepareSchoolCodesBobovDol());
+        schoolCodes.putAll(prepareSchoolCodesBelene());
+        schoolCodes.putAll(prepareSchoolCodesKneza());
+
         return schoolCodes;
     }
 
@@ -1973,6 +2017,490 @@ public class School implements Comparable<School> {
         schoolCodes.put("1500217", new String[]{"0", "ПГ по хран. техн.", "ПГ по хранителни технологии"});
         schoolCodes.put("1500218", new String[]{"0", "ПГ по механоел.", "ПГ по механоелектротехника"});
         schoolCodes.put("1500219", new String[]{"0", "Търговска гимн.", "Търговска гимназия"});
+
+        return schoolCodes;
+    }
+
+    private static Map<String, String[]> prepareSchoolCodesYakoruda() {
+        Map<String, String[]> schoolCodes = new HashMap<>();
+
+        schoolCodes.put("102011", new String[]{"0", "ПГ Петко Славейков", "ПГ Петко Рачов Славейков"});
+        schoolCodes.put("107090", new String[]{"0", SU_KIRIL_I_METODII_SHORT, SU_KIRIL_I_METODII_LONG});
+
+        return schoolCodes;
+    }
+
+    private static Map<String, String[]> prepareSchoolCodesBansko() {
+        Map<String, String[]> schoolCodes = new HashMap<>();
+
+        schoolCodes.put("102004", new String[]{"0", "ПГ лесотехническа", "ПГ лесотехническа Н. Вапцаров"});
+        schoolCodes.put("102010", new String[]{"0", "ПГ по туризъм", "ПГ по туризъм Ал. Константинов"});
+        schoolCodes.put("102015", new String[]{"0", "ПГ по електроника", "ПГ по електроника и енергетика"});
+        schoolCodes.put("105201", new String[]{"0", "СУ Неофит Рилски", "СУ Неофит Рилски"});
+        schoolCodes.put("105204", new String[]{"0", "НУ Паисий Хил.", "НУ Св. Паисий Хилендарски"});
+
+        return schoolCodes;
+    }
+
+    private static Map<String, String[]> prepareSchoolCodesSimitli() {
+        Map<String, String[]> schoolCodes = new HashMap<>();
+
+        schoolCodes.put("103133", new String[]{"0", SU_KIRIL_I_METODII_SHORT, SU_KIRIL_I_METODII_LONG});
+
+        return schoolCodes;
+    }
+
+    private static Map<String, String[]> prepareSchoolCodesTeteven() {
+        Map<String, String[]> schoolCodes = new HashMap<>();
+
+        schoolCodes.put("1100509", new String[]{"0", "СУ Г. Бенковски", "СУ Георги Бенковски"});
+        schoolCodes.put("1100511", new String[]{"0", "НПГ горско стоп.", "НПГ горско стопанство Сава Младенов"});
+        schoolCodes.put("1100513", new String[]{"0", "НУ Хаджи Генчо", "НУ Хаджи Генчо"});
+        schoolCodes.put("1100514", new String[]{"0", "ПГ по строителство", "ПГ по строителство и услуги"});
+
+        return schoolCodes;
+    }
+
+    private static Map<String, String[]> prepareSchoolCodesVarshets() {
+        Map<String, String[]> schoolCodes = new HashMap<>();
+
+        schoolCodes.put("1208000", new String[]{"0", NU_VASIL_LEVSKI, NU_VASIL_LEVSKI});
+        schoolCodes.put("1208002", new String[]{"0", SU_IVAN_VAZOV, SU_IVAN_VAZOV});
+
+        return schoolCodes;
+    }
+
+    private static Map<String, String[]> prepareSchoolCodesRakitovo() {
+        Map<String, String[]> schoolCodes = new HashMap<>();
+
+        schoolCodes.put("1300054", new String[]{"0", "ОУ Неофит Рилски", "ОУ Неофит Рилски"});
+        schoolCodes.put("1301368", new String[]{"0", NU_VASIL_LEVSKI, NU_VASIL_LEVSKI});
+        schoolCodes.put("1301375", new String[]{"0", "НУ Паисий Хил.", "НУ Паисий Хилендарски"});
+        schoolCodes.put("1301770", new String[]{"0", SU_KLIMENT_OHRIDSKI_SHORT, SU_KLIMENT_OHRIDSKI_LONG});
+        schoolCodes.put("1301788", new String[]{"0", SU_HRISTO_BOTEV, SU_HRISTO_BOTEV});
+        schoolCodes.put("1302662", new String[]{"0", SU_KIRIL_I_METODII_SHORT, SU_KIRIL_I_METODII_LONG});
+        schoolCodes.put("1302722", new String[]{"0", "ВУ-интернат", "Възп. у-ще-интернат Ангел Узунов"});
+        schoolCodes.put("1302993", new String[]{"0", "ПГ по мех. на земеделието", "ПГ по мех. на земеделското стоп."});
+        schoolCodes.put("1303889", new String[]{"0", "СУ Хр. Смирненски", "СУ Христо Смирненски"});
+
+        return schoolCodes;
+    }
+
+    private static Map<String, String[]> prepareSchoolCodesLevski() {
+        Map<String, String[]> schoolCodes = new HashMap<>();
+
+        schoolCodes.put("1500602", new String[]{"0", "ОУ Максим Горки", "ОУ Максим Горки"});
+        schoolCodes.put("1500611", new String[]{"0", "СУ Крум Попов", "СУ Крум Попов"});
+        schoolCodes.put("1500613", new String[]{"0", "ПГ по сел. стоп.", "ПГ по сел. стоп. и транспорт Н. Вапцаров"});
+
+        return schoolCodes;
+    }
+
+    private static Map<String, String[]> prepareSchoolCodesSopot() {
+        Map<String, String[]> schoolCodes = new HashMap<>();
+
+        schoolCodes.put("1601303", new String[]{"0", SU_IVAN_VAZOV, SU_IVAN_VAZOV});
+        schoolCodes.put("1601320", new String[]{"0", "НУ Неделя Петкова", "НУ Неделя Петкова"});
+        schoolCodes.put("1601363", new String[]{"0", "ПГ Ген. Вл. Заимов", "ПГ Генерал Владимир Заимов"});
+        schoolCodes.put("1601401", new String[]{"0", NU_VASIL_LEVSKI, NU_VASIL_LEVSKI});
+        schoolCodes.put("1601403", new String[]{"0", "СУ П.Р. Славейков", "СУ Петко Рачов Славейков"});
+        schoolCodes.put("1602401", new String[]{"0", "ОУ Петър Бонев", "ОУ Петър Бонев"});
+        schoolCodes.put("1602402", new String[]{"0", "ПГ по лозарство", "ПГ по лозарство и винарство Хр. Ботев"});
+        schoolCodes.put("1603301", new String[]{"0", SU_HRISTO_BOTEV, SU_HRISTO_BOTEV});
+        schoolCodes.put("1603302", new String[]{"0", NU_LIUBEN_KARAVELOV_SHORT, NU_LIUBEN_KARAVELOV_LONG});
+        schoolCodes.put("1603704", new String[]{"0", OU_VASIL_LEVSKI, OU_VASIL_LEVSKI});
+        schoolCodes.put("1603705", new String[]{"0", OU_KLIMENT_OHRIDSKI_SHORT, OU_KLIMENT_OHRIDSKI_LONG});
+        schoolCodes.put("1603708", new String[]{"0", "СУ Хр. Смирненски", "СУ Христо Смирненски"});
+
+        return schoolCodes;
+    }
+
+    private static Map<String, String[]> prepareSchoolCodesIsperih() {
+        Map<String, String[]> schoolCodes = new HashMap<>();
+
+        schoolCodes.put("1701401", new String[]{"0", "ПГ Васил Левски", "ПГ Васил Левски"});
+        schoolCodes.put("1701402", new String[]{"0", "ОУ Васил Априлов", "ОУ Васил Априлов"});
+        schoolCodes.put("1701403", new String[]{"0", OU_HRISTO_BOTEV, OU_HRISTO_BOTEV});
+        schoolCodes.put("1701405", new String[]{"0", "ПГ по сел. стоп.", "ПГ по сел. стоп. Хан Аспарух"});
+        schoolCodes.put("1701601", new String[]{"0", SU_HRISTO_BOTEV, SU_HRISTO_BOTEV});
+        schoolCodes.put("1701602", new String[]{"0", "ПГ по профес.", "ПГ по професионално обучение"});
+        schoolCodes.put("1701604", new String[]{"0", OU_HRISTO_SMIRNENSKI_SHORT, OU_HRISTO_SMIRNENSKI_LONG});
+
+        return schoolCodes;
+    }
+
+    private static Map<String, String[]> prepareSchoolCodesDulovo() {
+        Map<String, String[]> schoolCodes = new HashMap<>();
+
+        schoolCodes.put("1900301", new String[]{"0", SU_VASIL_LEVSKI, SU_VASIL_LEVSKI});
+        schoolCodes.put("1900314", new String[]{"0", OU_HRISTO_SMIRNENSKI_SHORT, OU_HRISTO_SMIRNENSKI_LONG});
+        schoolCodes.put("1900327", new String[]{"0", "ПГ по облекло и трансп.", "ПГ по облекло и транспорт"});
+        schoolCodes.put("1900701", new String[]{"0", "СУ Й. Йовков", "СУ Йордан Йовков"});
+        schoolCodes.put("1900702", new String[]{"0", SU_HRISTO_BOTEV, SU_HRISTO_BOTEV});
+
+        return schoolCodes;
+    }
+
+    private static Map<String, String[]> prepareSchoolCodesKotel() {
+        Map<String, String[]> schoolCodes = new HashMap<>();
+
+        schoolCodes.put("2000201", new String[]{"0", "СУ Г.С. Раковски", "СУ Георги Стойков Раковски"});
+        schoolCodes.put("2000402", new String[]{"0", "СУ Неофит Рилски", "СУ Неофит Рилски"});
+        schoolCodes.put("2902201", new String[]{"0", "НУФИ Филип Кутев", "НУФИ Филип Кутев"});
+
+        return schoolCodes;
+    }
+
+    private static Map<String, String[]> prepareSchoolCodesDevin() {
+        Map<String, String[]> schoolCodes = new HashMap<>();
+
+        schoolCodes.put("2100401", new String[]{"0", SU_HRISTO_BOTEV, SU_HRISTO_BOTEV});
+        schoolCodes.put("2100402", new String[]{"0", "ПГ по електротехника", "ПГ по електротехника А.С. Попов"});
+        schoolCodes.put("2100409", new String[]{"0", OU_KIRIL_I_METODII_SHORT, OU_KIRIL_I_METODII_LONG});
+        schoolCodes.put("2100606", new String[]{"0", OU_VASIL_LEVSKI, OU_VASIL_LEVSKI});
+        schoolCodes.put("2100701", new String[]{"0", SU_OTEC_PAISII, SU_OTEC_PAISII});
+        schoolCodes.put("2100704", new String[]{"0", OU_NIKOLA_VAPTSAROV_SHORT, OU_NIKOLA_VAPTSAROV_LONG});
+        schoolCodes.put("2100901", new String[]{"0", "СУ Васил Дечев", "СУ Васил Дечев"});
+        schoolCodes.put("2100903", new String[]{"0", "ПГ сел. горско стоп.", "ПГ по сел. горско стоп. Н. Вапцаров"});
+        schoolCodes.put("2100920", new String[]{"0", "СпУ Олимп. надежди", "Спортно у-ще Олимпийски надежди"});
+        schoolCodes.put("2102145", new String[]{"0", "ПГ Васил Димитров", "ПГ Васил Димитров"});
+        schoolCodes.put("2103232", new String[]{"0", "СУ Антим I", "СУ Антим I"});
+
+        return schoolCodes;
+    }
+
+    private static Map<String, String[]> prepareSchoolCodesPirdop() {
+        Map<String, String[]> schoolCodes = new HashMap<>();
+
+        schoolCodes.put("1304532", new String[]{"0", OU_HRISTO_BOTEV, OU_HRISTO_BOTEV});
+        schoolCodes.put("2300105", new String[]{"0", "СУ Саво Ц. Савов", "СУ Саво Ценов Савов"});
+        schoolCodes.put("2300163", new String[]{"0", "СУ Пр. А. Златаров", "СУ Проф. д-р Асен Златаров"});
+        schoolCodes.put("2300170", new String[]{"0", SU_VASIL_LEVSKI, SU_VASIL_LEVSKI});
+        schoolCodes.put("2300195", new String[]{"0", "СУ Хр. Ясенов", "СУ Христо Ясенов"});
+        schoolCodes.put("2300302", new String[]{"0", "ПГ Златица", "ПГ Златица"});
+        schoolCodes.put("2300327", new String[]{"0", "ПГ Тодор Пеев", "ПГ Тодор Пеев"});
+        schoolCodes.put("2300448", new String[]{"0", "ПГ по туризъм", "ПГ по туризъм Никола Димов"});
+        schoolCodes.put("2300455", new String[]{"0", "ПГ по транспорт", "ПГ по транспорт Н. Вапцаров"});
+        schoolCodes.put("2302504", new String[]{"0", "ПГ по механоел.", "ПГ по механоелектротехника"});
+        schoolCodes.put("2303490", new String[]{"0", SU_KLIMENT_OHRIDSKI_SHORT, SU_KLIMENT_OHRIDSKI_LONG});
+        schoolCodes.put("2303582", new String[]{"0", PG_HRISTO_BOTEV, PG_HRISTO_BOTEV});
+        schoolCodes.put("2304717", new String[]{"0", "ПГ Г.С. Раковски", "ПГ Георги Сава Раковски"});
+        schoolCodes.put("2306213", new String[]{"0", "СУ Неофит Рилски", "СУ Неофит Рилски"});
+        schoolCodes.put("2306517", new String[]{"0", SU_KIRIL_I_METODII_SHORT, SU_KIRIL_I_METODII_LONG});
+        schoolCodes.put("2307576", new String[]{"0", NU_HRISTO_BOTEV, NU_HRISTO_BOTEV});
+        schoolCodes.put("2308785", new String[]{"0", OU_HRISTO_BOTEV, OU_HRISTO_BOTEV});
+        schoolCodes.put("2308792", new String[]{"0", "СУ Паисий Хил.", "СУ Св. Паисий Хилендарски"});
+        schoolCodes.put("2308850", new String[]{"0", "НУ Тодор Влайков", "НУ Тодор Влайков"});
+        schoolCodes.put("2308970", new String[]{"0", "СУ Хр. Топракчиев", "СУ Летец Христо Топракчиев"});
+        schoolCodes.put("2309531", new String[]{"0", OU_KIRIL_I_METODII_SHORT, OU_KIRIL_I_METODII_LONG});
+
+        return schoolCodes;
+    }
+
+    private static Map<String, String[]> prepareSchoolCodesGulyubovo() {
+        Map<String, String[]> schoolCodes = new HashMap<>();
+
+        schoolCodes.put("2404107", new String[]{"0", SU_VASIL_LEVSKI, SU_VASIL_LEVSKI});
+        schoolCodes.put("2404108", new String[]{"0", "ПГ по енергетика", "ПГ по енергетика и електротехника"});
+        schoolCodes.put("2404109", new String[]{"0", "I ОУ Паисий Хил.", "I ОУ Св. Паисий Хилендарски"});
+        schoolCodes.put("2404110", new String[]{"0", "II ОУ Хр. Ботев", "II ОУ Христо Ботев"});
+
+        return schoolCodes;
+    }
+
+    private static Map<String, String[]> prepareSchoolCodesOmurtag() {
+        Map<String, String[]> schoolCodes = new HashMap<>();
+
+        schoolCodes.put("2520001", new String[]{"0", "I НУ Хр. Смирненски", "I НУ Христо Смирненски"});
+        schoolCodes.put("2520002", new String[]{"0", "II НУ Васил Левски", "II НУ Васил Левски"});
+        schoolCodes.put("2520401", new String[]{"0", "ПГ Симеон Велчев", "ПГ Симеон Велчев"});
+        schoolCodes.put("2520501", new String[]{"0", "ОУ Акад. Даки Йорданов", "ОУ Акад. Даки Йорданов"});
+        schoolCodes.put("2520601", new String[]{"0", "ПГ по транспорт", "ПГ по транспорт и лека промишленост"});
+
+        return schoolCodes;
+    }
+
+    private static Map<String, String[]> prepareSchoolCodesSimeonovgrad() {
+        Map<String, String[]> schoolCodes = new HashMap<>();
+
+        schoolCodes.put("2604001", new String[]{"0", NU_OTEC_PAISII, NU_OTEC_PAISII});
+        schoolCodes.put("2604003", new String[]{"0", OU_IVAN_VAZOV, OU_IVAN_VAZOV});
+        schoolCodes.put("2604004", new String[]{"0", SU_KLIMENT_OHRIDSKI_SHORT, SU_KLIMENT_OHRIDSKI_LONG});
+        schoolCodes.put("2606001", new String[]{"0", "НУ Захари Стоянов", "НУ Захари Стоянов"});
+        schoolCodes.put("2606002", new String[]{"0", NU_HRISTO_BOTEV, NU_HRISTO_BOTEV});
+        schoolCodes.put("2606005", new String[]{"0", "СУ Жел. Терпешев", "СУ Желязко Терпешев"});
+        schoolCodes.put("2611001", new String[]{"0", NU_KIRIL_I_METODII_SHORT, NU_KIRIL_I_METODII_LONG});
+        schoolCodes.put("2611018", new String[]{"0", SU_PETAR_BERON_SHORT, SU_PETAR_BERON_LONG});
+
+        return schoolCodes;
+    }
+
+    private static Map<String, String[]> prepareSchoolCodesVelikiPreslav() {
+        Map<String, String[]> schoolCodes = new HashMap<>();
+
+        schoolCodes.put("2700103", new String[]{"0", "СУ Черноризец Храбър", "СУ Черноризец Храбър"});
+        schoolCodes.put("2700180", new String[]{"0", OU_KIRIL_I_METODII_SHORT, OU_KIRIL_I_METODII_LONG});
+        schoolCodes.put("2700024", new String[]{"0", "ПТГ Симеон Велики", "ПТГ Симеон Велики"});
+        schoolCodes.put("2700282", new String[]{"0", PG_SELSKO_STOPANSTVO_SHORT, PG_SELSKO_STOPANSTVO_LONG});
+
+        return schoolCodes;
+    }
+
+    private static Map<String, String[]> prepareSchoolCodesElhovo() {
+        Map<String, String[]> schoolCodes = new HashMap<>();
+
+        schoolCodes.put("2831522", new String[]{"0", "ПГ Кл. Охридски", "ПГ Св. Климент Охридски"});
+        schoolCodes.put("2831523", new String[]{"0", OU_KIRIL_I_METODII_SHORT, OU_KIRIL_I_METODII_LONG});
+        schoolCodes.put("2831524", new String[]{"0", "ОУ Паисий Хил.", "ОУ Св. Паисий Хилендарски"});
+        schoolCodes.put("2831609", new String[]{"0", "ПГ Стефан Караджа", "ПГ Стефан Караджа"});
+        schoolCodes.put("2841532", new String[]{"0", SU_PEIO_YAVOROV_SHORT, SU_PEIO_YAVOROV_LONG});
+        schoolCodes.put("2841534", new String[]{"0", OU_KIRIL_I_METODII_SHORT, OU_KIRIL_I_METODII_LONG});
+
+        return schoolCodes;
+    }
+
+    private static Map<String, String[]> prepareSchoolCodesAksakovo() {
+        Map<String, String[]> schoolCodes = new HashMap<>();
+
+        schoolCodes.put("400087", new String[]{"0", SU_KLIMENT_OHRIDSKI_SHORT, SU_KLIMENT_OHRIDSKI_LONG});
+        schoolCodes.put("400095", new String[]{"0", NU_OTEC_PAISII, NU_OTEC_PAISII});
+        schoolCodes.put("400096", new String[]{"0", SU_KIRIL_I_METODII_SHORT, SU_KIRIL_I_METODII_LONG});
+        schoolCodes.put("400097", new String[]{"0", "ОУ Патр. Евтимий", "ОУ Св. Патриарх Евтимий"});
+        schoolCodes.put("400098", new String[]{"0", "ПГ Св. Димитър Солунски", "ПГ Св. Димитър Солунски"});
+        schoolCodes.put("400137", new String[]{"0", NU_IVAN_VAZOV, NU_IVAN_VAZOV});
+
+        return schoolCodes;
+    }
+
+    private static Map<String, String[]> prepareSchoolCodesBelogradchik() {
+        Map<String, String[]> schoolCodes = new HashMap<>();
+
+        schoolCodes.put("500201", new String[]{"0", SU_HRISTO_BOTEV, SU_HRISTO_BOTEV});
+        schoolCodes.put("500203", new String[]{"0", NU_VASIL_LEVSKI, NU_VASIL_LEVSKI});
+
+        return schoolCodes;
+    }
+
+    private static Map<String, String[]> prepareSchoolCodesByalaSlatina() {
+        Map<String, String[]> schoolCodes = new HashMap<>();
+
+        schoolCodes.put("600221", new String[]{"0", "ПГ по облекло", "ПГ по облекло Ел. Багряна"});
+        schoolCodes.put("601007", new String[]{"0", NU_HRISTO_BOTEV, NU_HRISTO_BOTEV});
+        schoolCodes.put("601008", new String[]{"0", "НУ Цани Гинчев", "НУ Цани Гинчев"});
+        schoolCodes.put("601009", new String[]{"0", "НУ Хр. Смирненски", "НУ Христо Смирненски"});
+        schoolCodes.put("601015", new String[]{"0", OU_KLIMENT_OHRIDSKI_SHORT, OU_KLIMENT_OHRIDSKI_LONG});
+        schoolCodes.put("601110", new String[]{"0", NU_KIRIL_I_METODII_SHORT, NU_KIRIL_I_METODII_LONG});
+        schoolCodes.put("601111", new String[]{"0", "НУ Д-р Петър Берон", "НУ Д-р Петър Берон"});
+        schoolCodes.put("603024", new String[]{"0", SU_VASIL_LEVSKI, SU_VASIL_LEVSKI});
+        schoolCodes.put("603026", new String[]{"0", "ПГ агротехническа", "ПГ агротехническа Н. Вапцаров"});
+
+        return schoolCodes;
+    }
+
+    private static Map<String, String[]> prepareSchoolCodesGeneralToshevo() {
+        Map<String, String[]> schoolCodes = new HashMap<>();
+
+        schoolCodes.put("800073", new String[]{"0", OU_HRISTO_SMIRNENSKI_SHORT, OU_HRISTO_SMIRNENSKI_LONG});
+        schoolCodes.put("800074", new String[]{"0", "СУ Н. Вапцаров", "СУ Никола Вапцаров"});
+        schoolCodes.put("800076", new String[]{"0", "ПГ по земеделие", "ПГ по земеделие Тодор Рачински"});
+
+        return schoolCodes;
+    }
+
+    private static Map<String, String[]> prepareSchoolCodesDevnya() {
+        Map<String, String[]> schoolCodes = new HashMap<>();
+
+        schoolCodes.put("400123", new String[]{"0", SU_VASIL_LEVSKI, SU_VASIL_LEVSKI});
+
+        return schoolCodes;
+    }
+
+    private static Map<String, String[]> prepareSchoolCodesDolniChiflik() {
+        Map<String, String[]> schoolCodes = new HashMap<>();
+
+        schoolCodes.put("400126", new String[]{"0", SU_VASIL_LEVSKI, SU_VASIL_LEVSKI});
+        schoolCodes.put("400127", new String[]{"0", "ПГ по сел. стоп.", "ПГ по сел. стоп. И.В. Мичурин"});
+
+        return schoolCodes;
+    }
+
+    private static Map<String, String[]> prepareSchoolCodesDryanovo() {
+        Map<String, String[]> schoolCodes = new HashMap<>();
+
+        schoolCodes.put("700204", new String[]{"0", "СУ Максим Райкович", "СУ Максим Райкович"});
+        schoolCodes.put("700205", new String[]{"0", "ПГ по иконом. и техника", "ПГ по икономика и техника"});
+        schoolCodes.put("700401", new String[]{"0", "ОУ Проф. П. Н. Райков", "ОУ Проф. Пенчо Николов Райков"});
+
+        return schoolCodes;
+    }
+
+    private static Map<String, String[]> prepareSchoolCodesDulgopol() {
+        Map<String, String[]> schoolCodes = new HashMap<>();
+
+        schoolCodes.put("400136", new String[]{"0", SU_KLIMENT_OHRIDSKI_SHORT, SU_KLIMENT_OHRIDSKI_LONG});
+
+        return schoolCodes;
+    }
+
+    private static Map<String, String[]> prepareSchoolCodesElena() {
+        Map<String, String[]> schoolCodes = new HashMap<>();
+
+        schoolCodes.put("300301", new String[]{"0", "НУ Ил. Макариополски", "НУ Иларион Макариополски"});
+        schoolCodes.put("300305", new String[]{"0", "СУ Иван Момчилов", "СУ Иван Николов Момчилов"});
+        schoolCodes.put("300602", new String[]{"0", OU_KLIMENT_OHRIDSKI_SHORT, OU_KLIMENT_OHRIDSKI_LONG});
+
+        return schoolCodes;
+    }
+
+    private static Map<String, String[]> prepareSchoolCodesKrumovgrad() {
+        Map<String, String[]> schoolCodes = new HashMap<>();
+
+        schoolCodes.put("909501", new String[]{"0", SU_VASIL_LEVSKI, SU_VASIL_LEVSKI});
+        schoolCodes.put("909503", new String[]{"0", "ПГ по транспорт", "ПГ по транспорт Хр. Смирненски"});
+
+        return schoolCodes;
+    }
+
+    private static Map<String, String[]> prepareSchoolCodesLyaskovets() {
+        Map<String, String[]> schoolCodes = new HashMap<>();
+
+        schoolCodes.put("300501", new String[]{"0", "НУ Цани Гинчев", "НУ Цани Гинчев"});
+        schoolCodes.put("300507", new String[]{"0", "СУ Максим Райкович", "СУ Максим Райкович"});
+
+        return schoolCodes;
+    }
+
+    private static Map<String, String[]> prepareSchoolCodesMezdra() {
+        Map<String, String[]> schoolCodes = new HashMap<>();
+
+        schoolCodes.put("602092", new String[]{"0", OU_KIRIL_I_METODII_SHORT, OU_KIRIL_I_METODII_LONG});
+        schoolCodes.put("602093", new String[]{"0", OU_HRISTO_BOTEV, OU_HRISTO_BOTEV});
+        schoolCodes.put("603098", new String[]{"0", SU_IVAN_VAZOV, SU_IVAN_VAZOV});
+        schoolCodes.put("603100", new String[]{"0", "ПГ Ал. Константинов", "ПГ Алеко Константинов"});
+        schoolCodes.put("603101", new String[]{"0", "ПГ Васил Левски", "ПГ Васил Левски"});
+
+        return schoolCodes;
+    }
+
+    private static Map<String, String[]> prepareSchoolCodesMomchilgrad() {
+        Map<String, String[]> schoolCodes = new HashMap<>();
+
+        schoolCodes.put("909601", new String[]{"0", "СУ Н. Вапцаров", "СУ Никола Вапцаров"});
+        schoolCodes.put("909608", new String[]{"0", SU_PETAR_BERON_SHORT, SU_PETAR_BERON_LONG});
+        schoolCodes.put("909603", new String[]{"0", "ПГ по туризъм", "ПГ по туризъм Кирил и Методий"});
+        schoolCodes.put("909613", new String[]{"0", "Духовно училище", "Духовно училище"});
+
+        return schoolCodes;
+    }
+
+    private static Map<String, String[]> prepareSchoolCodesOryahovo() {
+        Map<String, String[]> schoolCodes = new HashMap<>();
+
+        schoolCodes.put("603116", new String[]{"0", SU_HRISTO_BOTEV, SU_HRISTO_BOTEV});
+
+        return schoolCodes;
+    }
+
+    private static Map<String, String[]> prepareSchoolCodesPavlikeni() {
+        Map<String, String[]> schoolCodes = new HashMap<>();
+
+        schoolCodes.put("300618", new String[]{"0", "СУ Бачо Киро", "СУ Бачо Киро"});
+        schoolCodes.put("300619", new String[]{"0", "ПГ по аграрни техн.", "ПГ по аграрни технологии Ц. Церковски"});
+
+        return schoolCodes;
+    }
+
+    private static Map<String, String[]> prepareSchoolCodesSredets() {
+        Map<String, String[]> schoolCodes = new HashMap<>();
+
+        schoolCodes.put("201104", new String[]{"0", SU_KIRIL_I_METODII_SHORT, SU_KIRIL_I_METODII_LONG});
+        schoolCodes.put("201106", new String[]{"0", "ПГ по механизация", "ПГ по механизация Н. Вапцаров"});
+
+        return schoolCodes;
+    }
+
+    private static Map<String, String[]> prepareSchoolCodesStrazhitsa() {
+        Map<String, String[]> schoolCodes = new HashMap<>();
+
+        schoolCodes.put("300911", new String[]{"0", "СУ Ангел Каралийчев", "СУ Ангел Каралийчев"});
+        schoolCodes.put("300912", new String[]{"0", "ПГ по транспорт", "ПГ по транспорт В. Друмев"});
+
+        return schoolCodes;
+    }
+
+    private static Map<String, String[]> prepareSchoolCodesSuvorov() {
+        Map<String, String[]> schoolCodes = new HashMap<>();
+
+        schoolCodes.put("400163", new String[]{"0", "СУ Н. Вапцаров", "СУ Никола Вапцаров"});
+        schoolCodes.put("400166", new String[]{"0", "ПГ по сел. стоп.", "ПГ по селско стопанство"});
+
+        return schoolCodes;
+    }
+
+    private static Map<String, String[]> prepareSchoolCodesTervel() {
+        Map<String, String[]> schoolCodes = new HashMap<>();
+
+        schoolCodes.put("800094", new String[]{"0", "СУ Й. Йовков", "СУ Йордан Йовков"});
+        schoolCodes.put("800105", new String[]{"0", "ПГ по техника и облекло", "ПГ по техника и облекло Д. Михайлов"});
+
+        return schoolCodes;
+    }
+
+    private static Map<String, String[]> prepareSchoolCodesTryavna() {
+        Map<String, String[]> schoolCodes = new HashMap<>();
+
+        schoolCodes.put("700403", new String[]{"0", "СУ П.Р. Славейков", "СУ Петко Рачев Славейков"});
+        schoolCodes.put("2902503", new String[]{"0", "НГПИ Тревненска школа", "НГПИ Тревненска школа"});
+
+        return schoolCodes;
+    }
+
+    private static Map<String, String[]> prepareSchoolCodesTsarevo() {
+        Map<String, String[]> schoolCodes = new HashMap<>();
+
+        schoolCodes.put("201305", new String[]{"0", "СУ Н. Вапцаров", "СУ Никола Вапцаров"});
+
+        return schoolCodes;
+    }
+
+    private static Map<String, String[]> prepareSchoolCodesSopol() {
+        Map<String, String[]> schoolCodes = new HashMap<>();
+
+        schoolCodes.put("201009", new String[]{"0", SU_KIRIL_I_METODII_SHORT, SU_KIRIL_I_METODII_LONG});
+
+        return schoolCodes;
+    }
+
+    private static Map<String, String[]> prepareSchoolCodesBobovDol() {
+        Map<String, String[]> schoolCodes = new HashMap<>();
+
+        schoolCodes.put("1000015", new String[]{"0", OU_NIKOLA_VAPTSAROV_SHORT, OU_NIKOLA_VAPTSAROV_LONG});
+        schoolCodes.put("1000016", new String[]{"0", SU_HRISTO_BOTEV, SU_HRISTO_BOTEV});
+        schoolCodes.put("1000018", new String[]{"0", SU_PETAR_BERON_SHORT, SU_PETAR_BERON_LONG});
+        schoolCodes.put("1002451", new String[]{"0", "ПГ по проф. обуч.", "ПГ по професионално обучение"});
+
+        return schoolCodes;
+    }
+
+    private static Map<String, String[]> prepareSchoolCodesBelene() {
+        Map<String, String[]> schoolCodes = new HashMap<>();
+
+        schoolCodes.put("1500702", new String[]{"0", OU_VASIL_LEVSKI, OU_VASIL_LEVSKI});
+        schoolCodes.put("1500705", new String[]{"0", "СУ Димчо Дебелянов", "СУ Димчо Дебелянов"});
+        schoolCodes.put("1500706", new String[]{"0", "ПГ по ядрена енерг.", "ПГ ядрена енергетика М. Кюри"});
+
+        return schoolCodes;
+    }
+
+    private static Map<String, String[]> prepareSchoolCodesKneza() {
+        Map<String, String[]> schoolCodes = new HashMap<>();
+
+        schoolCodes.put("1501101", new String[]{"0", "НУ Кнежица", "НУ Кнежица"});
+        schoolCodes.put("1501102", new String[]{"0", OU_VASIL_LEVSKI, OU_VASIL_LEVSKI});
+        schoolCodes.put("1501103", new String[]{"0", OU_OTEC_PAISII, OU_OTEC_PAISII});
+        schoolCodes.put("1501108", new String[]{"0", "СУ Неофит Рилски", "СУ Неофит Рилски"});
+        schoolCodes.put("1501109", new String[]{"0", "ПГ по земеделие", "ПГ по земеделие Стефан Цанов"});
+        schoolCodes.put("1501110", new String[]{"0", "ПГ по механоел.", "ПГ по механоел. Хр. Смирненски"});
 
         return schoolCodes;
     }
