@@ -6,3 +6,7 @@ java/target/**
 **/.DS_Store
 .vscode/**
 .claude/**
+java/.classpath
+java/.factorypath
+java/.project
+java/.settings/
