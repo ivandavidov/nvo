@@ -11,9 +11,8 @@
     .panel { max-width: 520px; margin: 0 auto; }
     canvas { width: 100%; max-width: 360px; display:block; margin: 0 auto; border:1px solid #ccc; background:#fff; image-rendering: pixelated; }
     .meta { display:flex; justify-content:space-between; margin-bottom:8px; color:#555; }
-    .ctrl { margin-top:10px; display:grid; gap:6px; grid-template-columns:repeat(3,1fr); max-width:360px; margin-left:auto; margin-right:auto; }
-    .ctrl button { margin:0; padding:0; height:38px; }
-    .ctrl .wide { grid-column: span 3; }
+    .ctrl { margin-top:10px; display:flex; gap:6px; justify-content:center; max-width:360px; margin-left:auto; margin-right:auto; }
+    .ctrl button { margin:0; padding:0 16px; height:38px; }
   </style>
   <script src="../games-header.js" defer></script>
   <script src="../games-touch.js" defer></script>
@@ -25,14 +24,10 @@
   <h4>Snake</h4>
   <div class="meta"><span>Точки: <strong id="score">0</strong></span><span>Скорост: <strong id="speed">1x</strong></span></div>
   <canvas id="c" width="360" height="360"></canvas>
-  <div style="margin-top:8px; color:#666; text-align:center;">Клавиши: ← ↑ → ↓, Space за пауза</div>
+  <div style="margin-top:8px; color:#666; text-align:center;">Клавиши: ← ↑ → ↓, Space за пауза или плъзгане</div>
   <div class="ctrl">
-  <button id="up" class="button">↑</button>
   <button id="pause" class="button">Пауза</button>
   <button id="reset" class="button">Нова игра</button>
-  <button id="left" class="button">←</button>
-  <button id="down" class="button">↓</button>
-  <button id="right" class="button">→</button>
   </div>
   </div>
   </div>
@@ -140,10 +135,6 @@
     }, {passive:true});
   })();
 
-  document.getElementById('left').onclick = ()=>setDir(-1,0);
-  document.getElementById('right').onclick = ()=>setDir(1,0);
-  document.getElementById('up').onclick = ()=>setDir(0,-1);
-  document.getElementById('down').onclick = ()=>setDir(0,1);
   document.getElementById('pause').onclick = ()=>{ paused = !paused; draw(); };
   document.getElementById('reset').onclick = reset;
 

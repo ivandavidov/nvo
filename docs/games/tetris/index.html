@@ -50,21 +50,6 @@
       font-size: 0.95em;
       text-align: center;
     }
-    .mobile-controls {
-      margin-top: 10px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 6px;
-      max-width: 320px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .mobile-controls button {
-      margin: 0;
-      padding: 0;
-      height: 38px;
-      line-height: 38px;
-    }
   </style>
   <script src="../games-header.js" defer></script>
   <script src="../games-touch.js" defer></script>
@@ -87,13 +72,7 @@
   </div>
   </div>
   <canvas id="tetris" width="200" height="400" aria-label="Тетрис игрално поле"></canvas>
-  <div class="controls">Клавиши: ← → движение, ↑ завъртане, ↓ ускоряване, Space пускане</div>
-  <div class="mobile-controls">
-  <button id="mLeft" class="button">←</button>
-  <button id="mRotate" class="button">↻</button>
-  <button id="mRight" class="button">→</button>
-  <button id="mDrop" class="button" style="grid-column: span 3">Пускане</button>
-  </div>
+  <div class="controls">Клавиши: ← → движение, ↑ завъртане, ↓ ускоряване, Space пускане · плъзгане на екрана</div>
   </div>
   </div>
   </div>
@@ -329,11 +308,6 @@
     btnPause.textContent = paused ? 'Продължи' : 'Пауза';
   });
   btnReset.addEventListener('click', resetGame);
-
-  document.getElementById('mLeft').addEventListener('click', () => { if (!paused && !gameOver) tryMove(-1, 0); });
-  document.getElementById('mRight').addEventListener('click', () => { if (!paused && !gameOver) tryMove(1, 0); });
-  document.getElementById('mRotate').addEventListener('click', () => tryRotate());
-  document.getElementById('mDrop').addEventListener('click', () => hardDrop());
 
   resetGame();
   requestAnimationFrame(tick);

@@ -11,8 +11,6 @@
     .panel{max-width:520px;margin:0 auto}
     canvas{width:100%;max-width:400px;display:block;margin:0 auto;border:1px solid #ccc;background:#fff}
     .meta{display:flex;justify-content:space-between;margin-bottom:8px;color:#555;flex-wrap:wrap;gap:4px}
-    .ctrl{margin-top:10px;display:grid;gap:6px;grid-template-columns:repeat(3,1fr);max-width:200px;margin-left:auto;margin-right:auto}
-    .ctrl button{margin:0;padding:0;height:38px}
     .opts{display:flex;gap:8px;align-items:center;margin-bottom:10px;flex-wrap:wrap}
     .opts label{margin:0;font-size:.9em}
     .opts select{margin:0;height:32px;padding:0 6px}
@@ -32,11 +30,7 @@
   </div>
   <div class="meta"><span>Ходове: <strong id="moves">0</strong></span><span>Време: <strong id="timer">0:00</strong></span></div>
   <canvas id="c" width="400" height="400"></canvas>
-  <div style="margin-top:6px;color:#666;text-align:center;font-size:.9em">Клавиши: ← ↑ → ↓</div>
-  <div class="ctrl">
-  <div></div><button class="button" id="up">↑</button><div></div>
-  <button class="button" id="left">←</button><button class="button" id="down">↓</button><button class="button" id="right">→</button>
-  </div>
+  <div style="margin-top:6px;color:#666;text-align:center;font-size:.9em">Клавиши: ← ↑ → ↓ или плъзгане</div>
   </div>
   </div>
 <script>
@@ -110,10 +104,6 @@ document.addEventListener('keydown',e=>{if(e.key==='ArrowLeft')move(-1,0);if(e.k
   }, {passive:true});
 })();
 
-document.getElementById('left').onclick=()=>move(-1,0);
-document.getElementById('right').onclick=()=>move(1,0);
-document.getElementById('up').onclick=()=>move(0,-1);
-document.getElementById('down').onclick=()=>move(0,1);
 document.getElementById('newMaze').onclick=init;
 document.getElementById('diff').onchange=init;
 init();

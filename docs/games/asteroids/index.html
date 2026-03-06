@@ -11,8 +11,6 @@
     .panel{max-width:520px;margin:0 auto;text-align:center}
     canvas{width:100%;max-width:400px;display:block;margin:0 auto;border:1px solid #333;background:#111}
     .meta{display:flex;justify-content:space-between;margin-bottom:8px;color:#555}
-    .ctrl{margin-top:8px;display:grid;gap:6px;grid-template-columns:repeat(4,1fr);max-width:280px;margin-left:auto;margin-right:auto}
-    .ctrl button{margin:0;padding:0;height:36px;font-size:.9rem}
   </style>
   <script src="../games-header.js" defer></script>
   <script src="../games-touch.js" defer></script>
@@ -25,12 +23,6 @@
   <div class="meta"><span>Точки: <strong id="score">0</strong></span><span>Живот: <strong id="lives">3</strong></span></div>
   <canvas id="c" width="400" height="400"></canvas>
   <div style="margin-top:6px;color:#666;font-size:.9em">← → завъртане, ↑ газ, Space стрелба</div>
-  <div class="ctrl">
-  <button class="button" id="bl">←</button>
-  <button class="button" id="bu">↑</button>
-  <button class="button" id="br">→</button>
-  <button class="button" id="bf">🔫</button>
-  </div>
   <button class="button" style="margin-top:8px" id="restart">Нова игра</button>
   </div>
   </div>
@@ -118,10 +110,6 @@ document.addEventListener('keydown',e=>{
   if(e.key==='ArrowUp'){keys.up=true;e.preventDefault()}if(e.code==='Space'){fire();e.preventDefault()}
 });
 document.addEventListener('keyup',e=>{if(e.key==='ArrowLeft')keys.left=false;if(e.key==='ArrowRight')keys.right=false;if(e.key==='ArrowUp')keys.up=false});
-document.getElementById('bl').onpointerdown=()=>{keys.left=true};document.getElementById('bl').onpointerup=()=>{keys.left=false};
-document.getElementById('br').onpointerdown=()=>{keys.right=true};document.getElementById('br').onpointerup=()=>{keys.right=false};
-document.getElementById('bu').onpointerdown=()=>{keys.up=true};document.getElementById('bu').onpointerup=()=>{keys.up=false};
-document.getElementById('bf').onclick=fire;
 document.getElementById('restart').onclick=init;
 init();
 </script>

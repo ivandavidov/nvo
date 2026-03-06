@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8">
+  <title>Соло</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../css/normalize.css">
+  <link rel="stylesheet" href="../../css/custom.css">
+  <link rel="stylesheet" href="../games.css">
+  <link rel="icon" type="image/png" href="../../images/favicon-7.png">
+  <style>
+    .panel { max-width: 740px; margin: 0 auto; }
+    canvas { width: 100%; max-width: 700px; display: block; margin: 0 auto; touch-action: none; cursor: default; border-radius: 8px; }
+    .meta { display: flex; justify-content: space-between; margin-bottom: 8px; color: #555; }
+    .btns { margin-top: 10px; display: flex; gap: 8px; justify-content: center; }
+    .hint { margin-top: 6px; color: #666; font-size: 0.82em; text-align: center; }
+  </style>
+  <script src="../games-header.js" defer></script>
+  <script src="../games-touch.js" defer></script>
+</head>
+<body class="games-theme">
+<div class="container">
+  <div class="row" style="margin-top:2rem"><a href="../">← Към игрите</a></div>
+  <div class="row panel">
+    <h4>Соло (Klondike)</h4>
+    <div class="meta">
+      <span>Ходове: <strong id="moves">0</strong></span>
+      <span>Точки: <strong id="score">0</strong></span>
+    </div>
+    <canvas id="c" width="700" height="520"></canvas>
+    <p class="hint">Влачи карти • Двойно кликване/докосване → изпрати до основата</p>
+    <div class="btns">
+      <button class="button" id="btnNew">Нова игра</button>
+    </div>
+  </div>
+</div>
+<script>
+'use strict';
+
+const canvas = document.getElementById('c');
+const ctx    = canvas.getContext('2d');
+const movesEl = document.getElementById('moves');
+const scoreEl = document.getElementById('score');
+
+// Card dimensions & layout
+const CW = 80, CH = 112, CR = 6;
+const PAD = 12, COL_W = CW + PAD;
+
+const SUITS      = ['♠','♥','♦','♣'];
+const RANKS      = ['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
+const IS_RED     = [false, true, true, false]; // by suit index
+const FAN_DOWN   = 18; // face-down fan offset
+const FAN_UP     = 28; // face-up fan offset
+
+// Top row positions
+const TOP_Y      = PAD;
+const STOCK_X    = PAD;
+const WASTE_X    = PAD + COL_W;
+const FOUND_X    = [PAD + 3*COL_W, PAD + 4*COL_W, PAD + 5*COL_W, PAD + 6*COL_W];
+
+// Tableau
+const TAB_Y      = PAD + CH + PAD;
+const TAB_X      = i => PAD + i * COL_W;
+
+// Game state
+let stock, waste, foundations, tableau;
+let moveCount, score;
+let drag        = null; // { cards, srcPile, srcIdx, ox, oy, x, y }
+let pendingDrag = null; // drag not yet activated (waiting for threshold)
+let lastTap     = { t: 0, x: 0, y: 0 };
+const DRAG_THR  = 8;   // pixels before drag activates
+
+// ─── Deck helpers ────────────────────────────────────────────────────────────
+
+function makeDeck() {
+  const deck = [];
+  for (let s = 0; s < 4; s++)
+    for (let r = 0; r < 13; r++)
+      deck.push({ suit: s, rank: r, up: false });
+  return deck;
+}
+
+function shuffle(a) {
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = (Math.random() * (i + 1)) | 0;
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function newGame() {
+  const deck = shuffle(makeDeck());
+  tableau    = Array.from({ length: 7 }, () => []);
+  let idx    = 0;
+  for (let col = 0; col < 7; col++)
+    for (let row = 0; row <= col; row++) {
+      const c = deck[idx++];
+      c.up = (row === col);
+      tableau[col].push(c);
+    }
+  stock       = deck.slice(idx).map(c => ({ ...c, up: false }));
+  waste       = [];
+  foundations = [[], [], [], []];
+  moveCount   = 0;
+  score       = 0;
+  drag        = null;
+  movesEl.textContent = '0';
+  scoreEl.textContent = '0';
+  draw();
+}
+
+// ─── Rules ───────────────────────────────────────────────────────────────────
+
+function canTabDrop(card, col) {
+  const pile = tableau[col];
+  if (!pile.length) return card.rank === 12; // King on empty
+  const top = pile[pile.length - 1];
+  return top.up && IS_RED[card.suit] !== IS_RED[top.suit] && card.rank === top.rank - 1;
+}
+
+function canFoundDrop(card, fi) {
+  const pile = foundations[fi];
+  if (!pile.length) return card.rank === 0; // Ace
+  const top = pile[pile.length - 1];
+  return card.suit === top.suit && card.rank === top.rank + 1;
+}
+
+function bestFoundation(card) {
+  for (let i = 0; i < 4; i++) if (canFoundDrop(card, i)) return i;
+  return -1;
+}
+
+// ─── Coordinate helpers ───────────────────────────────────────────────────────
+
+function tabCardY(col, idx) {
+  let y = TAB_Y;
+  for (let i = 0; i < idx; i++) y += tableau[col][i].up ? FAN_UP : FAN_DOWN;
+  return y;
+}
+
+function canvasPos(e) {
+  const r  = canvas.getBoundingClientRect();
+  const sx = canvas.width  / r.width;
+  const sy = canvas.height / r.height;
+  const src = e.touches ? e.touches[0] : e;
+  return { x: (src.clientX - r.left) * sx, y: (src.clientY - r.top) * sy };
+}
+
+function hitTest(px, py) {
+  // Tableau (top-most card first)
+  for (let col = 6; col >= 0; col--) {
+    const pile = tableau[col];
+    const x    = TAB_X(col);
+    for (let i = pile.length - 1; i >= 0; i--) {
+      const y = tabCardY(col, i);
+      if (px >= x && px <= x + CW && py >= y && py <= y + CH)
+        return { type: 'tab', col, idx: i };
+    }
+    if (!pile.length && px >= x && px <= x + CW && py >= TAB_Y && py <= TAB_Y + CH)
+      return { type: 'tab-empty', col };
+  }
+  // Foundations
+  for (let i = 0; i < 4; i++) {
+    const x = FOUND_X[i];
+    if (px >= x && px <= x + CW && py >= TOP_Y && py <= TOP_Y + CH)
+      return { type: 'found', idx: i };
+  }
+  // Waste
+  if (waste.length && px >= WASTE_X && px <= WASTE_X + CW && py >= TOP_Y && py <= TOP_Y + CH)
+    return { type: 'waste' };
+  // Stock
+  if (px >= STOCK_X && px <= STOCK_X + CW && py >= TOP_Y && py <= TOP_Y + CH)
+    return { type: 'stock' };
+  return null;
+}
+
+// ─── Draw ────────────────────────────────────────────────────────────────────
+
+function rrect(x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.roundRect(x, y, w, h, r);
+}
+
+function drawSlot(x, y, label) {
+  rrect(x, y, CW, CH, CR);
+  ctx.fillStyle = 'rgba(0,0,0,.18)';
+  ctx.fill();
+  ctx.strokeStyle = 'rgba(255,255,255,.25)';
+  ctx.lineWidth = 1.5;
+  ctx.stroke();
+  if (label) {
+    ctx.fillStyle = 'rgba(255,255,255,.35)';
+    ctx.font = '28px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(label, x + CW / 2, y + CH / 2 + 10);
+  }
+}
+
+function drawBack(x, y) {
+  ctx.save();
+  rrect(x, y, CW, CH, CR);
+  ctx.fillStyle = '#1a56a0';
+  ctx.fill();
+  ctx.strokeStyle = '#4a8ad4';
+  ctx.lineWidth = 1;
+  ctx.stroke();
+  // Grid pattern
+  ctx.strokeStyle = 'rgba(255,255,255,.15)';
+  ctx.lineWidth = 1;
+  for (let i = 6; i < CW - 4; i += 8) { ctx.beginPath(); ctx.moveTo(x+i,y+4); ctx.lineTo(x+i,y+CH-4); ctx.stroke(); }
+  for (let j = 6; j < CH - 4; j += 8) { ctx.beginPath(); ctx.moveTo(x+4,y+j); ctx.lineTo(x+CW-4,y+j); ctx.stroke(); }
+  ctx.restore();
+}
+
+function drawCard(x, y, card, shadow) {
+  ctx.save();
+  if (shadow) {
+    ctx.shadowColor = 'rgba(0,0,0,.45)';
+    ctx.shadowBlur  = 10;
+    ctx.shadowOffsetX = 3; ctx.shadowOffsetY = 4;
+  }
+  rrect(x, y, CW, CH, CR);
+  ctx.fillStyle = '#fff';
+  ctx.fill();
+  ctx.shadowColor = 'transparent';
+  ctx.strokeStyle = '#bbb';
+  ctx.lineWidth = .8;
+  ctx.stroke();
+
+  const color = IS_RED[card.suit] ? '#cc2020' : '#111';
+  const suit  = SUITS[card.suit];
+  const rank  = RANKS[card.rank];
+
+  ctx.fillStyle = color;
+  // Top-left corner
+  ctx.font = 'bold 13px sans-serif';
+  ctx.textAlign = 'left';
+  ctx.fillText(rank, x + 5, y + 15);
+  ctx.font = '11px sans-serif';
+  ctx.fillText(suit, x + 5, y + 27);
+  // Bottom-right corner (rotated)
+  ctx.save();
+  ctx.translate(x + CW, y + CH);
+  ctx.rotate(Math.PI);
+  ctx.font = 'bold 13px sans-serif';
+  ctx.textAlign = 'left';
+  ctx.fillText(rank, 5, 15);
+  ctx.font = '11px sans-serif';
+  ctx.fillText(suit, 5, 27);
+  ctx.restore();
+  // Centre suit
+  ctx.font = `${card.rank === 9 ? 30 : 34}px sans-serif`;
+  ctx.textAlign = 'center';
+  ctx.fillText(suit, x + CW / 2, y + CH / 2 + 12);
+  ctx.restore();
+}
+
+function draw() {
+  ctx.fillStyle = '#2d6a4f';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  // Stock
+  if (stock.length) drawBack(STOCK_X, TOP_Y);
+  else              drawSlot(STOCK_X, TOP_Y, '↺');
+
+  // Waste
+  if (waste.length) drawCard(WASTE_X, TOP_Y, waste[waste.length - 1]);
+  else              drawSlot(WASTE_X, TOP_Y);
+
+  // Foundations
+  for (let i = 0; i < 4; i++) {
+    const x = FOUND_X[i];
+    if (foundations[i].length) drawCard(x, TOP_Y, foundations[i][foundations[i].length - 1]);
+    else                       drawSlot(x, TOP_Y, SUITS[i]);
+  }
+
+  // Tableau
+  for (let col = 0; col < 7; col++) {
+    const pile = tableau[col];
+    const x    = TAB_X(col);
+    if (!pile.length) { drawSlot(x, TAB_Y); continue; }
+    let cy = TAB_Y;
+    for (let i = 0; i < pile.length; i++) {
+      const skipped = drag && drag.srcPile === pile && i >= drag.srcIdx;
+      if (!skipped) {
+        pile[i].up ? drawCard(x, cy, pile[i]) : drawBack(x, cy);
+      }
+      if (i < pile.length - 1)
+        cy += pile[i].up ? FAN_UP : FAN_DOWN;
+    }
+  }
+
+  // Drag ghost
+  if (drag) {
+    ctx.save();
+    ctx.shadowColor = 'rgba(0,0,0,.5)';
+    ctx.shadowBlur  = 14;
+    ctx.shadowOffsetX = 4; ctx.shadowOffsetY = 6;
+    for (let i = 0; i < drag.cards.length; i++)
+      drawCard(drag.x, drag.y + i * FAN_UP, drag.cards[i]);
+    ctx.restore();
+  }
+}
+
+// ─── Game actions ─────────────────────────────────────────────────────────────
+
+function removeSource() {
+  if (drag.srcPile === waste)
+    waste.pop();
+  else
+    drag.srcPile.splice(drag.srcIdx, drag.cards.length);
+}
+
+function flipTops() {
+  let flipped = false;
+  for (let col = 0; col < 7; col++) {
+    const p = tableau[col];
+    if (p.length && !p[p.length - 1].up) { p[p.length - 1].up = true; flipped = true; }
+  }
+  if (flipped) { score += 5; scoreEl.textContent = String(score); }
+}
+
+function addScore(pts) {
+  score += pts;
+  scoreEl.textContent = String(score);
+}
+
+function checkWin() {
+  if (foundations.every(f => f.length === 13)) {
+    setTimeout(() => {
+      ctx.fillStyle = 'rgba(0,0,0,.65)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#fff';
+      ctx.font = 'bold 52px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('🎉 Победа!', canvas.width / 2, canvas.height / 2 - 20);
+      ctx.font = '22px sans-serif';
+      ctx.fillText(`Ходове: ${moveCount}  •  Точки: ${score}`, canvas.width / 2, canvas.height / 2 + 22);
+    }, 80);
+  }
+}
+
+function doAutoFoundation(card, srcPile, srcIdx) {
+  const fi = bestFoundation(card);
+  if (fi < 0) return false;
+  if (srcPile === waste) waste.pop();
+  else srcPile.splice(srcIdx, 1);
+  foundations[fi].push(card);
+  moveCount++; addScore(15);
+  movesEl.textContent = String(moveCount);
+  flipTops(); checkWin(); draw();
+  return true;
+}
+
+function tryDrop(px, py) {
+  if (!drag) return;
+  const hit  = hitTest(px, py);
+  const top  = drag.cards[0];
+  let placed = false;
+
+  if (hit) {
+    if ((hit.type === 'tab' || hit.type === 'tab-empty') && canTabDrop(top, hit.col)) {
+      removeSource();
+      drag.cards.forEach(c => { c.up = true; tableau[hit.col].push(c); });
+      moveCount++; addScore(5);
+      placed = true;
+    } else if (hit.type === 'found' && drag.cards.length === 1 && canFoundDrop(top, hit.idx)) {
+      removeSource();
+      foundations[hit.idx].push(top);
+      moveCount++; addScore(15);
+      placed = true;
+    }
+  }
+
+  movesEl.textContent = String(moveCount);
+  drag = null;
+  flipTops(); checkWin(); draw();
+}
+
+// ─── Input ────────────────────────────────────────────────────────────────────
+
+function onDown(e) {
+  e.preventDefault();
+  const { x, y } = canvasPos(e);
+  const now = Date.now();
+  const dbl = now - lastTap.t < 340 && Math.abs(x - lastTap.x) < 22 && Math.abs(y - lastTap.y) < 22;
+  lastTap = { t: now, x, y };
+
+  const hit = hitTest(x, y);
+  if (!hit) return;
+
+  // Stock click: deal or recycle
+  if (hit.type === 'stock') {
+    if (stock.length) {
+      const c = stock.pop(); c.up = true; waste.push(c);
+    } else {
+      waste.reverse().forEach(c => { c.up = false; stock.push(c); });
+      waste = [];
+      addScore(-20);
+    }
+    draw(); return;
+  }
+
+  // Double tap → auto-foundation
+  if (dbl) {
+    let card = null, sp = null, si = -1;
+    if (hit.type === 'waste' && waste.length) {
+      card = waste[waste.length - 1]; sp = waste; si = waste.length - 1;
+    } else if (hit.type === 'tab') {
+      const p = tableau[hit.col];
+      if (p[hit.idx].up) { card = p[hit.idx]; sp = p; si = hit.idx; }
+    }
+    if (card && si === (sp.length - 1) && doAutoFoundation(card, sp, si)) return;
+  }
+
+  // Prepare drag — activate only after threshold in onMove
+  if (hit.type === 'waste' && waste.length) {
+    pendingDrag = { cards: [waste[waste.length - 1]], srcPile: waste, srcIdx: waste.length - 1,
+                    ox: x - WASTE_X, oy: y - TOP_Y, cardX: WASTE_X, cardY: TOP_Y, startX: x, startY: y };
+  } else if (hit.type === 'tab') {
+    const pile = tableau[hit.col];
+    const card = pile[hit.idx];
+    if (!card.up) return;
+    const cy = tabCardY(hit.col, hit.idx);
+    pendingDrag = { cards: pile.slice(hit.idx), srcPile: pile, srcIdx: hit.idx,
+                    ox: x - TAB_X(hit.col), oy: y - cy, cardX: TAB_X(hit.col), cardY: cy, startX: x, startY: y };
+  }
+}
+
+function onMove(e) {
+  if (!drag && !pendingDrag) return;
+  e.preventDefault();
+  const { x, y } = canvasPos(e);
+
+  // Activate drag once pointer has moved past threshold
+  if (pendingDrag) {
+    const dx = x - pendingDrag.startX, dy = y - pendingDrag.startY;
+    if (dx * dx + dy * dy < DRAG_THR * DRAG_THR) return;
+    const p = pendingDrag;
+    drag = { cards: p.cards, srcPile: p.srcPile, srcIdx: p.srcIdx,
+             ox: p.ox, oy: p.oy, x: p.cardX, y: p.cardY };
+    pendingDrag = null;
+  }
+
+  drag.x = x - drag.ox;
+  drag.y = y - drag.oy;
+  draw();
+}
+
+function onUp(e) {
+  e.preventDefault();
+  pendingDrag = null;
+  if (!drag) return;
+  const { x, y } = canvasPos(e);
+  tryDrop(x, y);
+}
+
+// Use pointer events for unified mouse+touch drag
+canvas.addEventListener('pointerdown',  onDown, { passive: false });
+canvas.addEventListener('pointermove',  onMove, { passive: false });
+canvas.addEventListener('pointerup',    onUp,   { passive: false });
+canvas.addEventListener('pointercancel', () => { drag = null; pendingDrag = null; draw(); });
+
+document.getElementById('btnNew').addEventListener('click', newGame);
+
+newGame();
+</script>
+</body>
+</html>

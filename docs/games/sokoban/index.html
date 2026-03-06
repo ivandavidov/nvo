@@ -11,8 +11,6 @@
     .panel { max-width: 440px; margin: 0 auto; text-align:center; }
     canvas { display:block; margin:0 auto; border:1px solid #ccc; background:#c8a96e; }
     .meta { display:flex; justify-content:space-between; margin-bottom:6px; color:#555; align-items:center; }
-    .ctrl { display:grid; grid-template-columns:repeat(3,48px); gap:6px; margin:10px auto 0; width:fit-content; }
-    .ctrl button { width:48px; height:48px; padding:0; font-size:1.3rem; }
     #msg { min-height:1.8rem; font-weight:bold; color:#27ae60; margin-bottom:4px; }
     #hint { color:#888; font-size:.82rem; margin-top:6px; }
   </style>
@@ -31,13 +29,7 @@
   </div>
   <div id="msg"></div>
   <canvas id="c"></canvas>
-  <div id="hint">Стрелки / WASD за движение · ↩ за отмяна</div>
-  <div class="ctrl">
-  <div></div><button class="button" id="bU">↑</button><div></div>
-  <button class="button" id="bL">←</button>
-  <button class="button" id="bD">↓</button>
-  <button class="button" id="bR">→</button>
-  </div>
+  <div id="hint">Стрелки / WASD за движение · ↩ за отмяна · плъзгане на екрана</div>
   <div style="margin-top:10px;display:flex;gap:8px;justify-content:center;">
   <button class="button" id="restartBtn">Рестарт</button>
   <button class="button" id="nextBtn" style="display:none">Следващо →</button>
@@ -211,10 +203,6 @@ document.addEventListener('keydown',e=>{
   if(e.key==='z'||e.key==='Z'||(e.ctrlKey&&e.key==='z')){e.preventDefault();undo();}
 });
 
-document.getElementById('bU').onclick=()=>move(-1,0);
-document.getElementById('bD').onclick=()=>move(1,0);
-document.getElementById('bL').onclick=()=>move(0,-1);
-document.getElementById('bR').onclick=()=>move(0,1);
 document.getElementById('undoBtn').onclick=undo;
 document.getElementById('restartBtn').onclick=()=>parseLevel(level);
 document.getElementById('nextBtn').onclick=()=>{level++;parseLevel(level);};

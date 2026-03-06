@@ -24,11 +24,9 @@
   <h4>Doodle Jump</h4>
   <div class="meta"><span>Точки: <strong id="score">0</strong></span><span>Рекорд: <strong id="best">0</strong></span></div>
   <canvas id="c" width="360" height="560"></canvas>
-  <div style="margin-top:6px;color:#666;font-size:.9em">Клавиши: ← →</div>
+  <div style="margin-top:6px;color:#666;font-size:.9em">Клавиши: ← → или докосване на лявата/дясната половина</div>
   <div class="ctrl">
-  <button class="button" id="left">←</button>
   <button class="button" id="restart">Нова игра</button>
-  <button class="button" id="right">→</button>
   </div>
   </div>
   </div>
@@ -101,9 +99,6 @@ function drawGameOver(){
 
 document.addEventListener('keydown',e=>{if(e.key==='ArrowLeft')keys.left=true;if(e.key==='ArrowRight')keys.right=true});
 document.addEventListener('keyup',e=>{if(e.key==='ArrowLeft')keys.left=false;if(e.key==='ArrowRight')keys.right=false});
-document.getElementById('left').onpointerdown=()=>{keys.left=true};document.getElementById('left').onpointerup=()=>{keys.left=false};
-document.getElementById('right').onpointerdown=()=>{keys.right=true};document.getElementById('right').onpointerup=()=>{keys.right=false};
-
 // Touch: докосване на лявата/дясната половина на canvas → непрекъснато движение
 (function(){
   function applyTouch(e) {

@@ -11,8 +11,6 @@
     .panel{max-width:520px;margin:0 auto;text-align:center}
     canvas{width:100%;max-width:400px;display:block;margin:0 auto;border:1px solid #555}
     .meta{display:flex;justify-content:space-between;margin-bottom:8px;color:#555}
-    .ctrl{margin-top:8px;display:grid;gap:6px;grid-template-columns:repeat(3,1fr);max-width:200px;margin-left:auto;margin-right:auto}
-    .ctrl button{margin:0;padding:0;height:38px}
   </style>
   <script src="../games-header.js" defer></script>
   <script src="../games-touch.js" defer></script>
@@ -24,11 +22,7 @@
   <h4>Frogger</h4>
   <div class="meta"><span>Точки: <strong id="score">0</strong></span><span>Живот: <strong id="lives">3</strong></span></div>
   <canvas id="c" width="400" height="520"></canvas>
-  <div style="margin-top:6px;color:#666;font-size:.9em">Клавиши: ← ↑ → ↓</div>
-  <div class="ctrl">
-  <div></div><button class="button" id="up">↑</button><div></div>
-  <button class="button" id="left">←</button><button class="button" id="down">↓</button><button class="button" id="right">→</button>
-  </div>
+  <div style="margin-top:6px;color:#666;font-size:.9em">Клавиши: ← ↑ → ↓ или плъзгане</div>
   <button class="button" style="margin-top:8px" id="restart">Нова игра</button>
   </div>
   </div>
@@ -146,10 +140,6 @@ document.addEventListener('keydown',e=>{
   }, {passive:true});
 })();
 
-document.getElementById('left').onclick=()=>move(-1,0);
-document.getElementById('right').onclick=()=>move(1,0);
-document.getElementById('up').onclick=()=>move(0,-1);
-document.getElementById('down').onclick=()=>move(0,1);
 document.getElementById('restart').onclick=init;
 init();
 </script>

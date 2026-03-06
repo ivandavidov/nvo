@@ -22,8 +22,6 @@
     .c1024{ background:#edc53f; color:#fff; font-size:1rem; }
     .c2048{ background:#edc22e; color:#fff; font-size:1rem; }
     .ctrl { margin-top:10px; text-align:center; color:#666; }
-    .touch { margin-top:10px; display:grid; gap:6px; grid-template-columns:repeat(3,1fr); }
-    .touch button { margin:0; height:38px; padding:0; }
   </style>
   <script src="../games-header.js" defer></script>
   <script src="../games-touch.js" defer></script>
@@ -35,11 +33,7 @@
   <h4>2048</h4>
   <div class="bar"><span>Точки: <strong id="score">0</strong></span><button id="reset" class="button">Нова игра</button></div>
   <div id="grid" class="grid"></div>
-  <div class="ctrl">Клавиши: ← ↑ → ↓</div>
-  <div class="touch">
-  <div></div><button id="up" class="button">↑</button><div></div>
-  <button id="left" class="button">←</button><button id="down" class="button">↓</button><button id="right" class="button">→</button>
-  </div>
+  <div class="ctrl">Клавиши: ← ↑ → ↓ или плъзгане</div>
   </div>
   </div>
   <script>
@@ -137,10 +131,6 @@
       if(Math.abs(dx)>Math.abs(dy)) { move(dx>0?'right':'left'); } else { move(dy>0?'down':'up'); }
     }, {passive:true});
   })();
-  document.getElementById('left').onclick = ()=>move('left');
-  document.getElementById('right').onclick = ()=>move('right');
-  document.getElementById('up').onclick = ()=>move('up');
-  document.getElementById('down').onclick = ()=>move('down');
   document.getElementById('reset').onclick = reset;
   reset();
   </script>
