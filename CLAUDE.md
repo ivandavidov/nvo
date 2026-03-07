@@ -33,8 +33,14 @@ java -jar target/nvo-v2.jar 12
 
 ## Files You Will Touch Most
 
-- `docs/js/logic.js` — main page logic for grade pages
-- `docs/stats/logic.js` — statistics page logic
+- Grade page logic (split into 6 files, loaded in this order via `<script defer>`):
+  - `docs/js/logic-core.js` — shared `var` state, URL helpers, city/school lookups, median calculations
+  - `docs/js/logic-chart.js` — button state, Highcharts rendering, redraw, URL/cookie sync
+  - `docs/js/logic-pdf.js` — PDF school report generation, ranking table PDF export, font loading
+  - `docs/js/logic-ranking.js` — ranking tables, sorting, filtering, median tables, CSV/PDF links
+  - `docs/js/logic-city.js` — city sections, school buttons, lazy loading (IntersectionObserver)
+  - `docs/js/logic-init.js` — navigation, year nav, bootstrap (`DOMContentLoaded` + `onLoad`)
+- `docs/stats/logic.js` — statistics page logic (separate, not part of the split)
 - `docs/js/config-global.js` + `docs/js/config-{4,7,10,12}.js` — configuration
 - `docs/css/custom.css` — main styling
 - `docs/games/*` + `docs/games/games.css` — games pages and theme

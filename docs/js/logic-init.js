@@ -1,0 +1,134 @@
+function applyNavigationPaths() {
+  let currentGrade = getCurrentGradeFromPath();
+
+  let gradeTabs = document.querySelectorAll('.grade-tabs a[data-grade]');
+  gradeTabs.forEach((a) => {
+    let grade = Number.parseInt(a.getAttribute('data-grade'), 10);
+    if(!Number.isInteger(grade)) {
+      return;
+    }
+    a.href = getGradePagePath(grade);
+    a.classList.toggle('active', grade === currentGrade);
+  });
+
+  let gradeLinks = document.querySelectorAll('a[data-grade-link]');
+  gradeLinks.forEach((a) => {
+    let grade = Number.parseInt(a.getAttribute('data-grade-link'), 10);
+    if(!Number.isInteger(grade)) {
+      return;
+    }
+    a.href = getGradePagePath(grade);
+  });
+
+  let statsLinks = document.querySelectorAll('a[data-stats-grade]');
+  statsLinks.forEach((a) => {
+    let grade = Number.parseInt(a.getAttribute('data-stats-grade'), 10);
+    a.href = getStatsPagePath(grade);
+  });
+}
+
+function generateYearNavigation() {
+  let fallbackLatestYear = firstYear + s[baseSchoolIndex].b.length - 1;
+  let navItems = document.querySelectorAll('.years-nav[data-year-grade]');
+  navItems.forEach((el) => {
+    let grade = Number.parseInt(el.getAttribute('data-year-grade'), 10);
+    if(!Number.isInteger(grade)) {
+      el.textContent = '';
+      return;
+    }
+    let configuredLastYear = typeof latestYearByGrade !== 'undefined' ? latestYearByGrade[grade] : null;
+    let latestYear = Number.isFinite(configuredLastYear) ? configuredLastYear : fallbackLatestYear;
+    let endYear = latestYear - 1;
+    if(endYear < NAV_FIRST_YEAR) {
+      el.textContent = '';
+      return;
+    }
+    let baseHref = getGradePagePath(grade) + '?year=';
+    el.textContent = '';
+    el.appendChild(document.createTextNode('('));
+    for(let year = endYear; year >= NAV_FIRST_YEAR; year--) {
+      if(year < endYear) {
+        el.appendChild(document.createTextNode(', '));
+      }
+      let a = document.createElement('a');
+      a.href = baseHref + year;
+      a.textContent = year;
+      el.appendChild(a);
+    }
+    el.appendChild(document.createTextNode(')'));
+  });
+}
+
+function setDefaultClickedButtons() {
+  let indices = getDefaultClickedButtonIds();
+  pendingSelectedButtonIds = new Set();
+  indices.forEach((id) => {
+    if(button(id)) {
+      setButtonState(id, true);
+    } else {
+      pendingSelectedButtonIds.add(id);
+    }
+  });
+  applyPendingSelectedButtons();
+}
+
+function enableFixedButtons() {
+  let divFixedButtons = document.getElementById('divFixedButtons');
+  if(divFixedButtons) {
+    divFixedButtons.style.display = 'flex';
+    divFixedButtons.style.flexWrap = 'wrap';
+  }
+  let btnClear = document.getElementById('btnClear');
+  if(btnClear) {
+    btnClear.style.display = 'block';
+    btnClear.onclick = () => {
+      [...selectedSchoolIndices].forEach((i) => setButtonState(i, false));
+      pendingSelectedButtonIds = null;
+      let mBtns = document.getElementsByClassName('mbtn');
+      for(let mBtn of mBtns) {
+        mBtn.classList.remove('button-primary');
+      }
+      redraw();
+    };
+  }
+  let btnTop = document.getElementById('btnTop');
+  if(btnTop) {
+    btnTop.style.display = 'block';
+    let hrCharts = document.getElementById('hrCharts');
+    btnTop.onclick = () => { if(hrCharts) { hrCharts.scrollIntoView(); } };
+  }
+}
+
+function generateJoke() {
+  let j = randomJoke();
+  let divJoke = document.getElementById('jokeQuote');
+  let divAuthor = document.getElementById('jokeAuthor');
+  if(divJoke) { divJoke.innerText = '"' + j.q + '"'; }
+  if(divAuthor) { divAuthor.innerText = j.a; }
+}
+
+function onLoad() {
+  applyNavigationPaths();
+  generateJoke();
+  generateYearNavigation();
+  calculateTimeTravel();
+  fixForYear2018();
+  fixForMissingYears();
+  disableEntries();
+  calculateSchoolMedians();
+  calculateCityMediansBySchool();
+  calculateCityMediansByAttendees();
+  generateCitySections();
+  enableFixedButtons();
+  setDefaultClickedButtons();
+  initializeHighcharts();
+  redraw();
+}
+
+if(!window.__NVO_TEST_MODE__) {
+  if(document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', onLoad);
+  } else {
+    onLoad();
+  }
+}

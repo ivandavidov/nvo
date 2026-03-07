@@ -55,12 +55,21 @@ docs/
     config-global.js         shared defaults + constants
     config-{4,7,10,12}.js    per-grade overrides via applyGradeConfig(...)
     schools-{4,7,10,12}.js   generated data
-    logic.js                 main page logic (grades)
-    jokes.js, highcharts.js, exporting.js, ...
+    logic-core.js            shared state (var), URL helpers, city/school lookups, medians
+    logic-chart.js           button state, Highcharts rendering, redraw, URL/cookie sync
+    logic-pdf.js             PDF school report, ranking table PDF export, font loading
+    logic-ranking.js         ranking tables, sorting, filtering, median tables, CSV/PDF links
+    logic-city.js            city sections, school buttons, lazy loading (IntersectionObserver)
+    logic-init.js            navigation, year nav, DOMContentLoaded bootstrap
+    jokes.js, highcharts.js, exporting.js, jspdf.umd.min.js, ...
   css/
     normalize.css
     custom.css
 ```
+
+The six `logic-*.js` files are loaded via `<script defer>` in the order listed above.
+All shared mutable state lives in `logic-core.js` using `var` (not `let`) so that every
+subsequent file can access it through the global scope.
 
 `docs/old/` is legacy archive and should stay untouched unless explicitly requested.
 
@@ -68,7 +77,7 @@ docs/
 
 - `config-global.js` defines `GRADE_CONFIG_DEFAULTS` and shared constants.
 - Each per-grade config (`config-*.js`) calls `applyGradeConfig({...})` with overrides.
-- `logic.js` reads these globals (`firstYear`, `numYears`, `cookieName`, chart titles, ranking params, etc.).
+- The `logic-*.js` files read these globals (`firstYear`, `numYears`, `cookieName`, chart titles, ranking params, etc.).
 
 ## Generated Data Contract
 
@@ -94,7 +103,7 @@ si = {
 
 1. Do not manually edit `docs/js/schools-{4,7,10,12}.js` (generated files).
 2. Keep relative paths correct for nested pages (`../` vs `../../`).
-3. For grade page navigation, prefer existing `data-*` hooks; `logic.js` resolves links dynamically.
+3. For grade page navigation, prefer existing `data-*` hooks; `logic-init.js` resolves links dynamically.
 4. `stats/index.html` intentionally allows `unsafe-eval` in CSP because `stats/logic.js` loads config/data through `new Function(...)` in isolated scope.
 5. Highcharts and jsPDF are vendored; avoid unnecessary upgrades unless requested.
 
