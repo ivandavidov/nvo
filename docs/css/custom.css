@@ -589,6 +589,23 @@ tbody td + td {
   border-left: 1px dotted var(--color-border);
 }
 
+/* --- School Report PDF Link --- */
+.school-report-link {
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  text-decoration: none;
+  padding: 0.15rem 0.4rem;
+  border-radius: var(--radius-sm);
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.school-report-link:hover {
+  background-color: var(--color-primary);
+  color: white;
+}
+
 /* --- Fixed Floating Buttons --- */
 .buttons-fixed {
   position: fixed;

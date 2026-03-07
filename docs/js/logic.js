@@ -174,6 +174,383 @@ function cityContainsSchoolIndex(cityName, schoolIndex) {
   return false;
 }
 
+function findCityForSchool(schoolIndex) {
+  let cityNames = Object.keys(si);
+  for(let c = 0; c < cityNames.length; c++) {
+    let cityName = cityNames[c];
+    let groups = getCitySchoolGroups(cityName);
+    if(!groups) { continue; }
+    let pu = groups.puSchools;
+    if(pu && schoolIndex >= pu[0] && schoolIndex <= pu[1]) {
+      return { cityName: cityName, isPrivate: false };
+    }
+    let pr = groups.prSchools;
+    if(pr && schoolIndex >= pr[0] && schoolIndex <= pr[1]) {
+      return { cityName: cityName, isPrivate: true };
+    }
+  }
+  return null;
+}
+
+function calculateNationalAverages() {
+  let totalYears = s[baseSchoolIndex].b.length;
+  let natB = [];
+  let natM = [];
+  for(let y = 0; y < totalYears; y++) {
+    let sumB = 0, countB = 0, sumM = 0, countM = 0;
+    s.forEach((o) => {
+      if(o && o.b[y]) { sumB += o.b[y]; countB++; }
+      if(o && o.m[y]) { sumM += o.m[y]; countM++; }
+    });
+    natB.push(countB > 0 ? sumB / countB : 0);
+    natM.push(countM > 0 ? sumM / countM : 0);
+  }
+  return { b: natB, m: natM };
+}
+
+function renderChartToImage(containerDiv, chartConfig) {
+  return new Promise((resolve) => {
+    let chart = Highcharts.chart(containerDiv, chartConfig);
+    let svg = chart.getSVG({ chart: { width: 520, height: 260 } });
+    chart.destroy();
+    let canvas = document.createElement('canvas');
+    canvas.width = 1040;
+    canvas.height = 520;
+    let ctx = canvas.getContext('2d');
+    let img = new Image();
+    img.onload = () => {
+      ctx.drawImage(img, 0, 0, 1040, 520);
+      resolve(canvas.toDataURL('image/png'));
+    };
+    img.onerror = () => {
+      resolve(null);
+    };
+    img.src = 'data:image/svg+xml;base64,' + window.btoa(unescape(encodeURIComponent(svg)));
+  });
+}
+
+function getSchoolRankInCity(schoolIndex, cityName) {
+  let groups = getCitySchoolGroups(cityName);
+  if(!groups) { return { rank: null, total: 0 }; }
+  let schools = [];
+  for(let i = groups.puSchools[0]; i <= groups.puSchools[1]; i++) {
+    if(s[i] && (s[i].mb || s[i].mm)) { schools.push(i); }
+  }
+  if(groups.prSchools) {
+    for(let i = groups.prSchools[0]; i <= groups.prSchools[1]; i++) {
+      if(s[i] && (s[i].mb || s[i].mm)) { schools.push(i); }
+    }
+  }
+  schools.sort((a, b) => (s[b].mb + s[b].mm) / 2 - (s[a].mb + s[a].mm) / 2);
+  let rank = schools.indexOf(schoolIndex);
+  return { rank: rank >= 0 ? rank + 1 : null, total: schools.length };
+}
+
+async function generateSchoolReportPdf(schoolIndex, linkEl) {
+  let jsPdfNs = window.jspdf;
+  if(!jsPdfNs || !jsPdfNs.jsPDF || !jsPdfNs.jsPDF.API || typeof jsPdfNs.jsPDF.API.autoTable !== 'function') {
+    return;
+  }
+  let school = s[schoolIndex];
+  if(!school) { return; }
+  setPdfLinkBusyState(linkEl, true);
+  try {
+    let cityInfo = findCityForSchool(schoolIndex);
+    let cityName = cityInfo ? cityInfo.cityName : '';
+    let schoolType = cityInfo ? (cityInfo.isPrivate ? 'Частно' : 'Държавно') : '';
+    let totalYears = school.b.length;
+    let fontBase64 = await getPdfFontBase64();
+    let doc = new jsPdfNs.jsPDF({ orientation: 'portrait', unit: 'pt', format: 'a4' });
+    doc.addFileToVFS(TABLE_PDF_FONT_FILE, fontBase64);
+    doc.addFont(TABLE_PDF_FONT_FILE, TABLE_PDF_FONT_NAME, 'normal');
+    doc.setFont(TABLE_PDF_FONT_NAME, 'normal');
+    let pageW = doc.internal.pageSize.getWidth();
+    let margin = 40;
+
+    // Page 1: Overview
+    doc.setFontSize(18);
+    doc.text(school.n, pageW / 2, 45, { align: 'center' });
+    doc.setFontSize(12);
+    let subtitle = tableTitleType + '  |  ' + cityName + '  |  ' + schoolType;
+    doc.text(subtitle, pageW / 2, 70, { align: 'center' });
+
+    // Compute stats
+    let rankInfo = getSchoolRankInCity(schoolIndex, cityName);
+    let natAvg = calculateNationalAverages();
+    let cityAvgB = cityInfo && !cityInfo.isPrivate && si[cityName].mnbs ? si[cityName].mnbs : (cityInfo && cityInfo.isPrivate && si[cityName].mpbs ? si[cityName].mpbs : null);
+    let cityAvgM = cityInfo && !cityInfo.isPrivate && si[cityName].mnms ? si[cityName].mnms : (cityInfo && cityInfo.isPrivate && si[cityName].mpms ? si[cityName].mpms : null);
+
+    let validB = school.b.filter(v => v !== null && v !== undefined);
+    let validM = school.m.filter(v => v !== null && v !== undefined);
+    let validBu = school.bu.filter((v, i) => v && school.b[i] !== null);
+    let validMu = school.mu.filter((v, i) => v && school.m[i] !== null);
+
+    let avg = (arr) => arr.length > 0 ? arr.reduce((a, b) => a + b, 0) / arr.length : 0;
+    let stddev = (arr) => {
+      if(arr.length < 2) { return 0; }
+      let m = avg(arr);
+      return Math.sqrt(arr.reduce((sum, v) => sum + (v - m) * (v - m), 0) / (arr.length - 1));
+    };
+    let bestYearB = null, worstYearB = null, bestYearM = null, worstYearM = null;
+    for(let y = 0; y < totalYears; y++) {
+      if(school.b[y] !== null) {
+        if(bestYearB === null || school.b[y] > school.b[bestYearB]) { bestYearB = y; }
+        if(worstYearB === null || school.b[y] < school.b[worstYearB]) { worstYearB = y; }
+      }
+      if(school.m[y] !== null) {
+        if(bestYearM === null || school.m[y] > school.m[bestYearM]) { bestYearM = y; }
+        if(worstYearM === null || school.m[y] < school.m[worstYearM]) { worstYearM = y; }
+      }
+    }
+
+    // Percentile in city
+    let citySchoolAvgs = [];
+    let groups = getCitySchoolGroups(cityName);
+    if(groups) {
+      let addRange = (range) => {
+        if(!range) { return; }
+        for(let i = range[0]; i <= range[1]; i++) {
+          if(s[i] && (s[i].mb || s[i].mm)) { citySchoolAvgs.push((s[i].mb + s[i].mm) / 2); }
+        }
+      };
+      addRange(groups.puSchools);
+      addRange(groups.prSchools);
+    }
+    citySchoolAvgs.sort((a, b) => a - b);
+    let schoolAvg = (school.mb + school.mm) / 2;
+    let percentile = 0;
+    if(citySchoolAvgs.length > 0) {
+      let below = citySchoolAvgs.filter(v => v < schoolAvg).length;
+      percentile = Math.round(below / citySchoolAvgs.length * 100);
+    }
+
+    // Trend (linear regression slope)
+    let calcTrend = (arr) => {
+      let pts = [];
+      for(let i = 0; i < arr.length; i++) { if(arr[i] !== null && arr[i] !== undefined) { pts.push({ x: i, y: arr[i] }); } }
+      if(pts.length < 2) { return null; }
+      let mx = avg(pts.map(p => p.x));
+      let my = avg(pts.map(p => p.y));
+      let num = pts.reduce((s, p) => s + (p.x - mx) * (p.y - my), 0);
+      let den = pts.reduce((s, p) => s + (p.x - mx) * (p.x - mx), 0);
+      return den !== 0 ? num / den : 0;
+    };
+    let trendB = calcTrend(school.b);
+    let trendM = calcTrend(school.m);
+
+    // Summary stats box
+    let summaryData = [
+      [csvHeaderBel + ' средна (3г.)', school.mb ? school.mb.toFixed(2) : '-', csvHeaderMat + ' средна (3г.)', school.mm ? school.mm.toFixed(2) : '-'],
+      [csvHeaderBel + ' средна (всички)', validB.length > 0 ? avg(validB).toFixed(2) : '-', csvHeaderMat + ' средна (всички)', validM.length > 0 ? avg(validM).toFixed(2) : '-'],
+      [csvHeaderBel + ' станд. отклонение', validB.length > 1 ? stddev(validB).toFixed(2) : '-', csvHeaderMat + ' станд. отклонение', validM.length > 1 ? stddev(validM).toFixed(2) : '-'],
+      [csvHeaderBel + ' тренд (наклон)', trendB !== null ? (trendB >= 0 ? '+' : '') + trendB.toFixed(2) + '/г.' : '-', csvHeaderMat + ' тренд (наклон)', trendM !== null ? (trendM >= 0 ? '+' : '') + trendM.toFixed(2) + '/г.' : '-'],
+      [csvHeaderBel + ' най-добра', bestYearB !== null ? school.b[bestYearB] + ' (' + (firstYear + bestYearB) + ')' : '-', csvHeaderMat + ' най-добра', bestYearM !== null ? school.m[bestYearM] + ' (' + (firstYear + bestYearM) + ')' : '-'],
+      [csvHeaderBel + ' най-слаба', worstYearB !== null ? school.b[worstYearB] + ' (' + (firstYear + worstYearB) + ')' : '-', csvHeaderMat + ' най-слаба', worstYearM !== null ? school.m[worstYearM] + ' (' + (firstYear + worstYearM) + ')' : '-'],
+      ['Ранг в града', rankInfo.rank ? rankInfo.rank + ' / ' + rankInfo.total : '-', 'Перцентил в града', percentile + '-ти'],
+      ['Средно ученици ' + csvHeaderBel, validBu.length > 0 ? Math.round(avg(validBu)) : '-', 'Средно ученици ' + csvHeaderMat, validMu.length > 0 ? Math.round(avg(validMu)) : '-']
+    ];
+
+    // 1. Изчисляваме общата ширина на таблицата (сумата от всички cellWidth)
+    const tableWidth = 120 + 80 + 120 + 80; // = 400
+    // 2. Взимаме ширината на PDF страницата
+    const pageWidth = doc.internal.pageSize.getWidth();
+    // 3. Изчисляваме левия маржин за центриране
+    const marginLeft = (pageWidth - tableWidth) / 2;
+    doc.autoTable({
+      body: summaryData,
+      startY: 95,
+      // 4. Прилагаме изчисления маржин
+      margin: { left: marginLeft }, 
+      tableWidth: tableWidth, // Добре е да се дефинира изрично
+      theme: 'plain',
+      styles: { font: TABLE_PDF_FONT_NAME, fontSize: 10, cellPadding: 2.5 },
+      columnStyles: {
+        0: { fontStyle: 'bold', cellWidth: 120 },
+        1: { halign: 'center', cellWidth: 80 },
+        2: { fontStyle: 'bold', cellWidth: 120 },
+        3: { halign: 'center', cellWidth: 80 }
+      },
+      didParseCell: (data) => {
+        if(data.section === 'body' && (data.column.index === 1 || data.column.index === 3)) {
+          let text = String(data.cell.raw);
+          if(text.startsWith('+')) { data.cell.styles.textColor = [22, 163, 74]; }
+          else if(text.startsWith('-') && text !== '-') { data.cell.styles.textColor = [220, 38, 38]; }
+        }
+      }
+    });
+
+    // Scores table
+    let scoresY = doc.lastAutoTable.finalY + 30;
+    doc.setFontSize(11);
+    doc.text('Резултати по години', pageW / 2, scoresY, { align: 'center' });
+    let scoreHeaders = ['Година', csvHeaderBel, csvHeaderMat, csvHeaderBel + ' уч.', csvHeaderMat + ' уч.', '\u0394 ' + csvHeaderB, '\u0394 ' + csvHeaderM];
+    let scoreRows = [];
+    for(let y = 0; y < totalYears; y++) {
+      let year = firstYear + y;
+      let dB = (y > 0 && school.b[y] !== null && school.b[y - 1] !== null) ? (school.b[y] - school.b[y - 1]).toFixed(2) : '';
+      let dM = (y > 0 && school.m[y] !== null && school.m[y - 1] !== null) ? (school.m[y] - school.m[y - 1]).toFixed(2) : '';
+      scoreRows.push([
+        String(year),
+        school.b[y] !== null && school.b[y] !== undefined ? String(school.b[y]) : '-',
+        school.m[y] !== null && school.m[y] !== undefined ? String(school.m[y]) : '-',
+        school.bu[y] ? String(school.bu[y]) : '-',
+        school.mu[y] ? String(school.mu[y]) : '-',
+        dB, dM
+      ]);
+    }
+    doc.autoTable({
+      head: [scoreHeaders],
+      body: scoreRows,
+      startY: scoresY + 12,
+      margin: { left: margin, right: margin },
+      theme: 'grid',
+      styles: { font: TABLE_PDF_FONT_NAME, fontSize: 8, cellPadding: 3, halign: 'center' },
+      headStyles: { font: TABLE_PDF_FONT_NAME, fillColor: [30, 64, 175], textColor: 255 },
+      didParseCell: (data) => {
+        if(data.section === 'body' && (data.column.index === 5 || data.column.index === 6)) {
+          let val = parseFloat(data.cell.raw);
+          if(!isNaN(val)) {
+            if(val > 0) { data.cell.styles.textColor = [22, 163, 74]; }
+            else if(val < 0) { data.cell.styles.textColor = [220, 38, 38]; }
+          }
+        }
+      }
+    });
+
+    // Comparison table: school vs city vs national (last 3 years) with deltas
+    let compY = doc.lastAutoTable.finalY + 30;
+    doc.setFontSize(11);
+    doc.text('Сравнение с град и нация (последни 3 години)', pageW / 2, compY, { align: 'center' });
+    let compHeaders = ['Година', 'Уч. ' + csvHeaderB, 'Град ' + csvHeaderB, '\u0394 град', 'Нация ' + csvHeaderB, '\u0394 нация', 'Уч. ' + csvHeaderM, 'Град ' + csvHeaderM, '\u0394 град', 'Нация ' + csvHeaderM, '\u0394 нация'];
+    let compRows = [];
+    for(let i = 0; i < 3; i++) {
+      let y = totalYears - 1 - i;
+      if(y < 0) { continue; }
+      let year = firstYear + y;
+      let sB = school.b[y];
+      let cB = cityAvgB && cityAvgB[y] ? cityAvgB[y] : null;
+      let nB = natAvg.b[y] ? natAvg.b[y] : null;
+      let sM = school.m[y];
+      let cM = cityAvgM && cityAvgM[y] ? cityAvgM[y] : null;
+      let nM = natAvg.m[y] ? natAvg.m[y] : null;
+      let dCB = (sB !== null && cB !== null) ? (sB - cB).toFixed(2) : '-';
+      let dNB = (sB !== null && nB !== null) ? (sB - nB).toFixed(2) : '-';
+      let dCM = (sM !== null && cM !== null) ? (sM - cM).toFixed(2) : '-';
+      let dNM = (sM !== null && nM !== null) ? (sM - nM).toFixed(2) : '-';
+      compRows.push([
+        String(year),
+        sB !== null ? String(sB) : '-',
+        cB !== null ? cB.toFixed(2) : '-',
+        dCB, nB !== null ? nB.toFixed(2) : '-', dNB,
+        sM !== null ? String(sM) : '-',
+        cM !== null ? cM.toFixed(2) : '-',
+        dCM, nM !== null ? nM.toFixed(2) : '-', dNM
+      ]);
+    }
+    doc.autoTable({
+      head: [compHeaders],
+      body: compRows,
+      startY: compY + 12,
+      margin: { left: margin, right: margin },
+      theme: 'grid',
+      styles: { font: TABLE_PDF_FONT_NAME, fontSize: 7, cellPadding: 2.5, halign: 'center' },
+      headStyles: { font: TABLE_PDF_FONT_NAME, fillColor: [30, 64, 175], textColor: 255, fontSize: 6.5 },
+      didParseCell: (data) => {
+        if(data.section === 'body' && (data.column.index === 3 || data.column.index === 5 || data.column.index === 8 || data.column.index === 10)) {
+          let val = parseFloat(data.cell.raw);
+          if(!isNaN(val)) {
+            if(val > 0) { data.cell.styles.textColor = [22, 163, 74]; }
+            else if(val < 0) { data.cell.styles.textColor = [220, 38, 38]; }
+          }
+        }
+      }
+    });
+
+    // Page 2: Charts
+    doc.addPage();
+    doc.setFontSize(13);
+    doc.text(school.n + ' - Графики', pageW / 2, 35, { align: 'center' });
+
+    let hiddenDiv = document.createElement('div');
+    hiddenDiv.style.cssText = 'position:absolute;left:-9999px;top:0;width:520px;height:260px;';
+    document.body.appendChild(hiddenDiv);
+
+    let years = [];
+    for(let y = 0; y < totalYears; y++) { years.push(String(firstYear + y)); }
+
+    // BEL chart
+    let belSeries = [
+      { name: school.l, data: school.b.slice(), color: '#1e40af' },
+      { name: 'Средна за ' + cityName, data: cityAvgB ? cityAvgB.slice() : [], dashStyle: 'Dash', color: '#9ca3af' }
+    ];
+    if(natAvg.b.length > 0) {
+      belSeries.push({ name: 'Национална средна', data: natAvg.b.slice(), dashStyle: 'Dot', color: '#f59e0b' });
+    }
+    let belConfig = {
+      chart: { type: 'line', animation: false, height: 260, width: 520 },
+      title: { text: chartBTitle, style: { fontSize: '12px' } },
+      xAxis: { categories: years, labels: { style: { fontSize: '9px' } } },
+      yAxis: { title: { text: null }, floor: chartFloor, ceiling: chartCeiling, labels: { style: { fontSize: '9px' } } },
+      legend: { itemStyle: { fontSize: '9px' } },
+      credits: { enabled: false },
+      exporting: { enabled: false },
+      plotOptions: { series: { animation: false, connectNulls: true } },
+      series: belSeries
+    };
+    let belPng = await renderChartToImage(hiddenDiv, belConfig);
+    if(belPng) {
+      doc.addImage(belPng, 'PNG', margin, 50, pageW - margin * 2, (pageW - margin * 2) * 0.5);
+    }
+
+    // MAT chart
+    let matSeries = [
+      { name: school.l, data: school.m.slice(), color: '#1e40af' },
+      { name: 'Средна за ' + cityName, data: cityAvgM ? cityAvgM.slice() : [], dashStyle: 'Dash', color: '#9ca3af' }
+    ];
+    if(natAvg.m.length > 0) {
+      matSeries.push({ name: 'Национална средна', data: natAvg.m.slice(), dashStyle: 'Dot', color: '#f59e0b' });
+    }
+    let matConfig = {
+      chart: { type: 'line', animation: false, height: 260, width: 520 },
+      title: { text: chartMTitle, style: { fontSize: '12px' } },
+      xAxis: { categories: years, labels: { style: { fontSize: '9px' } } },
+      yAxis: { title: { text: null }, floor: chartFloor, ceiling: chartCeiling, labels: { style: { fontSize: '9px' } } },
+      legend: { itemStyle: { fontSize: '9px' } },
+      credits: { enabled: false },
+      exporting: { enabled: false },
+      plotOptions: { series: { animation: false, connectNulls: true } },
+      series: matSeries
+    };
+    let matChartY = belPng ? 50 + (pageW - margin * 2) * 0.5 + 25 : 50;
+    let matPng = await renderChartToImage(hiddenDiv, matConfig);
+    if(matPng) {
+      doc.addImage(matPng, 'PNG', margin, matChartY, pageW - margin * 2, (pageW - margin * 2) * 0.5);
+    }
+
+    document.body.removeChild(hiddenDiv);
+
+    // Footer on each page
+    let totalPages = doc.internal.getNumberOfPages();
+    for(let p = 1; p <= totalPages; p++) {
+      doc.setPage(p);
+      doc.setFontSize(7);
+      doc.setTextColor(150);
+      doc.text('ivandavidov.github.io/nvo', pageW / 2, doc.internal.pageSize.getHeight() - 15, { align: 'center' });
+      doc.text(p + ' / ' + totalPages, pageW - margin, doc.internal.pageSize.getHeight() - 15, { align: 'right' });
+      doc.setTextColor(0);
+    }
+
+    let safeCity = cityName.replace(/[^a-zA-Z0-9\u0400-\u04FF]/g, '-').replace(/-+/g, '-');
+    let safeLabel = school.l.replace(/[^a-zA-Z0-9\u0400-\u04FF]/g, '-').replace(/-+/g, '-');
+    doc.save(exportPrefix + '-report-' + safeCity + '-' + safeLabel + '.pdf');
+  } catch(err) {
+    console.error(err);
+    alert('Грешка при генериране на PDF доклад. Моля опитайте отново.');
+  } finally {
+    setPdfLinkBusyState(linkEl, false);
+  }
+}
+
 function getCitySchoolGroups(cityName) {
   let cityData = si[cityName];
   if(!cityData) {
@@ -1303,6 +1680,7 @@ function buildRankingTable(div, name, puSchools, prSchools, rankingState) {
     headers.push((firstYear - 2001 + s[baseSchoolIndex].b.length - i) + ' ' + csvHeaderB + ' / уч.');
     headers.push((firstYear - 2001 + s[baseSchoolIndex].b.length - i) + ' ' + csvHeaderM + ' / уч.');
   }
+  headers.push('Доклад');
   headers.forEach((header) => {
     let th = document.createElement('th');
     th.appendChild(document.createTextNode(header));
@@ -1399,6 +1777,24 @@ function buildRankingTable(div, name, puSchools, prSchools, rankingState) {
       td.appendChild(document.createTextNode(s[o.i].m[totalYears - j - 1] ? s[o.i].m[totalYears - j - 1] + ' / ' + s[o.i].mu[totalYears - j - 1] : ''));
       tr.appendChild(td);
     }
+    td = document.createElement('td');
+    let pdfLink = document.createElement('a');
+    pdfLink.href = '#';
+    pdfLink.className = 'school-report-link';
+    pdfLink.title = 'PDF доклад за ' + s[o.i].n;
+    pdfLink.appendChild(document.createTextNode('PDF'));
+    let schoolIdx = o.i;
+    pdfLink.onclick = async (e) => {
+      e.preventDefault();
+      try {
+        await generateSchoolReportPdf(schoolIdx, e.currentTarget);
+      } catch(err) {
+        console.error(err);
+        alert('Грешка при генериране на PDF доклад. Моля опитайте отново.');
+      }
+    };
+    td.appendChild(pdfLink);
+    tr.appendChild(td);
   });
   div.appendChild(table);
   enableRankingTableSorting(table, tBody, rankingState);
