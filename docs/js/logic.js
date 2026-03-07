@@ -1806,6 +1806,8 @@ function generateHTMLTable(el, hrName, puSchools, prSchools, name) {
   let div = document.createElement('div');
   let rankingState = { sortColumn: 3, sortDirection: 'desc', filterLabel: null };
   generateRowWithText(div, '\u00A0');
+  generateCityMedianTables(div, name);
+  generateRowWithText(div, '\u00A0');
   if(prSchools) {
     let fn = (lbl) => {
       rankingState.filterLabel = lbl;
@@ -1827,8 +1829,6 @@ function generateHTMLTable(el, hrName, puSchools, prSchools, name) {
   div.id = 't' + hrName;
   div.style.display = 'none';
   rankingTableBuilders[hrName] = () => buildRankingTable(div, name, puSchools, prSchools, rankingState);
-  generateRowWithText(div, '\u00A0');
-  generateCityMedianTables(div, name);
   el.appendChild(div);
 }
 
