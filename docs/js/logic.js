@@ -346,7 +346,7 @@ async function generateSchoolReportPdf(schoolIndex, linkEl) {
       [csvHeaderBel + ' тренд (наклон)', trendB !== null ? (trendB >= 0 ? '+' : '') + trendB.toFixed(2) + '/г.' : '-', csvHeaderMat + ' тренд (наклон)', trendM !== null ? (trendM >= 0 ? '+' : '') + trendM.toFixed(2) + '/г.' : '-'],
       [csvHeaderBel + ' най-добра', bestYearB !== null ? school.b[bestYearB] + ' (' + (firstYear + bestYearB) + ')' : '-', csvHeaderMat + ' най-добра', bestYearM !== null ? school.m[bestYearM] + ' (' + (firstYear + bestYearM) + ')' : '-'],
       [csvHeaderBel + ' най-слаба', worstYearB !== null ? school.b[worstYearB] + ' (' + (firstYear + worstYearB) + ')' : '-', csvHeaderMat + ' най-слаба', worstYearM !== null ? school.m[worstYearM] + ' (' + (firstYear + worstYearM) + ')' : '-'],
-      ['Ранг в града', rankInfo.rank ? rankInfo.rank + ' / ' + rankInfo.total : '-', 'Перцентил в града', percentile + '-ти'],
+      ['Ранг в града', rankInfo.rank ? rankInfo.rank + ' / ' + rankInfo.total : '-', 'Перцентил в града', percentile + '%'],
       ['Средно ученици ' + csvHeaderBel, validBu.length > 0 ? Math.round(avg(validBu)) : '-', 'Средно ученици ' + csvHeaderMat, validMu.length > 0 ? Math.round(avg(validMu)) : '-']
     ];
 
@@ -381,7 +381,7 @@ async function generateSchoolReportPdf(schoolIndex, linkEl) {
 
     // Scores table
     let scoresY = doc.lastAutoTable.finalY + 30;
-    doc.setFontSize(11);
+    doc.setFontSize(12);
     doc.text('Резултати по години', pageW / 2, scoresY, { align: 'center' });
     let scoreHeaders = ['Година', csvHeaderBel, csvHeaderMat, csvHeaderBel + ' уч.', csvHeaderMat + ' уч.', '\u0394 ' + csvHeaderB, '\u0394 ' + csvHeaderM];
     let scoreRows = [];
@@ -404,7 +404,7 @@ async function generateSchoolReportPdf(schoolIndex, linkEl) {
       startY: scoresY + 12,
       margin: { left: margin, right: margin },
       theme: 'grid',
-      styles: { font: TABLE_PDF_FONT_NAME, fontSize: 8, cellPadding: 3, halign: 'center' },
+      styles: { font: TABLE_PDF_FONT_NAME, fontSize: 10, cellPadding: 3, halign: 'center' },
       headStyles: { font: TABLE_PDF_FONT_NAME, fillColor: [30, 64, 175], textColor: 255 },
       didParseCell: (data) => {
         if(data.section === 'body' && (data.column.index === 5 || data.column.index === 6)) {
@@ -419,7 +419,7 @@ async function generateSchoolReportPdf(schoolIndex, linkEl) {
 
     // Comparison table: school vs city vs national (last 3 years) with deltas
     let compY = doc.lastAutoTable.finalY + 30;
-    doc.setFontSize(11);
+    doc.setFontSize(12);
     doc.text('Сравнение с град и нация (последни 3 години)', pageW / 2, compY, { align: 'center' });
     let compHeaders = ['Година', 'Уч. ' + csvHeaderB, 'Град ' + csvHeaderB, '\u0394 град', 'Нация ' + csvHeaderB, '\u0394 нация', 'Уч. ' + csvHeaderM, 'Град ' + csvHeaderM, '\u0394 град', 'Нация ' + csvHeaderM, '\u0394 нация'];
     let compRows = [];
@@ -453,7 +453,7 @@ async function generateSchoolReportPdf(schoolIndex, linkEl) {
       startY: compY + 12,
       margin: { left: margin, right: margin },
       theme: 'grid',
-      styles: { font: TABLE_PDF_FONT_NAME, fontSize: 7, cellPadding: 2.5, halign: 'center' },
+      styles: { font: TABLE_PDF_FONT_NAME, fontSize: 10, cellPadding: 2.5, halign: 'center' },
       headStyles: { font: TABLE_PDF_FONT_NAME, fillColor: [30, 64, 175], textColor: 255, fontSize: 6.5 },
       didParseCell: (data) => {
         if(data.section === 'body' && (data.column.index === 3 || data.column.index === 5 || data.column.index === 8 || data.column.index === 10)) {
