@@ -21,7 +21,9 @@ function toggleTheme() {
   if (typeof redraw === 'function') {
     try { redraw(); } catch(e) {}
   }
-  if (document.activeElement) {
-    document.activeElement.blur();
-  }
+  setTimeout(function() {
+    if (document.activeElement) {
+      document.activeElement.blur();
+    }
+  }, 50);
 }

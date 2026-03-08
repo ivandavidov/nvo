@@ -18,9 +18,11 @@ window.toggleTheme = window.toggleTheme || function() {
     document.documentElement.setAttribute('data-theme', 'dark');
     localStorage.setItem('nvo-theme', 'dark');
   }
-  if (document.activeElement) {
-    document.activeElement.blur();
-  }
+  setTimeout(function() {
+    if (document.activeElement) {
+      document.activeElement.blur();
+    }
+  }, 50);
 };
 
 (function () {
