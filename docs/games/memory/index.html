@@ -17,12 +17,15 @@
       border-radius: 8px;
       background:var(--color-surface);
       color:var(--color-text);
-      font-size: 2rem;
+      font-size: clamp(2.5rem, 12vw, 4.5rem);
       display:flex;
       align-items:center;
       justify-content:center;
       cursor:pointer;
       user-select:none;
+      min-width: 0;
+      min-height: 0;
+      overflow: hidden;
     }
     .card.open, .card.matched { background:var(--color-bg-alt); }
     .card.matched { border-color:var(--color-success); }

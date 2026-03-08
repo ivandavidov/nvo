@@ -718,17 +718,27 @@ tbody td + td {
   box-shadow: none;
 }
 
-.theme-toggle:hover {
-  color: var(--color-accent);
-  border-color: var(--color-accent);
-  background: var(--color-accent-light);
-  box-shadow: none;
-  transform: none;
+.theme-toggle {
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (hover: hover) {
+  .theme-toggle:hover {
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+    background: var(--color-accent-light);
+    box-shadow: none;
+    transform: none;
+  }
 }
 
 .theme-toggle:focus {
   outline: 2px solid var(--color-primary-light);
   outline-offset: 2px;
+}
+
+.theme-toggle:focus:not(:focus-visible) {
+  outline: none;
 }
 
 .theme-toggle svg {
