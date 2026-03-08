@@ -9,7 +9,8 @@
   <link rel="stylesheet" href="../games.css">
   <style>
     .wrap { max-width: 640px; margin: 0 auto; }
-    .bar { display:flex; justify-content:space-between; margin-bottom:8px; color:var(--color-text-muted); }
+    .bar { display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; color:var(--color-text-muted); }
+    .size-btns { display:flex; gap:6px; }
     .board { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; }
     .card {
       aspect-ratio: 4/5;
@@ -50,18 +51,34 @@
   <div class="row wrap">
   <h4>Memory</h4>
   <div class="bar">
-  <span>Ходове: <strong id="moves">0</strong></span>
-  <button id="reset" class="button">Нова игра</button>
+    <span>Ходове: <strong id="moves">0</strong></span>
+    <div class="size-btns">
+      <button id="sz-4x3" class="button">4×3</button>
+      <button id="sz-4x4" class="button button-primary">4×4</button>
+      <button id="sz-4x5" class="button">4×5</button>
+      <button id="sz-4x6" class="button">4×6</button>
+    </div>
+    <button id="reset" class="button">Нова игра</button>
   </div>
   <div id="board" class="board"></div>
   </div>
   </div>
   <script>
   'use strict';
-  const ICONS = ['🍎','🍌','🍇','🍒','🍉','🍍','🥝','🍓'];
+  const ICONS = ['🍎','🍌','🍇','🍒','🍉','🍍','🥝','🍓','🍑','🍋','🍐','🍊'];
   const boardEl = document.getElementById('board');
   const movesEl = document.getElementById('moves');
   let cards = [], open = [], lock = false, moves = 0, matched = 0;
+  let rows = 4; // default 4x4
+
+  function setSize(r) {
+    rows = r;
+    ['4x3','4x4','4x5','4x6'].forEach(s => {
+      document.getElementById('sz-' + s).classList.remove('button-primary');
+    });
+    document.getElementById('sz-4x' + r).classList.add('button-primary');
+    init();
+  }
 
   function shuffle(arr){
     for(let i=arr.length-1;i>0;i--){
@@ -72,7 +89,9 @@
   }
 
   function init(){
-    const pool = shuffle(ICONS.concat(ICONS));
+    const pairs = (4 * rows) / 2;
+    const icons = ICONS.slice(0, pairs);
+    const pool = shuffle(icons.concat(icons));
     cards = pool.map((v,i)=>({id:i,v,open:false,matched:false}));
     open = []; lock = false; moves = 0; matched = 0;
     movesEl.textContent = '0';
@@ -117,6 +136,10 @@
     });
   }
 
+  document.getElementById('sz-4x3').onclick = ()=>setSize(3);
+  document.getElementById('sz-4x4').onclick = ()=>setSize(4);
+  document.getElementById('sz-4x5').onclick = ()=>setSize(5);
+  document.getElementById('sz-4x6').onclick = ()=>setSize(6);
   document.getElementById('reset').onclick = init;
   init();
   </script>
