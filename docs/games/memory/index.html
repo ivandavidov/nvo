@@ -9,8 +9,8 @@
   <link rel="stylesheet" href="../games.css">
   <style>
     .wrap { max-width: 640px; margin: 0 auto; }
-    .bar { display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; color:var(--color-text-muted); }
-    .size-btns { display:flex; gap:6px; }
+    .bar { display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; color:var(--color-text-muted); }
+    .size-btns { display:flex; gap:6px; flex-wrap:wrap; justify-content:center; margin-bottom:8px; }
     .board { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; }
     .card {
       aspect-ratio: 4/5;
@@ -52,13 +52,13 @@
   <h4>Memory</h4>
   <div class="bar">
     <span>Ходове: <strong id="moves">0</strong></span>
-    <div class="size-btns">
-      <button id="sz-4x3" class="button">4×3</button>
-      <button id="sz-4x4" class="button button-primary">4×4</button>
-      <button id="sz-4x5" class="button">4×5</button>
-      <button id="sz-4x6" class="button">4×6</button>
-    </div>
     <button id="reset" class="button">Нова игра</button>
+  </div>
+  <div class="size-btns">
+    <button id="sz-4x3" class="button">4×3</button>
+    <button id="sz-4x4" class="button button-primary">4×4</button>
+    <button id="sz-4x5" class="button">4×5</button>
+    <button id="sz-4x6" class="button">4×6</button>
   </div>
   <div id="board" class="board"></div>
   </div>
