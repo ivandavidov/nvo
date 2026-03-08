@@ -10,15 +10,16 @@
   <style>
     .panel { max-width: 340px; margin: 0 auto; }
     #board { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin:16px 0; }
-    .cell { aspect-ratio:1; border:2px solid #ccc; border-radius:8px; font-size:2.8rem; font-weight:bold;
+    .cell { aspect-ratio:1; border:2px solid var(--color-border); border-radius:8px; font-size:2.8rem; font-weight:bold;
+            color:var(--color-text);
             display:flex; align-items:center; justify-content:center; cursor:pointer;
-            background:#f9f9f9; transition:background .12s; user-select:none; }
-    .cell:hover:not(.taken) { background:#eef4ff; }
+            background:var(--color-surface); transition:background .12s; user-select:none; }
+    .cell:hover:not(.taken) { background:var(--color-bg-alt); }
     .cell.x { color:#e74c3c; cursor:default; }
     .cell.o { color:#3498db; cursor:default; }
-    .cell.win { background:#ffeaa7; }
-    #msg { text-align:center; font-size:1.15rem; font-weight:bold; min-height:2rem; margin-bottom:4px; }
-    #score { text-align:center; color:#666; margin-bottom:8px; font-size:.9rem; }
+    .cell.win { background:var(--color-accent-light); }
+    #msg { text-align:center; font-size:1.15rem; font-weight:bold; min-height:2rem; margin-bottom:4px; color:var(--color-text); }
+    #score { text-align:center; color:var(--color-text-muted); margin-bottom:8px; font-size:.9rem; }
   </style>
   <script>
     (function() {

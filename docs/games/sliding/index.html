@@ -11,13 +11,14 @@
     .panel { max-width: 360px; margin: 0 auto; text-align:center; }
     #board { display:grid; grid-template-columns:repeat(4,1fr); gap:6px; margin:16px 0; }
     .tile { aspect-ratio:1; border-radius:8px; font-size:1.7rem; font-weight:bold;
+            color:#fff;
             display:flex; align-items:center; justify-content:center;
             user-select:none; transition:background .1s; }
-    .tile.filled { background:#2980b9; color:#fff; cursor:pointer; }
+    .tile.filled { background:#2980b9; cursor:pointer; }
     .tile.filled:hover { background:#1a6fa0; }
-    .tile.empty { background:#ecf0f1; }
-    #info { color:#666; margin-bottom:6px; }
-    #msg { font-weight:bold; min-height:1.8rem; margin-bottom:8px; color:#27ae60; }
+    .tile.empty { background:var(--color-bg-alt); }
+    #info { color:var(--color-text-muted); margin-bottom:6px; }
+    #msg { font-weight:bold; min-height:1.8rem; margin-bottom:8px; color:var(--color-success); }
   </style>
   <script>
     (function() {

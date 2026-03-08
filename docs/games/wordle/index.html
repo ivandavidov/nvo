@@ -11,25 +11,26 @@
     .panel { max-width: 380px; margin: 0 auto; text-align:center; }
     #grid { display:inline-grid; grid-template-rows:repeat(6,1fr); gap:6px; margin:12px 0; }
     .row { display:grid; grid-template-columns:repeat(5,1fr); gap:6px; }
-    .tile { width:52px; height:52px; border:2px solid #ccc; border-radius:4px;
+    .tile { width:52px; height:52px; border:2px solid var(--color-border); border-radius:4px;
+            background:var(--color-surface);
             display:flex; align-items:center; justify-content:center;
             font-size:1.6rem; font-weight:bold; text-transform:uppercase;
             transition:background .25s, border-color .25s, color .25s; }
-    .tile.filled { border-color:#888; }
-    .tile.correct { background:#27ae60; border-color:#27ae60; color:#fff; }
+    .tile.filled { border-color:var(--color-text-light); }
+    .tile.correct { background:var(--color-success); border-color:var(--color-success); color:#fff; }
     .tile.present { background:#e67e22; border-color:#e67e22; color:#fff; }
-    .tile.absent  { background:#95a5a6; border-color:#95a5a6; color:#fff; }
+    .tile.absent  { background:var(--color-text-light); border-color:var(--color-text-light); color:#fff; }
     #keyboard { display:flex; flex-direction:column; gap:6px; align-items:center; margin-bottom:12px; }
     .kb-row { display:flex; gap:4px; }
-    .key { min-width:32px; height:42px; padding:0 6px; border:1px solid #ccc; border-radius:4px;
-           background:#ecf0f1; font-size:.85rem; font-weight:bold; cursor:pointer;
+    .key { min-width:32px; height:42px; padding:0 6px; border:1px solid var(--color-border); border-radius:4px;
+           background:var(--color-bg-alt); color:var(--color-text); font-size:.85rem; font-weight:bold; cursor:pointer;
            display:flex; align-items:center; justify-content:center; user-select:none;
            transition:background .2s, color .2s; }
-    .key.correct { background:#27ae60; color:#fff; border-color:#27ae60; }
+    .key.correct { background:var(--color-success); color:#fff; border-color:var(--color-success); }
     .key.present { background:#e67e22; color:#fff; border-color:#e67e22; }
-    .key.absent  { background:#bdc3c7; color:#fff; border-color:#bdc3c7; }
+    .key.absent  { background:var(--color-text-light); color:#fff; border-color:var(--color-text-light); }
     .key.wide { min-width:52px; font-size:.75rem; }
-    #msg { min-height:1.8rem; font-weight:bold; margin-bottom:6px; font-size:1rem; }
+    #msg { min-height:1.8rem; font-weight:bold; margin-bottom:6px; font-size:1rem; color:var(--color-text); }
   </style>
   <script>
     (function() {
@@ -50,7 +51,7 @@
   <div class="row" style="margin-top:2rem"><a href="../">← Към игрите</a></div>
   <div class="row panel">
   <h4>Уърдъл БГ</h4>
-  <p style="color:#666;font-size:.85rem;margin-bottom:4px;">Познай 5-буквената дума за 6 опита.<br>🟩 правилна позиция · 🟧 грешна позиция · ⬜ не е в думата</p>
+  <p style="color:var(--color-text-muted);font-size:.85rem;margin-bottom:4px;">Познай 5-буквената дума за 6 опита.<br>🟩 правилна позиция · 🟧 грешна позиция · ⬜ не е в думата</p>
   <div id="msg"></div>
   <div id="grid"></div>
   <div id="keyboard"></div>

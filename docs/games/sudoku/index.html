@@ -10,22 +10,22 @@
   <style>
     .panel { max-width: 420px; margin: 0 auto; text-align:center; }
     #board { display:inline-grid; grid-template-columns:repeat(9,1fr); gap:1px;
-             background:#888; border:2px solid #333; margin:12px 0; }
+             background:var(--color-border); border:2px solid var(--color-text); margin:12px 0; }
     .cell { width:40px; height:40px; border:none; text-align:center; font-size:1.1rem;
-            font-family:inherit; outline:none; cursor:pointer; background:#fff;
+            font-family:inherit; outline:none; cursor:pointer; background:var(--color-surface); color:var(--color-text);
             transition:background .1s; caret-color:transparent; }
-    .cell.given { font-weight:bold; color:#222; background:#f0f0f0; }
-    .cell.user { color:#2980b9; }
-    .cell.error { background:#ffe0e0; color:#e74c3c; }
-    .cell.selected { background:#d4eaff; }
-    .cell.hint-row { background:#f5f5ff; }
+    .cell.given { font-weight:bold; color:var(--color-text); background:var(--color-bg-alt); }
+    .cell.user { color:var(--color-primary); }
+    .cell.error { background:var(--color-danger); color:#fff; }
+    .cell.selected { background:var(--color-primary-lighter); }
+    .cell.hint-row { background:var(--color-accent-light); }
     /* thick borders for 3x3 boxes */
-    .cell:nth-child(3n+1):not(:nth-child(9n+1)) { border-left:2px solid #333; }
+    .cell:nth-child(3n+1):not(:nth-child(9n+1)) { border-left:2px solid var(--color-text); }
     .cell:nth-child(n+28):nth-child(-n+36),
-    .cell:nth-child(n+55):nth-child(-n+63) { border-top:2px solid #333; }
+    .cell:nth-child(n+55):nth-child(-n+63) { border-top:2px solid var(--color-text); }
     #numpad { display:flex; gap:6px; justify-content:center; flex-wrap:wrap; margin-bottom:12px; }
     #numpad button { width:36px; height:36px; padding:0; font-size:1rem; font-weight:bold; }
-    #msg { min-height:1.8rem; font-weight:bold; color:#27ae60; margin-bottom:6px; }
+    #msg { min-height:1.8rem; font-weight:bold; color:var(--color-success); margin-bottom:6px; }
     .diff-btns { display:flex; gap:6px; justify-content:center; margin-bottom:8px; }
   </style>
   <script>

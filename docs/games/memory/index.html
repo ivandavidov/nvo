@@ -9,13 +9,14 @@
   <link rel="stylesheet" href="../games.css">
   <style>
     .wrap { max-width: 640px; margin: 0 auto; }
-    .bar { display:flex; justify-content:space-between; margin-bottom:8px; color:#555; }
+    .bar { display:flex; justify-content:space-between; margin-bottom:8px; color:var(--color-text-muted); }
     .board { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; }
     .card {
       aspect-ratio: 4/5;
-      border: 1px solid #ccc;
+      border: 1px solid var(--color-border);
       border-radius: 8px;
-      background:#f0f0f0;
+      background:var(--color-surface);
+      color:var(--color-text);
       font-size: 2rem;
       display:flex;
       align-items:center;
@@ -23,8 +24,8 @@
       cursor:pointer;
       user-select:none;
     }
-    .card.open, .card.matched { background:#fff; }
-    .card.matched { border-color:#27ae60; }
+    .card.open, .card.matched { background:var(--color-bg-alt); }
+    .card.matched { border-color:var(--color-success); }
   </style>
   <script>
     (function() {
@@ -107,6 +108,7 @@
       const b = document.createElement('button');
       b.className = 'card' + (c.open?' open':'') + (c.matched?' matched':'');
       b.textContent = c.open || c.matched ? c.v : '•';
+      b.style.color = c.open || c.matched ? 'var(--color-text)' : 'var(--color-text-light)';
       b.onclick = ()=>clickCard(i);
       boardEl.appendChild(b);
     });

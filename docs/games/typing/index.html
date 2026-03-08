@@ -8,15 +8,15 @@
   <link rel="stylesheet" href="../../css/custom.css">
   <link rel="stylesheet" href="../games.css">
   <style>
-    .panel{max-width:580px;margin:0 auto}
-    #text{font-size:1.25rem;line-height:1.8;background:#f9f9f9;border:1px solid #ddd;border-radius:8px;padding:16px;margin-bottom:12px;min-height:100px;user-select:none}
-    #text .correct{color:#27ae60}
-    #text .wrong{color:#c0392b;text-decoration:underline}
-    #text .cursor{border-bottom:2px solid #333}
-    #text .pending{color:#999}
-    #input{width:100%;font-size:1.1rem;padding:8px;margin-bottom:8px}
-    .meta{display:flex;justify-content:space-between;margin-bottom:8px;color:#555;flex-wrap:wrap;gap:6px}
-    #result{font-size:1.1rem;font-weight:bold;min-height:2rem;margin-bottom:8px;color:#2b8a3e}
+    .panel{max-width:580px;margin:0:auto}
+    #text{font-size:1.25rem;line-height:1.8;background:var(--color-surface);border:1px solid var(--color-border);border-radius:8px;padding:16px;margin-bottom:12px;min-height:100px;user-select:none;color:var(--color-text)}
+    #text .correct{color:var(--color-success)}
+    #text .wrong{color:var(--color-danger);text-decoration:underline}
+    #text .cursor{border-bottom:2px solid var(--color-text)}
+    #text .pending{color:var(--color-text-light)}
+    #input{width:100%;font-size:1.1rem;padding:8px;margin-bottom:8px;background:var(--color-surface);border:1px solid var(--color-border);color:var(--color-text)}
+    .meta{display:flex;justify-content:space-between;margin-bottom:8px;color:var(--color-text-muted);flex-wrap:wrap;gap:6px}
+    #result{font-size:1.1rem;font-weight:bold;min-height:2rem;margin-bottom:8px;color:var(--color-success)}
   </style>
   <script>
     (function() {

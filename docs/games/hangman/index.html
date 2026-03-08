@@ -10,15 +10,15 @@
   <style>
     .panel{max-width:520px;margin:0 auto;text-align:center}
     canvas{display:block;margin:0 auto 12px}
-    #word{font-size:2rem;letter-spacing:.5rem;margin-bottom:12px;font-weight:bold;min-height:3rem}
-    #category{color:#888;font-size:.95em;margin-bottom:8px}
+    #word{font-size:2rem;letter-spacing:.5rem;margin-bottom:12px;font-weight:bold;min-height:3rem;color:var(--color-text)}
+    #category{color:var(--color-text-light);font-size:.95em;margin-bottom:8px}
     .kb{display:flex;flex-wrap:wrap;justify-content:center;gap:4px;margin-bottom:12px}
     .kb button{min-width:32px;height:36px;padding:0 6px;margin:0;font-size:.95rem}
     .kb button:disabled{opacity:.4;cursor:default}
-    .kb button.correct{background:#27ae60;color:#fff;border-color:#27ae60}
-    .kb button.wrong{background:#c0392b;color:#fff;border-color:#c0392b}
-    .meta{display:flex;justify-content:space-between;margin-bottom:8px;color:#555}
-    #msg{font-size:1.1rem;font-weight:bold;min-height:2rem;margin-bottom:8px}
+    .kb button.correct{background:var(--color-success);color:#fff;border-color:var(--color-success)}
+    .kb button.wrong{background:var(--color-danger);color:#fff;border-color:var(--color-danger)}
+    .meta{display:flex;justify-content:space-between;margin-bottom:8px;color:var(--color-text-muted)}
+    #msg{font-size:1.1rem;font-weight:bold;min-height:2rem;margin-bottom:8px;color:var(--color-text)}
   </style>
   <script>
     (function() {
