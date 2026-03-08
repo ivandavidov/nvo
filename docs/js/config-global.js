@@ -52,6 +52,8 @@ const GRADE_CONFIG_DEFAULTS = {
   disabledEntries: []
 }
 
+Highcharts.setOptions({ accessibility: { enabled: false } });
+
 function applyGradeConfig(overrides) {
   let config = Object.assign({}, GRADE_CONFIG_DEFAULTS, overrides || {})
   if(!config.exportPrefixBel) {

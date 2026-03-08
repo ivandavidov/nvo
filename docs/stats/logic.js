@@ -1798,6 +1798,7 @@ async function activate(grade) {
 // ─── Инит ─────────────────────────────────────────────────────────────────────
 
 Highcharts.setOptions({
+  accessibility: { enabled: false },
   xAxis: {
     labels: { style: { fontSize: '1.25em' } },
     title:  { style: { fontSize: '1.25em' } }
