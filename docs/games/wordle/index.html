@@ -31,6 +31,17 @@
     .key.wide { min-width:52px; font-size:.75rem; }
     #msg { min-height:1.8rem; font-weight:bold; margin-bottom:6px; font-size:1rem; }
   </style>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nvo-theme');
+      if (!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        saved = 'dark';
+      }
+      if (saved === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
   <script src="../games-header.js" defer></script>
   <script src="../games-touch.js" defer></script>
 </head>

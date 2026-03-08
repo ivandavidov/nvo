@@ -1034,13 +1034,38 @@ function computeCompositeScore(data) {
 
 // ─── Рендиране на графики ─────────────────────────────────────────────────────
 
+function _isDark() {
+  return document.documentElement.getAttribute('data-theme') === 'dark';
+}
+
+function _themeColors() {
+  const dark = _isDark();
+  return {
+    text:    dark ? '#e2e8f0' : '#1e293b',
+    muted:   dark ? '#94a3b8' : '#64748b',
+    grid:    dark ? '#334155' : '#e2e8f0',
+    tipBg:   dark ? '#1e293b' : '#ffffff',
+    tipBord: dark ? '#334155' : '#e2e8f0'
+  };
+}
+
 function chart(id, config) {
   if (_charts[id]) _charts[id].destroy();
-  config.chart      = Object.assign({ animation: false, height: 430 }, config.chart || {});
+  const tc = _themeColors();
+  config.chart      = Object.assign({ animation: false, height: 430, backgroundColor: 'transparent' }, config.chart || {});
   config.title      = Object.assign({ text: null }, config.title || {});
   config.credits    = { enabled: false };
-  config.tooltip    = Object.assign({ animation: false, style: { fontSize: '1.25em' } }, config.tooltip || {});
+  config.tooltip    = Object.assign({ animation: false, backgroundColor: tc.tipBg, borderColor: tc.tipBord, style: { fontSize: '1.25em', color: tc.text } }, config.tooltip || {});
   config.plotOptions = Object.assign({ series: { animation: false } }, config.plotOptions || {});
+  // Apply theme-aware axis defaults
+  const axisDefaults = { labels: { style: { color: tc.muted } }, title: { style: { color: tc.muted } }, gridLineColor: tc.grid, lineColor: tc.grid, tickColor: tc.grid };
+  if (Array.isArray(config.yAxis)) {
+    config.yAxis = config.yAxis.map(y => Object.assign({}, axisDefaults, y));
+  } else {
+    config.yAxis = Object.assign({}, axisDefaults, config.yAxis || {});
+  }
+  config.xAxis = Object.assign({}, axisDefaults, config.xAxis || {});
+  config.legend = Object.assign({ itemStyle: { fontSize: '1.25em', color: tc.text }, itemHoverStyle: { color: tc.text } }, config.legend || {});
   _charts[id] = Highcharts.chart(id, config);
 }
 
@@ -1783,6 +1808,17 @@ Highcharts.setOptions({
   },
   legend: { itemStyle: { fontSize: '1.25em' } }
 });
+
+// Re-render all charts on theme toggle
+(function() {
+  var _origToggle = window.toggleTheme;
+  if (_origToggle) {
+    window.toggleTheme = function() {
+      _origToggle();
+      if (_activeData) renderAllSections();
+    };
+  }
+})();
 
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.grade-btn').forEach(btn => {

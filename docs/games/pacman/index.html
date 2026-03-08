@@ -30,6 +30,17 @@
     .ctrl { margin-top: 10px; text-align: center; }
     .hint { margin-top: 6px; color: #666; text-align: center; font-size: 0.82rem; }
   </style>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nvo-theme');
+      if (!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        saved = 'dark';
+      }
+      if (saved === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
   <script src="../games-header.js" defer></script>
   <script src="../games-touch.js" defer></script>
 </head>

@@ -25,19 +25,20 @@
     gtag('js', new Date());
     gtag('config', 'G-V0P6LBF76F', {'anonymize_ip': true});
   </script>
+  <script src="../js/theme.js"></script>
   <script src="../js/highcharts.js"></script>
   <style>
     .stats-filter-wrap { margin-bottom: 0.2rem; }
     .stats-filter-label {
       margin: 0 0 0.65rem;
-      color: #475569;
+      color: var(--color-text-muted);
       font-size: 0.95rem;
       font-weight: 600;
       line-height: 1.35;
     }
     .stats-filter-hint {
       margin: 0.75rem 0 0;
-      color: #64748b;
+      color: var(--color-text-light);
       font-size: 0.9rem;
       line-height: 1.45;
     }
@@ -51,36 +52,36 @@
       margin: 0;
       padding: 0.45rem 0.9rem;
       border-radius: 999px;
-      border: 1px solid #cbd5e1;
-      background: #f8fafc;
-      color: #334155;
+      border: 1px solid var(--color-border);
+      background: var(--color-bg-alt);
+      color: var(--color-text);
       font-weight: 600;
       min-height: auto;
       line-height: 1.2;
     }
-    .grade-btn:hover { background: #eef2ff; border-color: #94a3b8; }
-    .grade-btn.active { background: #0ea5e9; border-color: #0284c7; color: #fff; }
+    .grade-btn:hover { background: var(--color-primary-lighter); border-color: var(--color-text-light); }
+    .grade-btn.active { background: var(--color-primary); border-color: var(--color-primary-dark); color: #fff; }
     .stat-section { margin-bottom: 3.5rem; }
     .stat-section h5 {
       font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.55rem);
       font-weight: 700;
       line-height: 1.25;
-      border-bottom: 1px solid #e1e1e1;
+      border-bottom: 1px solid var(--color-border);
       padding-bottom: 0.45rem;
       margin-bottom: 0.55rem;
     }
     .section-city-filter { margin: 0 0 0.7rem; display: flex; align-items: center; gap: 0.6rem; }
-    .section-city-filter label { margin: 0; color: #444; font-size: 0.95em; }
-    .city-filter-select { margin: 0; min-width: 210px; height: 34px; padding: 0 8px; }
-    .stat-note { color: #666; font-size: 1em; margin: 0 0 0.3rem !important; }
-    .stat-detail { color: #555; font-size: 1em; margin: 0 0 0.8rem !important; }
+    .section-city-filter label { margin: 0; color: var(--color-text); font-size: 0.95em; }
+    .city-filter-select { margin: 0; min-width: 210px; height: 34px; padding: 0 8px; border: 1px solid var(--color-border); border-radius: var(--radius-sm); background-color: var(--color-surface); color: var(--color-text); }
+    .stat-note { color: var(--color-text-muted); font-size: 1em; margin: 0 0 0.3rem !important; }
+    .stat-detail { color: var(--color-text-muted); font-size: 1em; margin: 0 0 0.8rem !important; }
     .stat-note + .stat-detail { margin-top: 0 !important; }
     .two-col { display: flex; gap: 2rem; flex-wrap: wrap; }
     .two-col > div { flex: 1; min-width: 260px; }
-    #loading { text-align: center; padding: 5rem 0; color: #aaa; font-size: 1.1em; }
+    #loading { text-align: center; padding: 5rem 0; color: var(--color-text-light); font-size: 1.1em; }
     table td, table th { padding: 3px 7px; font-size: 1em; }
-    .pos { color: #27ae60; font-weight: bold; }
-    .neg { color: #c0392b; font-weight: bold; }
+    .pos { color: var(--color-success); font-weight: bold; }
+    .neg { color: var(--color-danger); font-weight: bold; }
   </style>
 </head>
 <body>
@@ -96,6 +97,10 @@
         <a href="../10" class="grade-tab">10 клас</a>
         <a href="../12" class="grade-tab">12 клас</a>
       </nav>
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Смяна на тема">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
     </div>
   </header>
 

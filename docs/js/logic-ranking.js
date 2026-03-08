@@ -409,7 +409,7 @@ function updateNoDataSeparator(tBody, state) {
     let yearValue = getYearCellSortValue(yearCell);
     if(!yearValue.hasValue) {
       for(let j = 0; j < tds.length; j++) {
-        tds[j].style.borderTop = '3px solid #555';
+        tds[j].style.borderTop = '3px solid var(--color-text-light)';
       }
       return;
     }
@@ -537,6 +537,7 @@ function buildRankingTable(div, name, puSchools, prSchools, rankingState) {
     td.appendChild(document.createTextNode(o.t + ' / ' + (o.t === 'Д' ? ++counterPu : ++counterPr)));
     tr.appendChild(td);
     td = document.createElement('td');
+    td.classList.add('rank-cell');
     if(!topRankDone) {
       td.appendChild(document.createTextNode('100'));
       td.title = 'Среден резултат = ' + (topRankAll + rankBase).toFixed(2);

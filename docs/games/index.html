@@ -11,6 +11,17 @@
   <style>
     .games-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
   </style>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nvo-theme');
+      if (!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        saved = 'dark';
+      }
+      if (saved === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
   <script src="games-header.js" defer></script>
 </head>
 <body class="games-theme">

@@ -18,6 +18,17 @@
     .meta{display:flex;justify-content:space-between;margin-bottom:8px;color:#555;flex-wrap:wrap;gap:6px}
     #result{font-size:1.1rem;font-weight:bold;min-height:2rem;margin-bottom:8px;color:#2b8a3e}
   </style>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nvo-theme');
+      if (!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        saved = 'dark';
+      }
+      if (saved === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
   <script src="../games-header.js" defer></script>
   <script src="../games-touch.js" defer></script>
 </head>

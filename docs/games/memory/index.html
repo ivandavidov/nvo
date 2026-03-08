@@ -26,6 +26,17 @@
     .card.open, .card.matched { background:#fff; }
     .card.matched { border-color:#27ae60; }
   </style>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nvo-theme');
+      if (!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        saved = 'dark';
+      }
+      if (saved === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
   <script src="../games-header.js" defer></script>
   <script src="../games-touch.js" defer></script>
 </head>

@@ -116,6 +116,10 @@ function normalizeSeries(series) {
   return counter;
 }
 
+function isDarkTheme() {
+  return document.documentElement.getAttribute('data-theme') === 'dark';
+}
+
 function getLayout(title, series, exportPrefix) {
   let removedYears = normalizeSeries(series);
   let lastYear = firstYear - 1 + s[baseSchoolIndex].b.length - removedYears;
@@ -123,20 +127,30 @@ function getLayout(title, series, exportPrefix) {
   for(let i = 0; i < series[0].data.length; i++) {
     categories.push(lastYear - (series[0].data.length - i - 1) + '');
   }
+  let dark = isDarkTheme();
+  let textColor = dark ? '#e2e8f0' : '#1e293b';
+  let mutedColor = dark ? '#94a3b8' : '#64748b';
+  let gridColor = dark ? '#334155' : '#e2e8f0';
+  let tooltipBg = dark ? '#1e293b' : '#ffffff';
+  let tooltipBorder = dark ? '#334155' : '#e2e8f0';
   return {
     title: {
       text: title,
       style: {
-        fontSize: '1.50em'
+        fontSize: '1.50em',
+        color: textColor
       }
     },
     xAxis: {
       categories: categories,
       labels: {
         style: {
-          fontSize: '1.25em'
+          fontSize: '1.25em',
+          color: mutedColor
         }
-      }
+      },
+      lineColor: gridColor,
+      tickColor: gridColor
     },
     yAxis: {
       title: {
@@ -144,9 +158,11 @@ function getLayout(title, series, exportPrefix) {
       },
       labels: {
         style: {
-          fontSize: '1.25em'
+          fontSize: '1.25em',
+          color: mutedColor
         }
       },
+      gridLineColor: gridColor,
       floor: chartFloor,
       ceiling: chartCeiling
     },
@@ -154,12 +170,17 @@ function getLayout(title, series, exportPrefix) {
       layout: 'horizontal',
       align: 'left',
       itemStyle: {
-        fontSize: '1.25em'
+        fontSize: '1.25em',
+        color: textColor
+      },
+      itemHoverStyle: {
+        color: dark ? '#ffffff' : '#000000'
       }
     },
     chart: {
       animation: false,
-      height: Math.max(Math.floor(Math.min(window.innerWidth, window.innerHeight) * CHART_HEIGHT_PERCENT), CHART_MIN_HEIGHT_PX)
+      height: Math.max(Math.floor(Math.min(window.innerWidth, window.innerHeight) * CHART_HEIGHT_PERCENT), CHART_MIN_HEIGHT_PX),
+      backgroundColor: 'transparent'
     },
     plotOptions: {
       series: {
@@ -167,12 +188,18 @@ function getLayout(title, series, exportPrefix) {
       }
     },
     credits: {
-      enabled: true
+      enabled: true,
+      style: {
+        color: mutedColor
+      }
     },
     tooltip: {
       animation: false,
+      backgroundColor: tooltipBg,
+      borderColor: tooltipBorder,
       style: {
-        fontSize: '1.25em'
+        fontSize: '1.25em',
+        color: textColor
       },
       formatter: function() {
         let options = this.series && this.series.userOptions ? this.series.userOptions : {};
@@ -217,17 +244,7 @@ function getLayout(title, series, exportPrefix) {
       }
     },
     exporting: {
-      enabled: true,
-      allowHTML: true,
-      sourceWidth: CHART_EXPORT_WIDTH,
-      sourceHeight: CHART_EXPORT_HEIGHT,
-      scale: CHART_EXPORT_SCALE,
-      filename: exportPrefix + '-chart',
-      buttons: {
-        contextButton: {
-          menuItems: ['printChart', 'separator', 'downloadPNG', 'downloadJPEG', 'downloadPDF', 'downloadSVG']
-        }
-      }
+      enabled: false
     },
     series: series
   }
@@ -279,19 +296,4 @@ function debounceRedrawOnResize() {
 
 function initializeHighcharts() {
   window.addEventListener('resize', debounceRedrawOnResize);
-  Highcharts.setOptions({
-    lang: {
-      downloadPNG: 'Свали като PNG',
-      downloadJPEG: 'Свали като JPG',
-      downloadPDF: 'Свали като PDF',
-      downloadSVG: 'Свали като SVG',
-      downloadCSV: 'Свали данните (CSV)',
-      downloadXLS: 'Свали данните (XLS)',
-      viewData: 'Покажи данните',
-      viewFullscreen: 'Цял екран',
-      hideData: 'Скрий данните',
-      printChart: 'Отпечатай',
-      contextButtonTitle: null
-    }
-  });
 }

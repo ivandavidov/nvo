@@ -13,6 +13,17 @@
     #msg { text-align:center; font-size:1.1rem; font-weight:bold; margin:8px 0; min-height:1.8rem; }
     #score { text-align:center; color:#666; font-size:.9rem; margin-bottom:6px; }
   </style>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nvo-theme');
+      if (!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        saved = 'dark';
+      }
+      if (saved === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
   <script src="../games-header.js" defer></script>
   <script src="../games-touch.js" defer></script>
 </head>

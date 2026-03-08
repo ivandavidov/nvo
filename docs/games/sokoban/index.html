@@ -14,6 +14,17 @@
     #msg { min-height:1.8rem; font-weight:bold; color:#27ae60; margin-bottom:4px; }
     #hint { color:#888; font-size:.82rem; margin-top:6px; }
   </style>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nvo-theme');
+      if (!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        saved = 'dark';
+      }
+      if (saved === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
   <script src="../games-header.js" defer></script>
   <script src="../games-touch.js" defer></script>
 </head>

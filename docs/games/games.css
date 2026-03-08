@@ -60,7 +60,7 @@
 .games-theme canvas {
   border-radius: var(--radius-sm);
   border: 1px solid var(--color-border);
-  background: #fff;
+  background: var(--color-surface);
   box-shadow: var(--shadow-sm);
 }
 
@@ -136,7 +136,7 @@
   padding: 0.65rem;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
-  background: rgba(255, 255, 255, 0.95);
+  background: var(--color-surface-glass);
   box-shadow: var(--shadow-lg);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
@@ -161,7 +161,7 @@
   padding: 0 14px;
   border: 1px solid var(--color-primary);
   border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.96);
+  background: var(--color-surface-glass);
   color: var(--color-primary-dark);
   font-weight: 700;
   box-shadow: var(--shadow-sm);
