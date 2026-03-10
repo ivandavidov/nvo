@@ -8,10 +8,10 @@
   <link rel="stylesheet" href="../../css/custom.css">
   <link rel="stylesheet" href="../games.css">
   <style>
-    .panel{max-width:520px;margin:0 auto;text-align:center}
-    canvas{width:100%;max-width:480px;display:block;margin:0 auto;cursor:pointer}
+    .panel{max-width:540px;margin:0 auto;text-align:center}
+    canvas{width:100%;max-width:500px;display:block;margin:0 auto;cursor:pointer}
     .meta{display:flex;justify-content:space-between;margin-bottom:8px;color:var(--color-text-muted);flex-wrap:wrap;gap:4px}
-    .opts{display:flex;gap:8px;align-items:center;margin-bottom:10px;flex-wrap:wrap}
+    .opts{display:flex;gap:8px;align-items:center;margin-bottom:10px;flex-wrap:wrap;justify-content:center}
     .opts label{margin:0;font-size:.9em}
     .opts select{margin:0;height:32px;padding:0 6px}
     #msg{font-size:1.1rem;font-weight:bold;min-height:2rem;margin-bottom:4px;color:var(--color-success)}
@@ -38,28 +38,40 @@
   <div id="msg"></div>
   <div class="opts">
   <label>Дискове:</label>
-  <select id="ndisks"><option>3</option><option>4</option><option selected>5</option><option>6</option><option>7</option><option>8</option></select>
+  <button class="button disk-btn" data-n="3">3</button>
+  <button class="button disk-btn" data-n="4">4</button>
+  <button class="button disk-btn button-primary" data-n="5">5</button>
+  <button class="button disk-btn" data-n="6">6</button>
+  <button class="button disk-btn" data-n="7">7</button>
+  <button class="button disk-btn" data-n="8">8</button>
   <button class="button" id="newGame">Нова игра</button>
   </div>
   <div class="meta"><span>Ходове: <strong id="moves">0</strong></span><span>Минимум: <strong id="minMoves">31</strong></span></div>
-  <canvas id="c" width="480" height="280"></canvas>
+  <canvas id="c" width="500" height="340"></canvas>
   <div style="margin-top:6px;color:#666;font-size:.9em">Кликни стълб за да вземеш/пуснеш диск</div>
   </div>
   </div>
 <script>
 'use strict';
 const cv=document.getElementById('c'),ctx=cv.getContext('2d');
-const W=480,H=280;
+const W=500,H=340;
+const dpr=window.devicePixelRatio||1;
+cv.width=W*dpr;cv.height=H*dpr;ctx.scale(dpr,dpr);
 const colors=['#e74c3c','#e67e22','#f1c40f','#2ecc71','#3498db','#9b59b6','#1abc9c','#e84393'];
-let pegs,nDisks,moves,selected,won;
+let pegs,nDisks=5,moves,selected,won;
 
 function init(){
-  nDisks=+document.getElementById('ndisks').value;
   pegs=[[],[],[]];for(let i=nDisks;i>=1;i--)pegs[0].push(i);
   moves=0;selected=-1;won=false;
   document.getElementById('moves').textContent='0';
   document.getElementById('minMoves').textContent=String((1<<nDisks)-1);
   document.getElementById('msg').textContent='';draw()
+}
+
+function setDisks(n){
+  nDisks=n;
+  document.querySelectorAll('.disk-btn').forEach(b=>b.classList.toggle('button-primary',+b.dataset.n===n));
+  init();
 }
 
 function draw(){
@@ -78,7 +90,7 @@ function draw(){
       ctx.strokeStyle='rgba(0,0,0,0.2)';ctx.stroke()
     })
   }
-  if(won){ctx.fillStyle='rgba(255,255,255,0.85)';ctx.fillRect(100,100,280,60);ctx.fillStyle='#2b8a3e';ctx.font='bold 20px sans-serif';ctx.textAlign='center';ctx.fillText('Браво! Успя за '+moves+' хода!',W/2,137)}
+  if(won){ctx.fillStyle='rgba(255,255,255,0.85)';ctx.fillRect(W/2-155,H/2-35,310,62);ctx.fillStyle='#2b8a3e';ctx.font='bold 20px sans-serif';ctx.textAlign='center';ctx.fillText('Браво! Успя за '+moves+' хода!',W/2,H/2+7)}
 }
 
 cv.onclick=e=>{
@@ -97,8 +109,8 @@ cv.onclick=e=>{
 };
 
 document.getElementById('newGame').onclick=init;
-document.getElementById('ndisks').onchange=init;
-init();
+document.querySelectorAll('.disk-btn').forEach(b=>b.onclick=()=>setDisks(+b.dataset.n));
+setDisks(5);
 </script>
 </body>
 </html>
