@@ -68,7 +68,7 @@
   const ICONS = ['🍎','🍌','🍇','🍒','🍉','🍍','🥝','🍓','🍑','🍋','🍐','🍊'];
   const boardEl = document.getElementById('board');
   const movesEl = document.getElementById('moves');
-  let cards = [], open = [], lock = false, moves = 0, matched = 0;
+  let cards = [], open = [], moves = 0, matched = 0;
   let rows = 4; // default 4x4
 
   function setSize(r) {
@@ -93,35 +93,33 @@
     const icons = ICONS.slice(0, pairs);
     const pool = shuffle(icons.concat(icons));
     cards = pool.map((v,i)=>({id:i,v,open:false,matched:false}));
-    open = []; lock = false; moves = 0; matched = 0;
+    open = []; moves = 0; matched = 0;
     movesEl.textContent = '0';
     render();
   }
 
   function clickCard(i){
-    const c = cards[i];
-    if(lock || c.open || c.matched) return;
-    c.open = true;
-    open.push(i);
-    render();
-    if(open.length < 2) return;
-    moves++; movesEl.textContent = String(moves);
-    const [a,b] = open;
-    if(cards[a].v === cards[b].v){
-      cards[a].matched = cards[b].matched = true;
-      matched += 2;
-      open = [];
-      if(matched === cards.length) setTimeout(()=>alert('Победа! Ходове: ' + moves), 40);
-      render();
-      return;
-    }
-    lock = true;
-    setTimeout(()=>{
+    // If 2 non-matching cards are open, close them before processing the new click
+    if(open.length === 2) {
+      const [a, b] = open;
       cards[a].open = cards[b].open = false;
       open = [];
-      lock = false;
-      render();
-    }, 650);
+    }
+    const c = cards[i];
+    if(c.open || c.matched) return;
+    c.open = true;
+    open.push(i);
+    if(open.length === 2) {
+      moves++; movesEl.textContent = String(moves);
+      const [a,b] = open;
+      if(cards[a].v === cards[b].v){
+        cards[a].matched = cards[b].matched = true;
+        matched += 2;
+        open = [];
+        if(matched === cards.length) setTimeout(()=>alert('Победа! Ходове: ' + moves), 40);
+      }
+    }
+    render();
   }
 
   function render(){
