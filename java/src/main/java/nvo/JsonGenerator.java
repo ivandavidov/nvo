@@ -406,18 +406,18 @@ public class JsonGenerator {
                           <tr><td>grade</td><td class="type">number</td><td>Клас</td></tr>
                           <tr><td>type</td><td class="type">string</td><td>"median"</td></tr>
                           <tr><td>medianYears</td><td class="type">number</td><td>Брой години за медианата</td></tr>
-                          <tr><td>endYear</td><td class="type">number</td><td>Крайна година на прозореца</td></tr>
+                          <tr><td>endYear</td><td class="type">number</td><td>Крайна година на прозореца за изчисление на медианата</td></tr>
                           <tr><td>schools[]</td><td class="type">array</td><td>Сортиран списък с училища</td></tr>
                           <tr><td>schools[].rank</td><td class="type">number</td><td>Позиция в класацията</td></tr>
-                          <tr><td>schools[].adjustedRank</td><td class="type">number|null</td><td>Позиция без училища без данни за endYear (null = няма данни за крайната година)</td></tr>
+                          <tr><td>schools[].adjustedRank</td><td class="type">number|null</td><td>Позиция с изключените училища без данни за последната година</td></tr>
                           <tr><td>schools[].code</td><td class="type">string</td><td>Код на училището</td></tr>
-                          <tr><td>schools[].cities</td><td class="type">array</td><td>Slug-ове на градовете (училища в повече от един град имат няколко)</td></tr>
+                          <tr><td>schools[].cities</td><td class="type">array</td><td>Slug-ове на градовете (някои училища се водят на повече от едно място)</td></tr>
                           <tr><td>schools[].shortName</td><td class="type">string</td><td>Кратко име</td></tr>
                           <tr><td>schools[].fullName</td><td class="type">string</td><td>Пълно име</td></tr>
                           <tr><td>schools[].isPrivate</td><td class="type">boolean</td><td>Частно училище</td></tr>
                           <tr><td>schools[].belMedian</td><td class="type">number</td><td>Медиана БЕЛ</td></tr>
                           <tr><td>schools[].matMedian</td><td class="type">number</td><td>Медиана МАТ</td></tr>
-                          <tr><td>schools[].score</td><td class="type">number</td><td>Общ резултат (БЕЛ+МАТ)/2</td></tr>
+                          <tr><td>schools[].score</td><td class="type">number</td><td>Общ резултат (БЕЛ + МАТ)/2</td></tr>
                         </table>"""));
 
         sb.append(endpointCardNoLink(
@@ -444,13 +444,13 @@ public class JsonGenerator {
                           <tr><td>schools[]</td><td class="type">array</td><td>Сортиран списък с училища</td></tr>
                           <tr><td>schools[].rank</td><td class="type">number</td><td>Позиция в класацията</td></tr>
                           <tr><td>schools[].code</td><td class="type">string</td><td>Код на училището</td></tr>
-                          <tr><td>schools[].cities</td><td class="type">array</td><td>Slug-ове на градовете (училища в повече от един град имат няколко)</td></tr>
+                          <tr><td>schools[].cities</td><td class="type">array</td><td>Slug-ове на градовете (някои училища се водят на повече от едно място)</td></tr>
                           <tr><td>schools[].shortName</td><td class="type">string</td><td>Кратко име</td></tr>
                           <tr><td>schools[].fullName</td><td class="type">string</td><td>Пълно име</td></tr>
                           <tr><td>schools[].isPrivate</td><td class="type">boolean</td><td>Частно училище</td></tr>
                           <tr><td>schools[].belScore</td><td class="type">number</td><td>Резултат БЕЛ</td></tr>
                           <tr><td>schools[].matScore</td><td class="type">number</td><td>Резултат МАТ</td></tr>
-                          <tr><td>schools[].score</td><td class="type">number</td><td>Общ резултат (БЕЛ+МАТ)/2</td></tr>
+                          <tr><td>schools[].score</td><td class="type">number</td><td>Общ резултат (БЕЛ + МАТ)/2</td></tr>
                         </table>"""));
 
         sb.append("    </div>\n");
