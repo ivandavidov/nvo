@@ -1,7 +1,6 @@
 {
   "grade": 4,
-  "firstYear": 2018,
-  "lastYear": 2025,
+  "yearsRange": [ 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025 ],
   "cities": {
     "kurdzhali": {
       "fullName": "Кърджали",

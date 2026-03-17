@@ -68,8 +68,7 @@ public class JsonGenerator {
             JsonObject gObj = new JsonObject();
             gObj.addProperty("grade", Integer.parseInt(g[0]));
             gObj.addProperty("label", g[1]);
-            gObj.addProperty("firstYear", FIRST_YEAR);
-            gObj.addProperty("lastYear", LAST_YEAR);
+            gObj.add("yearsRange", buildYearsRange());
             gObj.addProperty("scaleMin", Integer.parseInt(g[2]));
             gObj.addProperty("scaleMax", Integer.parseInt(g[3]));
             gObj.addProperty("dataUrl", g[0] + "/data.json");
@@ -193,8 +192,7 @@ public class JsonGenerator {
                           <tr><td>grades</td><td class="type">array</td><td>Масив с обекти за всеки клас</td></tr>
                           <tr><td>grades[].grade</td><td class="type">number</td><td>Клас (4, 7, 10, 12)</td></tr>
                           <tr><td>grades[].label</td><td class="type">string</td><td>Четимо име</td></tr>
-                          <tr><td>grades[].firstYear</td><td class="type">number</td><td>Първа година с данни</td></tr>
-                          <tr><td>grades[].lastYear</td><td class="type">number</td><td>Последна година с данни</td></tr>
+                          <tr><td>grades[].yearsRange</td><td class="type">array</td><td>Масив с години с данни</td></tr>
                           <tr><td>grades[].scaleMin</td><td class="type">number</td><td>Минимална стойност на скалата</td></tr>
                           <tr><td>grades[].scaleMax</td><td class="type">number</td><td>Максимална стойност на скалата</td></tr>
                           <tr><td>grades[].dataUrl</td><td class="type">string</td><td>Относителен път до пълните данни</td></tr>
@@ -291,8 +289,7 @@ public class JsonGenerator {
                             <table class="schema-table">
                               <tr><th>Поле</th><th>Тип</th><th>Описание</th></tr>
                               <tr><td>grade</td><td class="type">number</td><td>Клас</td></tr>
-                              <tr><td>firstYear</td><td class="type">number</td><td>Първа година</td></tr>
-                              <tr><td>lastYear</td><td class="type">number</td><td>Последна година</td></tr>
+                              <tr><td>yearsRange</td><td class="type">array</td><td>Масив с години с данни</td></tr>
                               <tr><td>cities</td><td class="type">object</td><td>Градове (ключ = hrefName, латиница)</td></tr>
                               <tr><td>cities.*.fullName</td><td class="type">string</td><td>Пълно име на града</td></tr>
                               <tr><td>cities.*.shortName</td><td class="type">string</td><td>Кратко име</td></tr>
@@ -331,8 +328,7 @@ public class JsonGenerator {
                         <table class="schema-table">
                           <tr><th>Поле</th><th>Тип</th><th>Описание</th></tr>
                           <tr><td>grade</td><td class="type">number</td><td>Клас</td></tr>
-                          <tr><td>firstYear</td><td class="type">number</td><td>Първа година</td></tr>
-                          <tr><td>lastYear</td><td class="type">number</td><td>Последна година</td></tr>
+                          <tr><td>yearsRange</td><td class="type">array</td><td>Масив с години с данни</td></tr>
                           <tr><td>cities</td><td class="type">object</td><td>Съдържа само избрания град (ключ = hrefName)</td></tr>
                           <tr><td>cities.*.fullName</td><td class="type">string</td><td>Пълно име на града</td></tr>
                           <tr><td>cities.*.shortName</td><td class="type">string</td><td>Кратко име</td></tr>
@@ -369,8 +365,7 @@ public class JsonGenerator {
                         <table class="schema-table">
                           <tr><th>Поле</th><th>Тип</th><th>Описание</th></tr>
                           <tr><td>grade</td><td class="type">number</td><td>Клас</td></tr>
-                          <tr><td>firstYear</td><td class="type">number</td><td>Първа година</td></tr>
-                          <tr><td>lastYear</td><td class="type">number</td><td>Последна година</td></tr>
+                          <tr><td>yearsRange</td><td class="type">array</td><td>Масив с години с данни</td></tr>
                           <tr><td>cities</td><td class="type">object</td><td>Съдържа само избрания град с едно училище</td></tr>
                           <tr><td>cities.*.fullName</td><td class="type">string</td><td>Пълно име на града</td></tr>
                           <tr><td>cities.*.shortName</td><td class="type">string</td><td>Кратко име</td></tr>
@@ -851,8 +846,7 @@ public class JsonGenerator {
         // Build JSON using Cities.ORDERED for consistent city ordering
         JsonObject root = new JsonObject();
         root.addProperty("grade", Integer.parseInt(grade));
-        root.addProperty("firstYear", FIRST_YEAR);
-        root.addProperty("lastYear", LAST_YEAR);
+        root.add("yearsRange", buildYearsRange());
 
         JsonObject citiesJson = new JsonObject();
         Path gradeDir = Path.of(OUTPUT_BASE, grade);
@@ -895,8 +889,7 @@ public class JsonGenerator {
                             oneCities.add(city.hrefName(), oneCity);
                             JsonObject schoolRoot = new JsonObject();
                             schoolRoot.addProperty("grade", gradeNum);
-                            schoolRoot.addProperty("firstYear", FIRST_YEAR);
-                            schoolRoot.addProperty("lastYear", LAST_YEAR);
+                            schoolRoot.add("yearsRange", buildYearsRange());
                             schoolRoot.add("cities", oneCities);
                             Files.writeString(cityDir.resolve(code + ".json"),
                                     collapseArrays(gson.toJson(schoolRoot)) + "\n");
@@ -914,8 +907,7 @@ public class JsonGenerator {
             oneCities.add(city.hrefName(), cityJson);
             JsonObject cityRoot = new JsonObject();
             cityRoot.addProperty("grade", gradeNum);
-            cityRoot.addProperty("firstYear", FIRST_YEAR);
-            cityRoot.addProperty("lastYear", LAST_YEAR);
+            cityRoot.add("yearsRange", buildYearsRange());
             cityRoot.add("cities", oneCities);
             String cityJsonStr = collapseArrays(gson.toJson(cityRoot));
             Files.writeString(cityDir.resolve("data.json"), cityJsonStr + "\n");
@@ -1175,6 +1167,12 @@ public class JsonGenerator {
                 arr.add(v);
             }
         }
+        return arr;
+    }
+
+    private static JsonArray buildYearsRange() {
+        JsonArray arr = new JsonArray();
+        for (int y = FIRST_YEAR; y <= LAST_YEAR; y++) arr.add(y);
         return arr;
     }
 

@@ -96,8 +96,7 @@
   <tr><td>grades</td><td class="type">array</td><td>Масив с обекти за всеки клас</td></tr>
   <tr><td>grades[].grade</td><td class="type">number</td><td>Клас (4, 7, 10, 12)</td></tr>
   <tr><td>grades[].label</td><td class="type">string</td><td>Четимо име</td></tr>
-  <tr><td>grades[].firstYear</td><td class="type">number</td><td>Първа година с данни</td></tr>
-  <tr><td>grades[].lastYear</td><td class="type">number</td><td>Последна година с данни</td></tr>
+  <tr><td>grades[].yearsRange</td><td class="type">array</td><td>Масив с години с данни</td></tr>
   <tr><td>grades[].scaleMin</td><td class="type">number</td><td>Минимална стойност на скалата</td></tr>
   <tr><td>grades[].scaleMax</td><td class="type">number</td><td>Максимална стойност на скалата</td></tr>
   <tr><td>grades[].dataUrl</td><td class="type">string</td><td>Относителен път до пълните данни</td></tr>
@@ -207,8 +206,7 @@
 <table class="schema-table">
   <tr><th>Поле</th><th>Тип</th><th>Описание</th></tr>
   <tr><td>grade</td><td class="type">number</td><td>Клас</td></tr>
-  <tr><td>firstYear</td><td class="type">number</td><td>Първа година</td></tr>
-  <tr><td>lastYear</td><td class="type">number</td><td>Последна година</td></tr>
+  <tr><td>yearsRange</td><td class="type">array</td><td>Масив с години с данни</td></tr>
   <tr><td>cities</td><td class="type">object</td><td>Градове (ключ = hrefName, латиница)</td></tr>
   <tr><td>cities.*.fullName</td><td class="type">string</td><td>Пълно име на града</td></tr>
   <tr><td>cities.*.shortName</td><td class="type">string</td><td>Кратко име</td></tr>
@@ -235,8 +233,7 @@
 <table class="schema-table">
   <tr><th>Поле</th><th>Тип</th><th>Описание</th></tr>
   <tr><td>grade</td><td class="type">number</td><td>Клас</td></tr>
-  <tr><td>firstYear</td><td class="type">number</td><td>Първа година</td></tr>
-  <tr><td>lastYear</td><td class="type">number</td><td>Последна година</td></tr>
+  <tr><td>yearsRange</td><td class="type">array</td><td>Масив с години с данни</td></tr>
   <tr><td>cities</td><td class="type">object</td><td>Градове (ключ = hrefName, латиница)</td></tr>
   <tr><td>cities.*.fullName</td><td class="type">string</td><td>Пълно име на града</td></tr>
   <tr><td>cities.*.shortName</td><td class="type">string</td><td>Кратко име</td></tr>
@@ -263,8 +260,7 @@
 <table class="schema-table">
   <tr><th>Поле</th><th>Тип</th><th>Описание</th></tr>
   <tr><td>grade</td><td class="type">number</td><td>Клас</td></tr>
-  <tr><td>firstYear</td><td class="type">number</td><td>Първа година</td></tr>
-  <tr><td>lastYear</td><td class="type">number</td><td>Последна година</td></tr>
+  <tr><td>yearsRange</td><td class="type">array</td><td>Масив с години с данни</td></tr>
   <tr><td>cities</td><td class="type">object</td><td>Градове (ключ = hrefName, латиница)</td></tr>
   <tr><td>cities.*.fullName</td><td class="type">string</td><td>Пълно име на града</td></tr>
   <tr><td>cities.*.shortName</td><td class="type">string</td><td>Кратко име</td></tr>
@@ -291,8 +287,7 @@
 <table class="schema-table">
   <tr><th>Поле</th><th>Тип</th><th>Описание</th></tr>
   <tr><td>grade</td><td class="type">number</td><td>Клас</td></tr>
-  <tr><td>firstYear</td><td class="type">number</td><td>Първа година</td></tr>
-  <tr><td>lastYear</td><td class="type">number</td><td>Последна година</td></tr>
+  <tr><td>yearsRange</td><td class="type">array</td><td>Масив с години с данни</td></tr>
   <tr><td>cities</td><td class="type">object</td><td>Градове (ключ = hrefName, латиница)</td></tr>
   <tr><td>cities.*.fullName</td><td class="type">string</td><td>Пълно име на града</td></tr>
   <tr><td>cities.*.shortName</td><td class="type">string</td><td>Кратко име</td></tr>
@@ -331,8 +326,7 @@
 <table class="schema-table">
   <tr><th>Поле</th><th>Тип</th><th>Описание</th></tr>
   <tr><td>grade</td><td class="type">number</td><td>Клас</td></tr>
-  <tr><td>firstYear</td><td class="type">number</td><td>Първа година</td></tr>
-  <tr><td>lastYear</td><td class="type">number</td><td>Последна година</td></tr>
+  <tr><td>yearsRange</td><td class="type">array</td><td>Масив с години с данни</td></tr>
   <tr><td>cities</td><td class="type">object</td><td>Съдържа само избрания град (ключ = hrefName)</td></tr>
   <tr><td>cities.*.fullName</td><td class="type">string</td><td>Пълно име на града</td></tr>
   <tr><td>cities.*.shortName</td><td class="type">string</td><td>Кратко име</td></tr>
@@ -374,8 +368,7 @@
 <table class="schema-table">
   <tr><th>Поле</th><th>Тип</th><th>Описание</th></tr>
   <tr><td>grade</td><td class="type">number</td><td>Клас</td></tr>
-  <tr><td>firstYear</td><td class="type">number</td><td>Първа година</td></tr>
-  <tr><td>lastYear</td><td class="type">number</td><td>Последна година</td></tr>
+  <tr><td>yearsRange</td><td class="type">array</td><td>Масив с години с данни</td></tr>
   <tr><td>cities</td><td class="type">object</td><td>Съдържа само избрания град с едно училище</td></tr>
   <tr><td>cities.*.fullName</td><td class="type">string</td><td>Пълно име на града</td></tr>
   <tr><td>cities.*.shortName</td><td class="type">string</td><td>Кратко име</td></tr>
