@@ -55,8 +55,8 @@ java -cp nvo-v2.jar nvo.JsonGenerator 12
 - `schools` generates `docs/api/v1/schools.json` (all schools) and `docs/api/v1/schools/{code}.json` (per-school lookup by code)
 - `cities` generates `docs/api/v1/cities.json` (all cities) and `docs/api/v1/cities/{slug}.json` (per-city lookup by slug)
 - `4`/`7`/`10`/`12` generates per-grade `data.json`, per-city `data.json`, per-school `.json` files, and rankings under `docs/api/v1/rankings/`
-- All per-grade generated files share a unified JSON envelope: `{ grade, firstYear, lastYear, cities: { ... } }`
-- Rankings: `rankings/{grade}/{year}.json` (per-year) and `rankings/median/{grade}/{year}.json` (3-year median window, from 2020 onwards)
+- All per-grade generated files share a unified JSON envelope: `{ grade, yearsRange, cities: { ... } }`
+- Rankings: `rankings/{grade}/{year}.json` (per-year) and `rankings/median/{grade}/{year}.json` (3-year median window, from 2020 onwards, includes `adjustedRank` that excludes schools without endYear data)
 
 ## Current Architecture
 
