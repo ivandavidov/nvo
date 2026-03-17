@@ -24,13 +24,23 @@ Or manual Java pipeline:
 ```bash
 cd java
 ./mvnw clean package
-java -jar target/nvo-v2.jar normalize
-java -jar target/nvo-v2.jar index
-java -jar target/nvo-v2.jar 4
-java -jar target/nvo-v2.jar 7
-java -jar target/nvo-v2.jar 10
-java -jar target/nvo-v2.jar 12
+cd target
+java -jar nvo-v2.jar normalize
+java -jar nvo-v2.jar 4
+java -jar nvo-v2.jar 7
+java -jar nvo-v2.jar 10
+java -jar nvo-v2.jar 12
+java -cp nvo-v2.jar nvo.JsonGenerator index
+java -cp nvo-v2.jar nvo.JsonGenerator 4
+java -cp nvo-v2.jar nvo.JsonGenerator 7
+java -cp nvo-v2.jar nvo.JsonGenerator 10
+java -cp nvo-v2.jar nvo.JsonGenerator 12
 ```
+
+- `nvo-v2.jar` (main jar) — normalizes CSV and generates `schools-{grade}.js`
+- `nvo.JsonGenerator` — separate entry point (`-cp`, not `-jar`) that generates `docs/api/v1/`:
+  - `index` — `index.json`, `index.html` (API docs page)
+  - `4`/`7`/`10`/`12` — per-grade `data.json`, per-city and per-school JSON files
 
 ## Files You Will Touch Most
 
