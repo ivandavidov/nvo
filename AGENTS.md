@@ -44,14 +44,19 @@ java -jar nvo-v2.jar 12
 ### Java tool — JsonGenerator (separate entry point, uses `-cp` not `-jar`)
 ```bash
 java -cp nvo-v2.jar nvo.JsonGenerator index
+java -cp nvo-v2.jar nvo.JsonGenerator schools
+java -cp nvo-v2.jar nvo.JsonGenerator cities
 java -cp nvo-v2.jar nvo.JsonGenerator 4
 java -cp nvo-v2.jar nvo.JsonGenerator 7
 java -cp nvo-v2.jar nvo.JsonGenerator 10
 java -cp nvo-v2.jar nvo.JsonGenerator 12
 ```
 - `index` generates `docs/api/v1/index.json` (API metadata) and `docs/api/v1/index.html` (interactive Swagger-like docs)
-- `4`/`7`/`10`/`12` generates per-grade `data.json`, per-city `data.json`, and per-school `.json` files under `docs/api/v1/{grade}/`
-- All generated files share a unified JSON envelope: `{ grade, firstYear, lastYear, cities: { ... } }`
+- `schools` generates `docs/api/v1/schools.json` (all schools) and `docs/api/v1/schools/{code}.json` (per-school lookup by code)
+- `cities` generates `docs/api/v1/cities.json` (all cities) and `docs/api/v1/cities/{slug}.json` (per-city lookup by slug)
+- `4`/`7`/`10`/`12` generates per-grade `data.json`, per-city `data.json`, per-school `.json` files, and rankings under `docs/api/v1/rankings/`
+- All per-grade generated files share a unified JSON envelope: `{ grade, firstYear, lastYear, cities: { ... } }`
+- Rankings: `rankings/{grade}/{year}.json` (per-year) and `rankings/median/{grade}/{year}.json` (3-year median window, from 2020 onwards)
 
 ## Current Architecture
 
@@ -69,7 +74,13 @@ docs/
   games/                     games hub + standalone games
   api/                       redirect to api/v1/
   api/v1/                    static JSON API + interactive Swagger-like docs
-  api/v1/index.json          API metadata (grades list)
+  api/v1/index.json          API metadata (grades list + schoolsUrl)
+  api/v1/schools.json        all schools lookup (code → name, website, isPrivate)
+  api/v1/schools/{code}.json per-school lookup by code
+  api/v1/cities.json         all cities lookup (slug → name, orderPosition)
+  api/v1/cities/{slug}.json  per-city lookup by slug
+  api/v1/rankings/{grade}/{year}.json          per-year ranking
+  api/v1/rankings/median/{grade}/{year}.json  3-year median ranking (from 2020 onwards)
   api/v1/{grade}/data.json   full data per grade
   api/v1/{grade}/{city}/     per-city data + per-school JSON files
   js/

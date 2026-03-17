@@ -36,5 +36,8 @@
       "scaleMax": 6,
       "dataUrl": "12/data.json"
     }
-  ]
+  ],
+  "schoolsUrl": "schools.json",
+  "citiesUrl": "cities.json",
+  "rankingsPath": "rankings/"
 }

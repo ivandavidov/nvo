@@ -1,0 +1,729 @@
+{
+  "cities": {
+    "sofia": {
+      "fullName": "София",
+      "shortName": "София",
+      "orderPosition": 1
+    },
+    "plovdiv": {
+      "fullName": "Пловдив",
+      "shortName": "Пловдив",
+      "orderPosition": 1
+    },
+    "varna": {
+      "fullName": "Варна",
+      "shortName": "Варна",
+      "orderPosition": 1
+    },
+    "burgas": {
+      "fullName": "Бургас",
+      "shortName": "Бургас",
+      "orderPosition": 1
+    },
+    "blagoevgrad": {
+      "fullName": "Благоевград",
+      "shortName": "Благоевград",
+      "orderPosition": 2
+    },
+    "veliko-turnovo": {
+      "fullName": "Велико Търново",
+      "shortName": "В. Търново",
+      "orderPosition": 2
+    },
+    "vidin": {
+      "fullName": "Видин",
+      "shortName": "Видин",
+      "orderPosition": 2
+    },
+    "vratsa": {
+      "fullName": "Враца",
+      "shortName": "Враца",
+      "orderPosition": 2
+    },
+    "gabrovo": {
+      "fullName": "Габрово",
+      "shortName": "Габрово",
+      "orderPosition": 2
+    },
+    "dobrich": {
+      "fullName": "Добрич",
+      "shortName": "Добрич",
+      "orderPosition": 2
+    },
+    "kurdzhali": {
+      "fullName": "Кърджали",
+      "shortName": "Кърджали",
+      "orderPosition": 2
+    },
+    "kiustendil": {
+      "fullName": "Кюстендил",
+      "shortName": "Кюстендил",
+      "orderPosition": 2
+    },
+    "lovech": {
+      "fullName": "Ловеч",
+      "shortName": "Ловеч",
+      "orderPosition": 2
+    },
+    "montana": {
+      "fullName": "Монтана",
+      "shortName": "Монтана",
+      "orderPosition": 2
+    },
+    "pazardzhik": {
+      "fullName": "Пазарджик",
+      "shortName": "Пазарджик",
+      "orderPosition": 2
+    },
+    "pernik": {
+      "fullName": "Перник",
+      "shortName": "Перник",
+      "orderPosition": 2
+    },
+    "pleven": {
+      "fullName": "Плевен",
+      "shortName": "Плевен",
+      "orderPosition": 2
+    },
+    "razgrad": {
+      "fullName": "Разград",
+      "shortName": "Разград",
+      "orderPosition": 2
+    },
+    "ruse": {
+      "fullName": "Русе",
+      "shortName": "Русе",
+      "orderPosition": 2
+    },
+    "silistra": {
+      "fullName": "Силистра",
+      "shortName": "Силистра",
+      "orderPosition": 2
+    },
+    "sliven": {
+      "fullName": "Сливен",
+      "shortName": "Сливен",
+      "orderPosition": 2
+    },
+    "smolian": {
+      "fullName": "Смолян",
+      "shortName": "Смолян",
+      "orderPosition": 2
+    },
+    "stara-zagora": {
+      "fullName": "Стара Загора",
+      "shortName": "Ст. Загора",
+      "orderPosition": 2
+    },
+    "turgovishte": {
+      "fullName": "Търговище",
+      "shortName": "Търговище",
+      "orderPosition": 2
+    },
+    "haskovo": {
+      "fullName": "Хасково",
+      "shortName": "Хасково",
+      "orderPosition": 2
+    },
+    "shumen": {
+      "fullName": "Шумен",
+      "shortName": "Шумен",
+      "orderPosition": 2
+    },
+    "iambol": {
+      "fullName": "Ямбол",
+      "shortName": "Ямбол",
+      "orderPosition": 2
+    },
+    "aitos": {
+      "fullName": "Айтос",
+      "shortName": "Айтос",
+      "orderPosition": 3
+    },
+    "aksakovo": {
+      "fullName": "Аксаково",
+      "shortName": "Аксаково",
+      "orderPosition": 3
+    },
+    "asenovgrad": {
+      "fullName": "Асеновград",
+      "shortName": "Асеновград",
+      "orderPosition": 3
+    },
+    "balchik": {
+      "fullName": "Балчик",
+      "shortName": "Балчик",
+      "orderPosition": 3
+    },
+    "bankiq": {
+      "fullName": "Банкя",
+      "shortName": "Банкя",
+      "orderPosition": 3
+    },
+    "bansko": {
+      "fullName": "Банско",
+      "shortName": "Банско",
+      "orderPosition": 3
+    },
+    "belene": {
+      "fullName": "Белене",
+      "shortName": "Белене",
+      "orderPosition": 3
+    },
+    "belogradchik": {
+      "fullName": "Белоградчик",
+      "shortName": "Белоградчик",
+      "orderPosition": 3
+    },
+    "beloslav": {
+      "fullName": "Белослав",
+      "shortName": "Белослав",
+      "orderPosition": 3
+    },
+    "berkovitsa": {
+      "fullName": "Берковица",
+      "shortName": "Берковица",
+      "orderPosition": 3
+    },
+    "bobov-dol": {
+      "fullName": "Бобов дол",
+      "shortName": "Бобов дол",
+      "orderPosition": 3
+    },
+    "bozhurishte": {
+      "fullName": "Божурище",
+      "shortName": "Божурище",
+      "orderPosition": 3
+    },
+    "botevgrad": {
+      "fullName": "Ботевград",
+      "shortName": "Ботевград",
+      "orderPosition": 3
+    },
+    "biala-ruse": {
+      "fullName": "Бяла (Русе)",
+      "shortName": "Бяла (Русе)",
+      "orderPosition": 3
+    },
+    "biala-slatina": {
+      "fullName": "Бяла Слатина",
+      "shortName": "Б. Слатина",
+      "orderPosition": 3
+    },
+    "veliki-preslav": {
+      "fullName": "Велики Преслав",
+      "shortName": "Вел. Преслав",
+      "orderPosition": 3
+    },
+    "velingrad": {
+      "fullName": "Велинград",
+      "shortName": "Велинград",
+      "orderPosition": 3
+    },
+    "vurshets": {
+      "fullName": "Вършец",
+      "shortName": "Вършец",
+      "orderPosition": 3
+    },
+    "general-toshevo": {
+      "fullName": "Генерал Тошево",
+      "shortName": "Ген. Тошево",
+      "orderPosition": 3
+    },
+    "godech": {
+      "fullName": "Годеч",
+      "shortName": "Годеч",
+      "orderPosition": 3
+    },
+    "gorna-oryahovitsa": {
+      "fullName": "Горна Оряховица",
+      "shortName": "Г. Оряховица",
+      "orderPosition": 3
+    },
+    "gotse-delchev": {
+      "fullName": "Гоце Делчев",
+      "shortName": "Гоце Делчев",
+      "orderPosition": 3
+    },
+    "gulubovo": {
+      "fullName": "Гълъбово",
+      "shortName": "Гълъбово",
+      "orderPosition": 3
+    },
+    "devin": {
+      "fullName": "Девин",
+      "shortName": "Девин",
+      "orderPosition": 3
+    },
+    "devnia": {
+      "fullName": "Девня",
+      "shortName": "Девня",
+      "orderPosition": 3
+    },
+    "dimitrovgrad": {
+      "fullName": "Димитровград",
+      "shortName": "Димитровград",
+      "orderPosition": 3
+    },
+    "dolna-bania": {
+      "fullName": "Долна баня",
+      "shortName": "Долна баня",
+      "orderPosition": 3
+    },
+    "dolni-chiflik": {
+      "fullName": "Долни Чифлик",
+      "shortName": "Долни Чифлик",
+      "orderPosition": 3
+    },
+    "drianovo": {
+      "fullName": "Дряново",
+      "shortName": "Дряново",
+      "orderPosition": 3
+    },
+    "dulovo": {
+      "fullName": "Дулово",
+      "shortName": "Дулово",
+      "orderPosition": 3
+    },
+    "dupnitsa": {
+      "fullName": "Дупница",
+      "shortName": "Дупница",
+      "orderPosition": 3
+    },
+    "dulgopol": {
+      "fullName": "Дългопол",
+      "shortName": "Дългопол",
+      "orderPosition": 3
+    },
+    "elena": {
+      "fullName": "Елена",
+      "shortName": "Елена",
+      "orderPosition": 3
+    },
+    "elin-pelin": {
+      "fullName": "Елин Пелин",
+      "shortName": "Елин Пелин",
+      "orderPosition": 3
+    },
+    "elhovo": {
+      "fullName": "Елхово",
+      "shortName": "Елхово",
+      "orderPosition": 3
+    },
+    "etropole": {
+      "fullName": "Етрополе",
+      "shortName": "Етрополе",
+      "orderPosition": 3
+    },
+    "zlatitsa": {
+      "fullName": "Златица",
+      "shortName": "Златица",
+      "orderPosition": 3
+    },
+    "zlatograd": {
+      "fullName": "Златоград",
+      "shortName": "Златоград",
+      "orderPosition": 3
+    },
+    "isperih": {
+      "fullName": "Исперих",
+      "shortName": "Исперих",
+      "orderPosition": 3
+    },
+    "ihtiman": {
+      "fullName": "Ихтиман",
+      "shortName": "Ихтиман",
+      "orderPosition": 3
+    },
+    "kavarna": {
+      "fullName": "Каварна",
+      "shortName": "Каварна",
+      "orderPosition": 3
+    },
+    "kazanluk": {
+      "fullName": "Казанлък",
+      "shortName": "Казанлък",
+      "orderPosition": 3
+    },
+    "karlovo": {
+      "fullName": "Карлово",
+      "shortName": "Карлово",
+      "orderPosition": 3
+    },
+    "karnobat": {
+      "fullName": "Карнобат",
+      "shortName": "Карнобат",
+      "orderPosition": 3
+    },
+    "knezha": {
+      "fullName": "Кнежа",
+      "shortName": "Кнежа",
+      "orderPosition": 3
+    },
+    "kozlodui": {
+      "fullName": "Козлодуй",
+      "shortName": "Козлодуй",
+      "orderPosition": 3
+    },
+    "kostandovo": {
+      "fullName": "Костандово",
+      "shortName": "Костандово",
+      "orderPosition": 3
+    },
+    "kostenets": {
+      "fullName": "Костенец",
+      "shortName": "Костенец",
+      "orderPosition": 3
+    },
+    "kostinbrod": {
+      "fullName": "Костинброд",
+      "shortName": "Костинброд",
+      "orderPosition": 3
+    },
+    "kotel": {
+      "fullName": "Котел",
+      "shortName": "Котел",
+      "orderPosition": 3
+    },
+    "krichim": {
+      "fullName": "Кричим",
+      "shortName": "Кричим",
+      "orderPosition": 3
+    },
+    "krumovgrad": {
+      "fullName": "Крумовград",
+      "shortName": "Крумовград",
+      "orderPosition": 3
+    },
+    "kubrat": {
+      "fullName": "Кубрат",
+      "shortName": "Кубрат",
+      "orderPosition": 3
+    },
+    "kuklen": {
+      "fullName": "Куклен",
+      "shortName": "Куклен",
+      "orderPosition": 3
+    },
+    "levski": {
+      "fullName": "Левски",
+      "shortName": "Левски",
+      "orderPosition": 3
+    },
+    "lom": {
+      "fullName": "Лом",
+      "shortName": "Лом",
+      "orderPosition": 3
+    },
+    "lukovit": {
+      "fullName": "Луковит",
+      "shortName": "Луковит",
+      "orderPosition": 3
+    },
+    "liubimets": {
+      "fullName": "Любимец",
+      "shortName": "Любимец",
+      "orderPosition": 3
+    },
+    "liaskovets": {
+      "fullName": "Лясковец",
+      "shortName": "Лясковец",
+      "orderPosition": 3
+    },
+    "madan": {
+      "fullName": "Мадан",
+      "shortName": "Мадан",
+      "orderPosition": 3
+    },
+    "mezdra": {
+      "fullName": "Мездра",
+      "shortName": "Мездра",
+      "orderPosition": 3
+    },
+    "momchilgrad": {
+      "fullName": "Момчилград",
+      "shortName": "Момчилград",
+      "orderPosition": 3
+    },
+    "nesebar": {
+      "fullName": "Несебър",
+      "shortName": "Несебър",
+      "orderPosition": 3
+    },
+    "nova-zagora": {
+      "fullName": "Нова Загора",
+      "shortName": "Нова Загора",
+      "orderPosition": 3
+    },
+    "novi-iskar": {
+      "fullName": "Нови Искър",
+      "shortName": "Нови Искър",
+      "orderPosition": 3
+    },
+    "novi-pazar": {
+      "fullName": "Нови пазар",
+      "shortName": "Нови пазар",
+      "orderPosition": 3
+    },
+    "obzor": {
+      "fullName": "Обзор",
+      "shortName": "Обзор",
+      "orderPosition": 3
+    },
+    "omurtag": {
+      "fullName": "Омуртаг",
+      "shortName": "Омуртаг",
+      "orderPosition": 3
+    },
+    "oriahovo": {
+      "fullName": "Оряхово",
+      "shortName": "Оряхово",
+      "orderPosition": 3
+    },
+    "pavlikeni": {
+      "fullName": "Павликени",
+      "shortName": "Павликени",
+      "orderPosition": 3
+    },
+    "panagiurishte": {
+      "fullName": "Панагюрище",
+      "shortName": "Панагюрище",
+      "orderPosition": 3
+    },
+    "perushtitsa": {
+      "fullName": "Перущица",
+      "shortName": "Перущица",
+      "orderPosition": 3
+    },
+    "petrich": {
+      "fullName": "Петрич",
+      "shortName": "Петрич",
+      "orderPosition": 3
+    },
+    "peshtera": {
+      "fullName": "Пещера",
+      "shortName": "Пещера",
+      "orderPosition": 3
+    },
+    "pirdop": {
+      "fullName": "Пирдоп",
+      "shortName": "Пирдоп",
+      "orderPosition": 3
+    },
+    "pomorie": {
+      "fullName": "Поморие",
+      "shortName": "Поморие",
+      "orderPosition": 3
+    },
+    "popovo": {
+      "fullName": "Попово",
+      "shortName": "Попово",
+      "orderPosition": 3
+    },
+    "pravets": {
+      "fullName": "Правец",
+      "shortName": "Правец",
+      "orderPosition": 3
+    },
+    "provadia": {
+      "fullName": "Провадия",
+      "shortName": "Провадия",
+      "orderPosition": 3
+    },
+    "purvomai": {
+      "fullName": "Първомай",
+      "shortName": "Първомай",
+      "orderPosition": 3
+    },
+    "radnevo": {
+      "fullName": "Раднево",
+      "shortName": "Раднево",
+      "orderPosition": 3
+    },
+    "radomir": {
+      "fullName": "Радомир",
+      "shortName": "Радомир",
+      "orderPosition": 3
+    },
+    "rakitovo": {
+      "fullName": "Ракитово",
+      "shortName": "Ракитово",
+      "orderPosition": 3
+    },
+    "razlog": {
+      "fullName": "Разлог",
+      "shortName": "Разлог",
+      "orderPosition": 3
+    },
+    "rakovski": {
+      "fullName": "Раковски",
+      "shortName": "Раковски",
+      "orderPosition": 3
+    },
+    "samokov": {
+      "fullName": "Самоков",
+      "shortName": "Самоков",
+      "orderPosition": 3
+    },
+    "sandanski": {
+      "fullName": "Сандански",
+      "shortName": "Сандански",
+      "orderPosition": 3
+    },
+    "svilengrad": {
+      "fullName": "Свиленград",
+      "shortName": "Свиленград",
+      "orderPosition": 3
+    },
+    "svishtov": {
+      "fullName": "Свищов",
+      "shortName": "Свищов",
+      "orderPosition": 3
+    },
+    "svoge": {
+      "fullName": "Своге",
+      "shortName": "Своге",
+      "orderPosition": 3
+    },
+    "sevlievo": {
+      "fullName": "Севлиево",
+      "shortName": "Севлиево",
+      "orderPosition": 3
+    },
+    "septemvri": {
+      "fullName": "Септември",
+      "shortName": "Септември",
+      "orderPosition": 3
+    },
+    "simeonovgrad": {
+      "fullName": "Симеоновград",
+      "shortName": "Симеоновград",
+      "orderPosition": 3
+    },
+    "simitli": {
+      "fullName": "Симитли",
+      "shortName": "Симитли",
+      "orderPosition": 3
+    },
+    "slivnitsa": {
+      "fullName": "Сливница",
+      "shortName": "Сливница",
+      "orderPosition": 3
+    },
+    "sozopol": {
+      "fullName": "Созопол",
+      "shortName": "Созопол",
+      "orderPosition": 3
+    },
+    "sopot": {
+      "fullName": "Сопот",
+      "shortName": "Сопот",
+      "orderPosition": 3
+    },
+    "sredets": {
+      "fullName": "Средец",
+      "shortName": "Средец",
+      "orderPosition": 3
+    },
+    "stanbiliiski": {
+      "fullName": "Стамболийски",
+      "shortName": "Стамболийски",
+      "orderPosition": 3
+    },
+    "strazhitsa": {
+      "fullName": "Стражица",
+      "shortName": "Стражица",
+      "orderPosition": 3
+    },
+    "straldzha": {
+      "fullName": "Стралджа",
+      "shortName": "Стралджа",
+      "orderPosition": 3
+    },
+    "strelcha": {
+      "fullName": "Стрелча",
+      "shortName": "Стрелча",
+      "orderPosition": 3
+    },
+    "suvorovo": {
+      "fullName": "Суворово",
+      "shortName": "Суворово",
+      "orderPosition": 3
+    },
+    "suedinenie": {
+      "fullName": "Съединение",
+      "shortName": "Съединение",
+      "orderPosition": 3
+    },
+    "tvurditsa": {
+      "fullName": "Твърдица",
+      "shortName": "Твърдица",
+      "orderPosition": 3
+    },
+    "tervel": {
+      "fullName": "Тервел",
+      "shortName": "Тервел",
+      "orderPosition": 3
+    },
+    "teteven": {
+      "fullName": "Тетевен",
+      "shortName": "Тетевен",
+      "orderPosition": 3
+    },
+    "topolovgrad": {
+      "fullName": "Тополовград",
+      "shortName": "Тополовград",
+      "orderPosition": 3
+    },
+    "troyan": {
+      "fullName": "Троян",
+      "shortName": "Троян",
+      "orderPosition": 3
+    },
+    "triavna": {
+      "fullName": "Трявна",
+      "shortName": "Трявна",
+      "orderPosition": 3
+    },
+    "tutrakan": {
+      "fullName": "Тутракан",
+      "shortName": "Тутракан",
+      "orderPosition": 3
+    },
+    "harmanli": {
+      "fullName": "Харманли",
+      "shortName": "Харманли",
+      "orderPosition": 3
+    },
+    "hisaria": {
+      "fullName": "Хисаря",
+      "shortName": "Хисаря",
+      "orderPosition": 3
+    },
+    "tsarevo": {
+      "fullName": "Царево",
+      "shortName": "Царево",
+      "orderPosition": 3
+    },
+    "cherven-briag": {
+      "fullName": "Червен бряг",
+      "shortName": "Червен бряг",
+      "orderPosition": 3
+    },
+    "chepelare": {
+      "fullName": "Чепеларе",
+      "shortName": "Чепеларе",
+      "orderPosition": 3
+    },
+    "chirpan": {
+      "fullName": "Чирпан",
+      "shortName": "Чирпан",
+      "orderPosition": 3
+    },
+    "iakoruda": {
+      "fullName": "Якоруда",
+      "shortName": "Якоруда",
+      "orderPosition": 3
+    }
+  }
+}

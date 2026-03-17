@@ -31,6 +31,8 @@ java -jar nvo-v2.jar 7
 java -jar nvo-v2.jar 10
 java -jar nvo-v2.jar 12
 java -cp nvo-v2.jar nvo.JsonGenerator index
+java -cp nvo-v2.jar nvo.JsonGenerator schools
+java -cp nvo-v2.jar nvo.JsonGenerator cities
 java -cp nvo-v2.jar nvo.JsonGenerator 4
 java -cp nvo-v2.jar nvo.JsonGenerator 7
 java -cp nvo-v2.jar nvo.JsonGenerator 10
@@ -40,7 +42,9 @@ java -cp nvo-v2.jar nvo.JsonGenerator 12
 - `nvo-v2.jar` (main jar) — normalizes CSV and generates `schools-{grade}.js`
 - `nvo.JsonGenerator` — separate entry point (`-cp`, not `-jar`) that generates `docs/api/v1/`:
   - `index` — `index.json`, `index.html` (API docs page)
-  - `4`/`7`/`10`/`12` — per-grade `data.json`, per-city and per-school JSON files
+  - `schools` — `schools.json` (all schools) + `schools/{code}.json` (per-school lookup)
+  - `cities` — `cities.json` (all cities) + `cities/{slug}.json` (per-city lookup)
+  - `4`/`7`/`10`/`12` — per-grade `data.json`, per-city/school JSON files + `rankings/{grade}/{year}.json` (per-year) and `rankings/median/{grade}/{year}.json` (3-year median window, from 2020 onwards)
 
 ## Files You Will Touch Most
 

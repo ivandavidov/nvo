@@ -11,6 +11,8 @@ java -jar nvo-v2.jar 7
 java -jar nvo-v2.jar 10
 java -jar nvo-v2.jar 12
 java -cp nvo-v2.jar nvo.JsonGenerator index
+java -cp nvo-v2.jar nvo.JsonGenerator schools
+java -cp nvo-v2.jar nvo.JsonGenerator cities
 java -cp nvo-v2.jar nvo.JsonGenerator 4
 java -cp nvo-v2.jar nvo.JsonGenerator 7
 java -cp nvo-v2.jar nvo.JsonGenerator 10
