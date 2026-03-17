@@ -16,8 +16,10 @@ Main public pages:
 - `docs/12/` — ДЗИ след 12 клас
 - `docs/stats/` — Обобщена статистика
 - `docs/games/` — Мини игри
+- `docs/api/` — Static JSON API + interactive documentation
 
 `docs/index.html` is only a redirect to `./7/`.
+`docs/api/index.html` is a redirect to `./v1/`.
 
 ## Canonical Commands
 
@@ -25,13 +27,14 @@ Main public pages:
 ```bash
 ./all.sh
 ```
-Builds Java tool, normalizes CSV files, and regenerates all `schools-{4,7,10,12}.js` files.
+Builds Java tool, normalizes CSV files, regenerates all `schools-{4,7,10,12}.js` files, and generates the API (`docs/api/v1/`).
 
 ### Java tool
 ```bash
 cd java
 ./mvnw clean package
 java -jar target/nvo-v2.jar normalize
+java -jar target/nvo-v2.jar index
 java -jar target/nvo-v2.jar 4
 java -jar target/nvo-v2.jar 7
 java -jar target/nvo-v2.jar 10
@@ -43,6 +46,7 @@ java -jar target/nvo-v2.jar 12
 ### Data flow
 ```text
 data/mon/*.csv -> data/normalized/*.csv -> java (Decomplexor) -> docs/js/schools-{grade}.js
+                                        -> java (JsonGenerator) -> docs/api/v1/ (JSON API + HTML docs)
 ```
 
 ### Frontend structure
@@ -51,6 +55,11 @@ docs/
   4/, 7/, 10/, 12/           grade pages
   stats/                     statistics page (separate logic)
   games/                     games hub + standalone games
+  api/                       redirect to api/v1/
+  api/v1/                    static JSON API + interactive Swagger-like docs
+  api/v1/index.json          API metadata (grades list)
+  api/v1/{grade}/data.json   full data per grade
+  api/v1/{grade}/{city}/     per-city data + per-school JSON files
   js/
     config-global.js         shared defaults + constants
     config-{4,7,10,12}.js    per-grade overrides via applyGradeConfig(...)
@@ -101,7 +110,7 @@ si = {
 
 ## Important Rules
 
-1. Do not manually edit `docs/js/schools-{4,7,10,12}.js` (generated files).
+1. Do not manually edit generated files: `docs/js/schools-{4,7,10,12}.js` and `docs/api/v1/` (all contents).
 2. Keep relative paths correct for nested pages (`../` vs `../../`).
 3. For grade page navigation, prefer existing `data-*` hooks; `logic-init.js` resolves links dynamically.
 4. `stats/index.html` intentionally allows `unsafe-eval` in CSP because `stats/logic.js` loads config/data through `new Function(...)` in isolated scope.
@@ -115,6 +124,7 @@ Use manual verification in browser:
 - grade navigation + stats links work
 - CSV export links work
 - games pages load and controls work on desktop + touch devices
+- API docs page loads with working interactive dropdowns
 
 ## Editing Conventions
 
