@@ -170,7 +170,7 @@ public class JsonGenerator {
                     </div>
                     <div class="api-header">
                       <h2>НВО &amp; ДЗИ API</h2>
-                      <p>Публичен JSON API с резултати от НВО и ДЗИ (2018&ndash;""");
+                      <p>Публично JSON API с резултати от НВО и ДЗИ (2018&ndash;""");
         sb.append(LAST_YEAR);
         sb.append("""
                 )</p>
