@@ -1,0 +1,31 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "elhovo": {
+      "fullName": "Елхово",
+      "shortName": "Елхово",
+      "schools": {
+        "2831522": {
+          "fullName": "ПГ Св. Климент Охридски",
+          "shortName": "ПГ Кл. Охридски",
+          "isPrivate": false,
+          "belScore": [ null, null, 47.32, 47.32, 53.71, 51.9, 54.37, 61.94 ],
+          "matScore": [ null, null, 74.86, 74.86, 72.34, 61.97, 60.32, 76.93 ],
+          "belStudents": [ null, null, 50, 50, 45, 46, 47, 50 ],
+          "matStudents": [ null, null, 50, 50, 45, 46, 47, 51 ]
+        },
+        "2831609": {
+          "fullName": "ПГ Стефан Караджа",
+          "shortName": "ПГ Стефан Караджа",
+          "isPrivate": false,
+          "belScore": [ null, null, 28.0, 28.0, 20.83, 43.59, 39.99, 30.46 ],
+          "matScore": [ null, null, 32.48, 32.48, 45.27, 33.31, 44.01, 37.08 ],
+          "belStudents": [ null, null, 39, 39, 42, 37, 34, 39 ],
+          "matStudents": [ null, null, 42, 42, 42, 36, 35, 39 ]
+        }
+      }
+    }
+  }
+}

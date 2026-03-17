@@ -1,0 +1,22 @@
+{
+  "grade": 4,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "kiustendil": {
+      "fullName": "Кюстендил",
+      "shortName": "Кюстендил",
+      "schools": {
+        "1000005": {
+          "fullName": "ОУ Иван Вазов",
+          "shortName": "ОУ Иван Вазов",
+          "isPrivate": false,
+          "belScore": [ null, null, null, null, null, null, null, 27.66 ],
+          "matScore": [ null, null, null, null, null, null, null, 23.78 ],
+          "belStudents": [ null, null, null, null, null, null, null, 53 ],
+          "matStudents": [ null, null, null, null, null, null, null, 47 ]
+        }
+      }
+    }
+  }
+}

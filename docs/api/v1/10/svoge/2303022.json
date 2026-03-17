@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "svoge": {
+      "fullName": "Своге",
+      "shortName": "Своге",
+      "schools": {
+        "2303022": {
+          "fullName": "ПГ Велизар Пеев",
+          "shortName": "ПГ Велизар Пеев",
+          "isPrivate": false,
+          "belScore": [ null, null, 49.84, 49.84, 40.76, 49.1, 47.44, 43.81 ],
+          "matScore": [ null, null, 21.16, 21.16, 25.93, 26.45, 21.53, 26.26 ],
+          "belStudents": [ null, null, 67, 67, 83, 94, 79, 126 ],
+          "matStudents": [ null, null, 73, 73, 71, 92, 77, 123 ]
+        }
+      }
+    }
+  }
+}

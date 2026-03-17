@@ -1,0 +1,58 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "velingrad": {
+      "fullName": "Велинград",
+      "shortName": "Велинград",
+      "schools": {
+        "1301674": {
+          "fullName": "СУ Кирил и Методий",
+          "shortName": "СУ Кирил и Методий",
+          "isPrivate": false,
+          "belScore": [ null, null, 57.81, 57.81, 49.4, 55.54, 51.25, 49.38 ],
+          "matScore": [ null, null, 32.36, 32.36, 39.92, 36.69, 31.76, 33.45 ],
+          "belStudents": [ null, null, 59, 59, 75, 75, 69, 74 ],
+          "matStudents": [ null, null, 59, 59, 74, 74, 68, 71 ]
+        },
+        "1302573": {
+          "fullName": "СУ Васил Левски",
+          "shortName": "СУ Васил Левски",
+          "isPrivate": false,
+          "belScore": [ null, null, 53.37, 53.37, 61.98, 63.57, 62.06, 59.29 ],
+          "matScore": [ null, null, 31.29, 31.29, 66.45, 63.51, 46.48, 46.09 ],
+          "belStudents": [ null, null, 51, 51, 50, 45, 42, 49 ],
+          "matStudents": [ null, null, 51, 51, 51, 45, 42, 49 ]
+        },
+        "1302979": {
+          "fullName": "ОУ Неофит Рилски",
+          "shortName": "ОУ Неофит Рилски",
+          "isPrivate": false,
+          "belScore": [ null, null, 21.4, 21.4, 19.65, 20.58, 26.31, 19.72 ],
+          "matScore": [ null, null, 21.97, 21.97, 20.88, 23.47, 29.25, 19.78 ],
+          "belStudents": [ null, null, 40, 40, 31, 24, 16, 18 ],
+          "matStudents": [ null, null, 39, 39, 32, 22, 14, 18 ]
+        },
+        "1304231": {
+          "fullName": "ПГ по икономика и туризъм",
+          "shortName": "ПГ по иконом. и тур.",
+          "isPrivate": false,
+          "belScore": [ null, null, 39.17, 39.17, 30.58, 38.5, 33.74, 36.66 ],
+          "matScore": [ null, null, 40.41, 40.41, 20.95, 22.21, 17.75, 29.49 ],
+          "belStudents": [ null, null, 76, 76, 72, 85, 61, 90 ],
+          "matStudents": [ null, null, 75, 75, 72, 85, 59, 87 ]
+        },
+        "1311390": {
+          "fullName": "Национална ПГ по горско стопанство",
+          "shortName": "НПГ по горско стоп.",
+          "isPrivate": false,
+          "belScore": [ null, null, 31.72, 31.72, 33.29, 40.21, 40.59, 31.81 ],
+          "matScore": [ null, null, 25.84, 25.84, 40.16, 26.15, 36.62, 37.15 ],
+          "belStudents": [ null, null, 32, 32, 34, 52, 70, 52 ],
+          "matStudents": [ null, null, 32, 32, 34, 52, 70, 52 ]
+        }
+      }
+    }
+  }
+}

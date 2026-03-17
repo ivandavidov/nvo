@@ -1,0 +1,22 @@
+{
+  "grade": 4,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "iambol": {
+      "fullName": "Ямбол",
+      "shortName": "Ямбол",
+      "schools": {
+        "2811511": {
+          "fullName": "Основно училище Димчо Дебелянов",
+          "shortName": "Основно училище Димчо Дебелянов",
+          "isPrivate": false,
+          "belScore": [ 65.0, null, null, null, null, null, null, null ],
+          "matScore": [ 76.0, null, null, null, null, null, null, null ],
+          "belStudents": [ 15, null, null, null, null, null, null, null ],
+          "matStudents": [ 15, null, null, null, null, null, null, null ]
+        }
+      }
+    }
+  }
+}

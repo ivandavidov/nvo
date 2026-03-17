@@ -1,0 +1,22 @@
+{
+  "grade": 4,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "plovdiv": {
+      "fullName": "Пловдив",
+      "shortName": "Пловдив",
+      "schools": {
+        "1690912": {
+          "fullName": "ЧОУ Бъдеще",
+          "shortName": "Бъдеще",
+          "isPrivate": true,
+          "belScore": [ null, 90.0, 90.0, 81.6, 76.13, 82.5, 82.1, 77.92 ],
+          "matScore": [ null, 97.5, 97.5, 75.6, 80.0, 92.13, 87.6, 86.67 ],
+          "belStudents": [ null, 7, 7, 5, 4, 4, 5, 6 ],
+          "matStudents": [ null, 8, 8, 5, 4, 4, 5, 6 ]
+        }
+      }
+    }
+  }
+}

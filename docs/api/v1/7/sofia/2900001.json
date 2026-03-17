@@ -1,0 +1,22 @@
+{
+  "grade": 7,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sofia": {
+      "fullName": "София",
+      "shortName": "София",
+      "schools": {
+        "2900001": {
+          "fullName": "Българско СУ Христо Ботев",
+          "shortName": "БСУ Христо Ботев",
+          "isPrivate": false,
+          "belScore": [ null, null, null, null, null, null, 32.3, null ],
+          "matScore": [ null, null, null, null, null, null, 13.7, null ],
+          "belStudents": [ null, null, null, null, null, null, 5, null ],
+          "matStudents": [ null, null, null, null, null, null, 5, null ]
+        }
+      }
+    }
+  }
+}

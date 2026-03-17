@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "cherven-briag": {
+      "fullName": "Червен бряг",
+      "shortName": "Червен бряг",
+      "schools": {
+        "1500218": {
+          "fullName": "ПГ по механоелектротехника",
+          "shortName": "ПГ по механоел.",
+          "isPrivate": false,
+          "belScore": [ null, null, 32.12, 32.12, 29.92, 25.72, 27.65, 28.91 ],
+          "matScore": [ null, null, 18.59, 18.59, 35.17, 19.45, 17.07, 30.1 ],
+          "belStudents": [ null, null, 41, 41, 36, 34, 27, 35 ],
+          "matStudents": [ null, null, 41, 41, 35, 33, 27, 34 ]
+        }
+      }
+    }
+  }
+}

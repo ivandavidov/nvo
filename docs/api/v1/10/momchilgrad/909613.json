@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "momchilgrad": {
+      "fullName": "Момчилград",
+      "shortName": "Момчилград",
+      "schools": {
+        "909613": {
+          "fullName": "Духовно училище",
+          "shortName": "Духовно училище",
+          "isPrivate": false,
+          "belScore": [ null, null, 34.55, 34.55, 39.37, 42.06, 49.98, 33.75 ],
+          "matScore": [ null, null, 21.6, 21.6, 33.34, 29.81, 28.41, 23.3 ],
+          "belStudents": [ null, null, 20, 20, 19, 34, 29, 32 ],
+          "matStudents": [ null, null, 20, 20, 19, 34, 29, 32 ]
+        }
+      }
+    }
+  }
+}

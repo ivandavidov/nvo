@@ -1,0 +1,22 @@
+{
+  "grade": 4,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sofia": {
+      "fullName": "София",
+      "shortName": "София",
+      "schools": {
+        "2218202": {
+          "fullName": "202 ОУ Христо Ботев",
+          "shortName": "202 ОУ",
+          "isPrivate": false,
+          "belScore": [ 67.5, 75.91, 75.91, 61.4, 69.25, 77.63, 88.07, 62.17 ],
+          "matScore": [ 74.17, 66.36, 66.36, 37.8, 52.17, 66.25, 79.36, 68.0 ],
+          "belStudents": [ 6, 11, 11, 5, 6, 8, 7, 6 ],
+          "matStudents": [ 6, 11, 11, 5, 6, 8, 7, 6 ]
+        }
+      }
+    }
+  }
+}

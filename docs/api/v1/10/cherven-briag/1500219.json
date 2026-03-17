@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "cherven-briag": {
+      "fullName": "Червен бряг",
+      "shortName": "Червен бряг",
+      "schools": {
+        "1500219": {
+          "fullName": "Търговска гимназия",
+          "shortName": "Търговска гимн.",
+          "isPrivate": false,
+          "belScore": [ null, null, 38.2, 38.2, 42.19, 39.09, 44.5, 38.63 ],
+          "matScore": [ null, null, 18.67, 18.67, 23.25, 17.93, 26.11, 26.9 ],
+          "belStudents": [ null, null, 15, 15, 26, 11, 24, 24 ],
+          "matStudents": [ null, null, 15, 15, 26, 11, 23, 24 ]
+        }
+      }
+    }
+  }
+}

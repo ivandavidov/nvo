@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "dolni-chiflik": {
+      "fullName": "Долни Чифлик",
+      "shortName": "Долни Чифлик",
+      "schools": {
+        "400126": {
+          "fullName": "СУ Васил Левски",
+          "shortName": "СУ Васил Левски",
+          "isPrivate": false,
+          "belScore": [ null, null, 33.6, 33.6, 35.36, 39.65, 30.87, 32.36 ],
+          "matScore": [ null, null, 16.07, 16.07, 21.49, 17.33, 16.47, 19.63 ],
+          "belStudents": [ null, null, 42, 42, 44, 46, 50, 45 ],
+          "matStudents": [ null, null, 42, 42, 44, 46, 49, 45 ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "grade": 4,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "purvomai": {
+      "fullName": "Първомай",
+      "shortName": "Първомай",
+      "schools": {
+        "104004": {
+          "fullName": "Средно училище Св.Паисий Хилендарски",
+          "shortName": "Средно училище Св.Паисий Хилендарски",
+          "isPrivate": false,
+          "belScore": [ 64.03, 63.89, 63.89, null, null, null, null, null ],
+          "matScore": [ 75.56, 72.92, 72.92, null, null, null, null, null ],
+          "belStudents": [ 36, 36, 36, null, null, null, null, null ],
+          "matStudents": [ 36, 36, 36, null, null, null, null, null ]
+        }
+      }
+    }
+  }
+}

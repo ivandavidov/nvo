@@ -1,0 +1,31 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "omurtag": {
+      "fullName": "Омуртаг",
+      "shortName": "Омуртаг",
+      "schools": {
+        "2520401": {
+          "fullName": "ПГ Симеон Велчев",
+          "shortName": "ПГ Симеон Велчев",
+          "isPrivate": false,
+          "belScore": [ null, null, 43.7, 43.7, 41.95, 36.57, 38.38, 33.35 ],
+          "matScore": [ null, null, 25.62, 25.62, 32.08, 31.06, 28.37, 18.07 ],
+          "belStudents": [ null, null, 73, 73, 56, 49, 72, 48 ],
+          "matStudents": [ null, null, 73, 73, 56, 49, 72, 48 ]
+        },
+        "2520601": {
+          "fullName": "ПГ по транспорт и лека промишленост",
+          "shortName": "ПГ по транспорт",
+          "isPrivate": false,
+          "belScore": [ null, null, 17.52, 17.52, 19.3, 15.97, 30.6, 18.38 ],
+          "matScore": [ null, null, 26.83, 26.83, 38.71, 14.7, 42.4, 37.27 ],
+          "belStudents": [ null, null, 64, 64, 43, 46, 41, 42 ],
+          "matStudents": [ null, null, 64, 64, 43, 43, 40, 41 ]
+        }
+      }
+    }
+  }
+}

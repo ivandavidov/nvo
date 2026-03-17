@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "veliko-turnovo": {
+      "fullName": "Велико Търново",
+      "shortName": "В. Търново",
+      "schools": {
+        "300131": {
+          "fullName": "ПГ по моден дизайн",
+          "shortName": "ПГ по моден дизайн",
+          "isPrivate": false,
+          "belScore": [ 3.491, 3.16, 3.49, 3.59, 2.91, 2.63, 3.29, 2.88 ],
+          "matScore": [ null, 3.36, 3.52, null, 4.708, 4.295, 4.417, 3.75 ],
+          "belStudents": [ 17, 24, 15, 6, 12, 15, 10, 11 ],
+          "matStudents": [ null, 1, 2, null, 14, 9, 8, 6 ]
+        }
+      }
+    }
+  }
+}

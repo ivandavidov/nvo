@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "bansko": {
+      "fullName": "Банско",
+      "shortName": "Банско",
+      "schools": {
+        "102004": {
+          "fullName": "ПГ лесотехническа Н. Вапцаров",
+          "shortName": "ПГ лесотехническа",
+          "isPrivate": false,
+          "belScore": [ 3.916, 3.44, 3.9, 3.9, 3.09, 2.86, 3.46, 4.06 ],
+          "matScore": [ 4.416, 3.19, 3.36, null, 3.89, 3.8, 3.72, 4.09 ],
+          "belStudents": [ 39, 39, 33, 45, 36, 32, 19, 33 ],
+          "matStudents": [ 39, 17, 3, null, 35, 25, 17, 34 ]
+        }
+      }
+    }
+  }
+}

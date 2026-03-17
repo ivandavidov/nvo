@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sliven": {
+      "fullName": "Сливен",
+      "shortName": "Сливен",
+      "schools": {
+        "2000105": {
+          "fullName": "СУ Хаджи Мина Пашов",
+          "shortName": "СУ Хаджи Мина Пашов",
+          "isPrivate": false,
+          "belScore": [ 3.432, 2.82, 2.4, 3.03, 2.0, 2.65, 3.85, 2.86 ],
+          "matScore": [ 3.601, null, null, 3.45, 2.0, 2.44, 3.14, 2.43 ],
+          "belStudents": [ 8, 2, 1, 1, 1, 11, 15, 11 ],
+          "matStudents": [ 7, null, null, 1, 1, 11, 14, 11 ]
+        }
+      }
+    }
+  }
+}

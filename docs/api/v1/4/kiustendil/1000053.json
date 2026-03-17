@@ -1,0 +1,22 @@
+{
+  "grade": 4,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "kiustendil": {
+      "fullName": "Кюстендил",
+      "shortName": "Кюстендил",
+      "schools": {
+        "1000053": {
+          "fullName": "5 ОУ Христо Ботев",
+          "shortName": "ОУ Христо Ботев",
+          "isPrivate": false,
+          "belScore": [ 72.31, 70.77, 70.77, null, null, null, null, null ],
+          "matScore": [ 59.23, 56.15, 56.15, null, null, null, null, null ],
+          "belStudents": [ 13, 13, 13, null, null, null, null, null ],
+          "matStudents": [ 13, 13, 13, null, null, null, null, null ]
+        }
+      }
+    }
+  }
+}

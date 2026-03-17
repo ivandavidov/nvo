@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "knezha": {
+      "fullName": "Кнежа",
+      "shortName": "Кнежа",
+      "schools": {
+        "1501110": {
+          "fullName": "ПГ по механоел. Хр. Смирненски",
+          "shortName": "ПГ по механоел.",
+          "isPrivate": false,
+          "belScore": [ 2.937, 2.74, 3.19, 2.91, 2.25, 2.25, 2.39, 2.0 ],
+          "matScore": [ 3.097, null, null, 2.44, 4.17, 4.296, 4.49, 5.3 ],
+          "belStudents": [ 50, 33, 30, 37, 26, 34, 27, 2 ],
+          "matStudents": [ 4, null, null, 1, 20, 27, 16, 2 ]
+        }
+      }
+    }
+  }
+}

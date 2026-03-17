@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "vratsa": {
+      "fullName": "Враца",
+      "shortName": "Враца",
+      "schools": {
+        "603140": {
+          "fullName": "СУ Мито Орозов",
+          "shortName": "СУ Мито Орозов",
+          "isPrivate": false,
+          "belScore": [ null, 4.4, 3.02, 3.09, null, null, null, 2.0 ],
+          "matScore": [ null, 4.33, 3.38, 3.59, null, null, null, 4.91 ],
+          "belStudents": [ null, 2, 2, 3, null, null, null, 3 ],
+          "matStudents": [ null, 2, 2, 3, null, null, null, 3 ]
+        }
+      }
+    }
+  }
+}

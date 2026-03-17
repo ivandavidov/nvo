@@ -1,0 +1,22 @@
+{
+  "grade": 7,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "balchik": {
+      "fullName": "Балчик",
+      "shortName": "Балчик",
+      "schools": {
+        "800060": {
+          "fullName": "ОУ Антим I",
+          "shortName": "ОУ Антим I",
+          "isPrivate": false,
+          "belScore": [ null, 51.22, 61.66, 59.09, 57.51, 64.45, 54.29, 61.0 ],
+          "matScore": [ null, 16.57, 32.39, 33.08, 37.19, 37.95, 37.35, 36.94 ],
+          "belStudents": [ null, 43, 44, 39, 50, 44, 40, 50 ],
+          "matStudents": [ null, 43, 44, 39, 49, 44, 40, 50 ]
+        }
+      }
+    }
+  }
+}

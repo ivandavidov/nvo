@@ -1,0 +1,58 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sandanski": {
+      "fullName": "Сандански",
+      "shortName": "Сандански",
+      "schools": {
+        "102007": {
+          "fullName": "Професионална техническа гимназия",
+          "shortName": "Техническа гимн.",
+          "isPrivate": false,
+          "belScore": [ null, null, 17.0, 17.0, 15.33, 18.89, 16.18, 19.67 ],
+          "matScore": [ null, null, 14.55, 14.55, 19.73, 16.22, 15.56, 18.19 ],
+          "belStudents": [ null, null, 12, 12, 15, 18, 17, 21 ],
+          "matStudents": [ null, null, 11, 11, 15, 18, 18, 21 ]
+        },
+        "102013": {
+          "fullName": "Земеделска професионална гимназия",
+          "shortName": "Земеделска гимн.",
+          "isPrivate": false,
+          "belScore": [ null, null, 44.21, 44.21, 43.33, 50.02, 51.49, 45.25 ],
+          "matScore": [ null, null, 24.05, 24.05, 32.73, 30.09, 24.0, 26.49 ],
+          "belStudents": [ null, null, 143, 143, 146, 151, 153, 144 ],
+          "matStudents": [ null, null, 143, 143, 145, 151, 153, 144 ]
+        },
+        "104101": {
+          "fullName": "ПГ Яне Сандански",
+          "shortName": "ПГ Яне Сандански",
+          "isPrivate": false,
+          "belScore": [ null, null, 46.65, 46.65, 45.2, 45.26, 50.17, 49.84 ],
+          "matScore": [ null, null, 31.07, 31.07, 40.35, 36.44, 37.03, 36.23 ],
+          "belStudents": [ null, null, 104, 104, 82, 117, 114, 120 ],
+          "matStudents": [ null, null, 104, 104, 82, 110, 110, 115 ]
+        },
+        "108021": {
+          "fullName": "Вечерна профилирана гимназия",
+          "shortName": "Вечерна гимн.",
+          "isPrivate": false,
+          "belScore": [ null, null, 20.38, 20.38, 12.15, null, null, null ],
+          "matScore": [ null, null, 17.33, 17.33, 20.0, null, null, null ],
+          "belStudents": [ null, null, 13, 13, 13, null, null, null ],
+          "matStudents": [ null, null, 12, 12, 12, null, null, null ]
+        },
+        "109185": {
+          "fullName": "Спортно училище",
+          "shortName": "Спортно у-ще",
+          "isPrivate": false,
+          "belScore": [ null, null, 27.81, 27.81, 23.96, 31.58, 26.9, 35.65 ],
+          "matScore": [ null, null, 16.0, 16.0, 20.43, 18.25, 16.88, 21.38 ],
+          "belStudents": [ null, null, 16, 16, 23, 18, 20, 26 ],
+          "matStudents": [ null, null, 16, 16, 23, 18, 20, 24 ]
+        }
+      }
+    }
+  }
+}

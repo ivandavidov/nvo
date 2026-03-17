@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "burgas": {
+      "fullName": "Бургас",
+      "shortName": "Бургас",
+      "schools": {
+        "200258": {
+          "fullName": "ЧПГ Британика",
+          "shortName": "Британика",
+          "isPrivate": true,
+          "belScore": [ 4.309, 4.27, 4.68, 4.88, 4.16, 4.04, 3.67, 3.64 ],
+          "matScore": [ 4.895, 4.436, 4.66, 4.28, 4.5, 4.03, 3.457, 3.111 ],
+          "belStudents": [ 12, 15, 8, 3, 4, 12, 6, 8 ],
+          "matStudents": [ 12, 15, 8, 4, 4, 12, 7, 8 ]
+        }
+      }
+    }
+  }
+}

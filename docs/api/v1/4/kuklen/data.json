@@ -1,0 +1,22 @@
+{
+  "grade": 4,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "kuklen": {
+      "fullName": "Куклен",
+      "shortName": "Куклен",
+      "schools": {
+        "1601101": {
+          "fullName": "Средно училище Отец Паисий",
+          "shortName": "Средно училище Отец Паисий",
+          "isPrivate": false,
+          "belScore": [ 77.9, 73.66, 73.66, null, null, null, null, null ],
+          "matScore": [ 81.73, 76.1, 76.1, null, null, null, null, null ],
+          "belStudents": [ 50, 41, 41, null, null, null, null, null ],
+          "matStudents": [ 52, 41, 41, null, null, null, null, null ]
+        }
+      }
+    }
+  }
+}

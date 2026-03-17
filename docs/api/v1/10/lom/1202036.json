@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "lom": {
+      "fullName": "Лом",
+      "shortName": "Лом",
+      "schools": {
+        "1202036": {
+          "fullName": "ПГ по хранене и земеделие",
+          "shortName": "ПГ по хранене",
+          "isPrivate": false,
+          "belScore": [ null, null, 23.41, 23.41, 20.63, 33.69, 37.87, 23.68 ],
+          "matScore": [ null, null, 14.69, 14.69, 34.07, 25.02, 29.58, 28.91 ],
+          "belStudents": [ null, null, 37, 37, 27, 34, 34, 38 ],
+          "matStudents": [ null, null, 36, 36, 27, 32, 33, 38 ]
+        }
+      }
+    }
+  }
+}

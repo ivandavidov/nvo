@@ -1,0 +1,103 @@
+{
+  "grade": 7,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "kiustendil": {
+      "fullName": "Кюстендил",
+      "shortName": "Кюстендил",
+      "schools": {
+        "1000005": {
+          "fullName": "ОУ Иван Вазов",
+          "shortName": "ОУ Иван Вазов",
+          "isPrivate": false,
+          "belScore": [ null, null, null, null, null, null, null, 22.12 ],
+          "matScore": [ null, null, null, null, null, null, null, 15.87 ],
+          "belStudents": [ null, null, null, null, null, null, null, 54 ],
+          "matStudents": [ null, null, null, null, null, null, null, 55 ]
+        },
+        "1000053": {
+          "fullName": "5 ОУ Христо Ботев",
+          "shortName": "ОУ Христо Ботев",
+          "isPrivate": false,
+          "belScore": [ 22.06, 25.23, 34.0, null, null, null, null, null ],
+          "matScore": [ 19.6, 14.08, 28.71, null, null, null, null, null ],
+          "belStudents": [ 16, 15, 21, null, null, null, null, null ],
+          "matStudents": [ 15, 16, 14, null, null, null, null, null ]
+        },
+        "1000330": {
+          "fullName": "ОУ Проф. Марин Дринов",
+          "shortName": "ОУ Марин Дринов",
+          "isPrivate": false,
+          "belScore": [ 30.75, 51.74, 49.73, 54.36, 43.25, 47.62, 43.22, 47.7 ],
+          "matScore": [ 23.58, 26.08, 27.84, 29.89, 21.36, 24.03, 27.67, 28.97 ],
+          "belStudents": [ 67, 68, 57, 77, 77, 78, 67, 61 ],
+          "matStudents": [ 67, 70, 58, 77, 77, 79, 67, 61 ]
+        },
+        "1000340": {
+          "fullName": "ОУ Иван Вазов",
+          "shortName": "ОУ Иван Вазов",
+          "isPrivate": false,
+          "belScore": [ 13.09, 15.6, 12.58, null, null, null, null, null ],
+          "matScore": [ 10.6, 11.62, 13.64, null, null, null, null, null ],
+          "belStudents": [ 57, 50, 56, null, null, null, null, null ],
+          "matStudents": [ 53, 47, 54, null, null, null, null, null ]
+        },
+        "1000550": {
+          "fullName": "ПМГ Проф. Емануил Иванов",
+          "shortName": "ПМГ",
+          "isPrivate": false,
+          "belScore": [ 43.54, 74.09, 71.84, 71.05, 72.91, 70.91, 65.13, 70.95 ],
+          "matScore": [ 45.43, 66.1, 58.02, 59.2, 62.54, 48.69, 57.65, 58.67 ],
+          "belStudents": [ 54, 48, 50, 53, 51, 52, 52, 50 ],
+          "matStudents": [ 54, 48, 50, 53, 51, 52, 52, 50 ]
+        },
+        "1001390": {
+          "fullName": "Спортно у-ще Васил Левски",
+          "shortName": "Спортно у-ще",
+          "isPrivate": false,
+          "belScore": [ 20.42, 26.83, 40.1, 38.31, 35.96, 43.93, 39.42, 27.83 ],
+          "matScore": [ 14.05, 13.67, 22.15, 17.57, 15.75, 25.54, 26.68, 22.06 ],
+          "belStudents": [ 19, 18, 10, 16, 14, 14, 12, 18 ],
+          "matStudents": [ 19, 18, 10, 17, 13, 14, 11, 18 ]
+        },
+        "1001410": {
+          "fullName": "6 ОУ Св. Паисий Хилендарски",
+          "shortName": "ОУ П. Хилендарски",
+          "isPrivate": false,
+          "belScore": [ 28.63, 49.37, 50.94, 33.04, 32.57, 38.49, 42.69, 55.44 ],
+          "matScore": [ 22.97, 21.38, 27.33, 19.95, 17.48, 19.92, 30.25, 35.18 ],
+          "belStudents": [ 34, 35, 34, 118, 100, 78, 99, 56 ],
+          "matStudents": [ 34, 34, 33, 108, 94, 79, 96, 56 ]
+        },
+        "1001590": {
+          "fullName": "7 ОУ Ильо войвода",
+          "shortName": "ОУ Ильо войвода",
+          "isPrivate": false,
+          "belScore": [ 31.85, 62.45, 38.03, null, null, null, null, null ],
+          "matScore": [ 25.71, 25.28, 23.83, null, null, null, null, null ],
+          "belStudents": [ 24, 19, 17, null, null, null, null, null ],
+          "matStudents": [ 24, 19, 15, null, null, null, null, null ]
+        },
+        "1001680": {
+          "fullName": "ОУ Даскал Димитри",
+          "shortName": "ОУ Даскал Димитри",
+          "isPrivate": false,
+          "belScore": [ 33.84, 47.19, 49.61, null, null, null, null, null ],
+          "matScore": [ 27.97, 19.77, 21.47, null, null, null, null, null ],
+          "belStudents": [ 32, 27, 23, null, null, null, null, null ],
+          "matStudents": [ 32, 27, 23, null, null, null, null, null ]
+        },
+        "1001830": {
+          "fullName": "ОУ Кирил и Методий",
+          "shortName": "ОУ Кирил и Методий",
+          "isPrivate": false,
+          "belScore": [ 42.11, 58.33, 54.29, 58.24, 56.4, 56.28, 58.07, 63.37 ],
+          "matScore": [ 32.32, 29.44, 36.18, 34.5, 32.98, 30.54, 42.9, 40.17 ],
+          "belStudents": [ 101, 134, 134, 124, 123, 144, 134, 114 ],
+          "matStudents": [ 101, 134, 134, 124, 123, 144, 134, 114 ]
+        }
+      }
+    }
+  }
+}

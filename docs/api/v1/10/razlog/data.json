@@ -1,0 +1,49 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "razlog": {
+      "fullName": "Разлог",
+      "shortName": "Разлог",
+      "schools": {
+        "102012": {
+          "fullName": "Разложка ПГ",
+          "shortName": "Разложка ПГ",
+          "isPrivate": false,
+          "belScore": [ null, null, 43.15, 43.15, 34.67, 42.48, 47.56, 36.46 ],
+          "matScore": [ null, null, 50.13, 50.13, 42.04, 50.05, 34.97, 37.49 ],
+          "belStudents": [ null, null, 48, 48, 27, 40, 35, 41 ],
+          "matStudents": [ null, null, 48, 48, 27, 38, 35, 41 ]
+        },
+        "102017": {
+          "fullName": "ПГ по механ. на селското стоп.",
+          "shortName": "ПГ по механ. на с. стоп.",
+          "isPrivate": false,
+          "belScore": [ null, null, 30.27, 30.27, 40.43, 29.19, 24.68, 44.2 ],
+          "matScore": [ null, null, 42.23, 42.23, 41.84, 41.03, 45.9, 52.82 ],
+          "belStudents": [ null, null, 44, 44, 46, 32, 45, 40 ],
+          "matStudents": [ null, null, 43, 43, 46, 31, 45, 41 ]
+        },
+        "102113": {
+          "fullName": "ПГ по транспорт",
+          "shortName": "ПГ по транспорт",
+          "isPrivate": false,
+          "belScore": [ null, null, 27.25, 27.25, 25.45, 33.8, 35.11, 36.58 ],
+          "matScore": [ null, null, 31.12, 31.12, 22.56, 36.14, 30.87, 38.71 ],
+          "belStudents": [ null, null, 63, 63, 44, 47, 66, 55 ],
+          "matStudents": [ null, null, 58, 58, 43, 44, 64, 54 ]
+        },
+        "103501": {
+          "fullName": "СУ братя Каназиреви",
+          "shortName": "СУ бр. Каназиреви",
+          "isPrivate": false,
+          "belScore": [ null, null, 63.38, 63.38, 50.18, 65.74, 61.48, 54.1 ],
+          "matScore": [ null, null, 42.88, 42.88, 45.26, 46.58, 43.08, 37.54 ],
+          "belStudents": [ null, null, 65, 65, 72, 59, 52, 73 ],
+          "matStudents": [ null, null, 65, 65, 72, 59, 52, 73 ]
+        }
+      }
+    }
+  }
+}

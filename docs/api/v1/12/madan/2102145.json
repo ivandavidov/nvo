@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "madan": {
+      "fullName": "Мадан",
+      "shortName": "Мадан",
+      "schools": {
+        "2102145": {
+          "fullName": "ПГ Васил Димитров",
+          "shortName": "ПГ Васил Димитров",
+          "isPrivate": false,
+          "belScore": [ 3.835, 3.45, 3.66, 3.66, 3.47, 3.13, 3.72, 3.63 ],
+          "matScore": [ 3.82, 4.096, 3.62, null, 4.34, 3.639, 4.398, 4.555 ],
+          "belStudents": [ 38, 46, 30, 37, 37, 38, 24, 32 ],
+          "matStudents": [ 33, 43, 2, null, 38, 38, 33, 33 ]
+        }
+      }
+    }
+  }
+}

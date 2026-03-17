@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "veliko-turnovo": {
+      "fullName": "Велико Търново",
+      "shortName": "В. Търново",
+      "schools": {
+        "300132": {
+          "fullName": "ПГ по туризъм",
+          "shortName": "ПГ по туризъм",
+          "isPrivate": false,
+          "belScore": [ 3.982, 3.74, 4.11, 3.88, 3.93, 3.63, 4.2, 4.06 ],
+          "matScore": [ 3.939, 3.878, 3.83, 3.89, 3.926, 3.932, 4.5, 4.376 ],
+          "belStudents": [ 75, 115, 88, 93, 85, 66, 69, 71 ],
+          "matStudents": [ 60, 52, 52, 38, 80, 72, 76, 74 ]
+        }
+      }
+    }
+  }
+}

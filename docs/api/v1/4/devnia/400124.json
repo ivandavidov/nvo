@@ -1,0 +1,22 @@
+{
+  "grade": 4,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "devnia": {
+      "fullName": "Девня",
+      "shortName": "Девня",
+      "schools": {
+        "400124": {
+          "fullName": "Основно училище Свети, свети Кирил и Методий",
+          "shortName": "Основно училище Свети, свети Кирил и Методий",
+          "isPrivate": false,
+          "belScore": [ 54.5, 66.5, 66.5, null, null, null, null, null ],
+          "matScore": [ 61.39, 54.09, 54.09, null, null, null, null, null ],
+          "belStudents": [ 20, 10, 10, null, null, null, null, null ],
+          "matStudents": [ 18, 11, 11, null, null, null, null, null ]
+        }
+      }
+    }
+  }
+}

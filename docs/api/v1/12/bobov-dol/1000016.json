@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "bobov-dol": {
+      "fullName": "Бобов дол",
+      "shortName": "Бобов дол",
+      "schools": {
+        "1000016": {
+          "fullName": "СУ Христо Ботев",
+          "shortName": "СУ Христо Ботев",
+          "isPrivate": false,
+          "belScore": [ 3.59, null, 3.42, 3.36, 2.53, 2.11, 3.17, 2.88 ],
+          "matScore": [ 3.528, null, 3.45, 3.36, 2.478, 2.444, 2.693, 2.69 ],
+          "belStudents": [ 17, null, 10, 19, 12, 9, 16, 8 ],
+          "matStudents": [ 22, null, 10, 18, 10, 9, 11, 7 ]
+        }
+      }
+    }
+  }
+}

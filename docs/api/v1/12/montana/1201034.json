@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "montana": {
+      "fullName": "Монтана",
+      "shortName": "Монтана",
+      "schools": {
+        "1201034": {
+          "fullName": "6 СУ Отец Паисий",
+          "shortName": "6 СУ",
+          "isPrivate": false,
+          "belScore": [ 3.801, 3.52, 3.13, 3.23, 3.94, 2.71, 3.61, 2.88 ],
+          "matScore": [ 3.664, 3.582, 3.27, 3.46, 2.755, 2.437, 2.9, 3.22 ],
+          "belStudents": [ 12, 9, 14, 7, 2, 6, 3, 9 ],
+          "matStudents": [ 12, 9, 13, 8, 2, 7, 3, 8 ]
+        }
+      }
+    }
+  }
+}

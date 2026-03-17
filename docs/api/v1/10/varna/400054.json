@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "varna": {
+      "fullName": "Варна",
+      "shortName": "Варна",
+      "schools": {
+        "400054": {
+          "fullName": "Специално у-ще за ученици с нарушено зрение",
+          "shortName": "Спец. у-ще за уч. с нар. зр.",
+          "isPrivate": false,
+          "belScore": [ 63.0, 63.0, 63.0, 63.0, null, null, null, null ],
+          "matScore": [ null, null, null, null, null, null, null, null ],
+          "belStudents": [ 1, 1, 1, 1, null, null, null, null ],
+          "matStudents": [ null, null, null, null, null, null, null, null ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "grade": 7,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sofia": {
+      "fullName": "София",
+      "shortName": "София",
+      "schools": {
+        "2211519": {
+          "fullName": "ЧОУ Банкерче",
+          "shortName": "Банкерче",
+          "isPrivate": true,
+          "belScore": [ null, 67.67, null, null, null, 74.59, null, null ],
+          "matScore": [ null, 44.5, null, null, null, 45.69, null, null ],
+          "belStudents": [ null, 6, null, null, null, 16, null, null ],
+          "matStudents": [ null, 6, null, null, null, 16, null, null ]
+        }
+      }
+    }
+  }
+}

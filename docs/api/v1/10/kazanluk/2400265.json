@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "kazanluk": {
+      "fullName": "Казанлък",
+      "shortName": "Казанлък",
+      "schools": {
+        "2400265": {
+          "fullName": "ПГ Иван Хаджиенов",
+          "shortName": "ПГ Иван Хаджиенов",
+          "isPrivate": false,
+          "belScore": [ null, null, 39.3, 39.3, 37.9, 48.0, 52.11, 44.78 ],
+          "matScore": [ null, null, 17.99, 17.99, 21.07, 25.84, 26.09, 25.03 ],
+          "belStudents": [ null, null, 83, 83, 96, 93, 102, 103 ],
+          "matStudents": [ null, null, 83, 83, 96, 93, 102, 103 ]
+        }
+      }
+    }
+  }
+}

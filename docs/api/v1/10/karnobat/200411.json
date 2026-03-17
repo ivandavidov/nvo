@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "karnobat": {
+      "fullName": "Карнобат",
+      "shortName": "Карнобат",
+      "schools": {
+        "200411": {
+          "fullName": "СУ Кирил и Методий",
+          "shortName": "СУ Кирил и Методий",
+          "isPrivate": false,
+          "belScore": [ null, null, 52.37, 52.37, 55.98, 50.07, 58.06, 47.27 ],
+          "matScore": [ null, null, 48.02, 48.02, 67.0, 54.64, 52.63, 53.13 ],
+          "belStudents": [ null, null, 52, 52, 53, 51, 52, 52 ],
+          "matStudents": [ null, null, 52, 52, 52, 50, 52, 52 ]
+        }
+      }
+    }
+  }
+}

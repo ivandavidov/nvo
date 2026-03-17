@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sofia": {
+      "fullName": "София",
+      "shortName": "София",
+      "schools": {
+        "2223055": {
+          "fullName": "55 СУ Петко Каравелов",
+          "shortName": "55 СУ",
+          "isPrivate": false,
+          "belScore": [ null, null, null, null, 3.58, 3.5, 4.2, 4.32 ],
+          "matScore": [ null, null, null, null, 3.275, 3.606, 4.137, 4.144 ],
+          "belStudents": [ null, null, null, null, 19, 23, 44, 49 ],
+          "matStudents": [ null, null, null, null, 19, 26, 44, 54 ]
+        }
+      }
+    }
+  }
+}

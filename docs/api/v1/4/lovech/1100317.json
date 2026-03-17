@@ -1,0 +1,22 @@
+{
+  "grade": 4,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "lovech": {
+      "fullName": "Ловеч",
+      "shortName": "Ловеч",
+      "schools": {
+        "1100317": {
+          "fullName": "ОУ Панайот Пипков",
+          "shortName": "ОУ Панайот Пипков",
+          "isPrivate": false,
+          "belScore": [ 57.06, 57.14, 57.14, null, 38.79, 34.15, 49.12, 46.05 ],
+          "matScore": [ 75.42, 60.0, 60.0, null, 21.31, 42.86, 47.12, 53.8 ],
+          "belStudents": [ 17, 21, 21, null, 14, 13, 13, 10 ],
+          "matStudents": [ 12, 20, 20, null, 16, 14, 13, 10 ]
+        }
+      }
+    }
+  }
+}

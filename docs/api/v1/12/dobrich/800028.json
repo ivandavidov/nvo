@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "dobrich": {
+      "fullName": "Добрич",
+      "shortName": "Добрич",
+      "schools": {
+        "800028": {
+          "fullName": "ПГ по туризъм П. К. Яворов",
+          "shortName": "ПГ по туризъм",
+          "isPrivate": false,
+          "belScore": [ 3.86, 3.5, 3.63, 3.49, 2.72, 2.88, 3.37, 3.41 ],
+          "matScore": [ 3.39, 3.32, null, null, 4.78, 4.73, 4.676, 5.079 ],
+          "belStudents": [ 85, 82, 84, 82, 59, 66, 66, 88 ],
+          "matStudents": [ 1, 1, null, null, 58, 49, 48, 72 ]
+        }
+      }
+    }
+  }
+}

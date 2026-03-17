@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "dulgopol": {
+      "fullName": "Дългопол",
+      "shortName": "Дългопол",
+      "schools": {
+        "400136": {
+          "fullName": "СУ Климент Охридски",
+          "shortName": "СУ Кл. Охридски",
+          "isPrivate": false,
+          "belScore": [ null, null, 27.55, 27.55, 26.41, 26.07, 34.43, 27.05 ],
+          "matScore": [ null, null, 16.6, 16.6, 22.38, 14.82, 19.8, 18.25 ],
+          "belStudents": [ null, null, 44, 44, 41, 36, 58, 58 ],
+          "matStudents": [ null, null, 42, 42, 41, 37, 57, 58 ]
+        }
+      }
+    }
+  }
+}

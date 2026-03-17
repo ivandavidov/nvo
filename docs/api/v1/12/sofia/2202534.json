@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sofia": {
+      "fullName": "София",
+      "shortName": "София",
+      "schools": {
+        "2202534": {
+          "fullName": "ЧПСУ Свети Наум",
+          "shortName": "Св. Наум",
+          "isPrivate": true,
+          "belScore": [ 4.636, 4.35, 4.55, 3.73, null, 3.24, 4.38, 4.12 ],
+          "matScore": [ 5.46, 4.15, 4.61, 3.26, null, 3.95, 4.583, 4.47 ],
+          "belStudents": [ 3, 7, 4, 3, null, 6, 7, 14 ],
+          "matStudents": [ 3, 7, 5, 3, null, 6, 6, 14 ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "grade": 4,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "varna": {
+      "fullName": "Варна",
+      "shortName": "Варна",
+      "schools": {
+        "400065": {
+          "fullName": "ОПУ Прогресивно обр. 2",
+          "shortName": "Прогресивно обр. 2",
+          "isPrivate": true,
+          "belScore": [ null, null, null, null, 84.1, 87.77, 90.69, 88.0 ],
+          "matScore": [ null, null, null, null, 63.2, 81.08, 72.58, 80.83 ],
+          "belStudents": [ null, null, null, null, 10, 13, 13, 12 ],
+          "matStudents": [ null, null, null, null, 10, 13, 13, 12 ]
+        }
+      }
+    }
+  }
+}

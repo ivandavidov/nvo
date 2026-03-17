@@ -1,0 +1,22 @@
+{
+  "grade": 4,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "iambol": {
+      "fullName": "Ямбол",
+      "shortName": "Ямбол",
+      "schools": {
+        "2811508": {
+          "fullName": "Основно училище Христо Смирненски",
+          "shortName": "Основно училище Христо Смирненски",
+          "isPrivate": false,
+          "belScore": [ 62.68, null, null, null, null, null, null, null ],
+          "matScore": [ 59.8, null, null, null, null, null, null, null ],
+          "belStudents": [ 28, null, null, null, null, null, null, null ],
+          "matStudents": [ 25, null, null, null, null, null, null, null ]
+        }
+      }
+    }
+  }
+}

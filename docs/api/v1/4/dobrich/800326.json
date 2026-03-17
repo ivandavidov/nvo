@@ -1,0 +1,22 @@
+{
+  "grade": 4,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "dobrich": {
+      "fullName": "Добрич",
+      "shortName": "Добрич",
+      "schools": {
+        "800326": {
+          "fullName": "ЧСУ Леонардо да Винчи",
+          "shortName": "Леонардо да Винчи",
+          "isPrivate": true,
+          "belScore": [ 87.0, 97.5, 97.5, 95.0, 84.93, 86.6, 78.5, 81.58 ],
+          "matScore": [ 98.75, 97.5, 97.5, 89.0, 70.43, 74.4, 72.5, 86.08 ],
+          "belStudents": [ 5, 4, 4, 1, 7, 5, 4, 6 ],
+          "matStudents": [ 4, 4, 4, 1, 7, 5, 4, 6 ]
+        }
+      }
+    }
+  }
+}

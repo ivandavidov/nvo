@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "dupnitsa": {
+      "fullName": "Дупница",
+      "shortName": "Дупница",
+      "schools": {
+        "1002137": {
+          "fullName": "ПГ по хранително-вкусови технологии",
+          "shortName": "ПГ по хран.-вк. техн.",
+          "isPrivate": false,
+          "belScore": [ null, null, 25.45, 25.45, 33.48, 37.99, 40.5, 37.83 ],
+          "matScore": [ null, null, 15.73, 15.73, 22.16, 18.8, 19.34, 19.23 ],
+          "belStudents": [ null, null, 44, 44, 42, 45, 44, 41 ],
+          "matStudents": [ null, null, 44, 44, 43, 44, 43, 41 ]
+        }
+      }
+    }
+  }
+}

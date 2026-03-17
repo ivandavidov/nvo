@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "peshtera": {
+      "fullName": "Пещера",
+      "shortName": "Пещера",
+      "schools": {
+        "1302819": {
+          "fullName": "ПГ по хран.-вк. технологии",
+          "shortName": "ПГ по хран.-вк. техн.",
+          "isPrivate": false,
+          "belScore": [ null, null, 33.19, 33.19, 36.54, 37.89, 44.48, 39.8 ],
+          "matScore": [ null, null, 24.29, 24.29, 43.99, 19.72, 47.15, 39.22 ],
+          "belStudents": [ null, null, 37, 37, 28, 32, 40, 30 ],
+          "matStudents": [ null, null, 35, 35, 28, 32, 40, 30 ]
+        }
+      }
+    }
+  }
+}

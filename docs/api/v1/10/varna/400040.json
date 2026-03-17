@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "varna": {
+      "fullName": "Варна",
+      "shortName": "Варна",
+      "schools": {
+        "400040": {
+          "fullName": "СУ Климент Охридски",
+          "shortName": "СУ Кл. Охридски",
+          "isPrivate": false,
+          "belScore": [ 57.69, 57.69, 57.69, 57.69, 50.88, 60.55, null, null ],
+          "matScore": [ 32.87, 32.87, 32.87, 32.87, 44.53, 43.17, null, null ],
+          "belStudents": [ 48, 48, 48, 48, 49, 48, null, null ],
+          "matStudents": [ 46, 46, 46, 46, 49, 49, null, null ]
+        }
+      }
+    }
+  }
+}

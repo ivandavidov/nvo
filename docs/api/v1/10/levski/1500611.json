@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "levski": {
+      "fullName": "Левски",
+      "shortName": "Левски",
+      "schools": {
+        "1500611": {
+          "fullName": "СУ Крум Попов",
+          "shortName": "СУ Крум Попов",
+          "isPrivate": false,
+          "belScore": [ null, null, 35.53, 35.53, 28.76, 39.14, 31.35, 35.32 ],
+          "matScore": [ null, null, 16.12, 16.12, 19.92, 19.51, 16.82, 20.06 ],
+          "belStudents": [ null, null, 49, 49, 34, 40, 33, 44 ],
+          "matStudents": [ null, null, 49, 49, 35, 40, 33, 45 ]
+        }
+      }
+    }
+  }
+}

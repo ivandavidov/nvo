@@ -1,0 +1,22 @@
+{
+  "grade": 7,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "veliko-turnovo": {
+      "fullName": "Велико Търново",
+      "shortName": "В. Търново",
+      "schools": {
+        "300127": {
+          "fullName": "СУ Георги Раковски",
+          "shortName": "СУ Г. Раковски",
+          "isPrivate": false,
+          "belScore": [ 14.0, null, null, null, null, null, null, 45.5 ],
+          "matScore": [ 13.6, null, null, null, null, null, null, 25.77 ],
+          "belStudents": [ 4, null, null, null, null, null, null, 11 ],
+          "matStudents": [ 5, null, null, null, null, null, null, 12 ]
+        }
+      }
+    }
+  }
+}

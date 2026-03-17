@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "dolni-chiflik": {
+      "fullName": "Долни Чифлик",
+      "shortName": "Долни Чифлик",
+      "schools": {
+        "400127": {
+          "fullName": "ПГ по сел. стоп. И.В. Мичурин",
+          "shortName": "ПГ по сел. стоп.",
+          "isPrivate": false,
+          "belScore": [ null, null, 25.32, 25.32, 26.07, 25.24, 18.56, 18.88 ],
+          "matScore": [ null, null, 32.68, 32.68, 47.45, 41.38, 31.95, 27.38 ],
+          "belStudents": [ null, null, 47, 47, 43, 52, 58, 59 ],
+          "matStudents": [ null, null, 47, 47, 43, 52, 56, 57 ]
+        }
+      }
+    }
+  }
+}

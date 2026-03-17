@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "momchilgrad": {
+      "fullName": "Момчилград",
+      "shortName": "Момчилград",
+      "schools": {
+        "909603": {
+          "fullName": "ПГ по туризъм Кирил и Методий",
+          "shortName": "ПГ по туризъм",
+          "isPrivate": false,
+          "belScore": [ 3.132, 2.89, 2.9, 2.91, 2.28, 2.57, 2.86, 3.01 ],
+          "matScore": [ 2.996, 2.8, null, 2.66, 3.07, 4.52, 4.056, 4.64 ],
+          "belStudents": [ 63, 46, 41, 37, 29, 36, 21, 25 ],
+          "matStudents": [ 10, 2, null, 1, 21, 25, 13, 22 ]
+        }
+      }
+    }
+  }
+}

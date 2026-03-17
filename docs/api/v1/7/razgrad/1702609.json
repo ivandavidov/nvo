@@ -1,0 +1,22 @@
+{
+  "grade": 7,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "razgrad": {
+      "fullName": "Разград",
+      "shortName": "Разград",
+      "schools": {
+        "1702609": {
+          "fullName": "ППМГ Акад. Никола Обрешков",
+          "shortName": "ППМГ",
+          "isPrivate": false,
+          "belScore": [ null, null, 81.31, 80.52, 76.86, 82.94, 75.12, 80.08 ],
+          "matScore": [ null, null, 72.58, 67.64, 65.72, 66.8, 72.99, 72.04 ],
+          "belStudents": [ null, null, 21, 24, 18, 26, 26, 25 ],
+          "matStudents": [ null, null, 21, 24, 18, 26, 26, 25 ]
+        }
+      }
+    }
+  }
+}

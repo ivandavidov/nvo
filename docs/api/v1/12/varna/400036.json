@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "varna": {
+      "fullName": "Варна",
+      "shortName": "Варна",
+      "schools": {
+        "400036": {
+          "fullName": "СУ Елин Пелин",
+          "shortName": "СУ Елин Пелин",
+          "isPrivate": false,
+          "belScore": [ 3.708, 3.63, 3.24, 3.33, 3.68, 2.62, 2.74, 3.0 ],
+          "matScore": [ 3.921, 3.54, 3.44, 3.54, 4.98, 2.89, 4.01, 4.69 ],
+          "belStudents": [ 11, 3, 10, 10, 12, 11, 6, 10 ],
+          "matStudents": [ 11, 3, 9, 10, 11, 9, 5, 10 ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "montana": {
+      "fullName": "Монтана",
+      "shortName": "Монтана",
+      "schools": {
+        "1201007": {
+          "fullName": "5 СУ Христо Ботев",
+          "shortName": "5 СУ",
+          "isPrivate": false,
+          "belScore": [ null, 3.36, 3.27, null, null, null, null, null ],
+          "matScore": [ 3.39, 3.51, 2.79, null, null, null, null, null ],
+          "belStudents": [ null, 2, 1, null, null, null, null, null ],
+          "matStudents": [ 1, 2, 1, null, null, null, null, null ]
+        }
+      }
+    }
+  }
+}

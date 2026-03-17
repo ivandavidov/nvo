@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "pirdop": {
+      "fullName": "Пирдоп",
+      "shortName": "Пирдоп",
+      "schools": {
+        "2302504": {
+          "fullName": "ПГ по механоелектротехника",
+          "shortName": "ПГ по механоел.",
+          "isPrivate": false,
+          "belScore": [ 3.537, 3.52, 3.31, 3.43, 2.95, 2.66, 3.49, 3.32 ],
+          "matScore": [ 3.87, 2.82, null, null, 4.46, 4.356, 4.477, 4.626 ],
+          "belStudents": [ 48, 55, 27, 24, 30, 31, 57, 34 ],
+          "matStudents": [ 2, 3, null, null, 27, 24, 47, 32 ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "kostenets": {
+      "fullName": "Костенец",
+      "shortName": "Костенец",
+      "schools": {
+        "2303490": {
+          "fullName": "СУ Климент Охридски",
+          "shortName": "СУ Кл. Охридски",
+          "isPrivate": false,
+          "belScore": [ null, null, 57.92, 57.92, 48.79, 61.3, 70.92, 58.62 ],
+          "matScore": [ null, null, 31.61, 31.61, 41.07, 50.15, 49.3, 56.92 ],
+          "belStudents": [ null, null, 62, 62, 53, 66, 51, 55 ],
+          "matStudents": [ null, null, 62, 62, 53, 66, 50, 55 ]
+        }
+      }
+    }
+  }
+}

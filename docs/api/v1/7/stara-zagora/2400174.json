@@ -1,0 +1,22 @@
+{
+  "grade": 7,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "stara-zagora": {
+      "fullName": "Стара Загора",
+      "shortName": "Ст. Загора",
+      "schools": {
+        "2400174": {
+          "fullName": "СУ Христо Ботев",
+          "shortName": "СУ Христо Ботев",
+          "isPrivate": false,
+          "belScore": [ 16.0, null, 19.67, 15.9, 10.89, 17.41, 24.53, 20.33 ],
+          "matScore": [ 10.79, null, 13.16, 14.42, 12.05, 13.97, 17.5, 17.17 ],
+          "belStudents": [ 21, null, 15, 20, 18, 16, 16, 15 ],
+          "matStudents": [ 19, null, 16, 19, 19, 16, 16, 16 ]
+        }
+      }
+    }
+  }
+}

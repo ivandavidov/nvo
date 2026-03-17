@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "varna": {
+      "fullName": "Варна",
+      "shortName": "Варна",
+      "schools": {
+        "403558": {
+          "fullName": "ЧСУ Мечтатели",
+          "shortName": "Мечтатели",
+          "isPrivate": true,
+          "belScore": [ 58.33, 58.33, 58.33, 58.33, null, null, null, 56.0 ],
+          "matScore": [ 29.67, 29.67, 29.67, 29.67, null, null, null, 30.75 ],
+          "belStudents": [ 3, 3, 3, 3, null, null, null, 4 ],
+          "matStudents": [ 3, 3, 3, 3, null, null, null, 4 ]
+        }
+      }
+    }
+  }
+}

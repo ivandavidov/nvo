@@ -1,0 +1,22 @@
+{
+  "grade": 7,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "bobov-dol": {
+      "fullName": "Бобов дол",
+      "shortName": "Бобов дол",
+      "schools": {
+        "1000018": {
+          "fullName": "СУ Д-р Петър Берон",
+          "shortName": "СУ Петър Берон",
+          "isPrivate": false,
+          "belScore": [ null, null, null, 26.25, 20.5, null, 22.5, 9.1 ],
+          "matScore": [ null, null, null, 25.0, 27.08, null, 18.75, 15.0 ],
+          "belStudents": [ null, null, null, 2, 3, null, 2, 5 ],
+          "matStudents": [ null, null, null, 2, 3, null, 2, 6 ]
+        }
+      }
+    }
+  }
+}

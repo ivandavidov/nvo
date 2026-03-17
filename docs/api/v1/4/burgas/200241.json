@@ -1,0 +1,22 @@
+{
+  "grade": 4,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "burgas": {
+      "fullName": "Бургас",
+      "shortName": "Бургас",
+      "schools": {
+        "200241": {
+          "fullName": "ОУ А. Георгиев - Коджакафалията",
+          "shortName": "Коджакафалията",
+          "isPrivate": false,
+          "belScore": [ null, null, null, 88.64, 86.15, 85.33, 89.38, 88.64 ],
+          "matScore": [ null, null, null, 83.81, 75.03, 83.62, 86.99, 90.05 ],
+          "belStudents": [ null, null, null, 74, 72, 52, 49, 47 ],
+          "matStudents": [ null, null, null, 74, 72, 52, 49, 47 ]
+        }
+      }
+    }
+  }
+}

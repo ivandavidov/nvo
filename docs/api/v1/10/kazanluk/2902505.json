@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "kazanluk": {
+      "fullName": "Казанлък",
+      "shortName": "Казанлък",
+      "schools": {
+        "2902505": {
+          "fullName": "НУ по пласт. изк. и дизайн",
+          "shortName": "НУПИД А. Узунов",
+          "isPrivate": false,
+          "belScore": [ null, null, 50.62, 50.62, 45.63, 43.05, 53.17, 51.29 ],
+          "matScore": [ null, null, 20.98, 20.98, 24.87, 22.56, 22.92, 29.31 ],
+          "belStudents": [ null, null, 47, 47, 48, 50, 50, 49 ],
+          "matStudents": [ null, null, 47, 47, 48, 50, 50, 49 ]
+        }
+      }
+    }
+  }
+}

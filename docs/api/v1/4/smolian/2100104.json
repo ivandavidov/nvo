@@ -1,0 +1,22 @@
+{
+  "grade": 4,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "smolian": {
+      "fullName": "Смолян",
+      "shortName": "Смолян",
+      "schools": {
+        "2100104": {
+          "fullName": "ОУ Юрий Гагарин",
+          "shortName": "ОУ Юрий Гагарин",
+          "isPrivate": false,
+          "belScore": [ 86.07, 79.17, 79.17, 77.25, null, 66.85, 72.64, 79.96 ],
+          "matScore": [ 89.33, 80.83, 80.83, 71.25, null, 52.0, 80.32, 68.63 ],
+          "belStudents": [ 14, 18, 18, 4, null, 13, 11, 12 ],
+          "matStudents": [ 15, 18, 18, 4, null, 14, 11, 12 ]
+        }
+      }
+    }
+  }
+}

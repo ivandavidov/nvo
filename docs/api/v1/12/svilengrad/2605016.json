@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "svilengrad": {
+      "fullName": "Свиленград",
+      "shortName": "Свиленград",
+      "schools": {
+        "2605016": {
+          "fullName": "ПГ по селско стопанство",
+          "shortName": "ПГ по селско стоп.",
+          "isPrivate": false,
+          "belScore": [ 3.804, 3.61, 3.74, 3.83, 3.37, 3.51, 4.16, 3.89 ],
+          "matScore": [ 3.321, 4.146, 3.56, null, 5.39, 5.09, 5.176, 5.126 ],
+          "belStudents": [ 68, 80, 59, 44, 37, 49, 46, 71 ],
+          "matStudents": [ 6, 13, 6, null, 34, 44, 45, 70 ]
+        }
+      }
+    }
+  }
+}

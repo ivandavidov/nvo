@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "gorna-oryahovitsa": {
+      "fullName": "Горна Оряховица",
+      "shortName": "Г. Оряховица",
+      "schools": {
+        "300218": {
+          "fullName": "ПТГ Васил Левски",
+          "shortName": "ПТГ В. Левски",
+          "isPrivate": false,
+          "belScore": [ null, null, 27.09, 27.09, 21.92, 32.53, 24.06, 26.53 ],
+          "matScore": [ null, null, 17.0, 17.0, 19.38, 19.75, 18.38, 16.62 ],
+          "belStudents": [ null, null, 11, 11, 13, 16, 16, 17 ],
+          "matStudents": [ null, null, 12, 12, 13, 16, 16, 17 ]
+        }
+      }
+    }
+  }
+}

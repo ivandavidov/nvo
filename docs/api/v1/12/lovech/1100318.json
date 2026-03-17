@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "lovech": {
+      "fullName": "Ловеч",
+      "shortName": "Ловеч",
+      "schools": {
+        "1100318": {
+          "fullName": "СУ Климент Охридски",
+          "shortName": "СУ Кл. Охридски",
+          "isPrivate": false,
+          "belScore": [ 4.575, 3.89, 3.96, 3.86, null, 3.82, 4.26, 3.4 ],
+          "matScore": [ 4.46, 3.867, 3.93, 4.2, null, 3.565, 3.336, 3.318 ],
+          "belStudents": [ 23, 14, 14, 11, null, 12, 15, 16 ],
+          "matStudents": [ 24, 15, 16, 12, null, 12, 16, 21 ]
+        }
+      }
+    }
+  }
+}

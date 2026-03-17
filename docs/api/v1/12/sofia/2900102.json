@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sofia": {
+      "fullName": "София",
+      "shortName": "София",
+      "schools": {
+        "2900102": {
+          "fullName": "Българско СУ Д-р Петър Берон",
+          "shortName": "БСУ Петър Берон",
+          "isPrivate": false,
+          "belScore": [ 4.393, null, null, null, null, null, null, null ],
+          "matScore": [ 4.612, null, null, null, null, null, null, null ],
+          "belStudents": [ 11, null, null, null, null, null, null, null ],
+          "matStudents": [ 11, null, null, null, null, null, null, null ]
+        }
+      }
+    }
+  }
+}

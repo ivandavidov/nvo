@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "troyan": {
+      "fullName": "Троян",
+      "shortName": "Троян",
+      "schools": {
+        "1100612": {
+          "fullName": "СУ Васил Левски",
+          "shortName": "СУ Васил Левски",
+          "isPrivate": false,
+          "belScore": [ null, null, 55.42, 55.42, 49.23, 55.33, 56.05, 49.4 ],
+          "matScore": [ null, null, 28.04, 28.04, 29.26, 29.06, 26.6, 31.33 ],
+          "belStudents": [ null, null, 74, 74, 65, 75, 76, 77 ],
+          "matStudents": [ null, null, 74, 74, 65, 75, 76, 77 ]
+        }
+      }
+    }
+  }
+}

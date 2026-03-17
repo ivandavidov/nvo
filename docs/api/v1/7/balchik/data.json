@@ -1,0 +1,49 @@
+{
+  "grade": 7,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "balchik": {
+      "fullName": "Балчик",
+      "shortName": "Балчик",
+      "schools": {
+        "800059": {
+          "fullName": "ОУ Кирил и Методий",
+          "shortName": "ОУ Кирил и Методий",
+          "isPrivate": false,
+          "belScore": [ 30.78, 63.14, 46.2, 53.65, 49.41, 65.32, 56.57, 55.96 ],
+          "matScore": [ 25.85, 38.95, 28.38, 25.21, 26.38, 24.39, 34.24, 30.89 ],
+          "belStudents": [ 27, 18, 20, 24, 16, 11, 22, 23 ],
+          "matStudents": [ 27, 18, 20, 24, 16, 11, 22, 23 ]
+        },
+        "80006": {
+          "fullName": "ОУ Антим",
+          "shortName": "ОУ Антим",
+          "isPrivate": false,
+          "belScore": [ 24.61, null, null, null, null, null, null, null ],
+          "matScore": [ 15.97, null, null, null, null, null, null, null ],
+          "belStudents": [ 32, null, null, null, null, null, null, null ],
+          "matStudents": [ 32, null, null, null, null, null, null, null ]
+        },
+        "800060": {
+          "fullName": "ОУ Антим I",
+          "shortName": "ОУ Антим I",
+          "isPrivate": false,
+          "belScore": [ null, 51.22, 61.66, 59.09, 57.51, 64.45, 54.29, 61.0 ],
+          "matScore": [ null, 16.57, 32.39, 33.08, 37.19, 37.95, 37.35, 36.94 ],
+          "belStudents": [ null, 43, 44, 39, 50, 44, 40, 50 ],
+          "matStudents": [ null, 43, 44, 39, 49, 44, 40, 50 ]
+        },
+        "800061": {
+          "fullName": "СУ Христо Ботев",
+          "shortName": "СУ Христо Ботев",
+          "isPrivate": false,
+          "belScore": [ 31.08, 33.62, 42.56, 31.8, 38.65, 38.75, 34.85, 38.32 ],
+          "matScore": [ 31.17, 17.14, 26.46, 18.14, 19.0, 22.4, 23.48, 22.54 ],
+          "belStudents": [ 30, 30, 26, 15, 26, 20, 13, 17 ],
+          "matStudents": [ 29, 30, 26, 14, 26, 21, 13, 17 ]
+        }
+      }
+    }
+  }
+}

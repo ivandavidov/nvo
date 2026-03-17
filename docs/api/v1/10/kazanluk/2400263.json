@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "kazanluk": {
+      "fullName": "Казанлък",
+      "shortName": "Казанлък",
+      "schools": {
+        "2400263": {
+          "fullName": "ПХГ Св. Св. Кирил и Методий",
+          "shortName": "ПХГ Кирил и Методий",
+          "isPrivate": false,
+          "belScore": [ null, null, 44.43, 44.43, 38.4, 48.88, 45.35, 42.48 ],
+          "matScore": [ null, null, 19.17, 19.17, 14.28, 20.72, 19.15, 26.58 ],
+          "belStudents": [ null, null, 47, 47, 67, 64, 61, 58 ],
+          "matStudents": [ null, null, 47, 47, 67, 64, 59, 58 ]
+        }
+      }
+    }
+  }
+}

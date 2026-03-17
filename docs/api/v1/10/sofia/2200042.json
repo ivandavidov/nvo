@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sofia": {
+      "fullName": "София",
+      "shortName": "София",
+      "schools": {
+        "2200042": {
+          "fullName": "ЧПГ Акатамус",
+          "shortName": "Акатамус",
+          "isPrivate": true,
+          "belScore": [ null, null, null, null, null, null, null, 49.2 ],
+          "matScore": [ null, null, null, null, null, null, null, 48.25 ],
+          "belStudents": [ null, null, null, null, null, null, null, 10 ],
+          "matStudents": [ null, null, null, null, null, null, null, 10 ]
+        }
+      }
+    }
+  }
+}

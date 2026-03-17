@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "troyan": {
+      "fullName": "Троян",
+      "shortName": "Троян",
+      "schools": {
+        "1100616": {
+          "fullName": "ПГ по механоелектротехника",
+          "shortName": "ПГ по механоел.",
+          "isPrivate": false,
+          "belScore": [ null, null, 19.22, 19.22, 18.56, 27.55, 25.13, 27.19 ],
+          "matScore": [ null, null, 15.64, 15.64, 18.57, 14.17, 17.72, 18.93 ],
+          "belStudents": [ null, null, 32, 32, 36, 37, 31, 31 ],
+          "matStudents": [ null, null, 33, 33, 37, 35, 30, 29 ]
+        }
+      }
+    }
+  }
+}

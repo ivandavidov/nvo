@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "elena": {
+      "fullName": "Елена",
+      "shortName": "Елена",
+      "schools": {
+        "300305": {
+          "fullName": "СУ Иван Николов Момчилов",
+          "shortName": "СУ Иван Момчилов",
+          "isPrivate": false,
+          "belScore": [ null, null, 37.74, 37.74, 35.17, 46.34, 43.85, 40.08 ],
+          "matScore": [ null, null, 24.22, 24.22, 24.26, 29.58, 24.48, 26.03 ],
+          "belStudents": [ null, null, 46, 46, 41, 53, 33, 38 ],
+          "matStudents": [ null, null, 45, 45, 41, 51, 32, 37 ]
+        }
+      }
+    }
+  }
+}

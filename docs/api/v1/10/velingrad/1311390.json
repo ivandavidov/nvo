@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "velingrad": {
+      "fullName": "Велинград",
+      "shortName": "Велинград",
+      "schools": {
+        "1311390": {
+          "fullName": "Национална ПГ по горско стопанство",
+          "shortName": "НПГ по горско стоп.",
+          "isPrivate": false,
+          "belScore": [ null, null, 31.72, 31.72, 33.29, 40.21, 40.59, 31.81 ],
+          "matScore": [ null, null, 25.84, 25.84, 40.16, 26.15, 36.62, 37.15 ],
+          "belStudents": [ null, null, 32, 32, 34, 52, 70, 52 ],
+          "matStudents": [ null, null, 32, 32, 34, 52, 70, 52 ]
+        }
+      }
+    }
+  }
+}

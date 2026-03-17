@@ -1,0 +1,22 @@
+{
+  "grade": 7,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sofia": {
+      "fullName": "София",
+      "shortName": "София",
+      "schools": {
+        "2224672": {
+          "fullName": "ЧОУ Куест",
+          "shortName": "Куест",
+          "isPrivate": true,
+          "belScore": [ null, 68.17, 67.33, 72.67, 66.8, 63.4, 59.75, 66.13 ],
+          "matScore": [ null, 30.97, 49.33, 60.0, 57.4, 47.43, 56.31, 49.75 ],
+          "belStudents": [ null, 6, 3, 3, 5, 10, 4, 8 ],
+          "matStudents": [ null, 6, 3, 3, 5, 10, 4, 8 ]
+        }
+      }
+    }
+  }
+}

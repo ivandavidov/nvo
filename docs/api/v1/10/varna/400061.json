@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "varna": {
+      "fullName": "Варна",
+      "shortName": "Варна",
+      "schools": {
+        "400061": {
+          "fullName": "ЧСУ Аз съм българче",
+          "shortName": "Аз съм българче",
+          "isPrivate": true,
+          "belScore": [ 50.5, 50.5, 50.5, 50.5, null, 42.69, 39.63, 39.43 ],
+          "matScore": [ 32.0, 32.0, 32.0, 32.0, null, 29.15, 42.0, 28.75 ],
+          "belStudents": [ 2, 2, 2, 2, null, 8, 8, 14 ],
+          "matStudents": [ 2, 2, 2, 2, null, 5, 2, 4 ]
+        }
+      }
+    }
+  }
+}

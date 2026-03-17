@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "simeonovgrad": {
+      "fullName": "Симеоновград",
+      "shortName": "Симеоновград",
+      "schools": {
+        "2604004": {
+          "fullName": "СУ Климент Охридски",
+          "shortName": "СУ Кл. Охридски",
+          "isPrivate": false,
+          "belScore": [ 3.493, 3.22, 3.3, 3.15, 2.0, 2.09, 2.68, 2.94 ],
+          "matScore": [ null, 2.31, 3.44, 2.43, 2.0, 3.524, 4.232, 3.63 ],
+          "belStudents": [ 17, 12, 15, 8, 8, 13, 15, 7 ],
+          "matStudents": [ null, 1, 5, 3, 6, 9, 10, 9 ]
+        }
+      }
+    }
+  }
+}

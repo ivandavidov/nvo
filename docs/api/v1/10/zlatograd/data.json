@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "zlatograd": {
+      "fullName": "Златоград",
+      "shortName": "Златоград",
+      "schools": {
+        "2103232": {
+          "fullName": "СУ Антим I",
+          "shortName": "СУ Антим I",
+          "isPrivate": false,
+          "belScore": [ null, null, 50.97, 50.97, 51.76, 51.67, 53.42, 51.73 ],
+          "matScore": [ null, null, 45.71, 45.71, 34.55, 35.88, 47.82, 40.2 ],
+          "belStudents": [ null, null, 58, 58, 50, 60, 54, 48 ],
+          "matStudents": [ null, null, 58, 58, 50, 58, 54, 48 ]
+        }
+      }
+    }
+  }
+}

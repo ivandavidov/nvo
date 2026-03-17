@@ -1,0 +1,22 @@
+{
+  "grade": 7,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "pernik": {
+      "fullName": "Перник",
+      "shortName": "Перник",
+      "schools": {
+        "1403203": {
+          "fullName": "8 ОУ Кракра Пернишки",
+          "shortName": "8 ОУ",
+          "isPrivate": false,
+          "belScore": [ 36.5, 53.11, null, 52.68, 49.69, 51.03, 50.85, 45.92 ],
+          "matScore": [ 22.36, 27.03, null, 21.04, 21.0, 29.67, 41.85, 27.79 ],
+          "belStudents": [ 9, 18, null, 19, 21, 15, 10, 19 ],
+          "matStudents": [ 11, 18, null, 20, 21, 15, 10, 19 ]
+        }
+      }
+    }
+  }
+}

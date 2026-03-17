@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "asenovgrad": {
+      "fullName": "Асеновград",
+      "shortName": "Асеновград",
+      "schools": {
+        "1600116": {
+          "fullName": "СУ Кирил и Методий",
+          "shortName": "СУ Кирил и Методий",
+          "isPrivate": false,
+          "belScore": [ null, null, 42.8, 42.8, 44.84, 50.66, 49.39, 55.07 ],
+          "matScore": [ null, null, 25.21, 25.21, 26.28, 29.97, 29.77, 31.96 ],
+          "belStudents": [ null, null, 96, 96, 102, 103, 100, 100 ],
+          "matStudents": [ null, null, 95, 95, 102, 102, 99, 100 ]
+        }
+      }
+    }
+  }
+}

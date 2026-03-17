@@ -1,0 +1,22 @@
+{
+  "grade": 7,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "varna": {
+      "fullName": "Варна",
+      "shortName": "Варна",
+      "schools": {
+        "403559": {
+          "fullName": "ЧСУ Юрий Гагарин",
+          "shortName": "Юрий Гагарин",
+          "isPrivate": true,
+          "belScore": [ 40.64, 64.36, 62.82, 66.17, 68.87, 61.0, null, null ],
+          "matScore": [ 37.93, 38.22, 45.29, 31.17, 50.35, 51.46, null, null ],
+          "belStudents": [ 29, 40, 28, 3, 15, 13, null, null ],
+          "matStudents": [ 29, 40, 28, 3, 15, 13, null, null ]
+        }
+      }
+    }
+  }
+}

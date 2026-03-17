@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "pavlikeni": {
+      "fullName": "Павликени",
+      "shortName": "Павликени",
+      "schools": {
+        "300618": {
+          "fullName": "СУ Бачо Киро",
+          "shortName": "СУ Бачо Киро",
+          "isPrivate": false,
+          "belScore": [ null, null, 38.73, 38.73, 32.48, 50.75, 43.23, 49.73 ],
+          "matScore": [ null, null, 21.77, 21.77, 20.22, 31.36, 25.15, 25.9 ],
+          "belStudents": [ null, null, 30, 30, 40, 40, 42, 44 ],
+          "matStudents": [ null, null, 30, 30, 39, 38, 40, 43 ]
+        }
+      }
+    }
+  }
+}

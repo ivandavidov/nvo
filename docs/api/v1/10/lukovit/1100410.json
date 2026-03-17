@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "lukovit": {
+      "fullName": "Луковит",
+      "shortName": "Луковит",
+      "schools": {
+        "1100410": {
+          "fullName": "ПГ по селско стопанство",
+          "shortName": "ПГ по селско стоп.",
+          "isPrivate": false,
+          "belScore": [ null, null, 27.91, 27.91, 28.69, 31.06, 37.38, 29.42 ],
+          "matScore": [ null, null, 16.31, 16.31, 17.65, 17.02, 19.91, 20.25 ],
+          "belStudents": [ null, null, 65, 65, 49, 61, 65, 69 ],
+          "matStudents": [ null, null, 64, 64, 49, 61, 64, 69 ]
+        }
+      }
+    }
+  }
+}

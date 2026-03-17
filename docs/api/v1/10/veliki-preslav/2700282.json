@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "veliki-preslav": {
+      "fullName": "Велики Преслав",
+      "shortName": "Вел. Преслав",
+      "schools": {
+        "2700282": {
+          "fullName": "ПГ по селско стопанство",
+          "shortName": "ПГ по селско стоп.",
+          "isPrivate": false,
+          "belScore": [ null, null, 15.21, 15.21, 14.39, 17.81, 21.0, 22.9 ],
+          "matScore": [ null, null, 20.63, 20.63, 16.16, 16.0, 14.33, 18.0 ],
+          "belStudents": [ null, null, 19, 19, 18, 16, 18, 21 ],
+          "matStudents": [ null, null, 19, 19, 19, 16, 18, 22 ]
+        }
+      }
+    }
+  }
+}

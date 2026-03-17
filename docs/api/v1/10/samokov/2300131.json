@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "samokov": {
+      "fullName": "Самоков",
+      "shortName": "Самоков",
+      "schools": {
+        "2300131": {
+          "fullName": "ПГ Константин Фотинов",
+          "shortName": "ПГ К. Фотинов",
+          "isPrivate": false,
+          "belScore": [ null, null, 60.33, 60.33, 53.85, 62.99, 66.98, 58.61 ],
+          "matScore": [ null, null, 32.43, 32.43, 45.7, 39.53, 49.62, 44.69 ],
+          "belStudents": [ null, null, 58, 58, 60, 66, 49, 51 ],
+          "matStudents": [ null, null, 58, 58, 60, 66, 49, 51 ]
+        }
+      }
+    }
+  }
+}

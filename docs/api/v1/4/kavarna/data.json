@@ -1,0 +1,40 @@
+{
+  "grade": 4,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "kavarna": {
+      "fullName": "Каварна",
+      "shortName": "Каварна",
+      "schools": {
+        "800079": {
+          "fullName": "Начално училище Братя Миладинови",
+          "shortName": "Начално училище Братя Миладинови",
+          "isPrivate": false,
+          "belScore": [ 66.61, 60.77, 60.77, null, null, null, null, null ],
+          "matScore": [ 59.29, 59.62, 59.62, null, null, null, null, null ],
+          "belStudents": [ 28, 13, 13, null, null, null, null, null ],
+          "matStudents": [ 28, 13, 13, null, null, null, null, null ]
+        },
+        "800080": {
+          "fullName": "ОУ Йордан Йовков",
+          "shortName": "ОУ Йордан Йовков",
+          "isPrivate": false,
+          "belScore": [ 73.97, 72.04, 72.04, 65.35, 79.4, 59.8, 55.27, 59.9 ],
+          "matScore": [ 77.68, 70.56, 70.56, 53.15, 71.12, 48.79, 56.26, 63.78 ],
+          "belStudents": [ 39, 27, 27, 48, 41, 20, 28, 36 ],
+          "matStudents": [ 41, 27, 27, 48, 41, 21, 27, 36 ]
+        },
+        "800082": {
+          "fullName": "СУ Стефан Караджа",
+          "shortName": "СУ Стефан Караджа",
+          "isPrivate": false,
+          "belScore": [ 67.42, 90.0, 90.0, 70.42, 67.13, 77.09, 73.54, 65.5 ],
+          "matScore": [ 81.52, 86.44, 86.44, 53.32, 48.23, 65.96, 65.36, 58.98 ],
+          "belStudents": [ 33, 46, 46, 31, 57, 45, 39, 29 ],
+          "matStudents": [ 33, 45, 45, 31, 57, 45, 39, 30 ]
+        }
+      }
+    }
+  }
+}

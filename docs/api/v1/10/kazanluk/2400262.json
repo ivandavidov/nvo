@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "kazanluk": {
+      "fullName": "Казанлък",
+      "shortName": "Казанлък",
+      "schools": {
+        "2400262": {
+          "fullName": "ППМГ Никола Обрешков",
+          "shortName": "ППМГ",
+          "isPrivate": false,
+          "belScore": [ null, null, 65.7, 65.7, 63.15, 65.79, 63.3, 66.39 ],
+          "matScore": [ null, null, 44.26, 44.26, 68.71, 61.88, 53.75, 55.47 ],
+          "belStudents": [ null, null, 102, 102, 106, 102, 103, 105 ],
+          "matStudents": [ null, null, 101, 101, 105, 102, 102, 106 ]
+        }
+      }
+    }
+  }
+}

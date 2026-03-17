@@ -1,0 +1,31 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "slivnitsa": {
+      "fullName": "Сливница",
+      "shortName": "Сливница",
+      "schools": {
+        "2300455": {
+          "fullName": "ПГ по транспорт Н. Вапцаров",
+          "shortName": "ПГ по транспорт",
+          "isPrivate": false,
+          "belScore": [ null, null, 28.31, 28.31, 33.52, 39.93, 40.92, 35.34 ],
+          "matScore": [ null, null, 15.38, 15.38, 19.4, 19.12, 20.74, 20.91 ],
+          "belStudents": [ null, null, 32, 32, 21, 21, 24, 41 ],
+          "matStudents": [ null, null, 32, 32, 21, 21, 23, 41 ]
+        },
+        "2306517": {
+          "fullName": "СУ Кирил и Методий",
+          "shortName": "СУ Кирил и Методий",
+          "isPrivate": false,
+          "belScore": [ null, null, 53.16, 53.16, 44.91, 43.36, 52.08, 49.15 ],
+          "matScore": [ null, null, 45.84, 45.84, 24.07, 25.07, 22.67, 39.08 ],
+          "belStudents": [ null, null, 25, 25, 23, 22, 12, 26 ],
+          "matStudents": [ null, null, 25, 25, 23, 22, 12, 25 ]
+        }
+      }
+    }
+  }
+}

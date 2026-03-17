@@ -1,0 +1,22 @@
+{
+  "grade": 7,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sofia": {
+      "fullName": "София",
+      "shortName": "София",
+      "schools": {
+        "2221093": {
+          "fullName": "93 СУ Ал. Теодоров - Балан",
+          "shortName": "93 СУ",
+          "isPrivate": false,
+          "belScore": [ null, 54.2, 54.0, 51.1, 50.44, 56.85, 60.49, 67.02 ],
+          "matScore": [ null, 25.76, 35.17, 28.05, 26.01, 29.88, 45.69, 40.36 ],
+          "belStudents": [ null, 22, 43, 15, 44, 27, 46, 51 ],
+          "matStudents": [ null, 21, 42, 15, 43, 27, 46, 51 ]
+        }
+      }
+    }
+  }
+}

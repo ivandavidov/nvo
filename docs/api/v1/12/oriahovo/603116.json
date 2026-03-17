@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "oriahovo": {
+      "fullName": "Оряхово",
+      "shortName": "Оряхово",
+      "schools": {
+        "603116": {
+          "fullName": "СУ Христо Ботев",
+          "shortName": "СУ Христо Ботев",
+          "isPrivate": false,
+          "belScore": [ 3.984, 3.62, 4.16, 3.86, 3.63, 3.91, 3.52, 3.58 ],
+          "matScore": [ 3.25, null, null, 5.26, 3.93, 4.58, 3.97, 5.19 ],
+          "belStudents": [ 34, 32, 42, 34, 34, 31, 33, 20 ],
+          "matStudents": [ 1, null, null, 1, 34, 29, 33, 20 ]
+        }
+      }
+    }
+  }
+}

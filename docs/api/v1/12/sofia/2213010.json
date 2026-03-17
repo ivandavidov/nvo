@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sofia": {
+      "fullName": "София",
+      "shortName": "София",
+      "schools": {
+        "2213010": {
+          "fullName": "10 СУ Теодор Траянов",
+          "shortName": "10 СУ",
+          "isPrivate": false,
+          "belScore": [ 3.933, 3.62, 3.86, 3.76, null, null, 3.69, 3.78 ],
+          "matScore": [ 3.946, 3.945, 3.9, 3.86, null, null, 3.949, 4.075 ],
+          "belStudents": [ 22, 15, 13, 15, null, null, 21, 22 ],
+          "matStudents": [ 22, 15, 13, 14, null, null, 21, 23 ]
+        }
+      }
+    }
+  }
+}

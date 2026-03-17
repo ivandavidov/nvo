@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "tervel": {
+      "fullName": "Тервел",
+      "shortName": "Тервел",
+      "schools": {
+        "800105": {
+          "fullName": "ПГ по техника и облекло Д. Михайлов",
+          "shortName": "ПГ по техника и облекло",
+          "isPrivate": false,
+          "belScore": [ null, null, 22.87, 22.87, 12.76, 29.28, 19.8, 23.66 ],
+          "matScore": [ null, null, 17.79, 17.79, 16.14, 19.42, 18.52, 18.66 ],
+          "belStudents": [ null, null, 39, 39, 37, 36, 41, 41 ],
+          "matStudents": [ null, null, 39, 39, 38, 36, 41, 41 ]
+        }
+      }
+    }
+  }
+}

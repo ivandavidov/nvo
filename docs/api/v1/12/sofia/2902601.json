@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sofia": {
+      "fullName": "София",
+      "shortName": "София",
+      "schools": {
+        "2902601": {
+          "fullName": "ПГ по полиграфия и фотография",
+          "shortName": "ПГ по полигр. и фотогр.",
+          "isPrivate": false,
+          "belScore": [ 4.771, 4.57, 4.36, 4.57, 4.37, 4.44, 4.65, 4.63 ],
+          "matScore": [ null, 4.33, null, 3.14, 4.9, 5.3, 5.39, 5.24 ],
+          "belStudents": [ 126, 111, 108, 135, 103, 101, 107, 103 ],
+          "matStudents": [ null, 2, null, 1, 103, 101, 105, 103 ]
+        }
+      }
+    }
+  }
+}

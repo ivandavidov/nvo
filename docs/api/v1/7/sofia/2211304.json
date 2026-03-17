@@ -1,0 +1,22 @@
+{
+  "grade": 7,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sofia": {
+      "fullName": "София",
+      "shortName": "София",
+      "schools": {
+        "2211304": {
+          "fullName": "НПМГ Акад. Любомир Чакалов",
+          "shortName": "НПМГ",
+          "isPrivate": false,
+          "belScore": [ null, null, null, null, null, null, 87.32, 89.02 ],
+          "matScore": [ null, null, null, null, null, null, 94.52, 95.39 ],
+          "belStudents": [ null, null, null, null, null, null, 59, 56 ],
+          "matStudents": [ null, null, null, null, null, null, 59, 56 ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "grade": 7,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "burgas": {
+      "fullName": "Бургас",
+      "shortName": "Бургас",
+      "schools": {
+        "200226": {
+          "fullName": "Обединено училище Св. Климент Охридски",
+          "shortName": "ОбУ Кл. Охридски",
+          "isPrivate": false,
+          "belScore": [ null, null, null, null, 15.5, 21.9, 27.03, 26.31 ],
+          "matScore": [ null, null, null, null, 7.43, 13.15, 15.71, 15.94 ],
+          "belStudents": [ null, null, null, null, 13, 21, 17, 24 ],
+          "matStudents": [ null, null, null, null, 14, 21, 18, 24 ]
+        }
+      }
+    }
+  }
+}

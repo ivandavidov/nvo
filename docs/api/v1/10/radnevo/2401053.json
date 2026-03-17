@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "radnevo": {
+      "fullName": "Раднево",
+      "shortName": "Раднево",
+      "schools": {
+        "2401053": {
+          "fullName": "ПГ Св. Иван Рилски",
+          "shortName": "ПГ Иван Рилски",
+          "isPrivate": false,
+          "belScore": [ null, null, 25.06, 25.06, 20.86, 22.29, 24.44, 19.86 ],
+          "matScore": [ null, null, 13.69, 13.69, 19.47, 17.2, 16.91, 16.9 ],
+          "belStudents": [ null, null, 35, 35, 28, 31, 33, 35 ],
+          "matStudents": [ null, null, 35, 35, 29, 30, 33, 36 ]
+        }
+      }
+    }
+  }
+}

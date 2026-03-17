@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "razgrad": {
+      "fullName": "Разград",
+      "shortName": "Разград",
+      "schools": {
+        "1702607": {
+          "fullName": "ПГ по транспорт и строителство",
+          "shortName": "ПГ по транспорт",
+          "isPrivate": false,
+          "belScore": [ 3.46, 3.35, 3.23, 3.28, 2.27, 2.68, 2.36, 2.71 ],
+          "matScore": [ 5.84, null, null, null, 3.48, 4.9, 3.889, 3.67 ],
+          "belStudents": [ 10, 7, 17, 13, 11, 8, 3, 6 ],
+          "matStudents": [ 1, null, null, null, 11, 13, 5, 11 ]
+        }
+      }
+    }
+  }
+}

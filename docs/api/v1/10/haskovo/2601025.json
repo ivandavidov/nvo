@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "haskovo": {
+      "fullName": "Хасково",
+      "shortName": "Хасково",
+      "schools": {
+        "2601025": {
+          "fullName": "СУ Васил Левски",
+          "shortName": "СУ Васил Левски",
+          "isPrivate": false,
+          "belScore": [ 34.7, 34.7, 34.7, 34.7, 30.61, 33.94, null, 39.09 ],
+          "matScore": [ 14.7, 14.7, 14.7, 14.7, 18.03, 21.07, null, 24.8 ],
+          "belStudents": [ 10, 10, 10, 10, 18, 18, null, 22 ],
+          "matStudents": [ 10, 10, 10, 10, 19, 18, null, 22 ]
+        }
+      }
+    }
+  }
+}

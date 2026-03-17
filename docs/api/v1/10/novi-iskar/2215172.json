@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "novi-iskar": {
+      "fullName": "Нови Искър",
+      "shortName": "Нови Искър",
+      "schools": {
+        "2215172": {
+          "fullName": "172 ОбУ Христо Ботев",
+          "shortName": "172 ОбУ",
+          "isPrivate": false,
+          "belScore": [ null, null, 19.0, 19.0, 21.25, 27.29, 27.5, 22.67 ],
+          "matScore": [ null, null, 16.67, 16.67, 15.0, 13.09, 13.14, 22.22 ],
+          "belStudents": [ null, null, 7, 7, 4, 12, 13, 9 ],
+          "matStudents": [ null, null, 6, 6, 4, 11, 11, 9 ]
+        }
+      }
+    }
+  }
+}

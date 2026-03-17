@@ -1,0 +1,22 @@
+{
+  "grade": 7,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sofia": {
+      "fullName": "София",
+      "shortName": "София",
+      "schools": {
+        "2200023": {
+          "fullName": "ЧСУ Константин-Кирил Философ",
+          "shortName": "Константин-Кирил",
+          "isPrivate": true,
+          "belScore": [ null, null, null, null, 72.0, 48.25, 40.5, 58.5 ],
+          "matScore": [ null, null, null, null, 80.5, 28.88, 45.96, 58.38 ],
+          "belStudents": [ null, null, null, null, 1, 4, 6, 2 ],
+          "matStudents": [ null, null, null, null, 1, 4, 6, 2 ]
+        }
+      }
+    }
+  }
+}

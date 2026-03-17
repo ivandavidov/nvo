@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "lovech": {
+      "fullName": "Ловеч",
+      "shortName": "Ловеч",
+      "schools": {
+        "1100324": {
+          "fullName": "СУ Димитър Митев",
+          "shortName": "СУ Димитър Митев",
+          "isPrivate": false,
+          "belScore": [ null, null, 2.96, 3.0, null, null, 3.4, null ],
+          "matScore": [ null, null, null, 2.95, null, null, 3.5, null ],
+          "belStudents": [ null, null, 5, 2, null, null, 2, null ],
+          "matStudents": [ null, null, null, 1, null, null, 2, null ]
+        }
+      }
+    }
+  }
+}

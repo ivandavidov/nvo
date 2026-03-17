@@ -1,0 +1,58 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "lom": {
+      "fullName": "Лом",
+      "shortName": "Лом",
+      "schools": {
+        "1202036": {
+          "fullName": "ПГ по хранене и земеделие",
+          "shortName": "ПГ по хранене",
+          "isPrivate": false,
+          "belScore": [ null, null, 23.41, 23.41, 20.63, 33.69, 37.87, 23.68 ],
+          "matScore": [ null, null, 14.69, 14.69, 34.07, 25.02, 29.58, 28.91 ],
+          "belStudents": [ null, null, 37, 37, 27, 34, 34, 38 ],
+          "matStudents": [ null, null, 36, 36, 27, 32, 33, 38 ]
+        },
+        "1209003": {
+          "fullName": "СУ Отец Паисий",
+          "shortName": "СУ Отец Паисий",
+          "isPrivate": false,
+          "belScore": [ null, null, 29.76, 29.76, 32.3, 29.88, 31.58, 14.13 ],
+          "matScore": [ null, null, 34.82, 34.82, 47.6, 55.69, 49.17, 35.06 ],
+          "belStudents": [ null, null, 17, 17, 10, 13, 12, 8 ],
+          "matStudents": [ null, null, 17, 17, 10, 13, 12, 8 ]
+        },
+        "1209005": {
+          "fullName": "СУ Димитър Маринов",
+          "shortName": "СУ Димитър Маринов",
+          "isPrivate": false,
+          "belScore": [ null, null, 39.35, 39.35, 36.56, 55.28, 51.02, 47.79 ],
+          "matScore": [ null, null, 17.88, 17.88, 27.61, 29.36, 22.4, 22.19 ],
+          "belStudents": [ null, null, 26, 26, 16, 25, 24, 24 ],
+          "matStudents": [ null, null, 26, 26, 16, 25, 24, 24 ]
+        },
+        "1209006": {
+          "fullName": "ПГ Найден Геров",
+          "shortName": "ПГ Найден Геров",
+          "isPrivate": false,
+          "belScore": [ null, null, 49.51, 49.51, 44.96, 54.78, 55.9, 49.28 ],
+          "matScore": [ null, null, 24.78, 24.78, 34.76, 40.67, 28.12, 30.99 ],
+          "belStudents": [ null, null, 41, 41, 45, 48, 43, 46 ],
+          "matStudents": [ null, null, 41, 41, 45, 48, 43, 46 ]
+        },
+        "1209012": {
+          "fullName": "ПГ по произв. технологии",
+          "shortName": "ПГ по произв. техн.",
+          "isPrivate": false,
+          "belScore": [ null, null, 41.04, 41.04, 22.95, 31.03, 39.9, 35.33 ],
+          "matScore": [ null, null, 36.81, 36.81, 17.55, 22.7, 26.49, 28.09 ],
+          "belStudents": [ null, null, 68, 68, 61, 65, 67, 49 ],
+          "matStudents": [ null, null, 67, 67, 61, 65, 67, 49 ]
+        }
+      }
+    }
+  }
+}

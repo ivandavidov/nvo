@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "ruse": {
+      "fullName": "Русе",
+      "shortName": "Русе",
+      "schools": {
+        "1806210": {
+          "fullName": "Духовно училище",
+          "shortName": "Духовно училище",
+          "isPrivate": false,
+          "belScore": [ 23.0, 23.0, 23.0, 23.0, 33.17, 51.5, 35.3, 39.57 ],
+          "matScore": [ 37.8, 37.8, 37.8, 37.8, 45.08, 35.25, 13.7, 22.07 ],
+          "belStudents": [ 5, 5, 5, 5, 6, 3, 5, 7 ],
+          "matStudents": [ 5, 5, 5, 5, 6, 3, 5, 7 ]
+        }
+      }
+    }
+  }
+}

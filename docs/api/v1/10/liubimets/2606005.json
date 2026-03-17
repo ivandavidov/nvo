@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "liubimets": {
+      "fullName": "Любимец",
+      "shortName": "Любимец",
+      "schools": {
+        "2606005": {
+          "fullName": "СУ Желязко Терпешев",
+          "shortName": "СУ Желязко Терпешев",
+          "isPrivate": false,
+          "belScore": [ null, null, 29.51, 29.51, 34.02, 35.8, 36.9, 28.89 ],
+          "matScore": [ null, null, 24.95, 24.95, 27.76, 20.95, 26.33, 19.08 ],
+          "belStudents": [ null, null, 37, 37, 45, 51, 56, 53 ],
+          "matStudents": [ null, null, 37, 37, 46, 51, 55, 53 ]
+        }
+      }
+    }
+  }
+}

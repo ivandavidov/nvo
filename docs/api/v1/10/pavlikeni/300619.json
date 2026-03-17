@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "pavlikeni": {
+      "fullName": "Павликени",
+      "shortName": "Павликени",
+      "schools": {
+        "300619": {
+          "fullName": "ПГ по аграрни технологии Ц. Церковски",
+          "shortName": "ПГ по аграрни техн.",
+          "isPrivate": false,
+          "belScore": [ null, null, 32.05, 32.05, 30.28, 32.64, 39.63, 36.88 ],
+          "matScore": [ null, null, 16.07, 16.07, 18.94, 17.42, 30.84, 23.98 ],
+          "belStudents": [ null, null, 59, 59, 50, 48, 52, 42 ],
+          "matStudents": [ null, null, 59, 59, 50, 48, 51, 41 ]
+        }
+      }
+    }
+  }
+}

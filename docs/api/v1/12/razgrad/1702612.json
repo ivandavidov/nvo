@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "razgrad": {
+      "fullName": "Разград",
+      "shortName": "Разград",
+      "schools": {
+        "1702612": {
+          "fullName": "СУ Христо Ботев",
+          "shortName": "СУ Христо Ботев",
+          "isPrivate": false,
+          "belScore": [ 3.303, 3.44, 3.09, null, null, null, null, null ],
+          "matScore": [ 3.37, 4.037, 3.38, null, null, null, null, null ],
+          "belStudents": [ 3, 18, 4, null, null, null, null, null ],
+          "matStudents": [ 3, 18, 2, null, null, null, null, null ]
+        }
+      }
+    }
+  }
+}

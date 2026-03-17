@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "kozlodui": {
+      "fullName": "Козлодуй",
+      "shortName": "Козлодуй",
+      "schools": {
+        "603076": {
+          "fullName": "СУ Христо Ботев",
+          "shortName": "СУ Христо Ботев",
+          "isPrivate": false,
+          "belScore": [ null, null, 49.31, 49.31, 38.56, 43.28, 42.57, 49.73 ],
+          "matScore": [ null, null, 16.16, 16.16, 19.06, 20.76, 20.58, 24.14 ],
+          "belStudents": [ null, null, 42, 42, 39, 47, 45, 33 ],
+          "matStudents": [ null, null, 43, 43, 39, 47, 45, 33 ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "grade": 4,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "suedinenie": {
+      "fullName": "Съединение",
+      "shortName": "Съединение",
+      "schools": {
+        "201211": {
+          "fullName": "Основно училище Отец Паисий",
+          "shortName": "Основно училище Отец Паисий",
+          "isPrivate": false,
+          "belScore": [ 70.63, 57.08, 57.08, null, null, null, null, null ],
+          "matScore": [ 68.13, 69.17, 69.17, null, null, null, null, null ],
+          "belStudents": [ 16, 12, 12, null, null, null, null, null ],
+          "matStudents": [ 16, 12, 12, null, null, null, null, null ]
+        }
+      }
+    }
+  }
+}

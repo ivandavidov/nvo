@@ -1,0 +1,22 @@
+{
+  "grade": 4,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "kavarna": {
+      "fullName": "Каварна",
+      "shortName": "Каварна",
+      "schools": {
+        "800079": {
+          "fullName": "Начално училище Братя Миладинови",
+          "shortName": "Начално училище Братя Миладинови",
+          "isPrivate": false,
+          "belScore": [ 66.61, 60.77, 60.77, null, null, null, null, null ],
+          "matScore": [ 59.29, 59.62, 59.62, null, null, null, null, null ],
+          "belStudents": [ 28, 13, 13, null, null, null, null, null ],
+          "matStudents": [ 28, 13, 13, null, null, null, null, null ]
+        }
+      }
+    }
+  }
+}

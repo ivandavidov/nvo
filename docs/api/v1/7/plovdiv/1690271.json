@@ -1,0 +1,22 @@
+{
+  "grade": 7,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "plovdiv": {
+      "fullName": "Пловдив",
+      "shortName": "Пловдив",
+      "schools": {
+        "1690271": {
+          "fullName": "Специално училище за ученици с увреден слух",
+          "shortName": "У-ще за ученици с увр. слух",
+          "isPrivate": false,
+          "belScore": [ 9.4, 4.25, 12.5, 11.33, null, null, null, null ],
+          "matScore": [ 13.0, 11.75, 12.0, 14.33, null, null, null, null ],
+          "belStudents": [ 5, 4, 2, 3, null, null, null, null ],
+          "matStudents": [ 5, 4, 2, 3, null, null, null, null ]
+        }
+      }
+    }
+  }
+}

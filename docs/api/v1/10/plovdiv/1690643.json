@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "plovdiv": {
+      "fullName": "Пловдив",
+      "shortName": "Пловдив",
+      "schools": {
+        "1690643": {
+          "fullName": "СУ Свети Седмочисленици",
+          "shortName": "СУ Св. Седмочисленици",
+          "isPrivate": false,
+          "belScore": [ null, null, null, null, 30.53, 37.16, 34.46, 39.61 ],
+          "matScore": [ null, null, null, null, 18.14, 16.03, 20.18, 24.73 ],
+          "belStudents": [ null, null, null, null, 40, 19, 23, 23 ],
+          "matStudents": [ null, null, null, null, 40, 18, 20, 22 ]
+        }
+      }
+    }
+  }
+}

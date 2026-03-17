@@ -1,0 +1,22 @@
+{
+  "grade": 4,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sofia": {
+      "fullName": "София",
+      "shortName": "София",
+      "schools": {
+        "2208526": {
+          "fullName": "ЧСУ Орфей",
+          "shortName": "Орфей",
+          "isPrivate": true,
+          "belScore": [ null, 95.0, 95.0, null, null, null, 94.75, null ],
+          "matScore": [ null, 100.0, 100.0, null, null, null, 94.5, null ],
+          "belStudents": [ null, 4, 4, null, null, null, 2, null ],
+          "matStudents": [ null, 4, 4, null, null, null, 2, null ]
+        }
+      }
+    }
+  }
+}

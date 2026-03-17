@@ -1,0 +1,22 @@
+{
+  "grade": 7,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sofia": {
+      "fullName": "София",
+      "shortName": "София",
+      "schools": {
+        "2213721": {
+          "fullName": "ЧОУ Азбуки",
+          "shortName": "Азбуки",
+          "isPrivate": true,
+          "belScore": [ null, 77.28, 80.26, 78.16, 75.18, 79.07, 81.05, 81.45 ],
+          "matScore": [ null, 55.72, 64.77, 62.56, 64.22, 67.61, 76.42, 68.94 ],
+          "belStudents": [ null, 32, 34, 29, 36, 50, 52, 57 ],
+          "matStudents": [ null, 32, 34, 29, 36, 49, 52, 57 ]
+        }
+      }
+    }
+  }
+}

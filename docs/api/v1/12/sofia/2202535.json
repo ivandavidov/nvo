@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sofia": {
+      "fullName": "София",
+      "shortName": "София",
+      "schools": {
+        "2202535": {
+          "fullName": "ЧСУ Рьорих",
+          "shortName": "Рьорих",
+          "isPrivate": true,
+          "belScore": [ 4.14, null, 4.47, 4.06, 4.34, 4.46, 5.15, 4.67 ],
+          "matScore": [ 4.86, null, 4.55, 4.41, 5.36, 4.88, 4.61, 5.026 ],
+          "belStudents": [ 9, null, 9, 5, 5, 3, 3, 12 ],
+          "matStudents": [ 9, null, 9, 5, 5, 3, 3, 12 ]
+        }
+      }
+    }
+  }
+}

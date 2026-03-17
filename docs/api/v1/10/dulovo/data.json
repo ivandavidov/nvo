@@ -1,0 +1,31 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "dulovo": {
+      "fullName": "Дулово",
+      "shortName": "Дулово",
+      "schools": {
+        "1900301": {
+          "fullName": "СУ Васил Левски",
+          "shortName": "СУ Васил Левски",
+          "isPrivate": false,
+          "belScore": [ null, null, 45.48, 45.48, 39.58, 41.51, 42.39, 48.25 ],
+          "matScore": [ null, null, 31.04, 31.04, 42.06, 46.85, 30.44, 49.95 ],
+          "belStudents": [ null, null, 95, 95, 85, 90, 91, 105 ],
+          "matStudents": [ null, null, 95, 95, 86, 90, 91, 106 ]
+        },
+        "1900327": {
+          "fullName": "ПГ по облекло и транспорт",
+          "shortName": "ПГ по облекло и трансп.",
+          "isPrivate": false,
+          "belScore": [ null, null, 17.39, 17.39, 21.16, 24.35, 27.16, 26.43 ],
+          "matScore": [ null, null, 23.93, 23.93, 36.2, 34.16, 33.05, 43.28 ],
+          "belStudents": [ null, null, 44, 44, 57, 39, 46, 69 ],
+          "matStudents": [ null, null, 44, 44, 59, 40, 46, 69 ]
+        }
+      }
+    }
+  }
+}

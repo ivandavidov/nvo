@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "pleven": {
+      "fullName": "Плевен",
+      "shortName": "Плевен",
+      "schools": {
+        "1500132": {
+          "fullName": "СУ Анастасия Димитрова",
+          "shortName": "СУ Ан. Димитрова",
+          "isPrivate": false,
+          "belScore": [ 21.73, 21.73, 21.73, 21.73, 34.43, 38.69, 23.0, null ],
+          "matScore": [ 15.6, 15.6, 15.6, 15.6, 22.79, 19.58, 7.0, null ],
+          "belStudents": [ 15, 15, 15, 15, 7, 13, 4, null ],
+          "matStudents": [ 15, 15, 15, 15, 7, 13, 4, null ]
+        }
+      }
+    }
+  }
+}

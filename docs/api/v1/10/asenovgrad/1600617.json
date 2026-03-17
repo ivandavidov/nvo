@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "asenovgrad": {
+      "fullName": "Асеновград",
+      "shortName": "Асеновград",
+      "schools": {
+        "1600617": {
+          "fullName": "ПГ по хранително-вкусови технологии",
+          "shortName": "ПГ по хран.-вк. техн.",
+          "isPrivate": false,
+          "belScore": [ null, null, 19.22, 19.22, 21.3, 25.53, 30.15, 27.98 ],
+          "matScore": [ null, null, 15.33, 15.33, 17.33, 13.67, 16.92, 18.01 ],
+          "belStudents": [ null, null, 36, 36, 23, 40, 48, 49 ],
+          "matStudents": [ null, null, 36, 36, 23, 39, 45, 49 ]
+        }
+      }
+    }
+  }
+}

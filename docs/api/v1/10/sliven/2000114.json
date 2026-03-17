@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sliven": {
+      "fullName": "Сливен",
+      "shortName": "Сливен",
+      "schools": {
+        "2000114": {
+          "fullName": "СУ Йордан Йовков",
+          "shortName": "СУ Йордан Йовков",
+          "isPrivate": false,
+          "belScore": [ 42.8, 42.8, 42.8, 42.8, null, null, 52.83, 41.54 ],
+          "matScore": [ 28.93, 28.93, 28.93, 28.93, null, null, 18.88, 23.67 ],
+          "belStudents": [ 15, 15, 15, 15, null, null, 12, 26 ],
+          "matStudents": [ 15, 15, 15, 15, null, null, 12, 26 ]
+        }
+      }
+    }
+  }
+}

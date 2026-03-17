@@ -1,0 +1,22 @@
+{
+  "grade": 4,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "kiustendil": {
+      "fullName": "Кюстендил",
+      "shortName": "Кюстендил",
+      "schools": {
+        "1001590": {
+          "fullName": "7 ОУ Ильо войвода",
+          "shortName": "ОУ Ильо войвода",
+          "isPrivate": false,
+          "belScore": [ 59.33, 76.8, 76.8, null, null, null, null, null ],
+          "matScore": [ 81.96, 85.19, 85.19, null, null, null, null, null ],
+          "belStudents": [ 30, 25, 25, null, null, null, null, null ],
+          "matStudents": [ 28, 27, 27, null, null, null, null, null ]
+        }
+      }
+    }
+  }
+}

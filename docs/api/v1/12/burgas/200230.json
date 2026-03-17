@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "burgas": {
+      "fullName": "Бургас",
+      "shortName": "Бургас",
+      "schools": {
+        "200230": {
+          "fullName": "СУ Димчо Дебелянов",
+          "shortName": "СУ Димчо Дебелянов",
+          "isPrivate": false,
+          "belScore": [ 3.766, 3.71, 3.45, 3.53, null, null, null, 3.78 ],
+          "matScore": [ 4.103, 3.702, 3.86, 3.89, null, null, null, 4.34 ],
+          "belStudents": [ 19, 15, 17, 15, null, null, null, 14 ],
+          "matStudents": [ 19, 17, 16, 14, null, null, null, 13 ]
+        }
+      }
+    }
+  }
+}

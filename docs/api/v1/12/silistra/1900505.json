@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "silistra": {
+      "fullName": "Силистра",
+      "shortName": "Силистра",
+      "schools": {
+        "1900505": {
+          "fullName": "ПГ по механотехника",
+          "shortName": "ПГ по механотехника",
+          "isPrivate": false,
+          "belScore": [ 3.405, 3.27, 3.43, 3.32, 2.71, 2.76, 3.11, 3.1 ],
+          "matScore": [ 4.08, 4.013, 3.96, null, 3.949, 4.154, 4.836, 4.882 ],
+          "belStudents": [ 79, 60, 54, 44, 43, 42, 31, 32 ],
+          "matStudents": [ 8, 6, 5, null, 43, 36, 26, 28 ]
+        }
+      }
+    }
+  }
+}

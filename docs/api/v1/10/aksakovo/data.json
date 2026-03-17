@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "aksakovo": {
+      "fullName": "Аксаково",
+      "shortName": "Аксаково",
+      "schools": {
+        "400087": {
+          "fullName": "СУ Климент Охридски",
+          "shortName": "СУ Кл. Охридски",
+          "isPrivate": false,
+          "belScore": [ null, null, 38.65, 38.65, 37.54, 46.61, 40.92, 43.29 ],
+          "matScore": [ null, null, 16.3, 16.3, 18.97, 16.79, 22.04, 23.31 ],
+          "belStudents": [ null, null, 20, 20, 26, 27, 26, 24 ],
+          "matStudents": [ null, null, 20, 20, 26, 27, 26, 24 ]
+        }
+      }
+    }
+  }
+}

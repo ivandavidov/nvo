@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "bobov-dol": {
+      "fullName": "Бобов дол",
+      "shortName": "Бобов дол",
+      "schools": {
+        "1002450": {
+          "fullName": "Професионална гимназия",
+          "shortName": "Професионална гимназия",
+          "isPrivate": false,
+          "belScore": [ null, 3.26, null, null, null, null, null, null ],
+          "matScore": [ null, null, null, null, null, null, null, null ],
+          "belStudents": [ null, 24, null, null, null, null, null, null ],
+          "matStudents": [ null, null, null, null, null, null, null, null ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "svishtov": {
+      "fullName": "Свищов",
+      "shortName": "Свищов",
+      "schools": {
+        "300817": {
+          "fullName": "ПДТГ Димитър Хадживасилев",
+          "shortName": "Търговска гимн.",
+          "isPrivate": false,
+          "belScore": [ null, null, 45.94, 45.94, 35.5, 47.01, 50.55, 42.21 ],
+          "matScore": [ null, null, 18.31, 18.31, 22.66, 22.76, 22.05, 21.53 ],
+          "belStudents": [ null, null, 16, 16, 24, 34, 51, 34 ],
+          "matStudents": [ null, null, 16, 16, 24, 34, 50, 34 ]
+        }
+      }
+    }
+  }
+}

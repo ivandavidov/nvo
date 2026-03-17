@@ -1,0 +1,22 @@
+{
+  "grade": 4,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "ruse": {
+      "fullName": "Русе",
+      "shortName": "Русе",
+      "schools": {
+        "1806216": {
+          "fullName": "ЧНУ Вяра Надежда Любов",
+          "shortName": "Вяра Надежда Любов",
+          "isPrivate": true,
+          "belScore": [ null, null, null, 89.33, 79.21, 81.33, 89.13, 84.85 ],
+          "matScore": [ null, null, null, 80.83, 75.29, 81.13, 92.81, 88.85 ],
+          "belStudents": [ null, null, null, 6, 7, 12, 8, 13 ],
+          "matStudents": [ null, null, null, 6, 7, 12, 8, 13 ]
+        }
+      }
+    }
+  }
+}

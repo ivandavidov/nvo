@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "popovo": {
+      "fullName": "Попово",
+      "shortName": "Попово",
+      "schools": {
+        "2540602": {
+          "fullName": "ПГ по селско стопанство",
+          "shortName": "ПГ по селско стоп.",
+          "isPrivate": false,
+          "belScore": [ null, null, 29.31, 29.31, 28.41, 35.11, 37.31, 31.54 ],
+          "matScore": [ null, null, 17.43, 17.43, 15.39, 20.91, 18.72, 20.11 ],
+          "belStudents": [ null, null, 78, 78, 97, 77, 70, 84 ],
+          "matStudents": [ null, null, 77, 77, 97, 78, 70, 84 ]
+        }
+      }
+    }
+  }
+}

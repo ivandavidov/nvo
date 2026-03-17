@@ -1,0 +1,31 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "drianovo": {
+      "fullName": "Дряново",
+      "shortName": "Дряново",
+      "schools": {
+        "700204": {
+          "fullName": "СУ Максим Райкович",
+          "shortName": "СУ Максим Райкович",
+          "isPrivate": false,
+          "belScore": [ null, null, 41.0, 41.0, 38.32, 53.6, 31.96, 35.52 ],
+          "matScore": [ null, null, 16.0, 16.0, 29.22, 31.98, 16.58, 21.93 ],
+          "belStudents": [ null, null, 18, 18, 22, 20, 12, 23 ],
+          "matStudents": [ null, null, 18, 18, 22, 20, 12, 23 ]
+        },
+        "700205": {
+          "fullName": "ПГ по икономика и техника",
+          "shortName": "ПГ по иконом. и техника",
+          "isPrivate": false,
+          "belScore": [ null, null, 35.29, 35.29, 25.17, 28.56, 29.53, 25.08 ],
+          "matScore": [ null, null, 20.19, 20.19, 10.92, 17.6, 17.05, 17.96 ],
+          "belStudents": [ null, null, 21, 21, 18, 27, 20, 12 ],
+          "matStudents": [ null, null, 21, 21, 18, 25, 20, 12 ]
+        }
+      }
+    }
+  }
+}

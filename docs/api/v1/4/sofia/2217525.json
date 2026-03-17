@@ -1,0 +1,22 @@
+{
+  "grade": 4,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sofia": {
+      "fullName": "София",
+      "shortName": "София",
+      "schools": {
+        "2217525": {
+          "fullName": "ЧОУ Стремеж",
+          "shortName": "Стремеж",
+          "isPrivate": true,
+          "belScore": [ 90.83, 95.63, 95.63, 91.58, 86.0, 76.5, 81.73, 90.56 ],
+          "matScore": [ 95.0, 93.89, 93.89, 86.67, 93.0, 78.44, 71.35, 91.0 ],
+          "belStudents": [ 6, 8, 8, 12, 4, 8, 13, 8 ],
+          "matStudents": [ 6, 9, 9, 12, 4, 8, 13, 8 ]
+        }
+      }
+    }
+  }
+}

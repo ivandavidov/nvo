@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "kurdzhali": {
+      "fullName": "Кърджали",
+      "shortName": "Кърджали",
+      "schools": {
+        "909110": {
+          "fullName": "ПГ Васил Левски",
+          "shortName": "ПГ В. Левски",
+          "isPrivate": false,
+          "belScore": [ 3.103, 2.69, 2.84, 3.0, 2.46, 2.0, 2.75, 3.8 ],
+          "matScore": [ null, null, null, null, 3.66, 3.57, 4.23, 3.87 ],
+          "belStudents": [ 17, 10, 6, 8, 5, 5, 3, 3 ],
+          "matStudents": [ null, null, null, null, 3, 4, 2, 4 ]
+        }
+      }
+    }
+  }
+}

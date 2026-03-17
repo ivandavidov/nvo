@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sofia": {
+      "fullName": "София",
+      "shortName": "София",
+      "schools": {
+        "2214153": {
+          "fullName": "153 спортно у-ще Неофит Рилски",
+          "shortName": "СпУ Неофит Рилски",
+          "isPrivate": false,
+          "belScore": [ 3.478, 3.36, 3.55, 3.4, 3.01, 2.97, 3.61, 3.52 ],
+          "matScore": [ null, 3.59, 3.15, 3.69, 4.601, 4.552, 4.98, 4.851 ],
+          "belStudents": [ 25, 42, 51, 50, 65, 58, 44, 56 ],
+          "matStudents": [ null, 2, 2, 6, 64, 54, 38, 54 ]
+        }
+      }
+    }
+  }
+}

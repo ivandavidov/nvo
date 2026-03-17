@@ -1,0 +1,22 @@
+{
+  "grade": 4,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "gabrovo": {
+      "fullName": "Габрово",
+      "shortName": "Габрово",
+      "schools": {
+        "700106": {
+          "fullName": "6 ОУ Иван Вазов",
+          "shortName": "ОУ Иван Вазов",
+          "isPrivate": false,
+          "belScore": [ 73.75, 70.87, 70.87, 62.06, 59.41, 70.0, null, 75.73 ],
+          "matScore": [ 82.76, 79.35, 79.35, 48.11, 34.59, 56.5, null, 76.25 ],
+          "belStudents": [ 28, 23, 23, 18, 17, 13, null, 11 ],
+          "matStudents": [ 29, 23, 23, 18, 17, 13, null, 12 ]
+        }
+      }
+    }
+  }
+}

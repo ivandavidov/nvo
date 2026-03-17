@@ -1,0 +1,22 @@
+{
+  "grade": 7,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sofia": {
+      "fullName": "София",
+      "shortName": "София",
+      "schools": {
+        "2211598": {
+          "fullName": "ЧСУ Никатор",
+          "shortName": "Никатор",
+          "isPrivate": true,
+          "belScore": [ 48.5, 73.33, 74.71, 72.06, 72.75, 75.92, 60.63, 64.38 ],
+          "matScore": [ 48.57, 38.33, 54.25, 68.53, 49.75, 53.52, 43.63, 47.91 ],
+          "belStudents": [ 7, 6, 7, 9, 6, 12, 4, 8 ],
+          "matStudents": [ 7, 6, 7, 9, 6, 12, 4, 8 ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sopot": {
+      "fullName": "Сопот",
+      "shortName": "Сопот",
+      "schools": {
+        "1601303": {
+          "fullName": "СУ Иван Вазов",
+          "shortName": "СУ Иван Вазов",
+          "isPrivate": false,
+          "belScore": [ 4.014, 3.67, 3.76, 3.28, 2.83, 2.92, 2.72, null ],
+          "matScore": [ 4.006, 3.747, 3.9, null, 2.0, 2.373, 2.379, 2.0 ],
+          "belStudents": [ 20, 9, 14, 1, 5, 15, 14, null ],
+          "matStudents": [ 20, 9, 14, null, 4, 15, 13, 2 ]
+        }
+      }
+    }
+  }
+}

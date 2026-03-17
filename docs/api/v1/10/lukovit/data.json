@@ -1,0 +1,31 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "lukovit": {
+      "fullName": "Луковит",
+      "shortName": "Луковит",
+      "schools": {
+        "1100402": {
+          "fullName": "СУ Алеко Константинов",
+          "shortName": "СУ А. Константинов",
+          "isPrivate": false,
+          "belScore": [ null, null, 23.02, 23.02, 18.89, 14.54, 21.71, 22.33 ],
+          "matScore": [ null, null, 15.05, 15.05, 18.1, 15.79, 14.0, 16.48 ],
+          "belStudents": [ null, null, 41, 41, 38, 42, 36, 46 ],
+          "matStudents": [ null, null, 40, 40, 39, 38, 34, 46 ]
+        },
+        "1100410": {
+          "fullName": "ПГ по селско стопанство",
+          "shortName": "ПГ по селско стоп.",
+          "isPrivate": false,
+          "belScore": [ null, null, 27.91, 27.91, 28.69, 31.06, 37.38, 29.42 ],
+          "matScore": [ null, null, 16.31, 16.31, 17.65, 17.02, 19.91, 20.25 ],
+          "belStudents": [ null, null, 65, 65, 49, 61, 65, 69 ],
+          "matStudents": [ null, null, 64, 64, 49, 61, 64, 69 ]
+        }
+      }
+    }
+  }
+}

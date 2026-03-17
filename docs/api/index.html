@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="refresh" content="0; url=./v1/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Пренасочване към API v1</title>
+  <link rel="canonical" href="https://ivandavidov.github.io/nvo/api/v1/">
+  <link rel="stylesheet" href="../css/normalize.css">
+  <link rel="stylesheet" href="../css/custom.css">
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nvo-theme');
+      if (!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        saved = 'dark';
+      }
+      if (saved === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
+  <script src="../js/theme.js"></script>
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      font-family: var(--font-sans);
+    }
+    a {
+      color: var(--color-primary);
+    }
+  </style>
+</head>
+<body>
+  <p>Пренасочване към <a href="./v1/">API v1</a>...</p>
+</body>
+</html>

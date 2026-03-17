@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "lom": {
+      "fullName": "Лом",
+      "shortName": "Лом",
+      "schools": {
+        "1209005": {
+          "fullName": "СУ Димитър Маринов",
+          "shortName": "СУ Димитър Маринов",
+          "isPrivate": false,
+          "belScore": [ null, null, 39.35, 39.35, 36.56, 55.28, 51.02, 47.79 ],
+          "matScore": [ null, null, 17.88, 17.88, 27.61, 29.36, 22.4, 22.19 ],
+          "belStudents": [ null, null, 26, 26, 16, 25, 24, 24 ],
+          "matStudents": [ null, null, 26, 26, 16, 25, 24, 24 ]
+        }
+      }
+    }
+  }
+}

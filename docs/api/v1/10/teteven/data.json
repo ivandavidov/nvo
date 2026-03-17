@@ -1,0 +1,40 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "teteven": {
+      "fullName": "Тетевен",
+      "shortName": "Тетевен",
+      "schools": {
+        "1100509": {
+          "fullName": "СУ Георги Бенковски",
+          "shortName": "СУ Георги Бенковски",
+          "isPrivate": false,
+          "belScore": [ null, null, 38.42, 38.42, 31.73, 43.11, 46.81, 38.43 ],
+          "matScore": [ null, null, 17.67, 17.67, 26.67, 20.03, 21.84, 20.47 ],
+          "belStudents": [ null, null, 48, 48, 37, 41, 34, 49 ],
+          "matStudents": [ null, null, 49, 49, 36, 41, 34, 47 ]
+        },
+        "1100511": {
+          "fullName": "НПГ горско стопанство Сава Младенов",
+          "shortName": "НПГ горско стоп.",
+          "isPrivate": false,
+          "belScore": [ null, null, 31.48, 31.48, 30.08, 33.54, 39.25, 37.35 ],
+          "matScore": [ null, null, 18.34, 18.34, 18.88, 18.15, 20.3, 22.82 ],
+          "belStudents": [ null, null, 58, 58, 53, 63, 53, 57 ],
+          "matStudents": [ null, null, 58, 58, 53, 61, 53, 58 ]
+        },
+        "1100514": {
+          "fullName": "ПГ по строителство и услуги",
+          "shortName": "ПГ по строителство",
+          "isPrivate": false,
+          "belScore": [ null, null, 19.11, 19.11, 23.61, 23.78, 30.19, 31.88 ],
+          "matScore": [ null, null, 19.04, 19.04, 23.8, 28.0, 22.49, 27.91 ],
+          "belStudents": [ null, null, 27, 27, 33, 29, 39, 34 ],
+          "matStudents": [ null, null, 27, 27, 33, 29, 39, 32 ]
+        }
+      }
+    }
+  }
+}

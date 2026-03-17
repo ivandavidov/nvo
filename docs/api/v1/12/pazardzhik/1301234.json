@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "pazardzhik": {
+      "fullName": "Пазарджик",
+      "shortName": "Пазарджик",
+      "schools": {
+        "1301234": {
+          "fullName": "СУ Димитър Гачев",
+          "shortName": "СУ Димитър Гачев",
+          "isPrivate": false,
+          "belScore": [ 2.845, 3.13, null, null, null, null, null, null ],
+          "matScore": [ 3.197, 4.01, null, null, null, null, null, null ],
+          "belStudents": [ 4, 1, null, null, null, null, null, null ],
+          "matStudents": [ 4, 1, null, null, null, null, null, null ]
+        }
+      }
+    }
+  }
+}

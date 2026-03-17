@@ -1,0 +1,22 @@
+{
+  "grade": 4,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sofia": {
+      "fullName": "София",
+      "shortName": "София",
+      "schools": {
+        "2210116": {
+          "fullName": "116 ОУ Паисий Хилендарски",
+          "shortName": "116 ОУ",
+          "isPrivate": false,
+          "belScore": [ 53.0, 52.86, 52.86, 54.33, 39.17, 34.83, 55.5, 38.2 ],
+          "matScore": [ 46.11, 52.14, 52.14, 48.17, 20.0, 29.33, 31.5, 31.0 ],
+          "belStudents": [ 10, 7, 7, 6, 3, 6, 3, 5 ],
+          "matStudents": [ 9, 7, 7, 6, 3, 6, 3, 5 ]
+        }
+      }
+    }
+  }
+}

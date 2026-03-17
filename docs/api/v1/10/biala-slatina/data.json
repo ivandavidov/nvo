@@ -1,0 +1,40 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "biala-slatina": {
+      "fullName": "Бяла Слатина",
+      "shortName": "Б. Слатина",
+      "schools": {
+        "600221": {
+          "fullName": "ПГ по облекло Ел. Багряна",
+          "shortName": "ПГ по облекло",
+          "isPrivate": false,
+          "belScore": [ null, null, 23.24, 23.24, 22.94, 24.44, 23.54, 33.62 ],
+          "matScore": [ null, null, 13.71, 13.71, 26.74, 16.86, 40.2, 38.84 ],
+          "belStudents": [ null, null, 25, 25, 16, 26, 27, 26 ],
+          "matStudents": [ null, null, 21, 21, 17, 25, 22, 25 ]
+        },
+        "603024": {
+          "fullName": "СУ Васил Левски",
+          "shortName": "СУ Васил Левски",
+          "isPrivate": false,
+          "belScore": [ null, null, 45.49, 45.49, 35.08, 42.58, 40.95, 43.9 ],
+          "matScore": [ null, null, 28.05, 28.05, 17.62, 24.33, 21.2, 22.28 ],
+          "belStudents": [ null, null, 43, 43, 39, 39, 51, 48 ],
+          "matStudents": [ null, null, 43, 43, 39, 40, 50, 47 ]
+        },
+        "603026": {
+          "fullName": "ПГ агротехническа Н. Вапцаров",
+          "shortName": "ПГ агротехническа",
+          "isPrivate": false,
+          "belScore": [ null, null, 25.41, 25.41, 29.19, 38.26, 31.92, 28.53 ],
+          "matScore": [ null, null, 35.48, 35.48, 30.28, 18.34, 17.63, 17.52 ],
+          "belStudents": [ null, null, 66, 66, 58, 68, 71, 92 ],
+          "matStudents": [ null, null, 65, 65, 58, 69, 73, 92 ]
+        }
+      }
+    }
+  }
+}

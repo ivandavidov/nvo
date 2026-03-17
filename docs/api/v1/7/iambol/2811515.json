@@ -1,0 +1,22 @@
+{
+  "grade": 7,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "iambol": {
+      "fullName": "Ямбол",
+      "shortName": "Ямбол",
+      "schools": {
+        "2811515": {
+          "fullName": "ПГ Васил Левски",
+          "shortName": "ПГ Васил Левски",
+          "isPrivate": false,
+          "belScore": [ 41.31, 70.5, null, null, null, null, null, null ],
+          "matScore": [ 26.67, 34.81, null, null, null, null, null, null ],
+          "belStudents": [ 27, 26, null, null, null, null, null, null ],
+          "matStudents": [ 27, 26, null, null, null, null, null, null ]
+        }
+      }
+    }
+  }
+}

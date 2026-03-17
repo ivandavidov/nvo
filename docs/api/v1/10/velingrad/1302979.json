@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "velingrad": {
+      "fullName": "Велинград",
+      "shortName": "Велинград",
+      "schools": {
+        "1302979": {
+          "fullName": "ОУ Неофит Рилски",
+          "shortName": "ОУ Неофит Рилски",
+          "isPrivate": false,
+          "belScore": [ null, null, 21.4, 21.4, 19.65, 20.58, 26.31, 19.72 ],
+          "matScore": [ null, null, 21.97, 21.97, 20.88, 23.47, 29.25, 19.78 ],
+          "belStudents": [ null, null, 40, 40, 31, 24, 16, 18 ],
+          "matStudents": [ null, null, 39, 39, 32, 22, 14, 18 ]
+        }
+      }
+    }
+  }
+}

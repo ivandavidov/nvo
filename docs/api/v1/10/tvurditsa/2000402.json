@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "tvurditsa": {
+      "fullName": "Твърдица",
+      "shortName": "Твърдица",
+      "schools": {
+        "2000402": {
+          "fullName": "СУ Неофит Рилски",
+          "shortName": "СУ Неофит Рилски",
+          "isPrivate": false,
+          "belScore": [ null, null, 33.09, 33.09, 20.02, 35.12, 32.55, 24.8 ],
+          "matScore": [ null, null, 18.14, 18.14, 18.52, 26.11, 20.93, 20.99 ],
+          "belStudents": [ null, null, 35, 35, 44, 42, 46, 35 ],
+          "matStudents": [ null, null, 36, 36, 45, 42, 46, 36 ]
+        }
+      }
+    }
+  }
+}

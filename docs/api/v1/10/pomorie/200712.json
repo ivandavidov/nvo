@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "pomorie": {
+      "fullName": "Поморие",
+      "shortName": "Поморие",
+      "schools": {
+        "200712": {
+          "fullName": "ПГ по туризъм",
+          "shortName": "ПГ по туризъм",
+          "isPrivate": false,
+          "belScore": [ null, null, 24.04, 24.04, 22.17, 24.93, 24.07, 28.0 ],
+          "matScore": [ null, null, 12.9, 12.9, 22.3, 15.3, 15.27, 14.88 ],
+          "belStudents": [ null, null, 48, 48, 36, 38, 35, 26 ],
+          "matStudents": [ null, null, 48, 48, 37, 37, 35, 26 ]
+        }
+      }
+    }
+  }
+}

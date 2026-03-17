@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "devnia": {
+      "fullName": "Девня",
+      "shortName": "Девня",
+      "schools": {
+        "400123": {
+          "fullName": "СУ Васил Левски",
+          "shortName": "СУ Васил Левски",
+          "isPrivate": false,
+          "belScore": [ 3.426, 3.22, 3.2, 3.2, 2.71, 2.3, 3.19, 2.75 ],
+          "matScore": [ 3.818, 3.227, 3.2, 3.26, 2.83, 3.448, 3.62, 4.08 ],
+          "belStudents": [ 24, 21, 24, 29, 21, 24, 39, 34 ],
+          "matStudents": [ 12, 25, 22, 6, 20, 16, 30, 20 ]
+        }
+      }
+    }
+  }
+}

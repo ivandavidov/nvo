@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "velingrad": {
+      "fullName": "Велинград",
+      "shortName": "Велинград",
+      "schools": {
+        "1304231": {
+          "fullName": "ПГ по икономика и туризъм",
+          "shortName": "ПГ по иконом. и тур.",
+          "isPrivate": false,
+          "belScore": [ null, null, 39.17, 39.17, 30.58, 38.5, 33.74, 36.66 ],
+          "matScore": [ null, null, 40.41, 40.41, 20.95, 22.21, 17.75, 29.49 ],
+          "belStudents": [ null, null, 76, 76, 72, 85, 61, 90 ],
+          "matStudents": [ null, null, 75, 75, 72, 85, 59, 87 ]
+        }
+      }
+    }
+  }
+}

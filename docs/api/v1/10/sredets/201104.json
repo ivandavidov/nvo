@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sredets": {
+      "fullName": "Средец",
+      "shortName": "Средец",
+      "schools": {
+        "201104": {
+          "fullName": "СУ Кирил и Методий",
+          "shortName": "СУ Кирил и Методий",
+          "isPrivate": false,
+          "belScore": [ null, null, 24.8, 24.8, 25.54, 31.18, 28.83, 22.45 ],
+          "matScore": [ null, null, 14.4, 14.4, 16.02, 14.11, 17.02, 14.91 ],
+          "belStudents": [ null, null, 15, 15, 13, 19, 24, 11 ],
+          "matStudents": [ null, null, 15, 15, 13, 19, 24, 11 ]
+        }
+      }
+    }
+  }
+}

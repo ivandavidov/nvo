@@ -1,0 +1,22 @@
+{
+  "grade": 4,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "bankiq": {
+      "fullName": "Банкя",
+      "shortName": "Банкя",
+      "schools": {
+        "2200034": {
+          "fullName": "ЧСУ Дени Дидро",
+          "shortName": "Дени Дидро",
+          "isPrivate": true,
+          "belScore": [ null, null, null, null, null, null, null, 72.41 ],
+          "matScore": [ null, null, null, null, null, null, null, 66.75 ],
+          "belStudents": [ null, null, null, null, null, null, null, 16 ],
+          "matStudents": [ null, null, null, null, null, null, null, 16 ]
+        }
+      }
+    }
+  }
+}

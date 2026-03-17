@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "pirdop": {
+      "fullName": "Пирдоп",
+      "shortName": "Пирдоп",
+      "schools": {
+        "2300448": {
+          "fullName": "ПГ по туризъм Никола Димов",
+          "shortName": "ПГ по туризъм",
+          "isPrivate": false,
+          "belScore": [ null, null, 28.55, 28.55, 30.6, 36.9, 37.27, 32.6 ],
+          "matScore": [ null, null, 35.64, 35.64, 24.65, 19.52, 15.63, 19.14 ],
+          "belStudents": [ null, null, 11, 11, 15, 15, 15, 15 ],
+          "matStudents": [ null, null, 11, 11, 15, 14, 15, 14 ]
+        }
+      }
+    }
+  }
+}

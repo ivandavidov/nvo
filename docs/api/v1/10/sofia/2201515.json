@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sofia": {
+      "fullName": "София",
+      "shortName": "София",
+      "schools": {
+        "2201515": {
+          "fullName": "ЧСУ Цар Симеон Велики",
+          "shortName": "Цар Симеон Велики",
+          "isPrivate": true,
+          "belScore": [ 69.0, 69.0, 69.0, 69.0, null, null, null, null ],
+          "matScore": [ 41.0, 41.0, 41.0, 41.0, null, null, null, null ],
+          "belStudents": [ 1, 1, 1, 1, null, null, null, null ],
+          "matStudents": [ 1, 1, 1, 1, null, null, null, null ]
+        }
+      }
+    }
+  }
+}

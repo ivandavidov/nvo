@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "pravets": {
+      "fullName": "Правец",
+      "shortName": "Правец",
+      "schools": {
+        "2309991": {
+          "fullName": "НПГ по КТС",
+          "shortName": "НПГ по КТС",
+          "isPrivate": false,
+          "belScore": [ null, null, 52.7, 52.7, 52.64, 61.66, 64.6, 58.69 ],
+          "matScore": [ null, null, 32.84, 32.84, 50.1, 52.31, 54.87, 58.2 ],
+          "belStudents": [ null, null, 142, 142, 136, 141, 129, 144 ],
+          "matStudents": [ null, null, 142, 142, 137, 142, 129, 143 ]
+        }
+      }
+    }
+  }
+}

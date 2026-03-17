@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sofia": {
+      "fullName": "София",
+      "shortName": "София",
+      "schools": {
+        "2203720": {
+          "fullName": "ЧСУ Дружба",
+          "shortName": "Дружба",
+          "isPrivate": true,
+          "belScore": [ 51.92, 51.92, 51.92, 51.92, 49.41, 53.1, 49.75, null ],
+          "matScore": [ 34.36, 34.36, 34.36, 34.36, 42.25, 33.06, 47.0, 80.0 ],
+          "belStudents": [ 25, 25, 25, 25, 17, 10, 6, null ],
+          "matStudents": [ 22, 22, 22, 22, 10, 4, 1, 1 ]
+        }
+      }
+    }
+  }
+}

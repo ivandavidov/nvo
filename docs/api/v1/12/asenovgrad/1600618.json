@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "asenovgrad": {
+      "fullName": "Асеновград",
+      "shortName": "Асеновград",
+      "schools": {
+        "1600618": {
+          "fullName": "ПГ Цар Иван Асен II",
+          "shortName": "ПГ Иван Асен II",
+          "isPrivate": false,
+          "belScore": [ 3.7, 3.34, 3.38, 3.46, 3.12, 2.96, 3.38, 3.35 ],
+          "matScore": [ 3.581, 3.456, 3.39, 3.71, 4.71, 4.77, 4.53, 4.88 ],
+          "belStudents": [ 87, 103, 86, 84, 69, 104, 82, 95 ],
+          "matStudents": [ 87, 108, 86, 76, 58, 86, 59, 76 ]
+        }
+      }
+    }
+  }
+}

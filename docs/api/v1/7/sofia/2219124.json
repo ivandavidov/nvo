@@ -1,0 +1,22 @@
+{
+  "grade": 7,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sofia": {
+      "fullName": "София",
+      "shortName": "София",
+      "schools": {
+        "2219124": {
+          "fullName": "124 ОУ Васил Левски",
+          "shortName": "124 ОУ",
+          "isPrivate": false,
+          "belScore": [ 11.93, null, 26.06, 24.0, 21.06, 30.2, 7.63, 34.75 ],
+          "matScore": [ 11.93, null, 21.34, 12.89, 14.81, 19.1, 13.25, 18.18 ],
+          "belStudents": [ 15, null, 9, 8, 8, 5, 4, 16 ],
+          "matStudents": [ 15, null, 8, 9, 9, 5, 4, 15 ]
+        }
+      }
+    }
+  }
+}

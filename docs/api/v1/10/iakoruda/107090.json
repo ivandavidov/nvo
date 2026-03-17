@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "iakoruda": {
+      "fullName": "Якоруда",
+      "shortName": "Якоруда",
+      "schools": {
+        "107090": {
+          "fullName": "СУ Кирил и Методий",
+          "shortName": "СУ Кирил и Методий",
+          "isPrivate": false,
+          "belScore": [ null, null, 34.75, 34.75, 29.74, 43.17, 31.58, 33.78 ],
+          "matScore": [ null, null, 33.17, 33.17, 36.8, 28.68, 37.51, 37.61 ],
+          "belStudents": [ null, null, 36, 36, 35, 21, 37, 37 ],
+          "matStudents": [ null, null, 36, 36, 35, 20, 34, 37 ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "grade": 7,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "vratsa": {
+      "fullName": "Враца",
+      "shortName": "Враца",
+      "schools": {
+        "600061": {
+          "fullName": "Профилирана ЕГ Йоан Екзарх",
+          "shortName": "ЕГ",
+          "isPrivate": false,
+          "belScore": [ 40.47, 68.75, null, null, null, null, null, null ],
+          "matScore": [ 32.5, 34.02, null, null, null, null, null, null ],
+          "belStudents": [ 48, 54, null, null, null, null, null, null ],
+          "matStudents": [ 48, 54, null, null, null, null, null, null ]
+        }
+      }
+    }
+  }
+}

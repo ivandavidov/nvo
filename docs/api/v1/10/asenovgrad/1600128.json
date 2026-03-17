@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "asenovgrad": {
+      "fullName": "Асеновград",
+      "shortName": "Асеновград",
+      "schools": {
+        "1600128": {
+          "fullName": "ПГ Св. Патриарх Евтимий",
+          "shortName": "ПГ Св. П. Евтимий",
+          "isPrivate": false,
+          "belScore": [ null, null, 15.39, 15.39, 12.16, 13.07, 14.53, 15.49 ],
+          "matScore": [ null, null, 12.22, 12.22, 17.34, 13.07, 14.45, 17.09 ],
+          "belStudents": [ null, null, 36, 36, 37, 42, 35, 51 ],
+          "matStudents": [ null, null, 36, 36, 35, 41, 33, 52 ]
+        }
+      }
+    }
+  }
+}

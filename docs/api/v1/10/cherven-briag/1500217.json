@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "cherven-briag": {
+      "fullName": "Червен бряг",
+      "shortName": "Червен бряг",
+      "schools": {
+        "1500217": {
+          "fullName": "ПГ по хранителни технологии",
+          "shortName": "ПГ по хран. техн.",
+          "isPrivate": false,
+          "belScore": [ null, null, 27.75, 27.75, 28.11, 38.5, 35.82, 29.69 ],
+          "matScore": [ null, null, 25.71, 25.71, 39.87, 40.0, 35.2, 30.45 ],
+          "belStudents": [ null, null, 28, 28, 27, 23, 19, 29 ],
+          "matStudents": [ null, null, 28, 28, 27, 23, 20, 29 ]
+        }
+      }
+    }
+  }
+}

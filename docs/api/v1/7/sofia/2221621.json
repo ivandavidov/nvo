@@ -1,0 +1,22 @@
+{
+  "grade": 7,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sofia": {
+      "fullName": "София",
+      "shortName": "София",
+      "schools": {
+        "2221621": {
+          "fullName": "ЧОУ Питагор",
+          "shortName": "Питагор",
+          "isPrivate": true,
+          "belScore": [ null, null, null, null, null, null, 75.2, 80.69 ],
+          "matScore": [ null, null, null, null, null, null, 89.39, 86.56 ],
+          "belStudents": [ null, null, null, null, null, null, 25, 36 ],
+          "matStudents": [ null, null, null, null, null, null, 24, 36 ]
+        }
+      }
+    }
+  }
+}

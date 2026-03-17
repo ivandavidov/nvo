@@ -1,0 +1,22 @@
+{
+  "grade": 4,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "kostenets": {
+      "fullName": "Костенец",
+      "shortName": "Костенец",
+      "schools": {
+        "2304763": {
+          "fullName": "Основно училище Константин Костенечки",
+          "shortName": "Основно училище Константин Костенечки",
+          "isPrivate": false,
+          "belScore": [ 59.17, 69.35, 69.35, null, null, null, null, null ],
+          "matScore": [ 43.57, 65.0, 65.0, null, null, null, null, null ],
+          "belStudents": [ 6, 23, 23, null, null, null, null, null ],
+          "matStudents": [ 7, 23, 23, null, null, null, null, null ]
+        }
+      }
+    }
+  }
+}

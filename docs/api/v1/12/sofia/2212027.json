@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sofia": {
+      "fullName": "София",
+      "shortName": "София",
+      "schools": {
+        "2212027": {
+          "fullName": "27 СУ Акад. Георги Караславов",
+          "shortName": "27 СУ",
+          "isPrivate": false,
+          "belScore": [ null, null, null, null, 3.04, 3.3, 3.98, 4.24 ],
+          "matScore": [ null, null, null, null, 3.073, 2.0, 3.235, 5.37 ],
+          "belStudents": [ null, null, null, null, 12, 4, 4, 7 ],
+          "matStudents": [ null, null, null, null, 13, 3, 4, 7 ]
+        }
+      }
+    }
+  }
+}

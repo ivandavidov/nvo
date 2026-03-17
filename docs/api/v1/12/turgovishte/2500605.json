@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "turgovishte": {
+      "fullName": "Търговище",
+      "shortName": "Търговище",
+      "schools": {
+        "2500605": {
+          "fullName": "ПГ по земеделие",
+          "shortName": "ПГ по земеделие",
+          "isPrivate": false,
+          "belScore": [ 3.316, 3.03, 2.81, 3.25, 2.45, 2.73, 2.97, 2.39 ],
+          "matScore": [ 2.984, 3.243, 2.99, 3.35, 4.438, 4.272, 3.93, 4.54 ],
+          "belStudents": [ 31, 23, 39, 10, 8, 8, 5, 5 ],
+          "matStudents": [ 7, 3, 3, 3, 5, 15, 7, 14 ]
+        }
+      }
+    }
+  }
+}

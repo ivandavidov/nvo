@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "karlovo": {
+      "fullName": "Карлово",
+      "shortName": "Карлово",
+      "schools": {
+        "1601301": {
+          "fullName": "СУ Васил Левски",
+          "shortName": "СУ Васил Левски",
+          "isPrivate": false,
+          "belScore": [ null, null, 63.07, 63.07, 59.45, 66.41, 60.28, 61.74 ],
+          "matScore": [ null, null, 25.28, 25.28, 42.89, 46.55, 30.95, 35.62 ],
+          "belStudents": [ null, null, 76, 76, 77, 73, 76, 76 ],
+          "matStudents": [ null, null, 76, 76, 77, 73, 76, 75 ]
+        }
+      }
+    }
+  }
+}

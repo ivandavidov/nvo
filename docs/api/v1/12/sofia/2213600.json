@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sofia": {
+      "fullName": "София",
+      "shortName": "София",
+      "schools": {
+        "2213600": {
+          "fullName": "ЧСУ с чуждоезиков профил Абрахам Линкълн",
+          "shortName": "Абрахам Линкълн",
+          "isPrivate": true,
+          "belScore": [ null, null, 4.67, null, 4.07, 4.78, 5.61, 4.72 ],
+          "matScore": [ null, null, 5.49, null, 4.66, 5.54, 5.73, 5.18 ],
+          "belStudents": [ null, null, 3, null, 6, 2, 5, 5 ],
+          "matStudents": [ null, null, 3, null, 6, 2, 5, 5 ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "iakoruda": {
+      "fullName": "Якоруда",
+      "shortName": "Якоруда",
+      "schools": {
+        "102011": {
+          "fullName": "ПГ Петко Рачов Славейков",
+          "shortName": "ПГ Петко Славейков",
+          "isPrivate": false,
+          "belScore": [ null, null, 30.55, 30.55, 31.61, 37.56, 42.55, 29.66 ],
+          "matScore": [ null, null, 45.0, 45.0, 40.39, 23.93, 46.67, 30.99 ],
+          "belStudents": [ null, null, 31, 31, 23, 18, 33, 47 ],
+          "matStudents": [ null, null, 30, 30, 23, 19, 32, 47 ]
+        }
+      }
+    }
+  }
+}

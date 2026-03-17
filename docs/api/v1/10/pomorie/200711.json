@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "pomorie": {
+      "fullName": "Поморие",
+      "shortName": "Поморие",
+      "schools": {
+        "200711": {
+          "fullName": "СУ Иван Вазов",
+          "shortName": "СУ Иван Вазов",
+          "isPrivate": false,
+          "belScore": [ null, null, 43.0, 43.0, 30.19, 41.96, 46.62, 53.7 ],
+          "matScore": [ null, null, 21.67, 21.67, 21.9, 17.73, 19.82, 34.5 ],
+          "belStudents": [ null, null, 20, 20, 16, 25, 26, 43 ],
+          "matStudents": [ null, null, 21, 21, 17, 21, 25, 39 ]
+        }
+      }
+    }
+  }
+}

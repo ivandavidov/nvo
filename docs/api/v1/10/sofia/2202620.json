@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sofia": {
+      "fullName": "София",
+      "shortName": "София",
+      "schools": {
+        "2202620": {
+          "fullName": "ЧСУ Проф. Николай Райнов",
+          "shortName": "Николай Райнов",
+          "isPrivate": true,
+          "belScore": [ 45.33, 45.33, 45.33, 45.33, 37.0, null, 44.36, 55.0 ],
+          "matScore": [ 41.33, 41.33, 41.33, 41.33, 25.5, null, 30.33, 49.1 ],
+          "belStudents": [ 3, 3, 3, 3, 6, null, 7, 5 ],
+          "matStudents": [ 3, 3, 3, 3, 6, null, 6, 5 ]
+        }
+      }
+    }
+  }
+}

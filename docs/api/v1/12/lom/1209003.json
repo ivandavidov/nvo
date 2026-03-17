@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "lom": {
+      "fullName": "Лом",
+      "shortName": "Лом",
+      "schools": {
+        "1209003": {
+          "fullName": "СУ Отец Паисий",
+          "shortName": "СУ Отец Паисий",
+          "isPrivate": false,
+          "belScore": [ 3.637, 3.36, 3.5, 3.27, 2.97, 2.55, 3.93, 5.38 ],
+          "matScore": [ 3.641, 3.59, 3.46, 3.26, 4.11, 2.806, 5.73, 3.96 ],
+          "belStudents": [ 8, 2, 5, 4, 4, 3, 2, 1 ],
+          "matStudents": [ 7, 2, 5, 4, 4, 3, 1, 2 ]
+        }
+      }
+    }
+  }
+}

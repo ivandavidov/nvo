@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "plovdiv": {
+      "fullName": "Пловдив",
+      "shortName": "Пловдив",
+      "schools": {
+        "1600017": {
+          "fullName": "ЧСБУ Талантите",
+          "shortName": "Талантите",
+          "isPrivate": true,
+          "belScore": [ null, null, null, null, null, 49.92, 42.27, 42.33 ],
+          "matScore": [ null, null, null, null, null, 37.17, 21.85, 27.17 ],
+          "belStudents": [ null, null, null, null, null, 6, 13, 3 ],
+          "matStudents": [ null, null, null, null, null, 6, 13, 3 ]
+        }
+      }
+    }
+  }
+}

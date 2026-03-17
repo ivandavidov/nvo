@@ -1,0 +1,40 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "pirdop": {
+      "fullName": "Пирдоп",
+      "shortName": "Пирдоп",
+      "schools": {
+        "2300105": {
+          "fullName": "СУ Саво Ценов Савов",
+          "shortName": "СУ Саво Ценов Савов",
+          "isPrivate": false,
+          "belScore": [ null, null, 55.59, 55.59, 46.54, 60.79, 65.28, 53.6 ],
+          "matScore": [ null, null, 41.59, 41.59, 54.98, 59.15, 48.96, 34.34 ],
+          "belStudents": [ null, null, 22, 22, 24, 35, 23, 45 ],
+          "matStudents": [ null, null, 22, 22, 24, 35, 23, 45 ]
+        },
+        "2300448": {
+          "fullName": "ПГ по туризъм Никола Димов",
+          "shortName": "ПГ по туризъм",
+          "isPrivate": false,
+          "belScore": [ null, null, 28.55, 28.55, 30.6, 36.9, 37.27, 32.6 ],
+          "matScore": [ null, null, 35.64, 35.64, 24.65, 19.52, 15.63, 19.14 ],
+          "belStudents": [ null, null, 11, 11, 15, 15, 15, 15 ],
+          "matStudents": [ null, null, 11, 11, 15, 14, 15, 14 ]
+        },
+        "2302504": {
+          "fullName": "ПГ по механоелектротехника",
+          "shortName": "ПГ по механоел.",
+          "isPrivate": false,
+          "belScore": [ null, null, 29.38, 29.38, 27.18, 31.37, 38.8, 28.95 ],
+          "matScore": [ null, null, 12.04, 12.04, 20.32, 18.25, 21.18, 26.45 ],
+          "belStudents": [ null, null, 29, 29, 50, 34, 40, 38 ],
+          "matStudents": [ null, null, 27, 27, 49, 33, 39, 38 ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "svishtov": {
+      "fullName": "Свищов",
+      "shortName": "Свищов",
+      "schools": {
+        "300814": {
+          "fullName": "СУ Цветан Радославов",
+          "shortName": "СУ Цв. Радославов",
+          "isPrivate": false,
+          "belScore": [ null, null, 39.31, 39.31, 29.68, 44.59, 46.02, 40.76 ],
+          "matScore": [ null, null, 15.38, 15.38, 16.61, 18.09, 25.64, 29.17 ],
+          "belStudents": [ null, null, 16, 16, 19, 23, 22, 21 ],
+          "matStudents": [ null, null, 16, 16, 19, 23, 22, 21 ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "grade": 4,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "liaskovets": {
+      "fullName": "Лясковец",
+      "shortName": "Лясковец",
+      "schools": {
+        "300502": {
+          "fullName": "Начално училище Никола Козлев",
+          "shortName": "Начално училище Никола Козлев",
+          "isPrivate": false,
+          "belScore": [ 70.0, null, null, null, null, null, null, null ],
+          "matScore": [ 78.33, null, null, null, null, null, null, null ],
+          "belStudents": [ 3, null, null, null, null, null, null, null ],
+          "matStudents": [ 3, null, null, null, null, null, null, null ]
+        }
+      }
+    }
+  }
+}

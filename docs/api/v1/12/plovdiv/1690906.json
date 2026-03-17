@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "plovdiv": {
+      "fullName": "Пловдив",
+      "shortName": "Пловдив",
+      "schools": {
+        "1690906": {
+          "fullName": "ЧПГ Едмънд Бърк",
+          "shortName": "Едмънд Бърк",
+          "isPrivate": true,
+          "belScore": [ 4.31, null, null, null, 3.72, null, 3.78, 3.71 ],
+          "matScore": [ 4.605, null, null, null, 3.08, null, 3.352, 4.274 ],
+          "belStudents": [ 4, null, null, null, 4, null, 17, 12 ],
+          "matStudents": [ 4, null, null, null, 3, null, 15, 13 ]
+        }
+      }
+    }
+  }
+}

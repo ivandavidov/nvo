@@ -1,0 +1,22 @@
+{
+  "grade": 4,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sofia": {
+      "fullName": "София",
+      "shortName": "София",
+      "schools": {
+        "2220029": {
+          "fullName": "29 СУ Кузман Шапкарев",
+          "shortName": "29 СУ",
+          "isPrivate": false,
+          "belScore": [ null, 65.0, 65.0, 43.08, 59.25, 60.14, 83.55, 67.55 ],
+          "matScore": [ null, 71.0, 71.0, 43.73, 54.0, 59.79, 80.7, 77.09 ],
+          "belStudents": [ null, 10, 10, 12, 8, 7, 10, 11 ],
+          "matStudents": [ null, 10, 10, 11, 8, 7, 10, 11 ]
+        }
+      }
+    }
+  }
+}

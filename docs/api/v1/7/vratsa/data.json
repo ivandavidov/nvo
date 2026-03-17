@@ -1,0 +1,121 @@
+{
+  "grade": 7,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "vratsa": {
+      "fullName": "Враца",
+      "shortName": "Враца",
+      "schools": {
+        "1203007": {
+          "fullName": "СУ Кирил и Методий",
+          "shortName": "СУ Кирил и Методий",
+          "isPrivate": false,
+          "belScore": [ null, null, 20.5, null, null, null, 3.0, 6.0 ],
+          "matScore": [ null, null, 19.0, null, null, null, 13.0, null ],
+          "belStudents": [ null, null, 1, null, null, 1, 1, 1 ],
+          "matStudents": [ null, null, 1, null, null, null, 1, null ]
+        },
+        "600061": {
+          "fullName": "Профилирана ЕГ Йоан Екзарх",
+          "shortName": "ЕГ",
+          "isPrivate": false,
+          "belScore": [ 40.47, 68.75, null, null, null, null, null, null ],
+          "matScore": [ 32.5, 34.02, null, null, null, null, null, null ],
+          "belStudents": [ 48, 54, null, null, null, null, null, null ],
+          "matStudents": [ 48, 54, null, null, null, null, null, null ]
+        },
+        "600327": {
+          "fullName": "СУ Козма Тричков",
+          "shortName": "СУ Козма Тричков",
+          "isPrivate": false,
+          "belScore": [ 33.71, 58.84, 61.55, 61.79, 61.04, 65.26, 67.63, 66.0 ],
+          "matScore": [ 29.96, 22.54, 32.77, 36.42, 27.8, 26.59, 41.01, 31.04 ],
+          "belStudents": [ 48, 68, 85, 87, 82, 78, 56, 76 ],
+          "matStudents": [ 48, 68, 85, 87, 82, 78, 56, 76 ]
+        },
+        "602041": {
+          "fullName": "ОУ Васил Левски",
+          "shortName": "ОУ Васил Левски",
+          "isPrivate": false,
+          "belScore": [ 27.02, 46.81, 32.27, 46.88, 31.98, 37.17, 44.05, 30.64 ],
+          "matScore": [ 18.03, 21.33, 21.74, 27.5, 14.25, 21.02, 28.04, 19.97 ],
+          "belStudents": [ 32, 32, 35, 32, 32, 32, 32, 30 ],
+          "matStudents": [ 31, 32, 33, 30, 33, 32, 31, 30 ]
+        },
+        "602042": {
+          "fullName": "ОУ Кирил и Методий",
+          "shortName": "ОУ Кирил и Методий",
+          "isPrivate": false,
+          "belScore": [ 21.79, 26.06, 37.91, 37.18, 39.31, 43.28, 45.19, null ],
+          "matScore": [ 15.84, 11.45, 18.14, 18.39, 15.23, 17.8, 18.43, null ],
+          "belStudents": [ 19, 17, 23, 14, 13, 20, 13, null ],
+          "matStudents": [ 19, 16, 23, 14, 13, 19, 14, null ]
+        },
+        "602062": {
+          "fullName": "ППМГ Акад. Иван Ценов",
+          "shortName": "ППМГ",
+          "isPrivate": false,
+          "belScore": [ 51.81, 86.84, 74.91, 78.7, 83.93, 80.25, 77.51, 80.48 ],
+          "matScore": [ 57.61, 73.61, 71.79, 77.49, 82.88, 73.8, 84.49, 79.23 ],
+          "belStudents": [ 57, 52, 52, 53, 54, 53, 54, 52 ],
+          "matStudents": [ 57, 52, 52, 53, 54, 53, 54, 52 ]
+        },
+        "603057": {
+          "fullName": "СУ Отец Паисий",
+          "shortName": "СУ Отец Паисий",
+          "isPrivate": false,
+          "belScore": [ 27.95, 45.61, 40.96, 32.32, 38.6, 34.4, 46.05, 29.46 ],
+          "matScore": [ 22.32, 14.73, 21.74, 22.31, 17.52, 18.25, 23.82, 22.08 ],
+          "belStudents": [ 28, 22, 23, 19, 26, 25, 21, 23 ],
+          "matStudents": [ 28, 22, 23, 18, 26, 26, 21, 21 ]
+        },
+        "603058": {
+          "fullName": "СУ Христо Ботев",
+          "shortName": "СУ Христо Ботев",
+          "isPrivate": false,
+          "belScore": [ 35.12, 60.63, 60.05, 63.04, 61.36, 64.18, 66.46, 61.93 ],
+          "matScore": [ 28.41, 31.67, 37.61, 33.51, 30.74, 33.22, 38.94, 37.31 ],
+          "belStudents": [ 139, 100, 110, 110, 142, 111, 104, 107 ],
+          "matStudents": [ 139, 100, 110, 110, 142, 111, 104, 107 ]
+        },
+        "603059": {
+          "fullName": "СУ Васил Кънчов",
+          "shortName": "СУ Васил Кънчов",
+          "isPrivate": false,
+          "belScore": [ 34.35, 65.08, 60.21, 60.38, 68.65, 66.43, 56.87, 70.37 ],
+          "matScore": [ 31.95, 32.62, 42.09, 32.01, 38.88, 41.24, 29.61, 44.52 ],
+          "belStudents": [ 64, 60, 64, 99, 103, 100, 93, 106 ],
+          "matStudents": [ 64, 61, 64, 99, 103, 100, 93, 106 ]
+        },
+        "603070": {
+          "fullName": "СУ Никола Войводов",
+          "shortName": "СУ Никола Войводов",
+          "isPrivate": false,
+          "belScore": [ 34.15, 53.89, 51.16, 54.43, 52.08, 53.96, 55.14, 48.98 ],
+          "matScore": [ 24.34, 22.91, 26.17, 28.25, 24.64, 23.97, 29.84, 28.23 ],
+          "belStudents": [ 68, 88, 101, 117, 95, 108, 86, 71 ],
+          "matStudents": [ 68, 87, 101, 117, 95, 108, 86, 71 ]
+        },
+        "603140": {
+          "fullName": "СУ Мито Орозов",
+          "shortName": "СУ Мито Орозов",
+          "isPrivate": false,
+          "belScore": [ null, null, null, null, null, 13.0, 37.75, 11.0 ],
+          "matScore": [ null, null, null, null, null, 14.0, 26.17, 16.5 ],
+          "belStudents": [ null, null, null, null, null, 6, 2, 1 ],
+          "matStudents": [ null, null, null, null, null, 6, 3, 2 ]
+        },
+        "608060": {
+          "fullName": "Спортно у-ще Св. Климент Охридски",
+          "shortName": "Спортно у-ще",
+          "isPrivate": false,
+          "belScore": [ 25.25, 38.98, 39.04, 42.88, 39.31, 39.54, 42.84, 44.2 ],
+          "matScore": [ 21.08, 27.04, 19.35, 19.97, 15.65, 19.38, 27.58, 27.81 ],
+          "belStudents": [ 26, 21, 27, 26, 18, 23, 22, 20 ],
+          "matStudents": [ 26, 21, 27, 26, 18, 23, 22, 20 ]
+        }
+      }
+    }
+  }
+}

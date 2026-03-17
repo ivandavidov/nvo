@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "liaskovets": {
+      "fullName": "Лясковец",
+      "shortName": "Лясковец",
+      "schools": {
+        "300507": {
+          "fullName": "СУ Максим Райкович",
+          "shortName": "СУ Максим Райкович",
+          "isPrivate": false,
+          "belScore": [ null, null, 35.18, 35.18, 31.76, 41.51, 38.96, 38.59 ],
+          "matScore": [ null, null, 14.36, 14.36, 28.44, 23.68, 33.34, 35.19 ],
+          "belStudents": [ null, null, 39, 39, 17, 42, 25, 34 ],
+          "matStudents": [ null, null, 39, 39, 17, 42, 25, 34 ]
+        }
+      }
+    }
+  }
+}

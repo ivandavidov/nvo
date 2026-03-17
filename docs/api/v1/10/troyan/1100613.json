@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "troyan": {
+      "fullName": "Троян",
+      "shortName": "Троян",
+      "schools": {
+        "1100613": {
+          "fullName": "СУ Климент Охридски",
+          "shortName": "СУ Кл. Охридски",
+          "isPrivate": false,
+          "belScore": [ null, null, 45.49, 45.49, 43.48, 62.39, 61.74, 51.78 ],
+          "matScore": [ null, null, 20.87, 20.87, 22.78, 25.14, 24.72, 29.7 ],
+          "belStudents": [ null, null, 45, 45, 56, 45, 43, 45 ],
+          "matStudents": [ null, null, 45, 45, 56, 45, 43, 45 ]
+        }
+      }
+    }
+  }
+}

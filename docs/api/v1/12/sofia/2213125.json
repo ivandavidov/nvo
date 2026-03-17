@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sofia": {
+      "fullName": "София",
+      "shortName": "София",
+      "schools": {
+        "2213125": {
+          "fullName": "125 СУИЧЕ Боян Пенев",
+          "shortName": "125 СУИЧЕ",
+          "isPrivate": false,
+          "belScore": [ 4.011, null, null, null, 4.78, 4.26, 4.59, 4.73 ],
+          "matScore": [ 4.487, null, null, null, 4.988, 4.638, 4.565, 4.884 ],
+          "belStudents": [ 24, null, null, null, 38, 33, 42, 48 ],
+          "matStudents": [ 24, null, null, null, 38, 32, 42, 48 ]
+        }
+      }
+    }
+  }
+}

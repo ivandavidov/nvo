@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "peshtera": {
+      "fullName": "Пещера",
+      "shortName": "Пещера",
+      "schools": {
+        "1307893": {
+          "fullName": "Професионална гимназия по лека промишленост и машиностроене Васил Левски",
+          "shortName": "Професионална гимназия по лека промишленост и машиностроене Васил Левски",
+          "isPrivate": false,
+          "belScore": [ 3.239, null, null, null, null, null, null, null ],
+          "matScore": [ 2.746, null, null, null, null, null, null, null ],
+          "belStudents": [ 10, null, null, null, null, null, null, null ],
+          "matStudents": [ 3, null, null, null, null, null, null, null ]
+        }
+      }
+    }
+  }
+}

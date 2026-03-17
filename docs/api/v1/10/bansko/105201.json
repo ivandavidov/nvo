@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "bansko": {
+      "fullName": "Банско",
+      "shortName": "Банско",
+      "schools": {
+        "105201": {
+          "fullName": "СУ Неофит Рилски",
+          "shortName": "СУ Неофит Рилски",
+          "isPrivate": false,
+          "belScore": [ null, null, 49.9, 49.9, 61.5, 64.03, 49.63, 53.37 ],
+          "matScore": [ null, null, 47.95, 47.95, 52.06, 50.88, 37.43, 43.38 ],
+          "belStudents": [ null, null, 20, 20, 24, 20, 15, 27 ],
+          "matStudents": [ null, null, 20, 20, 24, 21, 15, 26 ]
+        }
+      }
+    }
+  }
+}

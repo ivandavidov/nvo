@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "burgas": {
+      "fullName": "Бургас",
+      "shortName": "Бургас",
+      "schools": {
+        "200232": {
+          "fullName": "СУ Константин Петканов",
+          "shortName": "СУ Конст. Петканов",
+          "isPrivate": false,
+          "belScore": [ 3.367, 3.12, 3.4, 2.84, null, 2.58, 3.9, 3.1 ],
+          "matScore": [ 3.545, 2.83, 3.43, 2.31, null, 2.904, 4.27, 3.508 ],
+          "belStudents": [ 10, 4, 18, 1, null, 13, 22, 19 ],
+          "matStudents": [ 10, 3, 20, 1, null, 13, 19, 14 ]
+        }
+      }
+    }
+  }
+}

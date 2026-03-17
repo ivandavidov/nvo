@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "gorna-oryahovitsa": {
+      "fullName": "Горна Оряховица",
+      "shortName": "Г. Оряховица",
+      "schools": {
+        "300220": {
+          "fullName": "ПГ по хранителни технологии",
+          "shortName": "ПГ по хранит. техн.",
+          "isPrivate": false,
+          "belScore": [ null, null, 17.51, 17.51, 16.12, 18.83, 22.29, 18.07 ],
+          "matScore": [ null, null, 16.18, 16.18, 23.08, 21.68, 14.44, 16.04 ],
+          "belStudents": [ null, null, 39, 39, 26, 36, 36, 28 ],
+          "matStudents": [ null, null, 34, 34, 25, 36, 35, 28 ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "plovdiv": {
+      "fullName": "Пловдив",
+      "shortName": "Пловдив",
+      "schools": {
+        "1600026": {
+          "fullName": "ЧПГ по информатика и комп. науки",
+          "shortName": "Информ. и комп. науки",
+          "isPrivate": true,
+          "belScore": [ null, null, null, null, null, 50.46, 52.61, 47.39 ],
+          "matScore": [ null, null, null, null, null, 31.48, 28.58, 26.9 ],
+          "belStudents": [ null, null, null, null, null, 12, 19, 23 ],
+          "matStudents": [ null, null, null, null, null, 12, 18, 20 ]
+        }
+      }
+    }
+  }
+}

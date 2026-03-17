@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "burgas": {
+      "fullName": "Бургас",
+      "shortName": "Бургас",
+      "schools": {
+        "200233": {
+          "fullName": "СУ Петко Росен",
+          "shortName": "СУ Петко Росен",
+          "isPrivate": false,
+          "belScore": [ 3.32, 3.08, 3.16, 3.29, 2.22, 2.47, 2.62, 2.25 ],
+          "matScore": [ 3.065, 3.623, 3.22, 3.69, 4.16, 3.36, 2.72, 3.27 ],
+          "belStudents": [ 19, 20, 20, 21, 18, 19, 12, 6 ],
+          "matStudents": [ 4, 3, 3, 4, 14, 11, 9, 6 ]
+        }
+      }
+    }
+  }
+}

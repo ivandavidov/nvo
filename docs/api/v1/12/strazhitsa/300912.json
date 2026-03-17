@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "strazhitsa": {
+      "fullName": "Стражица",
+      "shortName": "Стражица",
+      "schools": {
+        "300912": {
+          "fullName": "ПГ по транспорт В. Друмев",
+          "shortName": "ПГ по транспорт",
+          "isPrivate": false,
+          "belScore": [ 3.254, 2.94, 3.05, 3.12, 3.01, 3.15, 2.96, 3.22 ],
+          "matScore": [ 3.284, 2.937, 2.91, null, 4.828, 3.779, 3.94, 5.4 ],
+          "belStudents": [ 30, 16, 16, 16, 14, 18, 9, 4 ],
+          "matStudents": [ 21, 11, 6, null, 14, 17, 9, 2 ]
+        }
+      }
+    }
+  }
+}

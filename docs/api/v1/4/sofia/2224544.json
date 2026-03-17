@@ -1,0 +1,22 @@
+{
+  "grade": 4,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sofia": {
+      "fullName": "София",
+      "shortName": "София",
+      "schools": {
+        "2224544": {
+          "fullName": "ЧСУ Артис",
+          "shortName": "Артис",
+          "isPrivate": true,
+          "belScore": [ 94.29, 95.0, 95.0, 84.79, 83.94, 70.65, 84.81, 74.86 ],
+          "matScore": [ 85.71, 91.11, 91.11, 81.07, 75.38, 68.28, 81.71, 77.36 ],
+          "belStudents": [ 14, 9, 9, 14, 8, 17, 8, 7 ],
+          "matStudents": [ 14, 9, 9, 14, 8, 16, 7, 7 ]
+        }
+      }
+    }
+  }
+}

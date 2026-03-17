@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "botevgrad": {
+      "fullName": "Ботевград",
+      "shortName": "Ботевград",
+      "schools": {
+        "2300284": {
+          "fullName": "ПГ по техника и мениджмънт",
+          "shortName": "ПГ по техника",
+          "isPrivate": false,
+          "belScore": [ null, null, 27.37, 27.37, 24.46, 34.02, 36.59, 31.71 ],
+          "matScore": [ null, null, 16.02, 16.02, 20.71, 17.88, 17.52, 19.6 ],
+          "belStudents": [ null, null, 51, 51, 59, 58, 64, 73 ],
+          "matStudents": [ null, null, 50, 50, 59, 58, 64, 73 ]
+        }
+      }
+    }
+  }
+}

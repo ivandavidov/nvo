@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "ruse": {
+      "fullName": "Русе",
+      "shortName": "Русе",
+      "schools": {
+        "1806315": {
+          "fullName": "ПГ по промишлени технологии",
+          "shortName": "ПГ по пром. техн.",
+          "isPrivate": false,
+          "belScore": [ 3.394, 3.25, 3.47, 3.34, 2.3, 2.52, 3.16, 2.96 ],
+          "matScore": [ 2.87, 3.22, null, 5.63, 3.59, 3.85, 4.45, 5.12 ],
+          "belStudents": [ 57, 54, 28, 33, 23, 20, 18, 6 ],
+          "matStudents": [ 2, 1, null, 1, 20, 13, 16, 4 ]
+        }
+      }
+    }
+  }
+}

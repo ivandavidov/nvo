@@ -1,0 +1,22 @@
+{
+  "grade": 7,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "blagoevgrad": {
+      "fullName": "Благоевград",
+      "shortName": "Благоевград",
+      "schools": {
+        "10002": {
+          "fullName": "ІІ ОУ Димитър Благоев",
+          "shortName": "ІІ ОУ Димитър Благоев",
+          "isPrivate": false,
+          "belScore": [ 38.18, null, null, null, null, null, null, null ],
+          "matScore": [ 41.9, null, null, null, null, null, null, null ],
+          "belStudents": [ 68, null, null, null, null, null, null, null ],
+          "matStudents": [ 69, null, null, null, null, null, null, null ]
+        }
+      }
+    }
+  }
+}

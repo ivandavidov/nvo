@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "momchilgrad": {
+      "fullName": "Момчилград",
+      "shortName": "Момчилград",
+      "schools": {
+        "909601": {
+          "fullName": "СУ Никола Вапцаров",
+          "shortName": "СУ Никола Вапцаров",
+          "isPrivate": false,
+          "belScore": [ null, null, 33.04, 33.04, 35.6, 36.85, 44.83, 36.84 ],
+          "matScore": [ null, null, 22.75, 22.75, 45.91, 28.04, 33.19, 26.55 ],
+          "belStudents": [ null, null, 48, 48, 43, 52, 53, 49 ],
+          "matStudents": [ null, null, 48, 48, 43, 52, 53, 49 ]
+        }
+      }
+    }
+  }
+}

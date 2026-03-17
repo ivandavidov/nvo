@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "veliko-turnovo": {
+      "fullName": "Велико Търново",
+      "shortName": "В. Търново",
+      "schools": {
+        "300126": {
+          "fullName": "СУ Владимир Комаров",
+          "shortName": "СУ Владимир Комаров",
+          "isPrivate": false,
+          "belScore": [ 3.563, 3.52, 3.62, 3.14, null, 3.25, 3.54, 3.25 ],
+          "matScore": [ 3.569, 3.43, 3.51, 3.24, null, 5.38, 5.21, 4.46 ],
+          "belStudents": [ 16, 10, 11, 1, null, 3, 9, 8 ],
+          "matStudents": [ 18, 11, 11, 3, null, 3, 6, 8 ]
+        }
+      }
+    }
+  }
+}

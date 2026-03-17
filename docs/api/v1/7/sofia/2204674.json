@@ -1,0 +1,22 @@
+{
+  "grade": 7,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sofia": {
+      "fullName": "София",
+      "shortName": "София",
+      "schools": {
+        "2204674": {
+          "fullName": "ЧОУ Езиков свят",
+          "shortName": "Езиков свят",
+          "isPrivate": true,
+          "belScore": [ 26.0, 37.5, 54.13, null, 41.0, 65.5, 47.71, 59.25 ],
+          "matScore": [ 18.0, 17.75, 19.0, null, 17.5, 28.58, 23.0, 19.63 ],
+          "belStudents": [ 2, 3, 4, null, 2, 3, 12, 2 ],
+          "matStudents": [ 1, 3, 4, null, 2, 3, 10, 2 ]
+        }
+      }
+    }
+  }
+}

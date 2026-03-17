@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sofia": {
+      "fullName": "София",
+      "shortName": "София",
+      "schools": {
+        "2200021": {
+          "fullName": "ЧСУ Роналд Лаудер",
+          "shortName": "Роналд Лаудер",
+          "isPrivate": true,
+          "belScore": [ null, null, null, null, null, null, null, 67.79 ],
+          "matScore": [ null, null, null, null, null, null, null, 46.04 ],
+          "belStudents": [ null, null, null, null, null, null, null, 14 ],
+          "matStudents": [ null, null, null, null, null, null, null, 14 ]
+        }
+      }
+    }
+  }
+}

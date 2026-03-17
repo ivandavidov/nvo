@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "etropole": {
+      "fullName": "Етрополе",
+      "shortName": "Етрополе",
+      "schools": {
+        "2300195": {
+          "fullName": "СУ Христо Ясенов",
+          "shortName": "СУ Христо Ясенов",
+          "isPrivate": false,
+          "belScore": [ null, null, 40.55, 40.55, 40.59, 48.56, 49.14, 46.73 ],
+          "matScore": [ null, null, 26.11, 26.11, 26.23, 38.93, 37.91, 30.82 ],
+          "belStudents": [ null, null, 65, 65, 39, 49, 44, 30 ],
+          "matStudents": [ null, null, 65, 65, 39, 49, 44, 30 ]
+        }
+      }
+    }
+  }
+}

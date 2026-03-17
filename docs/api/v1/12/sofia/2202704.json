@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sofia": {
+      "fullName": "София",
+      "shortName": "София",
+      "schools": {
+        "2202704": {
+          "fullName": "ЧСУ Евлоги и Христо Георгиеви",
+          "shortName": "Евл. и Хр. Георгиеви",
+          "isPrivate": true,
+          "belScore": [ null, null, null, null, null, null, null, 4.44 ],
+          "matScore": [ null, null, null, null, null, null, null, 5.13 ],
+          "belStudents": [ null, null, null, null, null, null, null, 6 ],
+          "matStudents": [ null, null, null, null, null, null, null, 6 ]
+        }
+      }
+    }
+  }
+}

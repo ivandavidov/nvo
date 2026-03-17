@@ -1,0 +1,22 @@
+{
+  "grade": 4,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "elin-pelin": {
+      "fullName": "Елин Пелин",
+      "shortName": "Елин Пелин",
+      "schools": {
+        "2308778": {
+          "fullName": "Основно училище Стефан Стефанов",
+          "shortName": "Основно училище Стефан Стефанов",
+          "isPrivate": false,
+          "belScore": [ 84.44, 68.18, 68.18, null, null, null, null, null ],
+          "matScore": [ 75.0, 63.64, 63.64, null, null, null, null, null ],
+          "belStudents": [ 9, 11, 11, null, null, null, null, null ],
+          "matStudents": [ 9, 11, 11, null, null, null, null, null ]
+        }
+      }
+    }
+  }
+}

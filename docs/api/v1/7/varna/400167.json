@@ -1,0 +1,22 @@
+{
+  "grade": 7,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "varna": {
+      "fullName": "Варна",
+      "shortName": "Варна",
+      "schools": {
+        "400167": {
+          "fullName": "ЧОУ Феникс 2020",
+          "shortName": "Феникс",
+          "isPrivate": true,
+          "belScore": [ null, null, null, null, 60.63, null, null, 53.0 ],
+          "matScore": [ null, null, null, null, 47.13, null, null, 42.0 ],
+          "belStudents": [ null, null, null, null, 4, null, null, 4 ],
+          "matStudents": [ null, null, null, null, 4, null, null, 4 ]
+        }
+      }
+    }
+  }
+}

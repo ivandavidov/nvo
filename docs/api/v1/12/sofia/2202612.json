@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sofia": {
+      "fullName": "София",
+      "shortName": "София",
+      "schools": {
+        "2202612": {
+          "fullName": "Специално училище за ученици с увреден слух",
+          "shortName": "У-ще за ученици с увр. слух",
+          "isPrivate": false,
+          "belScore": [ 3.048, 2.78, null, 2.35, 2.84, 2.92, null, 3.39 ],
+          "matScore": [ 2.64, 2.52, null, null, 3.95, 4.27, 3.549, 3.9 ],
+          "belStudents": [ 10, 5, null, 4, 2, 7, null, 5 ],
+          "matStudents": [ 1, 2, null, null, 4, 10, 6, 14 ]
+        }
+      }
+    }
+  }
+}

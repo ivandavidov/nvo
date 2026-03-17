@@ -1,0 +1,22 @@
+{
+  "grade": 4,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sofia": {
+      "fullName": "София",
+      "shortName": "София",
+      "schools": {
+        "2200037": {
+          "fullName": "ОПУ Прогресивно обр. 3",
+          "shortName": "Прогресивно обр. 3",
+          "isPrivate": true,
+          "belScore": [ null, null, null, null, 80.1, 88.0, 90.15, 86.85 ],
+          "matScore": [ null, null, null, null, 71.53, 85.38, 83.76, 86.2 ],
+          "belStudents": [ null, null, null, null, 15, 13, 17, 10 ],
+          "matStudents": [ null, null, null, null, 15, 13, 17, 10 ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "razlog": {
+      "fullName": "Разлог",
+      "shortName": "Разлог",
+      "schools": {
+        "102012": {
+          "fullName": "Разложка ПГ",
+          "shortName": "Разложка ПГ",
+          "isPrivate": false,
+          "belScore": [ 4.094, 4.28, 4.17, 4.07, 3.59, 3.53, 4.53, 4.25 ],
+          "matScore": [ 3.533, 3.056, 4.39, 5.05, 5.26, 5.26, 5.46, 5.277 ],
+          "belStudents": [ 76, 66, 44, 53, 46, 56, 30, 38 ],
+          "matStudents": [ 10, 3, 6, 4, 47, 49, 27, 36 ]
+        }
+      }
+    }
+  }
+}

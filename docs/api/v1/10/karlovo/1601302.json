@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "karlovo": {
+      "fullName": "Карлово",
+      "shortName": "Карлово",
+      "schools": {
+        "1601302": {
+          "fullName": "СУ Христо Проданов",
+          "shortName": "СУ Христо Проданов",
+          "isPrivate": false,
+          "belScore": [ null, null, 42.53, 42.53, 41.07, 49.33, 45.1, 43.52 ],
+          "matScore": [ null, null, 19.34, 19.34, 23.26, 32.51, 22.15, 21.72 ],
+          "belStudents": [ null, null, 79, 79, 68, 54, 73, 73 ],
+          "matStudents": [ null, null, 79, 79, 67, 54, 73, 72 ]
+        }
+      }
+    }
+  }
+}

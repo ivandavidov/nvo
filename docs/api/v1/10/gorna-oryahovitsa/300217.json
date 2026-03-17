@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "gorna-oryahovitsa": {
+      "fullName": "Горна Оряховица",
+      "shortName": "Г. Оряховица",
+      "schools": {
+        "300217": {
+          "fullName": "СУ Вичо Грънчаров",
+          "shortName": "СУ Вичо Грънчаров",
+          "isPrivate": false,
+          "belScore": [ null, null, 37.57, 37.57, 40.36, 43.95, 44.21, 47.9 ],
+          "matScore": [ null, null, 20.95, 20.95, 33.2, 18.68, 17.57, 26.4 ],
+          "belStudents": [ null, null, 21, 21, 25, 22, 43, 48 ],
+          "matStudents": [ null, null, 21, 21, 25, 22, 42, 47 ]
+        }
+      }
+    }
+  }
+}

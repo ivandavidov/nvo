@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "iambol": {
+      "fullName": "Ямбол",
+      "shortName": "Ямбол",
+      "schools": {
+        "2811516": {
+          "fullName": "ПМГ Атанас Радев",
+          "shortName": "ПМГ",
+          "isPrivate": false,
+          "belScore": [ 5.197, 4.91, 5.08, 4.89, 4.78, 4.6, 5.08, 4.92 ],
+          "matScore": [ 5.542, 5.203, 5.19, 5.03, 4.503, 4.581, 4.742, 4.99 ],
+          "belStudents": [ 90, 91, 85, 87, 82, 96, 95, 93 ],
+          "matStudents": [ 90, 91, 85, 87, 82, 98, 97, 93 ]
+        }
+      }
+    }
+  }
+}

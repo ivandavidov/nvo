@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "ihtiman": {
+      "fullName": "Ихтиман",
+      "shortName": "Ихтиман",
+      "schools": {
+        "2300188": {
+          "fullName": "СУ Христо Ботев",
+          "shortName": "СУ Христо Ботев",
+          "isPrivate": false,
+          "belScore": [ null, null, 38.56, 38.56, 39.43, 45.53, 45.18, 47.14 ],
+          "matScore": [ null, null, 15.76, 15.76, 26.0, 22.02, 20.31, 28.88 ],
+          "belStudents": [ null, null, 50, 50, 44, 44, 45, 58 ],
+          "matStudents": [ null, null, 50, 50, 44, 45, 44, 51 ]
+        }
+      }
+    }
+  }
+}

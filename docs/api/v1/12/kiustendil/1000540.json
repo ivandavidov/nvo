@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "kiustendil": {
+      "fullName": "Кюстендил",
+      "shortName": "Кюстендил",
+      "schools": {
+        "1000540": {
+          "fullName": "ЕГ Д-р Петър Берон",
+          "shortName": "ЕГ",
+          "isPrivate": false,
+          "belScore": [ 4.766, 4.54, 4.86, 4.5, 4.49, 4.42, 5.07, 5.1 ],
+          "matScore": [ 5.106, 4.577, 5.09, 4.95, 4.622, 4.27, 5.005, 5.053 ],
+          "belStudents": [ 73, 75, 77, 57, 106, 83, 81, 79 ],
+          "matStudents": [ 74, 77, 77, 57, 106, 83, 84, 79 ]
+        }
+      }
+    }
+  }
+}

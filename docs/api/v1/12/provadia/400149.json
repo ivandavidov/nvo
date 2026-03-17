@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "provadia": {
+      "fullName": "Провадия",
+      "shortName": "Провадия",
+      "schools": {
+        "400149": {
+          "fullName": "ПГ по хотелиерство",
+          "shortName": "ПГ по хотелиерство",
+          "isPrivate": false,
+          "belScore": [ 3.311, 3.09, 3.08, 3.15, 2.4, 2.23, 2.53, 2.52 ],
+          "matScore": [ 3.252, 2.395, null, 3.69, 2.79, 2.52, 3.2, 3.25 ],
+          "belStudents": [ 29, 32, 29, 34, 36, 29, 30, 17 ],
+          "matStudents": [ 4, 2, null, 4, 28, 12, 15, 12 ]
+        }
+      }
+    }
+  }
+}

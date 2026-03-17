@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "drianovo": {
+      "fullName": "Дряново",
+      "shortName": "Дряново",
+      "schools": {
+        "700205": {
+          "fullName": "ПГ по икономика и техника",
+          "shortName": "ПГ по иконом. и техника",
+          "isPrivate": false,
+          "belScore": [ null, null, 35.29, 35.29, 25.17, 28.56, 29.53, 25.08 ],
+          "matScore": [ null, null, 20.19, 20.19, 10.92, 17.6, 17.05, 17.96 ],
+          "belStudents": [ null, null, 21, 21, 18, 27, 20, 12 ],
+          "matStudents": [ null, null, 21, 21, 18, 25, 20, 12 ]
+        }
+      }
+    }
+  }
+}

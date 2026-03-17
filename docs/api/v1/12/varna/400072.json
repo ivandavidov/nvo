@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "varna": {
+      "fullName": "Варна",
+      "shortName": "Варна",
+      "schools": {
+        "400072": {
+          "fullName": "Частна езикова гимназия с изучаване на чужди езици-Прогрес",
+          "shortName": "Частна езикова гимназия с изучаване на чужди езици-Прогрес",
+          "isPrivate": false,
+          "belScore": [ null, null, 4.53, null, null, null, null, null ],
+          "matScore": [ null, null, 3.53, null, null, null, null, null ],
+          "belStudents": [ null, null, 1, null, null, null, null, null ],
+          "matStudents": [ null, null, 1, null, null, null, null, null ]
+        }
+      }
+    }
+  }
+}

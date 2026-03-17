@@ -1,0 +1,40 @@
+{
+  "grade": 7,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "bobov-dol": {
+      "fullName": "Бобов дол",
+      "shortName": "Бобов дол",
+      "schools": {
+        "1000015": {
+          "fullName": "ОУ Никола Вапцаров",
+          "shortName": "ОУ Н. Вапцаров",
+          "isPrivate": false,
+          "belScore": [ 26.38, 43.3, 32.62, 34.58, 35.71, 46.04, 53.17, 36.02 ],
+          "matScore": [ 16.73, 22.38, 16.15, 20.35, 13.92, 20.29, 32.23, 27.57 ],
+          "belStudents": [ 34, 20, 21, 20, 24, 27, 23, 22 ],
+          "matStudents": [ 33, 20, 21, 20, 24, 27, 23, 22 ]
+        },
+        "1000016": {
+          "fullName": "СУ Христо Ботев",
+          "shortName": "СУ Христо Ботев",
+          "isPrivate": false,
+          "belScore": [ 32.04, 38.12, 40.65, 48.38, 45.42, 39.85, 33.69, 25.75 ],
+          "matScore": [ 21.18, 18.83, 24.54, 22.12, 22.23, 17.4, 20.95, 17.3 ],
+          "belStudents": [ 23, 17, 20, 20, 13, 10, 16, 12 ],
+          "matStudents": [ 22, 16, 20, 19, 13, 10, 16, 11 ]
+        },
+        "1000018": {
+          "fullName": "СУ Д-р Петър Берон",
+          "shortName": "СУ Петър Берон",
+          "isPrivate": false,
+          "belScore": [ null, null, null, 26.25, 20.5, null, 22.5, 9.1 ],
+          "matScore": [ null, null, null, 25.0, 27.08, null, 18.75, 15.0 ],
+          "belStudents": [ null, null, null, 2, 3, null, 2, 5 ],
+          "matStudents": [ null, null, null, 2, 3, null, 2, 6 ]
+        }
+      }
+    }
+  }
+}

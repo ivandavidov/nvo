@@ -1,0 +1,40 @@
+{
+  "grade": 4,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "suedinenie": {
+      "fullName": "Съединение",
+      "shortName": "Съединение",
+      "schools": {
+        "1603301": {
+          "fullName": "СУ Христо Ботев",
+          "shortName": "СУ Христо Ботев",
+          "isPrivate": false,
+          "belScore": [ 53.93, 82.71, 82.71, 52.61, 51.27, 40.81, 47.47, 52.05 ],
+          "matScore": [ 71.21, 67.5, 67.5, 36.6, 25.35, 26.94, 32.47, 43.24 ],
+          "belStudents": [ 28, 24, 24, 18, 22, 16, 16, 22 ],
+          "matStudents": [ 29, 24, 24, 20, 23, 17, 16, 21 ]
+        },
+        "1603302": {
+          "fullName": "НУ Любен Каравелов",
+          "shortName": "НУ Л. Каравелов",
+          "isPrivate": false,
+          "belScore": [ 61.48, 82.88, 82.88, 77.28, 77.98, 82.19, 85.64, 77.63 ],
+          "matScore": [ 72.22, 82.12, 82.12, 53.92, 59.46, 63.88, 80.21, 75.65 ],
+          "belStudents": [ 27, 26, 26, 25, 26, 37, 21, 23 ],
+          "matStudents": [ 27, 26, 26, 25, 26, 37, 21, 23 ]
+        },
+        "201211": {
+          "fullName": "Основно училище Отец Паисий",
+          "shortName": "Основно училище Отец Паисий",
+          "isPrivate": false,
+          "belScore": [ 70.63, 57.08, 57.08, null, null, null, null, null ],
+          "matScore": [ 68.13, 69.17, 69.17, null, null, null, null, null ],
+          "belStudents": [ 16, 12, 12, null, null, null, null, null ],
+          "matStudents": [ 16, 12, 12, null, null, null, null, null ]
+        }
+      }
+    }
+  }
+}

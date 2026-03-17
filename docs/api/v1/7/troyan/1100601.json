@@ -1,0 +1,22 @@
+{
+  "grade": 7,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "troyan": {
+      "fullName": "Троян",
+      "shortName": "Троян",
+      "schools": {
+        "1100601": {
+          "fullName": "ОУ Иван Хаджийски",
+          "shortName": "ОУ Иван Хаджийски",
+          "isPrivate": false,
+          "belScore": [ 25.57, 19.67, null, 31.34, 21.12, 15.85, 15.79, 23.25 ],
+          "matScore": [ 23.09, 17.42, null, 20.67, 13.76, 15.83, 18.36, 30.6 ],
+          "belStudents": [ 21, 18, null, 31, 17, 13, 14, 16 ],
+          "matStudents": [ 22, 18, null, 32, 17, 13, 14, 15 ]
+        }
+      }
+    }
+  }
+}

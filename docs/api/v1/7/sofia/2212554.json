@@ -1,0 +1,22 @@
+{
+  "grade": 7,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sofia": {
+      "fullName": "София",
+      "shortName": "София",
+      "schools": {
+        "2212554": {
+          "fullName": "ЧОУ Ерих Кестнер",
+          "shortName": "Ерих Кестнер",
+          "isPrivate": true,
+          "belScore": [ 46.18, 76.28, 80.14, 83.0, 76.58, 81.68, 60.28, null ],
+          "matScore": [ 48.43, 60.91, 69.86, 83.72, 64.18, 55.63, 60.0, null ],
+          "belStudents": [ 14, 18, 14, 9, 18, 17, 9, null ],
+          "matStudents": [ 14, 17, 14, 8, 18, 17, 9, null ]
+        }
+      }
+    }
+  }
+}

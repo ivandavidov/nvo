@@ -1,0 +1,40 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sevlievo": {
+      "fullName": "Севлиево",
+      "shortName": "Севлиево",
+      "schools": {
+        "700318": {
+          "fullName": "СУ Васил Левски",
+          "shortName": "СУ Васил Левски",
+          "isPrivate": false,
+          "belScore": [ null, null, 56.56, 56.56, 54.45, 63.57, 58.79, 54.66 ],
+          "matScore": [ null, null, 24.5, 24.5, 31.27, 42.24, 35.69, 33.45 ],
+          "belStudents": [ null, null, 72, 72, 74, 74, 76, 71 ],
+          "matStudents": [ null, null, 72, 72, 74, 73, 75, 72 ]
+        },
+        "700323": {
+          "fullName": "ПГ по механоелектротехника",
+          "shortName": "ПГ по механоел.",
+          "isPrivate": false,
+          "belScore": [ null, null, 32.94, 32.94, 34.1, 39.48, 41.22, 36.55 ],
+          "matScore": [ null, null, 17.19, 17.19, 17.69, 18.57, 19.27, 21.01 ],
+          "belStudents": [ null, null, 89, 89, 86, 86, 88, 82 ],
+          "matStudents": [ null, null, 90, 90, 86, 85, 87, 83 ]
+        },
+        "700330": {
+          "fullName": "ПГ Марин Попов",
+          "shortName": "ПГ Марин Попов",
+          "isPrivate": false,
+          "belScore": [ null, null, 19.35, 19.35, 19.27, 25.18, 28.69, 24.19 ],
+          "matScore": [ null, null, 13.65, 13.65, 17.78, 20.49, 17.29, 17.43 ],
+          "belStudents": [ null, null, 20, 20, 26, 25, 31, 27 ],
+          "matStudents": [ null, null, 17, 17, 27, 26, 31, 27 ]
+        }
+      }
+    }
+  }
+}

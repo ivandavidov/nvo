@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "stanbiliiski": {
+      "fullName": "Стамболийски",
+      "shortName": "Стамболийски",
+      "schools": {
+        "1602907": {
+          "fullName": "СУ Отец Паисий",
+          "shortName": "СУ Отец Паисий",
+          "isPrivate": false,
+          "belScore": [ null, null, 17.35, 17.35, 26.7, 25.58, 23.22, 35.77 ],
+          "matScore": [ null, null, 12.64, 12.64, 22.25, 14.85, 14.48, 18.87 ],
+          "belStudents": [ null, null, 20, 20, 20, 18, 23, 22 ],
+          "matStudents": [ null, null, 22, 22, 20, 18, 21, 23 ]
+        }
+      }
+    }
+  }
+}

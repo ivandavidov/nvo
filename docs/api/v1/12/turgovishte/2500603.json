@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "turgovishte": {
+      "fullName": "Търговище",
+      "shortName": "Търговище",
+      "schools": {
+        "2500603": {
+          "fullName": "ПГ по електротехника и строителство",
+          "shortName": "ПГ по електрот.",
+          "isPrivate": false,
+          "belScore": [ 3.2, 3.35, 3.07, 3.1, 2.49, 2.48, 2.66, 2.23 ],
+          "matScore": [ 4.342, 3.453, 3.54, null, 4.76, 3.511, 4.54, 4.45 ],
+          "belStudents": [ 10, 23, 19, 12, 7, 8, 10, 11 ],
+          "matStudents": [ 7, 12, 10, null, 5, 5, 9, 6 ]
+        }
+      }
+    }
+  }
+}

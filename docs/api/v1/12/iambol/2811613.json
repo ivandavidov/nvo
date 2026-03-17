@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "iambol": {
+      "fullName": "Ямбол",
+      "shortName": "Ямбол",
+      "schools": {
+        "2811613": {
+          "fullName": "ПГ по лека пром., екология и хим. технологии",
+          "shortName": "ПГ по лека пром.",
+          "isPrivate": false,
+          "belScore": [ 3.049, 2.99, 3.74, 3.35, 2.37, 2.3, 3.13, 2.93 ],
+          "matScore": [ 2.98, 2.61, null, null, 4.4, 3.694, 3.902, 3.749 ],
+          "belStudents": [ 35, 46, 17, 31, 15, 31, 13, 11 ],
+          "matStudents": [ 2, 4, null, null, 25, 36, 28, 23 ]
+        }
+      }
+    }
+  }
+}

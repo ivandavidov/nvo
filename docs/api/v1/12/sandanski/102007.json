@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sandanski": {
+      "fullName": "Сандански",
+      "shortName": "Сандански",
+      "schools": {
+        "102007": {
+          "fullName": "Професионална техническа гимназия",
+          "shortName": "Техническа гимн.",
+          "isPrivate": false,
+          "belScore": [ 2.73, 2.81, 3.06, 3.28, 2.8, 2.22, null, 2.47 ],
+          "matScore": [ 3.29, 2.769, 3.15, 3.32, 2.98, 2.95, null, 3.39 ],
+          "belStudents": [ 1, 23, 10, 19, 12, 14, null, 5 ],
+          "matStudents": [ 1, 12, 8, 15, 11, 11, null, 6 ]
+        }
+      }
+    }
+  }
+}

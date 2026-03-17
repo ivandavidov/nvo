@@ -1,0 +1,22 @@
+{
+  "grade": 7,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "petrich": {
+      "fullName": "Петрич",
+      "shortName": "Петрич",
+      "schools": {
+        "10331": {
+          "fullName": "СУ Никола Й. Вапцаров",
+          "shortName": "СУ Никола Й. Вапцаров",
+          "isPrivate": false,
+          "belScore": [ 35.53, null, null, null, null, null, null, null ],
+          "matScore": [ 34.46, null, null, null, null, null, null, null ],
+          "belStudents": [ 93, null, null, null, null, null, null, null ],
+          "matStudents": [ 93, null, null, null, null, null, null, null ]
+        }
+      }
+    }
+  }
+}

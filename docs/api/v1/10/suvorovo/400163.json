@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "suvorovo": {
+      "fullName": "Суворово",
+      "shortName": "Суворово",
+      "schools": {
+        "400163": {
+          "fullName": "СУ Никола Вапцаров",
+          "shortName": "СУ Никола Вапцаров",
+          "isPrivate": false,
+          "belScore": [ null, null, 42.88, 42.88, 42.39, 51.14, 45.93, 46.59 ],
+          "matScore": [ null, null, 18.71, 18.71, 29.16, 27.17, 22.05, 33.89 ],
+          "belStudents": [ null, null, 17, 17, 28, 25, 20, 22 ],
+          "matStudents": [ null, null, 17, 17, 28, 25, 20, 22 ]
+        }
+      }
+    }
+  }
+}

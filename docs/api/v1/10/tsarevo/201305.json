@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "tsarevo": {
+      "fullName": "Царево",
+      "shortName": "Царево",
+      "schools": {
+        "201305": {
+          "fullName": "СУ Никола Вапцаров",
+          "shortName": "СУ Никола Вапцаров",
+          "isPrivate": false,
+          "belScore": [ null, null, 36.98, 36.98, 40.23, 40.06, 49.8, 49.87 ],
+          "matScore": [ null, null, 20.71, 20.71, 27.45, 33.43, 38.06, 28.71 ],
+          "belStudents": [ null, null, 49, 49, 48, 33, 50, 39 ],
+          "matStudents": [ null, null, 49, 49, 48, 32, 49, 39 ]
+        }
+      }
+    }
+  }
+}

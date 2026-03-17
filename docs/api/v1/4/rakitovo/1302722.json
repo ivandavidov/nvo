@@ -1,0 +1,22 @@
+{
+  "grade": 4,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "rakitovo": {
+      "fullName": "Ракитово",
+      "shortName": "Ракитово",
+      "schools": {
+        "1302722": {
+          "fullName": "Възпитателно училище-интернат Ангел Узунов",
+          "shortName": "ВУ-интернат",
+          "isPrivate": false,
+          "belScore": [ null, null, null, 38.0, null, null, null, null ],
+          "matScore": [ null, null, null, 50.0, null, null, null, null ],
+          "belStudents": [ null, null, null, 1, null, null, null, null ],
+          "matStudents": [ null, null, null, 1, null, null, null, null ]
+        }
+      }
+    }
+  }
+}

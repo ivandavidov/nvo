@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "ruse": {
+      "fullName": "Русе",
+      "shortName": "Русе",
+      "schools": {
+        "1806215": {
+          "fullName": "ЧПАГ Джордж Байрон",
+          "shortName": "Джордж Байрон",
+          "isPrivate": true,
+          "belScore": [ 4.533, 4.03, 3.97, 4.4, 3.27, null, 4.96, null ],
+          "matScore": [ 5.313, 4.285, 4.7, 4.65, 3.04, null, null, null ],
+          "belStudents": [ 12, 6, 7, 2, 2, null, 1, null ],
+          "matStudents": [ 13, 6, 7, 2, 2, null, null, null ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "grade": 4,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sofia": {
+      "fullName": "София",
+      "shortName": "София",
+      "schools": {
+        "2201505": {
+          "fullName": "ЧНУ Фоти",
+          "shortName": "Фоти",
+          "isPrivate": true,
+          "belScore": [ null, 85.0, 85.0, 91.67, 76.25, null, null, null ],
+          "matScore": [ null, 73.33, 73.33, 81.67, 51.0, null, null, null ],
+          "belStudents": [ null, 6, 6, 3, 2, null, null, null ],
+          "matStudents": [ null, 6, 6, 3, 2, null, null, null ]
+        }
+      }
+    }
+  }
+}

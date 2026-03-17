@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "vratsa": {
+      "fullName": "Враца",
+      "shortName": "Враца",
+      "schools": {
+        "1203007": {
+          "fullName": "СУ Кирил и Методий",
+          "shortName": "СУ Кирил и Методий",
+          "isPrivate": false,
+          "belScore": [ 25.0, 25.0, 25.0, 25.0, null, null, null, null ],
+          "matScore": [ 28.0, 28.0, 28.0, 28.0, null, null, null, null ],
+          "belStudents": [ 1, 1, 1, 1, null, null, null, null ],
+          "matStudents": [ 1, 1, 1, 1, null, null, null, null ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sofia": {
+      "fullName": "София",
+      "shortName": "София",
+      "schools": {
+        "2212553": {
+          "fullName": "ЧСУ Петко Рачов Славейков",
+          "shortName": "Петко Славейков",
+          "isPrivate": true,
+          "belScore": [ null, null, null, null, 55.2, null, 48.0, null ],
+          "matScore": [ null, null, null, null, 75.38, null, 20.0, null ],
+          "belStudents": [ null, null, null, null, 5, null, 2, null ],
+          "matStudents": [ null, null, null, null, 2, null, 2, null ]
+        }
+      }
+    }
+  }
+}

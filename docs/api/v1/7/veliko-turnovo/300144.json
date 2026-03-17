@@ -1,0 +1,22 @@
+{
+  "grade": 7,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "veliko-turnovo": {
+      "fullName": "Велико Търново",
+      "shortName": "В. Търново",
+      "schools": {
+        "300144": {
+          "fullName": "ЧОУ Димитър Екимов",
+          "shortName": "Димитър Екимов",
+          "isPrivate": true,
+          "belScore": [ null, null, 43.0, 55.0, 49.0, 48.25, 51.67, 30.13 ],
+          "matScore": [ null, null, 17.38, 23.5, 22.58, 22.5, 18.42, 18.5 ],
+          "belStudents": [ null, null, 2, 3, 3, 2, 3, 4 ],
+          "matStudents": [ null, null, 2, 3, 3, 2, 3, 4 ]
+        }
+      }
+    }
+  }
+}

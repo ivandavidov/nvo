@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "krichim": {
+      "fullName": "Кричим",
+      "shortName": "Кричим",
+      "schools": {
+        "1601403": {
+          "fullName": "СУ Петко Рачов Славейков",
+          "shortName": "СУ Петко Славейков",
+          "isPrivate": false,
+          "belScore": [ null, null, 18.04, 18.04, 15.74, 22.79, 17.9, 26.9 ],
+          "matScore": [ null, null, 12.72, 12.72, 18.79, 18.61, 14.28, 30.07 ],
+          "belStudents": [ null, null, 28, 28, 19, 34, 20, 21 ],
+          "matStudents": [ null, null, 29, 29, 18, 33, 18, 21 ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "varna": {
+      "fullName": "Варна",
+      "shortName": "Варна",
+      "schools": {
+        "403537": {
+          "fullName": "СУ Димчо Дебелянов",
+          "shortName": "СУ Димчо Дебелянов",
+          "isPrivate": false,
+          "belScore": [ 4.041, null, 4.11, 4.41, 3.92, 3.48, 4.14, 4.18 ],
+          "matScore": [ 4.105, null, 4.13, 4.41, 4.421, 3.812, 4.293, 4.486 ],
+          "belStudents": [ 39, null, 27, 46, 24, 46, 51, 63 ],
+          "matStudents": [ 40, null, 26, 44, 22, 41, 43, 53 ]
+        }
+      }
+    }
+  }
+}

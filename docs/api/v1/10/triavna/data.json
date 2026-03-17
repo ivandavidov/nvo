@@ -1,0 +1,31 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "triavna": {
+      "fullName": "Трявна",
+      "shortName": "Трявна",
+      "schools": {
+        "2902503": {
+          "fullName": "НГПИ Тревненска школа",
+          "shortName": "НГПИ Тревненска школа",
+          "isPrivate": false,
+          "belScore": [ null, null, 43.28, 43.28, 39.18, 46.25, 55.48, 47.23 ],
+          "matScore": [ null, null, 22.08, 22.08, 18.16, 16.95, 23.35, 26.3 ],
+          "belStudents": [ null, null, 25, 25, 22, 34, 23, 22 ],
+          "matStudents": [ null, null, 25, 25, 22, 34, 23, 22 ]
+        },
+        "700403": {
+          "fullName": "СУ Петко Рачов Славейков",
+          "shortName": "СУ Петко Славейков",
+          "isPrivate": false,
+          "belScore": [ null, null, 40.28, 40.28, 50.67, 52.5, 52.29, 42.4 ],
+          "matScore": [ null, null, 21.28, 21.28, 23.07, 25.39, 16.58, 28.07 ],
+          "belStudents": [ null, null, 18, 18, 21, 27, 21, 15 ],
+          "matStudents": [ null, null, 18, 18, 21, 27, 20, 15 ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "grade": 4,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sofia": {
+      "fullName": "София",
+      "shortName": "София",
+      "schools": {
+        "2200024": {
+          "fullName": "ЧСУ Наука за деца",
+          "shortName": "Наука за деца",
+          "isPrivate": true,
+          "belScore": [ null, null, null, 92.59, 85.58, 92.96, 95.98, 95.03 ],
+          "matScore": [ null, null, null, 90.06, 85.9, 93.38, 96.62, 96.72 ],
+          "belStudents": [ null, null, null, 17, 31, 25, 30, 38 ],
+          "matStudents": [ null, null, null, 17, 31, 25, 30, 38 ]
+        }
+      }
+    }
+  }
+}

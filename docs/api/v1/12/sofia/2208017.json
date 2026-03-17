@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sofia": {
+      "fullName": "София",
+      "shortName": "София",
+      "schools": {
+        "2208017": {
+          "fullName": "17 СУ Дамян Груев",
+          "shortName": "17 СУ",
+          "isPrivate": false,
+          "belScore": [ 3.35, null, null, null, 4.08, null, 4.34, 4.02 ],
+          "matScore": [ 4.24, null, null, null, 2.87, 2.26, 3.514, 4.04 ],
+          "belStudents": [ 1, null, null, null, 20, null, 19, 19 ],
+          "matStudents": [ 1, null, null, null, 20, 6, 22, 21 ]
+        }
+      }
+    }
+  }
+}

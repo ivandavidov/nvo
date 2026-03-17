@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "botevgrad": {
+      "fullName": "Ботевград",
+      "shortName": "Ботевград",
+      "schools": {
+        "2301044": {
+          "fullName": "Техническа ПГ Стамен Панчев",
+          "shortName": "Техническа ПГ",
+          "isPrivate": false,
+          "belScore": [ null, null, 14.57, 14.57, 15.4, 20.17, 20.36, 19.2 ],
+          "matScore": [ null, null, 15.78, 15.78, 18.7, 14.74, 15.02, 20.18 ],
+          "belStudents": [ null, null, 53, 53, 42, 37, 28, 25 ],
+          "matStudents": [ null, null, 49, 49, 40, 38, 28, 25 ]
+        }
+      }
+    }
+  }
+}

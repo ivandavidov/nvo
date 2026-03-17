@@ -1,0 +1,22 @@
+{
+  "grade": 4,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "lovech": {
+      "fullName": "Ловеч",
+      "shortName": "Ловеч",
+      "schools": {
+        "1100102": {
+          "fullName": "ЧНУ Св. Седмочисленици",
+          "shortName": "Св. Седмочисленици",
+          "isPrivate": true,
+          "belScore": [ null, null, null, null, null, 77.25, 90.0, 77.5 ],
+          "matScore": [ null, null, null, null, null, 70.71, 84.44, 82.64 ],
+          "belStudents": [ null, null, null, null, null, 12, 8, 9 ],
+          "matStudents": [ null, null, null, null, null, 12, 8, 7 ]
+        }
+      }
+    }
+  }
+}

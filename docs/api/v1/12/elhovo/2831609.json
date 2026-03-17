@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "elhovo": {
+      "fullName": "Елхово",
+      "shortName": "Елхово",
+      "schools": {
+        "2831609": {
+          "fullName": "ПГ Стефан Караджа",
+          "shortName": "ПГ Стефан Караджа",
+          "isPrivate": false,
+          "belScore": [ 3.025, 3.02, 2.85, 2.96, 2.78, 3.05, 3.42, 2.9 ],
+          "matScore": [ 3.398, 2.67, 3.39, null, 4.27, 4.1, 4.16, 4.04 ],
+          "belStudents": [ 48, 56, 38, 28, 23, 17, 17, 23 ],
+          "matStudents": [ 10, 2, 2, null, 20, 20, 20, 23 ]
+        }
+      }
+    }
+  }
+}

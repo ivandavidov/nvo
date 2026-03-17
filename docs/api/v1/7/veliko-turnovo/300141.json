@@ -1,0 +1,22 @@
+{
+  "grade": 7,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "veliko-turnovo": {
+      "fullName": "Велико Търново",
+      "shortName": "В. Търново",
+      "schools": {
+        "300141": {
+          "fullName": "ЧПГ АК-Аркус",
+          "shortName": "АК-Арукс",
+          "isPrivate": true,
+          "belScore": [ null, null, null, null, null, null, 73.65, 81.9 ],
+          "matScore": [ null, null, null, null, null, null, 72.21, 67.88 ],
+          "belStudents": [ null, null, null, null, null, null, 23, 24 ],
+          "matStudents": [ null, null, null, null, null, null, 23, 24 ]
+        }
+      }
+    }
+  }
+}

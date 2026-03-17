@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sofia": {
+      "fullName": "София",
+      "shortName": "София",
+      "schools": {
+        "2200039": {
+          "fullName": "ЧГ по прир. науки и предпр. Асен Йорданов",
+          "shortName": "Асен Йорданов",
+          "isPrivate": true,
+          "belScore": [ null, null, null, null, 64.0, null, null, null ],
+          "matScore": [ null, null, null, null, 49.21, null, null, null ],
+          "belStudents": [ null, null, null, null, 7, null, null, null ],
+          "matStudents": [ null, null, null, null, 7, null, null, null ]
+        }
+      }
+    }
+  }
+}

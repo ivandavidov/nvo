@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "belene": {
+      "fullName": "Белене",
+      "shortName": "Белене",
+      "schools": {
+        "1500705": {
+          "fullName": "СУ Димчо Дебелянов",
+          "shortName": "СУ Димчо Дебелянов",
+          "isPrivate": false,
+          "belScore": [ null, null, 49.84, 49.84, 42.84, 48.7, 57.11, 50.17 ],
+          "matScore": [ null, null, 28.62, 28.62, 24.81, 34.47, 35.5, 38.6 ],
+          "belStudents": [ null, null, 37, 37, 31, 37, 23, 29 ],
+          "matStudents": [ null, null, 37, 37, 31, 37, 23, 29 ]
+        }
+      }
+    }
+  }
+}

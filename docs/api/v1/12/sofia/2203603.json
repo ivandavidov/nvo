@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sofia": {
+      "fullName": "София",
+      "shortName": "София",
+      "schools": {
+        "2203603": {
+          "fullName": "Специално училище за ученици с нарушено зрение Луи Брайл",
+          "shortName": "Луи Брайл",
+          "isPrivate": false,
+          "belScore": [ 4.647, 4.92, 5.6, 5.31, 4.03, 3.79, null, 4.13 ],
+          "matScore": [ 4.412, 4.153, 5.71, 4.58, 3.405, 3.3, 3.19, 3.534 ],
+          "belStudents": [ 4, 6, 2, 3, 6, 6, null, 7 ],
+          "matStudents": [ 4, 6, 2, 3, 6, 6, 1, 7 ]
+        }
+      }
+    }
+  }
+}

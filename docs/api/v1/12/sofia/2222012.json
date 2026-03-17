@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sofia": {
+      "fullName": "София",
+      "shortName": "София",
+      "schools": {
+        "2222012": {
+          "fullName": "12 СУ Цар Иван Асен II",
+          "shortName": "12 СУ",
+          "isPrivate": false,
+          "belScore": [ 4.519, 4.55, 4.48, 4.55, 4.37, 4.45, 4.98, 4.88 ],
+          "matScore": [ 4.974, 4.42, 4.66, 4.73, 4.758, 4.757, 5.173, 5.251 ],
+          "belStudents": [ 67, 84, 75, 68, 70, 76, 71, 79 ],
+          "matStudents": [ 67, 86, 75, 67, 71, 74, 71, 79 ]
+        }
+      }
+    }
+  }
+}

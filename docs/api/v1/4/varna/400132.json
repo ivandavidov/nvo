@@ -1,0 +1,22 @@
+{
+  "grade": 4,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "varna": {
+      "fullName": "Варна",
+      "shortName": "Варна",
+      "schools": {
+        "400132": {
+          "fullName": "ЧОУ Демократично образование",
+          "shortName": "Демокр. образов.",
+          "isPrivate": true,
+          "belScore": [ null, null, null, null, null, 91.5, 73.08, 46.5 ],
+          "matScore": [ null, null, null, null, null, 67.25, 64.58, 39.0 ],
+          "belStudents": [ null, null, null, null, null, 2, 6, 2 ],
+          "matStudents": [ null, null, null, null, null, 2, 6, 2 ]
+        }
+      }
+    }
+  }
+}

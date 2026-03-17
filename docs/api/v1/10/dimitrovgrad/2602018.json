@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "dimitrovgrad": {
+      "fullName": "Димитровград",
+      "shortName": "Димитровград",
+      "schools": {
+        "2602018": {
+          "fullName": "СУ Любен Каравелов",
+          "shortName": "СУ Л. Каравелов",
+          "isPrivate": false,
+          "belScore": [ null, null, 33.04, 33.04, 29.64, 36.19, 37.27, 30.71 ],
+          "matScore": [ null, null, 19.49, 19.49, 19.13, 15.24, 23.13, 23.17 ],
+          "belStudents": [ null, null, 46, 46, 45, 26, 24, 42 ],
+          "matStudents": [ null, null, 47, 47, 45, 25, 24, 41 ]
+        }
+      }
+    }
+  }
+}

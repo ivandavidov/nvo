@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "blagoevgrad": {
+      "fullName": "Благоевград",
+      "shortName": "Благоевград",
+      "schools": {
+        "109174": {
+          "fullName": "ЧСУ Димитър и Йоан",
+          "shortName": "Димитър и Йоан",
+          "isPrivate": true,
+          "belScore": [ 3.406, 3.43, null, null, null, null, null, null ],
+          "matScore": [ 3.363, 3.376, null, null, null, null, null, null ],
+          "belStudents": [ 6, 9, null, null, null, null, null, null ],
+          "matStudents": [ 9, 11, null, null, null, null, null, null ]
+        }
+      }
+    }
+  }
+}

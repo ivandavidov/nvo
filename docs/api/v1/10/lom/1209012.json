@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "lom": {
+      "fullName": "Лом",
+      "shortName": "Лом",
+      "schools": {
+        "1209012": {
+          "fullName": "ПГ по произв. технологии",
+          "shortName": "ПГ по произв. техн.",
+          "isPrivate": false,
+          "belScore": [ null, null, 41.04, 41.04, 22.95, 31.03, 39.9, 35.33 ],
+          "matScore": [ null, null, 36.81, 36.81, 17.55, 22.7, 26.49, 28.09 ],
+          "belStudents": [ null, null, 68, 68, 61, 65, 67, 49 ],
+          "matStudents": [ null, null, 67, 67, 61, 65, 67, 49 ]
+        }
+      }
+    }
+  }
+}

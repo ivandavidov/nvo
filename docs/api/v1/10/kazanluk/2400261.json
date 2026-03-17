@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "kazanluk": {
+      "fullName": "Казанлък",
+      "shortName": "Казанлък",
+      "schools": {
+        "2400261": {
+          "fullName": "ПГ Акад. Петко Стайнов",
+          "shortName": "ПГ П. Стайнов",
+          "isPrivate": false,
+          "belScore": [ null, null, 12.11, 12.11, 11.96, 19.3, 18.65, 14.11 ],
+          "matScore": [ null, null, 13.86, 13.86, 17.13, 21.39, 25.65, 18.75 ],
+          "belStudents": [ null, null, 28, 28, 27, 23, 17, 19 ],
+          "matStudents": [ null, null, 29, 29, 27, 23, 17, 18 ]
+        }
+      }
+    }
+  }
+}

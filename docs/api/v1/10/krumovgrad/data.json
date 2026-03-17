@@ -1,0 +1,31 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "krumovgrad": {
+      "fullName": "Крумовград",
+      "shortName": "Крумовград",
+      "schools": {
+        "909501": {
+          "fullName": "СУ Васил Левски",
+          "shortName": "СУ Васил Левски",
+          "isPrivate": false,
+          "belScore": [ null, null, 50.91, 50.91, 41.87, 51.15, 40.04, 46.18 ],
+          "matScore": [ null, null, 27.75, 27.75, 33.59, 33.56, 30.18, 31.63 ],
+          "belStudents": [ null, null, 64, 64, 75, 72, 75, 71 ],
+          "matStudents": [ null, null, 64, 64, 74, 72, 74, 71 ]
+        },
+        "909503": {
+          "fullName": "ПГ по транспорт Хр. Смирненски",
+          "shortName": "ПГ по транспорт",
+          "isPrivate": false,
+          "belScore": [ null, null, 22.43, 22.43, 16.26, 21.17, 22.75, 18.7 ],
+          "matScore": [ null, null, 25.45, 25.45, 40.0, 25.97, 27.52, 38.14 ],
+          "belStudents": [ null, null, 35, 35, 43, 36, 32, 40 ],
+          "matStudents": [ null, null, 33, 33, 43, 36, 33, 42 ]
+        }
+      }
+    }
+  }
+}

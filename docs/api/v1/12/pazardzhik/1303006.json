@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "pazardzhik": {
+      "fullName": "Пазарджик",
+      "shortName": "Пазарджик",
+      "schools": {
+        "1303006": {
+          "fullName": "ПГ по промишлени технологии",
+          "shortName": "ПГ по пром. техн.",
+          "isPrivate": false,
+          "belScore": [ 3.05, 2.92, 2.88, 2.95, 2.0, 2.1, 2.81, 2.26 ],
+          "matScore": [ 3.42, null, null, 3.48, null, 3.27, 4.42, 4.22 ],
+          "belStudents": [ 19, 16, 19, 15, 3, 11, 7, 14 ],
+          "matStudents": [ 1, null, null, 1, null, 5, 3, 12 ]
+        }
+      }
+    }
+  }
+}

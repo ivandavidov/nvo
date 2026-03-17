@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "blagoevgrad": {
+      "fullName": "Благоевград",
+      "shortName": "Благоевград",
+      "schools": {
+        "101880": {
+          "fullName": "СУ Иван Вазов",
+          "shortName": "СУ Иван Вазов",
+          "isPrivate": false,
+          "belScore": [ null, null, 2.81, 2.04, null, 2.0, null, null ],
+          "matScore": [ null, null, 3.14, 3.06, null, null, null, null ],
+          "belStudents": [ null, null, 1, 1, null, 1, null, null ],
+          "matStudents": [ null, null, 1, 1, null, null, null, null ]
+        }
+      }
+    }
+  }
+}

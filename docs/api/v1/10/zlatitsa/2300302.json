@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "zlatitsa": {
+      "fullName": "Златица",
+      "shortName": "Златица",
+      "schools": {
+        "2300302": {
+          "fullName": "ПГ Златица",
+          "shortName": "ПГ Златица",
+          "isPrivate": false,
+          "belScore": [ null, null, 28.06, 28.06, 20.22, 26.24, 36.03, 40.56 ],
+          "matScore": [ null, null, 13.41, 13.41, 17.94, 17.22, 39.2, 51.47 ],
+          "belStudents": [ null, null, 17, 17, 18, 23, 15, 16 ],
+          "matStudents": [ null, null, 17, 17, 18, 23, 15, 17 ]
+        }
+      }
+    }
+  }
+}

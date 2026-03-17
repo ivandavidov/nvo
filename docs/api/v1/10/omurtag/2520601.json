@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "omurtag": {
+      "fullName": "Омуртаг",
+      "shortName": "Омуртаг",
+      "schools": {
+        "2520601": {
+          "fullName": "ПГ по транспорт и лека промишленост",
+          "shortName": "ПГ по транспорт",
+          "isPrivate": false,
+          "belScore": [ null, null, 17.52, 17.52, 19.3, 15.97, 30.6, 18.38 ],
+          "matScore": [ null, null, 26.83, 26.83, 38.71, 14.7, 42.4, 37.27 ],
+          "belStudents": [ null, null, 64, 64, 43, 46, 41, 42 ],
+          "matStudents": [ null, null, 64, 64, 43, 43, 40, 41 ]
+        }
+      }
+    }
+  }
+}

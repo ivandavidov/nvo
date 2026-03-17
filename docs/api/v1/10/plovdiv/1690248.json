@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "plovdiv": {
+      "fullName": "Пловдив",
+      "shortName": "Пловдив",
+      "schools": {
+        "1690248": {
+          "fullName": "СУ Симон Боливар",
+          "shortName": "СУ Симон Боливар",
+          "isPrivate": false,
+          "belScore": [ null, null, null, null, null, null, 24.23, 19.5 ],
+          "matScore": [ null, null, null, null, null, null, 33.96, 14.64 ],
+          "belStudents": [ null, null, null, null, null, null, 13, 18 ],
+          "matStudents": [ null, null, null, null, null, null, 13, 18 ]
+        }
+      }
+    }
+  }
+}

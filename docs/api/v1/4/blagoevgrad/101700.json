@@ -1,0 +1,22 @@
+{
+  "grade": 4,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "blagoevgrad": {
+      "fullName": "Благоевград",
+      "shortName": "Благоевград",
+      "schools": {
+        "101700": {
+          "fullName": "9 ОУ Пейо Яворов",
+          "shortName": "ОУ Пейо Яворов",
+          "isPrivate": false,
+          "belScore": [ 68.0, 43.93, 43.93, 26.33, null, 72.31, 56.65, 67.15 ],
+          "matScore": [ 65.17, 47.31, 47.31, 27.82, null, 69.59, 58.58, 65.57 ],
+          "belStudents": [ 30, 14, 14, 12, null, 16, 13, 24 ],
+          "matStudents": [ 30, 13, 13, 11, null, 17, 13, 23 ]
+        }
+      }
+    }
+  }
+}

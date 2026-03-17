@@ -1,0 +1,22 @@
+{
+  "grade": 7,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "kiustendil": {
+      "fullName": "Кюстендил",
+      "shortName": "Кюстендил",
+      "schools": {
+        "1001680": {
+          "fullName": "ОУ Даскал Димитри",
+          "shortName": "ОУ Даскал Димитри",
+          "isPrivate": false,
+          "belScore": [ 33.84, 47.19, 49.61, null, null, null, null, null ],
+          "matScore": [ 27.97, 19.77, 21.47, null, null, null, null, null ],
+          "belStudents": [ 32, 27, 23, null, null, null, null, null ],
+          "matStudents": [ 32, 27, 23, null, null, null, null, null ]
+        }
+      }
+    }
+  }
+}

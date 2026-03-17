@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "samokov": {
+      "fullName": "Самоков",
+      "shortName": "Самоков",
+      "schools": {
+        "2304610": {
+          "fullName": "Спортно у-ще Никола Велчев",
+          "shortName": "СпУ Никола Велчев",
+          "isPrivate": false,
+          "belScore": [ null, null, 27.0, 27.0, 37.47, 44.44, 60.95, 32.16 ],
+          "matScore": [ null, null, 44.69, 44.69, 43.87, 47.78, 44.59, 32.89 ],
+          "belStudents": [ null, null, 14, 14, 19, 18, 28, 19 ],
+          "matStudents": [ null, null, 13, 13, 19, 18, 28, 19 ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "general-toshevo": {
+      "fullName": "Генерал Тошево",
+      "shortName": "Ген. Тошево",
+      "schools": {
+        "800074": {
+          "fullName": "СУ Никола Вапцаров",
+          "shortName": "СУ Никола Вапцаров",
+          "isPrivate": false,
+          "belScore": [ null, null, 47.86, 47.86, 62.58, 38.11, 56.85, 47.85 ],
+          "matScore": [ null, null, 17.07, 17.07, 49.41, 21.0, 15.08, 38.62 ],
+          "belStudents": [ null, null, 14, 14, 12, 14, 13, 13 ],
+          "matStudents": [ null, null, 14, 14, 11, 14, 12, 13 ]
+        }
+      }
+    }
+  }
+}

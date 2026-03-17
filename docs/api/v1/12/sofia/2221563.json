@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sofia": {
+      "fullName": "София",
+      "shortName": "София",
+      "schools": {
+        "2221563": {
+          "fullName": "Първа Частна Математическа Гимназия",
+          "shortName": "ПЧМГ",
+          "isPrivate": true,
+          "belScore": [ null, 5.41, 5.55, 5.45, 5.37, 5.17, 5.39, 5.38 ],
+          "matScore": [ null, 5.67, 5.78, 5.78, 5.414, 4.834, 5.64, 5.383 ],
+          "belStudents": [ null, 23, 18, 14, 23, 19, 26, 29 ],
+          "matStudents": [ null, 23, 18, 14, 23, 19, 26, 29 ]
+        }
+      }
+    }
+  }
+}

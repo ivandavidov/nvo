@@ -1,0 +1,40 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "provadia": {
+      "fullName": "Провадия",
+      "shortName": "Провадия",
+      "schools": {
+        "400148": {
+          "fullName": "СУ Димитър Благоев",
+          "shortName": "СУ Димитър Благоев",
+          "isPrivate": false,
+          "belScore": [ null, null, 51.8, 51.8, 37.62, 50.56, 47.17, 46.43 ],
+          "matScore": [ null, null, 34.2, 34.2, 26.74, 23.77, 26.57, 33.9 ],
+          "belStudents": [ null, null, 51, 51, 45, 45, 43, 51 ],
+          "matStudents": [ null, null, 51, 51, 45, 45, 43, 51 ]
+        },
+        "400149": {
+          "fullName": "ПГ по хотелиерство",
+          "shortName": "ПГ по хотелиерство",
+          "isPrivate": false,
+          "belScore": [ null, null, 20.61, 20.61, 11.41, 16.05, 14.77, 16.59 ],
+          "matScore": [ null, null, 12.52, 12.52, 16.12, 18.18, 14.92, 16.59 ],
+          "belStudents": [ null, null, 31, 31, 41, 28, 37, 45 ],
+          "matStudents": [ null, null, 31, 31, 40, 28, 36, 45 ]
+        },
+        "400150": {
+          "fullName": "ПГ по селско стопанство",
+          "shortName": "ПГ по селско стоп.",
+          "isPrivate": false,
+          "belScore": [ null, null, 17.74, 17.74, 21.84, 18.79, 35.48, 28.61 ],
+          "matScore": [ null, null, 12.13, 12.13, 37.51, 13.27, 35.53, 32.06 ],
+          "belStudents": [ null, null, 35, 35, 37, 42, 40, 49 ],
+          "matStudents": [ null, null, 32, 32, 40, 41, 39, 45 ]
+        }
+      }
+    }
+  }
+}

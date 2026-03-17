@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "kazanluk": {
+      "fullName": "Казанлък",
+      "shortName": "Казанлък",
+      "schools": {
+        "2400266": {
+          "fullName": "ПГ по транспорт и мениджмънт",
+          "shortName": "ПГ по транспорт",
+          "isPrivate": false,
+          "belScore": [ null, null, 28.68, 28.68, 20.42, 24.29, 25.66, 23.95 ],
+          "matScore": [ null, null, 14.64, 14.64, 19.67, 16.41, 15.76, 18.14 ],
+          "belStudents": [ null, null, 74, 74, 60, 81, 70, 62 ],
+          "matStudents": [ null, null, 74, 74, 60, 81, 68, 59 ]
+        }
+      }
+    }
+  }
+}

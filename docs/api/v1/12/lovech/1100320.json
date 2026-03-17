@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "lovech": {
+      "fullName": "Ловеч",
+      "shortName": "Ловеч",
+      "schools": {
+        "1100320": {
+          "fullName": "ППМГ",
+          "shortName": "ППМГ",
+          "isPrivate": false,
+          "belScore": [ 4.621, 4.33, 4.49, 4.34, 4.04, 4.35, 4.47, 4.28 ],
+          "matScore": [ 4.851, 4.349, 4.34, 4.5, 3.678, 4.1, 4.257, 4.198 ],
+          "belStudents": [ 112, 103, 98, 101, 81, 91, 98, 95 ],
+          "matStudents": [ 112, 104, 99, 102, 81, 96, 100, 97 ]
+        }
+      }
+    }
+  }
+}

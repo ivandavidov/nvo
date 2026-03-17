@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "plovdiv": {
+      "fullName": "Пловдив",
+      "shortName": "Пловдив",
+      "schools": {
+        "2902402": {
+          "fullName": "Художествена гимназия Цанко Лавренов",
+          "shortName": "Художествена гимназия",
+          "isPrivate": false,
+          "belScore": [ 4.671, 4.44, 4.6, 4.39, 4.44, 4.08, 4.71, 4.55 ],
+          "matScore": [ null, 4.12, null, null, 5.27, 5.06, 5.17, 5.35 ],
+          "belStudents": [ 47, 47, 41, 59, 46, 49, 55, 68 ],
+          "matStudents": [ null, 1, null, null, 46, 49, 52, 68 ]
+        }
+      }
+    }
+  }
+}

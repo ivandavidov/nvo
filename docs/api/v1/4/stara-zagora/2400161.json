@@ -1,0 +1,22 @@
+{
+  "grade": 4,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "stara-zagora": {
+      "fullName": "Стара Загора",
+      "shortName": "Ст. Загора",
+      "schools": {
+        "2400161": {
+          "fullName": "ЧСУ Нов век",
+          "shortName": "Нов век",
+          "isPrivate": true,
+          "belScore": [ 92.14, 93.57, 93.57, null, null, 93.33, null, null ],
+          "matScore": [ 89.29, 90.83, 90.83, null, null, 89.67, null, null ],
+          "belStudents": [ 7, 7, 7, null, null, 3, null, null ],
+          "matStudents": [ 7, 6, 6, null, null, 3, null, null ]
+        }
+      }
+    }
+  }
+}

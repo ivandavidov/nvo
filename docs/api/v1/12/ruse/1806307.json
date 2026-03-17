@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "ruse": {
+      "fullName": "Русе",
+      "shortName": "Русе",
+      "schools": {
+        "1806307": {
+          "fullName": "ПГ по облекло",
+          "shortName": "ПГ по облекло",
+          "isPrivate": false,
+          "belScore": [ 3.633, 3.29, 3.45, 3.34, 2.71, 2.73, 3.38, 3.37 ],
+          "matScore": [ 5.303, 3.34, 3.0, null, 4.75, 4.9, 4.828, 5.009 ],
+          "belStudents": [ 68, 62, 55, 50, 65, 74, 56, 30 ],
+          "matStudents": [ 6, 1, 1, null, 58, 61, 47, 27 ]
+        }
+      }
+    }
+  }
+}

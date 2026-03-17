@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sofia": {
+      "fullName": "София",
+      "shortName": "София",
+      "schools": {
+        "2213131": {
+          "fullName": "131 СУ Климент Аркад. Тимирязев",
+          "shortName": "131 СУ",
+          "isPrivate": false,
+          "belScore": [ null, null, null, null, null, 38.9, 44.68, 57.58 ],
+          "matScore": [ null, null, null, null, null, 17.59, 19.66, 43.92 ],
+          "belStudents": [ null, null, null, null, null, 43, 39, 36 ],
+          "matStudents": [ null, null, null, null, null, 44, 40, 37 ]
+        }
+      }
+    }
+  }
+}

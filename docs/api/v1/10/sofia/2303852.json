@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sofia": {
+      "fullName": "София",
+      "shortName": "София",
+      "schools": {
+        "2303852": {
+          "fullName": "ЧПГ Челопеч",
+          "shortName": "Челопеч",
+          "isPrivate": true,
+          "belScore": [ null, null, 57.86, 57.86, 58.97, 69.59, 68.06, 59.5 ],
+          "matScore": [ null, null, 42.71, 42.71, 55.41, 38.4, 40.28, 37.35 ],
+          "belStudents": [ null, null, 21, 21, 31, 28, 32, 20 ],
+          "matStudents": [ null, null, 21, 21, 31, 28, 32, 20 ]
+        }
+      }
+    }
+  }
+}

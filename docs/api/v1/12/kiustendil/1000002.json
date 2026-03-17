@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "kiustendil": {
+      "fullName": "Кюстендил",
+      "shortName": "Кюстендил",
+      "schools": {
+        "1000002": {
+          "fullName": "ПГ по селско стопанство",
+          "shortName": "ПГ по селско стоп.",
+          "isPrivate": false,
+          "belScore": [ 2.92, 2.7, null, 2.92, 2.0, 2.0, 2.4, 2.15 ],
+          "matScore": [ null, 2.92, null, 2.94, null, null, 2.0, 3.638 ],
+          "belStudents": [ 2, 1, null, 5, 1, 2, 6, 9 ],
+          "matStudents": [ null, 1, null, 2, null, null, 5, 7 ]
+        }
+      }
+    }
+  }
+}

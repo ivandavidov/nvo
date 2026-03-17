@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "biala-slatina": {
+      "fullName": "Бяла Слатина",
+      "shortName": "Б. Слатина",
+      "schools": {
+        "603024": {
+          "fullName": "СУ Васил Левски",
+          "shortName": "СУ Васил Левски",
+          "isPrivate": false,
+          "belScore": [ null, null, 45.49, 45.49, 35.08, 42.58, 40.95, 43.9 ],
+          "matScore": [ null, null, 28.05, 28.05, 17.62, 24.33, 21.2, 22.28 ],
+          "belStudents": [ null, null, 43, 43, 39, 39, 51, 48 ],
+          "matStudents": [ null, null, 43, 43, 39, 40, 50, 47 ]
+        }
+      }
+    }
+  }
+}

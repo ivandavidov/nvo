@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "burgas": {
+      "fullName": "Бургас",
+      "shortName": "Бургас",
+      "schools": {
+        "200227": {
+          "fullName": "СУ Иван Вазов",
+          "shortName": "СУ Иван Вазов",
+          "isPrivate": false,
+          "belScore": [ 3.486, 3.16, 3.5, 3.21, 2.0, 2.99, 3.25, 3.42 ],
+          "matScore": [ 3.557, 3.56, 3.79, 3.38, null, 4.106, 2.66, 3.89 ],
+          "belStudents": [ 28, 3, 20, 16, 3, 27, 28, 28 ],
+          "matStudents": [ 27, 4, 19, 17, null, 25, 23, 24 ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "gulubovo": {
+      "fullName": "Гълъбово",
+      "shortName": "Гълъбово",
+      "schools": {
+        "2404108": {
+          "fullName": "ПГ по енергетика и електротехника",
+          "shortName": "ПГ по енергетика",
+          "isPrivate": false,
+          "belScore": [ null, null, 31.52, 31.52, 20.05, 32.18, 27.19, 25.05 ],
+          "matScore": [ null, null, 23.45, 23.45, 22.36, 21.74, 22.62, 17.67 ],
+          "belStudents": [ null, null, 44, 44, 43, 45, 48, 62 ],
+          "matStudents": [ null, null, 44, 44, 43, 45, 47, 62 ]
+        }
+      }
+    }
+  }
+}

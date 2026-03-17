@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "petrich": {
+      "fullName": "Петрич",
+      "shortName": "Петрич",
+      "schools": {
+        "104001": {
+          "fullName": "ПГ Пейо К. Яворов",
+          "shortName": "ПГ П. К. Яворов",
+          "isPrivate": false,
+          "belScore": [ null, null, 45.21, 45.21, 44.45, 52.83, 54.6, 48.92 ],
+          "matScore": [ null, null, 33.78, 33.78, 51.46, 33.18, 35.84, 36.43 ],
+          "belStudents": [ null, null, 125, 125, 128, 119, 135, 124 ],
+          "matStudents": [ null, null, 125, 125, 128, 118, 134, 124 ]
+        }
+      }
+    }
+  }
+}

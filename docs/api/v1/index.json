@@ -1,0 +1,40 @@
+{
+  "grades": [
+    {
+      "grade": 4,
+      "label": "НВО 4 клас",
+      "firstYear": 2018,
+      "lastYear": 2025,
+      "scaleMin": 0,
+      "scaleMax": 100,
+      "dataUrl": "4/data.json"
+    },
+    {
+      "grade": 7,
+      "label": "НВО 7 клас",
+      "firstYear": 2018,
+      "lastYear": 2025,
+      "scaleMin": 0,
+      "scaleMax": 100,
+      "dataUrl": "7/data.json"
+    },
+    {
+      "grade": 10,
+      "label": "НВО 10 клас",
+      "firstYear": 2018,
+      "lastYear": 2025,
+      "scaleMin": 0,
+      "scaleMax": 100,
+      "dataUrl": "10/data.json"
+    },
+    {
+      "grade": 12,
+      "label": "ДЗИ 12 клас",
+      "firstYear": 2018,
+      "lastYear": 2025,
+      "scaleMin": 2,
+      "scaleMax": 6,
+      "dataUrl": "12/data.json"
+    }
+  ]
+}

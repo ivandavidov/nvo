@@ -1,0 +1,22 @@
+{
+  "grade": 7,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "vidin": {
+      "fullName": "Видин",
+      "shortName": "Видин",
+      "schools": {
+        "500112": {
+          "fullName": "ОУ Отец Паисий",
+          "shortName": "ОУ Отец Паисий",
+          "isPrivate": false,
+          "belScore": [ 29.66, 49.27, 43.91, 18.17, 22.22, null, null, null ],
+          "matScore": [ 29.0, 17.32, 20.86, 14.09, 8.33, null, null, null ],
+          "belStudents": [ 16, 15, 16, 15, 9, null, null, null ],
+          "matStudents": [ 13, 18, 16, 11, 9, null, null, null ]
+        }
+      }
+    }
+  }
+}

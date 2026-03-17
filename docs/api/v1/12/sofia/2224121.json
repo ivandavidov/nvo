@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sofia": {
+      "fullName": "София",
+      "shortName": "София",
+      "schools": {
+        "2224121": {
+          "fullName": "121 СУ Георги Измирлиев",
+          "shortName": "121 СУ",
+          "isPrivate": false,
+          "belScore": [ 3.514, 3.59, 3.77, 3.49, 3.51, 3.54, 4.12, 4.15 ],
+          "matScore": [ 3.856, 3.615, 4.1, 4.01, null, 3.014, 3.877, 4.477 ],
+          "belStudents": [ 24, 22, 16, 18, 1, 20, 45, 71 ],
+          "matStudents": [ 23, 23, 16, 17, null, 20, 47, 74 ]
+        }
+      }
+    }
+  }
+}

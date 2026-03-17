@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sofia": {
+      "fullName": "София",
+      "shortName": "София",
+      "schools": {
+        "2213081": {
+          "fullName": "81 СУ Виктор Юго",
+          "shortName": "81 СУ",
+          "isPrivate": false,
+          "belScore": [ 4.286, 4.2, 4.08, 4.33, 4.22, 3.79, 4.57, 4.51 ],
+          "matScore": [ 4.848, 4.65, 4.16, 4.53, 4.057, 4.15, 4.458, 4.622 ],
+          "belStudents": [ 17, 21, 34, 43, 22, 36, 57, 55 ],
+          "matStudents": [ 17, 21, 34, 44, 22, 36, 57, 57 ]
+        }
+      }
+    }
+  }
+}

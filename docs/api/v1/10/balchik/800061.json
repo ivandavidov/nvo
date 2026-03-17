@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "balchik": {
+      "fullName": "Балчик",
+      "shortName": "Балчик",
+      "schools": {
+        "800061": {
+          "fullName": "СУ Христо Ботев",
+          "shortName": "СУ Христо Ботев",
+          "isPrivate": false,
+          "belScore": [ null, null, 41.37, 41.37, 36.12, 47.27, 45.11, 48.88 ],
+          "matScore": [ null, null, 24.3, 24.3, 27.14, 35.4, 27.02, 33.46 ],
+          "belStudents": [ null, null, 43, 43, 59, 63, 58, 49 ],
+          "matStudents": [ null, null, 43, 43, 59, 63, 55, 41 ]
+        }
+      }
+    }
+  }
+}

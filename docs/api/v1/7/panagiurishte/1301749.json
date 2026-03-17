@@ -1,0 +1,22 @@
+{
+  "grade": 7,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "panagiurishte": {
+      "fullName": "Панагюрище",
+      "shortName": "Панагюрище",
+      "schools": {
+        "1301749": {
+          "fullName": "ОУ 20 Април",
+          "shortName": "ОУ 20 Април",
+          "isPrivate": false,
+          "belScore": [ 25.9, 55.0, 41.53, 38.35, 40.31, 46.79, 53.32, 53.25 ],
+          "matScore": [ 17.08, 24.64, 19.83, 23.17, 22.2, 27.25, 30.96, 25.21 ],
+          "belStudents": [ 25, 30, 31, 31, 16, 24, 34, 20 ],
+          "matStudents": [ 25, 31, 31, 29, 15, 24, 34, 20 ]
+        }
+      }
+    }
+  }
+}

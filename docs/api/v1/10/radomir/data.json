@@ -1,0 +1,40 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "radomir": {
+      "fullName": "Радомир",
+      "shortName": "Радомир",
+      "schools": {
+        "1403655": {
+          "fullName": "СУ Кирил и Методий",
+          "shortName": "СУ Кирил и Методий",
+          "isPrivate": false,
+          "belScore": [ null, null, 43.58, 43.58, 46.02, 54.51, 58.67, 47.63 ],
+          "matScore": [ null, null, 18.56, 18.56, 27.84, 32.06, 28.23, 27.4 ],
+          "belStudents": [ null, null, 33, 33, 45, 42, 24, 43 ],
+          "matStudents": [ null, null, 32, 32, 44, 41, 24, 43 ]
+        },
+        "1403656": {
+          "fullName": "Техническа ПГ Никола Вапцаров",
+          "shortName": "Техническа ПГ",
+          "isPrivate": false,
+          "belScore": [ null, null, 24.83, 24.83, 24.55, 31.19, 35.04, 31.31 ],
+          "matScore": [ null, null, 17.09, 17.09, 17.56, 16.51, 18.71, 17.99 ],
+          "belStudents": [ null, null, 24, 24, 31, 39, 34, 36 ],
+          "matStudents": [ null, null, 23, 23, 31, 37, 35, 36 ]
+        },
+        "1403657": {
+          "fullName": "ПГ по транспорт",
+          "shortName": "ПГ по транспорт",
+          "isPrivate": false,
+          "belScore": [ null, null, 26.42, 26.42, 24.13, 22.47, 25.8, 25.87 ],
+          "matScore": [ null, null, 12.0, 12.0, 18.67, 14.59, 15.93, 17.14 ],
+          "belStudents": [ null, null, 12, 12, 15, 17, 22, 23 ],
+          "matStudents": [ null, null, 12, 12, 15, 17, 20, 22 ]
+        }
+      }
+    }
+  }
+}

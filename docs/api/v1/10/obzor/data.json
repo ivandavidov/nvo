@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "obzor": {
+      "fullName": "Обзор",
+      "shortName": "Обзор",
+      "schools": {
+        "200601": {
+          "fullName": "ОбУ Кирил и Методий",
+          "shortName": "ОбУ Кирил и Методий",
+          "isPrivate": false,
+          "belScore": [ null, null, 32.8, 32.8, null, null, null, null ],
+          "matScore": [ null, null, 13.6, 13.6, null, null, null, null ],
+          "belStudents": [ null, null, 5, 5, null, null, null, null ],
+          "matStudents": [ null, null, 5, 5, null, null, null, null ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "novi-pazar": {
+      "fullName": "Нови пазар",
+      "shortName": "Нови пазар",
+      "schools": {
+        "2700071": {
+          "fullName": "СУ Хан Исперих",
+          "shortName": "СУ Хан Исперих",
+          "isPrivate": false,
+          "belScore": [ null, null, 46.36, 46.36, 36.79, 45.94, 47.82, 36.92 ],
+          "matScore": [ null, null, 20.6, 20.6, 21.98, 27.4, 27.76, 24.18 ],
+          "belStudents": [ null, null, 25, 25, 24, 24, 25, 25 ],
+          "matStudents": [ null, null, 25, 25, 24, 24, 25, 25 ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "grade": 4,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sofia": {
+      "fullName": "София",
+      "shortName": "София",
+      "schools": {
+        "2200031": {
+          "fullName": "ЧНУ Канадско мече",
+          "shortName": "Канадско Мече",
+          "isPrivate": true,
+          "belScore": [ null, null, null, null, null, 85.35, 91.79, 85.46 ],
+          "matScore": [ null, null, null, null, null, 78.73, 89.79, 89.29 ],
+          "belStudents": [ null, null, null, null, null, 20, 17, 47 ],
+          "matStudents": [ null, null, null, null, null, 20, 17, 47 ]
+        }
+      }
+    }
+  }
+}

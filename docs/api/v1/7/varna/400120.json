@@ -1,0 +1,22 @@
+{
+  "grade": 7,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "varna": {
+      "fullName": "Варна",
+      "shortName": "Варна",
+      "schools": {
+        "400120": {
+          "fullName": "ЧОУ Монтесори Варна",
+          "shortName": "Монтесори Варна",
+          "isPrivate": true,
+          "belScore": [ null, null, null, null, 89.75, 79.63, 78.64, null ],
+          "matScore": [ null, null, null, null, 82.25, 55.25, 71.43, null ],
+          "belStudents": [ null, null, null, null, 2, 4, 7, null ],
+          "matStudents": [ null, null, null, null, 2, 4, 7, null ]
+        }
+      }
+    }
+  }
+}

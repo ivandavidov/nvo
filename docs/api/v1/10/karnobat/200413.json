@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "karnobat": {
+      "fullName": "Карнобат",
+      "shortName": "Карнобат",
+      "schools": {
+        "200413": {
+          "fullName": "ПГ по селско стопанство",
+          "shortName": "ПГ по селско стоп.",
+          "isPrivate": false,
+          "belScore": [ null, null, 22.6, 22.6, 28.78, 32.37, 37.73, 29.42 ],
+          "matScore": [ null, null, 37.53, 37.53, 48.08, 37.87, 36.77, 38.25 ],
+          "belStudents": [ null, null, 70, 70, 73, 79, 92, 83 ],
+          "matStudents": [ null, null, 70, 70, 76, 86, 91, 89 ]
+        }
+      }
+    }
+  }
+}

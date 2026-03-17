@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "plovdiv": {
+      "fullName": "Пловдив",
+      "shortName": "Пловдив",
+      "schools": {
+        "1690901": {
+          "fullName": "ЧСУ Дружба",
+          "shortName": "Дружба",
+          "isPrivate": true,
+          "belScore": [ 4.171, 4.94, 4.62, 4.52, 4.14, 3.93, 4.74, 4.81 ],
+          "matScore": [ 4.585, 4.74, 5.11, 4.51, 4.13, 4.45, 4.882, 5.0 ],
+          "belStudents": [ 9, 12, 18, 11, 12, 12, 14, 9 ],
+          "matStudents": [ 9, 12, 18, 11, 12, 12, 14, 10 ]
+        }
+      }
+    }
+  }
+}

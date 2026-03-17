@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "dimitrovgrad": {
+      "fullName": "Димитровград",
+      "shortName": "Димитровград",
+      "schools": {
+        "2602020": {
+          "fullName": "Профилирана ЕГ Д-р Иван Богоров",
+          "shortName": "ЕГ И. Богоров",
+          "isPrivate": false,
+          "belScore": [ null, null, 48.8, 48.8, 41.55, 52.59, 54.49, 51.93 ],
+          "matScore": [ null, null, 19.3, 19.3, 23.13, 26.56, 23.25, 27.46 ],
+          "belStudents": [ null, null, 70, 70, 67, 70, 76, 73 ],
+          "matStudents": [ null, null, 70, 70, 60, 70, 74, 66 ]
+        }
+      }
+    }
+  }
+}

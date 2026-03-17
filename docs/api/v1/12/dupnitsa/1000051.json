@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "dupnitsa": {
+      "fullName": "Дупница",
+      "shortName": "Дупница",
+      "schools": {
+        "1000051": {
+          "fullName": "ПГ по транспорт",
+          "shortName": "ПГ по транспорт",
+          "isPrivate": false,
+          "belScore": [ 3.212, 3.14, 2.74, 3.13, 2.38, 2.37, 3.75, 2.16 ],
+          "matScore": [ 3.291, 2.974, 2.99, 3.32, 3.68, 3.82, 4.093, 4.23 ],
+          "belStudents": [ 16, 17, 13, 11, 9, 8, 5, 7 ],
+          "matStudents": [ 14, 14, 13, 4, 6, 7, 8, 8 ]
+        }
+      }
+    }
+  }
+}

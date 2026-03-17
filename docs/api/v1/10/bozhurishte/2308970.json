@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "bozhurishte": {
+      "fullName": "Божурище",
+      "shortName": "Божурище",
+      "schools": {
+        "2308970": {
+          "fullName": "СУ Летец Христо Топракчиев",
+          "shortName": "СУ Христо Топракчиев",
+          "isPrivate": false,
+          "belScore": [ null, null, 54.48, 54.48, 53.25, 59.62, 53.86, 50.95 ],
+          "matScore": [ null, null, 21.81, 21.81, 24.17, 32.26, 21.9, 25.6 ],
+          "belStudents": [ null, null, 21, 21, 36, 38, 38, 38 ],
+          "matStudents": [ null, null, 21, 21, 36, 38, 40, 36 ]
+        }
+      }
+    }
+  }
+}

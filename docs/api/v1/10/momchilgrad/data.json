@@ -1,0 +1,40 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "momchilgrad": {
+      "fullName": "Момчилград",
+      "shortName": "Момчилград",
+      "schools": {
+        "909601": {
+          "fullName": "СУ Никола Вапцаров",
+          "shortName": "СУ Никола Вапцаров",
+          "isPrivate": false,
+          "belScore": [ null, null, 33.04, 33.04, 35.6, 36.85, 44.83, 36.84 ],
+          "matScore": [ null, null, 22.75, 22.75, 45.91, 28.04, 33.19, 26.55 ],
+          "belStudents": [ null, null, 48, 48, 43, 52, 53, 49 ],
+          "matStudents": [ null, null, 48, 48, 43, 52, 53, 49 ]
+        },
+        "909603": {
+          "fullName": "ПГ по туризъм Кирил и Методий",
+          "shortName": "ПГ по туризъм",
+          "isPrivate": false,
+          "belScore": [ null, null, 16.52, 16.52, 12.86, 27.38, 30.83, 31.75 ],
+          "matScore": [ null, null, 23.45, 23.45, 31.43, 34.0, 33.08, 42.0 ],
+          "belStudents": [ null, null, 23, 23, 7, 20, 21, 16 ],
+          "matStudents": [ null, null, 22, 22, 7, 20, 19, 15 ]
+        },
+        "909613": {
+          "fullName": "Духовно училище",
+          "shortName": "Духовно училище",
+          "isPrivate": false,
+          "belScore": [ null, null, 34.55, 34.55, 39.37, 42.06, 49.98, 33.75 ],
+          "matScore": [ null, null, 21.6, 21.6, 33.34, 29.81, 28.41, 23.3 ],
+          "belStudents": [ null, null, 20, 20, 19, 34, 29, 32 ],
+          "matStudents": [ null, null, 20, 20, 19, 34, 29, 32 ]
+        }
+      }
+    }
+  }
+}

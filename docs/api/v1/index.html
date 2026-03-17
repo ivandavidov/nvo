@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8">
+  <title>НВО API v1</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../css/normalize.css">
+  <link rel="stylesheet" href="../../css/custom.css">
+  <link rel="icon" type="image/png" href="../../images/favicon-7.png">
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nvo-theme');
+      if (!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        saved = 'dark';
+      }
+      if (saved === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
+  <script src="../../js/theme.js" defer></script>
+  <style>
+    .api-header { margin: 2rem 0 1.5rem; }
+    .api-header h2 { margin: 0 0 0.25rem; }
+    .api-header p { color: var(--text-muted); margin: 0; }
+    .api-base { font-family: var(--font-mono); font-size: 0.85rem; background: var(--bg-surface);
+      border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 0.75rem 1rem;
+      margin-bottom: 1.5rem; color: var(--text-muted); }
+    .api-base code { color: var(--text-color); }
+    .endpoint { background: var(--bg-surface); border: 1px solid var(--border-color);
+      border-radius: var(--radius-md); margin-bottom: 1rem; overflow: hidden; }
+    .endpoint-header { display: flex; align-items: center; gap: 0.75rem; padding: 0.875rem 1rem;
+      cursor: pointer; user-select: none; }
+    .endpoint-header:hover { background: var(--bg-hover, var(--border-light)); }
+    .method { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700;
+      padding: 0.2rem 0.5rem; border-radius: 4px; color: #fff; background: #22c55e; flex-shrink: 0; }
+    .path { font-family: var(--font-mono); font-size: 0.9rem; color: var(--text-color); text-decoration: none; }
+    a.path:hover { text-decoration: underline; }
+    .path-param { color: var(--primary); }
+    .endpoint-desc { color: var(--text-muted); font-size: 0.85rem; margin-left: auto; }
+    .endpoint-body { display: none; border-top: 1px solid var(--border-color); padding: 1rem; }
+    .endpoint.open .endpoint-body { display: block; }
+    .try-it { margin-top: 0.75rem; padding: 0.75rem; background: var(--border-light);
+      border-radius: var(--radius-sm); display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem 0; }
+    .try-it label { font-size: 0.8rem; font-weight: 600; margin-right: 0.35rem; }
+    .try-it select { font-size: 0.8rem; padding: 0.25rem 0.4rem; border: 1px solid var(--border-color);
+      border-radius: 4px; background: var(--bg-color); color: var(--text-color); margin-right: 0.75rem;
+      max-width: 12rem; text-overflow: ellipsis; }
+    .try-it > div { flex-basis: 100%; }
+    .try-it .try-link { display: inline-block; margin-top: 0.5rem; font-family: var(--font-mono);
+      font-size: 0.85rem; }
+    .endpoint.open .endpoint-arrow { transform: rotate(90deg); }
+    .endpoint-arrow { color: var(--text-light); transition: transform 0.15s; font-size: 0.8rem; }
+    .schema-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin-top: 0.5rem; }
+    .schema-table th { text-align: left; padding: 0.4rem 0.75rem; background: var(--border-light);
+      font-weight: 600; border-bottom: 1px solid var(--border-color); }
+    .schema-table td { padding: 0.4rem 0.75rem; border-bottom: 1px solid var(--border-light); }
+    .schema-table .type { font-family: var(--font-mono); font-size: 0.8rem; color: var(--primary); }
+    pre.example { background: var(--border-light); border-radius: var(--radius-sm); padding: 0.75rem 1rem;
+      font-size: 0.8rem; overflow-x: auto; margin: 0.75rem 0 0; line-height: 1.5; }
+    .section-label { font-weight: 600; font-size: 0.9rem; margin: 0.75rem 0 0.25rem; }
+    .grade-endpoints { margin-top: 0.5rem; }
+    .grade-endpoints h4 { margin: 1.5rem 0 0.75rem; padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--border-color); }
+    html { overflow-y: scroll; }
+    .back-link { margin-top: 2rem; display: inline-block; }
+    @media (max-width: 640px) {
+      .endpoint-desc { display: none; }
+      .endpoint-header { gap: 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <a class="back-link" href="../../7/">&larr; Обратно</a>
+    </div>
+    <div class="api-header">
+      <h2>НВО &amp; ДЗИ API</h2>
+      <p>Публичен JSON API с резултати от НВО и ДЗИ (2018&ndash;2025)</p>
+    </div>
+    <div class="api-base">Base URL: <code>https://ivandavidov.github.io/nvo/api/v1</code></div>
+
+    <h4 style="margin-bottom:0.75rem">Общи</h4>
+    <div class="endpoint">
+      <div class="endpoint-header">
+        <span class="endpoint-arrow">&#9654;</span>
+        <span class="method">GET</span>
+        <a class="path" href="index.json" onclick="event.stopPropagation()">/index.json</a>
+        <span class="endpoint-desc">Списък на наличните класове с метаданни</span>
+      </div>
+      <div class="endpoint-body">
+<p class="section-label">Отговор</p>
+<table class="schema-table">
+  <tr><th>Поле</th><th>Тип</th><th>Описание</th></tr>
+  <tr><td>grades</td><td class="type">array</td><td>Масив с обекти за всеки клас</td></tr>
+  <tr><td>grades[].grade</td><td class="type">number</td><td>Клас (4, 7, 10, 12)</td></tr>
+  <tr><td>grades[].label</td><td class="type">string</td><td>Четимо име</td></tr>
+  <tr><td>grades[].firstYear</td><td class="type">number</td><td>Първа година с данни</td></tr>
+  <tr><td>grades[].lastYear</td><td class="type">number</td><td>Последна година с данни</td></tr>
+  <tr><td>grades[].scaleMin</td><td class="type">number</td><td>Минимална стойност на скалата</td></tr>
+  <tr><td>grades[].scaleMax</td><td class="type">number</td><td>Максимална стойност на скалата</td></tr>
+  <tr><td>grades[].dataUrl</td><td class="type">string</td><td>Относителен път до пълните данни</td></tr>
+</table>
+      </div>
+    </div>
+    <div class="grade-endpoints">
+      <h4>По клас</h4>
+    <div class="endpoint">
+      <div class="endpoint-header">
+        <span class="endpoint-arrow">&#9654;</span>
+        <span class="method">GET</span>
+        <a class="path" href="4/data.json" onclick="event.stopPropagation()">/4/data.json</a>
+        <span class="endpoint-desc">НВО 4 клас &mdash; всички градове и училища</span>
+      </div>
+      <div class="endpoint-body">
+<p class="section-label">Отговор</p>
+<table class="schema-table">
+  <tr><th>Поле</th><th>Тип</th><th>Описание</th></tr>
+  <tr><td>grade</td><td class="type">number</td><td>Клас</td></tr>
+  <tr><td>firstYear</td><td class="type">number</td><td>Първа година</td></tr>
+  <tr><td>lastYear</td><td class="type">number</td><td>Последна година</td></tr>
+  <tr><td>cities</td><td class="type">object</td><td>Градове (ключ = hrefName, латиница)</td></tr>
+  <tr><td>cities.*.fullName</td><td class="type">string</td><td>Пълно име на града</td></tr>
+  <tr><td>cities.*.shortName</td><td class="type">string</td><td>Кратко име</td></tr>
+  <tr><td>cities.*.schools</td><td class="type">object</td><td>Училища (ключ = код)</td></tr>
+  <tr><td>schools.*.fullName</td><td class="type">string</td><td>Пълно име на училището</td></tr>
+  <tr><td>schools.*.shortName</td><td class="type">string</td><td>Кратко име</td></tr>
+  <tr><td>schools.*.isPrivate</td><td class="type">boolean</td><td>Частно училище</td></tr>
+  <tr><td>schools.*.belScore</td><td class="type">array</td><td>Резултати БЕЛ (0&ndash;100, null = няма данни)</td></tr>
+          <tr><td>schools.*.matScore</td><td class="type">array</td><td>Резултати МАТ (0&ndash;100, null = няма данни)</td></tr>
+  <tr><td>schools.*.belStudents</td><td class="type">array</td><td>Брой ученици БЕЛ</td></tr>
+  <tr><td>schools.*.matStudents</td><td class="type">array</td><td>Брой ученици МАТ</td></tr>
+</table>
+      </div>
+    </div>
+    <div class="endpoint">
+      <div class="endpoint-header">
+        <span class="endpoint-arrow">&#9654;</span>
+        <span class="method">GET</span>
+        <a class="path" href="7/data.json" onclick="event.stopPropagation()">/7/data.json</a>
+        <span class="endpoint-desc">НВО 7 клас &mdash; всички градове и училища</span>
+      </div>
+      <div class="endpoint-body">
+<p class="section-label">Отговор</p>
+<table class="schema-table">
+  <tr><th>Поле</th><th>Тип</th><th>Описание</th></tr>
+  <tr><td>grade</td><td class="type">number</td><td>Клас</td></tr>
+  <tr><td>firstYear</td><td class="type">number</td><td>Първа година</td></tr>
+  <tr><td>lastYear</td><td class="type">number</td><td>Последна година</td></tr>
+  <tr><td>cities</td><td class="type">object</td><td>Градове (ключ = hrefName, латиница)</td></tr>
+  <tr><td>cities.*.fullName</td><td class="type">string</td><td>Пълно име на града</td></tr>
+  <tr><td>cities.*.shortName</td><td class="type">string</td><td>Кратко име</td></tr>
+  <tr><td>cities.*.schools</td><td class="type">object</td><td>Училища (ключ = код)</td></tr>
+  <tr><td>schools.*.fullName</td><td class="type">string</td><td>Пълно име на училището</td></tr>
+  <tr><td>schools.*.shortName</td><td class="type">string</td><td>Кратко име</td></tr>
+  <tr><td>schools.*.isPrivate</td><td class="type">boolean</td><td>Частно училище</td></tr>
+  <tr><td>schools.*.belScore</td><td class="type">array</td><td>Резултати БЕЛ (0&ndash;100, null = няма данни)</td></tr>
+          <tr><td>schools.*.matScore</td><td class="type">array</td><td>Резултати МАТ (0&ndash;100, null = няма данни)</td></tr>
+  <tr><td>schools.*.belStudents</td><td class="type">array</td><td>Брой ученици БЕЛ</td></tr>
+  <tr><td>schools.*.matStudents</td><td class="type">array</td><td>Брой ученици МАТ</td></tr>
+</table>
+      </div>
+    </div>
+    <div class="endpoint">
+      <div class="endpoint-header">
+        <span class="endpoint-arrow">&#9654;</span>
+        <span class="method">GET</span>
+        <a class="path" href="10/data.json" onclick="event.stopPropagation()">/10/data.json</a>
+        <span class="endpoint-desc">НВО 10 клас &mdash; всички градове и училища</span>
+      </div>
+      <div class="endpoint-body">
+<p class="section-label">Отговор</p>
+<table class="schema-table">
+  <tr><th>Поле</th><th>Тип</th><th>Описание</th></tr>
+  <tr><td>grade</td><td class="type">number</td><td>Клас</td></tr>
+  <tr><td>firstYear</td><td class="type">number</td><td>Първа година</td></tr>
+  <tr><td>lastYear</td><td class="type">number</td><td>Последна година</td></tr>
+  <tr><td>cities</td><td class="type">object</td><td>Градове (ключ = hrefName, латиница)</td></tr>
+  <tr><td>cities.*.fullName</td><td class="type">string</td><td>Пълно име на града</td></tr>
+  <tr><td>cities.*.shortName</td><td class="type">string</td><td>Кратко име</td></tr>
+  <tr><td>cities.*.schools</td><td class="type">object</td><td>Училища (ключ = код)</td></tr>
+  <tr><td>schools.*.fullName</td><td class="type">string</td><td>Пълно име на училището</td></tr>
+  <tr><td>schools.*.shortName</td><td class="type">string</td><td>Кратко име</td></tr>
+  <tr><td>schools.*.isPrivate</td><td class="type">boolean</td><td>Частно училище</td></tr>
+  <tr><td>schools.*.belScore</td><td class="type">array</td><td>Резултати БЕЛ (0&ndash;100, null = няма данни)</td></tr>
+          <tr><td>schools.*.matScore</td><td class="type">array</td><td>Резултати МАТ (0&ndash;100, null = няма данни)</td></tr>
+  <tr><td>schools.*.belStudents</td><td class="type">array</td><td>Брой ученици БЕЛ</td></tr>
+  <tr><td>schools.*.matStudents</td><td class="type">array</td><td>Брой ученици МАТ</td></tr>
+</table>
+      </div>
+    </div>
+    <div class="endpoint">
+      <div class="endpoint-header">
+        <span class="endpoint-arrow">&#9654;</span>
+        <span class="method">GET</span>
+        <a class="path" href="12/data.json" onclick="event.stopPropagation()">/12/data.json</a>
+        <span class="endpoint-desc">ДЗИ 12 клас &mdash; всички градове и училища</span>
+      </div>
+      <div class="endpoint-body">
+<p class="section-label">Отговор</p>
+<table class="schema-table">
+  <tr><th>Поле</th><th>Тип</th><th>Описание</th></tr>
+  <tr><td>grade</td><td class="type">number</td><td>Клас</td></tr>
+  <tr><td>firstYear</td><td class="type">number</td><td>Първа година</td></tr>
+  <tr><td>lastYear</td><td class="type">number</td><td>Последна година</td></tr>
+  <tr><td>cities</td><td class="type">object</td><td>Градове (ключ = hrefName, латиница)</td></tr>
+  <tr><td>cities.*.fullName</td><td class="type">string</td><td>Пълно име на града</td></tr>
+  <tr><td>cities.*.shortName</td><td class="type">string</td><td>Кратко име</td></tr>
+  <tr><td>cities.*.schools</td><td class="type">object</td><td>Училища (ключ = код)</td></tr>
+  <tr><td>schools.*.fullName</td><td class="type">string</td><td>Пълно име на училището</td></tr>
+  <tr><td>schools.*.shortName</td><td class="type">string</td><td>Кратко име</td></tr>
+  <tr><td>schools.*.isPrivate</td><td class="type">boolean</td><td>Частно училище</td></tr>
+  <tr><td>schools.*.belScore</td><td class="type">array</td><td>Резултати БЕЛ (2&ndash;6, null = няма данни)</td></tr>
+          <tr><td>schools.*.matScore</td><td class="type">array</td><td>Резултати МАТ (2&ndash;6, null = няма данни)</td></tr>
+  <tr><td>schools.*.belStudents</td><td class="type">array</td><td>Брой ученици БЕЛ</td></tr>
+  <tr><td>schools.*.matStudents</td><td class="type">array</td><td>Брой ученици МАТ</td></tr>
+</table>
+      </div>
+    </div>
+      <h4>По град</h4>
+    <div class="endpoint">
+      <div class="endpoint-header">
+        <span class="endpoint-arrow">&#9654;</span>
+        <span class="method">GET</span>
+        <span class="path">/<span class="path-param">{grade}</span>/<span class="path-param">{city}</span>/data.json</span>
+        <span class="endpoint-desc">Данни за конкретен град</span>
+      </div>
+      <div class="endpoint-body">
+<div class="try-it">
+  <label>Клас:</label>
+  <select id="city-grade" onchange="updateCityDropdown()">
+    <option value="">—</option>
+  </select>
+  <label>Град:</label>
+  <select id="city-city" onchange="updateCityLink()">
+    <option value="">—</option>
+  </select>
+  <div><a class="try-link" id="city-link" style="display:none"></a></div>
+</div>
+<p class="section-label">Отговор</p>
+<p style="font-size:0.85rem;color:var(--text-muted);margin:0.25rem 0 0">Същата структура като /{grade}/data.json, но cities съдържа само един град.</p>
+      </div>
+    </div>
+    <div class="endpoint">
+      <div class="endpoint-header">
+        <span class="endpoint-arrow">&#9654;</span>
+        <span class="method">GET</span>
+        <span class="path">/<span class="path-param">{grade}</span>/<span class="path-param">{city}</span>/<span class="path-param">{code}</span>.json</span>
+        <span class="endpoint-desc">Данни за конкретно училище</span>
+      </div>
+      <div class="endpoint-body">
+<div class="try-it">
+  <label>Клас:</label>
+  <select id="school-grade" onchange="updateSchoolCityDropdown()">
+    <option value="">—</option>
+  </select>
+  <label>Град:</label>
+  <select id="school-city" onchange="updateSchoolCodeDropdown()">
+    <option value="">—</option>
+  </select>
+  <label>Училище:</label>
+  <select id="school-code" onchange="updateSchoolLink()">
+    <option value="">—</option>
+  </select>
+  <div><a class="try-link" id="school-link" style="display:none"></a></div>
+</div>
+<p class="section-label">Отговор</p>
+<p style="font-size:0.85rem;color:var(--text-muted);margin:0.25rem 0 0">Същата структура като /{grade}/data.json, но cities съдържа само един град с едно училище.</p>
+      </div>
+    </div>
+    </div>
+  <div style="margin:2rem 0;color:var(--text-light);font-size:0.8rem">
+    Данни: <a href="https://data.egov.bg" style="color:var(--text-muted)">data.egov.bg</a>
+  </div>
+</div>
+<script>
+  document.querySelectorAll('.endpoint-header').forEach(function(h) {
+    h.addEventListener('click', function() {
+      h.closest('.endpoint').classList.toggle('open');
+    });
+  });
+
+  var grades = ["4", "7", "10", "12"];
+    var dataCache = {};
+
+    function populateGradeSelects() {
+      ['city-grade', 'school-grade'].forEach(function(id) {
+        var sel = document.getElementById(id);
+        grades.forEach(function(g) { var o = document.createElement('option'); o.value = g; o.textContent = g; sel.appendChild(o); });
+      });
+    }
+    populateGradeSelects();
+
+    var FEATURED = ['София', 'Пловдив', 'Варна', 'Бургас'];
+    var OBLAST = [
+      'Благоевград', 'Бургас', 'Варна', 'Велико Търново', 'Видин', 'Враца', 'Габрово',
+      'Добрич', 'Кърджали', 'Кюстендил', 'Ловеч', 'Монтана', 'Пазарджик', 'Перник',
+      'Плевен', 'Пловдив', 'Разград', 'Русе', 'Силистра', 'Сливен', 'Смолян', 'София',
+      'Стара Загора', 'Търговище', 'Хасково', 'Шумен', 'Ямбол'
+    ];
+
+    function fetchGradeData(grade, cb) {
+      if (dataCache[grade]) return cb(dataCache[grade]);
+      fetch(grade + '/data.json').then(function(r) { return r.json(); }).then(function(d) {
+        dataCache[grade] = d; cb(d);
+      });
+    }
+
+    function resetSelect(sel, placeholder) {
+      sel.innerHTML = '<option value="">— ' + placeholder + ' —</option>';
+    }
+
+    function addSeparator(sel) {
+      var o = document.createElement('option');
+      o.disabled = true; o.textContent = '────';
+      sel.appendChild(o);
+    }
+
+    function populateCitySelect(sel, cities) {
+      var keys = Object.keys(cities);
+      var featured = [], oblast = [], other = [];
+      keys.forEach(function(key) {
+        var name = cities[key].fullName;
+        if (FEATURED.indexOf(name) >= 0) featured.push(key);
+        else if (OBLAST.indexOf(name) >= 0) oblast.push(key);
+        else other.push(key);
+      });
+      featured.sort(function(a, b) { return FEATURED.indexOf(cities[a].fullName) - FEATURED.indexOf(cities[b].fullName); });
+      var coll = new Intl.Collator('bg');
+      oblast.sort(function(a, b) { return coll.compare(cities[a].fullName, cities[b].fullName); });
+      other.sort(function(a, b) { return coll.compare(cities[a].fullName, cities[b].fullName); });
+      function addGroup(arr) {
+        arr.forEach(function(key) {
+          var o = document.createElement('option');
+          o.value = key; o.textContent = cities[key].fullName;
+          sel.appendChild(o);
+        });
+      }
+      if (featured.length) { addGroup(featured); }
+      if (oblast.length) { addSeparator(sel); addGroup(oblast); }
+      if (other.length) { addSeparator(sel); addGroup(other); }
+    }
+
+    function updateCityDropdown() {
+      var grade = document.getElementById('city-grade').value;
+      var sel = document.getElementById('city-city');
+      resetSelect(sel, 'град');
+      document.getElementById('city-link').style.display = 'none';
+      if (!grade) return;
+      fetchGradeData(grade, function(d) { populateCitySelect(sel, d.cities); });
+    }
+
+    function updateCityLink() {
+      var grade = document.getElementById('city-grade').value;
+      var city = document.getElementById('city-city').value;
+      var link = document.getElementById('city-link');
+      if (!grade || !city) { link.style.display = 'none'; return; }
+      var href = grade + '/' + city + '/data.json';
+      link.href = href; link.textContent = href; link.style.display = 'inline-block';
+    }
+
+    function updateSchoolCityDropdown() {
+      var grade = document.getElementById('school-grade').value;
+      var sel = document.getElementById('school-city');
+      resetSelect(sel, 'град');
+      resetSelect(document.getElementById('school-code'), 'училище');
+      document.getElementById('school-link').style.display = 'none';
+      if (!grade) return;
+      fetchGradeData(grade, function(d) { populateCitySelect(sel, d.cities); });
+    }
+
+    function updateSchoolCodeDropdown() {
+      var grade = document.getElementById('school-grade').value;
+      var city = document.getElementById('school-city').value;
+      var sel = document.getElementById('school-code');
+      resetSelect(sel, 'училище');
+      document.getElementById('school-link').style.display = 'none';
+      if (!grade || !city) return;
+      fetchGradeData(grade, function(d) {
+        var schools = d.cities[city] && d.cities[city].schools;
+        if (!schools) return;
+        var coll = new Intl.Collator('bg');
+        Object.keys(schools).sort(function(a, b) {
+          return coll.compare(schools[a].shortName, schools[b].shortName);
+        }).forEach(function(code) {
+          var o = document.createElement('option');
+          o.value = code; o.textContent = schools[code].shortName;
+          sel.appendChild(o);
+        });
+      });
+    }
+
+    function updateSchoolLink() {
+      var grade = document.getElementById('school-grade').value;
+      var city = document.getElementById('school-city').value;
+      var code = document.getElementById('school-code').value;
+      var link = document.getElementById('school-link');
+      if (!grade || !city || !code) { link.style.display = 'none'; return; }
+      var href = grade + '/' + city + '/' + code + '.json';
+      link.href = href; link.textContent = href; link.style.display = 'inline-block';
+    }
+  </script>
+</body>
+</html>

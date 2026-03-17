@@ -1,0 +1,22 @@
+{
+  "grade": 4,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "septemvri": {
+      "fullName": "Септември",
+      "shortName": "Септември",
+      "schools": {
+        "1301368": {
+          "fullName": "НУ Васил Левски",
+          "shortName": "НУ Васил Левски",
+          "isPrivate": false,
+          "belScore": [ 55.29, 58.82, 58.82, 54.5, 42.17, 44.89, null, 31.67 ],
+          "matScore": [ 56.47, 57.35, 57.35, 53.07, 32.42, 57.17, null, 53.83 ],
+          "belStudents": [ 17, 17, 17, 14, 12, 9, null, 12 ],
+          "matStudents": [ 17, 17, 17, 15, 12, 9, null, 12 ]
+        }
+      }
+    }
+  }
+}

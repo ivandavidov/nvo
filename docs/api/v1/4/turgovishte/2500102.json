@@ -1,0 +1,22 @@
+{
+  "grade": 4,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "turgovishte": {
+      "fullName": "Търговище",
+      "shortName": "Търговище",
+      "schools": {
+        "2500102": {
+          "fullName": "2 ОУ Никола Вапцаров",
+          "shortName": "2 ОУ",
+          "isPrivate": false,
+          "belScore": [ 66.47, 55.36, 55.36, 28.5, 58.6, 47.6, 48.25, null ],
+          "matScore": [ 62.35, 53.57, 53.57, 42.0, 39.6, 54.0, 71.4, null ],
+          "belStudents": [ 17, 14, 14, 2, 5, 5, 4, null ],
+          "matStudents": [ 17, 14, 14, 2, 5, 5, 5, null ]
+        }
+      }
+    }
+  }
+}

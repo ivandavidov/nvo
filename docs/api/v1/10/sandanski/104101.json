@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sandanski": {
+      "fullName": "Сандански",
+      "shortName": "Сандански",
+      "schools": {
+        "104101": {
+          "fullName": "ПГ Яне Сандански",
+          "shortName": "ПГ Яне Сандански",
+          "isPrivate": false,
+          "belScore": [ null, null, 46.65, 46.65, 45.2, 45.26, 50.17, 49.84 ],
+          "matScore": [ null, null, 31.07, 31.07, 40.35, 36.44, 37.03, 36.23 ],
+          "belStudents": [ null, null, 104, 104, 82, 117, 114, 120 ],
+          "matStudents": [ null, null, 104, 104, 82, 110, 110, 115 ]
+        }
+      }
+    }
+  }
+}

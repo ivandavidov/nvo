@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "zlatitsa": {
+      "fullName": "Златица",
+      "shortName": "Златица",
+      "schools": {
+        "2308792": {
+          "fullName": "СУ Паисий Хилендарски",
+          "shortName": "СУ П. Хилендарски",
+          "isPrivate": false,
+          "belScore": [ null, null, 57.76, 57.76, 36.47, 57.85, 61.89, 58.15 ],
+          "matScore": [ null, null, 29.67, 29.67, 40.75, 44.72, 27.5, 50.54 ],
+          "belStudents": [ null, null, 21, 21, 17, 23, 22, 13 ],
+          "matStudents": [ null, null, 21, 21, 17, 23, 22, 13 ]
+        }
+      }
+    }
+  }
+}

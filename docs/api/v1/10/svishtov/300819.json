@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "svishtov": {
+      "fullName": "Свищов",
+      "shortName": "Свищов",
+      "schools": {
+        "300819": {
+          "fullName": "Свищовска ПГ Алеко Константинов",
+          "shortName": "ПГ Ал. Константинов",
+          "isPrivate": false,
+          "belScore": [ null, null, 26.37, 26.37, 25.18, 32.58, 28.16, 27.54 ],
+          "matScore": [ null, null, 16.23, 16.23, 19.39, 15.51, 15.6, 16.81 ],
+          "belStudents": [ null, null, 62, 62, 51, 49, 43, 37 ],
+          "matStudents": [ null, null, 62, 62, 50, 49, 43, 34 ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "cherven-briag": {
+      "fullName": "Червен бряг",
+      "shortName": "Червен бряг",
+      "schools": {
+        "1500215": {
+          "fullName": "СУ Д-р Петър Берон",
+          "shortName": "СУ Петър Берон",
+          "isPrivate": false,
+          "belScore": [ null, null, 44.19, 44.19, 50.79, 48.5, 61.44, 54.09 ],
+          "matScore": [ null, null, 19.59, 19.59, 47.69, 33.42, 55.96, 65.58 ],
+          "belStudents": [ null, null, 37, 37, 48, 40, 42, 53 ],
+          "matStudents": [ null, null, 37, 37, 48, 40, 42, 53 ]
+        }
+      }
+    }
+  }
+}

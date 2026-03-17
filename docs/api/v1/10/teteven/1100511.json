@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "teteven": {
+      "fullName": "Тетевен",
+      "shortName": "Тетевен",
+      "schools": {
+        "1100511": {
+          "fullName": "НПГ горско стопанство Сава Младенов",
+          "shortName": "НПГ горско стоп.",
+          "isPrivate": false,
+          "belScore": [ null, null, 31.48, 31.48, 30.08, 33.54, 39.25, 37.35 ],
+          "matScore": [ null, null, 18.34, 18.34, 18.88, 18.15, 20.3, 22.82 ],
+          "belStudents": [ null, null, 58, 58, 53, 63, 53, 57 ],
+          "matStudents": [ null, null, 58, 58, 53, 61, 53, 58 ]
+        }
+      }
+    }
+  }
+}

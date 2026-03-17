@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "radnevo": {
+      "fullName": "Раднево",
+      "shortName": "Раднево",
+      "schools": {
+        "2401052": {
+          "fullName": "СУ Гео Милев",
+          "shortName": "СУ Гео Милев",
+          "isPrivate": false,
+          "belScore": [ null, null, 40.43, 40.43, 37.46, 43.75, 39.7, 43.41 ],
+          "matScore": [ null, null, 18.16, 18.16, 21.89, 19.58, 17.96, 26.16 ],
+          "belStudents": [ null, null, 37, 37, 37, 44, 38, 49 ],
+          "matStudents": [ null, null, 37, 37, 37, 44, 38, 49 ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "kubrat": {
+      "fullName": "Кубрат",
+      "shortName": "Кубрат",
+      "schools": {
+        "1701601": {
+          "fullName": "СУ Христо Ботев",
+          "shortName": "СУ Христо Ботев",
+          "isPrivate": false,
+          "belScore": [ null, null, 45.84, 45.84, 37.96, 44.82, 53.72, 53.74 ],
+          "matScore": [ null, null, 18.72, 18.72, 27.44, 26.2, 22.8, 29.89 ],
+          "belStudents": [ null, null, 50, 50, 52, 51, 50, 46 ],
+          "matStudents": [ null, null, 50, 50, 52, 50, 49, 45 ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sofia": {
+      "fullName": "София",
+      "shortName": "София",
+      "schools": {
+        "2211571": {
+          "fullName": "ЧПГ по охрана и сигурност",
+          "shortName": "Охрана и сигурност",
+          "isPrivate": true,
+          "belScore": [ 2.4, null, null, null, null, null, null, null ],
+          "matScore": [ null, null, null, null, null, null, null, null ],
+          "belStudents": [ 1, null, null, null, null, null, null, null ],
+          "matStudents": [ null, null, null, null, null, null, null, null ]
+        }
+      }
+    }
+  }
+}

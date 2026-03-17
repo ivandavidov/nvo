@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "gorna-oryahovitsa": {
+      "fullName": "Горна Оряховица",
+      "shortName": "Г. Оряховица",
+      "schools": {
+        "300219": {
+          "fullName": "ПГ по електротехника и електроника",
+          "shortName": "ПГ по електрот. и електрон.",
+          "isPrivate": false,
+          "belScore": [ null, null, 42.37, 42.37, 37.16, 46.89, 48.41, 48.09 ],
+          "matScore": [ null, null, 23.1, 23.1, 24.55, 30.4, 32.6, 28.97 ],
+          "belStudents": [ null, null, 93, 93, 75, 75, 74, 77 ],
+          "matStudents": [ null, null, 92, 92, 75, 75, 74, 77 ]
+        }
+      }
+    }
+  }
+}

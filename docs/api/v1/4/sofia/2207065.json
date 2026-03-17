@@ -1,0 +1,22 @@
+{
+  "grade": 4,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sofia": {
+      "fullName": "София",
+      "shortName": "София",
+      "schools": {
+        "2207065": {
+          "fullName": "65 ОУ Св. Св. Кирил и Методий",
+          "shortName": "65 ОУ",
+          "isPrivate": false,
+          "belScore": [ 68.18, 61.43, 61.43, null, 74.8, 67.67, 73.58, 55.22 ],
+          "matScore": [ 59.55, 52.14, 52.14, null, 62.4, 56.03, 68.88, 51.33 ],
+          "belStudents": [ 11, 7, 7, null, 10, 15, 13, 9 ],
+          "matStudents": [ 11, 7, 7, null, 10, 15, 13, 9 ]
+        }
+      }
+    }
+  }
+}

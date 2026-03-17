@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "burgas": {
+      "fullName": "Бургас",
+      "shortName": "Бургас",
+      "schools": {
+        "200231": {
+          "fullName": "СУ Добри Чинтулов",
+          "shortName": "СУ Добри Чинтулов",
+          "isPrivate": false,
+          "belScore": [ 32.83, 32.83, 32.83, 32.83, 26.91, null, 42.06, 43.13 ],
+          "matScore": [ 16.44, 16.44, 16.44, 16.44, 21.4, null, 16.0, 33.11 ],
+          "belStudents": [ 18, 18, 18, 18, 22, null, 25, 24 ],
+          "matStudents": [ 18, 18, 18, 18, 20, null, 18, 18 ]
+        }
+      }
+    }
+  }
+}

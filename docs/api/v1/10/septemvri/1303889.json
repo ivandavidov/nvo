@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "septemvri": {
+      "fullName": "Септември",
+      "shortName": "Септември",
+      "schools": {
+        "1303889": {
+          "fullName": "СУ Христо Смирненски",
+          "shortName": "СУ Хр. Смирненски",
+          "isPrivate": false,
+          "belScore": [ null, null, 12.5, 12.5, 15.5, 28.92, 29.06, 28.94 ],
+          "matScore": [ null, null, 22.0, 22.0, 34.0, 38.54, 32.56, 41.56 ],
+          "belStudents": [ null, null, 8, 8, 8, 6, 8, 16 ],
+          "matStudents": [ null, null, 8, 8, 8, 6, 8, 16 ]
+        }
+      }
+    }
+  }
+}

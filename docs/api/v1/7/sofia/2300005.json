@@ -1,0 +1,22 @@
+{
+  "grade": 7,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sofia": {
+      "fullName": "София",
+      "shortName": "София",
+      "schools": {
+        "2300005": {
+          "fullName": "ЧСУ Космос",
+          "shortName": "Космос",
+          "isPrivate": true,
+          "belScore": [ null, null, null, null, null, 61.0, 70.5, 64.5 ],
+          "matScore": [ null, null, null, null, null, 59.0, 45.88, 46.42 ],
+          "belStudents": [ null, null, null, null, null, 1, 4, 7 ],
+          "matStudents": [ null, null, null, null, null, 1, 4, 6 ]
+        }
+      }
+    }
+  }
+}

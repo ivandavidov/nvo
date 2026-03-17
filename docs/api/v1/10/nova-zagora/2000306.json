@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "nova-zagora": {
+      "fullName": "Нова Загора",
+      "shortName": "Нова Загора",
+      "schools": {
+        "2000306": {
+          "fullName": "ПГ по селско стопанство",
+          "shortName": "ПГ по селско стоп.",
+          "isPrivate": false,
+          "belScore": [ null, null, 13.9, 13.9, 11.31, 16.88, 13.38, 12.25 ],
+          "matScore": [ null, null, 13.17, 13.17, 16.71, 15.82, 16.72, 15.86 ],
+          "belStudents": [ null, null, 49, 49, 45, 45, 65, 32 ],
+          "matStudents": [ null, null, 48, 48, 43, 44, 65, 28 ]
+        }
+      }
+    }
+  }
+}

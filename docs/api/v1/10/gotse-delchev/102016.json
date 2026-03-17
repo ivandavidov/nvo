@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "gotse-delchev": {
+      "fullName": "Гоце Делчев",
+      "shortName": "Гоце Делчев",
+      "schools": {
+        "102016": {
+          "fullName": "ПГ по мхан. на селското стоп.",
+          "shortName": "ПГ по механизация",
+          "isPrivate": false,
+          "belScore": [ null, null, 30.11, 30.11, 38.08, 57.52, 43.7, 38.12 ],
+          "matScore": [ null, null, 17.09, 17.09, 39.13, 70.74, 42.56, 43.93 ],
+          "belStudents": [ null, null, 81, 81, 60, 73, 92, 101 ],
+          "matStudents": [ null, null, 80, 80, 54, 70, 90, 101 ]
+        }
+      }
+    }
+  }
+}

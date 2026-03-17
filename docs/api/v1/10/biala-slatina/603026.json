@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "biala-slatina": {
+      "fullName": "Бяла Слатина",
+      "shortName": "Б. Слатина",
+      "schools": {
+        "603026": {
+          "fullName": "ПГ агротехническа Н. Вапцаров",
+          "shortName": "ПГ агротехническа",
+          "isPrivate": false,
+          "belScore": [ null, null, 25.41, 25.41, 29.19, 38.26, 31.92, 28.53 ],
+          "matScore": [ null, null, 35.48, 35.48, 30.28, 18.34, 17.63, 17.52 ],
+          "belStudents": [ null, null, 66, 66, 58, 68, 71, 92 ],
+          "matStudents": [ null, null, 65, 65, 58, 69, 73, 92 ]
+        }
+      }
+    }
+  }
+}

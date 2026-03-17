@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "hisaria": {
+      "fullName": "Хисаря",
+      "shortName": "Хисаря",
+      "schools": {
+        "1603708": {
+          "fullName": "СУ Христо Смирненски",
+          "shortName": "СУ Хр. Смирненски",
+          "isPrivate": false,
+          "belScore": [ null, null, 32.82, 32.82, 32.37, 34.15, 33.3, 33.31 ],
+          "matScore": [ null, null, 16.15, 16.15, 19.27, 16.46, 18.14, 22.24 ],
+          "belStudents": [ null, null, 28, 28, 49, 33, 40, 49 ],
+          "matStudents": [ null, null, 26, 26, 39, 33, 39, 48 ]
+        }
+      }
+    }
+  }
+}

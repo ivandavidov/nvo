@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "samokov": {
+      "fullName": "Самоков",
+      "shortName": "Самоков",
+      "schools": {
+        "2303825": {
+          "fullName": "ОбУ Неофит Рилски",
+          "shortName": "ОбУ Неофит Рилски",
+          "isPrivate": false,
+          "belScore": [ null, null, 11.13, 11.13, 10.78, 12.38, 11.71, 9.63 ],
+          "matScore": [ null, null, 15.23, 15.23, 17.74, 16.1, 13.29, 15.7 ],
+          "belStudents": [ null, null, 30, 30, 45, 41, 33, 30 ],
+          "matStudents": [ null, null, 26, 26, 47, 40, 29, 27 ]
+        }
+      }
+    }
+  }
+}

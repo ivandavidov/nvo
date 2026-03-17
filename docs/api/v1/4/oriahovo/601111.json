@@ -1,0 +1,22 @@
+{
+  "grade": 4,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "oriahovo": {
+      "fullName": "Оряхово",
+      "shortName": "Оряхово",
+      "schools": {
+        "601111": {
+          "fullName": "НУ Д-р Петър Берон",
+          "shortName": "НУ Петър Берон",
+          "isPrivate": false,
+          "belScore": [ 67.31, 79.69, 79.69, null, 34.18, 51.0, 57.64, 62.65 ],
+          "matScore": [ 51.92, 71.39, 71.39, null, 18.09, 42.14, 55.0, 54.7 ],
+          "belStudents": [ 13, 16, 16, null, 11, 9, 7, 10 ],
+          "matStudents": [ 13, 18, 18, null, 11, 11, 7, 10 ]
+        }
+      }
+    }
+  }
+}

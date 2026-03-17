@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "silistra": {
+      "fullName": "Силистра",
+      "shortName": "Силистра",
+      "schools": {
+        "1900528": {
+          "fullName": "Спортно у-ще Дръстър",
+          "shortName": "Спортно у-ще",
+          "isPrivate": false,
+          "belScore": [ 3.584, 3.43, 3.53, 3.38, 2.91, 3.18, 3.13, 3.64 ],
+          "matScore": [ 3.716, 3.576, 4.51, null, 4.16, 3.94, 3.31, 4.66 ],
+          "belStudents": [ 19, 14, 18, 19, 15, 15, 15, 16 ],
+          "matStudents": [ 18, 3, 3, null, 15, 15, 13, 14 ]
+        }
+      }
+    }
+  }
+}

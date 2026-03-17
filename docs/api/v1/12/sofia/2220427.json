@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sofia": {
+      "fullName": "София",
+      "shortName": "София",
+      "schools": {
+        "2220427": {
+          "fullName": "ПГ по железопътен транспорт",
+          "shortName": "ПГ по жел. трансп.",
+          "isPrivate": false,
+          "belScore": [ 3.298, 3.3, 3.2, null, null, null, null, null ],
+          "matScore": [ 3.087, 3.093, 3.35, null, null, null, null, null ],
+          "belStudents": [ 28, 30, 15, null, null, null, null, null ],
+          "matStudents": [ 21, 16, 6, null, null, null, null, null ]
+        }
+      }
+    }
+  }
+}

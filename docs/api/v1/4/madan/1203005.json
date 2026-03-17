@@ -1,0 +1,22 @@
+{
+  "grade": 4,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "madan": {
+      "fullName": "Мадан",
+      "shortName": "Мадан",
+      "schools": {
+        "1203005": {
+          "fullName": "Oсновно училище Отец Паисий",
+          "shortName": "Oсновно училище Отец Паисий",
+          "isPrivate": false,
+          "belScore": [ 49.0, 75.83, 75.83, null, null, null, null, null ],
+          "matScore": [ 64.0, 56.67, 56.67, null, null, null, null, null ],
+          "belStudents": [ 5, 6, 6, null, null, null, null, null ],
+          "matStudents": [ 5, 6, 6, null, null, null, null, null ]
+        }
+      }
+    }
+  }
+}

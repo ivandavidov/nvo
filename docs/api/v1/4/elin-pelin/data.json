@@ -1,0 +1,49 @@
+{
+  "grade": 4,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "elin-pelin": {
+      "fullName": "Елин Пелин",
+      "shortName": "Елин Пелин",
+      "schools": {
+        "2300170": {
+          "fullName": "СУ Васил Левски",
+          "shortName": "СУ Васил Левски",
+          "isPrivate": false,
+          "belScore": [ 75.93, 78.64, 78.64, 81.98, 78.32, 68.88, 73.35, 68.67 ],
+          "matScore": [ 80.53, 78.41, 78.41, 71.8, 56.95, 60.77, 70.09, 69.75 ],
+          "belStudents": [ 43, 22, 22, 40, 19, 32, 36, 32 ],
+          "matStudents": [ 47, 22, 22, 40, 19, 32, 35, 32 ]
+        },
+        "2306477": {
+          "fullName": "Начално училище Отец Паисий",
+          "shortName": "Начално училище Отец Паисий",
+          "isPrivate": false,
+          "belScore": [ 62.86, 55.0, 55.0, null, null, null, null, null ],
+          "matScore": [ 74.64, 43.33, 43.33, null, null, null, null, null ],
+          "belStudents": [ 14, 6, 6, null, null, null, null, null ],
+          "matStudents": [ 14, 6, 6, null, null, null, null, null ]
+        },
+        "2307576": {
+          "fullName": "НУ Христо Ботев",
+          "shortName": "НУ Христо Ботев",
+          "isPrivate": false,
+          "belScore": [ 88.94, 89.85, 89.85, 85.68, 79.29, 80.06, 75.63, 83.68 ],
+          "matScore": [ 90.19, 87.83, 87.83, 76.07, 63.04, 76.85, 69.9, 84.13 ],
+          "belStudents": [ 80, 68, 68, 69, 75, 83, 72, 74 ],
+          "matStudents": [ 78, 69, 69, 68, 75, 82, 70, 72 ]
+        },
+        "2308778": {
+          "fullName": "Основно училище Стефан Стефанов",
+          "shortName": "Основно училище Стефан Стефанов",
+          "isPrivate": false,
+          "belScore": [ 84.44, 68.18, 68.18, null, null, null, null, null ],
+          "matScore": [ 75.0, 63.64, 63.64, null, null, null, null, null ],
+          "belStudents": [ 9, 11, 11, null, null, null, null, null ],
+          "matStudents": [ 9, 11, 11, null, null, null, null, null ]
+        }
+      }
+    }
+  }
+}

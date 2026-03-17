@@ -1,0 +1,22 @@
+{
+  "grade": 4,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "kostinbrod": {
+      "fullName": "Костинброд",
+      "shortName": "Костинброд",
+      "schools": {
+        "2300067": {
+          "fullName": "1 ОУ Васил Левски",
+          "shortName": "1 ОУ",
+          "isPrivate": false,
+          "belScore": [ 67.78, 68.75, 68.75, 60.75, 79.69, 68.41, 73.83, 73.97 ],
+          "matScore": [ 67.78, 57.22, 57.22, 53.0, 57.94, 51.59, 68.47, 65.45 ],
+          "belStudents": [ 9, 8, 8, 8, 18, 17, 15, 29 ],
+          "matStudents": [ 9, 9, 9, 8, 18, 17, 15, 29 ]
+        }
+      }
+    }
+  }
+}

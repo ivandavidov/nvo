@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "popovo": {
+      "fullName": "Попово",
+      "shortName": "Попово",
+      "schools": {
+        "2540401": {
+          "fullName": "ПГ Христо Ботев",
+          "shortName": "ПГ Христо Ботев",
+          "isPrivate": false,
+          "belScore": [ null, null, 59.57, 59.57, 50.61, 58.54, 54.7, 53.2 ],
+          "matScore": [ null, null, 35.85, 35.85, 54.49, 46.54, 36.74, 35.91 ],
+          "belStudents": [ null, null, 54, 54, 56, 53, 45, 46 ],
+          "matStudents": [ null, null, 54, 54, 56, 53, 45, 46 ]
+        }
+      }
+    }
+  }
+}

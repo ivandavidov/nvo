@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sandanski": {
+      "fullName": "Сандански",
+      "shortName": "Сандански",
+      "schools": {
+        "109185": {
+          "fullName": "Спортно училище",
+          "shortName": "Спортно у-ще",
+          "isPrivate": false,
+          "belScore": [ 3.474, 3.43, 3.54, 3.64, 2.35, 2.85, 3.66, 3.46 ],
+          "matScore": [ 3.196, 3.458, 2.8, null, 4.2, 4.57, 4.81, 5.02 ],
+          "belStudents": [ 20, 18, 14, 14, 10, 18, 20, 19 ],
+          "matStudents": [ 3, 8, 2, null, 10, 14, 20, 18 ]
+        }
+      }
+    }
+  }
+}

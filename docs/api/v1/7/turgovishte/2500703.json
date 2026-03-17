@@ -1,0 +1,22 @@
+{
+  "grade": 7,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "turgovishte": {
+      "fullName": "Търговище",
+      "shortName": "Търговище",
+      "schools": {
+        "2500703": {
+          "fullName": "Специално у-ще за ученици с увреден слух",
+          "shortName": "У-ще за уч. с увр. слух",
+          "isPrivate": false,
+          "belScore": [ null, 23.67, 7.0, 26.86, null, 22.6, 4.0, 6.5 ],
+          "matScore": [ null, 25.75, 26.0, 33.75, null, 33.4, null, 13.5 ],
+          "belStudents": [ null, 3, 2, 7, null, 5, 1, 2 ],
+          "matStudents": [ null, 3, 2, 8, null, 5, null, 2 ]
+        }
+      }
+    }
+  }
+}

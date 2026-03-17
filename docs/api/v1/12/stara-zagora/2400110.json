@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "stara-zagora": {
+      "fullName": "Стара Загора",
+      "shortName": "Ст. Загора",
+      "schools": {
+        "2400110": {
+          "fullName": "Вечерно СУ Захари Стоянов",
+          "shortName": "Вечерно СУ",
+          "isPrivate": false,
+          "belScore": [ 3.629, 3.35, 3.59, 3.48, 2.0, 3.63, 3.69, 3.57 ],
+          "matScore": [ 3.532, 3.407, 3.73, 3.56, null, 2.89, 3.305, 2.846 ],
+          "belStudents": [ 27, 25, 27, 40, 3, 22, 15, 15 ],
+          "matStudents": [ 30, 24, 27, 41, null, 23, 15, 15 ]
+        }
+      }
+    }
+  }
+}

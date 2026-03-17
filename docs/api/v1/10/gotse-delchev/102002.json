@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "gotse-delchev": {
+      "fullName": "Гоце Делчев",
+      "shortName": "Гоце Делчев",
+      "schools": {
+        "102002": {
+          "fullName": "ПМГ Яне Сандански",
+          "shortName": "ПМГ Яне Сандански",
+          "isPrivate": false,
+          "belScore": [ null, null, 59.19, 59.19, 56.73, 65.83, 63.98, 63.84 ],
+          "matScore": [ null, null, 34.09, 34.09, 50.76, 48.95, 42.96, 47.62 ],
+          "belStudents": [ null, null, 130, 130, 124, 129, 130, 122 ],
+          "matStudents": [ null, null, 130, 130, 121, 128, 130, 121 ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "grade": 7,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "varna": {
+      "fullName": "Варна",
+      "shortName": "Варна",
+      "schools": {
+        "403564": {
+          "fullName": "ЧСУ Мария Монтесори",
+          "shortName": "Мария Монтесори",
+          "isPrivate": true,
+          "belScore": [ null, null, 39.17, null, 47.67, 62.6, 40.25, 44.06 ],
+          "matScore": [ null, null, 44.0, null, 37.0, 50.0, 23.72, 34.69 ],
+          "belStudents": [ null, null, 3, null, 3, 10, 10, 9 ],
+          "matStudents": [ null, null, 3, null, 3, 10, 9, 9 ]
+        }
+      }
+    }
+  }
+}

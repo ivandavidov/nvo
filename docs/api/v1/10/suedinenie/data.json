@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "suedinenie": {
+      "fullName": "Съединение",
+      "shortName": "Съединение",
+      "schools": {
+        "1603301": {
+          "fullName": "СУ Христо Ботев",
+          "shortName": "СУ Христо Ботев",
+          "isPrivate": false,
+          "belScore": [ null, null, 17.32, 17.32, 26.07, 27.52, 35.0, 32.28 ],
+          "matScore": [ null, null, 13.56, 13.56, 18.47, 19.01, 16.65, 17.25 ],
+          "belStudents": [ null, null, 19, 19, 15, 21, 20, 18 ],
+          "matStudents": [ null, null, 18, 18, 15, 19, 20, 18 ]
+        }
+      }
+    }
+  }
+}

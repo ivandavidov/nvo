@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "dimitrovgrad": {
+      "fullName": "Димитровград",
+      "shortName": "Димитровград",
+      "schools": {
+        "2602017": {
+          "fullName": "ОУ Васил Левски",
+          "shortName": "ОУ Васил Левски",
+          "isPrivate": false,
+          "belScore": [ 3.308, null, null, null, null, null, null, null ],
+          "matScore": [ 3.405, null, null, null, null, null, null, null ],
+          "belStudents": [ 5, null, null, null, null, null, null, null ],
+          "matStudents": [ 4, null, null, null, null, null, null, null ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "general-toshevo": {
+      "fullName": "Генерал Тошево",
+      "shortName": "Ген. Тошево",
+      "schools": {
+        "800076": {
+          "fullName": "ПГ по земеделие Тодор Рачински",
+          "shortName": "ПГ по земеделие",
+          "isPrivate": false,
+          "belScore": [ null, null, 28.17, 28.17, 25.58, 30.58, 31.8, 30.18 ],
+          "matScore": [ null, null, 18.93, 18.93, 18.89, 23.77, 18.41, 22.69 ],
+          "belStudents": [ null, null, 58, 58, 53, 59, 54, 55 ],
+          "matStudents": [ null, null, 56, 56, 53, 59, 54, 55 ]
+        }
+      }
+    }
+  }
+}

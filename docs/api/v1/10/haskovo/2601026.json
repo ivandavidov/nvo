@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "haskovo": {
+      "fullName": "Хасково",
+      "shortName": "Хасково",
+      "schools": {
+        "2601026": {
+          "fullName": "СУ Паисий Хилендарски",
+          "shortName": "СУ П. Хилендарски",
+          "isPrivate": false,
+          "belScore": [ null, null, null, null, 31.84, 34.47, 51.15, 46.25 ],
+          "matScore": [ null, null, null, null, 20.84, 14.92, 19.61, 22.92 ],
+          "belStudents": [ null, null, null, null, 19, 18, 23, 24 ],
+          "matStudents": [ null, null, null, null, 19, 18, 23, 24 ]
+        }
+      }
+    }
+  }
+}

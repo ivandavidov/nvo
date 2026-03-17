@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sopot": {
+      "fullName": "Сопот",
+      "shortName": "Сопот",
+      "schools": {
+        "1601363": {
+          "fullName": "Професионална гимназия Генерал Владимир Заимов",
+          "shortName": "ПГ Генерал Владимир Заимов",
+          "isPrivate": false,
+          "belScore": [ null, null, 42.57, 42.57, 37.99, 43.68, 47.8, 41.88 ],
+          "matScore": [ null, null, 18.19, 18.19, 21.15, 21.43, 21.69, 22.62 ],
+          "belStudents": [ null, null, 120, 120, 151, 137, 148, 147 ],
+          "matStudents": [ null, null, 119, 119, 148, 134, 148, 146 ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sofia": {
+      "fullName": "София",
+      "shortName": "София",
+      "schools": {
+        "2219130": {
+          "fullName": "130 СУ Стефан Караджа",
+          "shortName": "130 СУ",
+          "isPrivate": false,
+          "belScore": [ 3.767, 3.5, 3.52, 3.41, 2.44, 2.44, 2.36, 3.4 ],
+          "matScore": [ 3.88, 3.431, 3.52, 3.58, 2.68, 2.5, 2.556, 0.358 ],
+          "belStudents": [ 17, 9, 16, 13, 13, 14, 3, 18 ],
+          "matStudents": [ 17, 8, 16, 13, 13, 10, 3, 16 ]
+        }
+      }
+    }
+  }
+}

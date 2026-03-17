@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "burgas": {
+      "fullName": "Бургас",
+      "shortName": "Бургас",
+      "schools": {
+        "200228": {
+          "fullName": "СУ Йордан Йовков",
+          "shortName": "СУ Йордан Йовков",
+          "isPrivate": false,
+          "belScore": [ 3.186, 3.14, 3.62, 3.26, 2.66, 2.7, 2.0, 2.0 ],
+          "matScore": [ 3.448, 3.418, 3.96, 3.22, 2.9, 2.862, 2.333, 2.0 ],
+          "belStudents": [ 6, 9, 8, 8, 3, 5, 4, 6 ],
+          "matStudents": [ 6, 7, 8, 8, 3, 4, 3, 1 ]
+        }
+      }
+    }
+  }
+}

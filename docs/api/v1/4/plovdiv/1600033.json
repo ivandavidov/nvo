@@ -1,0 +1,22 @@
+{
+  "grade": 4,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "plovdiv": {
+      "fullName": "Пловдив",
+      "shortName": "Пловдив",
+      "schools": {
+        "1600033": {
+          "fullName": "ЧОУ Искра",
+          "shortName": "Искра",
+          "isPrivate": true,
+          "belScore": [ null, null, null, null, null, null, null, 69.58 ],
+          "matScore": [ null, null, null, null, null, null, null, 85.0 ],
+          "belStudents": [ null, null, null, null, null, null, null, 6 ],
+          "matStudents": [ null, null, null, null, null, null, null, 6 ]
+        }
+      }
+    }
+  }
+}

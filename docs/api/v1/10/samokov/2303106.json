@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "samokov": {
+      "fullName": "Самоков",
+      "shortName": "Самоков",
+      "schools": {
+        "2303106": {
+          "fullName": "СУ Отец Паисий",
+          "shortName": "СУ Отец Паисий",
+          "isPrivate": false,
+          "belScore": [ null, null, 43.42, 43.42, 39.54, 52.0, 55.62, 57.58 ],
+          "matScore": [ null, null, 24.83, 24.83, 23.18, 30.06, 49.83, 35.61 ],
+          "belStudents": [ null, null, 53, 53, 26, 31, 39, 52 ],
+          "matStudents": [ null, null, 53, 53, 25, 31, 39, 52 ]
+        }
+      }
+    }
+  }
+}

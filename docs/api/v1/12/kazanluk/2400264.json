@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "kazanluk": {
+      "fullName": "Казанлък",
+      "shortName": "Казанлък",
+      "schools": {
+        "2400264": {
+          "fullName": "СУ Екзарх Антим I",
+          "shortName": "СУ Антим I",
+          "isPrivate": false,
+          "belScore": [ 4.532, 4.37, 4.37, 4.32, 4.32, 4.26, 4.8, 4.7 ],
+          "matScore": [ 4.697, 4.459, 4.55, 4.5, 4.441, 4.248, 4.687, 4.607 ],
+          "belStudents": [ 97, 76, 67, 87, 98, 80, 81, 83 ],
+          "matStudents": [ 97, 76, 67, 87, 98, 79, 85, 83 ]
+        }
+      }
+    }
+  }
+}

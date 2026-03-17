@@ -1,0 +1,22 @@
+{
+  "grade": 12,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "pernik": {
+      "fullName": "Перник",
+      "shortName": "Перник",
+      "schools": {
+        "1403204": {
+          "fullName": "ОбУ Темелко Ненков",
+          "shortName": "ОбУ Темелко Ненков",
+          "isPrivate": false,
+          "belScore": [ null, null, null, null, 2.15, 2.0, 2.67, 2.1 ],
+          "matScore": [ null, null, null, null, 4.11, 3.98, 3.55, 3.88 ],
+          "belStudents": [ null, null, null, null, 16, 12, 10, 12 ],
+          "matStudents": [ null, null, null, null, 12, 8, 10, 10 ]
+        }
+      }
+    }
+  }
+}

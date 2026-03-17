@@ -1,0 +1,31 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "svilengrad": {
+      "fullName": "Свиленград",
+      "shortName": "Свиленград",
+      "schools": {
+        "2605008": {
+          "fullName": "СУ Д-р Петър Берон",
+          "shortName": "СУ Петър Берон",
+          "isPrivate": false,
+          "belScore": [ null, null, 48.97, 48.97, 38.98, 45.28, 52.94, 43.75 ],
+          "matScore": [ null, null, 33.12, 33.12, 32.92, 38.33, 26.67, 34.03 ],
+          "belStudents": [ null, null, 59, 59, 62, 65, 75, 68 ],
+          "matStudents": [ null, null, 59, 59, 62, 65, 76, 67 ]
+        },
+        "2605016": {
+          "fullName": "ПГ по селско стопанство",
+          "shortName": "ПГ по селско стоп.",
+          "isPrivate": false,
+          "belScore": [ null, null, 31.0, 31.0, 32.38, 36.34, 38.92, 39.26 ],
+          "matScore": [ null, null, 22.05, 22.05, 35.9, 33.49, 29.99, 27.72 ],
+          "belStudents": [ null, null, 62, 62, 65, 89, 88, 78 ],
+          "matStudents": [ null, null, 62, 62, 64, 89, 80, 74 ]
+        }
+      }
+    }
+  }
+}

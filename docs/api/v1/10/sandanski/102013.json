@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sandanski": {
+      "fullName": "Сандански",
+      "shortName": "Сандански",
+      "schools": {
+        "102013": {
+          "fullName": "Земеделска професионална гимназия",
+          "shortName": "Земеделска гимн.",
+          "isPrivate": false,
+          "belScore": [ null, null, 44.21, 44.21, 43.33, 50.02, 51.49, 45.25 ],
+          "matScore": [ null, null, 24.05, 24.05, 32.73, 30.09, 24.0, 26.49 ],
+          "belStudents": [ null, null, 143, 143, 146, 151, 153, 144 ],
+          "matStudents": [ null, null, 143, 143, 145, 151, 153, 144 ]
+        }
+      }
+    }
+  }
+}

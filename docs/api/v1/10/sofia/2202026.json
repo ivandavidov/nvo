@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "sofia": {
+      "fullName": "София",
+      "shortName": "София",
+      "schools": {
+        "2202026": {
+          "fullName": "26 СУ Йордан Йовков",
+          "shortName": "26 СУ",
+          "isPrivate": false,
+          "belScore": [ null, null, null, null, 35.81, 50.95, 49.15, 43.83 ],
+          "matScore": [ null, null, null, null, 22.48, 29.77, 20.35, 20.85 ],
+          "belStudents": [ null, null, null, null, 21, 22, 20, 24 ],
+          "matStudents": [ null, null, null, null, 21, 22, 20, 24 ]
+        }
+      }
+    }
+  }
+}

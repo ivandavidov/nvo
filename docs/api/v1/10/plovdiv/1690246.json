@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "plovdiv": {
+      "fullName": "Пловдив",
+      "shortName": "Пловдив",
+      "schools": {
+        "1690246": {
+          "fullName": "ОбУ Пенчо Славейков",
+          "shortName": "ОбУ Пенчо Славейков",
+          "isPrivate": false,
+          "belScore": [ null, null, null, null, null, 6.76, 8.68, 7.45 ],
+          "matScore": [ null, null, null, null, null, 17.76, 14.0, 13.43 ],
+          "belStudents": [ null, null, null, null, null, 34, 22, 22 ],
+          "matStudents": [ null, null, null, null, null, 34, 22, 23 ]
+        }
+      }
+    }
+  }
+}

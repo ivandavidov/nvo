@@ -1,0 +1,22 @@
+{
+  "grade": 10,
+  "firstYear": 2018,
+  "lastYear": 2025,
+  "cities": {
+    "beloslav": {
+      "fullName": "Белослав",
+      "shortName": "Белослав",
+      "schools": {
+        "400098": {
+          "fullName": "ПГ Св. Димитър Солунски",
+          "shortName": "ПГ Св. Димитър Солунски",
+          "isPrivate": false,
+          "belScore": [ null, null, 20.54, 20.54, 11.54, 21.46, 22.05, 22.3 ],
+          "matScore": [ null, null, 20.32, 20.32, 23.02, 24.83, 29.06, 30.81 ],
+          "belStudents": [ null, null, 26, 26, 35, 24, 22, 40 ],
+          "matStudents": [ null, null, 25, 25, 35, 24, 24, 39 ]
+        }
+      }
+    }
+  }
+}
