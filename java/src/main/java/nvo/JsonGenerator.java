@@ -409,6 +409,7 @@ public class JsonGenerator {
                           <tr><td>endYear</td><td class="type">number</td><td>Крайна година на прозореца</td></tr>
                           <tr><td>schools[]</td><td class="type">array</td><td>Сортиран списък с училища</td></tr>
                           <tr><td>schools[].rank</td><td class="type">number</td><td>Позиция в класацията</td></tr>
+                          <tr><td>schools[].adjustedRank</td><td class="type">number|null</td><td>Позиция без училища без данни за endYear (null = няма данни за крайната година)</td></tr>
                           <tr><td>schools[].code</td><td class="type">string</td><td>Код на училището</td></tr>
                           <tr><td>schools[].cities</td><td class="type">array</td><td>Slug-ове на градовете (училища в повече от един град имат няколко)</td></tr>
                           <tr><td>schools[].shortName</td><td class="type">string</td><td>Кратко име</td></tr>
@@ -1050,13 +1051,25 @@ public class JsonGenerator {
             medianRoot.addProperty("endYear", endYear);
             JsonArray medArr = new JsonArray();
             int rank = 0;
+            int adjustedRank = 0;
             for (int idx : indices) {
                 rank++;
                 RankedSchool rs = medianSchools.get(idx);
                 double bel = medianList.get(idx)[0];
                 double mat = medianList.get(idx)[1];
+
+                // adjustedRank: only schools with both BEL and MAT data for endYear
+                boolean hasEndYearData = rs.sd.belScore[endYearIndex] != null
+                        && rs.sd.matScore[endYearIndex] != null;
+
                 JsonObject entry = new JsonObject();
                 entry.addProperty("rank", rank);
+                if (hasEndYearData) {
+                    adjustedRank++;
+                    entry.addProperty("adjustedRank", adjustedRank);
+                } else {
+                    entry.add("adjustedRank", JsonNull.INSTANCE);
+                }
                 entry.addProperty("code", rs.code);
                 JsonArray citiesArr = new JsonArray();
                 rs.citySlugs.forEach(citiesArr::add);

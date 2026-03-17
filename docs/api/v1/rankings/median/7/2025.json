@@ -6,6 +6,7 @@
   "schools": [
     {
       "rank": 1,
+      "adjustedRank": 1,
       "code": "2216306",
       "cities": [ "sofia" ],
       "shortName": "СМГ",
@@ -17,6 +18,7 @@
     },
     {
       "rank": 2,
+      "adjustedRank": 2,
       "code": "400046",
       "cities": [ "varna" ],
       "shortName": "МГ Петър Берон",
@@ -28,6 +30,7 @@
     },
     {
       "rank": 3,
+      "adjustedRank": 3,
       "code": "1690346",
       "cities": [ "plovdiv" ],
       "shortName": "МГ Акад. Кирил Попов",
@@ -39,6 +42,7 @@
     },
     {
       "rank": 4,
+      "adjustedRank": 4,
       "code": "2202537",
       "cities": [ "sofia" ],
       "shortName": "Св. София",
@@ -50,6 +54,7 @@
     },
     {
       "rank": 5,
+      "adjustedRank": 5,
       "code": "200239",
       "cities": [ "burgas" ],
       "shortName": "ППМГ",
@@ -61,6 +66,7 @@
     },
     {
       "rank": 6,
+      "adjustedRank": 6,
       "code": "2211304",
       "cities": [ "sofia" ],
       "shortName": "НПМГ",
@@ -72,6 +78,7 @@
     },
     {
       "rank": 7,
+      "adjustedRank": 7,
       "code": "2221563",
       "cities": [ "sofia" ],
       "shortName": "ПЧМГ",
@@ -83,6 +90,7 @@
     },
     {
       "rank": 8,
+      "adjustedRank": 8,
       "code": "2400102",
       "cities": [ "stara-zagora" ],
       "shortName": "ППМГ Гео Милев",
@@ -94,6 +102,7 @@
     },
     {
       "rank": 9,
+      "adjustedRank": 9,
       "code": "1806202",
       "cities": [ "ruse" ],
       "shortName": "МГ Баба Тонка",
@@ -105,6 +114,7 @@
     },
     {
       "rank": 10,
+      "adjustedRank": 10,
       "code": "2213506",
       "cities": [ "sofia" ],
       "shortName": "ЕСПА",
@@ -116,6 +126,7 @@
     },
     {
       "rank": 11,
+      "adjustedRank": 11,
       "code": "100200",
       "cities": [ "blagoevgrad" ],
       "shortName": "ПМГ Акад. С. Корольов",
@@ -127,6 +138,7 @@
     },
     {
       "rank": 12,
+      "adjustedRank": 12,
       "code": "2217722",
       "cities": [ "sofia" ],
       "shortName": "Томас Едисън",
@@ -138,6 +150,7 @@
     },
     {
       "rank": 13,
+      "adjustedRank": 13,
       "code": "1403219",
       "cities": [ "pernik" ],
       "shortName": "ПМГ",
@@ -149,6 +162,7 @@
     },
     {
       "rank": 14,
+      "adjustedRank": 14,
       "code": "2200024",
       "cities": [ "sofia" ],
       "shortName": "Наука за деца",
@@ -160,6 +174,7 @@
     },
     {
       "rank": 15,
+      "adjustedRank": 15,
       "code": "2205521",
       "cities": [ "sofia" ],
       "shortName": "Св. Климент Охридски",
@@ -171,6 +186,7 @@
     },
     {
       "rank": 16,
+      "adjustedRank": 16,
       "code": "2202536",
       "cities": [ "sofia" ],
       "shortName": "Британика",
@@ -182,6 +198,7 @@
     },
     {
       "rank": 17,
+      "adjustedRank": 17,
       "code": "2221621",
       "cities": [ "sofia" ],
       "shortName": "Питагор",
@@ -193,6 +210,7 @@
     },
     {
       "rank": 18,
+      "adjustedRank": 18,
       "code": "200259",
       "cities": [ "burgas" ],
       "shortName": "ПЧОУ",
@@ -204,6 +222,7 @@
     },
     {
       "rank": 19,
+      "adjustedRank": 19,
       "code": "1100320",
       "cities": [ "lovech" ],
       "shortName": "ППМГ",
@@ -215,6 +234,7 @@
     },
     {
       "rank": 20,
+      "adjustedRank": 20,
       "code": "700116",
       "cities": [ "gabrovo" ],
       "shortName": "ПМГ",
@@ -226,6 +246,7 @@
     },
     {
       "rank": 21,
+      "adjustedRank": 21,
       "code": "2601029",
       "cities": [ "haskovo" ],
       "shortName": "ПМГ",
@@ -237,6 +258,7 @@
     },
     {
       "rank": 22,
+      "adjustedRank": 22,
       "code": "602062",
       "cities": [ "vratsa" ],
       "shortName": "ППМГ",
@@ -248,6 +270,7 @@
     },
     {
       "rank": 23,
+      "adjustedRank": 23,
       "code": "2902702",
       "cities": [ "sofia" ],
       "shortName": "НГДЕК",
@@ -259,6 +282,7 @@
     },
     {
       "rank": 24,
+      "adjustedRank": 24,
       "code": "2204549",
       "cities": [ "sofia" ],
       "shortName": "Веда",
@@ -270,6 +294,7 @@
     },
     {
       "rank": 25,
+      "adjustedRank": 25,
       "code": "1309018",
       "cities": [ "pazardzhik" ],
       "shortName": "ПМГ",
@@ -281,6 +306,7 @@
     },
     {
       "rank": 26,
+      "adjustedRank": 26,
       "code": "2211107",
       "cities": [ "sofia" ],
       "shortName": "107 ОУ",
@@ -292,6 +318,7 @@
     },
     {
       "rank": 27,
+      "adjustedRank": 27,
       "code": "2000126",
       "cities": [ "sliven" ],
       "shortName": "ППМГ",
@@ -303,6 +330,7 @@
     },
     {
       "rank": 28,
+      "adjustedRank": 28,
       "code": "2700221",
       "cities": [ "shumen" ],
       "shortName": "ППМГ",
@@ -314,6 +342,7 @@
     },
     {
       "rank": 29,
+      "adjustedRank": 29,
       "code": "1690156",
       "cities": [ "plovdiv" ],
       "shortName": "СУ Патр. Евтимий",
@@ -325,6 +354,7 @@
     },
     {
       "rank": 30,
+      "adjustedRank": 30,
       "code": "1201001",
       "cities": [ "montana" ],
       "shortName": "ППМГ",
@@ -336,6 +366,7 @@
     },
     {
       "rank": 31,
+      "adjustedRank": 31,
       "code": "2213145",
       "cities": [ "sofia" ],
       "shortName": "145 ОУ",
@@ -347,6 +378,7 @@
     },
     {
       "rank": 32,
+      "adjustedRank": 32,
       "code": "400020",
       "cities": [ "varna" ],
       "shortName": "OУ Петко Славейков",
@@ -358,6 +390,7 @@
     },
     {
       "rank": 33,
+      "adjustedRank": 33,
       "code": "1500130",
       "cities": [ "pleven" ],
       "shortName": "МГ Гео Милев",
@@ -369,6 +402,7 @@
     },
     {
       "rank": 34,
+      "adjustedRank": 34,
       "code": "2211564",
       "cities": [ "sofia" ],
       "shortName": "Българско школо",
@@ -380,6 +414,7 @@
     },
     {
       "rank": 35,
+      "adjustedRank": 35,
       "code": "2213125",
       "cities": [ "sofia" ],
       "shortName": "125 СУИЧЕ",
@@ -391,6 +426,7 @@
     },
     {
       "rank": 36,
+      "adjustedRank": 36,
       "code": "200241",
       "cities": [ "burgas" ],
       "shortName": "Коджакафалията",
@@ -402,6 +438,7 @@
     },
     {
       "rank": 37,
+      "adjustedRank": 37,
       "code": "2213721",
       "cities": [ "sofia" ],
       "shortName": "Азбуки",
@@ -413,6 +450,7 @@
     },
     {
       "rank": 38,
+      "adjustedRank": 38,
       "code": "1702609",
       "cities": [ "razgrad" ],
       "shortName": "ППМГ",
@@ -424,6 +462,7 @@
     },
     {
       "rank": 39,
+      "adjustedRank": 39,
       "code": "2224020",
       "cities": [ "sofia" ],
       "shortName": "20 ОУ",
@@ -435,6 +474,7 @@
     },
     {
       "rank": 40,
+      "adjustedRank": 40,
       "code": "400030",
       "cities": [ "varna" ],
       "shortName": "7 СУ Н. Геров",
@@ -446,6 +486,7 @@
     },
     {
       "rank": 41,
+      "adjustedRank": 41,
       "code": "300141",
       "cities": [ "veliko-turnovo" ],
       "shortName": "АК-Арукс",
@@ -457,6 +498,7 @@
     },
     {
       "rank": 42,
+      "adjustedRank": 42,
       "code": "400022",
       "cities": [ "varna" ],
       "shortName": "ОУ Кирил и Методий",
@@ -468,6 +510,7 @@
     },
     {
       "rank": 43,
+      "adjustedRank": 43,
       "code": "2224073",
       "cities": [ "sofia" ],
       "shortName": "73 СУ",
@@ -479,6 +522,7 @@
     },
     {
       "rank": 44,
+      "adjustedRank": 44,
       "code": "2211518",
       "cities": [ "sofia" ],
       "shortName": "Петър Берон",
@@ -490,6 +534,7 @@
     },
     {
       "rank": 45,
+      "adjustedRank": 45,
       "code": "500102",
       "cities": [ "vidin" ],
       "shortName": "ППМГ",
@@ -501,6 +546,7 @@
     },
     {
       "rank": 46,
+      "adjustedRank": 46,
       "code": "2400262",
       "cities": [ "kazanluk" ],
       "shortName": "ППМГ",
@@ -512,6 +558,7 @@
     },
     {
       "rank": 47,
+      "adjustedRank": 47,
       "code": "400008",
       "cities": [ "varna" ],
       "shortName": "ОУ Захари Стоянов",
@@ -523,6 +570,7 @@
     },
     {
       "rank": 48,
+      "adjustedRank": 48,
       "code": "2221501",
       "cities": [ "sofia" ],
       "shortName": "Образов. технологии",
@@ -534,6 +582,7 @@
     },
     {
       "rank": 49,
+      "adjustedRank": 49,
       "code": "2200037",
       "cities": [ "sofia" ],
       "shortName": "Прогресивно обр. 3",
@@ -545,6 +594,7 @@
     },
     {
       "rank": 50,
+      "adjustedRank": 50,
       "code": "400031",
       "cities": [ "varna" ],
       "shortName": "СУЕО Пушкин",
@@ -556,6 +606,7 @@
     },
     {
       "rank": 51,
+      "adjustedRank": 51,
       "code": "2902701",
       "cities": [ "sofia" ],
       "shortName": "НУКК",
@@ -567,6 +618,7 @@
     },
     {
       "rank": 52,
+      "adjustedRank": 52,
       "code": "2211120",
       "cities": [ "sofia" ],
       "shortName": "120 ОУ",
@@ -578,6 +630,7 @@
     },
     {
       "rank": 53,
+      "adjustedRank": 53,
       "code": "2212553",
       "cities": [ "sofia" ],
       "shortName": "Петко Славейков",
@@ -589,6 +642,7 @@
     },
     {
       "rank": 54,
+      "adjustedRank": 54,
       "code": "2222007",
       "cities": [ "sofia" ],
       "shortName": "7 СУ",
@@ -600,6 +654,7 @@
     },
     {
       "rank": 55,
+      "adjustedRank": 55,
       "code": "2811516",
       "cities": [ "iambol" ],
       "shortName": "ПМГ",
@@ -611,6 +666,7 @@
     },
     {
       "rank": 56,
+      "adjustedRank": null,
       "code": "400120",
       "cities": [ "varna" ],
       "shortName": "Монтесори Варна",
@@ -622,6 +678,7 @@
     },
     {
       "rank": 57,
+      "adjustedRank": 56,
       "code": "2221031",
       "cities": [ "sofia" ],
       "shortName": "31 СУ",
@@ -633,6 +690,7 @@
     },
     {
       "rank": 58,
+      "adjustedRank": 57,
       "code": "2204032",
       "cities": [ "sofia" ],
       "shortName": "32 СУ",
@@ -644,6 +702,7 @@
     },
     {
       "rank": 59,
+      "adjustedRank": 58,
       "code": "2209529",
       "cities": [ "sofia" ],
       "shortName": "Дорис Тенеди",
@@ -655,6 +714,7 @@
     },
     {
       "rank": 60,
+      "adjustedRank": 59,
       "code": "2222133",
       "cities": [ "sofia" ],
       "shortName": "133 СУ",
@@ -666,6 +726,7 @@
     },
     {
       "rank": 61,
+      "adjustedRank": 60,
       "code": "2218703",
       "cities": [ "sofia" ],
       "shortName": "Изгрев",
@@ -677,6 +738,7 @@
     },
     {
       "rank": 62,
+      "adjustedRank": 61,
       "code": "2222038",
       "cities": [ "sofia" ],
       "shortName": "38 ОУ",
@@ -688,6 +750,7 @@
     },
     {
       "rank": 63,
+      "adjustedRank": 62,
       "code": "2224104",
       "cities": [ "sofia" ],
       "shortName": "104 ОУ",
@@ -699,6 +762,7 @@
     },
     {
       "rank": 64,
+      "adjustedRank": 63,
       "code": "2223055",
       "cities": [ "sofia" ],
       "shortName": "55 СУ",
@@ -710,6 +774,7 @@
     },
     {
       "rank": 65,
+      "adjustedRank": 64,
       "code": "1806102",
       "cities": [ "ruse" ],
       "shortName": "ОУ Л. Каравелов",
@@ -721,6 +786,7 @@
     },
     {
       "rank": 66,
+      "adjustedRank": 65,
       "code": "400075",
       "cities": [ "varna" ],
       "shortName": "Малкият принц",
@@ -732,6 +798,7 @@
     },
     {
       "rank": 67,
+      "adjustedRank": 66,
       "code": "2201515",
       "cities": [ "sofia" ],
       "shortName": "Цар Симеон Велики",
@@ -743,6 +810,7 @@
     },
     {
       "rank": 68,
+      "adjustedRank": 67,
       "code": "400006",
       "cities": [ "varna" ],
       "shortName": "ОУ Георги Раковски",
@@ -754,6 +822,7 @@
     },
     {
       "rank": 69,
+      "adjustedRank": 68,
       "code": "200213",
       "cities": [ "burgas" ],
       "shortName": "ОУ Васил Априлов",
@@ -765,6 +834,7 @@
     },
     {
       "rank": 70,
+      "adjustedRank": 69,
       "code": "2213600",
       "cities": [ "sofia" ],
       "shortName": "Абрахам Линкълн",
@@ -776,6 +846,7 @@
     },
     {
       "rank": 71,
+      "adjustedRank": 70,
       "code": "2204134",
       "cities": [ "sofia" ],
       "shortName": "134 СУ",
@@ -787,6 +858,7 @@
     },
     {
       "rank": 72,
+      "adjustedRank": 71,
       "code": "2103321",
       "cities": [ "smolian" ],
       "shortName": "ППМГ",
@@ -798,6 +870,7 @@
     },
     {
       "rank": 73,
+      "adjustedRank": 72,
       "code": "2211122",
       "cities": [ "sofia" ],
       "shortName": "122 ОУ",
@@ -809,6 +882,7 @@
     },
     {
       "rank": 74,
+      "adjustedRank": 73,
       "code": "1690142",
       "cities": [ "plovdiv" ],
       "shortName": "ОУ А. Константинов",
@@ -820,6 +894,7 @@
     },
     {
       "rank": 75,
+      "adjustedRank": 74,
       "code": "400040",
       "cities": [ "varna" ],
       "shortName": "СУ Кл. Охридски",
@@ -831,6 +906,7 @@
     },
     {
       "rank": 76,
+      "adjustedRank": 75,
       "code": "2211035",
       "cities": [ "sofia" ],
       "shortName": "35 СУ",
@@ -842,6 +918,7 @@
     },
     {
       "rank": 77,
+      "adjustedRank": 76,
       "code": "2209036",
       "cities": [ "sofia" ],
       "shortName": "36 СУ",
@@ -853,6 +930,7 @@
     },
     {
       "rank": 78,
+      "adjustedRank": 77,
       "code": "2224677",
       "cities": [ "sofia" ],
       "shortName": "Прогресивно обр. 1",
@@ -864,6 +942,7 @@
     },
     {
       "rank": 79,
+      "adjustedRank": 78,
       "code": "2213502",
       "cities": [ "sofia" ],
       "shortName": "Меридиан 22",
@@ -875,6 +954,7 @@
     },
     {
       "rank": 80,
+      "adjustedRank": 79,
       "code": "2202002",
       "cities": [ "sofia" ],
       "shortName": "2 СУ",
@@ -886,6 +966,7 @@
     },
     {
       "rank": 81,
+      "adjustedRank": 80,
       "code": "2400123",
       "cities": [ "stara-zagora" ],
       "shortName": "OУ Петко Славейков",
@@ -897,6 +978,7 @@
     },
     {
       "rank": 82,
+      "adjustedRank": 81,
       "code": "2602019",
       "cities": [ "dimitrovgrad" ],
       "shortName": "ПМГЗИЧЕ",
@@ -908,6 +990,7 @@
     },
     {
       "rank": 83,
+      "adjustedRank": 82,
       "code": "2213010",
       "cities": [ "sofia" ],
       "shortName": "10 СУ",
@@ -919,6 +1002,7 @@
     },
     {
       "rank": 84,
+      "adjustedRank": 83,
       "code": "400034",
       "cities": [ "varna" ],
       "shortName": "СУ Гео Милев",
@@ -930,6 +1014,7 @@
     },
     {
       "rank": 85,
+      "adjustedRank": 84,
       "code": "2204595",
       "cities": [ "sofia" ],
       "shortName": "Светлина",
@@ -941,6 +1026,7 @@
     },
     {
       "rank": 86,
+      "adjustedRank": 85,
       "code": "2221109",
       "cities": [ "sofia" ],
       "shortName": "109 ОУ",
@@ -952,6 +1038,7 @@
     },
     {
       "rank": 87,
+      "adjustedRank": 86,
       "code": "2216532",
       "cities": [ "sofia" ],
       "shortName": "Увекинд",
@@ -963,6 +1050,7 @@
     },
     {
       "rank": 88,
+      "adjustedRank": 87,
       "code": "2219143",
       "cities": [ "sofia" ],
       "shortName": "143 ОУ",
@@ -974,6 +1062,7 @@
     },
     {
       "rank": 89,
+      "adjustedRank": 88,
       "code": "2202052",
       "cities": [ "sofia" ],
       "shortName": "52 ОУ",
@@ -985,6 +1074,7 @@
     },
     {
       "rank": 90,
+      "adjustedRank": 89,
       "code": "2209051",
       "cities": [ "sofia" ],
       "shortName": "51 СУ",
@@ -996,6 +1086,7 @@
     },
     {
       "rank": 91,
+      "adjustedRank": 90,
       "code": "2209019",
       "cities": [ "sofia" ],
       "shortName": "19 СУ",
@@ -1007,6 +1098,7 @@
     },
     {
       "rank": 92,
+      "adjustedRank": 91,
       "code": "2204018",
       "cities": [ "sofia" ],
       "shortName": "18 СУ",
@@ -1018,6 +1110,7 @@
     },
     {
       "rank": 93,
+      "adjustedRank": 92,
       "code": "2205119",
       "cities": [ "sofia" ],
       "shortName": "119 СУ",
@@ -1029,6 +1122,7 @@
     },
     {
       "rank": 94,
+      "adjustedRank": 93,
       "code": "2222006",
       "cities": [ "sofia" ],
       "shortName": "6 ОУ",
@@ -1040,6 +1134,7 @@
     },
     {
       "rank": 95,
+      "adjustedRank": 94,
       "code": "2200045",
       "cities": [ "sofia" ],
       "shortName": "Фюжън",
@@ -1051,6 +1146,7 @@
     },
     {
       "rank": 96,
+      "adjustedRank": 95,
       "code": "2300099",
       "cities": [ "botevgrad" ],
       "shortName": "ППМГ",
@@ -1062,6 +1158,7 @@
     },
     {
       "rank": 97,
+      "adjustedRank": 96,
       "code": "1600018",
       "cities": [ "plovdiv" ],
       "shortName": "Слънчев лъч",
@@ -1073,6 +1170,7 @@
     },
     {
       "rank": 98,
+      "adjustedRank": 97,
       "code": "1690152",
       "cities": [ "plovdiv" ],
       "shortName": "ОУ Кн. Александър I",
@@ -1084,6 +1182,7 @@
     },
     {
       "rank": 99,
+      "adjustedRank": 98,
       "code": "2214063",
       "cities": [ "sofia" ],
       "shortName": "63 ОУ",
@@ -1095,6 +1194,7 @@
     },
     {
       "rank": 100,
+      "adjustedRank": 99,
       "code": "400047",
       "cities": [ "varna" ],
       "shortName": "СУ за хуман. науки и изк.",
@@ -1106,6 +1206,7 @@
     },
     {
       "rank": 101,
+      "adjustedRank": 100,
       "code": "200203",
       "cities": [ "burgas" ],
       "shortName": "Мария Монтесори",
@@ -1117,6 +1218,7 @@
     },
     {
       "rank": 102,
+      "adjustedRank": 101,
       "code": "1690149",
       "cities": [ "plovdiv" ],
       "shortName": "ОУ Кочо Честеменски",
@@ -1128,6 +1230,7 @@
     },
     {
       "rank": 103,
+      "adjustedRank": 102,
       "code": "1806207",
       "cities": [ "ruse" ],
       "shortName": "СУ Христо Ботев",
@@ -1139,6 +1242,7 @@
     },
     {
       "rank": 104,
+      "adjustedRank": 103,
       "code": "2211139",
       "cities": [ "sofia" ],
       "shortName": "139 ОУ",
@@ -1150,6 +1254,7 @@
     },
     {
       "rank": 105,
+      "adjustedRank": 104,
       "code": "2216129",
       "cities": [ "sofia" ],
       "shortName": "129 ОУ",
@@ -1161,6 +1266,7 @@
     },
     {
       "rank": 106,
+      "adjustedRank": 105,
       "code": "2202574",
       "cities": [ "sofia" ],
       "shortName": "Св. Георги",
@@ -1172,6 +1278,7 @@
     },
     {
       "rank": 107,
+      "adjustedRank": 106,
       "code": "2224041",
       "cities": [ "sofia" ],
       "shortName": "41 ОУ",
@@ -1183,6 +1290,7 @@
     },
     {
       "rank": 108,
+      "adjustedRank": 107,
       "code": "2209034",
       "cities": [ "sofia" ],
       "shortName": "34 ОУ",
@@ -1194,6 +1302,7 @@
     },
     {
       "rank": 109,
+      "adjustedRank": 108,
       "code": "2207163",
       "cities": [ "sofia" ],
       "shortName": "163 ОУ",
@@ -1205,6 +1314,7 @@
     },
     {
       "rank": 110,
+      "adjustedRank": 109,
       "code": "2224022",
       "cities": [ "sofia" ],
       "shortName": "22 СУ",
@@ -1216,6 +1326,7 @@
     },
     {
       "rank": 111,
+      "adjustedRank": 110,
       "code": "2216112",
       "cities": [ "sofia" ],
       "shortName": "112 ОУ",
@@ -1227,6 +1338,7 @@
     },
     {
       "rank": 112,
+      "adjustedRank": null,
       "code": "2212554",
       "cities": [ "sofia" ],
       "shortName": "Ерих Кестнер",
@@ -1238,6 +1350,7 @@
     },
     {
       "rank": 113,
+      "adjustedRank": 111,
       "code": "2403219",
       "cities": [ "stara-zagora" ],
       "shortName": "ОУ Св. Никола",
@@ -1249,6 +1362,7 @@
     },
     {
       "rank": 114,
+      "adjustedRank": 112,
       "code": "403536",
       "cities": [ "varna" ],
       "shortName": "3 ОУ А. Кънчев",
@@ -1260,6 +1374,7 @@
     },
     {
       "rank": 115,
+      "adjustedRank": 113,
       "code": "2223008",
       "cities": [ "sofia" ],
       "shortName": "8 СУ",
@@ -1271,6 +1386,7 @@
     },
     {
       "rank": 116,
+      "adjustedRank": 114,
       "code": "2205105",
       "cities": [ "sofia" ],
       "shortName": "105 СУ",
@@ -1282,6 +1398,7 @@
     },
     {
       "rank": 117,
+      "adjustedRank": 115,
       "code": "2103232",
       "cities": [ "zlatograd" ],
       "shortName": "СУ Антим I",
@@ -1293,6 +1410,7 @@
     },
     {
       "rank": 118,
+      "adjustedRank": 116,
       "code": "1690445",
       "cities": [ "plovdiv" ],
       "shortName": "ОУ Райна Княгиня",
@@ -1304,6 +1422,7 @@
     },
     {
       "rank": 119,
+      "adjustedRank": 117,
       "code": "2205011",
       "cities": [ "sofia" ],
       "shortName": "11 ОУ",
@@ -1315,6 +1434,7 @@
     },
     {
       "rank": 120,
+      "adjustedRank": 118,
       "code": "1690147",
       "cities": [ "plovdiv" ],
       "shortName": "ОУ Душо Хаджидеков",
@@ -1326,6 +1446,7 @@
     },
     {
       "rank": 121,
+      "adjustedRank": 119,
       "code": "400029",
       "cities": [ "varna" ],
       "shortName": "ОУ Ч. Храбър",
@@ -1337,6 +1458,7 @@
     },
     {
       "rank": 122,
+      "adjustedRank": 120,
       "code": "2202005",
       "cities": [ "sofia" ],
       "shortName": "5 ОУ",
@@ -1348,6 +1470,7 @@
     },
     {
       "rank": 123,
+      "adjustedRank": 121,
       "code": "800017",
       "cities": [ "dobrich" ],
       "shortName": "СУ Петко Славейков",
@@ -1359,6 +1482,7 @@
     },
     {
       "rank": 124,
+      "adjustedRank": 122,
       "code": "2300131",
       "cities": [ "samokov" ],
       "shortName": "ПГ К. Фотинов",
@@ -1370,6 +1494,7 @@
     },
     {
       "rank": 125,
+      "adjustedRank": 123,
       "code": "1690907",
       "cities": [ "plovdiv" ],
       "shortName": "Класик",
@@ -1381,6 +1506,7 @@
     },
     {
       "rank": 126,
+      "adjustedRank": 124,
       "code": "2221138",
       "cities": [ "sofia" ],
       "shortName": "138 СУ",
@@ -1392,6 +1518,7 @@
     },
     {
       "rank": 127,
+      "adjustedRank": 125,
       "code": "2222127",
       "cities": [ "sofia" ],
       "shortName": "127 СУ",
@@ -1403,6 +1530,7 @@
     },
     {
       "rank": 128,
+      "adjustedRank": 126,
       "code": "2202705",
       "cities": [ "sofia" ],
       "shortName": "Откривател",
@@ -1414,6 +1542,7 @@
     },
     {
       "rank": 129,
+      "adjustedRank": 127,
       "code": "2222012",
       "cities": [ "sofia" ],
       "shortName": "12 СУ",
@@ -1425,6 +1554,7 @@
     },
     {
       "rank": 130,
+      "adjustedRank": 128,
       "code": "403558",
       "cities": [ "varna" ],
       "shortName": "Мечтатели",
@@ -1436,6 +1566,7 @@
     },
     {
       "rank": 131,
+      "adjustedRank": 129,
       "code": "400032",
       "cities": [ "varna" ],
       "shortName": "ОУ Васил Друмев",
@@ -1447,6 +1578,7 @@
     },
     {
       "rank": 132,
+      "adjustedRank": 130,
       "code": "102002",
       "cities": [ "gotse-delchev" ],
       "shortName": "ПМГ Яне Сандански",
@@ -1458,6 +1590,7 @@
     },
     {
       "rank": 133,
+      "adjustedRank": 131,
       "code": "200209",
       "cities": [ "burgas" ],
       "shortName": "ОУ А. Страшимиров",
@@ -1469,6 +1602,7 @@
     },
     {
       "rank": 134,
+      "adjustedRank": 132,
       "code": "200205",
       "cities": [ "burgas" ],
       "shortName": "OУ Петко Славейков",
@@ -1480,6 +1614,7 @@
     },
     {
       "rank": 135,
+      "adjustedRank": 133,
       "code": "1000550",
       "cities": [ "kiustendil" ],
       "shortName": "ПМГ",
@@ -1491,6 +1626,7 @@
     },
     {
       "rank": 136,
+      "adjustedRank": 134,
       "code": "1690148",
       "cities": [ "plovdiv" ],
       "shortName": "ОУ Екзарх Антим I",
@@ -1502,6 +1638,7 @@
     },
     {
       "rank": 137,
+      "adjustedRank": 135,
       "code": "2200021",
       "cities": [ "sofia" ],
       "shortName": "Роналд Лаудер",
@@ -1513,6 +1650,7 @@
     },
     {
       "rank": 138,
+      "adjustedRank": 136,
       "code": "300124",
       "cities": [ "veliko-turnovo" ],
       "shortName": "СУ Емилиян Станев",
@@ -1524,6 +1662,7 @@
     },
     {
       "rank": 139,
+      "adjustedRank": 137,
       "code": "200214",
       "cities": [ "burgas" ],
       "shortName": "ОУ Бр. Миладинови",
@@ -1535,6 +1674,7 @@
     },
     {
       "rank": 140,
+      "adjustedRank": 138,
       "code": "2400125",
       "cities": [ "stara-zagora" ],
       "shortName": "ОУ Кирил Христов",
@@ -1546,6 +1686,7 @@
     },
     {
       "rank": 141,
+      "adjustedRank": 139,
       "code": "2209025",
       "cities": [ "sofia" ],
       "shortName": "25 ОУ",
@@ -1557,6 +1698,7 @@
     },
     {
       "rank": 142,
+      "adjustedRank": 140,
       "code": "2202704",
       "cities": [ "sofia" ],
       "shortName": "Евл. и Хр. Георгиеви",
@@ -1568,6 +1710,7 @@
     },
     {
       "rank": 143,
+      "adjustedRank": 141,
       "code": "200230",
       "cities": [ "burgas" ],
       "shortName": "СУ Димчо Дебелянов",
@@ -1579,6 +1722,7 @@
     },
     {
       "rank": 144,
+      "adjustedRank": 142,
       "code": "200212",
       "cities": [ "burgas" ],
       "shortName": "ОУ Пейо Яворов",
@@ -1590,6 +1734,7 @@
     },
     {
       "rank": 145,
+      "adjustedRank": 143,
       "code": "2213128",
       "cities": [ "sofia" ],
       "shortName": "128 СУ",
@@ -1601,6 +1746,7 @@
     },
     {
       "rank": 146,
+      "adjustedRank": 144,
       "code": "300103",
       "cities": [ "veliko-turnovo" ],
       "shortName": "ОУ Патр. Евтимий",
@@ -1612,6 +1758,7 @@
     },
     {
       "rank": 147,
+      "adjustedRank": 145,
       "code": "1690645",
       "cities": [ "plovdiv" ],
       "shortName": "СУ Ч. Храбър",
@@ -1623,6 +1770,7 @@
     },
     {
       "rank": 148,
+      "adjustedRank": 146,
       "code": "2224121",
       "cities": [ "sofia" ],
       "shortName": "121 СУ",
@@ -1634,6 +1782,7 @@
     },
     {
       "rank": 149,
+      "adjustedRank": 147,
       "code": "2100606",
       "cities": [ "zlatograd" ],
       "shortName": "ОУ Васил Левски",
@@ -1645,6 +1794,7 @@
     },
     {
       "rank": 150,
+      "adjustedRank": 148,
       "code": "300102",
       "cities": [ "veliko-turnovo" ],
       "shortName": "ОУ Бачо Киро",
@@ -1656,6 +1806,7 @@
     },
     {
       "rank": 151,
+      "adjustedRank": 149,
       "code": "2208017",
       "cities": [ "sofia" ],
       "shortName": "17 СУ",
@@ -1667,6 +1818,7 @@
     },
     {
       "rank": 152,
+      "adjustedRank": 150,
       "code": "2200015",
       "cities": [ "sofia" ],
       "shortName": "Васил Златарски",
@@ -1678,6 +1830,7 @@
     },
     {
       "rank": 153,
+      "adjustedRank": 151,
       "code": "2400167",
       "cities": [ "stara-zagora" ],
       "shortName": "Елин Пелин",
@@ -1689,6 +1842,7 @@
     },
     {
       "rank": 154,
+      "adjustedRank": 152,
       "code": "200211",
       "cities": [ "burgas" ],
       "shortName": "ОУ Георги Бенковски",
@@ -1700,6 +1854,7 @@
     },
     {
       "rank": 155,
+      "adjustedRank": 153,
       "code": "1900503",
       "cities": [ "silistra" ],
       "shortName": "ПМГ",
@@ -1711,6 +1866,7 @@
     },
     {
       "rank": 156,
+      "adjustedRank": 154,
       "code": "2209142",
       "cities": [ "sofia" ],
       "shortName": "142 ОУ",
@@ -1722,6 +1878,7 @@
     },
     {
       "rank": 157,
+      "adjustedRank": 155,
       "code": "2213118",
       "cities": [ "sofia" ],
       "shortName": "118 СУ",
@@ -1733,6 +1890,7 @@
     },
     {
       "rank": 158,
+      "adjustedRank": null,
       "code": "2211519",
       "cities": [ "sofia" ],
       "shortName": "Банкерче",
@@ -1744,6 +1902,7 @@
     },
     {
       "rank": 159,
+      "adjustedRank": 156,
       "code": "2203061",
       "cities": [ "sofia" ],
       "shortName": "61 ОУ",
@@ -1755,6 +1914,7 @@
     },
     {
       "rank": 160,
+      "adjustedRank": 157,
       "code": "1690901",
       "cities": [ "plovdiv" ],
       "shortName": "Дружба",
@@ -1766,6 +1926,7 @@
     },
     {
       "rank": 161,
+      "adjustedRank": 158,
       "code": "2224126",
       "cities": [ "sofia" ],
       "shortName": "126 ОУ",
@@ -1777,6 +1938,7 @@
     },
     {
       "rank": 162,
+      "adjustedRank": 159,
       "code": "200234",
       "cities": [ "burgas" ],
       "shortName": "СУ Кирил и Методий",
@@ -1788,6 +1950,7 @@
     },
     {
       "rank": 163,
+      "adjustedRank": 160,
       "code": "400028",
       "cities": [ "varna" ],
       "shortName": "ОУ Цар Симеон І",
@@ -1799,6 +1962,7 @@
     },
     {
       "rank": 164,
+      "adjustedRank": 161,
       "code": "1806101",
       "cities": [ "ruse" ],
       "shortName": "ОУ Отец Паисий",
@@ -1810,6 +1974,7 @@
     },
     {
       "rank": 165,
+      "adjustedRank": 162,
       "code": "2216001",
       "cities": [ "sofia" ],
       "shortName": "1 СУ",
@@ -1821,6 +1986,7 @@
     },
     {
       "rank": 166,
+      "adjustedRank": 163,
       "code": "101290",
       "cities": [ "blagoevgrad" ],
       "shortName": "ОУ Д. Талев",
@@ -1832,6 +1998,7 @@
     },
     {
       "rank": 167,
+      "adjustedRank": 164,
       "code": "1690146",
       "cities": [ "plovdiv" ],
       "shortName": "OУ Петър Берон",
@@ -1843,6 +2010,7 @@
     },
     {
       "rank": 168,
+      "adjustedRank": 165,
       "code": "200210",
       "cities": [ "burgas" ],
       "shortName": "ОУ Кл. Охридски",
@@ -1854,6 +2022,7 @@
     },
     {
       "rank": 169,
+      "adjustedRank": 166,
       "code": "1301717",
       "cities": [ "pazardzhik" ],
       "shortName": "ОУ Иван Батаклиев",
@@ -1865,6 +2034,7 @@
     },
     {
       "rank": 170,
+      "adjustedRank": 167,
       "code": "1690547",
       "cities": [ "plovdiv" ],
       "shortName": "ОУ Яне Сандански",
@@ -1876,6 +2046,7 @@
     },
     {
       "rank": 171,
+      "adjustedRank": 168,
       "code": "400003",
       "cities": [ "varna" ],
       "shortName": "ОУ А. Страшимиров",
@@ -1887,6 +2058,7 @@
     },
     {
       "rank": 172,
+      "adjustedRank": 169,
       "code": "2400126",
       "cities": [ "stara-zagora" ],
       "shortName": "ОУ М. Станев",
@@ -1898,6 +2070,7 @@
     },
     {
       "rank": 173,
+      "adjustedRank": 170,
       "code": "2218191",
       "cities": [ "sofia" ],
       "shortName": "191 ОУ",
@@ -1909,6 +2082,7 @@
     },
     {
       "rank": 174,
+      "adjustedRank": 171,
       "code": "2213081",
       "cities": [ "sofia" ],
       "shortName": "81 СУ",
@@ -1920,6 +2094,7 @@
     },
     {
       "rank": 175,
+      "adjustedRank": 172,
       "code": "2902106",
       "cities": [ "varna" ],
       "shortName": "НУИ Добри Христов",
@@ -1931,6 +2106,7 @@
     },
     {
       "rank": 176,
+      "adjustedRank": 173,
       "code": "2000107",
       "cities": [ "sliven" ],
       "shortName": "ОУ И. Селимински",
@@ -1942,6 +2118,7 @@
     },
     {
       "rank": 177,
+      "adjustedRank": 174,
       "code": "700102",
       "cities": [ "gabrovo" ],
       "shortName": "ОУ Ран Босилек",
@@ -1953,6 +2130,7 @@
     },
     {
       "rank": 178,
+      "adjustedRank": 175,
       "code": "100070",
       "cities": [ "blagoevgrad" ],
       "shortName": "СУ К. Шапкарев",
@@ -1964,6 +2142,7 @@
     },
     {
       "rank": 179,
+      "adjustedRank": 176,
       "code": "1500201",
       "cities": [ "pleven" ],
       "shortName": "ОУ Валери Петров",
@@ -1975,6 +2154,7 @@
     },
     {
       "rank": 180,
+      "adjustedRank": 177,
       "code": "1690342",
       "cities": [ "plovdiv" ],
       "shortName": "ОУ Драган Манчов",
@@ -1986,6 +2166,7 @@
     },
     {
       "rank": 181,
+      "adjustedRank": 178,
       "code": "1690154",
       "cities": [ "plovdiv" ],
       "shortName": "СУ П. Хилендарски",
@@ -1997,6 +2178,7 @@
     },
     {
       "rank": 182,
+      "adjustedRank": 179,
       "code": "1500134",
       "cities": [ "pleven" ],
       "shortName": "СУ Иван Вазов",
@@ -2008,6 +2190,7 @@
     },
     {
       "rank": 183,
+      "adjustedRank": 180,
       "code": "1806106",
       "cities": [ "ruse" ],
       "shortName": "ОУ Иван Вазов",
@@ -2019,6 +2202,7 @@
     },
     {
       "rank": 184,
+      "adjustedRank": 181,
       "code": "200206",
       "cities": [ "burgas" ],
       "shortName": "ОУ Kняз Борис І",
@@ -2030,6 +2214,7 @@
     },
     {
       "rank": 185,
+      "adjustedRank": 182,
       "code": "400065",
       "cities": [ "varna" ],
       "shortName": "Прогресивно обр. 2",
@@ -2041,6 +2226,7 @@
     },
     {
       "rank": 186,
+      "adjustedRank": 183,
       "code": "1806204",
       "cities": [ "ruse" ],
       "shortName": "СУ Фридрих Шилер",
@@ -2052,6 +2238,7 @@
     },
     {
       "rank": 187,
+      "adjustedRank": 184,
       "code": "1806203",
       "cities": [ "ruse" ],
       "shortName": "СУ за европ. езици",
@@ -2063,6 +2250,7 @@
     },
     {
       "rank": 188,
+      "adjustedRank": 185,
       "code": "2208092",
       "cities": [ "sofia" ],
       "shortName": "92 ОУ",
@@ -2074,6 +2262,7 @@
     },
     {
       "rank": 189,
+      "adjustedRank": 186,
       "code": "101580",
       "cities": [ "blagoevgrad" ],
       "shortName": "СУ А. Костенцев",
@@ -2085,6 +2274,7 @@
     },
     {
       "rank": 190,
+      "adjustedRank": 187,
       "code": "400011",
       "cities": [ "varna" ],
       "shortName": "ОУ Йордан Йовков",
@@ -2096,6 +2286,7 @@
     },
     {
       "rank": 191,
+      "adjustedRank": 188,
       "code": "1690244",
       "cities": [ "plovdiv" ],
       "shortName": "ОУ Васил Левски",
@@ -2107,6 +2298,7 @@
     },
     {
       "rank": 192,
+      "adjustedRank": 189,
       "code": "2214054",
       "cities": [ "sofia" ],
       "shortName": "54 СУ",
@@ -2118,6 +2310,7 @@
     },
     {
       "rank": 193,
+      "adjustedRank": 190,
       "code": "2217525",
       "cities": [ "sofia" ],
       "shortName": "Стремеж",
@@ -2129,6 +2322,7 @@
     },
     {
       "rank": 194,
+      "adjustedRank": 191,
       "code": "2300005",
       "cities": [ "sofia" ],
       "shortName": "Космос",
@@ -2140,6 +2334,7 @@
     },
     {
       "rank": 195,
+      "adjustedRank": 192,
       "code": "2308760",
       "cities": [ "botevgrad" ],
       "shortName": "ОУ Н. Вапцаров",
@@ -2151,6 +2346,7 @@
     },
     {
       "rank": 196,
+      "adjustedRank": 193,
       "code": "2213039",
       "cities": [ "sofia" ],
       "shortName": "39 СУ",
@@ -2162,6 +2358,7 @@
     },
     {
       "rank": 197,
+      "adjustedRank": 194,
       "code": "400005",
       "cities": [ "varna" ],
       "shortName": "ОУ Васил Априлов",
@@ -2173,6 +2370,7 @@
     },
     {
       "rank": 198,
+      "adjustedRank": 195,
       "code": "2217151",
       "cities": [ "sofia" ],
       "shortName": "Национално СУ",
@@ -2184,6 +2382,7 @@
     },
     {
       "rank": 199,
+      "adjustedRank": 196,
       "code": "2212056",
       "cities": [ "sofia" ],
       "shortName": "56 СУ",
@@ -2195,6 +2394,7 @@
     },
     {
       "rank": 200,
+      "adjustedRank": 197,
       "code": "100020",
       "cities": [ "blagoevgrad" ],
       "shortName": "ОУ Д. Благоев",
@@ -2206,6 +2406,7 @@
     },
     {
       "rank": 201,
+      "adjustedRank": 198,
       "code": "2211598",
       "cities": [ "sofia" ],
       "shortName": "Никатор",
@@ -2217,6 +2418,7 @@
     },
     {
       "rank": 202,
+      "adjustedRank": 199,
       "code": "2902102",
       "cities": [ "plovdiv" ],
       "shortName": "НУМТИ",
@@ -2228,6 +2430,7 @@
     },
     {
       "rank": 203,
+      "adjustedRank": 200,
       "code": "2206043",
       "cities": [ "sofia" ],
       "shortName": "43 ОУ",
@@ -2239,6 +2442,7 @@
     },
     {
       "rank": 204,
+      "adjustedRank": 201,
       "code": "1690143",
       "cities": [ "plovdiv" ],
       "shortName": "ОУ Тютюнджян",
@@ -2250,6 +2454,7 @@
     },
     {
       "rank": 205,
+      "adjustedRank": 202,
       "code": "2212040",
       "cities": [ "sofia" ],
       "shortName": "40 СУ",
@@ -2261,6 +2466,7 @@
     },
     {
       "rank": 206,
+      "adjustedRank": 203,
       "code": "2202064",
       "cities": [ "sofia" ],
       "shortName": "64 ОУ",
@@ -2272,6 +2478,7 @@
     },
     {
       "rank": 207,
+      "adjustedRank": 204,
       "code": "2202026",
       "cities": [ "sofia" ],
       "shortName": "26 СУ",
@@ -2283,6 +2490,7 @@
     },
     {
       "rank": 208,
+      "adjustedRank": 205,
       "code": "2221023",
       "cities": [ "sofia" ],
       "shortName": "23 СУ",
@@ -2294,6 +2502,7 @@
     },
     {
       "rank": 209,
+      "adjustedRank": 206,
       "code": "2207004",
       "cities": [ "sofia" ],
       "shortName": "4 ОУ",
@@ -2305,6 +2514,7 @@
     },
     {
       "rank": 210,
+      "adjustedRank": 207,
       "code": "2224047",
       "cities": [ "sofia" ],
       "shortName": "47 СУ",
@@ -2316,6 +2526,7 @@
     },
     {
       "rank": 211,
+      "adjustedRank": 208,
       "code": "2601008",
       "cities": [ "haskovo" ],
       "shortName": "ОУ Кл. Охридски",
@@ -2327,6 +2538,7 @@
     },
     {
       "rank": 212,
+      "adjustedRank": 209,
       "code": "2219049",
       "cities": [ "sofia" ],
       "shortName": "49 ОУ",
@@ -2338,6 +2550,7 @@
     },
     {
       "rank": 213,
+      "adjustedRank": 210,
       "code": "800011",
       "cities": [ "dobrich" ],
       "shortName": "ОУ Христо Ботев",
@@ -2349,6 +2562,7 @@
     },
     {
       "rank": 214,
+      "adjustedRank": 211,
       "code": "2224672",
       "cities": [ "sofia" ],
       "shortName": "Куест",
@@ -2360,6 +2574,7 @@
     },
     {
       "rank": 215,
+      "adjustedRank": 212,
       "code": "2400106",
       "cities": [ "stara-zagora" ],
       "shortName": "СУ Максим Горки",
@@ -2371,6 +2586,7 @@
     },
     {
       "rank": 216,
+      "adjustedRank": 213,
       "code": "2211021",
       "cities": [ "sofia" ],
       "shortName": "21 СУ",
@@ -2382,6 +2598,7 @@
     },
     {
       "rank": 217,
+      "adjustedRank": 214,
       "code": "2221614",
       "cities": [ "sofia" ],
       "shortName": "Джани Родари",
@@ -2393,6 +2610,7 @@
     },
     {
       "rank": 218,
+      "adjustedRank": 215,
       "code": "1690341",
       "cities": [ "plovdiv" ],
       "shortName": "ОУ Васил Петлешков",
@@ -2404,6 +2622,7 @@
     },
     {
       "rank": 219,
+      "adjustedRank": 216,
       "code": "400023",
       "cities": [ "varna" ],
       "shortName": "ОУ Стефан Караджа",
@@ -2415,6 +2634,7 @@
     },
     {
       "rank": 220,
+      "adjustedRank": 217,
       "code": "1690550",
       "cities": [ "plovdiv" ],
       "shortName": "СУ К. Кирил Философ",
@@ -2426,6 +2646,7 @@
     },
     {
       "rank": 221,
+      "adjustedRank": null,
       "code": "403559",
       "cities": [ "varna" ],
       "shortName": "Юрий Гагарин",
@@ -2437,6 +2658,7 @@
     },
     {
       "rank": 222,
+      "adjustedRank": 218,
       "code": "1690644",
       "cities": [ "plovdiv" ],
       "shortName": "СУ Софроний Врачански",
@@ -2448,6 +2670,7 @@
     },
     {
       "rank": 223,
+      "adjustedRank": 219,
       "code": "800326",
       "cities": [ "dobrich" ],
       "shortName": "Леонардо да Винчи",
@@ -2459,6 +2682,7 @@
     },
     {
       "rank": 224,
+      "adjustedRank": 220,
       "code": "1600102",
       "cities": [ "asenovgrad" ],
       "shortName": "ОУ Христо Ботев",
@@ -2470,6 +2694,7 @@
     },
     {
       "rank": 225,
+      "adjustedRank": 221,
       "code": "800009",
       "cities": [ "dobrich" ],
       "shortName": "ОУ Хан Аспарух",
@@ -2481,6 +2706,7 @@
     },
     {
       "rank": 226,
+      "adjustedRank": 222,
       "code": "2204030",
       "cities": [ "sofia" ],
       "shortName": "30 СУ",
@@ -2492,6 +2718,7 @@
     },
     {
       "rank": 227,
+      "adjustedRank": 223,
       "code": "2220014",
       "cities": [ "sofia" ],
       "shortName": "14 СУ",
@@ -2503,6 +2730,7 @@
     },
     {
       "rank": 228,
+      "adjustedRank": 224,
       "code": "800112",
       "cities": [ "dobrich" ],
       "shortName": "Мария Монтесори",
@@ -2514,6 +2742,7 @@
     },
     {
       "rank": 229,
+      "adjustedRank": 225,
       "code": "1690544",
       "cities": [ "plovdiv" ],
       "shortName": "ОУ Димитър Талев",
@@ -2525,6 +2754,7 @@
     },
     {
       "rank": 230,
+      "adjustedRank": 226,
       "code": "2202050",
       "cities": [ "sofia" ],
       "shortName": "50 ОУ",
@@ -2536,6 +2766,7 @@
     },
     {
       "rank": 231,
+      "adjustedRank": 227,
       "code": "200215",
       "cities": [ "burgas" ],
       "shortName": "ОУ Елин Пелин",
@@ -2547,6 +2778,7 @@
     },
     {
       "rank": 232,
+      "adjustedRank": 228,
       "code": "2219042",
       "cities": [ "sofia" ],
       "shortName": "42 ОУ",
@@ -2558,6 +2790,7 @@
     },
     {
       "rank": 233,
+      "adjustedRank": 229,
       "code": "1209002",
       "cities": [ "lom" ],
       "shortName": "2 ОУ К. Фотинов",
@@ -2569,6 +2802,7 @@
     },
     {
       "rank": 234,
+      "adjustedRank": 230,
       "code": "2212033",
       "cities": [ "sofia" ],
       "shortName": "33 ОУ",
@@ -2580,6 +2814,7 @@
     },
     {
       "rank": 235,
+      "adjustedRank": 231,
       "code": "400007",
       "cities": [ "varna" ],
       "shortName": "ОУ Добри Чинтулов",
@@ -2591,6 +2826,7 @@
     },
     {
       "rank": 236,
+      "adjustedRank": 232,
       "code": "1690343",
       "cities": [ "plovdiv" ],
       "shortName": "ОУ Елин Пелин",
@@ -2602,6 +2838,7 @@
     },
     {
       "rank": 237,
+      "adjustedRank": 233,
       "code": "1203512",
       "cities": [ "lom" ],
       "shortName": "1 ОУ Н. Първанов",
@@ -2613,6 +2850,7 @@
     },
     {
       "rank": 238,
+      "adjustedRank": 234,
       "code": "1100301",
       "cities": [ "lovech" ],
       "shortName": "ОУ Васил Левски",
@@ -2624,6 +2862,7 @@
     },
     {
       "rank": 239,
+      "adjustedRank": 235,
       "code": "1304930",
       "cities": [ "pazardzhik" ],
       "shortName": "ОУ Хр. Смирненски",
@@ -2635,6 +2874,7 @@
     },
     {
       "rank": 240,
+      "adjustedRank": 236,
       "code": "2206045",
       "cities": [ "sofia" ],
       "shortName": "45 ОУ",
@@ -2646,6 +2886,7 @@
     },
     {
       "rank": 241,
+      "adjustedRank": 237,
       "code": "2214101",
       "cities": [ "sofia" ],
       "shortName": "101 СУ",
@@ -2657,6 +2898,7 @@
     },
     {
       "rank": 242,
+      "adjustedRank": 238,
       "code": "1302502",
       "cities": [ "pazardzhik" ],
       "shortName": "ОУ Кл. Охридски",
@@ -2668,6 +2910,7 @@
     },
     {
       "rank": 243,
+      "adjustedRank": 239,
       "code": "400039",
       "cities": [ "varna" ],
       "shortName": "СУ Пейо Яворов",
@@ -2679,6 +2922,7 @@
     },
     {
       "rank": 244,
+      "adjustedRank": 240,
       "code": "2203720",
       "cities": [ "sofia" ],
       "shortName": "Дружба",
@@ -2690,6 +2934,7 @@
     },
     {
       "rank": 245,
+      "adjustedRank": 241,
       "code": "403543",
       "cities": [ "varna" ],
       "shortName": "2 ОУ Н. Вапцаров",
@@ -2701,6 +2946,7 @@
     },
     {
       "rank": 246,
+      "adjustedRank": 242,
       "code": "2100110",
       "cities": [ "smolian" ],
       "shortName": "ОУ Иван Вазов",
@@ -2712,6 +2958,7 @@
     },
     {
       "rank": 247,
+      "adjustedRank": 243,
       "code": "2500204",
       "cities": [ "turgovishte" ],
       "shortName": "1 СУ",
@@ -2723,6 +2970,7 @@
     },
     {
       "rank": 248,
+      "adjustedRank": 244,
       "code": "2700197",
       "cities": [ "shumen" ],
       "shortName": "СУ Сава Доброплодни",
@@ -2734,6 +2982,7 @@
     },
     {
       "rank": 249,
+      "adjustedRank": 245,
       "code": "300815",
       "cities": [ "svishtov" ],
       "shortName": "СУ Николай Катранов",
@@ -2745,6 +2994,7 @@
     },
     {
       "rank": 250,
+      "adjustedRank": 246,
       "code": "2601010",
       "cities": [ "haskovo" ],
       "shortName": "ОУ Иван Рилски",
@@ -2756,6 +3006,7 @@
     },
     {
       "rank": 251,
+      "adjustedRank": 247,
       "code": "200217",
       "cities": [ "burgas" ],
       "shortName": "ОУ Ботев - Сарафово",
@@ -2767,6 +3018,7 @@
     },
     {
       "rank": 252,
+      "adjustedRank": 248,
       "code": "2902101",
       "cities": [ "sofia" ],
       "shortName": "НМУ",
@@ -2778,6 +3030,7 @@
     },
     {
       "rank": 253,
+      "adjustedRank": 249,
       "code": "2219044",
       "cities": [ "sofia" ],
       "shortName": "44 СУ",
@@ -2789,6 +3042,7 @@
     },
     {
       "rank": 254,
+      "adjustedRank": 250,
       "code": "1403201",
       "cities": [ "pernik" ],
       "shortName": "ОУ Иван Рилски",
@@ -2800,6 +3054,7 @@
     },
     {
       "rank": 255,
+      "adjustedRank": 251,
       "code": "403537",
       "cities": [ "varna" ],
       "shortName": "СУ Димчо Дебелянов",
@@ -2811,6 +3066,7 @@
     },
     {
       "rank": 256,
+      "adjustedRank": 252,
       "code": "2202534",
       "cities": [ "sofia" ],
       "shortName": "Св. Наум",
@@ -2822,6 +3078,7 @@
     },
     {
       "rank": 257,
+      "adjustedRank": 253,
       "code": "2217088",
       "cities": [ "sofia" ],
       "shortName": "88 СУ",
@@ -2833,6 +3090,7 @@
     },
     {
       "rank": 258,
+      "adjustedRank": 254,
       "code": "1690643",
       "cities": [ "plovdiv" ],
       "shortName": "СУ Св. Седмочисленици",
@@ -2844,6 +3102,7 @@
     },
     {
       "rank": 259,
+      "adjustedRank": 255,
       "code": "200223",
       "cities": [ "burgas" ],
       "shortName": "ОУ Ботев - Ветрен",
@@ -2855,6 +3114,7 @@
     },
     {
       "rank": 260,
+      "adjustedRank": 256,
       "code": "1600101",
       "cities": [ "asenovgrad" ],
       "shortName": "ОУ Ангел Кънчев",
@@ -2866,6 +3126,7 @@
     },
     {
       "rank": 261,
+      "adjustedRank": 257,
       "code": "102060",
       "cities": [ "blagoevgrad" ],
       "shortName": "СУ Г. Измирлиев",
@@ -2877,6 +3138,7 @@
     },
     {
       "rank": 262,
+      "adjustedRank": null,
       "code": "2100104",
       "cities": [ "smolian" ],
       "shortName": "ОУ Юрий Гагарин",
@@ -2888,6 +3150,7 @@
     },
     {
       "rank": 263,
+      "adjustedRank": 258,
       "code": "2203146",
       "cities": [ "sofia" ],
       "shortName": "146 ОУ",
@@ -2899,6 +3162,7 @@
     },
     {
       "rank": 264,
+      "adjustedRank": 259,
       "code": "2202535",
       "cities": [ "sofia" ],
       "shortName": "Рьорих",
@@ -2910,6 +3174,7 @@
     },
     {
       "rank": 265,
+      "adjustedRank": 260,
       "code": "400018",
       "cities": [ "varna" ],
       "shortName": "ОУ Панайот Волов",
@@ -2921,6 +3186,7 @@
     },
     {
       "rank": 266,
+      "adjustedRank": 261,
       "code": "200207",
       "cities": [ "burgas" ],
       "shortName": "ОУ Л. Каравелов",
@@ -2932,6 +3198,7 @@
     },
     {
       "rank": 267,
+      "adjustedRank": 262,
       "code": "1690546",
       "cities": [ "plovdiv" ],
       "shortName": "ОУ Ст. Михайловски",
@@ -2943,6 +3210,7 @@
     },
     {
       "rank": 268,
+      "adjustedRank": 263,
       "code": "1690447",
       "cities": [ "plovdiv" ],
       "shortName": "СУ Пейо Яворов",
@@ -2954,6 +3222,7 @@
     },
     {
       "rank": 269,
+      "adjustedRank": 264,
       "code": "1690344",
       "cities": [ "plovdiv" ],
       "shortName": "ОУ Тодор Каблешков",
@@ -2965,6 +3234,7 @@
     },
     {
       "rank": 270,
+      "adjustedRank": 265,
       "code": "2500101",
       "cities": [ "turgovishte" ],
       "shortName": "1 ОУ",
@@ -2976,6 +3246,7 @@
     },
     {
       "rank": 271,
+      "adjustedRank": 266,
       "code": "2213131",
       "cities": [ "sofia" ],
       "shortName": "131 СУ",
@@ -2987,6 +3258,7 @@
     },
     {
       "rank": 272,
+      "adjustedRank": 267,
       "code": "2213144",
       "cities": [ "sofia" ],
       "shortName": "144 СУ",
@@ -2998,6 +3270,7 @@
     },
     {
       "rank": 273,
+      "adjustedRank": 268,
       "code": "104106",
       "cities": [ "sandanski" ],
       "shortName": "3 ОУ",
@@ -3009,6 +3282,7 @@
     },
     {
       "rank": 274,
+      "adjustedRank": 269,
       "code": "2212096",
       "cities": [ "sofia" ],
       "shortName": "96 СУ",
@@ -3020,6 +3294,7 @@
     },
     {
       "rank": 275,
+      "adjustedRank": 270,
       "code": "800018",
       "cities": [ "dobrich" ],
       "shortName": "СУ Кирил и Методий",
@@ -3031,6 +3306,7 @@
     },
     {
       "rank": 276,
+      "adjustedRank": 271,
       "code": "2215171",
       "cities": [ "sofia", "novi-iskar" ],
       "shortName": "171 ОУ",
@@ -3042,6 +3318,7 @@
     },
     {
       "rank": 277,
+      "adjustedRank": 272,
       "code": "2217072",
       "cities": [ "sofia" ],
       "shortName": "72 ОУ",
@@ -3053,6 +3330,7 @@
     },
     {
       "rank": 278,
+      "adjustedRank": 273,
       "code": "2220048",
       "cities": [ "sofia" ],
       "shortName": "48 ОУ",
@@ -3064,6 +3342,7 @@
     },
     {
       "rank": 279,
+      "adjustedRank": 274,
       "code": "200711",
       "cities": [ "pomorie" ],
       "shortName": "СУ Иван Вазов",
@@ -3075,6 +3354,7 @@
     },
     {
       "rank": 280,
+      "adjustedRank": 275,
       "code": "2217053",
       "cities": [ "sofia" ],
       "shortName": "53 ОУ",
@@ -3086,6 +3366,7 @@
     },
     {
       "rank": 281,
+      "adjustedRank": 276,
       "code": "2400104",
       "cities": [ "stara-zagora" ],
       "shortName": "СУ Васил Левски",
@@ -3097,6 +3378,7 @@
     },
     {
       "rank": 282,
+      "adjustedRank": 277,
       "code": "2212137",
       "cities": [ "sofia" ],
       "shortName": "137 СУ",
@@ -3108,6 +3390,7 @@
     },
     {
       "rank": 283,
+      "adjustedRank": 278,
       "code": "300105",
       "cities": [ "veliko-turnovo" ],
       "shortName": "OУ Петко Славейков",
@@ -3119,6 +3402,7 @@
     },
     {
       "rank": 284,
+      "adjustedRank": 279,
       "code": "2902103",
       "cities": [ "burgas" ],
       "shortName": "НУМСИ",
@@ -3130,6 +3414,7 @@
     },
     {
       "rank": 285,
+      "adjustedRank": 280,
       "code": "2218201",
       "cities": [ "sofia" ],
       "shortName": "201 ОУ",
@@ -3141,6 +3426,7 @@
     },
     {
       "rank": 286,
+      "adjustedRank": 281,
       "code": "2605002",
       "cities": [ "svilengrad" ],
       "shortName": "ОУ Иван Вазов",
@@ -3152,6 +3438,7 @@
     },
     {
       "rank": 287,
+      "adjustedRank": 282,
       "code": "300201",
       "cities": [ "gorna-oryahovitsa" ],
       "shortName": "ОУ Иван Вазов",
@@ -3163,6 +3450,7 @@
     },
     {
       "rank": 288,
+      "adjustedRank": 283,
       "code": "1690912",
       "cities": [ "plovdiv" ],
       "shortName": "Бъдеще",
@@ -3174,6 +3462,7 @@
     },
     {
       "rank": 289,
+      "adjustedRank": 284,
       "code": "2100107",
       "cities": [ "smolian" ],
       "shortName": "ОУ Асен Златаров",
@@ -3185,6 +3474,7 @@
     },
     {
       "rank": 290,
+      "adjustedRank": 285,
       "code": "1900514",
       "cities": [ "silistra" ],
       "shortName": "ОУ Иван Вазов",
@@ -3196,6 +3486,7 @@
     },
     {
       "rank": 291,
+      "adjustedRank": 286,
       "code": "603059",
       "cities": [ "vratsa" ],
       "shortName": "СУ Васил Кънчов",
@@ -3207,6 +3498,7 @@
     },
     {
       "rank": 292,
+      "adjustedRank": 287,
       "code": "400019",
       "cities": [ "varna" ],
       "shortName": "ОУ Патр. Евтимий",
@@ -3218,6 +3510,7 @@
     },
     {
       "rank": 293,
+      "adjustedRank": 288,
       "code": "1601301",
       "cities": [ "karlovo" ],
       "shortName": "СУ Васил Левски",
@@ -3229,6 +3522,7 @@
     },
     {
       "rank": 294,
+      "adjustedRank": 289,
       "code": "1000038",
       "cities": [ "dupnitsa" ],
       "shortName": "ОУ Евлоги Георгиев",
@@ -3240,6 +3534,7 @@
     },
     {
       "rank": 295,
+      "adjustedRank": 290,
       "code": "2207150",
       "cities": [ "sofia" ],
       "shortName": "150 ОУ",
@@ -3251,6 +3546,7 @@
     },
     {
       "rank": 296,
+      "adjustedRank": 291,
       "code": "2202620",
       "cities": [ "sofia" ],
       "shortName": "Николай Райнов",
@@ -3262,6 +3558,7 @@
     },
     {
       "rank": 297,
+      "adjustedRank": 292,
       "code": "1690542",
       "cities": [ "plovdiv" ],
       "shortName": "СУ Братя Миладинови",
@@ -3273,6 +3570,7 @@
     },
     {
       "rank": 298,
+      "adjustedRank": 293,
       "code": "400012",
       "cities": [ "varna" ],
       "shortName": "ОУ К. Арабаджиев",
@@ -3284,6 +3582,7 @@
     },
     {
       "rank": 299,
+      "adjustedRank": 294,
       "code": "2218083",
       "cities": [ "sofia" ],
       "shortName": "83 ОУ",
@@ -3295,6 +3594,7 @@
     },
     {
       "rank": 300,
+      "adjustedRank": 295,
       "code": "1100304",
       "cities": [ "lovech" ],
       "shortName": "ОУ Христо Никифоров",
@@ -3306,6 +3606,7 @@
     },
     {
       "rank": 301,
+      "adjustedRank": 296,
       "code": "1201006",
       "cities": [ "montana" ],
       "shortName": "4 ОУ",
@@ -3317,6 +3618,7 @@
     },
     {
       "rank": 302,
+      "adjustedRank": 297,
       "code": "2204046",
       "cities": [ "sofia" ],
       "shortName": "46 ОУ",
@@ -3328,6 +3630,7 @@
     },
     {
       "rank": 303,
+      "adjustedRank": 298,
       "code": "2601004",
       "cities": [ "haskovo" ],
       "shortName": "ОУ Л. Каравелов",
@@ -3339,6 +3642,7 @@
     },
     {
       "rank": 304,
+      "adjustedRank": 299,
       "code": "1302573",
       "cities": [ "velingrad" ],
       "shortName": "СУ Васил Левски",
@@ -3350,6 +3654,7 @@
     },
     {
       "rank": 305,
+      "adjustedRank": 300,
       "code": "200412",
       "cities": [ "karnobat" ],
       "shortName": "СУ Христо Ботев",
@@ -3361,6 +3666,7 @@
     },
     {
       "rank": 306,
+      "adjustedRank": 301,
       "code": "2215176",
       "cities": [ "sofia" ],
       "shortName": "176 ОбУ",
@@ -3372,6 +3678,7 @@
     },
     {
       "rank": 307,
+      "adjustedRank": 302,
       "code": "1690448",
       "cities": [ "plovdiv" ],
       "shortName": "СУ Христо Данов",
@@ -3383,6 +3690,7 @@
     },
     {
       "rank": 308,
+      "adjustedRank": 303,
       "code": "101880",
       "cities": [ "blagoevgrad" ],
       "shortName": "СУ Иван Вазов",
@@ -3394,6 +3702,7 @@
     },
     {
       "rank": 309,
+      "adjustedRank": 304,
       "code": "200608",
       "cities": [ "nesebar" ],
       "shortName": "СУ Л. Каравелов",
@@ -3405,6 +3714,7 @@
     },
     {
       "rank": 310,
+      "adjustedRank": 305,
       "code": "2601011",
       "cities": [ "haskovo" ],
       "shortName": "ОУ Хр. Смирненски",
@@ -3416,6 +3726,7 @@
     },
     {
       "rank": 311,
+      "adjustedRank": 306,
       "code": "200228",
       "cities": [ "burgas" ],
       "shortName": "СУ Йордан Йовков",
@@ -3427,6 +3738,7 @@
     },
     {
       "rank": 312,
+      "adjustedRank": 307,
       "code": "700108",
       "cities": [ "gabrovo" ],
       "shortName": "ОУ Кирил и Методий",
@@ -3438,6 +3750,7 @@
     },
     {
       "rank": 313,
+      "adjustedRank": 308,
       "code": "300125",
       "cities": [ "veliko-turnovo" ],
       "shortName": "СУ Вела Благоева",
@@ -3449,6 +3762,7 @@
     },
     {
       "rank": 314,
+      "adjustedRank": 309,
       "code": "1900511",
       "cities": [ "silistra" ],
       "shortName": "ОУ Отец Паисий",
@@ -3460,6 +3774,7 @@
     },
     {
       "rank": 315,
+      "adjustedRank": 310,
       "code": "400009",
       "cities": [ "varna" ],
       "shortName": "ОУ Иван Вазов",
@@ -3471,6 +3786,7 @@
     },
     {
       "rank": 316,
+      "adjustedRank": 311,
       "code": "603058",
       "cities": [ "vratsa" ],
       "shortName": "СУ Христо Ботев",
@@ -3482,6 +3798,7 @@
     },
     {
       "rank": 317,
+      "adjustedRank": 312,
       "code": "1100612",
       "cities": [ "troyan" ],
       "shortName": "СУ Васил Левски",
@@ -3493,6 +3810,7 @@
     },
     {
       "rank": 318,
+      "adjustedRank": 313,
       "code": "1403205",
       "cities": [ "pernik" ],
       "shortName": "10 ОУ",
@@ -3504,6 +3822,7 @@
     },
     {
       "rank": 319,
+      "adjustedRank": 314,
       "code": "104008",
       "cities": [ "petrich" ],
       "shortName": "4 ОУ Хр. Смирненски",
@@ -3515,6 +3834,7 @@
     },
     {
       "rank": 320,
+      "adjustedRank": 315,
       "code": "2218202",
       "cities": [ "sofia" ],
       "shortName": "202 ОУ",
@@ -3526,6 +3846,7 @@
     },
     {
       "rank": 321,
+      "adjustedRank": 316,
       "code": "2207068",
       "cities": [ "sofia" ],
       "shortName": "68 СУ",
@@ -3537,6 +3858,7 @@
     },
     {
       "rank": 322,
+      "adjustedRank": 317,
       "code": "2100105",
       "cities": [ "smolian" ],
       "shortName": "СУ Отец Паисий",
@@ -3548,6 +3870,7 @@
     },
     {
       "rank": 323,
+      "adjustedRank": 318,
       "code": "2100401",
       "cities": [ "devin" ],
       "shortName": "СУ Христо Ботев",
@@ -3559,6 +3882,7 @@
     },
     {
       "rank": 324,
+      "adjustedRank": 319,
       "code": "1690150",
       "cities": [ "plovdiv" ],
       "shortName": "СУ Л. Каравелов",
@@ -3570,6 +3894,7 @@
     },
     {
       "rank": 325,
+      "adjustedRank": 320,
       "code": "2221093",
       "cities": [ "sofia" ],
       "shortName": "93 СУ",
@@ -3581,6 +3906,7 @@
     },
     {
       "rank": 326,
+      "adjustedRank": 321,
       "code": "1702613",
       "cities": [ "razgrad" ],
       "shortName": "ОУ Васил Левски",
@@ -3592,6 +3918,7 @@
     },
     {
       "rank": 327,
+      "adjustedRank": 322,
       "code": "103402",
       "cities": [ "gotse-delchev" ],
       "shortName": "1 ОУ",
@@ -3603,6 +3930,7 @@
     },
     {
       "rank": 328,
+      "adjustedRank": 323,
       "code": "400087",
       "cities": [ "aksakovo" ],
       "shortName": "СУ Кл. Охридски",
@@ -3614,6 +3942,7 @@
     },
     {
       "rank": 329,
+      "adjustedRank": 324,
       "code": "200208",
       "cities": [ "burgas" ],
       "shortName": "ОУ Найден Геров",
@@ -3625,6 +3954,7 @@
     },
     {
       "rank": 330,
+      "adjustedRank": 325,
       "code": "2219199",
       "cities": [ "sofia" ],
       "shortName": "199 ОУ",
@@ -3636,6 +3966,7 @@
     },
     {
       "rank": 331,
+      "adjustedRank": 326,
       "code": "200112",
       "cities": [ "aitos" ],
       "shortName": "СУ Христо Ботев",
@@ -3647,6 +3978,7 @@
     },
     {
       "rank": 332,
+      "adjustedRank": 327,
       "code": "2301045",
       "cities": [ "botevgrad" ],
       "shortName": "ОУ Кирил и Методий",
@@ -3658,6 +3990,7 @@
     },
     {
       "rank": 333,
+      "adjustedRank": 328,
       "code": "200404",
       "cities": [ "karnobat" ],
       "shortName": "ОУ Хр. Смирненски",
@@ -3669,6 +4002,7 @@
     },
     {
       "rank": 334,
+      "adjustedRank": 329,
       "code": "2400276",
       "cities": [ "kazanluk" ],
       "shortName": "ОУ Н. Вапцаров",
@@ -3680,6 +4014,7 @@
     },
     {
       "rank": 335,
+      "adjustedRank": 330,
       "code": "104104",
       "cities": [ "sandanski" ],
       "shortName": "1 ОУ",
@@ -3691,6 +4026,7 @@
     },
     {
       "rank": 336,
+      "adjustedRank": 331,
       "code": "700318",
       "cities": [ "sevlievo" ],
       "shortName": "СУ Васил Левски",
@@ -3702,6 +4038,7 @@
     },
     {
       "rank": 337,
+      "adjustedRank": 332,
       "code": "2811509",
       "cities": [ "iambol" ],
       "shortName": "ОУ Л. Каравелов",
@@ -3713,6 +4050,7 @@
     },
     {
       "rank": 338,
+      "adjustedRank": 333,
       "code": "2540103",
       "cities": [ "popovo" ],
       "shortName": "ОУ Л. Каравелов",
@@ -3724,6 +4062,7 @@
     },
     {
       "rank": 339,
+      "adjustedRank": 334,
       "code": "2224544",
       "cities": [ "sofia" ],
       "shortName": "Артис",
@@ -3735,6 +4074,7 @@
     },
     {
       "rank": 340,
+      "adjustedRank": 335,
       "code": "700103",
       "cities": [ "gabrovo" ],
       "shortName": "ОУ Неофит Рилски",
@@ -3746,6 +4086,7 @@
     },
     {
       "rank": 341,
+      "adjustedRank": 336,
       "code": "600327",
       "cities": [ "vratsa" ],
       "shortName": "СУ Козма Тричков",
@@ -3757,6 +4098,7 @@
     },
     {
       "rank": 342,
+      "adjustedRank": 337,
       "code": "1690157",
       "cities": [ "plovdiv" ],
       "shortName": "СУ Цар Симеон",
@@ -3768,6 +4110,7 @@
     },
     {
       "rank": 343,
+      "adjustedRank": 338,
       "code": "400024",
       "cities": [ "varna" ],
       "shortName": "ОУ Ст. Михайловски",
@@ -3779,6 +4122,7 @@
     },
     {
       "rank": 344,
+      "adjustedRank": 339,
       "code": "1690446",
       "cities": [ "plovdiv" ],
       "shortName": "СУ Никола Вапцаров",
@@ -3790,6 +4134,7 @@
     },
     {
       "rank": 345,
+      "adjustedRank": 340,
       "code": "1806213",
       "cities": [ "ruse" ],
       "shortName": "Леонардо да Винчи",
@@ -3801,6 +4146,7 @@
     },
     {
       "rank": 346,
+      "adjustedRank": 341,
       "code": "200229",
       "cities": [ "burgas" ],
       "shortName": "СУ Конст. Преславски",
@@ -3812,6 +4158,7 @@
     },
     {
       "rank": 347,
+      "adjustedRank": 342,
       "code": "2400014",
       "cities": [ "stara-zagora" ],
       "shortName": "СУ Железник",
@@ -3823,6 +4170,7 @@
     },
     {
       "rank": 348,
+      "adjustedRank": 343,
       "code": "1000035",
       "cities": [ "dupnitsa" ],
       "shortName": "СЕУ П. Хилендарски",
@@ -3834,6 +4182,7 @@
     },
     {
       "rank": 349,
+      "adjustedRank": 344,
       "code": "2000116",
       "cities": [ "sliven" ],
       "shortName": "ОУ Е. Багряна",
@@ -3845,6 +4194,7 @@
     },
     {
       "rank": 350,
+      "adjustedRank": null,
       "code": "800019",
       "cities": [ "dobrich" ],
       "shortName": "ПМГ Иван Вазов",
@@ -3856,6 +4206,7 @@
     },
     {
       "rank": 351,
+      "adjustedRank": 345,
       "code": "300216",
       "cities": [ "gorna-oryahovitsa" ],
       "shortName": "СУ Георги Измирлиев",
@@ -3867,6 +4218,7 @@
     },
     {
       "rank": 352,
+      "adjustedRank": 346,
       "code": "2210159",
       "cities": [ "sofia" ],
       "shortName": "159 ОУ",
@@ -3878,6 +4230,7 @@
     },
     {
       "rank": 353,
+      "adjustedRank": 347,
       "code": "2400107",
       "cities": [ "stara-zagora" ],
       "shortName": "СУ Иван Вазов",
@@ -3889,6 +4242,7 @@
     },
     {
       "rank": 354,
+      "adjustedRank": 348,
       "code": "2303106",
       "cities": [ "samokov" ],
       "shortName": "СУ Отец Паисий",
@@ -3900,6 +4254,7 @@
     },
     {
       "rank": 355,
+      "adjustedRank": 349,
       "code": "503132",
       "cities": [ "vidin" ],
       "shortName": "СУ Цар Симеон",
@@ -3911,6 +4266,7 @@
     },
     {
       "rank": 356,
+      "adjustedRank": 350,
       "code": "102606",
       "cities": [ "sandanski" ],
       "shortName": "2 ОУ",
@@ -3922,6 +4278,7 @@
     },
     {
       "rank": 357,
+      "adjustedRank": 351,
       "code": "2400130",
       "cities": [ "stara-zagora" ],
       "shortName": "ОУ В. Ханчев",
@@ -3933,6 +4290,7 @@
     },
     {
       "rank": 358,
+      "adjustedRank": 352,
       "code": "1602502",
       "cities": [ "rakovski" ],
       "shortName": "ОУ Христо Ботев",
@@ -3944,6 +4302,7 @@
     },
     {
       "rank": 359,
+      "adjustedRank": 353,
       "code": "2207108",
       "cities": [ "sofia" ],
       "shortName": "108 СУ",
@@ -3955,6 +4314,7 @@
     },
     {
       "rank": 360,
+      "adjustedRank": 354,
       "code": "800060",
       "cities": [ "balchik" ],
       "shortName": "ОУ Антим I",
@@ -3966,6 +4326,7 @@
     },
     {
       "rank": 361,
+      "adjustedRank": 355,
       "code": "2214016",
       "cities": [ "sofia" ],
       "shortName": "16 ОУ",
@@ -3977,6 +4338,7 @@
     },
     {
       "rank": 362,
+      "adjustedRank": 356,
       "code": "1001830",
       "cities": [ "kiustendil" ],
       "shortName": "ОУ Кирил и Методий",
@@ -3988,6 +4350,7 @@
     },
     {
       "rank": 363,
+      "adjustedRank": 357,
       "code": "2309531",
       "cities": [ "kostenets" ],
       "shortName": "ОУ Кирил и Методий",
@@ -3999,6 +4362,7 @@
     },
     {
       "rank": 364,
+      "adjustedRank": 358,
       "code": "2602004",
       "cities": [ "dimitrovgrad" ],
       "shortName": "ОУ А. Константинов",
@@ -4010,6 +4374,7 @@
     },
     {
       "rank": 365,
+      "adjustedRank": 359,
       "code": "2902505",
       "cities": [ "kazanluk" ],
       "shortName": "НУПИД А. Узунов",
@@ -4021,6 +4386,7 @@
     },
     {
       "rank": 366,
+      "adjustedRank": 360,
       "code": "800015",
       "cities": [ "dobrich" ],
       "shortName": "СУ Кл. Охридски",
@@ -4032,6 +4398,7 @@
     },
     {
       "rank": 367,
+      "adjustedRank": 361,
       "code": "2212097",
       "cities": [ "sofia" ],
       "shortName": "97 СУ",
@@ -4043,6 +4410,7 @@
     },
     {
       "rank": 368,
+      "adjustedRank": 362,
       "code": "2000115",
       "cities": [ "sliven" ],
       "shortName": "СУ К. Константинов",
@@ -4054,6 +4422,7 @@
     },
     {
       "rank": 369,
+      "adjustedRank": 363,
       "code": "2204076",
       "cities": [ "sofia" ],
       "shortName": "76 ОУ",
@@ -4065,6 +4434,7 @@
     },
     {
       "rank": 370,
+      "adjustedRank": 364,
       "code": "1301674",
       "cities": [ "velingrad" ],
       "shortName": "СУ Кирил и Методий",
@@ -4076,6 +4446,7 @@
     },
     {
       "rank": 371,
+      "adjustedRank": 365,
       "code": "1500705",
       "cities": [ "belene" ],
       "shortName": "СУ Димчо Дебелянов",
@@ -4087,6 +4458,7 @@
     },
     {
       "rank": 372,
+      "adjustedRank": 366,
       "code": "2221148",
       "cities": [ "sofia" ],
       "shortName": "148 ОУ",
@@ -4098,6 +4470,7 @@
     },
     {
       "rank": 373,
+      "adjustedRank": 367,
       "code": "2700076",
       "cities": [ "shumen" ],
       "shortName": "СУ Панайот Волов",
@@ -4109,6 +4482,7 @@
     },
     {
       "rank": 374,
+      "adjustedRank": 368,
       "code": "101250",
       "cities": [ "blagoevgrad" ],
       "shortName": "СУИЧЕ",
@@ -4120,6 +4494,7 @@
     },
     {
       "rank": 375,
+      "adjustedRank": 369,
       "code": "2902105",
       "cities": [ "ruse" ],
       "shortName": "НУИ",
@@ -4131,6 +4506,7 @@
     },
     {
       "rank": 376,
+      "adjustedRank": 370,
       "code": "1500110",
       "cities": [ "pleven" ],
       "shortName": "OУ Петър Берон",
@@ -4142,6 +4518,7 @@
     },
     {
       "rank": 377,
+      "adjustedRank": 371,
       "code": "2841532",
       "cities": [ "straldzha" ],
       "shortName": "СУ Пейо Яворов",
@@ -4153,6 +4530,7 @@
     },
     {
       "rank": 378,
+      "adjustedRank": 372,
       "code": "1690345",
       "cities": [ "plovdiv" ],
       "shortName": "СУ Кирил и Методий",
@@ -4164,6 +4542,7 @@
     },
     {
       "rank": 379,
+      "adjustedRank": 373,
       "code": "1301699",
       "cities": [ "velingrad" ],
       "shortName": "ОУ Христо Ботев",
@@ -4175,6 +4554,7 @@
     },
     {
       "rank": 380,
+      "adjustedRank": 374,
       "code": "201009",
       "cities": [ "sozopol" ],
       "shortName": "СУ Кирил и Методий",
@@ -4186,6 +4566,7 @@
     },
     {
       "rank": 381,
+      "adjustedRank": 375,
       "code": "100040",
       "cities": [ "blagoevgrad" ],
       "shortName": "ОУ Д. Дебелянов",
@@ -4197,6 +4578,7 @@
     },
     {
       "rank": 382,
+      "adjustedRank": 376,
       "code": "1304948",
       "cities": [ "pazardzhik" ],
       "shortName": "СУ Георги Бенковски",
@@ -4208,6 +4590,7 @@
     },
     {
       "rank": 383,
+      "adjustedRank": 377,
       "code": "700308",
       "cities": [ "sevlievo" ],
       "shortName": "ОУ Стефан Пешев",
@@ -4219,6 +4602,7 @@
     },
     {
       "rank": 384,
+      "adjustedRank": 378,
       "code": "503312",
       "cities": [ "vidin" ],
       "shortName": "ОУ Иван Вазов",
@@ -4230,6 +4614,7 @@
     },
     {
       "rank": 385,
+      "adjustedRank": 379,
       "code": "2902104",
       "cities": [ "stara-zagora" ],
       "shortName": "НУМСИ",
@@ -4241,6 +4626,7 @@
     },
     {
       "rank": 386,
+      "adjustedRank": 380,
       "code": "2300170",
       "cities": [ "elin-pelin" ],
       "shortName": "СУ Васил Левски",
@@ -4252,6 +4638,7 @@
     },
     {
       "rank": 387,
+      "adjustedRank": 381,
       "code": "2210156",
       "cities": [ "sofia" ],
       "shortName": "156 ОбУ",
@@ -4263,6 +4650,7 @@
     },
     {
       "rank": 388,
+      "adjustedRank": 382,
       "code": "2201078",
       "cities": [ "sofia", "bankiq" ],
       "shortName": "78 СУ",
@@ -4274,6 +4662,7 @@
     },
     {
       "rank": 389,
+      "adjustedRank": 383,
       "code": "2220060",
       "cities": [ "sofia" ],
       "shortName": "60 ОУ",
@@ -4285,6 +4674,7 @@
     },
     {
       "rank": 390,
+      "adjustedRank": 384,
       "code": "1806208",
       "cities": [ "ruse" ],
       "shortName": "СУ Възраждане",
@@ -4296,6 +4686,7 @@
     },
     {
       "rank": 391,
+      "adjustedRank": 385,
       "code": "400167",
       "cities": [ "varna" ],
       "shortName": "Феникс",
@@ -4307,6 +4698,7 @@
     },
     {
       "rank": 392,
+      "adjustedRank": 386,
       "code": "300104",
       "cities": [ "veliko-turnovo" ],
       "shortName": "ОУ Димитър Благоев",
@@ -4318,6 +4710,7 @@
     },
     {
       "rank": 393,
+      "adjustedRank": 387,
       "code": "1202003",
       "cities": [ "berkovitsa" ],
       "shortName": "3 ОУ",
@@ -4329,6 +4722,7 @@
     },
     {
       "rank": 394,
+      "adjustedRank": 388,
       "code": "2301881",
       "cities": [ "samokov" ],
       "shortName": "ОУ Кирил и Методий",
@@ -4340,6 +4734,7 @@
     },
     {
       "rank": 395,
+      "adjustedRank": 389,
       "code": "909105",
       "cities": [ "kurdzhali" ],
       "shortName": "СУ Отец Паисий",
@@ -4351,6 +4746,7 @@
     },
     {
       "rank": 396,
+      "adjustedRank": 390,
       "code": "2000305",
       "cities": [ "nova-zagora" ],
       "shortName": "СУ Христо Ботев",
@@ -4362,6 +4758,7 @@
     },
     {
       "rank": 397,
+      "adjustedRank": 391,
       "code": "1690642",
       "cities": [ "plovdiv" ],
       "shortName": "СУ Димитър Матевски",
@@ -4373,6 +4770,7 @@
     },
     {
       "rank": 398,
+      "adjustedRank": 392,
       "code": "400061",
       "cities": [ "varna" ],
       "shortName": "Аз съм българче",
@@ -4384,6 +4782,7 @@
     },
     {
       "rank": 399,
+      "adjustedRank": 393,
       "code": "1500113",
       "cities": [ "pleven" ],
       "shortName": "ОУ Васил Левски",
@@ -4395,6 +4794,7 @@
     },
     {
       "rank": 400,
+      "adjustedRank": 394,
       "code": "1600114",
       "cities": [ "asenovgrad" ],
       "shortName": "СУ Княз Борис I",
@@ -4406,6 +4806,7 @@
     },
     {
       "rank": 401,
+      "adjustedRank": 395,
       "code": "2811507",
       "cities": [ "iambol" ],
       "shortName": "ОУ Николай Петрини",
@@ -4417,6 +4818,7 @@
     },
     {
       "rank": 402,
+      "adjustedRank": 396,
       "code": "2000108",
       "cities": [ "sliven" ],
       "shortName": "ОУ Димитър Петров",
@@ -4428,6 +4830,7 @@
     },
     {
       "rank": 403,
+      "adjustedRank": 397,
       "code": "2308970",
       "cities": [ "bozhurishte" ],
       "shortName": "СУ Христо Топракчиев",
@@ -4439,6 +4842,7 @@
     },
     {
       "rank": 404,
+      "adjustedRank": 398,
       "code": "2700114",
       "cities": [ "shumen" ],
       "shortName": "ОУ Петър Берон",
@@ -4450,6 +4854,7 @@
     },
     {
       "rank": 405,
+      "adjustedRank": 399,
       "code": "1302630",
       "cities": [ "peshtera" ],
       "shortName": "СУ Кл. Охридски",
@@ -4461,6 +4866,7 @@
     },
     {
       "rank": 406,
+      "adjustedRank": 400,
       "code": "2220058",
       "cities": [ "sofia" ],
       "shortName": "58 ОУ",
@@ -4472,6 +4878,7 @@
     },
     {
       "rank": 407,
+      "adjustedRank": 401,
       "code": "1000034",
       "cities": [ "dupnitsa" ],
       "shortName": "ОУ Кирил и Методий",
@@ -4483,6 +4890,7 @@
     },
     {
       "rank": 408,
+      "adjustedRank": 402,
       "code": "1202001",
       "cities": [ "berkovitsa" ],
       "shortName": "1 ОУ",
@@ -4494,6 +4902,7 @@
     },
     {
       "rank": 409,
+      "adjustedRank": 403,
       "code": "1403215",
       "cities": [ "pernik" ],
       "shortName": "16 ОУ",
@@ -4505,6 +4914,7 @@
     },
     {
       "rank": 410,
+      "adjustedRank": 404,
       "code": "1201005",
       "cities": [ "montana" ],
       "shortName": "3 ОУ",
@@ -4516,6 +4926,7 @@
     },
     {
       "rank": 411,
+      "adjustedRank": 405,
       "code": "2902301",
       "cities": [ "sofia" ],
       "shortName": "У-ще за танцово изкуство",
@@ -4527,6 +4938,7 @@
     },
     {
       "rank": 412,
+      "adjustedRank": 406,
       "code": "2217149",
       "cities": [ "sofia" ],
       "shortName": "149 СУ",
@@ -4538,6 +4950,7 @@
     },
     {
       "rank": 413,
+      "adjustedRank": 407,
       "code": "103404",
       "cities": [ "gotse-delchev" ],
       "shortName": "3 ОУ",
@@ -4549,6 +4962,7 @@
     },
     {
       "rank": 414,
+      "adjustedRank": 408,
       "code": "2218200",
       "cities": [ "sofia" ],
       "shortName": "200 ОУ",
@@ -4560,6 +4974,7 @@
     },
     {
       "rank": 415,
+      "adjustedRank": 409,
       "code": "2000113",
       "cities": [ "sliven" ],
       "shortName": "ОУ Кирил и Методий",
@@ -4571,6 +4986,7 @@
     },
     {
       "rank": 416,
+      "adjustedRank": 410,
       "code": "103502",
       "cities": [ "razlog" ],
       "shortName": "ОУ Никола Парапунов",
@@ -4582,6 +4998,7 @@
     },
     {
       "rank": 417,
+      "adjustedRank": 411,
       "code": "2200023",
       "cities": [ "sofia" ],
       "shortName": "Константин-Кирил",
@@ -4593,6 +5010,7 @@
     },
     {
       "rank": 418,
+      "adjustedRank": 412,
       "code": "1302623",
       "cities": [ "panagiurishte" ],
       "shortName": "СУ Нешо Бончев",
@@ -4604,6 +5022,7 @@
     },
     {
       "rank": 419,
+      "adjustedRank": 413,
       "code": "2212079",
       "cities": [ "sofia" ],
       "shortName": "79 СУ",
@@ -4615,6 +5034,7 @@
     },
     {
       "rank": 420,
+      "adjustedRank": 414,
       "code": "2100701",
       "cities": [ "madan" ],
       "shortName": "СУ Отец Паисий",
@@ -4626,6 +5046,7 @@
     },
     {
       "rank": 421,
+      "adjustedRank": 415,
       "code": "1602905",
       "cities": [ "stanbiliiski" ],
       "shortName": "ОУ Хр. Смирненски",
@@ -4637,6 +5058,7 @@
     },
     {
       "rank": 422,
+      "adjustedRank": 416,
       "code": "602093",
       "cities": [ "mezdra" ],
       "shortName": "ОУ Христо Ботев",
@@ -4648,6 +5070,7 @@
     },
     {
       "rank": 423,
+      "adjustedRank": 417,
       "code": "2203074",
       "cities": [ "sofia" ],
       "shortName": "74 СУ",
@@ -4659,6 +5082,7 @@
     },
     {
       "rank": 424,
+      "adjustedRank": 418,
       "code": "2100109",
       "cities": [ "smolian" ],
       "shortName": "ОУ Стою Шишков",
@@ -4670,6 +5094,7 @@
     },
     {
       "rank": 425,
+      "adjustedRank": 419,
       "code": "1600104",
       "cities": [ "asenovgrad" ],
       "shortName": "ОУ Петко Каравелов",
@@ -4681,6 +5106,7 @@
     },
     {
       "rank": 426,
+      "adjustedRank": 420,
       "code": "2300105",
       "cities": [ "pirdop" ],
       "shortName": "СУ Саво Ценов Савов",
@@ -4692,6 +5118,7 @@
     },
     {
       "rank": 427,
+      "adjustedRank": 421,
       "code": "300816",
       "cities": [ "svishtov" ],
       "shortName": "СУ Димитър Благоев",
@@ -4703,6 +5130,7 @@
     },
     {
       "rank": 428,
+      "adjustedRank": 422,
       "code": "2400271",
       "cities": [ "kazanluk" ],
       "shortName": "ОУ Кулата",
@@ -4714,6 +5142,7 @@
     },
     {
       "rank": 429,
+      "adjustedRank": 423,
       "code": "700114",
       "cities": [ "gabrovo" ],
       "shortName": "СУ Райчо Каролев",
@@ -4725,6 +5154,7 @@
     },
     {
       "rank": 430,
+      "adjustedRank": 424,
       "code": "2208526",
       "cities": [ "sofia" ],
       "shortName": "Орфей",
@@ -4736,6 +5166,7 @@
     },
     {
       "rank": 431,
+      "adjustedRank": 425,
       "code": "103501",
       "cities": [ "razlog" ],
       "shortName": "СУ бр. Каназиреви",
@@ -4747,6 +5178,7 @@
     },
     {
       "rank": 432,
+      "adjustedRank": 426,
       "code": "2902107",
       "cities": [ "pleven" ],
       "shortName": "НУИ",
@@ -4758,6 +5190,7 @@
     },
     {
       "rank": 433,
+      "adjustedRank": 427,
       "code": "1600017",
       "cities": [ "plovdiv" ],
       "shortName": "Талантите",
@@ -4769,6 +5202,7 @@
     },
     {
       "rank": 434,
+      "adjustedRank": 428,
       "code": "2218084",
       "cities": [ "sofia" ],
       "shortName": "84 ОУ",
@@ -4780,6 +5214,7 @@
     },
     {
       "rank": 435,
+      "adjustedRank": 429,
       "code": "2611018",
       "cities": [ "topolovgrad" ],
       "shortName": "СУ Петър Берон",
@@ -4791,6 +5226,7 @@
     },
     {
       "rank": 436,
+      "adjustedRank": 430,
       "code": "1500129",
       "cities": [ "pleven" ],
       "shortName": "ОУ Цветан Спасов",
@@ -4802,6 +5238,7 @@
     },
     {
       "rank": 437,
+      "adjustedRank": 431,
       "code": "1600116",
       "cities": [ "asenovgrad" ],
       "shortName": "СУ Кирил и Методий",
@@ -4813,6 +5250,7 @@
     },
     {
       "rank": 438,
+      "adjustedRank": 432,
       "code": "400026",
       "cities": [ "varna" ],
       "shortName": "ОУ Христо Ботев",
@@ -4824,6 +5262,7 @@
     },
     {
       "rank": 439,
+      "adjustedRank": 433,
       "code": "1403216",
       "cities": [ "pernik" ],
       "shortName": "СУРИЧЕ П. Берон",
@@ -4835,6 +5274,7 @@
     },
     {
       "rank": 440,
+      "adjustedRank": 434,
       "code": "105201",
       "cities": [ "bansko" ],
       "shortName": "СУ Неофит Рилски",
@@ -4846,6 +5286,7 @@
     },
     {
       "rank": 441,
+      "adjustedRank": 435,
       "code": "1600103",
       "cities": [ "asenovgrad" ],
       "shortName": "ОУ Отец Паисий",
@@ -4857,6 +5298,7 @@
     },
     {
       "rank": 442,
+      "adjustedRank": 436,
       "code": "2309638",
       "cities": [ "kostinbrod" ],
       "shortName": "СУ Петър Берон",
@@ -4868,6 +5310,7 @@
     },
     {
       "rank": 443,
+      "adjustedRank": 437,
       "code": "1100613",
       "cities": [ "troyan" ],
       "shortName": "СУ Кл. Охридски",
@@ -4879,6 +5322,7 @@
     },
     {
       "rank": 444,
+      "adjustedRank": 438,
       "code": "2501694",
       "cities": [ "turgovishte" ],
       "shortName": "2 СУ",
@@ -4890,6 +5334,7 @@
     },
     {
       "rank": 445,
+      "adjustedRank": 439,
       "code": "1601304",
       "cities": [ "karlovo" ],
       "shortName": "ОУ Кирил и Методий",
@@ -4901,6 +5346,7 @@
     },
     {
       "rank": 446,
+      "adjustedRank": 440,
       "code": "2000106",
       "cities": [ "sliven" ],
       "shortName": "ОУ Христо Ботев",
@@ -4912,6 +5358,7 @@
     },
     {
       "rank": 447,
+      "adjustedRank": 441,
       "code": "2303490",
       "cities": [ "kostenets" ],
       "shortName": "СУ Кл. Охридски",
@@ -4923,6 +5370,7 @@
     },
     {
       "rank": 448,
+      "adjustedRank": 442,
       "code": "2602006",
       "cities": [ "dimitrovgrad" ],
       "shortName": "ОУ Пенчо Славейков",
@@ -4934,6 +5382,7 @@
     },
     {
       "rank": 449,
+      "adjustedRank": 443,
       "code": "300202",
       "cities": [ "gorna-oryahovitsa" ],
       "shortName": "ОУ Кирил и Методий",
@@ -4945,6 +5394,7 @@
     },
     {
       "rank": 450,
+      "adjustedRank": 444,
       "code": "2208135",
       "cities": [ "sofia" ],
       "shortName": "135 СУ",
@@ -4956,6 +5406,7 @@
     },
     {
       "rank": 451,
+      "adjustedRank": 445,
       "code": "700403",
       "cities": [ "triavna" ],
       "shortName": "СУ Петко Славейков",
@@ -4967,6 +5418,7 @@
     },
     {
       "rank": 452,
+      "adjustedRank": 446,
       "code": "1900702",
       "cities": [ "tutrakan" ],
       "shortName": "СУ Христо Ботев",
@@ -4978,6 +5430,7 @@
     },
     {
       "rank": 453,
+      "adjustedRank": 447,
       "code": "2601026",
       "cities": [ "haskovo" ],
       "shortName": "СУ П. Хилендарски",
@@ -4989,6 +5442,7 @@
     },
     {
       "rank": 454,
+      "adjustedRank": 448,
       "code": "2400264",
       "cities": [ "kazanluk" ],
       "shortName": "СУ Антим I",
@@ -5000,6 +5454,7 @@
     },
     {
       "rank": 455,
+      "adjustedRank": 449,
       "code": "1690155",
       "cities": [ "plovdiv" ],
       "shortName": "СУ Кл. Охридски",
@@ -5011,6 +5466,7 @@
     },
     {
       "rank": 456,
+      "adjustedRank": 450,
       "code": "104006",
       "cities": [ "petrich" ],
       "shortName": "1 ОУ К. Мавродиев",
@@ -5022,6 +5478,7 @@
     },
     {
       "rank": 457,
+      "adjustedRank": 451,
       "code": "2902502",
       "cities": [ "troyan" ],
       "shortName": "НУПИ Венко Колев",
@@ -5033,6 +5490,7 @@
     },
     {
       "rank": 458,
+      "adjustedRank": 452,
       "code": "2100901",
       "cities": [ "chepelare" ],
       "shortName": "СУ Васил Дечев",
@@ -5044,6 +5502,7 @@
     },
     {
       "rank": 459,
+      "adjustedRank": 453,
       "code": "2215170",
       "cities": [ "sofia", "novi-iskar" ],
       "shortName": "170 СУ",
@@ -5055,6 +5514,7 @@
     },
     {
       "rank": 460,
+      "adjustedRank": 454,
       "code": "1603708",
       "cities": [ "hisaria" ],
       "shortName": "СУ Хр. Смирненски",
@@ -5066,6 +5526,7 @@
     },
     {
       "rank": 461,
+      "adjustedRank": 455,
       "code": "2219095",
       "cities": [ "sofia" ],
       "shortName": "95 СУ",
@@ -5077,6 +5538,7 @@
     },
     {
       "rank": 462,
+      "adjustedRank": 456,
       "code": "1305338",
       "cities": [ "pazardzhik" ],
       "shortName": "СУ Георги Брегов",
@@ -5088,6 +5550,7 @@
     },
     {
       "rank": 463,
+      "adjustedRank": 457,
       "code": "1602907",
       "cities": [ "stanbiliiski" ],
       "shortName": "СУ Отец Паисий",
@@ -5099,6 +5562,7 @@
     },
     {
       "rank": 464,
+      "adjustedRank": 458,
       "code": "1403206",
       "cities": [ "pernik" ],
       "shortName": "11 ОУ",
@@ -5110,6 +5574,7 @@
     },
     {
       "rank": 465,
+      "adjustedRank": 459,
       "code": "909608",
       "cities": [ "momchilgrad" ],
       "shortName": "СУ Петър Берон",
@@ -5121,6 +5586,7 @@
     },
     {
       "rank": 466,
+      "adjustedRank": 460,
       "code": "103403",
       "cities": [ "gotse-delchev" ],
       "shortName": "2 ОУ",
@@ -5132,6 +5598,7 @@
     },
     {
       "rank": 467,
+      "adjustedRank": 461,
       "code": "2601025",
       "cities": [ "haskovo" ],
       "shortName": "СУ Васил Левски",
@@ -5143,6 +5610,7 @@
     },
     {
       "rank": 468,
+      "adjustedRank": 462,
       "code": "2400272",
       "cities": [ "kazanluk" ],
       "shortName": "ОУ Георги Кирков",
@@ -5154,6 +5622,7 @@
     },
     {
       "rank": 469,
+      "adjustedRank": 463,
       "code": "800013",
       "cities": [ "dobrich" ],
       "shortName": "СУ Димитър Талев",
@@ -5165,6 +5634,7 @@
     },
     {
       "rank": 470,
+      "adjustedRank": 464,
       "code": "2400274",
       "cities": [ "kazanluk" ],
       "shortName": "ОУ Мати Болгария",
@@ -5176,6 +5646,7 @@
     },
     {
       "rank": 471,
+      "adjustedRank": 465,
       "code": "1501102",
       "cities": [ "knezha" ],
       "shortName": "ОУ Васил Левски",
@@ -5187,6 +5658,7 @@
     },
     {
       "rank": 472,
+      "adjustedRank": 466,
       "code": "2700182",
       "cities": [ "shumen" ],
       "shortName": "СУ Йоан Екзарх",
@@ -5198,6 +5670,7 @@
     },
     {
       "rank": 473,
+      "adjustedRank": 467,
       "code": "2219166",
       "cities": [ "sofia" ],
       "shortName": "СпУ В. Левски",
@@ -5209,6 +5682,7 @@
     },
     {
       "rank": 474,
+      "adjustedRank": 468,
       "code": "1806209",
       "cities": [ "ruse" ],
       "shortName": "СУ Васил Левски",
@@ -5220,6 +5694,7 @@
     },
     {
       "rank": 475,
+      "adjustedRank": 469,
       "code": "1702614",
       "cities": [ "razgrad" ],
       "shortName": "ОУ Н. Икономов",
@@ -5231,6 +5706,7 @@
     },
     {
       "rank": 476,
+      "adjustedRank": 470,
       "code": "1301770",
       "cities": [ "rakitovo" ],
       "shortName": "СУ Кл. Охридски",
@@ -5242,6 +5718,7 @@
     },
     {
       "rank": 477,
+      "adjustedRank": 471,
       "code": "2300195",
       "cities": [ "etropole" ],
       "shortName": "СУ Христо Ясенов",
@@ -5253,6 +5730,7 @@
     },
     {
       "rank": 478,
+      "adjustedRank": 472,
       "code": "104007",
       "cities": [ "petrich" ],
       "shortName": "3 ОУ Гоце Делчев",
@@ -5264,6 +5742,7 @@
     },
     {
       "rank": 479,
+      "adjustedRank": 473,
       "code": "2400134",
       "cities": [ "stara-zagora" ],
       "shortName": "ОУ П. Хилендарски",
@@ -5275,6 +5754,7 @@
     },
     {
       "rank": 480,
+      "adjustedRank": 474,
       "code": "2603007",
       "cities": [ "harmanli" ],
       "shortName": "ОУ Иван Вазов",
@@ -5286,6 +5766,7 @@
     },
     {
       "rank": 481,
+      "adjustedRank": 475,
       "code": "800016",
       "cities": [ "dobrich" ],
       "shortName": "СУ Л. Каравелов",
@@ -5297,6 +5778,7 @@
     },
     {
       "rank": 482,
+      "adjustedRank": 476,
       "code": "800059",
       "cities": [ "balchik" ],
       "shortName": "ОУ Кирил и Методий",
@@ -5308,6 +5790,7 @@
     },
     {
       "rank": 483,
+      "adjustedRank": 477,
       "code": "1701601",
       "cities": [ "kubrat" ],
       "shortName": "СУ Христо Ботев",
@@ -5319,6 +5802,7 @@
     },
     {
       "rank": 484,
+      "adjustedRank": 478,
       "code": "1301731",
       "cities": [ "panagiurishte" ],
       "shortName": "ОУ Марин Дринов",
@@ -5330,6 +5814,7 @@
     },
     {
       "rank": 485,
+      "adjustedRank": 479,
       "code": "2308917",
       "cities": [ "samokov" ],
       "shortName": "ОУ Авксентий Велешки",
@@ -5341,6 +5826,7 @@
     },
     {
       "rank": 486,
+      "adjustedRank": 480,
       "code": "2212090",
       "cities": [ "sofia" ],
       "shortName": "90 СУ",
@@ -5352,6 +5838,7 @@
     },
     {
       "rank": 487,
+      "adjustedRank": 481,
       "code": "2213082",
       "cities": [ "sofia" ],
       "shortName": "82 ОУ",
@@ -5363,6 +5850,7 @@
     },
     {
       "rank": 488,
+      "adjustedRank": 482,
       "code": "1600107",
       "cities": [ "asenovgrad" ],
       "shortName": "ОУ Панайот Волов",
@@ -5374,6 +5862,7 @@
     },
     {
       "rank": 489,
+      "adjustedRank": 483,
       "code": "2811512",
       "cities": [ "iambol" ],
       "shortName": "OУ Петко Славейков",
@@ -5385,6 +5874,7 @@
     },
     {
       "rank": 490,
+      "adjustedRank": 484,
       "code": "2400161",
       "cities": [ "stara-zagora" ],
       "shortName": "Нов век",
@@ -5396,6 +5886,7 @@
     },
     {
       "rank": 491,
+      "adjustedRank": 485,
       "code": "1806103",
       "cities": [ "ruse" ],
       "shortName": "ОУ Ангел Кънчев",
@@ -5407,6 +5898,7 @@
     },
     {
       "rank": 492,
+      "adjustedRank": 486,
       "code": "200233",
       "cities": [ "burgas" ],
       "shortName": "СУ Петко Росен",
@@ -5418,6 +5910,7 @@
     },
     {
       "rank": 493,
+      "adjustedRank": 487,
       "code": "400132",
       "cities": [ "varna" ],
       "shortName": "Демокр. образов.",
@@ -5429,6 +5922,7 @@
     },
     {
       "rank": 494,
+      "adjustedRank": 488,
       "code": "200222",
       "cities": [ "burgas" ],
       "shortName": "ОУ Иван Вазов",
@@ -5440,6 +5934,7 @@
     },
     {
       "rank": 495,
+      "adjustedRank": 489,
       "code": "200113",
       "cities": [ "aitos" ],
       "shortName": "СУ Никола Вапцаров",
@@ -5451,6 +5946,7 @@
     },
     {
       "rank": 496,
+      "adjustedRank": 490,
       "code": "1690545",
       "cities": [ "plovdiv" ],
       "shortName": "ОУ Захари Стоянов",
@@ -5462,6 +5958,7 @@
     },
     {
       "rank": 497,
+      "adjustedRank": 491,
       "code": "200232",
       "cities": [ "burgas" ],
       "shortName": "СУ Конст. Петканов",
@@ -5473,6 +5970,7 @@
     },
     {
       "rank": 498,
+      "adjustedRank": 492,
       "code": "2540102",
       "cities": [ "popovo" ],
       "shortName": "ОУ Кл. Охридски",
@@ -5484,6 +5982,7 @@
     },
     {
       "rank": 499,
+      "adjustedRank": 493,
       "code": "1201003",
       "cities": [ "montana" ],
       "shortName": "1 ОУ",
@@ -5495,6 +5994,7 @@
     },
     {
       "rank": 500,
+      "adjustedRank": 494,
       "code": "2309862",
       "cities": [ "pravets" ],
       "shortName": "ОУ Васил Левски",
@@ -5506,6 +6006,7 @@
     },
     {
       "rank": 501,
+      "adjustedRank": 495,
       "code": "200219",
       "cities": [ "burgas" ],
       "shortName": "ОУ Ботев - Езерово",
@@ -5517,6 +6018,7 @@
     },
     {
       "rank": 502,
+      "adjustedRank": 496,
       "code": "2202086",
       "cities": [ "sofia" ],
       "shortName": "86 ОУ",
@@ -5528,6 +6030,7 @@
     },
     {
       "rank": 503,
+      "adjustedRank": 497,
       "code": "2308867",
       "cities": [ "svoge" ],
       "shortName": "СУ Иван Вазов",
@@ -5539,6 +6042,7 @@
     },
     {
       "rank": 504,
+      "adjustedRank": 498,
       "code": "2218192",
       "cities": [ "sofia" ],
       "shortName": "192 СУ",
@@ -5550,6 +6054,7 @@
     },
     {
       "rank": 505,
+      "adjustedRank": 499,
       "code": "2400132",
       "cities": [ "stara-zagora" ],
       "shortName": "ОУ Николай Лилиев",
@@ -5561,6 +6066,7 @@
     },
     {
       "rank": 506,
+      "adjustedRank": 500,
       "code": "2400124",
       "cities": [ "stara-zagora" ],
       "shortName": "НУ Кольо Ганчев",
@@ -5572,6 +6078,7 @@
     },
     {
       "rank": 507,
+      "adjustedRank": 501,
       "code": "2700180",
       "cities": [ "veliki-preslav" ],
       "shortName": "ОУ Кирил и Методий",
@@ -5583,6 +6090,7 @@
     },
     {
       "rank": 508,
+      "adjustedRank": 502,
       "code": "100110",
       "cities": [ "blagoevgrad" ],
       "shortName": "ОУ Христо Ботев",
@@ -5594,6 +6102,7 @@
     },
     {
       "rank": 509,
+      "adjustedRank": 503,
       "code": "1500602",
       "cities": [ "levski" ],
       "shortName": "ОУ Максим Горки",
@@ -5605,6 +6114,7 @@
     },
     {
       "rank": 510,
+      "adjustedRank": 504,
       "code": "2308792",
       "cities": [ "zlatitsa" ],
       "shortName": "СУ П. Хилендарски",
@@ -5616,6 +6126,7 @@
     },
     {
       "rank": 511,
+      "adjustedRank": 505,
       "code": "1403655",
       "cities": [ "radomir" ],
       "shortName": "СУ Кирил и Методий",
@@ -5627,6 +6138,7 @@
     },
     {
       "rank": 512,
+      "adjustedRank": 506,
       "code": "1900512",
       "cities": [ "silistra" ],
       "shortName": "ОУ Кирил и Методий",
@@ -5638,6 +6150,7 @@
     },
     {
       "rank": 513,
+      "adjustedRank": 507,
       "code": "909106",
       "cities": [ "kurdzhali" ],
       "shortName": "СУ Петко Славейков",
@@ -5649,6 +6162,7 @@
     },
     {
       "rank": 514,
+      "adjustedRank": 508,
       "code": "200231",
       "cities": [ "burgas" ],
       "shortName": "СУ Добри Чинтулов",
@@ -5660,6 +6174,7 @@
     },
     {
       "rank": 515,
+      "adjustedRank": 509,
       "code": "300602",
       "cities": [ "pavlikeni" ],
       "shortName": "ОУ Кл. Охридски",
@@ -5671,6 +6186,7 @@
     },
     {
       "rank": 516,
+      "adjustedRank": 510,
       "code": "2215160",
       "cities": [ "sofia" ],
       "shortName": "160 ОУ",
@@ -5682,6 +6198,7 @@
     },
     {
       "rank": 517,
+      "adjustedRank": 511,
       "code": "1305831",
       "cities": [ "pazardzhik" ],
       "shortName": "СУ П. Берон",
@@ -5693,6 +6210,7 @@
     },
     {
       "rank": 518,
+      "adjustedRank": 512,
       "code": "1806205",
       "cities": [ "ruse" ],
       "shortName": "ОУ Олимпи Панов",
@@ -5704,6 +6222,7 @@
     },
     {
       "rank": 519,
+      "adjustedRank": 513,
       "code": "1307267",
       "cities": [ "pazardzhik" ],
       "shortName": "ОУ Л. Каравелов",
@@ -5715,6 +6234,7 @@
     },
     {
       "rank": 520,
+      "adjustedRank": 514,
       "code": "2000109",
       "cities": [ "sliven" ],
       "shortName": "СУ Пейо Яворов",
@@ -5726,6 +6246,7 @@
     },
     {
       "rank": 521,
+      "adjustedRank": 515,
       "code": "403564",
       "cities": [ "varna" ],
       "shortName": "Мария Монтесори",
@@ -5737,6 +6258,7 @@
     },
     {
       "rank": 522,
+      "adjustedRank": 516,
       "code": "603077",
       "cities": [ "kozlodui" ],
       "shortName": "СУ Кирил и Методий",
@@ -5748,6 +6270,7 @@
     },
     {
       "rank": 523,
+      "adjustedRank": 517,
       "code": "500104",
       "cities": [ "vidin" ],
       "shortName": "ОУ Л. Каравелов",
@@ -5759,6 +6282,7 @@
     },
     {
       "rank": 524,
+      "adjustedRank": 518,
       "code": "2210115",
       "cities": [ "sofia" ],
       "shortName": "115 ОУ",
@@ -5770,6 +6294,7 @@
     },
     {
       "rank": 525,
+      "adjustedRank": 519,
       "code": "2207065",
       "cities": [ "sofia" ],
       "shortName": "65 ОУ",
@@ -5781,6 +6306,7 @@
     },
     {
       "rank": 526,
+      "adjustedRank": 520,
       "code": "2000114",
       "cities": [ "sliven" ],
       "shortName": "СУ Йордан Йовков",
@@ -5792,6 +6318,7 @@
     },
     {
       "rank": 527,
+      "adjustedRank": 521,
       "code": "1201004",
       "cities": [ "montana" ],
       "shortName": "2 СУ",
@@ -5803,6 +6330,7 @@
     },
     {
       "rank": 528,
+      "adjustedRank": 522,
       "code": "2401178",
       "cities": [ "chirpan" ],
       "shortName": "СУ Пейо Яворов",
@@ -5814,6 +6342,7 @@
     },
     {
       "rank": 529,
+      "adjustedRank": 523,
       "code": "1500114",
       "cities": [ "pleven" ],
       "shortName": "ОУ Йордан Йовков",
@@ -5825,6 +6354,7 @@
     },
     {
       "rank": 530,
+      "adjustedRank": 524,
       "code": "400015",
       "cities": [ "varna" ],
       "shortName": "ОУ Кап. Петко войвода",
@@ -5836,6 +6366,7 @@
     },
     {
       "rank": 531,
+      "adjustedRank": 525,
       "code": "1500215",
       "cities": [ "cherven-briag" ],
       "shortName": "СУ Петър Берон",
@@ -5847,6 +6378,7 @@
     },
     {
       "rank": 532,
+      "adjustedRank": 526,
       "code": "1602314",
       "cities": [ "purvomai" ],
       "shortName": "СУ Асен Златаров",
@@ -5858,6 +6390,7 @@
     },
     {
       "rank": 533,
+      "adjustedRank": 527,
       "code": "2203062",
       "cities": [ "sofia" ],
       "shortName": "62 ОУ",
@@ -5869,6 +6402,7 @@
     },
     {
       "rank": 534,
+      "adjustedRank": 528,
       "code": "2700146",
       "cities": [ "shumen" ],
       "shortName": "ОУ Димитър Благоев",
@@ -5880,6 +6414,7 @@
     },
     {
       "rank": 535,
+      "adjustedRank": 529,
       "code": "2306517",
       "cities": [ "slivnitsa" ],
       "shortName": "СУ Кирил и Методий",
@@ -5891,6 +6426,7 @@
     },
     {
       "rank": 536,
+      "adjustedRank": 530,
       "code": "1403207",
       "cities": [ "pernik" ],
       "shortName": "12 ОУ",
@@ -5902,6 +6438,7 @@
     },
     {
       "rank": 537,
+      "adjustedRank": 531,
       "code": "1209003",
       "cities": [ "lom" ],
       "shortName": "СУ Отец Паисий",
@@ -5913,6 +6450,7 @@
     },
     {
       "rank": 538,
+      "adjustedRank": 532,
       "code": "1500133",
       "cities": [ "pleven" ],
       "shortName": "СУ Стоян Заимов",
@@ -5924,6 +6462,7 @@
     },
     {
       "rank": 539,
+      "adjustedRank": 533,
       "code": "1900502",
       "cities": [ "silistra" ],
       "shortName": "СУ Никола Вапцаров",
@@ -5935,6 +6474,7 @@
     },
     {
       "rank": 540,
+      "adjustedRank": 534,
       "code": "1900314",
       "cities": [ "dulovo" ],
       "shortName": "ОУ Хр. Смирненски",
@@ -5946,6 +6486,7 @@
     },
     {
       "rank": 541,
+      "adjustedRank": 535,
       "code": "2210085",
       "cities": [ "sofia" ],
       "shortName": "85 СУ",
@@ -5957,6 +6498,7 @@
     },
     {
       "rank": 542,
+      "adjustedRank": 536,
       "code": "1500115",
       "cities": [ "pleven" ],
       "shortName": "ОУ Лазар Станев",
@@ -5968,6 +6510,7 @@
     },
     {
       "rank": 543,
+      "adjustedRank": 537,
       "code": "909103",
       "cities": [ "kurdzhali" ],
       "shortName": "СУ Йордан Йовков",
@@ -5979,6 +6522,7 @@
     },
     {
       "rank": 544,
+      "adjustedRank": 538,
       "code": "1301763",
       "cities": [ "peshtera" ],
       "shortName": "ОУ Патр. Евтимий",
@@ -5990,6 +6534,7 @@
     },
     {
       "rank": 545,
+      "adjustedRank": 539,
       "code": "1209005",
       "cities": [ "lom" ],
       "shortName": "СУ Димитър Маринов",
@@ -6001,6 +6546,7 @@
     },
     {
       "rank": 546,
+      "adjustedRank": 540,
       "code": "909501",
       "cities": [ "krumovgrad" ],
       "shortName": "СУ Васил Левски",
@@ -6012,6 +6558,7 @@
     },
     {
       "rank": 547,
+      "adjustedRank": 541,
       "code": "2400273",
       "cities": [ "kazanluk" ],
       "shortName": "ОУ П. Хилендарски",
@@ -6023,6 +6570,7 @@
     },
     {
       "rank": 548,
+      "adjustedRank": 542,
       "code": "403535",
       "cities": [ "varna" ],
       "shortName": "ОУ Княз Борис I",
@@ -6034,6 +6582,7 @@
     },
     {
       "rank": 549,
+      "adjustedRank": 543,
       "code": "2214015",
       "cities": [ "sofia" ],
       "shortName": "15 СУ",
@@ -6045,6 +6594,7 @@
     },
     {
       "rank": 550,
+      "adjustedRank": 544,
       "code": "300217",
       "cities": [ "gorna-oryahovitsa" ],
       "shortName": "СУ Вичо Грънчаров",
@@ -6056,6 +6606,7 @@
     },
     {
       "rank": 551,
+      "adjustedRank": 545,
       "code": "300305",
       "cities": [ "elena" ],
       "shortName": "СУ Иван Момчилов",
@@ -6067,6 +6618,7 @@
     },
     {
       "rank": 552,
+      "adjustedRank": 546,
       "code": "1806110",
       "cities": [ "ruse" ],
       "shortName": "ОУ Никола Обретенов",
@@ -6078,6 +6630,7 @@
     },
     {
       "rank": 553,
+      "adjustedRank": 547,
       "code": "2401055",
       "cities": [ "radnevo" ],
       "shortName": "2 ОУ",
@@ -6089,6 +6642,7 @@
     },
     {
       "rank": 554,
+      "adjustedRank": 548,
       "code": "2100103",
       "cities": [ "smolian" ],
       "shortName": "СУ Кирил и Методий",
@@ -6100,6 +6654,7 @@
     },
     {
       "rank": 555,
+      "adjustedRank": 549,
       "code": "2220100",
       "cities": [ "sofia" ],
       "shortName": "100 ОУ",
@@ -6111,6 +6666,7 @@
     },
     {
       "rank": 556,
+      "adjustedRank": 550,
       "code": "2209132",
       "cities": [ "sofia" ],
       "shortName": "132 СУ",
@@ -6122,6 +6678,7 @@
     },
     {
       "rank": 557,
+      "adjustedRank": 551,
       "code": "1100509",
       "cities": [ "teteven" ],
       "shortName": "СУ Георги Бенковски",
@@ -6133,6 +6690,7 @@
     },
     {
       "rank": 558,
+      "adjustedRank": 552,
       "code": "1403203",
       "cities": [ "pernik" ],
       "shortName": "8 ОУ",
@@ -6144,6 +6702,7 @@
     },
     {
       "rank": 559,
+      "adjustedRank": 553,
       "code": "1300034",
       "cities": [ "peshtera" ],
       "shortName": "OУ Петко Славейков",
@@ -6155,6 +6714,7 @@
     },
     {
       "rank": 560,
+      "adjustedRank": 554,
       "code": "2203175",
       "cities": [ "sofia" ],
       "shortName": "175 ОУ",
@@ -6166,6 +6726,7 @@
     },
     {
       "rank": 561,
+      "adjustedRank": 555,
       "code": "1690442",
       "cities": [ "plovdiv" ],
       "shortName": "ОУ Димитър Димов",
@@ -6177,6 +6738,7 @@
     },
     {
       "rank": 562,
+      "adjustedRank": 556,
       "code": "1601302",
       "cities": [ "karlovo" ],
       "shortName": "СУ Христо Проданов",
@@ -6188,6 +6750,7 @@
     },
     {
       "rank": 563,
+      "adjustedRank": 557,
       "code": "1806109",
       "cities": [ "ruse" ],
       "shortName": "ОУ Тома Кърджиев",
@@ -6199,6 +6762,7 @@
     },
     {
       "rank": 564,
+      "adjustedRank": 558,
       "code": "2214102",
       "cities": [ "sofia" ],
       "shortName": "102 ОУ",
@@ -6210,6 +6774,7 @@
     },
     {
       "rank": 565,
+      "adjustedRank": 559,
       "code": "2308290",
       "cities": [ "kostinbrod" ],
       "shortName": "2 ОУ",
@@ -6221,6 +6786,7 @@
     },
     {
       "rank": 566,
+      "adjustedRank": 560,
       "code": "300618",
       "cities": [ "pavlikeni" ],
       "shortName": "СУ Бачо Киро",
@@ -6232,6 +6798,7 @@
     },
     {
       "rank": 567,
+      "adjustedRank": 561,
       "code": "107090",
       "cities": [ "iakoruda" ],
       "shortName": "СУ Кирил и Методий",
@@ -6243,6 +6810,7 @@
     },
     {
       "rank": 568,
+      "adjustedRank": 562,
       "code": "1702611",
       "cities": [ "razgrad" ],
       "shortName": "ОУ Н. Вапцаров",
@@ -6254,6 +6822,7 @@
     },
     {
       "rank": 569,
+      "adjustedRank": 563,
       "code": "201305",
       "cities": [ "tsarevo" ],
       "shortName": "СУ Никола Вапцаров",
@@ -6265,6 +6834,7 @@
     },
     {
       "rank": 570,
+      "adjustedRank": 564,
       "code": "2204674",
       "cities": [ "sofia" ],
       "shortName": "Езиков свят",
@@ -6276,6 +6846,7 @@
     },
     {
       "rank": 571,
+      "adjustedRank": 565,
       "code": "700113",
       "cities": [ "gabrovo" ],
       "shortName": "СУ Отец Паисий",
@@ -6287,6 +6858,7 @@
     },
     {
       "rank": 572,
+      "adjustedRank": 566,
       "code": "1403214",
       "cities": [ "pernik" ],
       "shortName": "6 СУ",
@@ -6298,6 +6870,7 @@
     },
     {
       "rank": 573,
+      "adjustedRank": 567,
       "code": "2300188",
       "cities": [ "ihtiman" ],
       "shortName": "СУ Христо Ботев",
@@ -6309,6 +6882,7 @@
     },
     {
       "rank": 574,
+      "adjustedRank": 568,
       "code": "2831524",
       "cities": [ "elhovo" ],
       "shortName": "ОУ П. Хилендарски",
@@ -6320,6 +6894,7 @@
     },
     {
       "rank": 575,
+      "adjustedRank": 569,
       "code": "800082",
       "cities": [ "kavarna" ],
       "shortName": "СУ Стефан Караджа",
@@ -6331,6 +6906,7 @@
     },
     {
       "rank": 576,
+      "adjustedRank": 570,
       "code": "2831523",
       "cities": [ "elhovo" ],
       "shortName": "ОУ Кирил и Методий",
@@ -6342,6 +6918,7 @@
     },
     {
       "rank": 577,
+      "adjustedRank": 571,
       "code": "1403202",
       "cities": [ "pernik" ],
       "shortName": "7 ОУ",
@@ -6353,6 +6930,7 @@
     },
     {
       "rank": 578,
+      "adjustedRank": 572,
       "code": "1403213",
       "cities": [ "pernik" ],
       "shortName": "5 СУ",
@@ -6364,6 +6942,7 @@
     },
     {
       "rank": 579,
+      "adjustedRank": 573,
       "code": "103133",
       "cities": [ "simitli" ],
       "shortName": "СУ Кирил и Методий",
@@ -6375,6 +6954,7 @@
     },
     {
       "rank": 580,
+      "adjustedRank": 574,
       "code": "103310",
       "cities": [ "petrich" ],
       "shortName": "СУ Никола Вапцаров",
@@ -6386,6 +6966,7 @@
     },
     {
       "rank": 581,
+      "adjustedRank": 575,
       "code": "603070",
       "cities": [ "vratsa" ],
       "shortName": "СУ Никола Войводов",
@@ -6397,6 +6978,7 @@
     },
     {
       "rank": 582,
+      "adjustedRank": 576,
       "code": "300814",
       "cities": [ "svishtov" ],
       "shortName": "СУ Цв. Радославов",
@@ -6408,6 +6990,7 @@
     },
     {
       "rank": 583,
+      "adjustedRank": 577,
       "code": "1306811",
       "cities": [ "velingrad" ],
       "shortName": "ПГ по дървообр.",
@@ -6419,6 +7002,7 @@
     },
     {
       "rank": 584,
+      "adjustedRank": 578,
       "code": "300507",
       "cities": [ "liaskovets" ],
       "shortName": "СУ Максим Райкович",
@@ -6430,6 +7014,7 @@
     },
     {
       "rank": 585,
+      "adjustedRank": 579,
       "code": "1806111",
       "cities": [ "ruse" ],
       "shortName": "ОУ Васил Априлов",
@@ -6441,6 +7026,7 @@
     },
     {
       "rank": 586,
+      "adjustedRank": 580,
       "code": "1000036",
       "cities": [ "dupnitsa" ],
       "shortName": "ОУ Неофит Рилски",
@@ -6452,6 +7038,7 @@
     },
     {
       "rank": 587,
+      "adjustedRank": null,
       "code": "2100704",
       "cities": [ "madan" ],
       "shortName": "ОУ Н. Вапцаров",
@@ -6463,6 +7050,7 @@
     },
     {
       "rank": 588,
+      "adjustedRank": 581,
       "code": "909601",
       "cities": [ "momchilgrad" ],
       "shortName": "СУ Никола Вапцаров",
@@ -6474,6 +7062,7 @@
     },
     {
       "rank": 589,
+      "adjustedRank": 582,
       "code": "2500104",
       "cities": [ "turgovishte" ],
       "shortName": "4 ОУ",
@@ -6485,6 +7074,7 @@
     },
     {
       "rank": 590,
+      "adjustedRank": 583,
       "code": "1301749",
       "cities": [ "panagiurishte" ],
       "shortName": "ОУ 20 Април",
@@ -6496,6 +7086,7 @@
     },
     {
       "rank": 591,
+      "adjustedRank": 584,
       "code": "1100336",
       "cities": [ "lovech" ],
       "shortName": "ОУ Димитър Димов",
@@ -6507,6 +7098,7 @@
     },
     {
       "rank": 592,
+      "adjustedRank": 585,
       "code": "104107",
       "cities": [ "sandanski" ],
       "shortName": "4 ОУ",
@@ -6518,6 +7110,7 @@
     },
     {
       "rank": 593,
+      "adjustedRank": 586,
       "code": "1702615",
       "cities": [ "razgrad" ],
       "shortName": "ОУ И. С. Тургенев",
@@ -6529,6 +7122,7 @@
     },
     {
       "rank": 594,
+      "adjustedRank": 587,
       "code": "700112",
       "cities": [ "gabrovo" ],
       "shortName": "ОУ Христо Ботев",
@@ -6540,6 +7134,7 @@
     },
     {
       "rank": 595,
+      "adjustedRank": 588,
       "code": "800008",
       "cities": [ "dobrich" ],
       "shortName": "ОУ Стефан Караджа",
@@ -6551,6 +7146,7 @@
     },
     {
       "rank": 596,
+      "adjustedRank": 589,
       "code": "1500112",
       "cities": [ "pleven" ],
       "shortName": "ОУ Кл. Охридски",
@@ -6562,6 +7158,7 @@
     },
     {
       "rank": 597,
+      "adjustedRank": 590,
       "code": "1690549",
       "cities": [ "plovdiv" ],
       "shortName": "СУ Конст. Величков",
@@ -6573,6 +7170,7 @@
     },
     {
       "rank": 598,
+      "adjustedRank": 591,
       "code": "2100409",
       "cities": [ "devin" ],
       "shortName": "ОУ Кирил и Методий",
@@ -6584,6 +7182,7 @@
     },
     {
       "rank": 599,
+      "adjustedRank": 592,
       "code": "2401181",
       "cities": [ "chirpan" ],
       "shortName": "ОУ Васил Левски",
@@ -6595,6 +7194,7 @@
     },
     {
       "rank": 600,
+      "adjustedRank": 593,
       "code": "2203140",
       "cities": [ "sofia" ],
       "shortName": "140 СУ",
@@ -6606,6 +7206,7 @@
     },
     {
       "rank": 601,
+      "adjustedRank": 594,
       "code": "2212027",
       "cities": [ "sofia" ],
       "shortName": "27 СУ",
@@ -6617,6 +7218,7 @@
     },
     {
       "rank": 602,
+      "adjustedRank": 595,
       "code": "1302662",
       "cities": [ "strelcha" ],
       "shortName": "СУ Кирил и Методий",
@@ -6628,6 +7230,7 @@
     },
     {
       "rank": 603,
+      "adjustedRank": 596,
       "code": "1301788",
       "cities": [ "septemvri" ],
       "shortName": "СУ Христо Ботев",
@@ -6639,6 +7242,7 @@
     },
     {
       "rank": 604,
+      "adjustedRank": 597,
       "code": "200411",
       "cities": [ "karnobat" ],
       "shortName": "СУ Кирил и Методий",
@@ -6650,6 +7254,7 @@
     },
     {
       "rank": 605,
+      "adjustedRank": 598,
       "code": "1403208",
       "cities": [ "pernik" ],
       "shortName": "13 ОУ",
@@ -6661,6 +7266,7 @@
     },
     {
       "rank": 606,
+      "adjustedRank": 599,
       "code": "2218071",
       "cities": [ "sofia" ],
       "shortName": "71 СУ",
@@ -6672,6 +7278,7 @@
     },
     {
       "rank": 607,
+      "adjustedRank": 600,
       "code": "2605008",
       "cities": [ "svilengrad" ],
       "shortName": "СУ Петър Берон",
@@ -6683,6 +7290,7 @@
     },
     {
       "rank": 608,
+      "adjustedRank": 601,
       "code": "403538",
       "cities": [ "varna" ],
       "shortName": "СУ Неофит Бозавели",
@@ -6694,6 +7302,7 @@
     },
     {
       "rank": 609,
+      "adjustedRank": 602,
       "code": "1603705",
       "cities": [ "hisaria" ],
       "shortName": "ОУ Кл. Охридски",
@@ -6705,6 +7314,7 @@
     },
     {
       "rank": 610,
+      "adjustedRank": 603,
       "code": "2208028",
       "cities": [ "sofia" ],
       "shortName": "28 СУ",
@@ -6716,6 +7326,7 @@
     },
     {
       "rank": 611,
+      "adjustedRank": 604,
       "code": "2404110",
       "cities": [ "gulubovo" ],
       "shortName": "II ОУ Хр. Ботев",
@@ -6727,6 +7338,7 @@
     },
     {
       "rank": 612,
+      "adjustedRank": 605,
       "code": "2902201",
       "cities": [ "kotel" ],
       "shortName": "НУФИ Филип Кутев",
@@ -6738,6 +7350,7 @@
     },
     {
       "rank": 613,
+      "adjustedRank": 606,
       "code": "1806206",
       "cities": [ "ruse" ],
       "shortName": "СУ Йордан Йовков",
@@ -6749,6 +7362,7 @@
     },
     {
       "rank": 614,
+      "adjustedRank": 607,
       "code": "1900301",
       "cities": [ "dulovo" ],
       "shortName": "СУ Васил Левски",
@@ -6760,6 +7374,7 @@
     },
     {
       "rank": 615,
+      "adjustedRank": 608,
       "code": "800074",
       "cities": [ "general-toshevo" ],
       "shortName": "СУ Никола Вапцаров",
@@ -6771,6 +7386,7 @@
     },
     {
       "rank": 616,
+      "adjustedRank": 609,
       "code": "300143",
       "cities": [ "veliko-turnovo" ],
       "shortName": "СпУ Г. Живков",
@@ -6782,6 +7398,7 @@
     },
     {
       "rank": 617,
+      "adjustedRank": 610,
       "code": "1602503",
       "cities": [ "rakovski" ],
       "shortName": "ОУ Хр. Смирненски",
@@ -6793,6 +7410,7 @@
     },
     {
       "rank": 618,
+      "adjustedRank": 611,
       "code": "1500702",
       "cities": [ "belene" ],
       "shortName": "ОУ Васил Левски",
@@ -6804,6 +7422,7 @@
     },
     {
       "rank": 619,
+      "adjustedRank": 612,
       "code": "2540101",
       "cities": [ "popovo" ],
       "shortName": "ОУ Н. Вапцаров",
@@ -6815,6 +7434,7 @@
     },
     {
       "rank": 620,
+      "adjustedRank": 613,
       "code": "2206003",
       "cities": [ "sofia" ],
       "shortName": "3 СУ",
@@ -6826,6 +7446,7 @@
     },
     {
       "rank": 621,
+      "adjustedRank": 614,
       "code": "603076",
       "cities": [ "kozlodui" ],
       "shortName": "СУ Христо Ботев",
@@ -6837,6 +7458,7 @@
     },
     {
       "rank": 622,
+      "adjustedRank": 615,
       "code": "400147",
       "cities": [ "provadia" ],
       "shortName": "2 ОУ",
@@ -6848,6 +7470,7 @@
     },
     {
       "rank": 623,
+      "adjustedRank": 616,
       "code": "400096",
       "cities": [ "beloslav" ],
       "shortName": "СУ Кирил и Методий",
@@ -6859,6 +7482,7 @@
     },
     {
       "rank": 624,
+      "adjustedRank": 617,
       "code": "2400109",
       "cities": [ "stara-zagora" ],
       "shortName": "ОУ Георги Райчев",
@@ -6870,6 +7494,7 @@
     },
     {
       "rank": 625,
+      "adjustedRank": 618,
       "code": "1690347",
       "cities": [ "plovdiv" ],
       "shortName": "СпУ Васил Левски",
@@ -6881,6 +7506,7 @@
     },
     {
       "rank": 626,
+      "adjustedRank": 619,
       "code": "400146",
       "cities": [ "provadia" ],
       "shortName": "1 ОУ",
@@ -6892,6 +7518,7 @@
     },
     {
       "rank": 627,
+      "adjustedRank": 620,
       "code": "2601005",
       "cities": [ "haskovo" ],
       "shortName": "ОУ Кирил и Методий",
@@ -6903,6 +7530,7 @@
     },
     {
       "rank": 628,
+      "adjustedRank": 621,
       "code": "800080",
       "cities": [ "kavarna" ],
       "shortName": "ОУ Йордан Йовков",
@@ -6914,6 +7542,7 @@
     },
     {
       "rank": 629,
+      "adjustedRank": 622,
       "code": "2602018",
       "cities": [ "dimitrovgrad" ],
       "shortName": "СУ Л. Каравелов",
@@ -6925,6 +7554,7 @@
     },
     {
       "rank": 630,
+      "adjustedRank": 623,
       "code": "2841534",
       "cities": [ "straldzha" ],
       "shortName": "ОУ Кирил и Методий",
@@ -6936,6 +7566,7 @@
     },
     {
       "rank": 631,
+      "adjustedRank": 624,
       "code": "1001410",
       "cities": [ "kiustendil" ],
       "shortName": "ОУ П. Хилендарски",
@@ -6947,6 +7578,7 @@
     },
     {
       "rank": 632,
+      "adjustedRank": 625,
       "code": "2202152",
       "cities": [ "sofia" ],
       "shortName": "152 ОУ",
@@ -6958,6 +7590,7 @@
     },
     {
       "rank": 633,
+      "adjustedRank": 626,
       "code": "1201007",
       "cities": [ "montana" ],
       "shortName": "5 СУ",
@@ -6969,6 +7602,7 @@
     },
     {
       "rank": 634,
+      "adjustedRank": 627,
       "code": "1603704",
       "cities": [ "hisaria" ],
       "shortName": "ОУ Васил Левски",
@@ -6980,6 +7614,7 @@
     },
     {
       "rank": 635,
+      "adjustedRank": 628,
       "code": "2700047",
       "cities": [ "novi-pazar" ],
       "shortName": "СУ Васил Левски",
@@ -6991,6 +7626,7 @@
     },
     {
       "rank": 636,
+      "adjustedRank": 629,
       "code": "2700231",
       "cities": [ "shumen" ],
       "shortName": "СУ Васил Левски",
@@ -7002,6 +7638,7 @@
     },
     {
       "rank": 637,
+      "adjustedRank": 630,
       "code": "1000330",
       "cities": [ "kiustendil" ],
       "shortName": "ОУ Марин Дринов",
@@ -7013,6 +7650,7 @@
     },
     {
       "rank": 638,
+      "adjustedRank": 631,
       "code": "1806104",
       "cities": [ "ruse" ],
       "shortName": "ОУ Бр. Миладинови",
@@ -7024,6 +7662,7 @@
     },
     {
       "rank": 639,
+      "adjustedRank": 632,
       "code": "200601",
       "cities": [ "obzor" ],
       "shortName": "ОбУ Кирил и Методий",
@@ -7035,6 +7674,7 @@
     },
     {
       "rank": 640,
+      "adjustedRank": 633,
       "code": "1500135",
       "cities": [ "pleven" ],
       "shortName": "СУ Пейо Яворов",
@@ -7046,6 +7686,7 @@
     },
     {
       "rank": 641,
+      "adjustedRank": 634,
       "code": "1900701",
       "cities": [ "tutrakan" ],
       "shortName": "СУ Йордан Йовков",
@@ -7057,6 +7698,7 @@
     },
     {
       "rank": 642,
+      "adjustedRank": 635,
       "code": "2300067",
       "cities": [ "kostinbrod" ],
       "shortName": "1 ОУ",
@@ -7068,6 +7710,7 @@
     },
     {
       "rank": 643,
+      "adjustedRank": 636,
       "code": "2213307",
       "cities": [ "sofia" ],
       "shortName": "СпУ Вл. Стойчев",
@@ -7079,6 +7722,7 @@
     },
     {
       "rank": 644,
+      "adjustedRank": 637,
       "code": "1000015",
       "cities": [ "bobov-dol" ],
       "shortName": "ОУ Н. Вапцаров",
@@ -7090,6 +7734,7 @@
     },
     {
       "rank": 645,
+      "adjustedRank": 638,
       "code": "2220029",
       "cities": [ "sofia" ],
       "shortName": "29 СУ",
@@ -7101,6 +7746,7 @@
     },
     {
       "rank": 646,
+      "adjustedRank": 639,
       "code": "1000039",
       "cities": [ "dupnitsa" ],
       "shortName": "ОУ Кл. Охридски",
@@ -7112,6 +7758,7 @@
     },
     {
       "rank": 647,
+      "adjustedRank": 640,
       "code": "2306213",
       "cities": [ "dolna-bania" ],
       "shortName": "СУ Неофит Рилски",
@@ -7123,6 +7770,7 @@
     },
     {
       "rank": 648,
+      "adjustedRank": 641,
       "code": "2202612",
       "cities": [ "sofia" ],
       "shortName": "У-ще за ученици с увр. слух",
@@ -7134,6 +7782,7 @@
     },
     {
       "rank": 649,
+      "adjustedRank": 642,
       "code": "1701403",
       "cities": [ "isperih" ],
       "shortName": "ОУ Христо Ботев",
@@ -7145,6 +7794,7 @@
     },
     {
       "rank": 650,
+      "adjustedRank": 643,
       "code": "2401052",
       "cities": [ "radnevo" ],
       "shortName": "СУ Гео Милев",
@@ -7156,6 +7806,7 @@
     },
     {
       "rank": 651,
+      "adjustedRank": 644,
       "code": "300127",
       "cities": [ "veliko-turnovo" ],
       "shortName": "СУ Г. Раковски",
@@ -7167,6 +7818,7 @@
     },
     {
       "rank": 652,
+      "adjustedRank": 645,
       "code": "602092",
       "cities": [ "mezdra" ],
       "shortName": "ОУ Кирил и Методий",
@@ -7178,6 +7830,7 @@
     },
     {
       "rank": 653,
+      "adjustedRank": 646,
       "code": "1209004",
       "cities": [ "lom" ],
       "shortName": "4 ОУ Христо Ботев",
@@ -7189,6 +7842,7 @@
     },
     {
       "rank": 654,
+      "adjustedRank": 647,
       "code": "1500203",
       "cities": [ "cherven-briag" ],
       "shortName": "ОУ Хр. Смирненски",
@@ -7200,6 +7854,7 @@
     },
     {
       "rank": 655,
+      "adjustedRank": null,
       "code": "2900102",
       "cities": [ "sofia" ],
       "shortName": "БСУ Петър Берон",
@@ -7211,6 +7866,7 @@
     },
     {
       "rank": 656,
+      "adjustedRank": 648,
       "code": "1806112",
       "cities": [ "ruse" ],
       "shortName": "ОУ Хр. Смирненски",
@@ -7222,6 +7878,7 @@
     },
     {
       "rank": 657,
+      "adjustedRank": 649,
       "code": "2212037",
       "cities": [ "sofia" ],
       "shortName": "37 СУ",
@@ -7233,6 +7890,7 @@
     },
     {
       "rank": 658,
+      "adjustedRank": 650,
       "code": "2000111",
       "cities": [ "sliven" ],
       "shortName": "ОУ Панайот Хитов",
@@ -7244,6 +7902,7 @@
     },
     {
       "rank": 659,
+      "adjustedRank": 651,
       "code": "2300163",
       "cities": [ "godech" ],
       "shortName": "СУ Асен Златаров",
@@ -7255,6 +7914,7 @@
     },
     {
       "rank": 660,
+      "adjustedRank": 652,
       "code": "2606005",
       "cities": [ "liubimets" ],
       "shortName": "СУ Желязко Терпешев",
@@ -7266,6 +7926,7 @@
     },
     {
       "rank": 661,
+      "adjustedRank": 653,
       "code": "2215179",
       "cities": [ "sofia" ],
       "shortName": "179 ОУ",
@@ -7277,6 +7938,7 @@
     },
     {
       "rank": 662,
+      "adjustedRank": 654,
       "code": "109185",
       "cities": [ "sandanski" ],
       "shortName": "Спортно у-ще",
@@ -7288,6 +7950,7 @@
     },
     {
       "rank": 663,
+      "adjustedRank": 655,
       "code": "601015",
       "cities": [ "biala-slatina" ],
       "shortName": "ОУ Кл. Охридски",
@@ -7299,6 +7962,7 @@
     },
     {
       "rank": 664,
+      "adjustedRank": 656,
       "code": "300126",
       "cities": [ "veliko-turnovo" ],
       "shortName": "СУ Владимир Комаров",
@@ -7310,6 +7974,7 @@
     },
     {
       "rank": 665,
+      "adjustedRank": 657,
       "code": "700204",
       "cities": [ "drianovo" ],
       "shortName": "СУ Максим Райкович",
@@ -7321,6 +7986,7 @@
     },
     {
       "rank": 666,
+      "adjustedRank": 658,
       "code": "1602401",
       "cities": [ "perushtitsa" ],
       "shortName": "ОУ Петър Бонев",
@@ -7332,6 +7998,7 @@
     },
     {
       "rank": 667,
+      "adjustedRank": 659,
       "code": "2811514",
       "cities": [ "iambol" ],
       "shortName": "ОбУ Петър Берон",
@@ -7343,6 +8010,7 @@
     },
     {
       "rank": 668,
+      "adjustedRank": 660,
       "code": "2811506",
       "cities": [ "iambol" ],
       "shortName": "ОУ Йордан Йовков",
@@ -7354,6 +8022,7 @@
     },
     {
       "rank": 669,
+      "adjustedRank": 661,
       "code": "400033",
       "cities": [ "varna" ],
       "shortName": "СпУ Г. Бенковски",
@@ -7365,6 +8034,7 @@
     },
     {
       "rank": 670,
+      "adjustedRank": 662,
       "code": "503242",
       "cities": [ "vidin" ],
       "shortName": "СУ Петко Славейков",
@@ -7376,6 +8046,7 @@
     },
     {
       "rank": 671,
+      "adjustedRank": 663,
       "code": "2605003",
       "cities": [ "svilengrad" ],
       "shortName": "ОУ Л. Каравелов",
@@ -7387,6 +8058,7 @@
     },
     {
       "rank": 672,
+      "adjustedRank": 664,
       "code": "2601006",
       "cities": [ "haskovo" ],
       "shortName": "ОУ Шандор Петьофи",
@@ -7398,6 +8070,7 @@
     },
     {
       "rank": 673,
+      "adjustedRank": 665,
       "code": "2212077",
       "cities": [ "sofia" ],
       "shortName": "77 ОУ",
@@ -7409,6 +8082,7 @@
     },
     {
       "rank": 674,
+      "adjustedRank": 666,
       "code": "700401",
       "cities": [ "triavna" ],
       "shortName": "ОУ Пенчо Николов Райков",
@@ -7420,6 +8094,7 @@
     },
     {
       "rank": 675,
+      "adjustedRank": 667,
       "code": "1202002",
       "cities": [ "berkovitsa" ],
       "shortName": "2 ОУ",
@@ -7431,6 +8106,7 @@
     },
     {
       "rank": 676,
+      "adjustedRank": 668,
       "code": "1603301",
       "cities": [ "suedinenie" ],
       "shortName": "СУ Христо Ботев",
@@ -7442,6 +8118,7 @@
     },
     {
       "rank": 677,
+      "adjustedRank": 669,
       "code": "909101",
       "cities": [ "kurdzhali" ],
       "shortName": "СУ Влад. Димитров",
@@ -7453,6 +8130,7 @@
     },
     {
       "rank": 678,
+      "adjustedRank": 670,
       "code": "608060",
       "cities": [ "vratsa" ],
       "shortName": "Спортно у-ще",
@@ -7464,6 +8142,7 @@
     },
     {
       "rank": 679,
+      "adjustedRank": 671,
       "code": "1403211",
       "cities": [ "pernik" ],
       "shortName": "ОУ К. К. Философ",
@@ -7475,6 +8154,7 @@
     },
     {
       "rank": 680,
+      "adjustedRank": 672,
       "code": "400097",
       "cities": [ "beloslav" ],
       "shortName": "ОУ Патр. Евтимий",
@@ -7486,6 +8166,7 @@
     },
     {
       "rank": 681,
+      "adjustedRank": 673,
       "code": "2520501",
       "cities": [ "omurtag" ],
       "shortName": "ОУ Даки Йорданов",
@@ -7497,6 +8178,7 @@
     },
     {
       "rank": 682,
+      "adjustedRank": 674,
       "code": "2207069",
       "cities": [ "sofia" ],
       "shortName": "69 СУ",
@@ -7508,6 +8190,7 @@
     },
     {
       "rank": 683,
+      "adjustedRank": 675,
       "code": "1100316",
       "cities": [ "lovech" ],
       "shortName": "СУ Тодор Кирков",
@@ -7519,6 +8202,7 @@
     },
     {
       "rank": 684,
+      "adjustedRank": 676,
       "code": "2215177",
       "cities": [ "sofia" ],
       "shortName": "177 ОУ",
@@ -7530,6 +8214,7 @@
     },
     {
       "rank": 685,
+      "adjustedRank": 677,
       "code": "909116",
       "cities": [ "kurdzhali" ],
       "shortName": "ОУ Кирил и Методий",
@@ -7541,6 +8226,7 @@
     },
     {
       "rank": 686,
+      "adjustedRank": 678,
       "code": "2210117",
       "cities": [ "sofia" ],
       "shortName": "117 СУ",
@@ -7552,6 +8238,7 @@
     },
     {
       "rank": 687,
+      "adjustedRank": 679,
       "code": "1201011",
       "cities": [ "montana" ],
       "shortName": "7 СУ",
@@ -7563,6 +8250,7 @@
     },
     {
       "rank": 688,
+      "adjustedRank": 680,
       "code": "1701402",
       "cities": [ "isperih" ],
       "shortName": "ОУ Васил Априлов",
@@ -7574,6 +8262,7 @@
     },
     {
       "rank": 689,
+      "adjustedRank": 681,
       "code": "1300054",
       "cities": [ "kostandovo" ],
       "shortName": "ОУ Неофит Рилски",
@@ -7585,6 +8274,7 @@
     },
     {
       "rank": 690,
+      "adjustedRank": 682,
       "code": "2404107",
       "cities": [ "gulubovo" ],
       "shortName": "СУ Васил Левски",
@@ -7596,6 +8286,7 @@
     },
     {
       "rank": 691,
+      "adjustedRank": 683,
       "code": "1501103",
       "cities": [ "knezha" ],
       "shortName": "ОУ Отец Паисий",
@@ -7607,6 +8298,7 @@
     },
     {
       "rank": 692,
+      "adjustedRank": 684,
       "code": "1403650",
       "cities": [ "radomir" ],
       "shortName": "ОУ Хр. Смирненски",
@@ -7618,6 +8310,7 @@
     },
     {
       "rank": 693,
+      "adjustedRank": 685,
       "code": "400148",
       "cities": [ "provadia" ],
       "shortName": "СУ Димитър Благоев",
@@ -7629,6 +8322,7 @@
     },
     {
       "rank": 694,
+      "adjustedRank": 686,
       "code": "1304532",
       "cities": [ "rakitovo" ],
       "shortName": "ОУ Христо Ботев",
@@ -7640,6 +8334,7 @@
     },
     {
       "rank": 695,
+      "adjustedRank": 687,
       "code": "2214153",
       "cities": [ "sofia" ],
       "shortName": "СпУ Неофит Рилски",
@@ -7651,6 +8346,7 @@
     },
     {
       "rank": 696,
+      "adjustedRank": 688,
       "code": "700106",
       "cities": [ "gabrovo" ],
       "shortName": "ОУ Иван Вазов",
@@ -7662,6 +8358,7 @@
     },
     {
       "rank": 697,
+      "adjustedRank": 689,
       "code": "2500103",
       "cities": [ "turgovishte" ],
       "shortName": "3 ОУ",
@@ -7673,6 +8370,7 @@
     },
     {
       "rank": 698,
+      "adjustedRank": 690,
       "code": "1201034",
       "cities": [ "montana" ],
       "shortName": "6 СУ",
@@ -7684,6 +8382,7 @@
     },
     {
       "rank": 699,
+      "adjustedRank": 691,
       "code": "2500203",
       "cities": [ "turgovishte" ],
       "shortName": "Спортно у-ще",
@@ -7695,6 +8394,7 @@
     },
     {
       "rank": 700,
+      "adjustedRank": 692,
       "code": "2400275",
       "cities": [ "kazanluk" ],
       "shortName": "ОУ Чудомир",
@@ -7706,6 +8406,7 @@
     },
     {
       "rank": 701,
+      "adjustedRank": 693,
       "code": "2603008",
       "cities": [ "harmanli" ],
       "shortName": "СУ Неофит Рилски",
@@ -7717,6 +8418,7 @@
     },
     {
       "rank": 702,
+      "adjustedRank": 694,
       "code": "200240",
       "cities": [ "burgas" ],
       "shortName": "СпУ Юрий Гагарин",
@@ -7728,6 +8430,7 @@
     },
     {
       "rank": 703,
+      "adjustedRank": 695,
       "code": "1602302",
       "cities": [ "purvomai" ],
       "shortName": "ОУ Г. Караславов",
@@ -7739,6 +8442,7 @@
     },
     {
       "rank": 704,
+      "adjustedRank": 696,
       "code": "300144",
       "cities": [ "veliko-turnovo" ],
       "shortName": "Димитър Екимов",
@@ -7750,6 +8454,7 @@
     },
     {
       "rank": 705,
+      "adjustedRank": 697,
       "code": "503241",
       "cities": [ "vidin" ],
       "shortName": "СУ Кирил и Методий",
@@ -7761,6 +8466,7 @@
     },
     {
       "rank": 706,
+      "adjustedRank": 698,
       "code": "500113",
       "cities": [ "vidin" ],
       "shortName": "ОУ Кл. Охридски",
@@ -7772,6 +8478,7 @@
     },
     {
       "rank": 707,
+      "adjustedRank": 699,
       "code": "603024",
       "cities": [ "biala-slatina" ],
       "shortName": "СУ Васил Левски",
@@ -7783,6 +8490,7 @@
     },
     {
       "rank": 708,
+      "adjustedRank": 700,
       "code": "1601403",
       "cities": [ "krichim" ],
       "shortName": "СУ Петко Славейков",
@@ -7794,6 +8502,7 @@
     },
     {
       "rank": 709,
+      "adjustedRank": 701,
       "code": "800094",
       "cities": [ "tervel" ],
       "shortName": "СУ Йордан Йовков",
@@ -7805,6 +8514,7 @@
     },
     {
       "rank": 710,
+      "adjustedRank": 702,
       "code": "1300013",
       "cities": [ "pazardzhik" ],
       "shortName": "СпУ Пазарджик",
@@ -7816,6 +8526,7 @@
     },
     {
       "rank": 711,
+      "adjustedRank": 703,
       "code": "1601303",
       "cities": [ "sopot" ],
       "shortName": "СУ Иван Вазов",
@@ -7827,6 +8538,7 @@
     },
     {
       "rank": 712,
+      "adjustedRank": null,
       "code": "602042",
       "cities": [ "vratsa" ],
       "shortName": "ОУ Кирил и Методий",
@@ -7838,6 +8550,7 @@
     },
     {
       "rank": 713,
+      "adjustedRank": 704,
       "code": "2811518",
       "cities": [ "iambol" ],
       "shortName": "СпУ Кубертен",
@@ -7849,6 +8562,7 @@
     },
     {
       "rank": 714,
+      "adjustedRank": 705,
       "code": "201104",
       "cities": [ "sredets" ],
       "shortName": "СУ Кирил и Методий",
@@ -7860,6 +8574,7 @@
     },
     {
       "rank": 715,
+      "adjustedRank": 706,
       "code": "1001390",
       "cities": [ "kiustendil" ],
       "shortName": "Спортно у-ще",
@@ -7871,6 +8586,7 @@
     },
     {
       "rank": 716,
+      "adjustedRank": 707,
       "code": "2700071",
       "cities": [ "novi-pazar" ],
       "shortName": "СУ Хан Исперих",
@@ -7882,6 +8598,7 @@
     },
     {
       "rank": 717,
+      "adjustedRank": 708,
       "code": "603116",
       "cities": [ "oriahovo" ],
       "shortName": "СУ Христо Ботев",
@@ -7893,6 +8610,7 @@
     },
     {
       "rank": 718,
+      "adjustedRank": 709,
       "code": "2400129",
       "cities": [ "stara-zagora" ],
       "shortName": "ОУ Самара",
@@ -7904,6 +8622,7 @@
     },
     {
       "rank": 719,
+      "adjustedRank": 710,
       "code": "2214141",
       "cities": [ "sofia" ],
       "shortName": "141 ОУ",
@@ -7915,6 +8634,7 @@
     },
     {
       "rank": 720,
+      "adjustedRank": 711,
       "code": "2400108",
       "cities": [ "stara-zagora" ],
       "shortName": "СпУ Т. Каблешков",
@@ -7926,6 +8646,7 @@
     },
     {
       "rank": 721,
+      "adjustedRank": 712,
       "code": "400163",
       "cities": [ "suvorovo" ],
       "shortName": "СУ Никола Вапцаров",
@@ -7937,6 +8658,7 @@
     },
     {
       "rank": 722,
+      "adjustedRank": 713,
       "code": "603098",
       "cities": [ "mezdra" ],
       "shortName": "СУ Иван Вазов",
@@ -7948,6 +8670,7 @@
     },
     {
       "rank": 723,
+      "adjustedRank": 714,
       "code": "602041",
       "cities": [ "vratsa" ],
       "shortName": "ОУ Васил Левски",
@@ -7959,6 +8682,7 @@
     },
     {
       "rank": 724,
+      "adjustedRank": 715,
       "code": "800061",
       "cities": [ "balchik" ],
       "shortName": "СУ Христо Ботев",
@@ -7970,6 +8694,7 @@
     },
     {
       "rank": 725,
+      "adjustedRank": 716,
       "code": "400123",
       "cities": [ "devnia" ],
       "shortName": "СУ Васил Левски",
@@ -7981,6 +8706,7 @@
     },
     {
       "rank": 726,
+      "adjustedRank": 717,
       "code": "2308924",
       "cities": [ "samokov" ],
       "shortName": "ОУ Христо Максимов",
@@ -7992,6 +8718,7 @@
     },
     {
       "rank": 727,
+      "adjustedRank": 718,
       "code": "1100318",
       "cities": [ "lovech" ],
       "shortName": "СУ Кл. Охридски",
@@ -8003,6 +8730,7 @@
     },
     {
       "rank": 728,
+      "adjustedRank": 719,
       "code": "200703",
       "cities": [ "pomorie" ],
       "shortName": "ОУ Христо Ботев",
@@ -8014,6 +8742,7 @@
     },
     {
       "rank": 729,
+      "adjustedRank": 720,
       "code": "2700104",
       "cities": [ "shumen" ],
       "shortName": "ОУ Панайот Волов",
@@ -8025,6 +8754,7 @@
     },
     {
       "rank": 730,
+      "adjustedRank": 721,
       "code": "1208002",
       "cities": [ "vurshets" ],
       "shortName": "СУ Иван Вазов",
@@ -8036,6 +8766,7 @@
     },
     {
       "rank": 731,
+      "adjustedRank": 722,
       "code": "1702612",
       "cities": [ "razgrad" ],
       "shortName": "СУ Христо Ботев",
@@ -8047,6 +8778,7 @@
     },
     {
       "rank": 732,
+      "adjustedRank": 723,
       "code": "603057",
       "cities": [ "vratsa" ],
       "shortName": "СУ Отец Паисий",
@@ -8058,6 +8790,7 @@
     },
     {
       "rank": 733,
+      "adjustedRank": 724,
       "code": "500201",
       "cities": [ "belogradchik" ],
       "shortName": "СУ Христо Ботев",
@@ -8069,6 +8802,7 @@
     },
     {
       "rank": 734,
+      "adjustedRank": 725,
       "code": "2811510",
       "cities": [ "iambol" ],
       "shortName": "СУ Кл. Охридски",
@@ -8080,6 +8814,7 @@
     },
     {
       "rank": 735,
+      "adjustedRank": 726,
       "code": "2304610",
       "cities": [ "samokov" ],
       "shortName": "СпУ Никола Велчев",
@@ -8091,6 +8826,7 @@
     },
     {
       "rank": 736,
+      "adjustedRank": 727,
       "code": "400126",
       "cities": [ "dolni-chiflik" ],
       "shortName": "СУ Васил Левски",
@@ -8102,6 +8838,7 @@
     },
     {
       "rank": 737,
+      "adjustedRank": 728,
       "code": "2208057",
       "cities": [ "sofia" ],
       "shortName": "СпУ Св. Наум",
@@ -8113,6 +8850,7 @@
     },
     {
       "rank": 738,
+      "adjustedRank": 729,
       "code": "800073",
       "cities": [ "general-toshevo" ],
       "shortName": "ОУ Хр. Смирненски",
@@ -8124,6 +8862,7 @@
     },
     {
       "rank": 739,
+      "adjustedRank": 730,
       "code": "1702616",
       "cities": [ "razgrad" ],
       "shortName": "ОУ Отец Паисий",
@@ -8135,6 +8874,7 @@
     },
     {
       "rank": 740,
+      "adjustedRank": 731,
       "code": "400037",
       "cities": [ "varna" ],
       "shortName": "СУ Л. Каравелов",
@@ -8146,6 +8886,7 @@
     },
     {
       "rank": 741,
+      "adjustedRank": 732,
       "code": "2604003",
       "cities": [ "simeonovgrad" ],
       "shortName": "ОУ Иван Вазов",
@@ -8157,6 +8898,7 @@
     },
     {
       "rank": 742,
+      "adjustedRank": 733,
       "code": "1304357",
       "cities": [ "peshtera" ],
       "shortName": "ОбУ Л. Каравелов",
@@ -8168,6 +8910,7 @@
     },
     {
       "rank": 743,
+      "adjustedRank": 734,
       "code": "2401182",
       "cities": [ "chirpan" ],
       "shortName": "ОУ Кирил и Методий",
@@ -8179,6 +8922,7 @@
     },
     {
       "rank": 744,
+      "adjustedRank": 735,
       "code": "400136",
       "cities": [ "dulgopol" ],
       "shortName": "СУ Кл. Охридски",
@@ -8190,6 +8934,7 @@
     },
     {
       "rank": 745,
+      "adjustedRank": 736,
       "code": "2000128",
       "cities": [ "sliven" ],
       "shortName": "СпУ Д. Рохов",
@@ -8201,6 +8946,7 @@
     },
     {
       "rank": 746,
+      "adjustedRank": 737,
       "code": "300911",
       "cities": [ "strazhitsa" ],
       "shortName": "СУ Ангел Каралийчев",
@@ -8212,6 +8958,7 @@
     },
     {
       "rank": 747,
+      "adjustedRank": 738,
       "code": "1500611",
       "cities": [ "levski" ],
       "shortName": "СУ Крум Попов",
@@ -8223,6 +8970,7 @@
     },
     {
       "rank": 748,
+      "adjustedRank": 739,
       "code": "300801",
       "cities": [ "svishtov" ],
       "shortName": "ОУ Ф. Сакелариевич",
@@ -8234,6 +8982,7 @@
     },
     {
       "rank": 749,
+      "adjustedRank": 740,
       "code": "200221",
       "cities": [ "burgas" ],
       "shortName": "СУ Христо Ботев",
@@ -8245,6 +8994,7 @@
     },
     {
       "rank": 750,
+      "adjustedRank": 741,
       "code": "2304101",
       "cities": [ "ihtiman" ],
       "shortName": "ОУ Димчо Дебелянов",
@@ -8256,6 +9006,7 @@
     },
     {
       "rank": 751,
+      "adjustedRank": 742,
       "code": "2308785",
       "cities": [ "etropole" ],
       "shortName": "ОУ Христо Ботев",
@@ -8267,6 +9018,7 @@
     },
     {
       "rank": 752,
+      "adjustedRank": 743,
       "code": "1690248",
       "cities": [ "plovdiv" ],
       "shortName": "СУ Симон Боливар",
@@ -8278,6 +9030,7 @@
     },
     {
       "rank": 753,
+      "adjustedRank": 744,
       "code": "1500138",
       "cities": [ "pleven" ],
       "shortName": "СпУ Г. Бенковски",
@@ -8289,6 +9042,7 @@
     },
     {
       "rank": 754,
+      "adjustedRank": 745,
       "code": "1806108",
       "cities": [ "ruse" ],
       "shortName": "ОУ А. Константинов",
@@ -8300,6 +9054,7 @@
     },
     {
       "rank": 755,
+      "adjustedRank": 746,
       "code": "2404109",
       "cities": [ "gulubovo" ],
       "shortName": "I ОУ Паисий Хил.",
@@ -8311,6 +9066,7 @@
     },
     {
       "rank": 756,
+      "adjustedRank": 747,
       "code": "2000201",
       "cities": [ "kotel" ],
       "shortName": "СУ Георги Раковски",
@@ -8322,6 +9078,7 @@
     },
     {
       "rank": 757,
+      "adjustedRank": 748,
       "code": "1702640",
       "cities": [ "razgrad" ],
       "shortName": "Спортно у-ще",
@@ -8333,6 +9090,7 @@
     },
     {
       "rank": 758,
+      "adjustedRank": 749,
       "code": "2401054",
       "cities": [ "radnevo" ],
       "shortName": "1 ОУ",
@@ -8344,6 +9102,7 @@
     },
     {
       "rank": 759,
+      "adjustedRank": 750,
       "code": "2219024",
       "cities": [ "sofia" ],
       "shortName": "24 СУ",
@@ -8355,6 +9114,7 @@
     },
     {
       "rank": 760,
+      "adjustedRank": 751,
       "code": "1500132",
       "cities": [ "pleven" ],
       "shortName": "СУ Ан. Димитрова",
@@ -8366,6 +9126,7 @@
     },
     {
       "rank": 761,
+      "adjustedRank": 752,
       "code": "1000016",
       "cities": [ "bobov-dol" ],
       "shortName": "СУ Христо Ботев",
@@ -8377,6 +9138,7 @@
     },
     {
       "rank": 762,
+      "adjustedRank": 753,
       "code": "1100402",
       "cities": [ "lukovit" ],
       "shortName": "СУ А. Константинов",
@@ -8388,6 +9150,7 @@
     },
     {
       "rank": 763,
+      "adjustedRank": 754,
       "code": "1403217",
       "cities": [ "pernik" ],
       "shortName": "СпУ Олимпиец",
@@ -8399,6 +9162,7 @@
     },
     {
       "rank": 764,
+      "adjustedRank": 755,
       "code": "2217066",
       "cities": [ "sofia" ],
       "shortName": "66 СУ",
@@ -8410,6 +9174,7 @@
     },
     {
       "rank": 765,
+      "adjustedRank": 756,
       "code": "300101",
       "cities": [ "veliko-turnovo" ],
       "shortName": "ОУ Христо Ботев",
@@ -8421,6 +9186,7 @@
     },
     {
       "rank": 766,
+      "adjustedRank": 757,
       "code": "200405",
       "cities": [ "karnobat" ],
       "shortName": "OУ Петко Славейков",
@@ -8432,6 +9198,7 @@
     },
     {
       "rank": 767,
+      "adjustedRank": 758,
       "code": "2700103",
       "cities": [ "veliki-preslav" ],
       "shortName": "СУ Ч. Храбър",
@@ -8443,6 +9210,7 @@
     },
     {
       "rank": 768,
+      "adjustedRank": 759,
       "code": "1302722",
       "cities": [ "rakitovo" ],
       "shortName": "ВУ-интернат",
@@ -8454,6 +9222,7 @@
     },
     {
       "rank": 769,
+      "adjustedRank": 760,
       "code": "1500136",
       "cities": [ "pleven" ],
       "shortName": "СУ Хр. Смирненски",
@@ -8465,6 +9234,7 @@
     },
     {
       "rank": 770,
+      "adjustedRank": 761,
       "code": "909104",
       "cities": [ "kurdzhali" ],
       "shortName": "ОУ Кл. Охридски",
@@ -8476,6 +9246,7 @@
     },
     {
       "rank": 771,
+      "adjustedRank": 762,
       "code": "1301707",
       "cities": [ "velingrad" ],
       "shortName": "ОУ Георги Бенковски",
@@ -8487,6 +9258,7 @@
     },
     {
       "rank": 772,
+      "adjustedRank": 763,
       "code": "2601009",
       "cities": [ "haskovo" ],
       "shortName": "ОУ Н. Вапцаров",
@@ -8498,6 +9270,7 @@
     },
     {
       "rank": 773,
+      "adjustedRank": 764,
       "code": "700307",
       "cities": [ "sevlievo" ],
       "shortName": "ОУ Христо Ботев",
@@ -8509,6 +9282,7 @@
     },
     {
       "rank": 774,
+      "adjustedRank": 765,
       "code": "2219130",
       "cities": [ "sofia" ],
       "shortName": "130 СУ",
@@ -8520,6 +9294,7 @@
     },
     {
       "rank": 775,
+      "adjustedRank": 766,
       "code": "2604004",
       "cities": [ "simeonovgrad" ],
       "shortName": "СУ Кл. Охридски",
@@ -8531,6 +9306,7 @@
     },
     {
       "rank": 776,
+      "adjustedRank": 767,
       "code": "2000304",
       "cities": [ "nova-zagora" ],
       "shortName": "СУ Иван Вазов",
@@ -8542,6 +9318,7 @@
     },
     {
       "rank": 777,
+      "adjustedRank": 768,
       "code": "2208123",
       "cities": [ "sofia" ],
       "shortName": "123 СУ",
@@ -8553,6 +9330,7 @@
     },
     {
       "rank": 778,
+      "adjustedRank": 769,
       "code": "1900528",
       "cities": [ "silistra" ],
       "shortName": "Спортно у-ще",
@@ -8564,6 +9342,7 @@
     },
     {
       "rank": 779,
+      "adjustedRank": 770,
       "code": "2000402",
       "cities": [ "tvurditsa" ],
       "shortName": "СУ Неофит Рилски",
@@ -8575,6 +9354,7 @@
     },
     {
       "rank": 780,
+      "adjustedRank": 771,
       "code": "1000037",
       "cities": [ "dupnitsa" ],
       "shortName": "ОУ Хр. Павлович",
@@ -8586,6 +9366,7 @@
     },
     {
       "rank": 781,
+      "adjustedRank": 772,
       "code": "2308753",
       "cities": [ "botevgrad" ],
       "shortName": "ОУ Васил Левски",
@@ -8597,6 +9378,7 @@
     },
     {
       "rank": 782,
+      "adjustedRank": null,
       "code": "2900001",
       "cities": [ "sofia" ],
       "shortName": "БСУ Христо Ботев",
@@ -8608,6 +9390,7 @@
     },
     {
       "rank": 783,
+      "adjustedRank": 773,
       "code": "1500204",
       "cities": [ "cherven-briag" ],
       "shortName": "ОУ А. Константинов",
@@ -8619,6 +9402,7 @@
     },
     {
       "rank": 784,
+      "adjustedRank": 774,
       "code": "2215172",
       "cities": [ "sofia", "novi-iskar" ],
       "shortName": "172 ОбУ",
@@ -8630,6 +9414,7 @@
     },
     {
       "rank": 785,
+      "adjustedRank": 775,
       "code": "1806401",
       "cities": [ "ruse" ],
       "shortName": "СпУ Ат. Узунов",
@@ -8641,6 +9426,7 @@
     },
     {
       "rank": 786,
+      "adjustedRank": 776,
       "code": "1302534",
       "cities": [ "pazardzhik" ],
       "shortName": "ОУ Христо Ботев",
@@ -8652,6 +9438,7 @@
     },
     {
       "rank": 787,
+      "adjustedRank": 777,
       "code": "400010",
       "cities": [ "varna" ],
       "shortName": "ОУ Иван Рилски",
@@ -8663,6 +9450,7 @@
     },
     {
       "rank": 788,
+      "adjustedRank": 778,
       "code": "1301234",
       "cities": [ "pazardzhik" ],
       "shortName": "СУ Димитър Гачев",
@@ -8674,6 +9462,7 @@
     },
     {
       "rank": 789,
+      "adjustedRank": 779,
       "code": "1302517",
       "cities": [ "pazardzhik" ],
       "shortName": "ОУ Стефан Захариев",
@@ -8685,6 +9474,7 @@
     },
     {
       "rank": 790,
+      "adjustedRank": 780,
       "code": "2500102",
       "cities": [ "turgovishte" ],
       "shortName": "2 ОУ",
@@ -8696,6 +9486,7 @@
     },
     {
       "rank": 791,
+      "adjustedRank": 781,
       "code": "2400277",
       "cities": [ "kazanluk" ],
       "shortName": "ОУ А. Страшимиров",
@@ -8707,6 +9498,7 @@
     },
     {
       "rank": 792,
+      "adjustedRank": 782,
       "code": "800010",
       "cities": [ "dobrich" ],
       "shortName": "ОУ Хр. Смирненски",
@@ -8718,6 +9510,7 @@
     },
     {
       "rank": 793,
+      "adjustedRank": 783,
       "code": "2210162",
       "cities": [ "sofia" ],
       "shortName": "162 ОбУ",
@@ -8729,6 +9522,7 @@
     },
     {
       "rank": 794,
+      "adjustedRank": 784,
       "code": "1501108",
       "cities": [ "knezha" ],
       "shortName": "СУ Неофит Рилски",
@@ -8740,6 +9534,7 @@
     },
     {
       "rank": 795,
+      "adjustedRank": 785,
       "code": "1303889",
       "cities": [ "septemvri" ],
       "shortName": "СУ Хр. Смирненски",
@@ -8751,6 +9546,7 @@
     },
     {
       "rank": 796,
+      "adjustedRank": 786,
       "code": "2219124",
       "cities": [ "sofia" ],
       "shortName": "124 ОУ",
@@ -8762,6 +9558,7 @@
     },
     {
       "rank": 797,
+      "adjustedRank": 787,
       "code": "2700147",
       "cities": [ "shumen" ],
       "shortName": "СУ Трайко Симеонов",
@@ -8773,6 +9570,7 @@
     },
     {
       "rank": 798,
+      "adjustedRank": 788,
       "code": "1100305",
       "cities": [ "lovech" ],
       "shortName": "ОУ Кирил и Методий",
@@ -8784,6 +9582,7 @@
     },
     {
       "rank": 799,
+      "adjustedRank": 789,
       "code": "400036",
       "cities": [ "varna" ],
       "shortName": "СУ Елин Пелин",
@@ -8795,6 +9594,7 @@
     },
     {
       "rank": 800,
+      "adjustedRank": 790,
       "code": "200226",
       "cities": [ "burgas" ],
       "shortName": "ОбУ Кл. Охридски",
@@ -8806,6 +9606,7 @@
     },
     {
       "rank": 801,
+      "adjustedRank": 791,
       "code": "1100601",
       "cities": [ "troyan" ],
       "shortName": "ОУ Иван Хаджийски",
@@ -8817,6 +9618,7 @@
     },
     {
       "rank": 802,
+      "adjustedRank": 792,
       "code": "2000303",
       "cities": [ "nova-zagora" ],
       "shortName": "ОУ Хр. Смирненски",
@@ -8828,6 +9630,7 @@
     },
     {
       "rank": 803,
+      "adjustedRank": 793,
       "code": "603140",
       "cities": [ "vratsa" ],
       "shortName": "СУ Мито Орозов",
@@ -8839,6 +9642,7 @@
     },
     {
       "rank": 804,
+      "adjustedRank": 794,
       "code": "1403204",
       "cities": [ "pernik" ],
       "shortName": "ОбУ Темелко Ненков",
@@ -8850,6 +9654,7 @@
     },
     {
       "rank": 805,
+      "adjustedRank": 795,
       "code": "1601305",
       "cities": [ "karlovo" ],
       "shortName": "ОУ Райно Попович",
@@ -8861,6 +9666,7 @@
     },
     {
       "rank": 806,
+      "adjustedRank": 796,
       "code": "1602301",
       "cities": [ "purvomai" ],
       "shortName": "ОУ Кирил и Методий",
@@ -8872,6 +9678,7 @@
     },
     {
       "rank": 807,
+      "adjustedRank": 797,
       "code": "2210116",
       "cities": [ "sofia" ],
       "shortName": "116 ОУ",
@@ -8883,6 +9690,7 @@
     },
     {
       "rank": 808,
+      "adjustedRank": 798,
       "code": "2811513",
       "cities": [ "iambol" ],
       "shortName": "ОУ Хр. Смирненски",
@@ -8894,6 +9702,7 @@
     },
     {
       "rank": 809,
+      "adjustedRank": 799,
       "code": "2207089",
       "cities": [ "sofia" ],
       "shortName": "89 ОУ",
@@ -8905,6 +9714,7 @@
     },
     {
       "rank": 810,
+      "adjustedRank": 800,
       "code": "1000005",
       "cities": [ "kiustendil" ],
       "shortName": "ОУ Иван Вазов",
@@ -8916,6 +9726,7 @@
     },
     {
       "rank": 811,
+      "adjustedRank": 801,
       "code": "1202004",
       "cities": [ "berkovitsa" ],
       "shortName": "4 ОУ",
@@ -8927,6 +9738,7 @@
     },
     {
       "rank": 812,
+      "adjustedRank": 802,
       "code": "909115",
       "cities": [ "kurdzhali" ],
       "shortName": "ОУ Васил Левски",
@@ -8938,6 +9750,7 @@
     },
     {
       "rank": 813,
+      "adjustedRank": 803,
       "code": "2700269",
       "cities": [ "shumen" ],
       "shortName": "ОУ Еньо Марковски",
@@ -8949,6 +9762,7 @@
     },
     {
       "rank": 814,
+      "adjustedRank": 804,
       "code": "200216",
       "cities": [ "burgas" ],
       "shortName": "ОбУ Васил Левски",
@@ -8960,6 +9774,7 @@
     },
     {
       "rank": 815,
+      "adjustedRank": null,
       "code": "800004",
       "cities": [ "dobrich" ],
       "shortName": "ОУ Н. Вапцаров",
@@ -8971,6 +9786,7 @@
     },
     {
       "rank": 816,
+      "adjustedRank": 805,
       "code": "2400174",
       "cities": [ "stara-zagora" ],
       "shortName": "СУ Христо Ботев",
@@ -8982,6 +9798,7 @@
     },
     {
       "rank": 817,
+      "adjustedRank": 806,
       "code": "2219106",
       "cities": [ "sofia" ],
       "shortName": "106 ОУ",
@@ -8993,6 +9810,7 @@
     },
     {
       "rank": 818,
+      "adjustedRank": 807,
       "code": "200104",
       "cities": [ "aitos" ],
       "shortName": "ОУ Атанас Манчев",
@@ -9004,6 +9822,7 @@
     },
     {
       "rank": 819,
+      "adjustedRank": 808,
       "code": "1690443",
       "cities": [ "plovdiv" ],
       "shortName": "ОбУ Й. Йовков",
@@ -9015,6 +9834,7 @@
     },
     {
       "rank": 820,
+      "adjustedRank": 809,
       "code": "800012",
       "cities": [ "dobrich" ],
       "shortName": "Спортно у-ще",
@@ -9026,6 +9846,7 @@
     },
     {
       "rank": 821,
+      "adjustedRank": 810,
       "code": "1701604",
       "cities": [ "kubrat" ],
       "shortName": "ОУ Хр. Смирненски",
@@ -9037,6 +9858,7 @@
     },
     {
       "rank": 822,
+      "adjustedRank": 811,
       "code": "2602002",
       "cities": [ "dimitrovgrad" ],
       "shortName": "ОУ П. Яворов",
@@ -9048,6 +9870,7 @@
     },
     {
       "rank": 823,
+      "adjustedRank": 812,
       "code": "2208147",
       "cities": [ "sofia" ],
       "shortName": "147 ОУ",
@@ -9059,6 +9882,7 @@
     },
     {
       "rank": 824,
+      "adjustedRank": 813,
       "code": "2500703",
       "cities": [ "turgovishte" ],
       "shortName": "У-ще за уч. с увр. слух",
@@ -9070,6 +9894,7 @@
     },
     {
       "rank": 825,
+      "adjustedRank": 814,
       "code": "300205",
       "cities": [ "gorna-oryahovitsa" ],
       "shortName": "ОУ П. Хилендарски",
@@ -9081,6 +9906,7 @@
     },
     {
       "rank": 826,
+      "adjustedRank": 815,
       "code": "2220059",
       "cities": [ "sofia" ],
       "shortName": "59 ОбУ",
@@ -9092,6 +9918,7 @@
     },
     {
       "rank": 827,
+      "adjustedRank": 816,
       "code": "2203070",
       "cities": [ "sofia" ],
       "shortName": "70 ОУ",
@@ -9103,6 +9930,7 @@
     },
     {
       "rank": 828,
+      "adjustedRank": 817,
       "code": "2308810",
       "cities": [ "ihtiman" ],
       "shortName": "ОУ Кирил и Методий",
@@ -9114,6 +9942,7 @@
     },
     {
       "rank": 829,
+      "adjustedRank": 818,
       "code": "2204136",
       "cities": [ "sofia" ],
       "shortName": "136 ОУ",
@@ -9125,6 +9954,7 @@
     },
     {
       "rank": 830,
+      "adjustedRank": 819,
       "code": "2602017",
       "cities": [ "dimitrovgrad" ],
       "shortName": "ОУ Васил Левски",
@@ -9136,6 +9966,7 @@
     },
     {
       "rank": 831,
+      "adjustedRank": 820,
       "code": "1000018",
       "cities": [ "bobov-dol" ],
       "shortName": "СУ Петър Берон",
@@ -9147,6 +9978,7 @@
     },
     {
       "rank": 832,
+      "adjustedRank": 821,
       "code": "2204067",
       "cities": [ "sofia" ],
       "shortName": "67 ОУ",
@@ -9158,6 +9990,7 @@
     },
     {
       "rank": 833,
+      "adjustedRank": 822,
       "code": "2602003",
       "cities": [ "dimitrovgrad" ],
       "shortName": "ОбУ Кирил и Методий",
@@ -9169,6 +10002,7 @@
     },
     {
       "rank": 834,
+      "adjustedRank": 823,
       "code": "1690144",
       "cities": [ "plovdiv" ],
       "shortName": "ОУ Гео Милев",
@@ -9180,6 +10014,7 @@
     },
     {
       "rank": 835,
+      "adjustedRank": 824,
       "code": "2303825",
       "cities": [ "samokov" ],
       "shortName": "ОбУ Неофит Рилски",
@@ -9191,6 +10026,7 @@
     },
     {
       "rank": 836,
+      "adjustedRank": 825,
       "code": "104002",
       "cities": [ "petrich" ],
       "shortName": "СУ А. Попов",
@@ -9202,6 +10038,7 @@
     },
     {
       "rank": 837,
+      "adjustedRank": 826,
       "code": "2221094",
       "cities": [ "sofia" ],
       "shortName": "94 СУ",
@@ -9213,6 +10050,7 @@
     },
     {
       "rank": 838,
+      "adjustedRank": 827,
       "code": "2000105",
       "cities": [ "sliven" ],
       "shortName": "СУ Хаджи Мина Пашов",
@@ -9224,6 +10062,7 @@
     },
     {
       "rank": 839,
+      "adjustedRank": 828,
       "code": "400017",
       "cities": [ "varna" ],
       "shortName": "ОУ Отец Паисий",
@@ -9235,6 +10074,7 @@
     },
     {
       "rank": 840,
+      "adjustedRank": 829,
       "code": "800007",
       "cities": [ "dobrich" ],
       "shortName": "ОУ Панайот Волов",
@@ -9246,6 +10086,7 @@
     },
     {
       "rank": 841,
+      "adjustedRank": null,
       "code": "101700",
       "cities": [ "blagoevgrad" ],
       "shortName": "ОУ Пейо Яворов",
@@ -9257,6 +10098,7 @@
     },
     {
       "rank": 842,
+      "adjustedRank": 830,
       "code": "500111",
       "cities": [ "vidin" ],
       "shortName": "ОУ Софроний Врачански",
@@ -9268,6 +10110,7 @@
     },
     {
       "rank": 843,
+      "adjustedRank": 831,
       "code": "800003",
       "cities": [ "dobrich" ],
       "shortName": "ОбУ Йордан Йовков",
@@ -9279,6 +10122,7 @@
     },
     {
       "rank": 844,
+      "adjustedRank": 832,
       "code": "2400105",
       "cities": [ "stara-zagora" ],
       "shortName": "СУ Хр. Смирненски",
@@ -9290,6 +10134,7 @@
     },
     {
       "rank": 845,
+      "adjustedRank": 833,
       "code": "1100317",
       "cities": [ "lovech" ],
       "shortName": "ОУ Панайот Пипков",
@@ -9301,6 +10146,7 @@
     },
     {
       "rank": 846,
+      "adjustedRank": 834,
       "code": "2208075",
       "cities": [ "sofia" ],
       "shortName": "75 ОУ",
@@ -9312,6 +10158,7 @@
     },
     {
       "rank": 847,
+      "adjustedRank": 835,
       "code": "1301724",
       "cities": [ "pazardzhik" ],
       "shortName": "ОУ Кирил и Методий",
@@ -9323,6 +10170,7 @@
     },
     {
       "rank": 848,
+      "adjustedRank": 836,
       "code": "1602904",
       "cities": [ "stanbiliiski" ],
       "shortName": "ОбУ Христо Ботев",
@@ -9334,6 +10182,7 @@
     },
     {
       "rank": 849,
+      "adjustedRank": 837,
       "code": "2601027",
       "cities": [ "haskovo" ],
       "shortName": "СпУ Ст. Караджа",
@@ -9345,6 +10194,7 @@
     },
     {
       "rank": 850,
+      "adjustedRank": 838,
       "code": "2206113",
       "cities": [ "sofia" ],
       "shortName": "113 СУ",
@@ -9356,6 +10206,7 @@
     },
     {
       "rank": 851,
+      "adjustedRank": 839,
       "code": "2700194",
       "cities": [ "novi-pazar" ],
       "shortName": "ОУ Н. Вапцаров",
@@ -9367,6 +10218,7 @@
     },
     {
       "rank": 852,
+      "adjustedRank": 840,
       "code": "2000112",
       "cities": [ "sliven" ],
       "shortName": "ОУ Ю. Гагарин",
@@ -9378,6 +10230,7 @@
     },
     {
       "rank": 853,
+      "adjustedRank": 841,
       "code": "2212103",
       "cities": [ "sofia" ],
       "shortName": "103 ОУ",
@@ -9389,6 +10242,7 @@
     },
     {
       "rank": 854,
+      "adjustedRank": 842,
       "code": "1690245",
       "cities": [ "plovdiv" ],
       "shortName": "ОУ Димчо Дебелянов",
@@ -9400,6 +10254,7 @@
     },
     {
       "rank": 855,
+      "adjustedRank": 843,
       "code": "2000110",
       "cities": [ "sliven" ],
       "shortName": "ОУ Бр. Миладинови",
@@ -9411,6 +10266,7 @@
     },
     {
       "rank": 856,
+      "adjustedRank": 844,
       "code": "200218",
       "cities": [ "burgas" ],
       "shortName": "ОУ Ботев - Победа",
@@ -9422,6 +10278,7 @@
     },
     {
       "rank": 857,
+      "adjustedRank": 845,
       "code": "909117",
       "cities": [ "kurdzhali" ],
       "shortName": "ОУ Пейо Яворов",
@@ -9433,6 +10290,7 @@
     },
     {
       "rank": 858,
+      "adjustedRank": 846,
       "code": "2400133",
       "cities": [ "stara-zagora" ],
       "shortName": "ОУ Стефан Караджа",
@@ -9444,6 +10302,7 @@
     },
     {
       "rank": 859,
+      "adjustedRank": 847,
       "code": "1600105",
       "cities": [ "asenovgrad" ],
       "shortName": "ОУ Н. Вапцаров",
@@ -9455,6 +10314,7 @@
     },
     {
       "rank": 860,
+      "adjustedRank": 848,
       "code": "1690247",
       "cities": [ "plovdiv" ],
       "shortName": "СУ Найден Геров",
@@ -9466,6 +10326,7 @@
     },
     {
       "rank": 861,
+      "adjustedRank": 849,
       "code": "1690444",
       "cities": [ "plovdiv" ],
       "shortName": "ОУ Панайот Волов",
@@ -9477,6 +10338,7 @@
     },
     {
       "rank": 862,
+      "adjustedRank": 850,
       "code": "1690246",
       "cities": [ "plovdiv" ],
       "shortName": "ОбУ Пенчо Славейков",
@@ -9488,6 +10350,7 @@
     },
     {
       "rank": 863,
+      "adjustedRank": null,
       "code": "1203007",
       "cities": [ "vratsa" ],
       "shortName": "СУ Кирил и Методий",

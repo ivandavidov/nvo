@@ -6,6 +6,7 @@
   "schools": [
     {
       "rank": 1,
+      "adjustedRank": 1,
       "code": "2204091",
       "cities": [ "sofia" ],
       "shortName": "91 НЕГ",
@@ -17,6 +18,7 @@
     },
     {
       "rank": 2,
+      "adjustedRank": 2,
       "code": "2204549",
       "cities": [ "sofia" ],
       "shortName": "Веда",
@@ -28,6 +30,7 @@
     },
     {
       "rank": 3,
+      "adjustedRank": 3,
       "code": "2216164",
       "cities": [ "sofia" ],
       "shortName": "164 СУ",
@@ -39,6 +42,7 @@
     },
     {
       "rank": 4,
+      "adjustedRank": 4,
       "code": "2213507",
       "cities": [ "sofia" ],
       "shortName": "Американски колеж",
@@ -50,6 +54,7 @@
     },
     {
       "rank": 5,
+      "adjustedRank": 5,
       "code": "2216306",
       "cities": [ "sofia" ],
       "shortName": "СМГ",
@@ -61,6 +66,7 @@
     },
     {
       "rank": 6,
+      "adjustedRank": 6,
       "code": "400045",
       "cities": [ "varna" ],
       "shortName": "1 ЕГ",
@@ -72,6 +78,7 @@
     },
     {
       "rank": 7,
+      "adjustedRank": 7,
       "code": "200237",
       "cities": [ "burgas" ],
       "shortName": "НЕГ Гьоте",
@@ -83,6 +90,7 @@
     },
     {
       "rank": 8,
+      "adjustedRank": 8,
       "code": "1690449",
       "cities": [ "plovdiv" ],
       "shortName": "ЕГ Пловдив",
@@ -94,6 +102,7 @@
     },
     {
       "rank": 9,
+      "adjustedRank": 9,
       "code": "2221563",
       "cities": [ "sofia" ],
       "shortName": "ПЧМГ",
@@ -105,6 +114,7 @@
     },
     {
       "rank": 10,
+      "adjustedRank": 10,
       "code": "2211517",
       "cities": [ "sofia" ],
       "shortName": "Банкер",
@@ -116,6 +126,7 @@
     },
     {
       "rank": 11,
+      "adjustedRank": 11,
       "code": "2224073",
       "cities": [ "sofia" ],
       "shortName": "73 СУ",
@@ -127,6 +138,7 @@
     },
     {
       "rank": 12,
+      "adjustedRank": 12,
       "code": "2216301",
       "cities": [ "sofia" ],
       "shortName": "1 АЕГ",
@@ -138,6 +150,7 @@
     },
     {
       "rank": 13,
+      "adjustedRank": 13,
       "code": "2206302",
       "cities": [ "sofia" ],
       "shortName": "2 АЕГ",
@@ -149,6 +162,7 @@
     },
     {
       "rank": 14,
+      "adjustedRank": 14,
       "code": "100190",
       "cities": [ "blagoevgrad" ],
       "shortName": "ЕГ Акад. Л. Стоянов",
@@ -160,6 +174,7 @@
     },
     {
       "rank": 15,
+      "adjustedRank": null,
       "code": "2200039",
       "cities": [ "sofia" ],
       "shortName": "Асен Йорданов",
@@ -171,6 +186,7 @@
     },
     {
       "rank": 16,
+      "adjustedRank": 15,
       "code": "400043",
       "cities": [ "varna" ],
       "shortName": "5 ЕГ Й. Екзарх",
@@ -182,6 +198,7 @@
     },
     {
       "rank": 17,
+      "adjustedRank": 16,
       "code": "2209529",
       "cities": [ "sofia" ],
       "shortName": "Дорис Тенеди",
@@ -193,6 +210,7 @@
     },
     {
       "rank": 18,
+      "adjustedRank": null,
       "code": "2201515",
       "cities": [ "sofia" ],
       "shortName": "Цар Симеон Велики",
@@ -204,6 +222,7 @@
     },
     {
       "rank": 19,
+      "adjustedRank": 17,
       "code": "2202574",
       "cities": [ "sofia" ],
       "shortName": "Св. Георги",
@@ -215,6 +234,7 @@
     },
     {
       "rank": 20,
+      "adjustedRank": 18,
       "code": "2403264",
       "cities": [ "stara-zagora" ],
       "shortName": "ГПЧЕ Ромен Ролан",
@@ -226,6 +246,7 @@
     },
     {
       "rank": 21,
+      "adjustedRank": 19,
       "code": "400046",
       "cities": [ "varna" ],
       "shortName": "МГ Петър Берон",
@@ -237,6 +258,7 @@
     },
     {
       "rank": 22,
+      "adjustedRank": 20,
       "code": "1100328",
       "cities": [ "lovech" ],
       "shortName": "ЕГ",
@@ -248,6 +270,7 @@
     },
     {
       "rank": 23,
+      "adjustedRank": 21,
       "code": "2222133",
       "cities": [ "sofia" ],
       "shortName": "133 СУ",
@@ -259,6 +282,7 @@
     },
     {
       "rank": 24,
+      "adjustedRank": 22,
       "code": "2212540",
       "cities": [ "sofia" ],
       "shortName": "Ерих Кестнер",
@@ -270,6 +294,7 @@
     },
     {
       "rank": 25,
+      "adjustedRank": 23,
       "code": "2205520",
       "cities": [ "sofia" ],
       "shortName": "Иван Апостолов",
@@ -281,6 +306,7 @@
     },
     {
       "rank": 26,
+      "adjustedRank": 24,
       "code": "2204032",
       "cities": [ "sofia" ],
       "shortName": "32 СУ",
@@ -292,6 +318,7 @@
     },
     {
       "rank": 27,
+      "adjustedRank": 25,
       "code": "200239",
       "cities": [ "burgas" ],
       "shortName": "ППМГ",
@@ -303,6 +330,7 @@
     },
     {
       "rank": 28,
+      "adjustedRank": 26,
       "code": "400042",
       "cities": [ "varna" ],
       "shortName": "4 ЕГ Ф. Ж. Кюри",
@@ -314,6 +342,7 @@
     },
     {
       "rank": 29,
+      "adjustedRank": 27,
       "code": "2224022",
       "cities": [ "sofia" ],
       "shortName": "22 СУ",
@@ -325,6 +354,7 @@
     },
     {
       "rank": 30,
+      "adjustedRank": 28,
       "code": "1690450",
       "cities": [ "plovdiv" ],
       "shortName": "ЕГ Иван Вазов",
@@ -336,6 +366,7 @@
     },
     {
       "rank": 31,
+      "adjustedRank": 29,
       "code": "2211304",
       "cities": [ "sofia" ],
       "shortName": "НПМГ",
@@ -347,6 +378,7 @@
     },
     {
       "rank": 32,
+      "adjustedRank": 30,
       "code": "1690346",
       "cities": [ "plovdiv" ],
       "shortName": "МГ Акад. Кирил Попов",
@@ -358,6 +390,7 @@
     },
     {
       "rank": 33,
+      "adjustedRank": 31,
       "code": "2222009",
       "cities": [ "sofia" ],
       "shortName": "9 ФЕГ",
@@ -369,6 +402,7 @@
     },
     {
       "rank": 34,
+      "adjustedRank": 32,
       "code": "2224433",
       "cities": [ "sofia" ],
       "shortName": "Търговско-банкова",
@@ -380,6 +414,7 @@
     },
     {
       "rank": 35,
+      "adjustedRank": 33,
       "code": "2216532",
       "cities": [ "sofia" ],
       "shortName": "Увекинд",
@@ -391,6 +426,7 @@
     },
     {
       "rank": 36,
+      "adjustedRank": 34,
       "code": "1806202",
       "cities": [ "ruse" ],
       "shortName": "МГ Баба Тонка",
@@ -402,6 +438,7 @@
     },
     {
       "rank": 37,
+      "adjustedRank": 35,
       "code": "1690175",
       "cities": [ "plovdiv" ],
       "shortName": "Търговска гимназия",
@@ -413,6 +450,7 @@
     },
     {
       "rank": 38,
+      "adjustedRank": 36,
       "code": "2902702",
       "cities": [ "sofia" ],
       "shortName": "НГДЕК",
@@ -424,6 +462,7 @@
     },
     {
       "rank": 39,
+      "adjustedRank": 37,
       "code": "300123",
       "cities": [ "veliko-turnovo" ],
       "shortName": "ЕГ",
@@ -435,6 +474,7 @@
     },
     {
       "rank": 40,
+      "adjustedRank": 38,
       "code": "400074",
       "cities": [ "varna" ],
       "shortName": "А. Екзюпери",
@@ -446,6 +486,7 @@
     },
     {
       "rank": 41,
+      "adjustedRank": 39,
       "code": "2204018",
       "cities": [ "sofia" ],
       "shortName": "18 СУ",
@@ -457,6 +498,7 @@
     },
     {
       "rank": 42,
+      "adjustedRank": 40,
       "code": "1304290",
       "cities": [ "pazardzhik" ],
       "shortName": "ЕГ",
@@ -468,6 +510,7 @@
     },
     {
       "rank": 43,
+      "adjustedRank": 41,
       "code": "2221031",
       "cities": [ "sofia" ],
       "shortName": "31 СУ",
@@ -479,6 +522,7 @@
     },
     {
       "rank": 44,
+      "adjustedRank": 42,
       "code": "300141",
       "cities": [ "veliko-turnovo" ],
       "shortName": "АК-Арукс",
@@ -490,6 +534,7 @@
     },
     {
       "rank": 45,
+      "adjustedRank": 43,
       "code": "1806201",
       "cities": [ "ruse" ],
       "shortName": "АЕГ Гео Милев",
@@ -501,6 +546,7 @@
     },
     {
       "rank": 46,
+      "adjustedRank": 44,
       "code": "800020",
       "cities": [ "dobrich" ],
       "shortName": "ЕГ Гео Милев",
@@ -512,6 +558,7 @@
     },
     {
       "rank": 47,
+      "adjustedRank": 45,
       "code": "2213503",
       "cities": [ "sofia" ],
       "shortName": "Меридиан 22",
@@ -523,6 +570,7 @@
     },
     {
       "rank": 48,
+      "adjustedRank": 46,
       "code": "2211035",
       "cities": [ "sofia" ],
       "shortName": "35 СУ",
@@ -534,6 +582,7 @@
     },
     {
       "rank": 49,
+      "adjustedRank": 47,
       "code": "2223547",
       "cities": [ "sofia" ],
       "shortName": "В. Златарски",
@@ -545,6 +594,7 @@
     },
     {
       "rank": 50,
+      "adjustedRank": 48,
       "code": "1900504",
       "cities": [ "silistra" ],
       "shortName": "ЕГ",
@@ -556,6 +606,7 @@
     },
     {
       "rank": 51,
+      "adjustedRank": 49,
       "code": "700115",
       "cities": [ "gabrovo" ],
       "shortName": "Априловска гимн.",
@@ -567,6 +618,7 @@
     },
     {
       "rank": 52,
+      "adjustedRank": 50,
       "code": "200236",
       "cities": [ "burgas" ],
       "shortName": "Английска ЕГ",
@@ -578,6 +630,7 @@
     },
     {
       "rank": 53,
+      "adjustedRank": 51,
       "code": "2213350",
       "cities": [ "sofia" ],
       "shortName": "ТУЕС",
@@ -589,6 +642,7 @@
     },
     {
       "rank": 54,
+      "adjustedRank": 52,
       "code": "2000127",
       "cities": [ "sliven" ],
       "shortName": "Гимн. със зап. ез.",
@@ -600,6 +654,7 @@
     },
     {
       "rank": 55,
+      "adjustedRank": 53,
       "code": "2204134",
       "cities": [ "sofia" ],
       "shortName": "134 СУ",
@@ -611,6 +666,7 @@
     },
     {
       "rank": 56,
+      "adjustedRank": 54,
       "code": "602062",
       "cities": [ "vratsa" ],
       "shortName": "ППМГ",
@@ -622,6 +678,7 @@
     },
     {
       "rank": 57,
+      "adjustedRank": 55,
       "code": "800325",
       "cities": [ "dobrich" ],
       "shortName": "Райко Цончев",
@@ -633,6 +690,7 @@
     },
     {
       "rank": 58,
+      "adjustedRank": 56,
       "code": "1690153",
       "cities": [ "plovdiv" ],
       "shortName": "Хуманитарна гимназия",
@@ -644,6 +702,7 @@
     },
     {
       "rank": 59,
+      "adjustedRank": 57,
       "code": "2303852",
       "cities": [ "sofia" ],
       "shortName": "Челопеч",
@@ -655,6 +714,7 @@
     },
     {
       "rank": 60,
+      "adjustedRank": 58,
       "code": "2601028",
       "cities": [ "haskovo" ],
       "shortName": "ЕГ",
@@ -666,6 +726,7 @@
     },
     {
       "rank": 61,
+      "adjustedRank": 59,
       "code": "2902701",
       "cities": [ "sofia" ],
       "shortName": "НУКК",
@@ -677,6 +738,7 @@
     },
     {
       "rank": 62,
+      "adjustedRank": 60,
       "code": "2103321",
       "cities": [ "smolian" ],
       "shortName": "ППМГ",
@@ -688,6 +750,7 @@
     },
     {
       "rank": 63,
+      "adjustedRank": 61,
       "code": "2211420",
       "cities": [ "sofia" ],
       "shortName": "Финансово-стопанска",
@@ -699,6 +762,7 @@
     },
     {
       "rank": 64,
+      "adjustedRank": 62,
       "code": "200235",
       "cities": [ "burgas" ],
       "shortName": "ПГ за романски езици",
@@ -710,6 +774,7 @@
     },
     {
       "rank": 65,
+      "adjustedRank": 63,
       "code": "1500130",
       "cities": [ "pleven" ],
       "shortName": "МГ Гео Милев",
@@ -721,6 +786,7 @@
     },
     {
       "rank": 66,
+      "adjustedRank": 64,
       "code": "1806204",
       "cities": [ "ruse" ],
       "shortName": "СУ Фридрих Шилер",
@@ -732,6 +798,7 @@
     },
     {
       "rank": 67,
+      "adjustedRank": 65,
       "code": "2540401",
       "cities": [ "popovo" ],
       "shortName": "ПГ Христо Ботев",
@@ -743,6 +810,7 @@
     },
     {
       "rank": 68,
+      "adjustedRank": 66,
       "code": "300122",
       "cities": [ "veliko-turnovo" ],
       "shortName": "ПМГ В. Друмев",
@@ -754,6 +822,7 @@
     },
     {
       "rank": 69,
+      "adjustedRank": 67,
       "code": "100200",
       "cities": [ "blagoevgrad" ],
       "shortName": "ПМГ Акад. С. Корольов",
@@ -765,6 +834,7 @@
     },
     {
       "rank": 70,
+      "adjustedRank": 68,
       "code": "1806203",
       "cities": [ "ruse" ],
       "shortName": "СУ за европ. езици",
@@ -776,6 +846,7 @@
     },
     {
       "rank": 71,
+      "adjustedRank": 69,
       "code": "2103331",
       "cities": [ "smolian" ],
       "shortName": "ЕГ Иван Вазов",
@@ -787,6 +858,7 @@
     },
     {
       "rank": 72,
+      "adjustedRank": 70,
       "code": "909107",
       "cities": [ "kurdzhali" ],
       "shortName": "ЕГ",
@@ -798,6 +870,7 @@
     },
     {
       "rank": 73,
+      "adjustedRank": 71,
       "code": "400031",
       "cities": [ "varna" ],
       "shortName": "СУЕО Пушкин",
@@ -809,6 +882,7 @@
     },
     {
       "rank": 74,
+      "adjustedRank": null,
       "code": "1600026",
       "cities": [ "plovdiv" ],
       "shortName": "Информ. и комп. науки",
@@ -820,6 +894,7 @@
     },
     {
       "rank": 75,
+      "adjustedRank": 72,
       "code": "2402016",
       "cities": [ "stara-zagora" ],
       "shortName": "Търговска гимназия",
@@ -831,6 +906,7 @@
     },
     {
       "rank": 76,
+      "adjustedRank": 73,
       "code": "1403220",
       "cities": [ "pernik" ],
       "shortName": "ГПЧЕ",
@@ -842,6 +918,7 @@
     },
     {
       "rank": 77,
+      "adjustedRank": 74,
       "code": "2000126",
       "cities": [ "sliven" ],
       "shortName": "ППМГ",
@@ -853,6 +930,7 @@
     },
     {
       "rank": 78,
+      "adjustedRank": 75,
       "code": "103501",
       "cities": [ "razlog" ],
       "shortName": "СУ бр. Каназиреви",
@@ -864,6 +942,7 @@
     },
     {
       "rank": 79,
+      "adjustedRank": 76,
       "code": "2221157",
       "cities": [ "sofia" ],
       "shortName": "157 СУ",
@@ -875,6 +954,7 @@
     },
     {
       "rank": 80,
+      "adjustedRank": 77,
       "code": "2601029",
       "cities": [ "haskovo" ],
       "shortName": "ПМГ",
@@ -886,6 +966,7 @@
     },
     {
       "rank": 81,
+      "adjustedRank": 78,
       "code": "2202536",
       "cities": [ "sofia" ],
       "shortName": "Британика",
@@ -897,6 +978,7 @@
     },
     {
       "rank": 82,
+      "adjustedRank": 79,
       "code": "402030",
       "cities": [ "varna" ],
       "shortName": "Варненска търг. гимназия",
@@ -908,6 +990,7 @@
     },
     {
       "rank": 83,
+      "adjustedRank": 80,
       "code": "1806310",
       "cities": [ "ruse" ],
       "shortName": "ПГ по икономика",
@@ -919,6 +1002,7 @@
     },
     {
       "rank": 84,
+      "adjustedRank": 81,
       "code": "2700221",
       "cities": [ "shumen" ],
       "shortName": "ППМГ",
@@ -930,6 +1014,7 @@
     },
     {
       "rank": 85,
+      "adjustedRank": 82,
       "code": "1702609",
       "cities": [ "razgrad" ],
       "shortName": "ППМГ",
@@ -941,6 +1026,7 @@
     },
     {
       "rank": 86,
+      "adjustedRank": 83,
       "code": "2213600",
       "cities": [ "sofia" ],
       "shortName": "Абрахам Линкълн",
@@ -952,6 +1038,7 @@
     },
     {
       "rank": 87,
+      "adjustedRank": 84,
       "code": "603077",
       "cities": [ "kozlodui" ],
       "shortName": "СУ Кирил и Методий",
@@ -963,6 +1050,7 @@
     },
     {
       "rank": 88,
+      "adjustedRank": 85,
       "code": "1702608",
       "cities": [ "razgrad" ],
       "shortName": "ГПЧЕ",
@@ -974,6 +1062,7 @@
     },
     {
       "rank": 89,
+      "adjustedRank": 86,
       "code": "700116",
       "cities": [ "gabrovo" ],
       "shortName": "ПМГ",
@@ -985,6 +1074,7 @@
     },
     {
       "rank": 90,
+      "adjustedRank": 87,
       "code": "503322",
       "cities": [ "vidin" ],
       "shortName": "ГПЧЕ",
@@ -996,6 +1086,7 @@
     },
     {
       "rank": 91,
+      "adjustedRank": 88,
       "code": "1500131",
       "cities": [ "pleven" ],
       "shortName": "ГПЧЕ",
@@ -1007,6 +1098,7 @@
     },
     {
       "rank": 92,
+      "adjustedRank": 89,
       "code": "2902402",
       "cities": [ "plovdiv" ],
       "shortName": "Художествена гимназия",
@@ -1018,6 +1110,7 @@
     },
     {
       "rank": 93,
+      "adjustedRank": 90,
       "code": "2811516",
       "cities": [ "iambol" ],
       "shortName": "ПМГ",
@@ -1029,6 +1122,7 @@
     },
     {
       "rank": 94,
+      "adjustedRank": 91,
       "code": "200246",
       "cities": [ "burgas" ],
       "shortName": "Търговска гимназия",
@@ -1040,6 +1134,7 @@
     },
     {
       "rank": 95,
+      "adjustedRank": 92,
       "code": "100280",
       "cities": [ "blagoevgrad" ],
       "shortName": "ПГ по икономика",
@@ -1051,6 +1146,7 @@
     },
     {
       "rank": 96,
+      "adjustedRank": 93,
       "code": "1690451",
       "cities": [ "plovdiv" ],
       "shortName": "Френска ЕГ",
@@ -1062,6 +1158,7 @@
     },
     {
       "rank": 97,
+      "adjustedRank": 94,
       "code": "2205407",
       "cities": [ "sofia" ],
       "shortName": "ПГ по електроника",
@@ -1073,6 +1170,7 @@
     },
     {
       "rank": 98,
+      "adjustedRank": 95,
       "code": "2103232",
       "cities": [ "zlatograd" ],
       "shortName": "СУ Антим I",
@@ -1084,6 +1182,7 @@
     },
     {
       "rank": 99,
+      "adjustedRank": 96,
       "code": "2300131",
       "cities": [ "samokov" ],
       "shortName": "ПГ К. Фотинов",
@@ -1095,6 +1194,7 @@
     },
     {
       "rank": 100,
+      "adjustedRank": 97,
       "code": "2100701",
       "cities": [ "madan" ],
       "shortName": "СУ Отец Паисий",
@@ -1106,6 +1206,7 @@
     },
     {
       "rank": 101,
+      "adjustedRank": 98,
       "code": "1601301",
       "cities": [ "karlovo" ],
       "shortName": "СУ Васил Левски",
@@ -1117,6 +1218,7 @@
     },
     {
       "rank": 102,
+      "adjustedRank": 99,
       "code": "2400106",
       "cities": [ "stara-zagora" ],
       "shortName": "СУ Максим Горки",
@@ -1128,6 +1230,7 @@
     },
     {
       "rank": 103,
+      "adjustedRank": 100,
       "code": "2222127",
       "cities": [ "sofia" ],
       "shortName": "127 СУ",
@@ -1139,6 +1242,7 @@
     },
     {
       "rank": 104,
+      "adjustedRank": 101,
       "code": "2400102",
       "cities": [ "stara-zagora" ],
       "shortName": "ППМГ Гео Милев",
@@ -1150,6 +1254,7 @@
     },
     {
       "rank": 105,
+      "adjustedRank": 102,
       "code": "2213125",
       "cities": [ "sofia" ],
       "shortName": "125 СУИЧЕ",
@@ -1161,6 +1266,7 @@
     },
     {
       "rank": 106,
+      "adjustedRank": 103,
       "code": "1900503",
       "cities": [ "silistra" ],
       "shortName": "ПМГ",
@@ -1172,6 +1278,7 @@
     },
     {
       "rank": 107,
+      "adjustedRank": 104,
       "code": "1600017",
       "cities": [ "plovdiv" ],
       "shortName": "Талантите",
@@ -1183,6 +1290,7 @@
     },
     {
       "rank": 108,
+      "adjustedRank": 105,
       "code": "2500204",
       "cities": [ "turgovishte" ],
       "shortName": "1 СУ",
@@ -1194,6 +1302,7 @@
     },
     {
       "rank": 109,
+      "adjustedRank": 106,
       "code": "2221590",
       "cities": [ "sofia" ],
       "shortName": "Обр. технологии",
@@ -1205,6 +1314,7 @@
     },
     {
       "rank": 110,
+      "adjustedRank": 107,
       "code": "2902501",
       "cities": [ "sofia" ],
       "shortName": "Гимназия за приложни изкуства",
@@ -1216,6 +1326,7 @@
     },
     {
       "rank": 111,
+      "adjustedRank": 108,
       "code": "2216533",
       "cities": [ "sofia" ],
       "shortName": "ПЧАГ",
@@ -1227,6 +1338,7 @@
     },
     {
       "rank": 112,
+      "adjustedRank": 109,
       "code": "1690156",
       "cities": [ "plovdiv" ],
       "shortName": "СУ Патр. Евтимий",
@@ -1238,6 +1350,7 @@
     },
     {
       "rank": 113,
+      "adjustedRank": 110,
       "code": "1000550",
       "cities": [ "kiustendil" ],
       "shortName": "ПМГ",
@@ -1249,6 +1362,7 @@
     },
     {
       "rank": 114,
+      "adjustedRank": 111,
       "code": "2902101",
       "cities": [ "sofia" ],
       "shortName": "НМУ",
@@ -1260,6 +1374,7 @@
     },
     {
       "rank": 115,
+      "adjustedRank": 112,
       "code": "300815",
       "cities": [ "svishtov" ],
       "shortName": "СУ Николай Катранов",
@@ -1271,6 +1386,7 @@
     },
     {
       "rank": 116,
+      "adjustedRank": 113,
       "code": "2222007",
       "cities": [ "sofia" ],
       "shortName": "7 СУ",
@@ -1282,6 +1398,7 @@
     },
     {
       "rank": 117,
+      "adjustedRank": 114,
       "code": "603058",
       "cities": [ "vratsa" ],
       "shortName": "СУ Христо Ботев",
@@ -1293,6 +1410,7 @@
     },
     {
       "rank": 118,
+      "adjustedRank": 115,
       "code": "2400262",
       "cities": [ "kazanluk" ],
       "shortName": "ППМГ",
@@ -1304,6 +1422,7 @@
     },
     {
       "rank": 119,
+      "adjustedRank": 116,
       "code": "2700083",
       "cities": [ "shumen" ],
       "shortName": "ЕГ Н. Вапцаров",
@@ -1315,6 +1434,7 @@
     },
     {
       "rank": 120,
+      "adjustedRank": 117,
       "code": "2902505",
       "cities": [ "kazanluk" ],
       "shortName": "НУПИД А. Узунов",
@@ -1326,6 +1446,7 @@
     },
     {
       "rank": 121,
+      "adjustedRank": 118,
       "code": "2208539",
       "cities": [ "sofia" ],
       "shortName": "Булпрогрес",
@@ -1337,6 +1458,7 @@
     },
     {
       "rank": 122,
+      "adjustedRank": 119,
       "code": "2811517",
       "cities": [ "iambol" ],
       "shortName": "ЕГ В. Карагьозов",
@@ -1348,6 +1470,7 @@
     },
     {
       "rank": 123,
+      "adjustedRank": 120,
       "code": "2222012",
       "cities": [ "sofia" ],
       "shortName": "12 СУ",
@@ -1359,6 +1482,7 @@
     },
     {
       "rank": 124,
+      "adjustedRank": 121,
       "code": "1201002",
       "cities": [ "montana" ],
       "shortName": "ГПЧЕ",
@@ -1370,6 +1494,7 @@
     },
     {
       "rank": 125,
+      "adjustedRank": 122,
       "code": "1000035",
       "cities": [ "dupnitsa" ],
       "shortName": "СЕУ П. Хилендарски",
@@ -1381,6 +1506,7 @@
     },
     {
       "rank": 126,
+      "adjustedRank": 123,
       "code": "2209019",
       "cities": [ "sofia" ],
       "shortName": "19 СУ",
@@ -1392,6 +1518,7 @@
     },
     {
       "rank": 127,
+      "adjustedRank": 124,
       "code": "102002",
       "cities": [ "gotse-delchev" ],
       "shortName": "ПМГ Яне Сандански",
@@ -1403,6 +1530,7 @@
     },
     {
       "rank": 128,
+      "adjustedRank": 125,
       "code": "2700197",
       "cities": [ "shumen" ],
       "shortName": "СУ Сава Доброплодни",
@@ -1414,6 +1542,7 @@
     },
     {
       "rank": 129,
+      "adjustedRank": 126,
       "code": "400041",
       "cities": [ "varna" ],
       "shortName": "3 ПМГ М. Попов",
@@ -1425,6 +1554,7 @@
     },
     {
       "rank": 130,
+      "adjustedRank": 127,
       "code": "1302623",
       "cities": [ "panagiurishte" ],
       "shortName": "СУ Нешо Бончев",
@@ -1436,6 +1566,7 @@
     },
     {
       "rank": 131,
+      "adjustedRank": 128,
       "code": "1690910",
       "cities": [ "plovdiv" ],
       "shortName": "Икономика и управление",
@@ -1447,6 +1578,7 @@
     },
     {
       "rank": 132,
+      "adjustedRank": 129,
       "code": "2204030",
       "cities": [ "sofia" ],
       "shortName": "30 СУ",
@@ -1458,6 +1590,7 @@
     },
     {
       "rank": 133,
+      "adjustedRank": 130,
       "code": "2224432",
       "cities": [ "sofia" ],
       "shortName": "ПГ по дизайн",
@@ -1469,6 +1602,7 @@
     },
     {
       "rank": 134,
+      "adjustedRank": 131,
       "code": "1100612",
       "cities": [ "troyan" ],
       "shortName": "СУ Васил Левски",
@@ -1480,6 +1614,7 @@
     },
     {
       "rank": 135,
+      "adjustedRank": 132,
       "code": "2202535",
       "cities": [ "sofia" ],
       "shortName": "Рьорих",
@@ -1491,6 +1626,7 @@
     },
     {
       "rank": 136,
+      "adjustedRank": 133,
       "code": "600061",
       "cities": [ "vratsa" ],
       "shortName": "ЕГ",
@@ -1502,6 +1638,7 @@
     },
     {
       "rank": 137,
+      "adjustedRank": 134,
       "code": "2902301",
       "cities": [ "sofia" ],
       "shortName": "У-ще за танцово изкуство",
@@ -1513,6 +1650,7 @@
     },
     {
       "rank": 138,
+      "adjustedRank": 135,
       "code": "2211419",
       "cities": [ "sofia" ],
       "shortName": "Гимназия по строит., арх. и геод.",
@@ -1524,6 +1662,7 @@
     },
     {
       "rank": 139,
+      "adjustedRank": 136,
       "code": "1302573",
       "cities": [ "velingrad" ],
       "shortName": "СУ Васил Левски",
@@ -1535,6 +1674,7 @@
     },
     {
       "rank": 140,
+      "adjustedRank": 137,
       "code": "2308970",
       "cities": [ "bozhurishte" ],
       "shortName": "СУ Христо Топракчиев",
@@ -1546,6 +1686,7 @@
     },
     {
       "rank": 141,
+      "adjustedRank": 138,
       "code": "2831522",
       "cities": [ "elhovo" ],
       "shortName": "ПГ Кл. Охридски",
@@ -1557,6 +1698,7 @@
     },
     {
       "rank": 142,
+      "adjustedRank": 139,
       "code": "2902103",
       "cities": [ "burgas" ],
       "shortName": "НУМСИ",
@@ -1568,6 +1710,7 @@
     },
     {
       "rank": 143,
+      "adjustedRank": 140,
       "code": "2402131",
       "cities": [ "stara-zagora" ],
       "shortName": "ПГ по строит., арх. и геод.",
@@ -1579,6 +1722,7 @@
     },
     {
       "rank": 144,
+      "adjustedRank": 141,
       "code": "2200013",
       "cities": [ "sofia" ],
       "shortName": "СофтУни Будител",
@@ -1590,6 +1734,7 @@
     },
     {
       "rank": 145,
+      "adjustedRank": 142,
       "code": "400047",
       "cities": [ "varna" ],
       "shortName": "СУ за хуман. науки и изк.",
@@ -1601,6 +1746,7 @@
     },
     {
       "rank": 146,
+      "adjustedRank": 143,
       "code": "800015",
       "cities": [ "dobrich" ],
       "shortName": "СУ Кл. Охридски",
@@ -1612,6 +1758,7 @@
     },
     {
       "rank": 147,
+      "adjustedRank": 144,
       "code": "1301674",
       "cities": [ "velingrad" ],
       "shortName": "СУ Кирил и Методий",
@@ -1623,6 +1770,7 @@
     },
     {
       "rank": 148,
+      "adjustedRank": 145,
       "code": "2221138",
       "cities": [ "sofia" ],
       "shortName": "138 СУ",
@@ -1634,6 +1782,7 @@
     },
     {
       "rank": 149,
+      "adjustedRank": 146,
       "code": "1000540",
       "cities": [ "kiustendil" ],
       "shortName": "ЕГ",
@@ -1645,6 +1794,7 @@
     },
     {
       "rank": 150,
+      "adjustedRank": 147,
       "code": "2902401",
       "cities": [ "sofia" ],
       "shortName": "У-ще за изящни изкуства",
@@ -1656,6 +1806,7 @@
     },
     {
       "rank": 151,
+      "adjustedRank": 148,
       "code": "2100103",
       "cities": [ "smolian" ],
       "shortName": "СУ Кирил и Методий",
@@ -1667,6 +1818,7 @@
     },
     {
       "rank": 152,
+      "adjustedRank": 149,
       "code": "2224545",
       "cities": [ "sofia" ],
       "shortName": "Банково дело",
@@ -1678,6 +1830,7 @@
     },
     {
       "rank": 153,
+      "adjustedRank": null,
       "code": "2000125",
       "cities": [ "sliven" ],
       "shortName": "СУ Аргира Жечкова",
@@ -1689,6 +1842,7 @@
     },
     {
       "rank": 154,
+      "adjustedRank": 150,
       "code": "2309991",
       "cities": [ "pravets" ],
       "shortName": "НПГ по КТС",
@@ -1700,6 +1854,7 @@
     },
     {
       "rank": 155,
+      "adjustedRank": 151,
       "code": "2308792",
       "cities": [ "zlatitsa" ],
       "shortName": "СУ П. Хилендарски",
@@ -1711,6 +1866,7 @@
     },
     {
       "rank": 156,
+      "adjustedRank": 152,
       "code": "1500134",
       "cities": [ "pleven" ],
       "shortName": "СУ Иван Вазов",
@@ -1722,6 +1878,7 @@
     },
     {
       "rank": 157,
+      "adjustedRank": 153,
       "code": "2902106",
       "cities": [ "varna" ],
       "shortName": "НУИ Добри Христов",
@@ -1733,6 +1890,7 @@
     },
     {
       "rank": 158,
+      "adjustedRank": 154,
       "code": "2208526",
       "cities": [ "sofia" ],
       "shortName": "Орфей",
@@ -1744,6 +1902,7 @@
     },
     {
       "rank": 159,
+      "adjustedRank": 155,
       "code": "2203720",
       "cities": [ "sofia" ],
       "shortName": "Дружба",
@@ -1755,6 +1914,7 @@
     },
     {
       "rank": 160,
+      "adjustedRank": 156,
       "code": "2205119",
       "cities": [ "sofia" ],
       "shortName": "119 СУ",
@@ -1766,6 +1926,7 @@
     },
     {
       "rank": 161,
+      "adjustedRank": 157,
       "code": "2000119",
       "cities": [ "sliven" ],
       "shortName": "ПГ по икономика",
@@ -1777,6 +1938,7 @@
     },
     {
       "rank": 162,
+      "adjustedRank": 158,
       "code": "2300105",
       "cities": [ "pirdop" ],
       "shortName": "СУ Саво Ценов Савов",
@@ -1788,6 +1950,7 @@
     },
     {
       "rank": 163,
+      "adjustedRank": 159,
       "code": "2216001",
       "cities": [ "sofia" ],
       "shortName": "1 СУ",
@@ -1799,6 +1962,7 @@
     },
     {
       "rank": 164,
+      "adjustedRank": 160,
       "code": "603070",
       "cities": [ "vratsa" ],
       "shortName": "СУ Никола Войводов",
@@ -1810,6 +1974,7 @@
     },
     {
       "rank": 165,
+      "adjustedRank": 161,
       "code": "1309018",
       "cities": [ "pazardzhik" ],
       "shortName": "ПМГ",
@@ -1821,6 +1986,7 @@
     },
     {
       "rank": 166,
+      "adjustedRank": 162,
       "code": "2300099",
       "cities": [ "botevgrad" ],
       "shortName": "ППМГ",
@@ -1832,6 +1998,7 @@
     },
     {
       "rank": 167,
+      "adjustedRank": 163,
       "code": "2204311",
       "cities": [ "sofia" ],
       "shortName": "Румънска гимназия",
@@ -1843,6 +2010,7 @@
     },
     {
       "rank": 168,
+      "adjustedRank": 164,
       "code": "103310",
       "cities": [ "petrich" ],
       "shortName": "СУ Никола Вапцаров",
@@ -1854,6 +2022,7 @@
     },
     {
       "rank": 169,
+      "adjustedRank": 165,
       "code": "200238",
       "cities": [ "burgas" ],
       "shortName": "ПГ за чужди езици",
@@ -1865,6 +2034,7 @@
     },
     {
       "rank": 170,
+      "adjustedRank": 166,
       "code": "400070",
       "cities": [ "varna" ],
       "shortName": "Търговска гимназия",
@@ -1876,6 +2046,7 @@
     },
     {
       "rank": 171,
+      "adjustedRank": 167,
       "code": "2216423",
       "cities": [ "sofia" ],
       "shortName": "ПГ по туризъм",
@@ -1887,6 +2058,7 @@
     },
     {
       "rank": 172,
+      "adjustedRank": 168,
       "code": "1900506",
       "cities": [ "silistra" ],
       "shortName": "ПГ по стоп. упр.",
@@ -1898,6 +2070,7 @@
     },
     {
       "rank": 173,
+      "adjustedRank": 169,
       "code": "2902201",
       "cities": [ "kotel" ],
       "shortName": "НУФИ Филип Кутев",
@@ -1909,6 +2082,7 @@
     },
     {
       "rank": 174,
+      "adjustedRank": 170,
       "code": "300124",
       "cities": [ "veliko-turnovo" ],
       "shortName": "СУ Емилиян Станев",
@@ -1920,6 +2094,7 @@
     },
     {
       "rank": 175,
+      "adjustedRank": 171,
       "code": "2211021",
       "cities": [ "sofia" ],
       "shortName": "21 СУ",
@@ -1931,6 +2106,7 @@
     },
     {
       "rank": 176,
+      "adjustedRank": 172,
       "code": "403564",
       "cities": [ "varna" ],
       "shortName": "Мария Монтесори",
@@ -1942,6 +2118,7 @@
     },
     {
       "rank": 177,
+      "adjustedRank": 173,
       "code": "2212303",
       "cities": [ "sofia" ],
       "shortName": "33 ЕГ",
@@ -1953,6 +2130,7 @@
     },
     {
       "rank": 178,
+      "adjustedRank": 174,
       "code": "2605008",
       "cities": [ "svilengrad" ],
       "shortName": "СУ Петър Берон",
@@ -1964,6 +2142,7 @@
     },
     {
       "rank": 179,
+      "adjustedRank": 175,
       "code": "2204402",
       "cities": [ "sofia" ],
       "shortName": "ПГ по прец. техн. и опт.",
@@ -1975,6 +2154,7 @@
     },
     {
       "rank": 180,
+      "adjustedRank": 176,
       "code": "2540601",
       "cities": [ "popovo" ],
       "shortName": "ПГ по техника",
@@ -1986,6 +2166,7 @@
     },
     {
       "rank": 181,
+      "adjustedRank": 177,
       "code": "2220308",
       "cities": [ "sofia" ],
       "shortName": "ПГ за изобр. изкуства",
@@ -1997,6 +2178,7 @@
     },
     {
       "rank": 182,
+      "adjustedRank": 178,
       "code": "102012",
       "cities": [ "razlog" ],
       "shortName": "Разложка ПГ",
@@ -2008,6 +2190,7 @@
     },
     {
       "rank": 183,
+      "adjustedRank": 179,
       "code": "1403219",
       "cities": [ "pernik" ],
       "shortName": "ПМГ",
@@ -2019,6 +2202,7 @@
     },
     {
       "rank": 184,
+      "adjustedRank": 180,
       "code": "1301139",
       "cities": [ "pazardzhik" ],
       "shortName": "ПГ по икономика",
@@ -2030,6 +2214,7 @@
     },
     {
       "rank": 185,
+      "adjustedRank": 181,
       "code": "2902601",
       "cities": [ "sofia" ],
       "shortName": "ПГ по полигр. и фотогр.",
@@ -2041,6 +2226,7 @@
     },
     {
       "rank": 186,
+      "adjustedRank": 182,
       "code": "2902102",
       "cities": [ "plovdiv" ],
       "shortName": "НУМТИ",
@@ -2052,6 +2238,7 @@
     },
     {
       "rank": 187,
+      "adjustedRank": 183,
       "code": "1403216",
       "cities": [ "pernik" ],
       "shortName": "СУРИЧЕ П. Берон",
@@ -2063,6 +2250,7 @@
     },
     {
       "rank": 188,
+      "adjustedRank": 184,
       "code": "1201021",
       "cities": [ "montana" ],
       "shortName": "Финансово-стопанска",
@@ -2074,6 +2262,7 @@
     },
     {
       "rank": 189,
+      "adjustedRank": 185,
       "code": "200120",
       "cities": [ "burgas" ],
       "shortName": "ПГ по компют. програм.",
@@ -2085,6 +2274,7 @@
     },
     {
       "rank": 190,
+      "adjustedRank": 186,
       "code": "2902104",
       "cities": [ "stara-zagora" ],
       "shortName": "НУМСИ",
@@ -2096,6 +2286,7 @@
     },
     {
       "rank": 191,
+      "adjustedRank": 187,
       "code": "1690174",
       "cities": [ "plovdiv" ],
       "shortName": "ПГ по електрот. и електрон.",
@@ -2107,6 +2298,7 @@
     },
     {
       "rank": 192,
+      "adjustedRank": 188,
       "code": "1500215",
       "cities": [ "cherven-briag" ],
       "shortName": "СУ Петър Берон",
@@ -2118,6 +2310,7 @@
     },
     {
       "rank": 193,
+      "adjustedRank": 189,
       "code": "102113",
       "cities": [ "razlog" ],
       "shortName": "ПГ по транспорт",
@@ -2129,6 +2322,7 @@
     },
     {
       "rank": 194,
+      "adjustedRank": null,
       "code": "2202620",
       "cities": [ "sofia" ],
       "shortName": "Николай Райнов",
@@ -2140,6 +2334,7 @@
     },
     {
       "rank": 195,
+      "adjustedRank": 190,
       "code": "700318",
       "cities": [ "sevlievo" ],
       "shortName": "СУ Васил Левски",
@@ -2151,6 +2346,7 @@
     },
     {
       "rank": 196,
+      "adjustedRank": 191,
       "code": "1000052",
       "cities": [ "dupnitsa" ],
       "shortName": "ПГ Христо Ботев",
@@ -2162,6 +2358,7 @@
     },
     {
       "rank": 197,
+      "adjustedRank": 192,
       "code": "101870",
       "cities": [ "blagoevgrad" ],
       "shortName": "Хуманитарна гимн.",
@@ -2173,6 +2370,7 @@
     },
     {
       "rank": 198,
+      "adjustedRank": 193,
       "code": "2501694",
       "cities": [ "turgovishte" ],
       "shortName": "2 СУ",
@@ -2184,6 +2382,7 @@
     },
     {
       "rank": 199,
+      "adjustedRank": 194,
       "code": "909106",
       "cities": [ "kurdzhali" ],
       "shortName": "СУ Петко Славейков",
@@ -2195,6 +2394,7 @@
     },
     {
       "rank": 200,
+      "adjustedRank": 195,
       "code": "1201001",
       "cities": [ "montana" ],
       "shortName": "ППМГ",
@@ -2206,6 +2406,7 @@
     },
     {
       "rank": 201,
+      "adjustedRank": 196,
       "code": "2602019",
       "cities": [ "dimitrovgrad" ],
       "shortName": "ПМГЗИЧЕ",
@@ -2217,6 +2418,7 @@
     },
     {
       "rank": 202,
+      "adjustedRank": 197,
       "code": "2209051",
       "cities": [ "sofia" ],
       "shortName": "51 СУ",
@@ -2228,6 +2430,7 @@
     },
     {
       "rank": 203,
+      "adjustedRank": 198,
       "code": "2224544",
       "cities": [ "sofia" ],
       "shortName": "Артис",
@@ -2239,6 +2442,7 @@
     },
     {
       "rank": 204,
+      "adjustedRank": 199,
       "code": "1600114",
       "cities": [ "asenovgrad" ],
       "shortName": "СУ Княз Борис I",
@@ -2250,6 +2454,7 @@
     },
     {
       "rank": 205,
+      "adjustedRank": 200,
       "code": "500102",
       "cities": [ "vidin" ],
       "shortName": "ППМГ",
@@ -2261,6 +2466,7 @@
     },
     {
       "rank": 206,
+      "adjustedRank": 201,
       "code": "2811515",
       "cities": [ "iambol" ],
       "shortName": "ПГ Васил Левски",
@@ -2272,6 +2478,7 @@
     },
     {
       "rank": 207,
+      "adjustedRank": 202,
       "code": "2202002",
       "cities": [ "sofia" ],
       "shortName": "2 СУ",
@@ -2283,6 +2490,7 @@
     },
     {
       "rank": 208,
+      "adjustedRank": 203,
       "code": "400040",
       "cities": [ "varna" ],
       "shortName": "СУ Кл. Охридски",
@@ -2294,6 +2502,7 @@
     },
     {
       "rank": 209,
+      "adjustedRank": 204,
       "code": "1806209",
       "cities": [ "ruse" ],
       "shortName": "СУ Васил Левски",
@@ -2305,6 +2514,7 @@
     },
     {
       "rank": 210,
+      "adjustedRank": 205,
       "code": "102015",
       "cities": [ "bansko" ],
       "shortName": "ПГ по електроника",
@@ -2316,6 +2526,7 @@
     },
     {
       "rank": 211,
+      "adjustedRank": 206,
       "code": "2605016",
       "cities": [ "svilengrad" ],
       "shortName": "ПГ по селско стоп.",
@@ -2327,6 +2538,7 @@
     },
     {
       "rank": 212,
+      "adjustedRank": 207,
       "code": "2303022",
       "cities": [ "svoge" ],
       "shortName": "ПГ Велизар Пеев",
@@ -2338,6 +2550,7 @@
     },
     {
       "rank": 213,
+      "adjustedRank": 208,
       "code": "800023",
       "cities": [ "dobrich" ],
       "shortName": "Финансово-стопанска",
@@ -2349,6 +2562,7 @@
     },
     {
       "rank": 214,
+      "adjustedRank": 209,
       "code": "1690178",
       "cities": [ "plovdiv" ],
       "shortName": "ПГ по туризъм",
@@ -2360,6 +2574,7 @@
     },
     {
       "rank": 215,
+      "adjustedRank": 210,
       "code": "2204511",
       "cities": [ "sofia" ],
       "shortName": "Езиков свят",
@@ -2371,6 +2586,7 @@
     },
     {
       "rank": 216,
+      "adjustedRank": 211,
       "code": "2000305",
       "cities": [ "nova-zagora" ],
       "shortName": "СУ Христо Ботев",
@@ -2382,6 +2598,7 @@
     },
     {
       "rank": 217,
+      "adjustedRank": 212,
       "code": "104001",
       "cities": [ "petrich" ],
       "shortName": "ПГ П. К. Яворов",
@@ -2393,6 +2610,7 @@
     },
     {
       "rank": 218,
+      "adjustedRank": 213,
       "code": "1500140",
       "cities": [ "pleven" ],
       "shortName": "ДФСГ Интелект",
@@ -2404,6 +2622,7 @@
     },
     {
       "rank": 219,
+      "adjustedRank": 214,
       "code": "2223431",
       "cities": [ "sofia" ],
       "shortName": "ПГ по телекомуникации",
@@ -2415,6 +2634,7 @@
     },
     {
       "rank": 220,
+      "adjustedRank": 215,
       "code": "1209005",
       "cities": [ "lom" ],
       "shortName": "СУ Димитър Маринов",
@@ -2426,6 +2646,7 @@
     },
     {
       "rank": 221,
+      "adjustedRank": 216,
       "code": "105201",
       "cities": [ "bansko" ],
       "shortName": "СУ Неофит Рилски",
@@ -2437,6 +2658,7 @@
     },
     {
       "rank": 222,
+      "adjustedRank": 217,
       "code": "2902504",
       "cities": [ "sliven" ],
       "shortName": "Худож. гимн.",
@@ -2448,6 +2670,7 @@
     },
     {
       "rank": 223,
+      "adjustedRank": 218,
       "code": "2400264",
       "cities": [ "kazanluk" ],
       "shortName": "СУ Антим I",
@@ -2459,6 +2682,7 @@
     },
     {
       "rank": 224,
+      "adjustedRank": 219,
       "code": "2217424",
       "cities": [ "sofia" ],
       "shortName": "ПГ по електрот. и авт.",
@@ -2470,6 +2694,7 @@
     },
     {
       "rank": 225,
+      "adjustedRank": 220,
       "code": "403559",
       "cities": [ "varna" ],
       "shortName": "Юрий Гагарин",
@@ -2481,6 +2706,7 @@
     },
     {
       "rank": 226,
+      "adjustedRank": 221,
       "code": "1500148",
       "cities": [ "pleven" ],
       "shortName": "ПГ по ел. и хим.",
@@ -2492,6 +2718,7 @@
     },
     {
       "rank": 227,
+      "adjustedRank": 222,
       "code": "2401178",
       "cities": [ "chirpan" ],
       "shortName": "СУ Пейо Яворов",
@@ -2503,6 +2730,7 @@
     },
     {
       "rank": 228,
+      "adjustedRank": 223,
       "code": "800326",
       "cities": [ "dobrich" ],
       "shortName": "Леонардо да Винчи",
@@ -2514,6 +2742,7 @@
     },
     {
       "rank": 229,
+      "adjustedRank": 224,
       "code": "1690909",
       "cities": [ "plovdiv" ],
       "shortName": "Стоян Сариев",
@@ -2525,6 +2754,7 @@
     },
     {
       "rank": 230,
+      "adjustedRank": 225,
       "code": "1500153",
       "cities": [ "pleven" ],
       "shortName": "ПГ по туризъм",
@@ -2536,6 +2766,7 @@
     },
     {
       "rank": 231,
+      "adjustedRank": 226,
       "code": "200258",
       "cities": [ "burgas" ],
       "shortName": "Британика",
@@ -2547,6 +2778,7 @@
     },
     {
       "rank": 232,
+      "adjustedRank": 227,
       "code": "2902107",
       "cities": [ "pleven" ],
       "shortName": "НУИ",
@@ -2558,6 +2790,7 @@
     },
     {
       "rank": 233,
+      "adjustedRank": 228,
       "code": "2308867",
       "cities": [ "svoge" ],
       "shortName": "СУ Иван Вазов",
@@ -2569,6 +2802,7 @@
     },
     {
       "rank": 234,
+      "adjustedRank": 229,
       "code": "300817",
       "cities": [ "svishtov" ],
       "shortName": "Търговска гимн.",
@@ -2580,6 +2814,7 @@
     },
     {
       "rank": 235,
+      "adjustedRank": 230,
       "code": "1302662",
       "cities": [ "strelcha" ],
       "shortName": "СУ Кирил и Методий",
@@ -2591,6 +2826,7 @@
     },
     {
       "rank": 236,
+      "adjustedRank": 231,
       "code": "2602020",
       "cities": [ "dimitrovgrad" ],
       "shortName": "ЕГ И. Богоров",
@@ -2602,6 +2838,7 @@
     },
     {
       "rank": 237,
+      "adjustedRank": 232,
       "code": "102013",
       "cities": [ "sandanski" ],
       "shortName": "Земеделска гимн.",
@@ -2613,6 +2850,7 @@
     },
     {
       "rank": 238,
+      "adjustedRank": 233,
       "code": "2100401",
       "cities": [ "devin" ],
       "shortName": "СУ Христо Ботев",
@@ -2624,6 +2862,7 @@
     },
     {
       "rank": 239,
+      "adjustedRank": 234,
       "code": "1806207",
       "cities": [ "ruse" ],
       "shortName": "СУ Христо Ботев",
@@ -2635,6 +2874,7 @@
     },
     {
       "rank": 240,
+      "adjustedRank": 235,
       "code": "1690901",
       "cities": [ "plovdiv" ],
       "shortName": "Дружба",
@@ -2646,6 +2886,7 @@
     },
     {
       "rank": 241,
+      "adjustedRank": 236,
       "code": "300129",
       "cities": [ "veliko-turnovo" ],
       "shortName": "ПГ по икономика",
@@ -2657,6 +2898,7 @@
     },
     {
       "rank": 242,
+      "adjustedRank": 237,
       "code": "1100613",
       "cities": [ "troyan" ],
       "shortName": "СУ Кл. Охридски",
@@ -2668,6 +2910,7 @@
     },
     {
       "rank": 243,
+      "adjustedRank": 238,
       "code": "2205105",
       "cities": [ "sofia" ],
       "shortName": "105 СУ",
@@ -2679,6 +2922,7 @@
     },
     {
       "rank": 244,
+      "adjustedRank": 239,
       "code": "1701601",
       "cities": [ "kubrat" ],
       "shortName": "СУ Христо Ботев",
@@ -2690,6 +2934,7 @@
     },
     {
       "rank": 245,
+      "adjustedRank": 240,
       "code": "800017",
       "cities": [ "dobrich" ],
       "shortName": "СУ Петко Славейков",
@@ -2701,6 +2946,7 @@
     },
     {
       "rank": 246,
+      "adjustedRank": 241,
       "code": "300216",
       "cities": [ "gorna-oryahovitsa" ],
       "shortName": "СУ Георги Измирлиев",
@@ -2712,6 +2958,7 @@
     },
     {
       "rank": 247,
+      "adjustedRank": 242,
       "code": "2100901",
       "cities": [ "chepelare" ],
       "shortName": "СУ Васил Дечев",
@@ -2723,6 +2970,7 @@
     },
     {
       "rank": 248,
+      "adjustedRank": 243,
       "code": "400104",
       "cities": [ "varna" ],
       "shortName": "ПГ по комп. моделиране",
@@ -2734,6 +2982,7 @@
     },
     {
       "rank": 249,
+      "adjustedRank": 244,
       "code": "2300291",
       "cities": [ "samokov" ],
       "shortName": "ПТГ Н. Вапцаров",
@@ -2745,6 +2994,7 @@
     },
     {
       "rank": 250,
+      "adjustedRank": 245,
       "code": "1690645",
       "cities": [ "plovdiv" ],
       "shortName": "СУ Ч. Храбър",
@@ -2756,6 +3006,7 @@
     },
     {
       "rank": 251,
+      "adjustedRank": 246,
       "code": "2811602",
       "cities": [ "iambol" ],
       "shortName": "ПГ по икономика",
@@ -2767,6 +3018,7 @@
     },
     {
       "rank": 252,
+      "adjustedRank": 247,
       "code": "2212056",
       "cities": [ "sofia" ],
       "shortName": "56 СУ",
@@ -2778,6 +3030,7 @@
     },
     {
       "rank": 253,
+      "adjustedRank": 248,
       "code": "2902502",
       "cities": [ "troyan" ],
       "shortName": "НУПИ Венко Колев",
@@ -2789,6 +3042,7 @@
     },
     {
       "rank": 254,
+      "adjustedRank": 249,
       "code": "2902503",
       "cities": [ "triavna" ],
       "shortName": "НГПИ Тревненска школа",
@@ -2800,6 +3054,7 @@
     },
     {
       "rank": 255,
+      "adjustedRank": 250,
       "code": "1602314",
       "cities": [ "purvomai" ],
       "shortName": "СУ Асен Златаров",
@@ -2811,6 +3066,7 @@
     },
     {
       "rank": 256,
+      "adjustedRank": 251,
       "code": "2601031",
       "cities": [ "haskovo" ],
       "shortName": "Финансово-стопанска",
@@ -2822,6 +3078,7 @@
     },
     {
       "rank": 257,
+      "adjustedRank": 252,
       "code": "1900702",
       "cities": [ "tutrakan" ],
       "shortName": "СУ Христо Ботев",
@@ -2833,6 +3090,7 @@
     },
     {
       "rank": 258,
+      "adjustedRank": 253,
       "code": "2211417",
       "cities": [ "sofia" ],
       "shortName": "ПГ по облекло",
@@ -2844,6 +3102,7 @@
     },
     {
       "rank": 259,
+      "adjustedRank": 254,
       "code": "2000115",
       "cities": [ "sliven" ],
       "shortName": "СУ К. Константинов",
@@ -2855,6 +3114,7 @@
     },
     {
       "rank": 260,
+      "adjustedRank": 255,
       "code": "1690347",
       "cities": [ "plovdiv" ],
       "shortName": "СпУ Васил Левски",
@@ -2866,6 +3126,7 @@
     },
     {
       "rank": 261,
+      "adjustedRank": 256,
       "code": "2202401",
       "cities": [ "sofia" ],
       "shortName": "ПГ по екол. и биот.",
@@ -2877,6 +3138,7 @@
     },
     {
       "rank": 262,
+      "adjustedRank": 257,
       "code": "1690904",
       "cities": [ "plovdiv" ],
       "shortName": "Класик",
@@ -2888,6 +3150,7 @@
     },
     {
       "rank": 263,
+      "adjustedRank": 258,
       "code": "1601363",
       "cities": [ "sopot" ],
       "shortName": "ПГ Генерал Владимир Заимов",
@@ -2899,6 +3162,7 @@
     },
     {
       "rank": 264,
+      "adjustedRank": 259,
       "code": "102001",
       "cities": [ "gotse-delchev" ],
       "shortName": "Неврокопска ПГ",
@@ -2910,6 +3174,7 @@
     },
     {
       "rank": 265,
+      "adjustedRank": 260,
       "code": "800018",
       "cities": [ "dobrich" ],
       "shortName": "СУ Кирил и Методий",
@@ -2921,6 +3186,7 @@
     },
     {
       "rank": 266,
+      "adjustedRank": 261,
       "code": "2902302",
       "cities": [ "plovdiv" ],
       "shortName": "Сценични и екранни изкуства",
@@ -2932,6 +3198,7 @@
     },
     {
       "rank": 267,
+      "adjustedRank": 262,
       "code": "200411",
       "cities": [ "karnobat" ],
       "shortName": "СУ Кирил и Методий",
@@ -2943,6 +3210,7 @@
     },
     {
       "rank": 268,
+      "adjustedRank": 263,
       "code": "502035",
       "cities": [ "vidin" ],
       "shortName": "ПГ А. Златаров",
@@ -2954,6 +3222,7 @@
     },
     {
       "rank": 269,
+      "adjustedRank": 264,
       "code": "400044",
       "cities": [ "varna" ],
       "shortName": "ПГ по икономика",
@@ -2965,6 +3234,7 @@
     },
     {
       "rank": 270,
+      "adjustedRank": 265,
       "code": "1403236",
       "cities": [ "pernik" ],
       "shortName": "ПГ по икономика",
@@ -2976,6 +3246,7 @@
     },
     {
       "rank": 271,
+      "adjustedRank": 266,
       "code": "1806213",
       "cities": [ "ruse" ],
       "shortName": "Леонардо да Винчи",
@@ -2987,6 +3258,7 @@
     },
     {
       "rank": 272,
+      "adjustedRank": 267,
       "code": "2208135",
       "cities": [ "sofia" ],
       "shortName": "135 СУ",
@@ -2998,6 +3270,7 @@
     },
     {
       "rank": 273,
+      "adjustedRank": 268,
       "code": "603116",
       "cities": [ "oriahovo" ],
       "shortName": "СУ Христо Ботев",
@@ -3009,6 +3282,7 @@
     },
     {
       "rank": 274,
+      "adjustedRank": 269,
       "code": "200608",
       "cities": [ "nesebar" ],
       "shortName": "СУ Л. Каравелов",
@@ -3020,6 +3294,7 @@
     },
     {
       "rank": 275,
+      "adjustedRank": 270,
       "code": "909501",
       "cities": [ "krumovgrad" ],
       "shortName": "СУ Васил Левски",
@@ -3031,6 +3306,7 @@
     },
     {
       "rank": 276,
+      "adjustedRank": 271,
       "code": "400148",
       "cities": [ "provadia" ],
       "shortName": "СУ Димитър Благоев",
@@ -3042,6 +3318,7 @@
     },
     {
       "rank": 277,
+      "adjustedRank": 272,
       "code": "2213081",
       "cities": [ "sofia" ],
       "shortName": "81 СУ",
@@ -3053,6 +3330,7 @@
     },
     {
       "rank": 278,
+      "adjustedRank": 273,
       "code": "909105",
       "cities": [ "kurdzhali" ],
       "shortName": "СУ Отец Паисий",
@@ -3064,6 +3342,7 @@
     },
     {
       "rank": 279,
+      "adjustedRank": 274,
       "code": "2304610",
       "cities": [ "samokov" ],
       "shortName": "СпУ Никола Велчев",
@@ -3075,6 +3354,7 @@
     },
     {
       "rank": 280,
+      "adjustedRank": 275,
       "code": "2303490",
       "cities": [ "kostenets" ],
       "shortName": "СУ Кл. Охридски",
@@ -3086,6 +3366,7 @@
     },
     {
       "rank": 281,
+      "adjustedRank": 276,
       "code": "800019",
       "cities": [ "dobrich" ],
       "shortName": "ПМГ Иван Вазов",
@@ -3097,6 +3378,7 @@
     },
     {
       "rank": 282,
+      "adjustedRank": 277,
       "code": "2219166",
       "cities": [ "sofia" ],
       "shortName": "СпУ В. Левски",
@@ -3108,6 +3390,7 @@
     },
     {
       "rank": 283,
+      "adjustedRank": 278,
       "code": "2304770",
       "cities": [ "pravets" ],
       "shortName": "ГПЧЕ",
@@ -3119,6 +3402,7 @@
     },
     {
       "rank": 284,
+      "adjustedRank": 279,
       "code": "403534",
       "cities": [ "varna" ],
       "shortName": "ПГ по туризъм",
@@ -3130,6 +3414,7 @@
     },
     {
       "rank": 285,
+      "adjustedRank": 280,
       "code": "1100320",
       "cities": [ "lovech" ],
       "shortName": "ППМГ",
@@ -3141,6 +3426,7 @@
     },
     {
       "rank": 286,
+      "adjustedRank": 281,
       "code": "1403655",
       "cities": [ "radomir" ],
       "shortName": "СУ Кирил и Методий",
@@ -3152,6 +3438,7 @@
     },
     {
       "rank": 287,
+      "adjustedRank": 282,
       "code": "1806301",
       "cities": [ "ruse" ],
       "shortName": "ПГ по електрот.",
@@ -3163,6 +3450,7 @@
     },
     {
       "rank": 288,
+      "adjustedRank": 283,
       "code": "603059",
       "cities": [ "vratsa" ],
       "shortName": "СУ Васил Кънчов",
@@ -3174,6 +3462,7 @@
     },
     {
       "rank": 289,
+      "adjustedRank": 284,
       "code": "2306517",
       "cities": [ "slivnitsa" ],
       "shortName": "СУ Кирил и Методий",
@@ -3185,6 +3474,7 @@
     },
     {
       "rank": 290,
+      "adjustedRank": 285,
       "code": "2700011",
       "cities": [ "shumen" ],
       "shortName": "ПГ по икономика",
@@ -3196,6 +3486,7 @@
     },
     {
       "rank": 291,
+      "adjustedRank": 286,
       "code": "909108",
       "cities": [ "kurdzhali" ],
       "shortName": "ПГ по икономика",
@@ -3207,6 +3498,7 @@
     },
     {
       "rank": 292,
+      "adjustedRank": 287,
       "code": "300128",
       "cities": [ "veliko-turnovo" ],
       "shortName": "ПГ по строителство",
@@ -3218,6 +3510,7 @@
     },
     {
       "rank": 293,
+      "adjustedRank": 288,
       "code": "300219",
       "cities": [ "gorna-oryahovitsa" ],
       "shortName": "ПГ по електрот. и електрон.",
@@ -3229,6 +3522,7 @@
     },
     {
       "rank": 294,
+      "adjustedRank": 289,
       "code": "2000129",
       "cities": [ "sliven" ],
       "shortName": "Хуманит. гимн.",
@@ -3240,6 +3534,7 @@
     },
     {
       "rank": 295,
+      "adjustedRank": 290,
       "code": "2209036",
       "cities": [ "sofia" ],
       "shortName": "36 СУ",
@@ -3251,6 +3546,7 @@
     },
     {
       "rank": 296,
+      "adjustedRank": 291,
       "code": "2213307",
       "cities": [ "sofia" ],
       "shortName": "СпУ Вл. Стойчев",
@@ -3262,6 +3558,7 @@
     },
     {
       "rank": 297,
+      "adjustedRank": 292,
       "code": "200242",
       "cities": [ "burgas" ],
       "shortName": "ПГ по туризъм",
@@ -3273,6 +3570,7 @@
     },
     {
       "rank": 298,
+      "adjustedRank": 293,
       "code": "2700182",
       "cities": [ "shumen" ],
       "shortName": "СУ Йоан Екзарх",
@@ -3284,6 +3582,7 @@
     },
     {
       "rank": 299,
+      "adjustedRank": 294,
       "code": "2213128",
       "cities": [ "sofia" ],
       "shortName": "128 СУ",
@@ -3295,6 +3594,7 @@
     },
     {
       "rank": 300,
+      "adjustedRank": 295,
       "code": "800074",
       "cities": [ "general-toshevo" ],
       "shortName": "СУ Никола Вапцаров",
@@ -3306,6 +3606,7 @@
     },
     {
       "rank": 301,
+      "adjustedRank": 296,
       "code": "200711",
       "cities": [ "pomorie" ],
       "shortName": "СУ Иван Вазов",
@@ -3317,6 +3618,7 @@
     },
     {
       "rank": 302,
+      "adjustedRank": 297,
       "code": "1900701",
       "cities": [ "tutrakan" ],
       "shortName": "СУ Йордан Йовков",
@@ -3328,6 +3630,7 @@
     },
     {
       "rank": 303,
+      "adjustedRank": 298,
       "code": "1690154",
       "cities": [ "plovdiv" ],
       "shortName": "СУ П. Хилендарски",
@@ -3339,6 +3642,7 @@
     },
     {
       "rank": 304,
+      "adjustedRank": 299,
       "code": "1500705",
       "cities": [ "belene" ],
       "shortName": "СУ Димчо Дебелянов",
@@ -3350,6 +3654,7 @@
     },
     {
       "rank": 305,
+      "adjustedRank": 300,
       "code": "2811518",
       "cities": [ "iambol" ],
       "shortName": "СпУ Кубертен",
@@ -3361,6 +3666,7 @@
     },
     {
       "rank": 306,
+      "adjustedRank": 301,
       "code": "1300013",
       "cities": [ "pazardzhik" ],
       "shortName": "СпУ Пазарджик",
@@ -3372,6 +3678,7 @@
     },
     {
       "rank": 307,
+      "adjustedRank": 302,
       "code": "1900301",
       "cities": [ "dulovo" ],
       "shortName": "СУ Васил Левски",
@@ -3383,6 +3690,7 @@
     },
     {
       "rank": 308,
+      "adjustedRank": 303,
       "code": "1690472",
       "cities": [ "plovdiv" ],
       "shortName": "ПГ по хр. техн. и техника",
@@ -3394,6 +3702,7 @@
     },
     {
       "rank": 309,
+      "adjustedRank": 304,
       "code": "200112",
       "cities": [ "aitos" ],
       "shortName": "СУ Христо Ботев",
@@ -3405,6 +3714,7 @@
     },
     {
       "rank": 310,
+      "adjustedRank": 305,
       "code": "2221023",
       "cities": [ "sofia" ],
       "shortName": "23 СУ",
@@ -3416,6 +3726,7 @@
     },
     {
       "rank": 311,
+      "adjustedRank": 306,
       "code": "300816",
       "cities": [ "svishtov" ],
       "shortName": "СУ Димитър Благоев",
@@ -3427,6 +3738,7 @@
     },
     {
       "rank": 312,
+      "adjustedRank": 307,
       "code": "800013",
       "cities": [ "dobrich" ],
       "shortName": "СУ Димитър Талев",
@@ -3438,6 +3750,7 @@
     },
     {
       "rank": 313,
+      "adjustedRank": 308,
       "code": "2400263",
       "cities": [ "kazanluk" ],
       "shortName": "ПХГ Кирил и Методий",
@@ -3449,6 +3762,7 @@
     },
     {
       "rank": 314,
+      "adjustedRank": 309,
       "code": "503132",
       "cities": [ "vidin" ],
       "shortName": "СУ Цар Симеон",
@@ -3460,6 +3774,7 @@
     },
     {
       "rank": 315,
+      "adjustedRank": 310,
       "code": "2100113",
       "cities": [ "smolian" ],
       "shortName": "ПГ по икономика",
@@ -3471,6 +3786,7 @@
     },
     {
       "rank": 316,
+      "adjustedRank": 311,
       "code": "2214054",
       "cities": [ "sofia" ],
       "shortName": "54 СУ",
@@ -3482,6 +3798,7 @@
     },
     {
       "rank": 317,
+      "adjustedRank": 312,
       "code": "2000120",
       "cities": [ "sliven" ],
       "shortName": "ПГ по хотелиерство",
@@ -3493,6 +3810,7 @@
     },
     {
       "rank": 318,
+      "adjustedRank": 313,
       "code": "603024",
       "cities": [ "biala-slatina" ],
       "shortName": "СУ Васил Левски",
@@ -3504,6 +3822,7 @@
     },
     {
       "rank": 319,
+      "adjustedRank": 314,
       "code": "2300170",
       "cities": [ "elin-pelin" ],
       "shortName": "СУ Васил Левски",
@@ -3515,6 +3834,7 @@
     },
     {
       "rank": 320,
+      "adjustedRank": 315,
       "code": "400061",
       "cities": [ "varna" ],
       "shortName": "Аз съм българче",
@@ -3526,6 +3846,7 @@
     },
     {
       "rank": 321,
+      "adjustedRank": 316,
       "code": "403537",
       "cities": [ "varna" ],
       "shortName": "СУ Димчо Дебелянов",
@@ -3537,6 +3858,7 @@
     },
     {
       "rank": 322,
+      "adjustedRank": 317,
       "code": "300619",
       "cities": [ "pavlikeni" ],
       "shortName": "ПГ по аграрни техн.",
@@ -3548,6 +3870,7 @@
     },
     {
       "rank": 323,
+      "adjustedRank": 318,
       "code": "700403",
       "cities": [ "triavna" ],
       "shortName": "СУ Петко Славейков",
@@ -3559,6 +3882,7 @@
     },
     {
       "rank": 324,
+      "adjustedRank": 319,
       "code": "2203603",
       "cities": [ "sofia" ],
       "shortName": "Луи Брайл",
@@ -3570,6 +3894,7 @@
     },
     {
       "rank": 325,
+      "adjustedRank": 320,
       "code": "1201022",
       "cities": [ "montana" ],
       "shortName": "ПГ по строителство",
@@ -3581,6 +3906,7 @@
     },
     {
       "rank": 326,
+      "adjustedRank": 321,
       "code": "400033",
       "cities": [ "varna" ],
       "shortName": "СпУ Г. Бенковски",
@@ -3592,6 +3918,7 @@
     },
     {
       "rank": 327,
+      "adjustedRank": 322,
       "code": "603057",
       "cities": [ "vratsa" ],
       "shortName": "СУ Отец Паисий",
@@ -3603,6 +3930,7 @@
     },
     {
       "rank": 328,
+      "adjustedRank": 323,
       "code": "2309638",
       "cities": [ "kostinbrod" ],
       "shortName": "СУ Петър Берон",
@@ -3614,6 +3942,7 @@
     },
     {
       "rank": 329,
+      "adjustedRank": 324,
       "code": "300143",
       "cities": [ "veliko-turnovo" ],
       "shortName": "СпУ Г. Живков",
@@ -3625,6 +3954,7 @@
     },
     {
       "rank": 330,
+      "adjustedRank": 325,
       "code": "603098",
       "cities": [ "mezdra" ],
       "shortName": "СУ Иван Вазов",
@@ -3636,6 +3966,7 @@
     },
     {
       "rank": 331,
+      "adjustedRank": 326,
       "code": "2700024",
       "cities": [ "veliki-preslav" ],
       "shortName": "ПТГ Симеон Велики",
@@ -3647,6 +3978,7 @@
     },
     {
       "rank": 332,
+      "adjustedRank": 327,
       "code": "300618",
       "cities": [ "pavlikeni" ],
       "shortName": "СУ Бачо Киро",
@@ -3658,6 +3990,7 @@
     },
     {
       "rank": 333,
+      "adjustedRank": 328,
       "code": "1702640",
       "cities": [ "razgrad" ],
       "shortName": "Спортно у-ще",
@@ -3669,6 +4002,7 @@
     },
     {
       "rank": 334,
+      "adjustedRank": 329,
       "code": "1209006",
       "cities": [ "lom" ],
       "shortName": "ПГ Найден Геров",
@@ -3680,6 +4014,7 @@
     },
     {
       "rank": 335,
+      "adjustedRank": 330,
       "code": "100300",
       "cities": [ "blagoevgrad" ],
       "shortName": "ПГ по строителство",
@@ -3691,6 +4026,7 @@
     },
     {
       "rank": 336,
+      "adjustedRank": 331,
       "code": "2206410",
       "cities": [ "sofia" ],
       "shortName": "ПГ по аудио, видео и телек.",
@@ -3702,6 +4038,7 @@
     },
     {
       "rank": 337,
+      "adjustedRank": 332,
       "code": "2540602",
       "cities": [ "popovo" ],
       "shortName": "ПГ по селско стоп.",
@@ -3713,6 +4050,7 @@
     },
     {
       "rank": 338,
+      "adjustedRank": 333,
       "code": "2213144",
       "cities": [ "sofia" ],
       "shortName": "144 СУ",
@@ -3724,6 +4062,7 @@
     },
     {
       "rank": 339,
+      "adjustedRank": 334,
       "code": "104101",
       "cities": [ "sandanski" ],
       "shortName": "ПГ Яне Сандански",
@@ -3735,6 +4074,7 @@
     },
     {
       "rank": 340,
+      "adjustedRank": 335,
       "code": "909601",
       "cities": [ "momchilgrad" ],
       "shortName": "СУ Никола Вапцаров",
@@ -3746,6 +4086,7 @@
     },
     {
       "rank": 341,
+      "adjustedRank": 336,
       "code": "2304717",
       "cities": [ "kostenets" ],
       "shortName": "ПГ Г.С. Раковски",
@@ -3757,6 +4098,7 @@
     },
     {
       "rank": 342,
+      "adjustedRank": 337,
       "code": "2401052",
       "cities": [ "radnevo" ],
       "shortName": "СУ Гео Милев",
@@ -3768,6 +4110,7 @@
     },
     {
       "rank": 343,
+      "adjustedRank": 338,
       "code": "2500601",
       "cities": [ "turgovishte" ],
       "shortName": "ПГ по икон. инф.",
@@ -3779,6 +4122,7 @@
     },
     {
       "rank": 344,
+      "adjustedRank": 339,
       "code": "400163",
       "cities": [ "suvorovo" ],
       "shortName": "СУ Никола Вапцаров",
@@ -3790,6 +4134,7 @@
     },
     {
       "rank": 345,
+      "adjustedRank": 340,
       "code": "200245",
       "cities": [ "burgas" ],
       "shortName": "ПГ по стр., арх. и геод.",
@@ -3801,6 +4146,7 @@
     },
     {
       "rank": 346,
+      "adjustedRank": 341,
       "code": "2300163",
       "cities": [ "godech" ],
       "shortName": "СУ Асен Златаров",
@@ -3812,6 +4158,7 @@
     },
     {
       "rank": 347,
+      "adjustedRank": 342,
       "code": "102014",
       "cities": [ "petrich" ],
       "shortName": "ПГ по икон. и туризъм",
@@ -3823,6 +4170,7 @@
     },
     {
       "rank": 348,
+      "adjustedRank": 343,
       "code": "2601034",
       "cities": [ "haskovo" ],
       "shortName": "ПГ по дървообр.",
@@ -3834,6 +4182,7 @@
     },
     {
       "rank": 349,
+      "adjustedRank": 344,
       "code": "1690644",
       "cities": [ "plovdiv" ],
       "shortName": "СУ Софроний Врачански",
@@ -3845,6 +4194,7 @@
     },
     {
       "rank": 350,
+      "adjustedRank": 345,
       "code": "400076",
       "cities": [ "varna" ],
       "shortName": "Джордж Байрон",
@@ -3856,6 +4206,7 @@
     },
     {
       "rank": 351,
+      "adjustedRank": 346,
       "code": "1500219",
       "cities": [ "cherven-briag" ],
       "shortName": "Търговска гимн.",
@@ -3867,6 +4218,7 @@
     },
     {
       "rank": 352,
+      "adjustedRank": 347,
       "code": "403558",
       "cities": [ "varna" ],
       "shortName": "Мечтатели",
@@ -3878,6 +4230,7 @@
     },
     {
       "rank": 353,
+      "adjustedRank": 348,
       "code": "600327",
       "cities": [ "vratsa" ],
       "shortName": "СУ Козма Тричков",
@@ -3889,6 +4242,7 @@
     },
     {
       "rank": 354,
+      "adjustedRank": 349,
       "code": "400034",
       "cities": [ "varna" ],
       "shortName": "СУ Гео Милев",
@@ -3900,6 +4254,7 @@
     },
     {
       "rank": 355,
+      "adjustedRank": 350,
       "code": "1302630",
       "cities": [ "peshtera" ],
       "shortName": "СУ Кл. Охридски",
@@ -3911,6 +4266,7 @@
     },
     {
       "rank": 356,
+      "adjustedRank": 351,
       "code": "1208002",
       "cities": [ "vurshets" ],
       "shortName": "СУ Иван Вазов",
@@ -3922,6 +4278,7 @@
     },
     {
       "rank": 357,
+      "adjustedRank": 352,
       "code": "1806309",
       "cities": [ "ruse" ],
       "shortName": "ПГ по туризъм",
@@ -3933,6 +4290,7 @@
     },
     {
       "rank": 358,
+      "adjustedRank": 353,
       "code": "200244",
       "cities": [ "burgas" ],
       "shortName": "ПГ по мех. и електр.",
@@ -3944,6 +4302,7 @@
     },
     {
       "rank": 359,
+      "adjustedRank": 354,
       "code": "2902105",
       "cities": [ "ruse" ],
       "shortName": "НУИ",
@@ -3955,6 +4314,7 @@
     },
     {
       "rank": 360,
+      "adjustedRank": 355,
       "code": "1202000",
       "cities": [ "berkovitsa" ],
       "shortName": "ПГ Иван Панов",
@@ -3966,6 +4326,7 @@
     },
     {
       "rank": 361,
+      "adjustedRank": 356,
       "code": "1209012",
       "cities": [ "lom" ],
       "shortName": "ПГ по произв. техн.",
@@ -3977,6 +4338,7 @@
     },
     {
       "rank": 362,
+      "adjustedRank": 357,
       "code": "1690150",
       "cities": [ "plovdiv" ],
       "shortName": "СУ Л. Каравелов",
@@ -3988,6 +4350,7 @@
     },
     {
       "rank": 363,
+      "adjustedRank": 358,
       "code": "300125",
       "cities": [ "veliko-turnovo" ],
       "shortName": "СУ Вела Благоева",
@@ -3999,6 +4362,7 @@
     },
     {
       "rank": 364,
+      "adjustedRank": 359,
       "code": "300217",
       "cities": [ "gorna-oryahovitsa" ],
       "shortName": "СУ Вичо Грънчаров",
@@ -4010,6 +4374,7 @@
     },
     {
       "rank": 365,
+      "adjustedRank": 360,
       "code": "2400116",
       "cities": [ "stara-zagora" ],
       "shortName": "ПГ по вет. медицина",
@@ -4021,6 +4386,7 @@
     },
     {
       "rank": 366,
+      "adjustedRank": 361,
       "code": "2100115",
       "cities": [ "smolian" ],
       "shortName": "ПГ по туризъм",
@@ -4032,6 +4398,7 @@
     },
     {
       "rank": 367,
+      "adjustedRank": 362,
       "code": "503241",
       "cities": [ "vidin" ],
       "shortName": "СУ Кирил и Методий",
@@ -4043,6 +4410,7 @@
     },
     {
       "rank": 368,
+      "adjustedRank": 363,
       "code": "2303106",
       "cities": [ "samokov" ],
       "shortName": "СУ Отец Паисий",
@@ -4054,6 +4422,7 @@
     },
     {
       "rank": 369,
+      "adjustedRank": 364,
       "code": "2219044",
       "cities": [ "sofia" ],
       "shortName": "44 СУ",
@@ -4065,6 +4434,7 @@
     },
     {
       "rank": 370,
+      "adjustedRank": 365,
       "code": "603076",
       "cities": [ "kozlodui" ],
       "shortName": "СУ Христо Ботев",
@@ -4076,6 +4446,7 @@
     },
     {
       "rank": 371,
+      "adjustedRank": 366,
       "code": "1690272",
       "cities": [ "plovdiv" ],
       "shortName": "ПГ по арх., строит. и геод.",
@@ -4087,6 +4458,7 @@
     },
     {
       "rank": 372,
+      "adjustedRank": 367,
       "code": "2400161",
       "cities": [ "stara-zagora" ],
       "shortName": "Нов век",
@@ -4098,6 +4470,7 @@
     },
     {
       "rank": 373,
+      "adjustedRank": 368,
       "code": "403531",
       "cities": [ "varna" ],
       "shortName": "ПГ по електротехника",
@@ -4109,6 +4482,7 @@
     },
     {
       "rank": 374,
+      "adjustedRank": 369,
       "code": "909613",
       "cities": [ "momchilgrad" ],
       "shortName": "Духовно училище",
@@ -4120,6 +4494,7 @@
     },
     {
       "rank": 375,
+      "adjustedRank": 370,
       "code": "1600116",
       "cities": [ "asenovgrad" ],
       "shortName": "СУ Кирил и Методий",
@@ -4131,6 +4506,7 @@
     },
     {
       "rank": 376,
+      "adjustedRank": 371,
       "code": "1403214",
       "cities": [ "pernik" ],
       "shortName": "6 СУ",
@@ -4142,6 +4518,7 @@
     },
     {
       "rank": 377,
+      "adjustedRank": 372,
       "code": "1900502",
       "cities": [ "silistra" ],
       "shortName": "СУ Никола Вапцаров",
@@ -4153,6 +4530,7 @@
     },
     {
       "rank": 378,
+      "adjustedRank": 373,
       "code": "2811607",
       "cities": [ "iambol" ],
       "shortName": "Гимназия по строит.",
@@ -4164,6 +4542,7 @@
     },
     {
       "rank": 379,
+      "adjustedRank": 374,
       "code": "1806208",
       "cities": [ "ruse" ],
       "shortName": "СУ Възраждане",
@@ -4175,6 +4554,7 @@
     },
     {
       "rank": 380,
+      "adjustedRank": 375,
       "code": "1501108",
       "cities": [ "knezha" ],
       "shortName": "СУ Неофит Рилски",
@@ -4186,6 +4566,7 @@
     },
     {
       "rank": 381,
+      "adjustedRank": 376,
       "code": "300221",
       "cities": [ "gorna-oryahovitsa" ],
       "shortName": "ПГ по лека пром.",
@@ -4197,6 +4578,7 @@
     },
     {
       "rank": 382,
+      "adjustedRank": 377,
       "code": "1806312",
       "cities": [ "ruse" ],
       "shortName": "ПГ по транспорт",
@@ -4208,6 +4590,7 @@
     },
     {
       "rank": 383,
+      "adjustedRank": 378,
       "code": "1100329",
       "cities": [ "lovech" ],
       "shortName": "ПГ по вет. медицина",
@@ -4219,6 +4602,7 @@
     },
     {
       "rank": 384,
+      "adjustedRank": 379,
       "code": "2212137",
       "cities": [ "sofia" ],
       "shortName": "137 СУ",
@@ -4230,6 +4614,7 @@
     },
     {
       "rank": 385,
+      "adjustedRank": 380,
       "code": "1702603",
       "cities": [ "razgrad" ],
       "shortName": "ПГ по хим. техн.",
@@ -4241,6 +4626,7 @@
     },
     {
       "rank": 386,
+      "adjustedRank": 381,
       "code": "2201400",
       "cities": [ "sofia", "bankiq" ],
       "shortName": "ПГТ - Банкя",
@@ -4252,6 +4638,7 @@
     },
     {
       "rank": 387,
+      "adjustedRank": 382,
       "code": "2520401",
       "cities": [ "omurtag" ],
       "shortName": "ПГ Симеон Велчев",
@@ -4263,6 +4650,7 @@
     },
     {
       "rank": 388,
+      "adjustedRank": 383,
       "code": "608060",
       "cities": [ "vratsa" ],
       "shortName": "Спортно у-ще",
@@ -4274,6 +4662,7 @@
     },
     {
       "rank": 389,
+      "adjustedRank": 384,
       "code": "1690177",
       "cities": [ "plovdiv" ],
       "shortName": "ПГ по вътр. арх. и дърв.",
@@ -4285,6 +4674,7 @@
     },
     {
       "rank": 390,
+      "adjustedRank": 385,
       "code": "2215170",
       "cities": [ "sofia", "novi-iskar" ],
       "shortName": "170 СУ",
@@ -4296,6 +4686,7 @@
     },
     {
       "rank": 391,
+      "adjustedRank": 386,
       "code": "1301788",
       "cities": [ "septemvri" ],
       "shortName": "СУ Христо Ботев",
@@ -4307,6 +4698,7 @@
     },
     {
       "rank": 392,
+      "adjustedRank": 387,
       "code": "1702601",
       "cities": [ "razgrad" ],
       "shortName": "ПГ по икономика",
@@ -4318,6 +4710,7 @@
     },
     {
       "rank": 393,
+      "adjustedRank": 388,
       "code": "1806313",
       "cities": [ "ruse" ],
       "shortName": "ПГ по строителство",
@@ -4329,6 +4722,7 @@
     },
     {
       "rank": 394,
+      "adjustedRank": 389,
       "code": "400055",
       "cities": [ "varna" ],
       "shortName": "Проф. техн. гимназия",
@@ -4340,6 +4734,7 @@
     },
     {
       "rank": 395,
+      "adjustedRank": 390,
       "code": "800028",
       "cities": [ "dobrich" ],
       "shortName": "ПГ по туризъм",
@@ -4351,6 +4746,7 @@
     },
     {
       "rank": 396,
+      "adjustedRank": 391,
       "code": "2606005",
       "cities": [ "liubimets" ],
       "shortName": "СУ Желязко Терпешев",
@@ -4362,6 +4758,7 @@
     },
     {
       "rank": 397,
+      "adjustedRank": 392,
       "code": "2212040",
       "cities": [ "sofia" ],
       "shortName": "40 СУ",
@@ -4373,6 +4770,7 @@
     },
     {
       "rank": 398,
+      "adjustedRank": 393,
       "code": "1690176",
       "cities": [ "plovdiv" ],
       "shortName": "ПГ по облекло",
@@ -4384,6 +4782,7 @@
     },
     {
       "rank": 399,
+      "adjustedRank": 394,
       "code": "1806206",
       "cities": [ "ruse" ],
       "shortName": "СУ Йордан Йовков",
@@ -4395,6 +4794,7 @@
     },
     {
       "rank": 400,
+      "adjustedRank": 395,
       "code": "2217088",
       "cities": [ "sofia" ],
       "shortName": "88 СУ",
@@ -4406,6 +4806,7 @@
     },
     {
       "rank": 401,
+      "adjustedRank": 396,
       "code": "2220029",
       "cities": [ "sofia" ],
       "shortName": "29 СУ",
@@ -4417,6 +4818,7 @@
     },
     {
       "rank": 402,
+      "adjustedRank": 397,
       "code": "2300195",
       "cities": [ "etropole" ],
       "shortName": "СУ Христо Ясенов",
@@ -4428,6 +4830,7 @@
     },
     {
       "rank": 403,
+      "adjustedRank": 398,
       "code": "1690345",
       "cities": [ "plovdiv" ],
       "shortName": "СУ Кирил и Методий",
@@ -4439,6 +4842,7 @@
     },
     {
       "rank": 404,
+      "adjustedRank": 399,
       "code": "1001380",
       "cities": [ "kiustendil" ],
       "shortName": "ПГ по икономика",
@@ -4450,6 +4854,7 @@
     },
     {
       "rank": 405,
+      "adjustedRank": 400,
       "code": "1806307",
       "cities": [ "ruse" ],
       "shortName": "ПГ по облекло",
@@ -4461,6 +4866,7 @@
     },
     {
       "rank": 406,
+      "adjustedRank": 401,
       "code": "2902506",
       "cities": [ "smolian" ],
       "shortName": "ПГ за прил. изк.",
@@ -4472,6 +4878,7 @@
     },
     {
       "rank": 407,
+      "adjustedRank": 402,
       "code": "2500602",
       "cities": [ "turgovishte" ],
       "shortName": "Техническа гимназия",
@@ -4483,6 +4890,7 @@
     },
     {
       "rank": 408,
+      "adjustedRank": 403,
       "code": "2220014",
       "cities": [ "sofia" ],
       "shortName": "14 СУ",
@@ -4494,6 +4902,7 @@
     },
     {
       "rank": 409,
+      "adjustedRank": 404,
       "code": "300132",
       "cities": [ "veliko-turnovo" ],
       "shortName": "ПГ по туризъм",
@@ -4505,6 +4914,7 @@
     },
     {
       "rank": 410,
+      "adjustedRank": 405,
       "code": "800105",
       "cities": [ "tervel" ],
       "shortName": "ПГ по техника и облекло",
@@ -4516,6 +4926,7 @@
     },
     {
       "rank": 411,
+      "adjustedRank": 406,
       "code": "1100318",
       "cities": [ "lovech" ],
       "shortName": "СУ Кл. Охридски",
@@ -4527,6 +4938,7 @@
     },
     {
       "rank": 412,
+      "adjustedRank": 407,
       "code": "1500144",
       "cities": [ "pleven" ],
       "shortName": "ПГ по строителство",
@@ -4538,6 +4950,7 @@
     },
     {
       "rank": 413,
+      "adjustedRank": 408,
       "code": "800082",
       "cities": [ "kavarna" ],
       "shortName": "СУ Стефан Караджа",
@@ -4549,6 +4962,7 @@
     },
     {
       "rank": 414,
+      "adjustedRank": 409,
       "code": "200113",
       "cities": [ "aitos" ],
       "shortName": "СУ Никола Вапцаров",
@@ -4560,6 +4974,7 @@
     },
     {
       "rank": 415,
+      "adjustedRank": 410,
       "code": "400058",
       "cities": [ "varna" ],
       "shortName": "ПГ по хим. и хр.-вк. техн.",
@@ -4571,6 +4986,7 @@
     },
     {
       "rank": 416,
+      "adjustedRank": 411,
       "code": "1403234",
       "cities": [ "pernik" ],
       "shortName": "ПГ по техн. и строит.",
@@ -4582,6 +4998,7 @@
     },
     {
       "rank": 417,
+      "adjustedRank": 412,
       "code": "200412",
       "cities": [ "karnobat" ],
       "shortName": "СУ Христо Ботев",
@@ -4593,6 +5010,7 @@
     },
     {
       "rank": 418,
+      "adjustedRank": 413,
       "code": "2212097",
       "cities": [ "sofia" ],
       "shortName": "97 СУ",
@@ -4604,6 +5022,7 @@
     },
     {
       "rank": 419,
+      "adjustedRank": null,
       "code": "1806215",
       "cities": [ "ruse" ],
       "shortName": "Джордж Байрон",
@@ -4615,6 +5034,7 @@
     },
     {
       "rank": 420,
+      "adjustedRank": 414,
       "code": "300121",
       "cities": [ "veliko-turnovo" ],
       "shortName": "Хуманитарна гимн.",
@@ -4626,6 +5046,7 @@
     },
     {
       "rank": 421,
+      "adjustedRank": null,
       "code": "2202026",
       "cities": [ "sofia" ],
       "shortName": "26 СУ",
@@ -4637,6 +5058,7 @@
     },
     {
       "rank": 422,
+      "adjustedRank": 415,
       "code": "800094",
       "cities": [ "tervel" ],
       "shortName": "СУ Йордан Йовков",
@@ -4648,6 +5070,7 @@
     },
     {
       "rank": 423,
+      "adjustedRank": 416,
       "code": "700118",
       "cities": [ "gabrovo" ],
       "shortName": "Техническа гимн.",
@@ -4659,6 +5082,7 @@
     },
     {
       "rank": 424,
+      "adjustedRank": 417,
       "code": "2214101",
       "cities": [ "sofia" ],
       "shortName": "101 СУ",
@@ -4670,6 +5094,7 @@
     },
     {
       "rank": 425,
+      "adjustedRank": 418,
       "code": "2700076",
       "cities": [ "shumen" ],
       "shortName": "СУ Панайот Волов",
@@ -4681,6 +5106,7 @@
     },
     {
       "rank": 426,
+      "adjustedRank": 419,
       "code": "400087",
       "cities": [ "aksakovo" ],
       "shortName": "СУ Кл. Охридски",
@@ -4692,6 +5118,7 @@
     },
     {
       "rank": 427,
+      "adjustedRank": 420,
       "code": "1690187",
       "cities": [ "plovdiv" ],
       "shortName": "Духовна семинария",
@@ -4703,6 +5130,7 @@
     },
     {
       "rank": 428,
+      "adjustedRank": 421,
       "code": "1403233",
       "cities": [ "pernik" ],
       "shortName": "ПГ по техн. и енерг.",
@@ -4714,6 +5142,7 @@
     },
     {
       "rank": 429,
+      "adjustedRank": 422,
       "code": "1601302",
       "cities": [ "karlovo" ],
       "shortName": "СУ Христо Проданов",
@@ -4725,6 +5154,7 @@
     },
     {
       "rank": 430,
+      "adjustedRank": 423,
       "code": "2841532",
       "cities": [ "straldzha" ],
       "shortName": "СУ Пейо Яворов",
@@ -4736,6 +5166,7 @@
     },
     {
       "rank": 431,
+      "adjustedRank": null,
       "code": "2213010",
       "cities": [ "sofia" ],
       "shortName": "10 СУ",
@@ -4747,6 +5178,7 @@
     },
     {
       "rank": 432,
+      "adjustedRank": 424,
       "code": "2219095",
       "cities": [ "sofia" ],
       "shortName": "95 СУ",
@@ -4758,6 +5190,7 @@
     },
     {
       "rank": 433,
+      "adjustedRank": 425,
       "code": "2212096",
       "cities": [ "sofia" ],
       "shortName": "96 СУ",
@@ -4769,6 +5202,7 @@
     },
     {
       "rank": 434,
+      "adjustedRank": 426,
       "code": "402161",
       "cities": [ "varna" ],
       "shortName": "ПГ по текстил и моден дизайн",
@@ -4780,6 +5214,7 @@
     },
     {
       "rank": 435,
+      "adjustedRank": 427,
       "code": "1690155",
       "cities": [ "plovdiv" ],
       "shortName": "СУ Кл. Охридски",
@@ -4791,6 +5226,7 @@
     },
     {
       "rank": 436,
+      "adjustedRank": 428,
       "code": "200243",
       "cities": [ "burgas" ],
       "shortName": "ПГ по м. кораб. и риб.",
@@ -4802,6 +5238,7 @@
     },
     {
       "rank": 437,
+      "adjustedRank": 429,
       "code": "1304231",
       "cities": [ "velingrad" ],
       "shortName": "ПГ по иконом. и тур.",
@@ -4813,6 +5250,7 @@
     },
     {
       "rank": 438,
+      "adjustedRank": 430,
       "code": "2209305",
       "cities": [ "sofia" ],
       "shortName": "203 ЕГ",
@@ -4824,6 +5262,7 @@
     },
     {
       "rank": 439,
+      "adjustedRank": 431,
       "code": "603026",
       "cities": [ "biala-slatina" ],
       "shortName": "ПГ агротехническа",
@@ -4835,6 +5274,7 @@
     },
     {
       "rank": 440,
+      "adjustedRank": 432,
       "code": "1201004",
       "cities": [ "montana" ],
       "shortName": "2 СУ",
@@ -4846,6 +5286,7 @@
     },
     {
       "rank": 441,
+      "adjustedRank": 433,
       "code": "1690179",
       "cities": [ "plovdiv" ],
       "shortName": "ПГ по битова техника",
@@ -4857,6 +5298,7 @@
     },
     {
       "rank": 442,
+      "adjustedRank": 434,
       "code": "2300188",
       "cities": [ "ihtiman" ],
       "shortName": "СУ Христо Ботев",
@@ -4868,6 +5310,7 @@
     },
     {
       "rank": 443,
+      "adjustedRank": 435,
       "code": "2401179",
       "cities": [ "chirpan" ],
       "shortName": "ПГ по селско стоп.",
@@ -4879,6 +5322,7 @@
     },
     {
       "rank": 444,
+      "adjustedRank": 436,
       "code": "1600618",
       "cities": [ "asenovgrad" ],
       "shortName": "ПГ Иван Асен II",
@@ -4890,6 +5334,7 @@
     },
     {
       "rank": 445,
+      "adjustedRank": 437,
       "code": "1690447",
       "cities": [ "plovdiv" ],
       "shortName": "СУ Пейо Яворов",
@@ -4901,6 +5346,7 @@
     },
     {
       "rank": 446,
+      "adjustedRank": 438,
       "code": "603065",
       "cities": [ "vratsa" ],
       "shortName": "Техническа гимназия",
@@ -4912,6 +5358,7 @@
     },
     {
       "rank": 447,
+      "adjustedRank": 439,
       "code": "1302769",
       "cities": [ "pazardzhik" ],
       "shortName": "ПГ по механоел.",
@@ -4923,6 +5370,7 @@
     },
     {
       "rank": 448,
+      "adjustedRank": 440,
       "code": "400030",
       "cities": [ "varna" ],
       "shortName": "7 СУ Н. Геров",
@@ -4934,6 +5382,7 @@
     },
     {
       "rank": 449,
+      "adjustedRank": 441,
       "code": "2208057",
       "cities": [ "sofia" ],
       "shortName": "СпУ Св. Наум",
@@ -4945,6 +5394,7 @@
     },
     {
       "rank": 450,
+      "adjustedRank": null,
       "code": "2500703",
       "cities": [ "turgovishte" ],
       "shortName": "У-ще за уч. с увр. слух",
@@ -4956,6 +5406,7 @@
     },
     {
       "rank": 451,
+      "adjustedRank": 442,
       "code": "300131",
       "cities": [ "veliko-turnovo" ],
       "shortName": "ПГ по моден дизайн",
@@ -4967,6 +5418,7 @@
     },
     {
       "rank": 452,
+      "adjustedRank": 443,
       "code": "700323",
       "cities": [ "sevlievo" ],
       "shortName": "ПГ по механоел.",
@@ -4978,6 +5430,7 @@
     },
     {
       "rank": 453,
+      "adjustedRank": 444,
       "code": "101730",
       "cities": [ "blagoevgrad" ],
       "shortName": "ПГ по туризъм",
@@ -4989,6 +5442,7 @@
     },
     {
       "rank": 454,
+      "adjustedRank": 445,
       "code": "1501109",
       "cities": [ "knezha" ],
       "shortName": "ПГ по земеделие",
@@ -5000,6 +5454,7 @@
     },
     {
       "rank": 455,
+      "adjustedRank": 446,
       "code": "102011",
       "cities": [ "iakoruda" ],
       "shortName": "ПГ Петко Славейков",
@@ -5011,6 +5466,7 @@
     },
     {
       "rank": 456,
+      "adjustedRank": 447,
       "code": "300126",
       "cities": [ "veliko-turnovo" ],
       "shortName": "СУ Владимир Комаров",
@@ -5022,6 +5478,7 @@
     },
     {
       "rank": 457,
+      "adjustedRank": 448,
       "code": "1303344",
       "cities": [ "pazardzhik" ],
       "shortName": "ПГ по фризьорство",
@@ -5033,6 +5490,7 @@
     },
     {
       "rank": 458,
+      "adjustedRank": 449,
       "code": "2207412",
       "cities": [ "sofia" ],
       "shortName": "ПГ по транспорт",
@@ -5044,6 +5502,7 @@
     },
     {
       "rank": 459,
+      "adjustedRank": 450,
       "code": "1900510",
       "cities": [ "silistra" ],
       "shortName": "ПГ по произв. техн.",
@@ -5055,6 +5514,7 @@
     },
     {
       "rank": 460,
+      "adjustedRank": 451,
       "code": "1304948",
       "cities": [ "pazardzhik" ],
       "shortName": "СУ Георги Бенковски",
@@ -5066,6 +5526,7 @@
     },
     {
       "rank": 461,
+      "adjustedRank": 452,
       "code": "2601032",
       "cities": [ "haskovo" ],
       "shortName": "ПГ по туризъм",
@@ -5077,6 +5538,7 @@
     },
     {
       "rank": 462,
+      "adjustedRank": 453,
       "code": "2000128",
       "cities": [ "sliven" ],
       "shortName": "СпУ Д. Рохов",
@@ -5088,6 +5550,7 @@
     },
     {
       "rank": 463,
+      "adjustedRank": 454,
       "code": "1690550",
       "cities": [ "plovdiv" ],
       "shortName": "СУ К. Кирил Философ",
@@ -5099,6 +5562,7 @@
     },
     {
       "rank": 464,
+      "adjustedRank": 455,
       "code": "2221093",
       "cities": [ "sofia" ],
       "shortName": "93 СУ",
@@ -5110,6 +5574,7 @@
     },
     {
       "rank": 465,
+      "adjustedRank": 456,
       "code": "2205408",
       "cities": [ "sofia" ],
       "shortName": "ПГ Княгиня Евдокия",
@@ -5121,6 +5586,7 @@
     },
     {
       "rank": 466,
+      "adjustedRank": 457,
       "code": "2216309",
       "cities": [ "sofia" ],
       "shortName": "Сменно-вечерна гимназия",
@@ -5132,6 +5598,7 @@
     },
     {
       "rank": 467,
+      "adjustedRank": 458,
       "code": "101250",
       "cities": [ "blagoevgrad" ],
       "shortName": "СУИЧЕ",
@@ -5143,6 +5610,7 @@
     },
     {
       "rank": 468,
+      "adjustedRank": 459,
       "code": "1301770",
       "cities": [ "rakitovo" ],
       "shortName": "СУ Кл. Охридски",
@@ -5154,6 +5622,7 @@
     },
     {
       "rank": 469,
+      "adjustedRank": 460,
       "code": "500110",
       "cities": [ "vidin" ],
       "shortName": "ПГТ",
@@ -5165,6 +5634,7 @@
     },
     {
       "rank": 470,
+      "adjustedRank": 461,
       "code": "1305587",
       "cities": [ "panagiurishte" ],
       "shortName": "ПГ по индустр. техн.",
@@ -5176,6 +5646,7 @@
     },
     {
       "rank": 471,
+      "adjustedRank": 462,
       "code": "1302819",
       "cities": [ "peshtera" ],
       "shortName": "ПГ по хран.-вк. техн.",
@@ -5187,6 +5658,7 @@
     },
     {
       "rank": 472,
+      "adjustedRank": 463,
       "code": "2603008",
       "cities": [ "harmanli" ],
       "shortName": "СУ Неофит Рилски",
@@ -5198,6 +5670,7 @@
     },
     {
       "rank": 473,
+      "adjustedRank": 464,
       "code": "200234",
       "cities": [ "burgas" ],
       "shortName": "СУ Кирил и Методий",
@@ -5209,6 +5682,7 @@
     },
     {
       "rank": 474,
+      "adjustedRank": 465,
       "code": "800076",
       "cities": [ "general-toshevo" ],
       "shortName": "ПГ по земеделие",
@@ -5220,6 +5694,7 @@
     },
     {
       "rank": 475,
+      "adjustedRank": 466,
       "code": "1500133",
       "cities": [ "pleven" ],
       "shortName": "СУ Стоян Заимов",
@@ -5231,6 +5706,7 @@
     },
     {
       "rank": 476,
+      "adjustedRank": 467,
       "code": "2302504",
       "cities": [ "pirdop" ],
       "shortName": "ПГ по механоел.",
@@ -5242,6 +5718,7 @@
     },
     {
       "rank": 477,
+      "adjustedRank": 468,
       "code": "300130",
       "cities": [ "veliko-turnovo" ],
       "shortName": "ПГ по електроника",
@@ -5253,6 +5730,7 @@
     },
     {
       "rank": 478,
+      "adjustedRank": null,
       "code": "200230",
       "cities": [ "burgas" ],
       "shortName": "СУ Димчо Дебелянов",
@@ -5264,6 +5742,7 @@
     },
     {
       "rank": 479,
+      "adjustedRank": 469,
       "code": "700120",
       "cities": [ "gabrovo" ],
       "shortName": "ПГ по туризъм",
@@ -5275,6 +5754,7 @@
     },
     {
       "rank": 480,
+      "adjustedRank": 470,
       "code": "2400265",
       "cities": [ "kazanluk" ],
       "shortName": "ПГ Иван Хаджиенов",
@@ -5286,6 +5766,7 @@
     },
     {
       "rank": 481,
+      "adjustedRank": 471,
       "code": "2102145",
       "cities": [ "madan" ],
       "shortName": "ПГ Васил Димитров",
@@ -5297,6 +5778,7 @@
     },
     {
       "rank": 482,
+      "adjustedRank": 472,
       "code": "2214153",
       "cities": [ "sofia" ],
       "shortName": "СпУ Неофит Рилски",
@@ -5308,6 +5790,7 @@
     },
     {
       "rank": 483,
+      "adjustedRank": 473,
       "code": "1100410",
       "cities": [ "lukovit" ],
       "shortName": "ПГ по селско стоп.",
@@ -5319,6 +5802,7 @@
     },
     {
       "rank": 484,
+      "adjustedRank": 474,
       "code": "300912",
       "cities": [ "strazhitsa" ],
       "shortName": "ПГ по транспорт",
@@ -5330,6 +5814,7 @@
     },
     {
       "rank": 485,
+      "adjustedRank": 475,
       "code": "2213118",
       "cities": [ "sofia" ],
       "shortName": "118 СУ",
@@ -5341,6 +5826,7 @@
     },
     {
       "rank": 486,
+      "adjustedRank": 476,
       "code": "1100509",
       "cities": [ "teteven" ],
       "shortName": "СУ Георги Бенковски",
@@ -5352,6 +5838,7 @@
     },
     {
       "rank": 487,
+      "adjustedRank": 477,
       "code": "2212090",
       "cities": [ "sofia" ],
       "shortName": "90 СУ",
@@ -5363,6 +5850,7 @@
     },
     {
       "rank": 488,
+      "adjustedRank": 478,
       "code": "800061",
       "cities": [ "balchik" ],
       "shortName": "СУ Христо Ботев",
@@ -5374,6 +5862,7 @@
     },
     {
       "rank": 489,
+      "adjustedRank": 479,
       "code": "2400117",
       "cities": [ "stara-zagora" ],
       "shortName": "ПГ по електроника",
@@ -5385,6 +5874,7 @@
     },
     {
       "rank": 490,
+      "adjustedRank": 480,
       "code": "200240",
       "cities": [ "burgas" ],
       "shortName": "СпУ Юрий Гагарин",
@@ -5396,6 +5886,7 @@
     },
     {
       "rank": 491,
+      "adjustedRank": 481,
       "code": "1500141",
       "cities": [ "pleven" ],
       "shortName": "ПГ по механ.",
@@ -5407,6 +5898,7 @@
     },
     {
       "rank": 492,
+      "adjustedRank": 482,
       "code": "1602315",
       "cities": [ "purvomai" ],
       "shortName": "ПГ по селско стоп.",
@@ -5418,6 +5910,7 @@
     },
     {
       "rank": 493,
+      "adjustedRank": 483,
       "code": "2400268",
       "cities": [ "kazanluk" ],
       "shortName": "ПГ по лека пром.",
@@ -5429,6 +5922,7 @@
     },
     {
       "rank": 494,
+      "adjustedRank": 484,
       "code": "700205",
       "cities": [ "drianovo" ],
       "shortName": "ПГ по иконом. и техника",
@@ -5440,6 +5934,7 @@
     },
     {
       "rank": 495,
+      "adjustedRank": 485,
       "code": "2404107",
       "cities": [ "gulubovo" ],
       "shortName": "СУ Васил Левски",
@@ -5451,6 +5946,7 @@
     },
     {
       "rank": 496,
+      "adjustedRank": 486,
       "code": "1305338",
       "cities": [ "pazardzhik" ],
       "shortName": "СУ Георги Брегов",
@@ -5462,6 +5958,7 @@
     },
     {
       "rank": 497,
+      "adjustedRank": null,
       "code": "1690643",
       "cities": [ "plovdiv" ],
       "shortName": "СУ Св. Седмочисленици",
@@ -5473,6 +5970,7 @@
     },
     {
       "rank": 498,
+      "adjustedRank": 487,
       "code": "200247",
       "cities": [ "burgas" ],
       "shortName": "ПГ по хим. техн.",
@@ -5484,6 +5982,7 @@
     },
     {
       "rank": 499,
+      "adjustedRank": 488,
       "code": "400054",
       "cities": [ "varna" ],
       "shortName": "Спец. у-ще за уч. с нар. зр.",
@@ -5495,6 +5994,7 @@
     },
     {
       "rank": 500,
+      "adjustedRank": 489,
       "code": "1500149",
       "cities": [ "pleven" ],
       "shortName": "ПГ по рест., търг. и обсл.",
@@ -5506,6 +6006,7 @@
     },
     {
       "rank": 501,
+      "adjustedRank": 490,
       "code": "400166",
       "cities": [ "suvorovo" ],
       "shortName": "ПГ по сел. стоп.",
@@ -5517,6 +6018,7 @@
     },
     {
       "rank": 502,
+      "adjustedRank": 491,
       "code": "102016",
       "cities": [ "gotse-delchev" ],
       "shortName": "ПГ по механизация",
@@ -5528,6 +6030,7 @@
     },
     {
       "rank": 503,
+      "adjustedRank": 492,
       "code": "109185",
       "cities": [ "sandanski" ],
       "shortName": "Спортно у-ще",
@@ -5539,6 +6042,7 @@
     },
     {
       "rank": 504,
+      "adjustedRank": 493,
       "code": "2207108",
       "cities": [ "sofia" ],
       "shortName": "108 СУ",
@@ -5550,6 +6054,7 @@
     },
     {
       "rank": 505,
+      "adjustedRank": 494,
       "code": "400063",
       "cities": [ "varna" ],
       "shortName": "ПГ по стр., арх. и геод.",
@@ -5561,6 +6066,7 @@
     },
     {
       "rank": 506,
+      "adjustedRank": 495,
       "code": "2401053",
       "cities": [ "radnevo" ],
       "shortName": "ПГ Иван Рилски",
@@ -5572,6 +6078,7 @@
     },
     {
       "rank": 507,
+      "adjustedRank": 496,
       "code": "1201033",
       "cities": [ "montana" ],
       "shortName": "ПГ по техника",
@@ -5583,6 +6090,7 @@
     },
     {
       "rank": 508,
+      "adjustedRank": 497,
       "code": "2100903",
       "cities": [ "chepelare" ],
       "shortName": "ПГ сел. горско стоп.",
@@ -5594,6 +6102,7 @@
     },
     {
       "rank": 509,
+      "adjustedRank": 498,
       "code": "402183",
       "cities": [ "varna" ],
       "shortName": "Варненска морска гимназия",
@@ -5605,6 +6114,7 @@
     },
     {
       "rank": 510,
+      "adjustedRank": 499,
       "code": "1500611",
       "cities": [ "levski" ],
       "shortName": "СУ Крум Попов",
@@ -5616,6 +6126,7 @@
     },
     {
       "rank": 511,
+      "adjustedRank": 500,
       "code": "1900327",
       "cities": [ "dulovo" ],
       "shortName": "ПГ по облекло и трансп.",
@@ -5627,6 +6138,7 @@
     },
     {
       "rank": 512,
+      "adjustedRank": 501,
       "code": "400126",
       "cities": [ "dolni-chiflik" ],
       "shortName": "СУ Васил Левски",
@@ -5638,6 +6150,7 @@
     },
     {
       "rank": 513,
+      "adjustedRank": 502,
       "code": "2208413",
       "cities": [ "sofia" ],
       "shortName": "Гимн. по хлебни техн.",
@@ -5649,6 +6162,7 @@
     },
     {
       "rank": 514,
+      "adjustedRank": 503,
       "code": "2700006",
       "cities": [ "shumen" ],
       "shortName": "ПГ по строителство",
@@ -5660,6 +6174,7 @@
     },
     {
       "rank": 515,
+      "adjustedRank": 504,
       "code": "700113",
       "cities": [ "gabrovo" ],
       "shortName": "СУ Отец Паисий",
@@ -5671,6 +6186,7 @@
     },
     {
       "rank": 516,
+      "adjustedRank": 505,
       "code": "1690572",
       "cities": [ "plovdiv" ],
       "shortName": "ПГ по механотехника",
@@ -5682,6 +6198,7 @@
     },
     {
       "rank": 517,
+      "adjustedRank": 506,
       "code": "800086",
       "cities": [ "kavarna" ],
       "shortName": "Земеделска гимн.",
@@ -5693,6 +6210,7 @@
     },
     {
       "rank": 518,
+      "adjustedRank": 507,
       "code": "1002137",
       "cities": [ "dupnitsa" ],
       "shortName": "ПГ по хран.-вк. техн.",
@@ -5704,6 +6222,7 @@
     },
     {
       "rank": 519,
+      "adjustedRank": 508,
       "code": "600221",
       "cities": [ "biala-slatina" ],
       "shortName": "ПГ по облекло",
@@ -5715,6 +6234,7 @@
     },
     {
       "rank": 520,
+      "adjustedRank": 509,
       "code": "300911",
       "cities": [ "strazhitsa" ],
       "shortName": "СУ Ангел Каралийчев",
@@ -5726,6 +6246,7 @@
     },
     {
       "rank": 521,
+      "adjustedRank": 510,
       "code": "1403656",
       "cities": [ "radomir" ],
       "shortName": "Техническа ПГ",
@@ -5737,6 +6258,7 @@
     },
     {
       "rank": 522,
+      "adjustedRank": 511,
       "code": "2217151",
       "cities": [ "sofia" ],
       "shortName": "Национално СУ",
@@ -5748,6 +6270,7 @@
     },
     {
       "rank": 523,
+      "adjustedRank": 512,
       "code": "800022",
       "cities": [ "dobrich" ],
       "shortName": "ПГ по вет. медицина",
@@ -5759,6 +6282,7 @@
     },
     {
       "rank": 524,
+      "adjustedRank": 513,
       "code": "2309735",
       "cities": [ "kostinbrod" ],
       "shortName": "ПГ по вет. мед.",
@@ -5770,6 +6294,7 @@
     },
     {
       "rank": 525,
+      "adjustedRank": 514,
       "code": "1100511",
       "cities": [ "teteven" ],
       "shortName": "НПГ горско стоп.",
@@ -5781,6 +6306,7 @@
     },
     {
       "rank": 526,
+      "adjustedRank": 515,
       "code": "1690446",
       "cities": [ "plovdiv" ],
       "shortName": "СУ Никола Вапцаров",
@@ -5792,6 +6318,7 @@
     },
     {
       "rank": 527,
+      "adjustedRank": 516,
       "code": "2211557",
       "cities": [ "sofia" ],
       "shortName": "Духовна семинария",
@@ -5803,6 +6330,7 @@
     },
     {
       "rank": 528,
+      "adjustedRank": 517,
       "code": "1500142",
       "cities": [ "pleven" ],
       "shortName": "ПГ по хран.-вк. техн.",
@@ -5814,6 +6342,7 @@
     },
     {
       "rank": 529,
+      "adjustedRank": 518,
       "code": "300819",
       "cities": [ "svishtov" ],
       "shortName": "ПГ Ал. Константинов",
@@ -5825,6 +6354,7 @@
     },
     {
       "rank": 530,
+      "adjustedRank": 519,
       "code": "1311390",
       "cities": [ "velingrad" ],
       "shortName": "НПГ по горско стоп.",
@@ -5836,6 +6366,7 @@
     },
     {
       "rank": 531,
+      "adjustedRank": 520,
       "code": "2400107",
       "cities": [ "stara-zagora" ],
       "shortName": "СУ Иван Вазов",
@@ -5847,6 +6378,7 @@
     },
     {
       "rank": 532,
+      "adjustedRank": 521,
       "code": "200229",
       "cities": [ "burgas" ],
       "shortName": "СУ Конст. Преславски",
@@ -5858,6 +6390,7 @@
     },
     {
       "rank": 533,
+      "adjustedRank": 522,
       "code": "2000114",
       "cities": [ "sliven" ],
       "shortName": "СУ Йордан Йовков",
@@ -5869,6 +6402,7 @@
     },
     {
       "rank": 534,
+      "adjustedRank": 523,
       "code": "1000049",
       "cities": [ "dupnitsa" ],
       "shortName": "ПГ по облекло",
@@ -5880,6 +6414,7 @@
     },
     {
       "rank": 535,
+      "adjustedRank": 524,
       "code": "909112",
       "cities": [ "kurdzhali" ],
       "shortName": "ПГ по електр.",
@@ -5891,6 +6426,7 @@
     },
     {
       "rank": 536,
+      "adjustedRank": 525,
       "code": "2400104",
       "cities": [ "stara-zagora" ],
       "shortName": "СУ Васил Левски",
@@ -5902,6 +6438,7 @@
     },
     {
       "rank": 537,
+      "adjustedRank": 526,
       "code": "1900528",
       "cities": [ "silistra" ],
       "shortName": "Спортно у-ще",
@@ -5913,6 +6450,7 @@
     },
     {
       "rank": 538,
+      "adjustedRank": 527,
       "code": "2209132",
       "cities": [ "sofia" ],
       "shortName": "132 СУ",
@@ -5924,6 +6462,7 @@
     },
     {
       "rank": 539,
+      "adjustedRank": 528,
       "code": "2300448",
       "cities": [ "pirdop" ],
       "shortName": "ПГ по туризъм",
@@ -5935,6 +6474,7 @@
     },
     {
       "rank": 540,
+      "adjustedRank": 529,
       "code": "2400266",
       "cities": [ "kazanluk" ],
       "shortName": "ПГ по транспорт",
@@ -5946,6 +6486,7 @@
     },
     {
       "rank": 541,
+      "adjustedRank": 530,
       "code": "2700071",
       "cities": [ "novi-pazar" ],
       "shortName": "СУ Хан Исперих",
@@ -5957,6 +6498,7 @@
     },
     {
       "rank": 542,
+      "adjustedRank": 531,
       "code": "1403213",
       "cities": [ "pernik" ],
       "shortName": "5 СУ",
@@ -5968,6 +6510,7 @@
     },
     {
       "rank": 543,
+      "adjustedRank": 532,
       "code": "2300455",
       "cities": [ "slivnitsa" ],
       "shortName": "ПГ по транспорт",
@@ -5979,6 +6522,7 @@
     },
     {
       "rank": 544,
+      "adjustedRank": 533,
       "code": "2811601",
       "cities": [ "iambol" ],
       "shortName": "Техническа гимназия",
@@ -5990,6 +6534,7 @@
     },
     {
       "rank": 545,
+      "adjustedRank": 534,
       "code": "2811603",
       "cities": [ "iambol" ],
       "shortName": "ПГ по туризъм",
@@ -6001,6 +6546,7 @@
     },
     {
       "rank": 546,
+      "adjustedRank": 535,
       "code": "1500138",
       "cities": [ "pleven" ],
       "shortName": "СпУ Г. Бенковски",
@@ -6012,6 +6558,7 @@
     },
     {
       "rank": 547,
+      "adjustedRank": 536,
       "code": "102004",
       "cities": [ "bansko" ],
       "shortName": "ПГ лесотехническа",
@@ -6023,6 +6570,7 @@
     },
     {
       "rank": 548,
+      "adjustedRank": 537,
       "code": "2811510",
       "cities": [ "iambol" ],
       "shortName": "СУ Кл. Охридски",
@@ -6034,6 +6582,7 @@
     },
     {
       "rank": 549,
+      "adjustedRank": 538,
       "code": "603067",
       "cities": [ "vratsa" ],
       "shortName": "ПГ по търговия",
@@ -6045,6 +6594,7 @@
     },
     {
       "rank": 550,
+      "adjustedRank": 539,
       "code": "200712",
       "cities": [ "pomorie" ],
       "shortName": "ПГ по туризъм",
@@ -6056,6 +6606,7 @@
     },
     {
       "rank": 551,
+      "adjustedRank": 540,
       "code": "300305",
       "cities": [ "elena" ],
       "shortName": "СУ Иван Момчилов",
@@ -6067,6 +6618,7 @@
     },
     {
       "rank": 552,
+      "adjustedRank": 541,
       "code": "2831609",
       "cities": [ "elhovo" ],
       "shortName": "ПГ Стефан Караджа",
@@ -6078,6 +6630,7 @@
     },
     {
       "rank": 553,
+      "adjustedRank": 542,
       "code": "107090",
       "cities": [ "iakoruda" ],
       "shortName": "СУ Кирил и Методий",
@@ -6089,6 +6642,7 @@
     },
     {
       "rank": 554,
+      "adjustedRank": 543,
       "code": "2204310",
       "cities": [ "sofia" ],
       "shortName": "5 СУ",
@@ -6100,6 +6654,7 @@
     },
     {
       "rank": 555,
+      "adjustedRank": 544,
       "code": "2221430",
       "cities": [ "sofia" ],
       "shortName": "ПГ по трансп. Макгахан",
@@ -6111,6 +6666,7 @@
     },
     {
       "rank": 556,
+      "adjustedRank": 545,
       "code": "2202534",
       "cities": [ "sofia" ],
       "shortName": "Св. Наум",
@@ -6122,6 +6678,7 @@
     },
     {
       "rank": 557,
+      "adjustedRank": 546,
       "code": "1302580",
       "cities": [ "pazardzhik" ],
       "shortName": "ПГ Иван Аксаков",
@@ -6133,6 +6690,7 @@
     },
     {
       "rank": 558,
+      "adjustedRank": 547,
       "code": "1100616",
       "cities": [ "troyan" ],
       "shortName": "ПГ по механоел.",
@@ -6144,6 +6702,7 @@
     },
     {
       "rank": 559,
+      "adjustedRank": 548,
       "code": "2400108",
       "cities": [ "stara-zagora" ],
       "shortName": "СпУ Т. Каблешков",
@@ -6155,6 +6714,7 @@
     },
     {
       "rank": 560,
+      "adjustedRank": 549,
       "code": "1806315",
       "cities": [ "ruse" ],
       "shortName": "ПГ по пром. техн.",
@@ -6166,6 +6726,7 @@
     },
     {
       "rank": 561,
+      "adjustedRank": 550,
       "code": "2400165",
       "cities": [ "stara-zagora" ],
       "shortName": "ПГ по облекло",
@@ -6177,6 +6738,7 @@
     },
     {
       "rank": 562,
+      "adjustedRank": 551,
       "code": "200248",
       "cities": [ "burgas" ],
       "shortName": "ПГ по ел. и ел.",
@@ -6188,6 +6750,7 @@
     },
     {
       "rank": 563,
+      "adjustedRank": 552,
       "code": "2206411",
       "cities": [ "sofia" ],
       "shortName": "ПГ по хран.-вк. техн.",
@@ -6199,6 +6762,7 @@
     },
     {
       "rank": 564,
+      "adjustedRank": 553,
       "code": "201305",
       "cities": [ "tsarevo" ],
       "shortName": "СУ Никола Вапцаров",
@@ -6210,6 +6774,7 @@
     },
     {
       "rank": 565,
+      "adjustedRank": 554,
       "code": "2201078",
       "cities": [ "sofia", "bankiq" ],
       "shortName": "78 СУ",
@@ -6221,6 +6786,7 @@
     },
     {
       "rank": 566,
+      "adjustedRank": 555,
       "code": "1305831",
       "cities": [ "pazardzhik" ],
       "shortName": "СУ П. Берон",
@@ -6232,6 +6798,7 @@
     },
     {
       "rank": 567,
+      "adjustedRank": 556,
       "code": "1702602",
       "cities": [ "razgrad" ],
       "shortName": "Техническа гимназия",
@@ -6243,6 +6810,7 @@
     },
     {
       "rank": 568,
+      "adjustedRank": 557,
       "code": "1002136",
       "cities": [ "dupnitsa" ],
       "shortName": "ПГ С. Королоьов",
@@ -6254,6 +6822,7 @@
     },
     {
       "rank": 569,
+      "adjustedRank": 558,
       "code": "2700047",
       "cities": [ "novi-pazar" ],
       "shortName": "СУ Васил Левски",
@@ -6265,6 +6834,7 @@
     },
     {
       "rank": 570,
+      "adjustedRank": 559,
       "code": "2218192",
       "cities": [ "sofia" ],
       "shortName": "192 СУ",
@@ -6276,6 +6846,7 @@
     },
     {
       "rank": 571,
+      "adjustedRank": 560,
       "code": "400096",
       "cities": [ "beloslav" ],
       "shortName": "СУ Кирил и Методий",
@@ -6287,6 +6858,7 @@
     },
     {
       "rank": 572,
+      "adjustedRank": 561,
       "code": "2700031",
       "cities": [ "shumen" ],
       "shortName": "ПГ по облекло",
@@ -6298,6 +6870,7 @@
     },
     {
       "rank": 573,
+      "adjustedRank": 562,
       "code": "1806302",
       "cities": [ "ruse" ],
       "shortName": "ПГ по дървообр.",
@@ -6309,6 +6882,7 @@
     },
     {
       "rank": 574,
+      "adjustedRank": 563,
       "code": "1403237",
       "cities": [ "pernik" ],
       "shortName": "ПГ по облекло",
@@ -6320,6 +6894,7 @@
     },
     {
       "rank": 575,
+      "adjustedRank": 564,
       "code": "2224121",
       "cities": [ "sofia" ],
       "shortName": "121 СУ",
@@ -6331,6 +6906,7 @@
     },
     {
       "rank": 576,
+      "adjustedRank": 565,
       "code": "2000307",
       "cities": [ "nova-zagora" ],
       "shortName": "ПГ по техника",
@@ -6342,6 +6918,7 @@
     },
     {
       "rank": 577,
+      "adjustedRank": null,
       "code": "2213131",
       "cities": [ "sofia" ],
       "shortName": "131 СУ",
@@ -6353,6 +6930,7 @@
     },
     {
       "rank": 578,
+      "adjustedRank": 566,
       "code": "400036",
       "cities": [ "varna" ],
       "shortName": "СУ Елин Пелин",
@@ -6364,6 +6942,7 @@
     },
     {
       "rank": 579,
+      "adjustedRank": 567,
       "code": "2000118",
       "cities": [ "sliven" ],
       "shortName": "ПГ по електрот.",
@@ -6375,6 +6954,7 @@
     },
     {
       "rank": 580,
+      "adjustedRank": 568,
       "code": "1100331",
       "cities": [ "lovech" ],
       "shortName": "ПГ по икономика",
@@ -6386,6 +6966,7 @@
     },
     {
       "rank": 581,
+      "adjustedRank": 569,
       "code": "1202011",
       "cities": [ "berkovitsa" ],
       "shortName": "Лесотехн. ПГ",
@@ -6397,6 +6978,7 @@
     },
     {
       "rank": 582,
+      "adjustedRank": 570,
       "code": "2208028",
       "cities": [ "sofia" ],
       "shortName": "28 СУ",
@@ -6408,6 +6990,7 @@
     },
     {
       "rank": 583,
+      "adjustedRank": 571,
       "code": "300814",
       "cities": [ "svishtov" ],
       "shortName": "СУ Цв. Радославов",
@@ -6419,6 +7002,7 @@
     },
     {
       "rank": 584,
+      "adjustedRank": null,
       "code": "2218606",
       "cities": [ "sofia" ],
       "shortName": "СУ Св. Иван Рилски",
@@ -6430,6 +7014,7 @@
     },
     {
       "rank": 585,
+      "adjustedRank": 572,
       "code": "1900505",
       "cities": [ "silistra" ],
       "shortName": "ПГ по механотехника",
@@ -6441,6 +7026,7 @@
     },
     {
       "rank": 586,
+      "adjustedRank": 573,
       "code": "2223055",
       "cities": [ "sofia" ],
       "shortName": "55 СУ",
@@ -6452,6 +7038,7 @@
     },
     {
       "rank": 587,
+      "adjustedRank": 574,
       "code": "1100322",
       "cities": [ "lovech" ],
       "shortName": "ПГ по механ.",
@@ -6463,6 +7050,7 @@
     },
     {
       "rank": 588,
+      "adjustedRank": 575,
       "code": "1500218",
       "cities": [ "cherven-briag" ],
       "shortName": "ПГ по механоел.",
@@ -6474,6 +7062,7 @@
     },
     {
       "rank": 589,
+      "adjustedRank": 576,
       "code": "300507",
       "cities": [ "liaskovets" ],
       "shortName": "СУ Максим Райкович",
@@ -6485,6 +7074,7 @@
     },
     {
       "rank": 590,
+      "adjustedRank": 577,
       "code": "1603708",
       "cities": [ "hisaria" ],
       "shortName": "СУ Хр. Смирненски",
@@ -6496,6 +7086,7 @@
     },
     {
       "rank": 591,
+      "adjustedRank": 578,
       "code": "2100111",
       "cities": [ "smolian" ],
       "shortName": "ПГ по техника",
@@ -6507,6 +7098,7 @@
     },
     {
       "rank": 592,
+      "adjustedRank": 579,
       "code": "2601026",
       "cities": [ "haskovo" ],
       "shortName": "СУ П. Хилендарски",
@@ -6518,6 +7110,7 @@
     },
     {
       "rank": 593,
+      "adjustedRank": 580,
       "code": "1702607",
       "cities": [ "razgrad" ],
       "shortName": "ПГ по транспорт",
@@ -6529,6 +7122,7 @@
     },
     {
       "rank": 594,
+      "adjustedRank": 581,
       "code": "1701401",
       "cities": [ "isperih" ],
       "shortName": "ПГ Васил Левски",
@@ -6540,6 +7134,7 @@
     },
     {
       "rank": 595,
+      "adjustedRank": 582,
       "code": "2212079",
       "cities": [ "sofia" ],
       "shortName": "79 СУ",
@@ -6551,6 +7146,7 @@
     },
     {
       "rank": 596,
+      "adjustedRank": 583,
       "code": "1500146",
       "cities": [ "pleven" ],
       "shortName": "ПГ по лоз. и вин.",
@@ -6562,6 +7158,7 @@
     },
     {
       "rank": 597,
+      "adjustedRank": 584,
       "code": "1702629",
       "cities": [ "razgrad" ],
       "shortName": "ПГ по облекло",
@@ -6573,6 +7170,7 @@
     },
     {
       "rank": 598,
+      "adjustedRank": 585,
       "code": "1701405",
       "cities": [ "isperih" ],
       "shortName": "ПГ по сел. стоп.",
@@ -6584,6 +7182,7 @@
     },
     {
       "rank": 599,
+      "adjustedRank": 586,
       "code": "2207068",
       "cities": [ "sofia" ],
       "shortName": "68 СУ",
@@ -6595,6 +7194,7 @@
     },
     {
       "rank": 600,
+      "adjustedRank": 587,
       "code": "500201",
       "cities": [ "belogradchik" ],
       "shortName": "СУ Христо Ботев",
@@ -6606,6 +7206,7 @@
     },
     {
       "rank": 601,
+      "adjustedRank": 588,
       "code": "2224047",
       "cities": [ "sofia" ],
       "shortName": "47 СУ",
@@ -6617,6 +7218,7 @@
     },
     {
       "rank": 602,
+      "adjustedRank": 589,
       "code": "1202036",
       "cities": [ "lom" ],
       "shortName": "ПГ по хранене",
@@ -6628,6 +7230,7 @@
     },
     {
       "rank": 603,
+      "adjustedRank": 590,
       "code": "2404108",
       "cities": [ "gulubovo" ],
       "shortName": "ПГ по енергетика",
@@ -6639,6 +7242,7 @@
     },
     {
       "rank": 604,
+      "adjustedRank": 591,
       "code": "1403235",
       "cities": [ "pernik" ],
       "shortName": "ПГ Мария Кюри",
@@ -6650,6 +7254,7 @@
     },
     {
       "rank": 605,
+      "adjustedRank": 592,
       "code": "2707033",
       "cities": [ "shumen" ],
       "shortName": "ПГ по механот.",
@@ -6661,6 +7266,7 @@
     },
     {
       "rank": 606,
+      "adjustedRank": 593,
       "code": "2300505",
       "cities": [ "samokov" ],
       "shortName": "ПГ по туризъм",
@@ -6672,6 +7278,7 @@
     },
     {
       "rank": 607,
+      "adjustedRank": 594,
       "code": "2218071",
       "cities": [ "sofia" ],
       "shortName": "71 СУ",
@@ -6683,6 +7290,7 @@
     },
     {
       "rank": 608,
+      "adjustedRank": 595,
       "code": "2203140",
       "cities": [ "sofia" ],
       "shortName": "140 СУ",
@@ -6694,6 +7302,7 @@
     },
     {
       "rank": 609,
+      "adjustedRank": 596,
       "code": "2500203",
       "cities": [ "turgovishte" ],
       "shortName": "Спортно у-ще",
@@ -6705,6 +7314,7 @@
     },
     {
       "rank": 610,
+      "adjustedRank": 597,
       "code": "1500151",
       "cities": [ "pleven" ],
       "shortName": "ПГ по под/стр/тр. техн.",
@@ -6716,6 +7326,7 @@
     },
     {
       "rank": 611,
+      "adjustedRank": 598,
       "code": "2500605",
       "cities": [ "turgovishte" ],
       "shortName": "ПГ по земеделие",
@@ -6727,6 +7338,7 @@
     },
     {
       "rank": 612,
+      "adjustedRank": 599,
       "code": "1690549",
       "cities": [ "plovdiv" ],
       "shortName": "СУ Конст. Величков",
@@ -6738,6 +7350,7 @@
     },
     {
       "rank": 613,
+      "adjustedRank": 600,
       "code": "2500603",
       "cities": [ "turgovishte" ],
       "shortName": "ПГ по електрот.",
@@ -6749,6 +7362,7 @@
     },
     {
       "rank": 614,
+      "adjustedRank": 601,
       "code": "2300302",
       "cities": [ "zlatitsa" ],
       "shortName": "ПГ Златица",
@@ -6760,6 +7374,7 @@
     },
     {
       "rank": 615,
+      "adjustedRank": 602,
       "code": "2811604",
       "cities": [ "iambol" ],
       "shortName": "ПГ по земеделие",
@@ -6771,6 +7386,7 @@
     },
     {
       "rank": 616,
+      "adjustedRank": 603,
       "code": "102017",
       "cities": [ "razlog" ],
       "shortName": "ПГ по механ. на с. стоп.",
@@ -6782,6 +7398,7 @@
     },
     {
       "rank": 617,
+      "adjustedRank": 604,
       "code": "1500135",
       "cities": [ "pleven" ],
       "shortName": "СУ Пейо Яворов",
@@ -6793,6 +7410,7 @@
     },
     {
       "rank": 618,
+      "adjustedRank": 605,
       "code": "2206003",
       "cities": [ "sofia" ],
       "shortName": "3 СУ",
@@ -6804,6 +7422,7 @@
     },
     {
       "rank": 619,
+      "adjustedRank": 606,
       "code": "2202612",
       "cities": [ "sofia" ],
       "shortName": "У-ще за ученици с увр. слух",
@@ -6815,6 +7434,7 @@
     },
     {
       "rank": 620,
+      "adjustedRank": 607,
       "code": "1806311",
       "cities": [ "ruse" ],
       "shortName": "ПГ по корабостр.",
@@ -6826,6 +7446,7 @@
     },
     {
       "rank": 621,
+      "adjustedRank": 608,
       "code": "2700064",
       "cities": [ "shumen" ],
       "shortName": "ПГ по селско стоп.",
@@ -6837,6 +7458,7 @@
     },
     {
       "rank": 622,
+      "adjustedRank": null,
       "code": "1690906",
       "cities": [ "plovdiv" ],
       "shortName": "Едмънд Бърк",
@@ -6848,6 +7470,7 @@
     },
     {
       "rank": 623,
+      "adjustedRank": 609,
       "code": "300220",
       "cities": [ "gorna-oryahovitsa" ],
       "shortName": "ПГ по хранит. техн.",
@@ -6859,6 +7482,7 @@
     },
     {
       "rank": 624,
+      "adjustedRank": 610,
       "code": "1690448",
       "cities": [ "plovdiv" ],
       "shortName": "СУ Христо Данов",
@@ -6870,6 +7494,7 @@
     },
     {
       "rank": 625,
+      "adjustedRank": 611,
       "code": "1900508",
       "cities": [ "silistra" ],
       "shortName": "ПГ по строителство",
@@ -6881,6 +7506,7 @@
     },
     {
       "rank": 626,
+      "adjustedRank": 612,
       "code": "700204",
       "cities": [ "drianovo" ],
       "shortName": "СУ Максим Райкович",
@@ -6892,6 +7518,7 @@
     },
     {
       "rank": 627,
+      "adjustedRank": 613,
       "code": "2000109",
       "cities": [ "sliven" ],
       "shortName": "СУ Пейо Яворов",
@@ -6903,6 +7530,7 @@
     },
     {
       "rank": 628,
+      "adjustedRank": 614,
       "code": "2601025",
       "cities": [ "haskovo" ],
       "shortName": "СУ Васил Левски",
@@ -6914,6 +7542,7 @@
     },
     {
       "rank": 629,
+      "adjustedRank": 615,
       "code": "700114",
       "cities": [ "gabrovo" ],
       "shortName": "СУ Райчо Каролев",
@@ -6925,6 +7554,7 @@
     },
     {
       "rank": 630,
+      "adjustedRank": 616,
       "code": "2400111",
       "cities": [ "stara-zagora" ],
       "shortName": "ПГ по механот.",
@@ -6936,6 +7566,7 @@
     },
     {
       "rank": 631,
+      "adjustedRank": 617,
       "code": "2206409",
       "cities": [ "sofia" ],
       "shortName": "ПГ по трансп. и енерг.",
@@ -6947,6 +7578,7 @@
     },
     {
       "rank": 632,
+      "adjustedRank": 618,
       "code": "1500147",
       "cities": [ "pleven" ],
       "shortName": "ПГ по облекло",
@@ -6958,6 +7590,7 @@
     },
     {
       "rank": 633,
+      "adjustedRank": 619,
       "code": "1304332",
       "cities": [ "pazardzhik" ],
       "shortName": "ПГ по строителство",
@@ -6969,6 +7602,7 @@
     },
     {
       "rank": 634,
+      "adjustedRank": 620,
       "code": "1500217",
       "cities": [ "cherven-briag" ],
       "shortName": "ПГ по хран. техн.",
@@ -6980,6 +7614,7 @@
     },
     {
       "rank": 635,
+      "adjustedRank": 621,
       "code": "2700231",
       "cities": [ "shumen" ],
       "shortName": "СУ Васил Левски",
@@ -6991,6 +7626,7 @@
     },
     {
       "rank": 636,
+      "adjustedRank": 622,
       "code": "2811613",
       "cities": [ "iambol" ],
       "shortName": "ПГ по лека пром.",
@@ -7002,6 +7638,7 @@
     },
     {
       "rank": 637,
+      "adjustedRank": 623,
       "code": "1601361",
       "cities": [ "karlovo" ],
       "shortName": "ПГ по жп транспорт",
@@ -7013,6 +7650,7 @@
     },
     {
       "rank": 638,
+      "adjustedRank": 624,
       "code": "1001360",
       "cities": [ "kiustendil" ],
       "shortName": "Техн. гимназия",
@@ -7024,6 +7662,7 @@
     },
     {
       "rank": 639,
+      "adjustedRank": 625,
       "code": "2400112",
       "cities": [ "stara-zagora" ],
       "shortName": "ПГ по електрот.",
@@ -7035,6 +7674,7 @@
     },
     {
       "rank": 640,
+      "adjustedRank": 626,
       "code": "2811608",
       "cities": [ "iambol" ],
       "shortName": "ПГ по подемна техн.",
@@ -7046,6 +7686,7 @@
     },
     {
       "rank": 641,
+      "adjustedRank": 627,
       "code": "1100514",
       "cities": [ "teteven" ],
       "shortName": "ПГ по строителство",
@@ -7057,6 +7698,7 @@
     },
     {
       "rank": 642,
+      "adjustedRank": 628,
       "code": "2000402",
       "cities": [ "tvurditsa" ],
       "shortName": "СУ Неофит Рилски",
@@ -7068,6 +7710,7 @@
     },
     {
       "rank": 643,
+      "adjustedRank": 629,
       "code": "603078",
       "cities": [ "kozlodui" ],
       "shortName": "ПГ по ядрена енерг.",
@@ -7079,6 +7722,7 @@
     },
     {
       "rank": 644,
+      "adjustedRank": null,
       "code": "603140",
       "cities": [ "vratsa" ],
       "shortName": "СУ Мито Орозов",
@@ -7090,6 +7734,7 @@
     },
     {
       "rank": 645,
+      "adjustedRank": 630,
       "code": "603101",
       "cities": [ "mezdra" ],
       "shortName": "ПГ Васил Левски",
@@ -7101,6 +7746,7 @@
     },
     {
       "rank": 646,
+      "adjustedRank": 631,
       "code": "1001420",
       "cities": [ "kiustendil" ],
       "shortName": "ПГ по туризъм",
@@ -7112,6 +7758,7 @@
     },
     {
       "rank": 647,
+      "adjustedRank": 632,
       "code": "2203074",
       "cities": [ "sofia" ],
       "shortName": "74 СУ",
@@ -7123,6 +7770,7 @@
     },
     {
       "rank": 648,
+      "adjustedRank": 633,
       "code": "2602023",
       "cities": [ "dimitrovgrad" ],
       "shortName": "ПГ А. Златаров",
@@ -7134,6 +7782,7 @@
     },
     {
       "rank": 649,
+      "adjustedRank": 634,
       "code": "1900507",
       "cities": [ "silistra" ],
       "shortName": "Земеделска гимназия",
@@ -7145,6 +7794,7 @@
     },
     {
       "rank": 650,
+      "adjustedRank": null,
       "code": "2208017",
       "cities": [ "sofia" ],
       "shortName": "17 СУ",
@@ -7156,6 +7806,7 @@
     },
     {
       "rank": 651,
+      "adjustedRank": 635,
       "code": "1403657",
       "cities": [ "radomir" ],
       "shortName": "ПГ по транспорт",
@@ -7167,6 +7818,7 @@
     },
     {
       "rank": 652,
+      "adjustedRank": 636,
       "code": "2216422",
       "cities": [ "sofia" ],
       "shortName": "ПГ по механоел.",
@@ -7178,6 +7830,7 @@
     },
     {
       "rank": 653,
+      "adjustedRank": 637,
       "code": "603100",
       "cities": [ "mezdra" ],
       "shortName": "ПГ Ал. Константинов",
@@ -7189,6 +7842,7 @@
     },
     {
       "rank": 654,
+      "adjustedRank": 638,
       "code": "909114",
       "cities": [ "kurdzhali" ],
       "shortName": "ПГ по строит.",
@@ -7200,6 +7854,7 @@
     },
     {
       "rank": 655,
+      "adjustedRank": 639,
       "code": "100070",
       "cities": [ "blagoevgrad" ],
       "shortName": "СУ К. Шапкарев",
@@ -7211,6 +7866,7 @@
     },
     {
       "rank": 656,
+      "adjustedRank": 640,
       "code": "603071",
       "cities": [ "vratsa" ],
       "shortName": "ПГ Д. Хаджитошин",
@@ -7222,6 +7878,7 @@
     },
     {
       "rank": 657,
+      "adjustedRank": 641,
       "code": "909109",
       "cities": [ "kurdzhali" ],
       "shortName": "ПГ по туризъм",
@@ -7233,6 +7890,7 @@
     },
     {
       "rank": 658,
+      "adjustedRank": 642,
       "code": "102060",
       "cities": [ "blagoevgrad" ],
       "shortName": "СУ Г. Измирлиев",
@@ -7244,6 +7902,7 @@
     },
     {
       "rank": 659,
+      "adjustedRank": 643,
       "code": "2217066",
       "cities": [ "sofia" ],
       "shortName": "66 СУ",
@@ -7255,6 +7914,7 @@
     },
     {
       "rank": 660,
+      "adjustedRank": 644,
       "code": "503242",
       "cities": [ "vidin" ],
       "shortName": "СУ Петко Славейков",
@@ -7266,6 +7926,7 @@
     },
     {
       "rank": 661,
+      "adjustedRank": 645,
       "code": "402172",
       "cities": [ "varna" ],
       "shortName": "ПГ по горско стопанство",
@@ -7277,6 +7938,7 @@
     },
     {
       "rank": 662,
+      "adjustedRank": 646,
       "code": "1806401",
       "cities": [ "ruse" ],
       "shortName": "СпУ Ат. Узунов",
@@ -7288,6 +7950,7 @@
     },
     {
       "rank": 663,
+      "adjustedRank": 647,
       "code": "102009",
       "cities": [ "petrich" ],
       "shortName": "ПГ по механоел.",
@@ -7299,6 +7962,7 @@
     },
     {
       "rank": 664,
+      "adjustedRank": 648,
       "code": "1100316",
       "cities": [ "lovech" ],
       "shortName": "СУ Тодор Кирков",
@@ -7310,6 +7974,7 @@
     },
     {
       "rank": 665,
+      "adjustedRank": 649,
       "code": "800012",
       "cities": [ "dobrich" ],
       "shortName": "Спортно у-ще",
@@ -7321,6 +7986,7 @@
     },
     {
       "rank": 666,
+      "adjustedRank": 650,
       "code": "2400261",
       "cities": [ "kazanluk" ],
       "shortName": "ПГ П. Стайнов",
@@ -7332,6 +7998,7 @@
     },
     {
       "rank": 667,
+      "adjustedRank": null,
       "code": "2100105",
       "cities": [ "smolian" ],
       "shortName": "СУ Отец Паисий",
@@ -7343,6 +8010,7 @@
     },
     {
       "rank": 668,
+      "adjustedRank": 651,
       "code": "1302979",
       "cities": [ "velingrad" ],
       "shortName": "ОУ Неофит Рилски",
@@ -7354,6 +8022,7 @@
     },
     {
       "rank": 669,
+      "adjustedRank": 652,
       "code": "2213039",
       "cities": [ "sofia" ],
       "shortName": "39 СУ",
@@ -7365,6 +8034,7 @@
     },
     {
       "rank": 670,
+      "adjustedRank": 653,
       "code": "1690642",
       "cities": [ "plovdiv" ],
       "shortName": "СУ Димитър Матевски",
@@ -7376,6 +8046,7 @@
     },
     {
       "rank": 671,
+      "adjustedRank": 654,
       "code": "2204403",
       "cities": [ "sofia" ],
       "shortName": "ПГ по текстил",
@@ -7387,6 +8058,7 @@
     },
     {
       "rank": 672,
+      "adjustedRank": 655,
       "code": "800016",
       "cities": [ "dobrich" ],
       "shortName": "СУ Л. Каравелов",
@@ -7398,6 +8070,7 @@
     },
     {
       "rank": 673,
+      "adjustedRank": 656,
       "code": "1001390",
       "cities": [ "kiustendil" ],
       "shortName": "Спортно у-ще",
@@ -7409,6 +8082,7 @@
     },
     {
       "rank": 674,
+      "adjustedRank": 657,
       "code": "2301044",
       "cities": [ "botevgrad" ],
       "shortName": "Техническа ПГ",
@@ -7420,6 +8094,7 @@
     },
     {
       "rank": 675,
+      "adjustedRank": 658,
       "code": "2000117",
       "cities": [ "sliven" ],
       "shortName": "ПГ по текстил",
@@ -7431,6 +8106,7 @@
     },
     {
       "rank": 676,
+      "adjustedRank": 659,
       "code": "1000018",
       "cities": [ "bobov-dol" ],
       "shortName": "СУ Петър Берон",
@@ -7442,6 +8118,7 @@
     },
     {
       "rank": 677,
+      "adjustedRank": 660,
       "code": "1690473",
       "cities": [ "plovdiv" ],
       "shortName": "ПГ по кожени изедлия",
@@ -7453,6 +8130,7 @@
     },
     {
       "rank": 678,
+      "adjustedRank": 661,
       "code": "1602907",
       "cities": [ "stanbiliiski" ],
       "shortName": "СУ Отец Паисий",
@@ -7464,6 +8142,7 @@
     },
     {
       "rank": 679,
+      "adjustedRank": 662,
       "code": "2214015",
       "cities": [ "sofia" ],
       "shortName": "15 СУ",
@@ -7475,6 +8154,7 @@
     },
     {
       "rank": 680,
+      "adjustedRank": 663,
       "code": "1690157",
       "cities": [ "plovdiv" ],
       "shortName": "СУ Цар Симеон",
@@ -7486,6 +8166,7 @@
     },
     {
       "rank": 681,
+      "adjustedRank": 664,
       "code": "200250",
       "cities": [ "burgas" ],
       "shortName": "Проф. техн. гимназия",
@@ -7497,6 +8178,7 @@
     },
     {
       "rank": 682,
+      "adjustedRank": 665,
       "code": "200227",
       "cities": [ "burgas" ],
       "shortName": "СУ Иван Вазов",
@@ -7508,6 +8190,7 @@
     },
     {
       "rank": 683,
+      "adjustedRank": 666,
       "code": "1403217",
       "cities": [ "pernik" ],
       "shortName": "СпУ Олимпиец",
@@ -7519,6 +8202,7 @@
     },
     {
       "rank": 684,
+      "adjustedRank": 667,
       "code": "400039",
       "cities": [ "varna" ],
       "shortName": "СУ Пейо Яворов",
@@ -7530,6 +8214,7 @@
     },
     {
       "rank": 685,
+      "adjustedRank": 668,
       "code": "1701602",
       "cities": [ "kubrat" ],
       "shortName": "ПГ по профес.",
@@ -7541,6 +8226,7 @@
     },
     {
       "rank": 686,
+      "adjustedRank": 669,
       "code": "2000306",
       "cities": [ "nova-zagora" ],
       "shortName": "ПГ по селско стоп.",
@@ -7552,6 +8238,7 @@
     },
     {
       "rank": 687,
+      "adjustedRank": 670,
       "code": "1201023",
       "cities": [ "montana" ],
       "shortName": "ПГ по лека пром.",
@@ -7563,6 +8250,7 @@
     },
     {
       "rank": 688,
+      "adjustedRank": 671,
       "code": "2300284",
       "cities": [ "botevgrad" ],
       "shortName": "ПГ по техника",
@@ -7574,6 +8262,7 @@
     },
     {
       "rank": 689,
+      "adjustedRank": 672,
       "code": "2217149",
       "cities": [ "sofia" ],
       "shortName": "149 СУ",
@@ -7585,6 +8274,7 @@
     },
     {
       "rank": 690,
+      "adjustedRank": 673,
       "code": "400136",
       "cities": [ "dulgopol" ],
       "shortName": "СУ Кл. Охридски",
@@ -7596,6 +8286,7 @@
     },
     {
       "rank": 691,
+      "adjustedRank": 674,
       "code": "800021",
       "cities": [ "dobrich" ],
       "shortName": "ПГ по техника",
@@ -7607,6 +8298,7 @@
     },
     {
       "rank": 692,
+      "adjustedRank": null,
       "code": "200251",
       "cities": [ "burgas" ],
       "shortName": "ПГ по дървообр.",
@@ -7618,6 +8310,7 @@
     },
     {
       "rank": 693,
+      "adjustedRank": 675,
       "code": "909103",
       "cities": [ "kurdzhali" ],
       "shortName": "СУ Йордан Йовков",
@@ -7629,6 +8322,7 @@
     },
     {
       "rank": 694,
+      "adjustedRank": 676,
       "code": "102010",
       "cities": [ "bansko" ],
       "shortName": "ПГ по туризъм",
@@ -7640,6 +8334,7 @@
     },
     {
       "rank": 695,
+      "adjustedRank": 677,
       "code": "2611018",
       "cities": [ "topolovgrad" ],
       "shortName": "СУ Петър Берон",
@@ -7651,6 +8346,7 @@
     },
     {
       "rank": 696,
+      "adjustedRank": 678,
       "code": "2000122",
       "cities": [ "sliven" ],
       "shortName": "ПГ по стр. и геод.",
@@ -7662,6 +8358,7 @@
     },
     {
       "rank": 697,
+      "adjustedRank": 679,
       "code": "2520601",
       "cities": [ "omurtag" ],
       "shortName": "ПГ по транспорт",
@@ -7673,6 +8370,7 @@
     },
     {
       "rank": 698,
+      "adjustedRank": 680,
       "code": "200233",
       "cities": [ "burgas" ],
       "shortName": "СУ Петко Росен",
@@ -7684,6 +8382,7 @@
     },
     {
       "rank": 699,
+      "adjustedRank": 681,
       "code": "500108",
       "cities": [ "vidin" ],
       "shortName": "ПТГ",
@@ -7695,6 +8394,7 @@
     },
     {
       "rank": 700,
+      "adjustedRank": 682,
       "code": "400098",
       "cities": [ "beloslav" ],
       "shortName": "ПГ Св. Димитър Солунски",
@@ -7706,6 +8406,7 @@
     },
     {
       "rank": 701,
+      "adjustedRank": 683,
       "code": "1690573",
       "cities": [ "plovdiv" ],
       "shortName": "ПГ по машиностроене",
@@ -7717,6 +8418,7 @@
     },
     {
       "rank": 702,
+      "adjustedRank": 684,
       "code": "1806306",
       "cities": [ "ruse" ],
       "shortName": "ПГ по механот.",
@@ -7728,6 +8430,7 @@
     },
     {
       "rank": 703,
+      "adjustedRank": 685,
       "code": "2204405",
       "cities": [ "sofia" ],
       "shortName": "ПГ по под/стр/тр. техн.",
@@ -7739,6 +8442,7 @@
     },
     {
       "rank": 704,
+      "adjustedRank": 686,
       "code": "1500145",
       "cities": [ "pleven" ],
       "shortName": "ПГ по транспорт",
@@ -7750,6 +8454,7 @@
     },
     {
       "rank": 705,
+      "adjustedRank": 687,
       "code": "2300327",
       "cities": [ "etropole" ],
       "shortName": "ПГ Тодор Пеев",
@@ -7761,6 +8466,7 @@
     },
     {
       "rank": 706,
+      "adjustedRank": 688,
       "code": "200609",
       "cities": [ "nesebar" ],
       "shortName": "ПГ по туризъм",
@@ -7772,6 +8478,7 @@
     },
     {
       "rank": 707,
+      "adjustedRank": 689,
       "code": "1702604",
       "cities": [ "razgrad" ],
       "shortName": "ПГ по селско стоп.",
@@ -7783,6 +8490,7 @@
     },
     {
       "rank": 708,
+      "adjustedRank": 690,
       "code": "2208123",
       "cities": [ "sofia" ],
       "shortName": "123 СУ",
@@ -7794,6 +8502,7 @@
     },
     {
       "rank": 709,
+      "adjustedRank": 691,
       "code": "1209003",
       "cities": [ "lom" ],
       "shortName": "СУ Отец Паисий",
@@ -7805,6 +8514,7 @@
     },
     {
       "rank": 710,
+      "adjustedRank": 692,
       "code": "2603009",
       "cities": [ "harmanli" ],
       "shortName": "ПГ по електропром.",
@@ -7816,6 +8526,7 @@
     },
     {
       "rank": 711,
+      "adjustedRank": 693,
       "code": "103133",
       "cities": [ "simitli" ],
       "shortName": "СУ Кирил и Методий",
@@ -7827,6 +8538,7 @@
     },
     {
       "rank": 712,
+      "adjustedRank": 694,
       "code": "2500604",
       "cities": [ "turgovishte" ],
       "shortName": "ПГ по туризъм",
@@ -7838,6 +8550,7 @@
     },
     {
       "rank": 713,
+      "adjustedRank": 695,
       "code": "1301911",
       "cities": [ "pazardzhik" ],
       "shortName": "ПГ по селско стоп.",
@@ -7849,6 +8562,7 @@
     },
     {
       "rank": 714,
+      "adjustedRank": 696,
       "code": "1600617",
       "cities": [ "asenovgrad" ],
       "shortName": "ПГ по хран.-вк. техн.",
@@ -7860,6 +8574,7 @@
     },
     {
       "rank": 715,
+      "adjustedRank": 697,
       "code": "200413",
       "cities": [ "karnobat" ],
       "shortName": "ПГ по селско стоп.",
@@ -7871,6 +8586,7 @@
     },
     {
       "rank": 716,
+      "adjustedRank": 698,
       "code": "2000201",
       "cities": [ "kotel" ],
       "shortName": "СУ Георги Раковски",
@@ -7882,6 +8598,7 @@
     },
     {
       "rank": 717,
+      "adjustedRank": 699,
       "code": "400037",
       "cities": [ "varna" ],
       "shortName": "СУ Л. Каравелов",
@@ -7893,6 +8610,7 @@
     },
     {
       "rank": 718,
+      "adjustedRank": 700,
       "code": "200252",
       "cities": [ "burgas" ],
       "shortName": "ПГ по сград. и инст.",
@@ -7904,6 +8622,7 @@
     },
     {
       "rank": 719,
+      "adjustedRank": 701,
       "code": "2601027",
       "cities": [ "haskovo" ],
       "shortName": "СпУ Ст. Караджа",
@@ -7915,6 +8634,7 @@
     },
     {
       "rank": 720,
+      "adjustedRank": 702,
       "code": "2400110",
       "cities": [ "stara-zagora" ],
       "shortName": "Вечерно СУ",
@@ -7926,6 +8646,7 @@
     },
     {
       "rank": 721,
+      "adjustedRank": 703,
       "code": "2602018",
       "cities": [ "dimitrovgrad" ],
       "shortName": "СУ Л. Каравелов",
@@ -7937,6 +8658,7 @@
     },
     {
       "rank": 722,
+      "adjustedRank": 704,
       "code": "2207069",
       "cities": [ "sofia" ],
       "shortName": "69 СУ",
@@ -7948,6 +8670,7 @@
     },
     {
       "rank": 723,
+      "adjustedRank": 705,
       "code": "200114",
       "cities": [ "aitos" ],
       "shortName": "ПГ по селско стоп.",
@@ -7959,6 +8682,7 @@
     },
     {
       "rank": 724,
+      "adjustedRank": 706,
       "code": "1601403",
       "cities": [ "krichim" ],
       "shortName": "СУ Петко Славейков",
@@ -7970,6 +8694,7 @@
     },
     {
       "rank": 725,
+      "adjustedRank": 707,
       "code": "100052",
       "cities": [ "blagoevgrad" ],
       "shortName": "ПГ Ичко Бойчев",
@@ -7981,6 +8706,7 @@
     },
     {
       "rank": 726,
+      "adjustedRank": 708,
       "code": "2100402",
       "cities": [ "devin" ],
       "shortName": "ПГ по електротехника",
@@ -7992,6 +8718,7 @@
     },
     {
       "rank": 727,
+      "adjustedRank": 709,
       "code": "1000051",
       "cities": [ "dupnitsa" ],
       "shortName": "ПГ по транспорт",
@@ -8003,6 +8730,7 @@
     },
     {
       "rank": 728,
+      "adjustedRank": 710,
       "code": "2700103",
       "cities": [ "veliki-preslav" ],
       "shortName": "СУ Ч. Храбър",
@@ -8014,6 +8742,7 @@
     },
     {
       "rank": 729,
+      "adjustedRank": 711,
       "code": "1500706",
       "cities": [ "belene" ],
       "shortName": "ПГ по ядрена енерг.",
@@ -8025,6 +8754,7 @@
     },
     {
       "rank": 730,
+      "adjustedRank": 712,
       "code": "2400119",
       "cities": [ "stara-zagora" ],
       "shortName": "ПГ по строит и дърв.",
@@ -8036,6 +8766,7 @@
     },
     {
       "rank": 731,
+      "adjustedRank": 713,
       "code": "1201034",
       "cities": [ "montana" ],
       "shortName": "6 СУ",
@@ -8047,6 +8778,7 @@
     },
     {
       "rank": 732,
+      "adjustedRank": 714,
       "code": "1201011",
       "cities": [ "montana" ],
       "shortName": "7 СУ",
@@ -8058,6 +8790,7 @@
     },
     {
       "rank": 733,
+      "adjustedRank": 715,
       "code": "800328",
       "cities": [ "dobrich" ],
       "shortName": "ПГ по транспорт",
@@ -8069,6 +8802,7 @@
     },
     {
       "rank": 734,
+      "adjustedRank": 716,
       "code": "2303582",
       "cities": [ "dolna-bania" ],
       "shortName": "ПГ Христо Ботев",
@@ -8080,6 +8814,7 @@
     },
     {
       "rank": 735,
+      "adjustedRank": 717,
       "code": "2601036",
       "cities": [ "haskovo" ],
       "shortName": "ПГ по механоел.",
@@ -8091,6 +8826,7 @@
     },
     {
       "rank": 736,
+      "adjustedRank": 718,
       "code": "2221094",
       "cities": [ "sofia" ],
       "shortName": "94 СУ",
@@ -8102,6 +8838,7 @@
     },
     {
       "rank": 737,
+      "adjustedRank": 719,
       "code": "403538",
       "cities": [ "varna" ],
       "shortName": "СУ Неофит Бозавели",
@@ -8113,6 +8850,7 @@
     },
     {
       "rank": 738,
+      "adjustedRank": 720,
       "code": "2700217",
       "cities": [ "shumen" ],
       "shortName": "Духовно училище",
@@ -8124,6 +8862,7 @@
     },
     {
       "rank": 739,
+      "adjustedRank": 721,
       "code": "200255",
       "cities": [ "burgas" ],
       "shortName": "Вечерно СУ",
@@ -8135,6 +8874,7 @@
     },
     {
       "rank": 740,
+      "adjustedRank": 722,
       "code": "1403204",
       "cities": [ "pernik" ],
       "shortName": "ОбУ Темелко Ненков",
@@ -8146,6 +8886,7 @@
     },
     {
       "rank": 741,
+      "adjustedRank": 723,
       "code": "1302993",
       "cities": [ "septemvri" ],
       "shortName": "ПГ по мех. на земеделието",
@@ -8157,6 +8898,7 @@
     },
     {
       "rank": 742,
+      "adjustedRank": 724,
       "code": "1302961",
       "cities": [ "pazardzhik" ],
       "shortName": "ПГ по хим. и хр. техн.",
@@ -8168,6 +8910,7 @@
     },
     {
       "rank": 743,
+      "adjustedRank": 725,
       "code": "1500136",
       "cities": [ "pleven" ],
       "shortName": "СУ Хр. Смирненски",
@@ -8179,6 +8922,7 @@
     },
     {
       "rank": 744,
+      "adjustedRank": 726,
       "code": "1806305",
       "cities": [ "ruse" ],
       "shortName": "ПГ по селско стоп.",
@@ -8190,6 +8934,7 @@
     },
     {
       "rank": 745,
+      "adjustedRank": 727,
       "code": "1501110",
       "cities": [ "knezha" ],
       "shortName": "ПГ по механоел.",
@@ -8201,6 +8946,7 @@
     },
     {
       "rank": 746,
+      "adjustedRank": 728,
       "code": "909110",
       "cities": [ "kurdzhali" ],
       "shortName": "ПГ В. Левски",
@@ -8212,6 +8958,7 @@
     },
     {
       "rank": 747,
+      "adjustedRank": 729,
       "code": "300222",
       "cities": [ "gorna-oryahovitsa" ],
       "shortName": "ПГ по ЖП транспорт",
@@ -8223,6 +8970,7 @@
     },
     {
       "rank": 748,
+      "adjustedRank": 730,
       "code": "2601035",
       "cities": [ "haskovo" ],
       "shortName": "ПГ по лека пром.",
@@ -8234,6 +8982,7 @@
     },
     {
       "rank": 749,
+      "adjustedRank": 731,
       "code": "200231",
       "cities": [ "burgas" ],
       "shortName": "СУ Добри Чинтулов",
@@ -8245,6 +8994,7 @@
     },
     {
       "rank": 750,
+      "adjustedRank": 732,
       "code": "2700282",
       "cities": [ "veliki-preslav" ],
       "shortName": "ПГ по селско стоп.",
@@ -8256,6 +9006,7 @@
     },
     {
       "rank": 751,
+      "adjustedRank": 733,
       "code": "2210117",
       "cities": [ "sofia" ],
       "shortName": "117 СУ",
@@ -8267,6 +9018,7 @@
     },
     {
       "rank": 752,
+      "adjustedRank": 734,
       "code": "1002451",
       "cities": [ "bobov-dol" ],
       "shortName": "ПГ по проф. обуч.",
@@ -8278,6 +9030,7 @@
     },
     {
       "rank": 753,
+      "adjustedRank": 735,
       "code": "909603",
       "cities": [ "momchilgrad" ],
       "shortName": "ПГ по туризъм",
@@ -8289,6 +9042,7 @@
     },
     {
       "rank": 754,
+      "adjustedRank": 736,
       "code": "400127",
       "cities": [ "dolni-chiflik" ],
       "shortName": "ПГ по сел. стоп.",
@@ -8300,6 +9054,7 @@
     },
     {
       "rank": 755,
+      "adjustedRank": 737,
       "code": "909113",
       "cities": [ "kurdzhali" ],
       "shortName": "ПГ по с/г стоп.",
@@ -8311,6 +9066,7 @@
     },
     {
       "rank": 756,
+      "adjustedRank": 738,
       "code": "2210085",
       "cities": [ "sofia" ],
       "shortName": "85 СУ",
@@ -8322,6 +9078,7 @@
     },
     {
       "rank": 757,
+      "adjustedRank": null,
       "code": "1100324",
       "cities": [ "lovech" ],
       "shortName": "СУ Димитър Митев",
@@ -8333,6 +9090,7 @@
     },
     {
       "rank": 758,
+      "adjustedRank": 739,
       "code": "909503",
       "cities": [ "krumovgrad" ],
       "shortName": "ПГ по транспорт",
@@ -8344,6 +9102,7 @@
     },
     {
       "rank": 759,
+      "adjustedRank": 740,
       "code": "400123",
       "cities": [ "devnia" ],
       "shortName": "СУ Васил Левски",
@@ -8355,6 +9114,7 @@
     },
     {
       "rank": 760,
+      "adjustedRank": 741,
       "code": "800026",
       "cities": [ "dobrich" ],
       "shortName": "ПГ по агр. стоп.",
@@ -8366,6 +9126,7 @@
     },
     {
       "rank": 761,
+      "adjustedRank": 742,
       "code": "201106",
       "cities": [ "sredets" ],
       "shortName": "ПГ по механизация",
@@ -8377,6 +9138,7 @@
     },
     {
       "rank": 762,
+      "adjustedRank": 743,
       "code": "1500613",
       "cities": [ "levski" ],
       "shortName": "ПГ по сел. стоп.",
@@ -8388,6 +9150,7 @@
     },
     {
       "rank": 763,
+      "adjustedRank": 744,
       "code": "1806210",
       "cities": [ "ruse" ],
       "shortName": "Духовно училище",
@@ -8399,6 +9162,7 @@
     },
     {
       "rank": 764,
+      "adjustedRank": 745,
       "code": "1602511",
       "cities": [ "rakovski" ],
       "shortName": "ПГ Петър Парчевич",
@@ -8410,6 +9174,7 @@
     },
     {
       "rank": 765,
+      "adjustedRank": 746,
       "code": "909111",
       "cities": [ "kurdzhali" ],
       "shortName": "ПГ по облекло",
@@ -8421,6 +9186,7 @@
     },
     {
       "rank": 766,
+      "adjustedRank": 747,
       "code": "400150",
       "cities": [ "provadia" ],
       "shortName": "ПГ по селско стоп.",
@@ -8432,6 +9198,7 @@
     },
     {
       "rank": 767,
+      "adjustedRank": 748,
       "code": "300218",
       "cities": [ "gorna-oryahovitsa" ],
       "shortName": "ПТГ В. Левски",
@@ -8443,6 +9210,7 @@
     },
     {
       "rank": 768,
+      "adjustedRank": 749,
       "code": "2601904",
       "cities": [ "haskovo" ],
       "shortName": "ПГ по транспорт",
@@ -8454,6 +9222,7 @@
     },
     {
       "rank": 769,
+      "adjustedRank": 750,
       "code": "200228",
       "cities": [ "burgas" ],
       "shortName": "СУ Йордан Йовков",
@@ -8465,6 +9234,7 @@
     },
     {
       "rank": 770,
+      "adjustedRank": 751,
       "code": "2400174",
       "cities": [ "stara-zagora" ],
       "shortName": "СУ Христо Ботев",
@@ -8476,6 +9246,7 @@
     },
     {
       "rank": 771,
+      "adjustedRank": 752,
       "code": "102007",
       "cities": [ "sandanski" ],
       "shortName": "Техническа гимн.",
@@ -8487,6 +9258,7 @@
     },
     {
       "rank": 772,
+      "adjustedRank": null,
       "code": "2100920",
       "cities": [ "chepelare" ],
       "shortName": "СпУ Олимп. надежди",
@@ -8498,6 +9270,7 @@
     },
     {
       "rank": 773,
+      "adjustedRank": 753,
       "code": "909101",
       "cities": [ "kurdzhali" ],
       "shortName": "СУ Влад. Димитров",
@@ -8509,6 +9282,7 @@
     },
     {
       "rank": 774,
+      "adjustedRank": 754,
       "code": "2400121",
       "cities": [ "stara-zagora" ],
       "shortName": "СУ Минчо Кънчев",
@@ -8520,6 +9294,7 @@
     },
     {
       "rank": 775,
+      "adjustedRank": 755,
       "code": "2400014",
       "cities": [ "stara-zagora" ],
       "shortName": "СУ Железник",
@@ -8531,6 +9306,7 @@
     },
     {
       "rank": 776,
+      "adjustedRank": 756,
       "code": "1303006",
       "cities": [ "pazardzhik" ],
       "shortName": "ПГ по пром. техн.",
@@ -8542,6 +9318,7 @@
     },
     {
       "rank": 777,
+      "adjustedRank": 757,
       "code": "1601364",
       "cities": [ "karlovo" ],
       "shortName": "ПГ Евл. и Хр. Георгиеви",
@@ -8553,6 +9330,7 @@
     },
     {
       "rank": 778,
+      "adjustedRank": 758,
       "code": "200249",
       "cities": [ "burgas" ],
       "shortName": "ПГ по транспорт",
@@ -8564,6 +9342,7 @@
     },
     {
       "rank": 779,
+      "adjustedRank": 759,
       "code": "2212027",
       "cities": [ "sofia" ],
       "shortName": "27 СУ",
@@ -8575,6 +9354,7 @@
     },
     {
       "rank": 780,
+      "adjustedRank": 760,
       "code": "1500143",
       "cities": [ "pleven" ],
       "shortName": "ПГ по мениджмънт",
@@ -8586,6 +9366,7 @@
     },
     {
       "rank": 781,
+      "adjustedRank": 761,
       "code": "2000123",
       "cities": [ "sliven" ],
       "shortName": "ПГ по механотехника",
@@ -8597,6 +9378,7 @@
     },
     {
       "rank": 782,
+      "adjustedRank": 762,
       "code": "1100402",
       "cities": [ "lukovit" ],
       "shortName": "СУ А. Константинов",
@@ -8608,6 +9390,7 @@
     },
     {
       "rank": 783,
+      "adjustedRank": 763,
       "code": "201104",
       "cities": [ "sredets" ],
       "shortName": "СУ Кирил и Методий",
@@ -8619,6 +9402,7 @@
     },
     {
       "rank": 784,
+      "adjustedRank": 764,
       "code": "2219130",
       "cities": [ "sofia" ],
       "shortName": "130 СУ",
@@ -8630,6 +9414,7 @@
     },
     {
       "rank": 785,
+      "adjustedRank": 765,
       "code": "1500132",
       "cities": [ "pleven" ],
       "shortName": "СУ Ан. Димитрова",
@@ -8641,6 +9426,7 @@
     },
     {
       "rank": 786,
+      "adjustedRank": 766,
       "code": "2700220",
       "cities": [ "novi-pazar" ],
       "shortName": "ПГ по селско стоп.",
@@ -8652,6 +9438,7 @@
     },
     {
       "rank": 787,
+      "adjustedRank": 767,
       "code": "2700147",
       "cities": [ "shumen" ],
       "shortName": "СУ Трайко Симеонов",
@@ -8663,6 +9450,7 @@
     },
     {
       "rank": 788,
+      "adjustedRank": 768,
       "code": "2306213",
       "cities": [ "dolna-bania" ],
       "shortName": "СУ Неофит Рилски",
@@ -8674,6 +9462,7 @@
     },
     {
       "rank": 789,
+      "adjustedRank": 769,
       "code": "1690247",
       "cities": [ "plovdiv" ],
       "shortName": "СУ Найден Геров",
@@ -8685,6 +9474,7 @@
     },
     {
       "rank": 790,
+      "adjustedRank": 770,
       "code": "700330",
       "cities": [ "sevlievo" ],
       "shortName": "ПГ Марин Попов",
@@ -8696,6 +9486,7 @@
     },
     {
       "rank": 791,
+      "adjustedRank": 771,
       "code": "400149",
       "cities": [ "provadia" ],
       "shortName": "ПГ по хотелиерство",
@@ -8707,6 +9498,7 @@
     },
     {
       "rank": 792,
+      "adjustedRank": 772,
       "code": "2700224",
       "cities": [ "novi-pazar" ],
       "shortName": "ПГ по хим. техн.",
@@ -8718,6 +9510,7 @@
     },
     {
       "rank": 793,
+      "adjustedRank": 773,
       "code": "201009",
       "cities": [ "sozopol" ],
       "shortName": "СУ Кирил и Методий",
@@ -8729,6 +9522,7 @@
     },
     {
       "rank": 794,
+      "adjustedRank": 774,
       "code": "108021",
       "cities": [ "sandanski" ],
       "shortName": "Вечерна гимн.",
@@ -8740,6 +9534,7 @@
     },
     {
       "rank": 795,
+      "adjustedRank": 775,
       "code": "1690273",
       "cities": [ "plovdiv" ],
       "shortName": "ПГ по трансп. и стр. техн.",
@@ -8751,6 +9546,7 @@
     },
     {
       "rank": 796,
+      "adjustedRank": 776,
       "code": "1690542",
       "cities": [ "plovdiv" ],
       "shortName": "СУ Братя Миладинови",
@@ -8762,6 +9558,7 @@
     },
     {
       "rank": 797,
+      "adjustedRank": 777,
       "code": "1000016",
       "cities": [ "bobov-dol" ],
       "shortName": "СУ Христо Ботев",
@@ -8773,6 +9570,7 @@
     },
     {
       "rank": 798,
+      "adjustedRank": 778,
       "code": "1600128",
       "cities": [ "asenovgrad" ],
       "shortName": "ПГ Св. П. Евтимий",
@@ -8784,6 +9582,7 @@
     },
     {
       "rank": 799,
+      "adjustedRank": 779,
       "code": "1602402",
       "cities": [ "perushtitsa" ],
       "shortName": "ПГ по лозарство и винарство",
@@ -8795,6 +9594,7 @@
     },
     {
       "rank": 800,
+      "adjustedRank": 780,
       "code": "2212037",
       "cities": [ "sofia" ],
       "shortName": "37 СУ",
@@ -8806,6 +9606,7 @@
     },
     {
       "rank": 801,
+      "adjustedRank": 781,
       "code": "2217426",
       "cities": [ "sofia" ],
       "shortName": "ПГ по селско стоп.",
@@ -8817,6 +9618,7 @@
     },
     {
       "rank": 802,
+      "adjustedRank": 782,
       "code": "2300417",
       "cities": [ "ihtiman" ],
       "shortName": "ПГ Васил Левски",
@@ -8828,6 +9630,7 @@
     },
     {
       "rank": 803,
+      "adjustedRank": 783,
       "code": "200232",
       "cities": [ "burgas" ],
       "shortName": "СУ Конст. Петканов",
@@ -8839,6 +9642,7 @@
     },
     {
       "rank": 804,
+      "adjustedRank": null,
       "code": "1000002",
       "cities": [ "kiustendil" ],
       "shortName": "ПГ по селско стоп.",
@@ -8850,6 +9654,7 @@
     },
     {
       "rank": 805,
+      "adjustedRank": 784,
       "code": "1603301",
       "cities": [ "suedinenie" ],
       "shortName": "СУ Христо Ботев",
@@ -8861,6 +9666,7 @@
     },
     {
       "rank": 806,
+      "adjustedRank": 785,
       "code": "2000304",
       "cities": [ "nova-zagora" ],
       "shortName": "СУ Иван Вазов",
@@ -8872,6 +9678,7 @@
     },
     {
       "rank": 807,
+      "adjustedRank": 786,
       "code": "1601303",
       "cities": [ "sopot" ],
       "shortName": "СУ Иван Вазов",
@@ -8883,6 +9690,7 @@
     },
     {
       "rank": 808,
+      "adjustedRank": 787,
       "code": "2000105",
       "cities": [ "sliven" ],
       "shortName": "СУ Хаджи Мина Пашов",
@@ -8894,6 +9702,7 @@
     },
     {
       "rank": 809,
+      "adjustedRank": 788,
       "code": "2219024",
       "cities": [ "sofia" ],
       "shortName": "24 СУ",
@@ -8905,6 +9714,7 @@
     },
     {
       "rank": 810,
+      "adjustedRank": null,
       "code": "101880",
       "cities": [ "blagoevgrad" ],
       "shortName": "СУ Иван Вазов",
@@ -8916,6 +9726,7 @@
     },
     {
       "rank": 811,
+      "adjustedRank": 789,
       "code": "2604004",
       "cities": [ "simeonovgrad" ],
       "shortName": "СУ Кл. Охридски",
@@ -8927,6 +9738,7 @@
     },
     {
       "rank": 812,
+      "adjustedRank": 790,
       "code": "1303889",
       "cities": [ "septemvri" ],
       "shortName": "СУ Хр. Смирненски",
@@ -8938,6 +9750,7 @@
     },
     {
       "rank": 813,
+      "adjustedRank": 791,
       "code": "2206113",
       "cities": [ "sofia" ],
       "shortName": "113 СУ",
@@ -8949,6 +9762,7 @@
     },
     {
       "rank": 814,
+      "adjustedRank": 792,
       "code": "1001670",
       "cities": [ "kiustendil" ],
       "shortName": "ПГ по лека пром.",
@@ -8960,6 +9774,7 @@
     },
     {
       "rank": 815,
+      "adjustedRank": 793,
       "code": "104002",
       "cities": [ "petrich" ],
       "shortName": "СУ А. Попов",
@@ -8971,6 +9786,7 @@
     },
     {
       "rank": 816,
+      "adjustedRank": null,
       "code": "1500152",
       "cities": [ "pleven" ],
       "shortName": "ПГ Захарий Зограф",
