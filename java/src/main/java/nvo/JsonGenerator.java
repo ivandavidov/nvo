@@ -79,7 +79,7 @@ public class JsonGenerator {
         root.addProperty("citiesUrl", "cities.json");
         root.addProperty("rankingsPath", "rankings/");
 
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        Gson gson = new GsonBuilder().create();
         Files.writeString(outputDir.resolve("index.json"), gson.toJson(root) + "\n");
         System.out.println("Generated: " + outputDir.resolve("index.json"));
 
@@ -705,7 +705,7 @@ public class JsonGenerator {
     }
 
     private void generateCities() throws Exception {
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        Gson gson = new GsonBuilder().create();
 
         JsonObject allCities = new JsonObject();
         Path citiesDir = Path.of(OUTPUT_BASE, "cities");
@@ -739,7 +739,7 @@ public class JsonGenerator {
     }
 
     private void generateSchools() throws Exception {
-        Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
+        Gson gson = new GsonBuilder().serializeNulls().create();
 
         // Build bulk schools.json
         JsonObject allSchools = new JsonObject();
@@ -840,7 +840,6 @@ public class JsonGenerator {
         }
 
         Gson gson = new GsonBuilder()
-                .setPrettyPrinting()
                 .serializeNulls()
                 .create();
 
