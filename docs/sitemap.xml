@@ -2,34 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://ivandavidov.github.io/nvo/7/</loc>
-    <priority>1.0</priority>
+    <lastmod>2026-03-21</lastmod>
   </url>
   <url>
     <loc>https://ivandavidov.github.io/nvo/4/</loc>
-    <priority>0.9</priority>
+    <lastmod>2026-03-21</lastmod>
   </url>
   <url>
     <loc>https://ivandavidov.github.io/nvo/10/</loc>
-    <priority>0.9</priority>
+    <lastmod>2026-03-21</lastmod>
   </url>
   <url>
     <loc>https://ivandavidov.github.io/nvo/12/</loc>
-    <priority>0.9</priority>
+    <lastmod>2026-03-21</lastmod>
   </url>
   <url>
     <loc>https://ivandavidov.github.io/nvo/stats/</loc>
-    <priority>0.7</priority>
+    <lastmod>2026-03-21</lastmod>
   </url>
   <url>
     <loc>https://ivandavidov.github.io/nvo/games/</loc>
-    <priority>0.5</priority>
+    <lastmod>2026-03-21</lastmod>
   </url>
   <url>
     <loc>https://ivandavidov.github.io/nvo/api/v1/</loc>
-    <priority>0.6</priority>
+    <lastmod>2026-03-21</lastmod>
   </url>
   <url>
     <loc>https://ivandavidov.github.io/nvo/embed/</loc>
-    <priority>0.4</priority>
+    <lastmod>2026-03-21</lastmod>
   </url>
 </urlset>
