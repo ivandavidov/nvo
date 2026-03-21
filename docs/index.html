@@ -9,6 +9,11 @@
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/custom.css">
   <script src="js/theme.js"></script>
+  <script>
+    if(window.location.search || window.location.hash) {
+      window.location.replace('./7/' + window.location.search + window.location.hash);
+    }
+  </script>
   <style>
     body {
       display: flex;
