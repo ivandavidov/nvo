@@ -113,6 +113,35 @@ public class JsonGenerator {
                   <meta name="twitter:description" content="Публично JSON API с резултати от НВО и ДЗИ (2018–2025) от Иван Давидов.">
                   <meta name="twitter:image" content="https://ivandavidov.github.io/nvo/images/social-preview.svg">
 
+                  <script type="application/ld+json">
+                  {
+                    "@context": "https://schema.org",
+                    "@graph": [
+                      {
+                        "@type": "WebSite",
+                        "name": "НВО и ДЗИ – Иван Давидов",
+                        "url": "https://ivandavidov.github.io/nvo/",
+                        "author": { "@id": "#author" },
+                        "inLanguage": "bg"
+                      },
+                      {
+                        "@type": "Person",
+                        "@id": "#author",
+                        "name": "Иван Давидов",
+                        "url": "https://www.linkedin.com/in/ivandavidov"
+                      },
+                      {
+                        "@type": "WebAPI",
+                        "name": "НВО и ДЗИ API v1",
+                        "description": "Публично JSON API с резултати от Национално външно оценяване и Държавни зрелостни изпити (2018–2025) за всички училища в България.",
+                        "url": "https://ivandavidov.github.io/nvo/api/v1/",
+                        "provider": { "@id": "#author" },
+                        "documentation": "https://ivandavidov.github.io/nvo/api/v1/"
+                      }
+                    ]
+                  }
+                  </script>
+
                   <link rel="stylesheet" href="../../css/normalize.css">
                   <link rel="stylesheet" href="../../css/custom.css">
                   <link rel="icon" type="image/png" href="../../images/favicon-7.png">

@@ -24,6 +24,44 @@
   <meta name="twitter:description" content="Класации, графики и статистики за НВО след 4 клас от Иван Давидов. Сравнете училищата по БЕЛ и математика.">
   <meta name="twitter:image" content="https://ivandavidov.github.io/nvo/images/social-preview.svg">
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "name": "НВО и ДЗИ – Иван Давидов",
+        "url": "https://ivandavidov.github.io/nvo/",
+        "author": { "@id": "#author" },
+        "inLanguage": "bg"
+      },
+      {
+        "@type": "Person",
+        "@id": "#author",
+        "name": "Иван Давидов",
+        "url": "https://www.linkedin.com/in/ivandavidov"
+      },
+      {
+        "@type": "Dataset",
+        "name": "Резултати от НВО след 4 клас в България",
+        "description": "Класации, графики и статистики за резултатите от Национално външно оценяване след 4 клас по БЕЛ и математика за всички училища в България.",
+        "url": "https://ivandavidov.github.io/nvo/4/",
+        "creator": { "@id": "#author" },
+        "provider": { "@id": "#author" },
+        "license": "https://opensource.org/licenses/MIT",
+        "inLanguage": "bg",
+        "spatialCoverage": "България",
+        "temporalCoverage": "2018/2025",
+        "distribution": {
+          "@type": "DataDownload",
+          "encodingFormat": "application/json",
+          "contentUrl": "https://ivandavidov.github.io/nvo/api/v1/4/data.json"
+        }
+      }
+    ]
+  }
+  </script>
+
   <script src="../js/theme.js"></script>
   <script src="../js/highcharts.js" defer></script>
   <script src="../js/exporting.js" defer></script>

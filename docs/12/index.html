@@ -24,6 +24,44 @@
   <meta name="twitter:description" content="Класации, графики и статистики за ДЗИ след 12 клас от Иван Давидов. Сравнете училищата по БЕЛ и втори зрелостен изпит.">
   <meta name="twitter:image" content="https://ivandavidov.github.io/nvo/images/social-preview.svg">
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "name": "НВО и ДЗИ – Иван Давидов",
+        "url": "https://ivandavidov.github.io/nvo/",
+        "author": { "@id": "#author" },
+        "inLanguage": "bg"
+      },
+      {
+        "@type": "Person",
+        "@id": "#author",
+        "name": "Иван Давидов",
+        "url": "https://www.linkedin.com/in/ivandavidov"
+      },
+      {
+        "@type": "Dataset",
+        "name": "Резултати от ДЗИ след 12 клас в България",
+        "description": "Класации, графики и статистики за резултатите от Държавни зрелостни изпити след 12 клас по БЕЛ и втори зрелостен изпит за всички училища в България.",
+        "url": "https://ivandavidov.github.io/nvo/12/",
+        "creator": { "@id": "#author" },
+        "provider": { "@id": "#author" },
+        "license": "https://opensource.org/licenses/MIT",
+        "inLanguage": "bg",
+        "spatialCoverage": "България",
+        "temporalCoverage": "2018/2025",
+        "distribution": {
+          "@type": "DataDownload",
+          "encodingFormat": "application/json",
+          "contentUrl": "https://ivandavidov.github.io/nvo/api/v1/12/data.json"
+        }
+      }
+    ]
+  }
+  </script>
+
   <script src="../js/theme.js"></script>
   <script src="../js/highcharts.js" defer></script>
   <script src="../js/exporting.js" defer></script>
