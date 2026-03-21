@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ivandavidov.github.io/nvo/sitemap.xml
