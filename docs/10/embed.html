@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8">
+  <title>НВО след 10 клас - Вградени графики</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="../css/normalize.css">
+  <link rel="stylesheet" href="../css/custom.css">
+  <link rel="icon" type="image/png" href="../images/favicon-10.png">
+  <script src="../js/theme.js"></script>
+  <script src="../js/highcharts.js" defer></script>
+  <script src="../js/config-global.js" defer></script>
+  <script src="../js/config-10.js" defer></script>
+  <script src="../js/schools-10.js" defer></script>
+  <script src="../js/logic-core.js" defer></script>
+  <script src="../js/logic-chart.js" defer></script>
+  <script defer>
+    function embedChartHeight() {
+      var cb = document.getElementById('chartb');
+      var cm = document.getElementById('chartm');
+      var showB = cb && cb.style.display !== 'none';
+      var showM = cm && cm.style.display !== 'none';
+      var footer = document.getElementById('embedfooter');
+      var sep = document.getElementById('chartsep');
+      var footerH = footer ? footer.offsetHeight : 30;
+      var sepH = (showB && showM && sep) ? sep.offsetHeight : 0;
+      var available = window.innerHeight - footerH - sepH;
+      if(showB && showM) {
+        return Math.max(Math.floor(available / 2), 200);
+      }
+      return Math.max(available, 250);
+    }
+    function embedFixHeights() {
+      var h = embedChartHeight();
+      if(chartBelInstance) chartBelInstance.setSize(null, h, false);
+      if(chartMatInstance) chartMatInstance.setSize(null, h, false);
+    }
+    function embedPostHeight() {
+      var body = document.body;
+      var height = body ? body.scrollHeight : 0;
+      if(height > 0 && window.parent !== window) {
+        window.parent.postMessage({type: 'nvo-embed-resize', height: height}, '*');
+      }
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+      var url = new URL(window.location.href);
+      var themeParam = url.searchParams.get('theme');
+      if(themeParam === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      } else if(themeParam === 'light') {
+        document.documentElement.removeAttribute('data-theme');
+      }
+      var chartParam = url.searchParams.get('chart');
+      if(chartParam === 'b') {
+        var cm = document.getElementById('chartm');
+        var sep = document.getElementById('chartsep');
+        if(cm) cm.style.display = 'none';
+        if(sep) sep.style.display = 'none';
+      } else if(chartParam === 'm') {
+        var cb = document.getElementById('chartb');
+        var sep = document.getElementById('chartsep');
+        if(cb) cb.style.display = 'none';
+        if(sep) sep.style.display = 'none';
+      }
+      calculateTimeTravel();
+      fixForYear2018();
+      fixForMissingYears();
+      disableEntries();
+      calculateSchoolMedians();
+      var indices = [];
+      var indicesParam = url.searchParams.get(cookieName);
+      if(indicesParam) {
+        indices = indicesParam.split(',').filter(function(i) { return i !== ''; });
+      }
+      if(indices.length === 0) {
+        indices = [String(baseSchoolIndex), String(refSchoolIndex)];
+      }
+      indices.forEach(function(id) {
+        var idx = Number(id);
+        if(s[idx]) {
+          selectedSchoolIndices.add(idx);
+        }
+      });
+      var _origRedraw = redraw;
+      window.redraw = function() {
+        _origRedraw();
+        embedFixHeights();
+        embedPostHeight();
+      };
+      initializeHighcharts();
+      redraw();
+    });
+  </script>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: var(--color-bg, #f1f5f9);
+      overflow-x: hidden;
+    }
+    .embed-wrap {
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+    }
+    .embed-charts {
+      flex: 1;
+      width: 100%;
+    }
+    .embed-footer {
+      text-align: center;
+      padding: 8px;
+      font-size: 0.85em;
+      color: var(--color-text-muted, #64748b);
+      font-family: var(--font-sans, system-ui, sans-serif);
+    }
+    .embed-footer a {
+      color: var(--color-primary, #1e40af);
+      text-decoration: none;
+    }
+    .embed-footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="embed-wrap">
+    <div class="embed-charts">
+      <div id="chartb"></div>
+      <div id="chartsep" class="chart-separator"></div>
+      <div id="chartm"></div>
+    </div>
+    <div id="embedfooter" class="embed-footer">
+      <a href="https://ivandavidov.github.io/nvo/10/" target="_blank" rel="noopener noreferrer">НВО и ДЗИ</a>
+    </div>
+  </div>
+</body>
+</html>

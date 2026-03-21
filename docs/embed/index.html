@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8">
+  <title>Вграждане на графики - НВО и ДЗИ</title>
+  <meta name="description" content="Документация за вграждане на графики от НВО и ДЗИ в други уебсайтове чрез iframe.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../css/normalize.css">
+  <link rel="stylesheet" href="../css/custom.css">
+  <link rel="icon" type="image/png" href="../images/favicon-7.png">
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nvo-theme');
+      if (!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        saved = 'dark';
+      }
+      if (saved === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
+  <script src="../js/theme.js" defer></script>
+  <style>
+    .embed-header { margin: 2rem 0 1.5rem; }
+    .embed-header h2 { margin: 0 0 0.25rem; }
+    .embed-header p { color: var(--color-text-muted); margin: 0; }
+    .embed-base { font-family: var(--font-mono); font-size: 0.85rem; background: var(--color-surface);
+      border: 1px solid var(--color-border); border-radius: var(--radius-sm); padding: 0.75rem 1rem;
+      margin-bottom: 1.5rem; color: var(--color-text-muted); }
+    .embed-base code { color: var(--color-text); }
+    .section-card { background: var(--color-surface); border: 1px solid var(--color-border);
+      border-radius: var(--radius-md); margin-bottom: 1.5rem; overflow: hidden; }
+    .section-card-header { padding: 1rem; border-bottom: 1px solid var(--color-border); }
+    .section-card-header h3 { margin: 0; font-size: 1.1rem; }
+    .section-card-body { padding: 1rem; }
+    .param-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin-top: 0.5rem; }
+    .param-table th { text-align: left; padding: 0.5rem 0.75rem; background: var(--color-bg-alt, var(--color-border-light));
+      font-weight: 600; border-bottom: 1px solid var(--color-border); }
+    .param-table td { padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--color-border-light); vertical-align: top; }
+    .param-table .type { font-family: var(--font-mono); font-size: 0.8rem; color: var(--color-primary); }
+    .param-table .param-name { font-family: var(--font-mono); font-size: 0.85rem; font-weight: 600; }
+    pre.code-block { background: var(--color-bg-alt, var(--color-border-light)); border-radius: var(--radius-sm);
+      padding: 0.75rem 1rem; font-size: 0.8rem; overflow-x: auto; margin: 0.75rem 0 0; line-height: 1.5;
+      border: 1px solid var(--color-border); white-space: pre-wrap; word-break: break-all; }
+    .example-label { font-weight: 600; font-size: 0.9rem; margin: 1rem 0 0.25rem; }
+    .demo-frame { width: 100%; border: 1px solid var(--color-border); border-radius: var(--radius-sm);
+      margin-top: 0.75rem; background: var(--color-bg); }
+    .note { background: var(--color-primary-lighter, #dbeafe); border-left: 4px solid var(--color-primary);
+      padding: 0.75rem 1rem; border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      font-size: 0.85rem; margin: 0.75rem 0; }
+    [data-theme="dark"] .note { background: rgba(59,130,246,0.1); }
+    .back-link { margin-top: 2rem; display: inline-block; }
+    html { overflow-y: scroll; }
+    h4 { margin: 1.5rem 0 0.75rem; }
+    .inline-code { font-family: var(--font-mono); font-size: 0.85em; background: var(--color-bg-alt, var(--color-border-light));
+      padding: 0.15em 0.4em; border-radius: 3px; border: 1px solid var(--color-border); }
+    ul, ol { padding-left: 1.5rem; }
+    li { margin-bottom: 0.35rem; }
+    @media (max-width: 640px) {
+      .param-table .desc-col { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <a class="back-link" href="../7/">&larr; Обратно</a>
+    </div>
+    <div class="embed-header">
+      <h2>Вграждане на графики</h2>
+      <p>Вграждайте интерактивни графики от НВО и ДЗИ във вашия уебсайт чрез iframe</p>
+    </div>
+
+    <div class="embed-base">Base URL: <code>https://ivandavidov.github.io/nvo/{клас}/embed.html</code></div>
+
+    <!-- Бързо начало -->
+    <div class="section-card">
+      <div class="section-card-header">
+        <h3>Бързо начало</h3>
+      </div>
+      <div class="section-card-body">
+        <p>Поставете следния HTML код на вашия сайт:</p>
+        <pre class="code-block">&lt;iframe
+  src="https://ivandavidov.github.io/nvo/7/embed.html?i7=178,179,181"
+  width="100%"
+  height="1100"
+  frameborder="0"
+  style="border: none; max-width: 100%;"
+  loading="lazy"
+  title="НВО 7 клас - Графики"
+&gt;&lt;/iframe&gt;</pre>
+        <div class="note">
+          Параметърът за училища (напр. <span class="inline-code">i7=178,179,181</span>) съдържа индексите на училищата, разделени със запетая.
+          Индексите могат да бъдат намерени в URL адреса на основния сайт при избор на училища.
+        </div>
+      </div>
+    </div>
+
+    <!-- Налични класове -->
+    <div class="section-card">
+      <div class="section-card-header">
+        <h3>Налични класове</h3>
+      </div>
+      <div class="section-card-body">
+        <table class="param-table">
+          <tr><th>Клас</th><th>Embed URL</th><th>Параметър за училища</th></tr>
+          <tr>
+            <td>4 клас</td>
+            <td><span class="inline-code">/nvo/4/embed.html</span></td>
+            <td><span class="inline-code">i4</span></td>
+          </tr>
+          <tr>
+            <td>7 клас</td>
+            <td><span class="inline-code">/nvo/7/embed.html</span></td>
+            <td><span class="inline-code">i7</span></td>
+          </tr>
+          <tr>
+            <td>10 клас</td>
+            <td><span class="inline-code">/nvo/10/embed.html</span></td>
+            <td><span class="inline-code">i10</span></td>
+          </tr>
+          <tr>
+            <td>12 клас</td>
+            <td><span class="inline-code">/nvo/12/embed.html</span></td>
+            <td><span class="inline-code">i12</span></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- URL параметри -->
+    <div class="section-card">
+      <div class="section-card-header">
+        <h3>URL параметри</h3>
+      </div>
+      <div class="section-card-body">
+        <table class="param-table">
+          <tr><th>Параметър</th><th>Тип</th><th class="desc-col">Описание</th><th>Примерна стойност</th></tr>
+          <tr>
+            <td class="param-name">i4 / i7 / i10 / i12</td>
+            <td class="type">string</td>
+            <td class="desc-col">Индекси на училища, разделени със запетая. Параметърът зависи от класа.</td>
+            <td><span class="inline-code">i7=178,179,181</span></td>
+          </tr>
+          <tr>
+            <td class="param-name">chart</td>
+            <td class="type">string</td>
+            <td class="desc-col">Показване на само една графика: <span class="inline-code">b</span> (Български език) или <span class="inline-code">m</span> (Математика / Втора матура). Без параметър се показват и двете.</td>
+            <td><span class="inline-code">chart=b</span></td>
+          </tr>
+          <tr>
+            <td class="param-name">theme</td>
+            <td class="type">string</td>
+            <td class="desc-col">Фиксирана тема: <span class="inline-code">dark</span> или <span class="inline-code">light</span>. Без параметър темата следва предпочитанията на браузъра.</td>
+            <td><span class="inline-code">theme=dark</span></td>
+          </tr>
+          <tr>
+            <td class="param-name">year</td>
+            <td class="type">number</td>
+            <td class="desc-col">Показване на данни до посочената година (включително). Полезно за исторически изглед.</td>
+            <td><span class="inline-code">year=2023</span></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- Как да намеря индексите -->
+    <div class="section-card">
+      <div class="section-card-header">
+        <h3>Как да намеря индексите на училищата?</h3>
+      </div>
+      <div class="section-card-body">
+        <ol>
+          <li>Отворете страницата за съответния клас, например <a href="../7/" target="_blank" rel="noopener noreferrer">НВО след 7 клас</a>.</li>
+          <li>Изберете желаните училища, като щракнете върху техните бутони.</li>
+          <li>Погледнете URL адреса в браузъра &mdash; той ще съдържа параметър като <span class="inline-code">?i7=178,179,181</span>.</li>
+          <li>Копирайте числата и ги използвайте в embed URL-а.</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- Препоръчителна височина -->
+    <div class="section-card">
+      <div class="section-card-header">
+        <h3>Препоръчителна височина на iframe</h3>
+      </div>
+      <div class="section-card-body">
+        <table class="param-table">
+          <tr><th>Режим</th><th>Препоръчителна височина</th></tr>
+          <tr>
+            <td>Двете графики (по подразбиране)</td>
+            <td><span class="inline-code">1100px</span></td>
+          </tr>
+          <tr>
+            <td>Само една графика (<span class="inline-code">chart=b</span> или <span class="inline-code">chart=m</span>)</td>
+            <td><span class="inline-code">600px</span></td>
+          </tr>
+        </table>
+        <div class="note">
+          Височината може да варира в зависимост от броя на избраните училища (повече училища означават по-голяма легенда).
+          Адаптирайте стойността при нужда.
+        </div>
+      </div>
+    </div>
+
+    <!-- Примери за всички класове -->
+    <h4>Примери за вграждане</h4>
+
+    <!-- 4 клас -->
+    <div class="section-card">
+      <div class="section-card-header">
+        <h3>4 клас &mdash; Двете графики</h3>
+      </div>
+      <div class="section-card-body">
+        <p class="example-label">HTML код:</p>
+        <pre class="code-block">&lt;iframe src="https://ivandavidov.github.io/nvo/4/embed.html?i4=135,39"
+  width="100%" height="1100" frameborder="0" style="border:none"
+  loading="lazy" title="НВО 4 клас"&gt;&lt;/iframe&gt;</pre>
+        <p class="example-label">Резултат:</p>
+        <iframe class="demo-frame" src="../4/embed.html?i4=135,39"
+          width="100%" height="1100" frameborder="0"
+          loading="lazy" title="НВО 4 клас"></iframe>
+      </div>
+    </div>
+
+    <!-- 7 клас - двете -->
+    <div class="section-card">
+      <div class="section-card-header">
+        <h3>7 клас &mdash; Двете графики</h3>
+      </div>
+      <div class="section-card-body">
+        <p class="example-label">HTML код:</p>
+        <pre class="code-block">&lt;iframe src="https://ivandavidov.github.io/nvo/7/embed.html?i7=178,179,181"
+  width="100%" height="1100" frameborder="0" style="border:none"
+  loading="lazy" title="НВО 7 клас"&gt;&lt;/iframe&gt;</pre>
+        <p class="example-label">Резултат:</p>
+        <iframe class="demo-frame" src="../7/embed.html?i7=178,179,181"
+          width="100%" height="1100" frameborder="0"
+          loading="lazy" title="НВО 7 клас"></iframe>
+      </div>
+    </div>
+
+    <!-- 7 клас - само БЕЛ -->
+    <div class="section-card">
+      <div class="section-card-header">
+        <h3>7 клас &mdash; Само Български език (<span class="inline-code">chart=b</span>)</h3>
+      </div>
+      <div class="section-card-body">
+        <p class="example-label">HTML код:</p>
+        <pre class="code-block">&lt;iframe src="https://ivandavidov.github.io/nvo/7/embed.html?i7=178,179,181&amp;chart=b"
+  width="100%" height="600" frameborder="0" style="border:none"
+  loading="lazy" title="НВО 7 клас - БЕЛ"&gt;&lt;/iframe&gt;</pre>
+        <p class="example-label">Резултат:</p>
+        <iframe class="demo-frame" src="../7/embed.html?i7=178,179,181&chart=b"
+          width="100%" height="600" frameborder="0"
+          loading="lazy" title="НВО 7 клас - БЕЛ"></iframe>
+      </div>
+    </div>
+
+    <!-- 7 клас - само МАТ -->
+    <div class="section-card">
+      <div class="section-card-header">
+        <h3>7 клас &mdash; Само Математика (<span class="inline-code">chart=m</span>)</h3>
+      </div>
+      <div class="section-card-body">
+        <p class="example-label">HTML код:</p>
+        <pre class="code-block">&lt;iframe src="https://ivandavidov.github.io/nvo/7/embed.html?i7=178,179,181&amp;chart=m"
+  width="100%" height="600" frameborder="0" style="border:none"
+  loading="lazy" title="НВО 7 клас - Математика"&gt;&lt;/iframe&gt;</pre>
+        <p class="example-label">Резултат:</p>
+        <iframe class="demo-frame" src="../7/embed.html?i7=178,179,181&chart=m"
+          width="100%" height="600" frameborder="0"
+          loading="lazy" title="НВО 7 клас - Математика"></iframe>
+      </div>
+    </div>
+
+    <!-- 7 клас - тъмна тема -->
+    <div class="section-card">
+      <div class="section-card-header">
+        <h3>7 клас &mdash; Тъмна тема (<span class="inline-code">theme=dark</span>)</h3>
+      </div>
+      <div class="section-card-body">
+        <p class="example-label">HTML код:</p>
+        <pre class="code-block">&lt;iframe src="https://ivandavidov.github.io/nvo/7/embed.html?i7=178,179,181&amp;theme=dark"
+  width="100%" height="1100" frameborder="0" style="border:none"
+  loading="lazy" title="НВО 7 клас - тъмна тема"&gt;&lt;/iframe&gt;</pre>
+        <p class="example-label">Резултат:</p>
+        <iframe class="demo-frame" src="../7/embed.html?i7=178,179,181&theme=dark"
+          width="100%" height="1100" frameborder="0"
+          loading="lazy" title="НВО 7 клас - тъмна тема"></iframe>
+      </div>
+    </div>
+
+    <!-- 7 клас - историческа година -->
+    <div class="section-card">
+      <div class="section-card-header">
+        <h3>7 клас &mdash; Исторически данни (<span class="inline-code">year=2023</span>)</h3>
+      </div>
+      <div class="section-card-body">
+        <p class="example-label">HTML код:</p>
+        <pre class="code-block">&lt;iframe src="https://ivandavidov.github.io/nvo/7/embed.html?i7=178,179,181&amp;year=2023"
+  width="100%" height="1100" frameborder="0" style="border:none"
+  loading="lazy" title="НВО 7 клас - до 2023"&gt;&lt;/iframe&gt;</pre>
+        <p class="example-label">Резултат:</p>
+        <iframe class="demo-frame" src="../7/embed.html?i7=178,179,181&year=2023"
+          width="100%" height="1100" frameborder="0"
+          loading="lazy" title="НВО 7 клас - до 2023"></iframe>
+      </div>
+    </div>
+
+    <!-- 7 клас - комбиниран пример -->
+    <div class="section-card">
+      <div class="section-card-header">
+        <h3>7 клас &mdash; Комбиниран пример (<span class="inline-code">chart=b&amp;theme=dark&amp;year=2023</span>)</h3>
+      </div>
+      <div class="section-card-body">
+        <p class="example-label">HTML код:</p>
+        <pre class="code-block">&lt;iframe src="https://ivandavidov.github.io/nvo/7/embed.html?i7=178,179&amp;chart=b&amp;theme=dark&amp;year=2023"
+  width="100%" height="600" frameborder="0" style="border:none"
+  loading="lazy" title="НВО 7 клас - БЕЛ, тъмна тема, до 2023"&gt;&lt;/iframe&gt;</pre>
+        <p class="example-label">Резултат:</p>
+        <iframe class="demo-frame" src="../7/embed.html?i7=178,179&chart=b&theme=dark&year=2023"
+          width="100%" height="600" frameborder="0"
+          loading="lazy" title="НВО 7 клас - БЕЛ, тъмна тема, до 2023"></iframe>
+      </div>
+    </div>
+
+    <!-- 10 клас -->
+    <div class="section-card">
+      <div class="section-card-header">
+        <h3>10 клас &mdash; Двете графики</h3>
+      </div>
+      <div class="section-card-body">
+        <p class="example-label">HTML код:</p>
+        <pre class="code-block">&lt;iframe src="https://ivandavidov.github.io/nvo/10/embed.html?i10=1,51"
+  width="100%" height="1100" frameborder="0" style="border:none"
+  loading="lazy" title="НВО 10 клас"&gt;&lt;/iframe&gt;</pre>
+        <p class="example-label">Резултат:</p>
+        <iframe class="demo-frame" src="../10/embed.html?i10=1,51"
+          width="100%" height="1100" frameborder="0"
+          loading="lazy" title="НВО 10 клас"></iframe>
+      </div>
+    </div>
+
+    <!-- 12 клас -->
+    <div class="section-card">
+      <div class="section-card-header">
+        <h3>12 клас &mdash; Двете графики</h3>
+      </div>
+      <div class="section-card-body">
+        <p class="example-label">HTML код:</p>
+        <pre class="code-block">&lt;iframe src="https://ivandavidov.github.io/nvo/12/embed.html?i12=1,51"
+  width="100%" height="1100" frameborder="0" style="border:none"
+  loading="lazy" title="ДЗИ 12 клас"&gt;&lt;/iframe&gt;</pre>
+        <p class="example-label">Резултат:</p>
+        <iframe class="demo-frame" src="../12/embed.html?i12=1,51"
+          width="100%" height="1100" frameborder="0"
+          loading="lazy" title="ДЗИ 12 клас"></iframe>
+      </div>
+    </div>
+
+    <!-- Автоматична височина -->
+    <div class="section-card">
+      <div class="section-card-header">
+        <h3>Автоматична височина (postMessage)</h3>
+      </div>
+      <div class="section-card-body">
+        <p>Графиките са респонсивни и по двете оси &mdash; адаптират се към ширината и височината на iframe контейнера.
+           За напълно автоматично оразмеряване на iframe-а, добавете следния скрипт на вашата страница:</p>
+        <pre class="code-block">&lt;script&gt;
+window.addEventListener('message', function(e) {
+  if(e.data &amp;&amp; e.data.type === 'nvo-embed-resize') {
+    var iframes = document.querySelectorAll('iframe');
+    for(var i = 0; i &lt; iframes.length; i++) {
+      if(iframes[i].contentWindow === e.source) {
+        iframes[i].style.height = e.data.height + 'px';
+        break;
+      }
+    }
+  }
+});
+&lt;/script&gt;</pre>
+        <div class="note">
+          Embed страниците изпращат <span class="inline-code">postMessage</span> със стойност <span class="inline-code">{type: 'nvo-embed-resize', height: ...}</span>
+          при зареждане и при преоразмеряване. Скриптът по-горе автоматично задава височината на iframe-а спрямо реалното съдържание.
+          Този скрипт е <strong>незадължителен</strong> &mdash; можете да използвате фиксирана височина вместо него.
+        </div>
+      </div>
+    </div>
+
+    <!-- Бележки -->
+    <div class="section-card">
+      <div class="section-card-header">
+        <h3>Бележки</h3>
+      </div>
+      <div class="section-card-body">
+        <ul>
+          <li>Графиките са <strong>интерактивни</strong> &mdash; при преминаване с мишката се показва подробна информация (година, резултат, брой ученици).</li>
+          <li>Графиките са <strong>респонсивни</strong> &mdash; адаптират се автоматично към ширината и височината на iframe контейнера.</li>
+          <li>Ако не подадете параметър за училища, ще се покажат училищата по подразбиране за съответния клас.</li>
+          <li>Параметърът <span class="inline-code">theme</span> има приоритет над предпочитанията на браузъра и localStorage.</li>
+          <li>Параметърът <span class="inline-code">year</span> показва данни до посочената година (включително). Минималната допустима година е 2020.</li>
+          <li>Атрибутът <span class="inline-code">loading="lazy"</span> е препоръчителен &mdash; зарежда iframe-а само когато е видим на екрана.</li>
+          <li>Данните се обновяват автоматично при публикуване на нови резултати от НВО/ДЗИ.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row" style="margin: 2rem 0;">
+      <a class="back-link" href="../7/">&larr; Обратно</a>
+    </div>
+  </div>
+</body>
+</html>
