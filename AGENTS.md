@@ -250,6 +250,48 @@ Files you will touch most often:
 - `docs/images/social-preview.svg` — OG/Twitter card image
 - `docs/googlea6ca7b7cd3a055bf.html` — Google Search Console verification (do not delete)
 
+## Kaggle Dataset
+
+The `kaggle/` directory contains everything needed to publish and maintain the Kaggle dataset.
+
+### Structure
+```text
+kaggle/
+  dataset-metadata.json   Kaggle dataset metadata (title, subtitle, tags, resources)
+  README.md               dataset description (shown on Kaggle dataset page)
+  notebook.ipynb           exploratory analysis notebook (published on Kaggle)
+  prepare.py               converts JSON API → 4 CSV files in data/
+  generate_cover.py        generates cover.png for the Kaggle dataset page
+  cover.png                generated cover image (1128×568)
+  data/                    generated CSV files (gitignored)
+    scores.csv             25,945 rows — scores per school/grade/year
+    rankings.csv           45,724 rows — annual + 3-year median rankings
+    schools.csv            1,388 rows — school directory
+    cities.csv             145 rows — city directory
+```
+
+### Workflow
+The CSV files are generated from the JSON API (`docs/api/v1/`), so the full pipeline must run first:
+```bash
+# 1. Run the full data pipeline (builds Java tool, generates API)
+./all.sh
+
+# 2. Generate Kaggle CSV files from the API
+cd kaggle
+python3 prepare.py
+
+# 3. (Optional) Regenerate cover image
+python3 generate_cover.py
+```
+
+After generating the CSVs, upload to Kaggle via the Kaggle web interface or CLI.
+
+The notebook (`notebook.ipynb`) is stored without outputs — Kaggle runs it server-side on publish.
+
+### Kaggle links
+- Dataset: https://www.kaggle.com/datasets/johnddavidson/bulgarian-school-exam-results-20182025
+- Notebook: https://www.kaggle.com/code/johnddavidson/v1-0-initial-exploratory-analysis
+
 ## Editing Conventions
 
 - Use the existing style in each file (do not reformat unrelated code).

@@ -1,0 +1,43 @@
+{
+  "title": "Bulgarian School Exam Results (НВО/ДЗИ)",
+  "subtitle": "Curated by Ivan Davidov — scores, rankings, and trends for Bulgarian schools",
+  "description": "",
+  "id": "johnddavidson/bulgarian-school-exam-results-20182025",
+  "licenses": [
+    {
+      "name": "MIT"
+    }
+  ],
+  "keywords": [
+    "education",
+    "bulgaria",
+    "schools",
+    "exam results",
+    "national assessment",
+    "НВО",
+    "външно оценяване",
+    "ДЗИ",
+    "зрелостен изпит",
+    "зрелостни изпити",
+    "rankings",
+    "statistics"
+  ],
+  "resources": [
+    {
+      "path": "data/scores.csv",
+      "description": "Exam scores per school per grade per year (BEL and MAT)"
+    },
+    {
+      "path": "data/rankings.csv",
+      "description": "Annual and 3-year median school rankings by composite score"
+    },
+    {
+      "path": "data/schools.csv",
+      "description": "Master directory of all 1,388 schools (code, name, website, public/private)"
+    },
+    {
+      "path": "data/cities.csv",
+      "description": "All 145 cities with Bulgarian names and ordering tier"
+    }
+  ]
+}

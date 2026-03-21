@@ -16,6 +16,7 @@
 - **Обобщена статистика** — преглед на общите тенденции по класове и години
 - **Мини игри** — колекция от 36 игри с поддръжка за клавиатура и тъч устройства
 - **JSON API** — статичен API с данни за училища, градове и класации ([документация](https://ivandavidov.github.io/nvo/api/v1/))
+- **Kaggle dataset** — CSV данни и анализ notebook ([Kaggle](https://www.kaggle.com/datasets/johnddavidson/bulgarian-school-exam-results-20182025))
 
 ## Налични данни
 
@@ -71,6 +72,7 @@ data/
   mon/                 сурови CSV файлове от data.egov.bg
   normalized/          нормализирани CSV файлове (генерирани)
 java/                  Maven проект за обработка на данните
+kaggle/                Kaggle dataset (CSV експорт, notebook, cover image)
 ```
 
 За пълна техническа документация виж [AGENTS.md](./AGENTS.md).
