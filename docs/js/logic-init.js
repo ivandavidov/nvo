@@ -1,3 +1,27 @@
+function generateYearRankingLinks() {
+  let container = document.getElementById('yearRankings');
+  if(!container) {
+    return;
+  }
+  let pathname = window.location.pathname || '/';
+  let gradeMatch = pathname.match(/\/(?:4|7|10|12)(?:\/|$)/);
+  if(!gradeMatch) {
+    return;
+  }
+  let grade = gradeMatch[0].replace(/\//g, '');
+  let latestYear = firstYear + s[baseSchoolIndex].b.length - 1;
+  container.textContent = '';
+  for(let year = latestYear; year >= firstYear; year--) {
+    if(year < latestYear) {
+      container.appendChild(document.createTextNode(' '));
+    }
+    let a = document.createElement('a');
+    a.href = year + '/';
+    a.textContent = year;
+    container.appendChild(a);
+  }
+}
+
 function generateYearNavigation() {
   let fallbackLatestYear = firstYear + s[baseSchoolIndex].b.length - 1;
   let navItems = document.querySelectorAll('.years-nav[data-year-grade]');
@@ -80,6 +104,7 @@ function generateJoke() {
 
 function onLoad() {
   generateJoke();
+  generateYearRankingLinks();
   generateYearNavigation();
   calculateTimeTravel();
   fixForYear2018();

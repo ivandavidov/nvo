@@ -284,6 +284,13 @@ function generateCitySection(name, hrName, btName, btPos, skipMenu, precomputedD
   let schoolsDivFragment = document.createDocumentFragment();
   generateRowWithHr(schoolsDivFragment, hrName);
   let cityDiv = generateRowWithStrong(schoolsDivFragment, name);
+  let cityPageLink = document.createElement('a');
+  cityPageLink.href = hrName + '/';
+  cityPageLink.textContent = '\u2197';
+  cityPageLink.title = 'Класация на училищата в ' + name + ' за последната година';
+  cityPageLink.classList.add('city-page-link');
+  cityDiv.appendChild(document.createTextNode(' '));
+  cityDiv.appendChild(cityPageLink);
   generateHTMLTable(schoolsDivFragment, hrName, puSchools, prSchools, name);
   generateRowWithText(schoolsDivFragment, '\u00A0');
   generateRowWithText(schoolsDivFragment, 'Държавни училища');

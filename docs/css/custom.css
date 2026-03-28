@@ -630,6 +630,13 @@ tbody td + td {
   border-left: 1px dotted var(--color-border);
 }
 
+/* --- City Page Link --- */
+.city-page-link {
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-left: 0.5rem;
+}
+
 /* --- School Report PDF Link --- */
 .school-report-link {
   cursor: pointer;
