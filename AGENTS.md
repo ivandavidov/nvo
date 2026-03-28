@@ -28,7 +28,7 @@ Each grade page also has `docs/{4,7,10,12}/embed.html` — embeddable chart view
 ```bash
 ./all.sh
 ```
-Builds Java tool, normalizes CSV files, regenerates all `schools-{4,7,10,12}.js` files, and generates the API (`docs/api/v1/`).
+Builds Java tool, normalizes CSV files, regenerates all `schools-{4,7,10,12}.js` files, generates the API (`docs/api/v1/`), city/year landing pages (`docs/{grade}/{city|year}/`), and `docs/sitemap.xml`.
 
 ### Java tool — Decomplexor (main jar)
 ```bash
@@ -51,11 +51,13 @@ java -cp nvo-v2.jar nvo.JsonGenerator 4
 java -cp nvo-v2.jar nvo.JsonGenerator 7
 java -cp nvo-v2.jar nvo.JsonGenerator 10
 java -cp nvo-v2.jar nvo.JsonGenerator 12
+java -cp nvo-v2.jar nvo.JsonGenerator sitemap
 ```
 - `index` generates `docs/api/v1/index.json` (API metadata) and `docs/api/v1/index.html` (interactive Swagger-like docs)
 - `schools` generates `docs/api/v1/schools.json` (all schools) and `docs/api/v1/schools/{code}.json` (per-school lookup by code)
 - `cities` generates `docs/api/v1/cities.json` (all cities) and `docs/api/v1/cities/{slug}.json` (per-city lookup by slug)
-- `4`/`7`/`10`/`12` generates per-grade `data.json`, per-city `data.json`, per-school `.json` files, and rankings under `docs/api/v1/rankings/`
+- `4`/`7`/`10`/`12` generates per-grade `data.json`, per-city `data.json`, per-school `.json` files, rankings under `docs/api/v1/rankings/`, city landing pages `docs/{grade}/{city-slug}/index.html`, and year landing pages `docs/{grade}/{year}/index.html`
+- `sitemap` scans all generated landing pages and static pages, writes `docs/sitemap.xml`
 - All per-grade generated files share a unified JSON envelope: `{ grade, yearsRange, cities: { ... } }`
 - Rankings: `rankings/{grade}/{year}.json` (per-year) and `rankings/median/{grade}/{year}.json` (3-year median window, from 2020 onwards, includes `adjustedRank` that excludes schools without endYear data)
 

@@ -29,6 +29,15 @@
 - [Мини игри](https://ivandavidov.github.io/nvo/games/): 36 браузър игри
 - [Вграждане на графики](https://ivandavidov.github.io/nvo/embed/): Документация за iframe embed
 
+## Класации по градове и години
+
+За всеки клас (4, 7, 10, 12) има автоматично генерирани статични страници с класации:
+
+- По градове: `https://ivandavidov.github.io/nvo/{клас}/{град}/` — класация на училищата в даден град за последната година. Пример: [НВО 7 клас – София](https://ivandavidov.github.io/nvo/7/sofia/)
+- По години: `https://ivandavidov.github.io/nvo/{клас}/{година}/` — национална класация за дадена година. Пример: [НВО 7 клас – 2025](https://ivandavidov.github.io/nvo/7/2025/)
+
+Пълният списък с URL адреси е в [sitemap.xml](https://ivandavidov.github.io/nvo/sitemap.xml).
+
 ## Kaggle
 
 - [Kaggle Dataset](https://www.kaggle.com/datasets/johnddavidson/bulgarian-school-exam-results-20182025): CSV данни за всички училища — оценки, класации, справочници
