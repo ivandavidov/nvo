@@ -100,7 +100,7 @@ docs/
   fonts/NotoSans-Regular.ttf   font for PDF rendering (loaded by logic-pdf.js)
   images/
     favicon-{4,7,10,12}.png    per-grade favicons
-    social-preview.svg         OG/Twitter card image
+    social-preview.png         OG/Twitter card image
   js/
     config-global.js           shared defaults + constants
     config-{4,7,10,12}.js      per-grade overrides via applyGradeConfig(...)
@@ -247,7 +247,7 @@ Files you will touch most often:
 
 - `docs/fonts/NotoSans-Regular.ttf` — used by `logic-pdf.js` for PDF generation
 - `docs/images/favicon-{4,7,10,12}.png` — per-grade favicons
-- `docs/images/social-preview.svg` — OG/Twitter card image
+- `docs/images/social-preview.png` — OG/Twitter card image
 - `docs/googlea6ca7b7cd3a055bf.html` — Google Search Console verification (do not delete)
 
 ## Kaggle Dataset

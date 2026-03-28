@@ -1,32 +1,3 @@
-function applyNavigationPaths() {
-  let currentGrade = getCurrentGradeFromPath();
-
-  let gradeTabs = document.querySelectorAll('.grade-tabs a[data-grade]');
-  gradeTabs.forEach((a) => {
-    let grade = Number.parseInt(a.getAttribute('data-grade'), 10);
-    if(!Number.isInteger(grade)) {
-      return;
-    }
-    a.href = getGradePagePath(grade);
-    a.classList.toggle('active', grade === currentGrade);
-  });
-
-  let gradeLinks = document.querySelectorAll('a[data-grade-link]');
-  gradeLinks.forEach((a) => {
-    let grade = Number.parseInt(a.getAttribute('data-grade-link'), 10);
-    if(!Number.isInteger(grade)) {
-      return;
-    }
-    a.href = getGradePagePath(grade);
-  });
-
-  let statsLinks = document.querySelectorAll('a[data-stats-grade]');
-  statsLinks.forEach((a) => {
-    let grade = Number.parseInt(a.getAttribute('data-stats-grade'), 10);
-    a.href = getStatsPagePath(grade);
-  });
-}
-
 function generateYearNavigation() {
   let fallbackLatestYear = firstYear + s[baseSchoolIndex].b.length - 1;
   let navItems = document.querySelectorAll('.years-nav[data-year-grade]');
@@ -43,7 +14,7 @@ function generateYearNavigation() {
       el.textContent = '';
       return;
     }
-    let baseHref = getGradePagePath(grade) + '?year=';
+    let baseHref = '../' + grade + '/?year=';
     el.textContent = '';
     el.appendChild(document.createTextNode('('));
     for(let year = endYear; year >= NAV_FIRST_YEAR; year--) {
@@ -108,7 +79,6 @@ function generateJoke() {
 }
 
 function onLoad() {
-  applyNavigationPaths();
   generateJoke();
   generateYearNavigation();
   calculateTimeTravel();

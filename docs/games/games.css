@@ -16,7 +16,7 @@
   margin-top: 0 !important;
 }
 
-.games-theme .container > .row > h4 {
+.games-theme .container > .row > h1 {
   font-size: 2rem;
   font-weight: 800;
   color: var(--color-primary-dark);
@@ -84,7 +84,7 @@
   min-height: 140px;
 }
 
-.games-theme .game-card h5 {
+.games-theme .game-card h2 {
   margin: 0 0 0.35rem;
   color: var(--color-text);
   font-size: 1.12rem;
@@ -235,7 +235,7 @@
     padding-top: calc(var(--header-height) + 0.75rem);
   }
 
-  .games-theme .container > .row > h4 {
+  .games-theme .container > .row > h1 {
     font-size: 1.6rem;
   }
 

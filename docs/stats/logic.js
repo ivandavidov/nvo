@@ -271,7 +271,7 @@ function setSectionBaseTitle(id, title) {
 
 function applyGradeSuffixToSectionTitles() {
   const prefix = gradeLabel() + ' - ';
-  document.querySelectorAll('#stats-content .stat-section h5').forEach(h => {
+  document.querySelectorAll('#stats-content .stat-section h2').forEach(h => {
     if (!h.dataset.baseTitle) {
       h.dataset.baseTitle = h.textContent.replace(/\s+-\s+(НВО 4 клас|НВО 7 клас|НВО 10 клас|ДЗИ 12 клас)$/, '');
     }
@@ -1658,7 +1658,7 @@ function ensureCitySelectors() {
     if (!anchor) return;
     const section = anchor.closest('.stat-section');
     if (!section) return;
-    const title = section.querySelector('h5');
+    const title = section.querySelector('h2');
     if (!title) return;
 
     const wrap = document.createElement('div');

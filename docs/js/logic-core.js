@@ -30,26 +30,6 @@ function resolveAssetPath(pathFromAppRoot) {
   return new URL(normalized, window.location.origin + getAppBasePath()).toString();
 }
 
-function getCurrentGradeFromPath() {
-  let pathname = window.location.pathname || '';
-  let match = pathname.match(/\/(4|7|10|12)(?:\/|$)/);
-  return match ? Number.parseInt(match[1], 10) : 7;
-}
-
-function getGradePagePath(grade) {
-  let parsed = Number.parseInt(grade, 10);
-  if(![4, 7, 10, 12].includes(parsed)) {
-    return resolveAssetPath('7/');
-  }
-  return resolveAssetPath(parsed + '/');
-}
-
-function getStatsPagePath(grade) {
-  let parsed = Number.parseInt(grade, 10);
-  let safeGrade = [4, 7, 10, 12].includes(parsed) ? parsed : 7;
-  return resolveAssetPath('stats/?grade=' + safeGrade);
-}
-
 function toggleOtherCities() {
   let content = document.getElementById('other-cities-content');
   let toggle = document.getElementById('other-cities-toggle');
