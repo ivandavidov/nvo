@@ -44,14 +44,14 @@ java -jar nvo-v2.jar 12
 
 ### Java tool — JsonGenerator (separate entry point, uses `-cp` not `-jar`)
 ```bash
-java -cp nvo-v2.jar nvo.JsonGenerator index
-java -cp nvo-v2.jar nvo.JsonGenerator schools
-java -cp nvo-v2.jar nvo.JsonGenerator cities
-java -cp nvo-v2.jar nvo.JsonGenerator 4
-java -cp nvo-v2.jar nvo.JsonGenerator 7
-java -cp nvo-v2.jar nvo.JsonGenerator 10
-java -cp nvo-v2.jar nvo.JsonGenerator 12
-java -cp nvo-v2.jar nvo.JsonGenerator sitemap
+java -cp nvo-v2.jar nvo.api.JsonGenerator index
+java -cp nvo-v2.jar nvo.api.JsonGenerator schools
+java -cp nvo-v2.jar nvo.api.JsonGenerator cities
+java -cp nvo-v2.jar nvo.api.JsonGenerator 4
+java -cp nvo-v2.jar nvo.api.JsonGenerator 7
+java -cp nvo-v2.jar nvo.api.JsonGenerator 10
+java -cp nvo-v2.jar nvo.api.JsonGenerator 12
+java -cp nvo-v2.jar nvo.api.JsonGenerator sitemap
 ```
 - `index` generates `docs/api/v1/index.json` (API metadata) and `docs/api/v1/index.html` (interactive Swagger-like docs)
 - `schools` generates `docs/api/v1/schools.json` (all schools) and `docs/api/v1/schools/{code}.json` (per-school lookup by code)
@@ -78,7 +78,7 @@ data/
 ### Data flow
 ```text
 data/mon/*.csv -> data/normalized/*.csv -> java (Decomplexor) -> docs/js/schools-{grade}.js
-                                        -> java (JsonGenerator) -> docs/api/v1/ (JSON API + HTML docs)
+                                        -> java (nvo.api.*) -> docs/api/v1/ (JSON API + HTML docs)
 ```
 
 ### Frontend structure
@@ -149,10 +149,22 @@ The embed pages communicate height to the parent via `postMessage`. Full documen
 java/src/main/java/nvo/
   Decomplexor.java     main entry point (-jar), normalizes CSV + generates schools-{grade}.js
   CSVNormalizer.java   CSV reformatting (handles varying delimiters, column orders per year/grade)
-  JsonGenerator.java   separate entry point (-cp), generates docs/api/v1/
   School.java          domain model with school name constants, code lookups, name fixes
   Cities.java          city definitions with fullName, shortName, hrefName, orderPosition tiers (1-3)
   Record.java          simple DTO: city, code, school, belScore, matScore, belStudents, matStudents
+
+java/src/main/java/nvo/api/
+  JsonGenerator.java        entry point (-cp), dispatches to sub-generators below
+  IndexGenerator.java       generates index.json + index.html (API docs page)
+  SchoolsGenerator.java     generates schools.json + schools/{code}.json
+  CitiesGenerator.java      generates cities.json + cities/{slug}.json
+  GradeDataGenerator.java   CSV parsing → {grade}/data.json, per-city/per-school JSON files
+  RankingsGenerator.java    rankings/{grade}/{year}.json + median rankings
+  LandingPageGenerator.java city + year landing pages (HTML)
+  SitemapGenerator.java     generates sitemap.xml
+  GeneratorUtils.java       shared utilities (collapseArrays, cleanDirectory, etc.)
+  SchoolData.java           data class for per-school score/student arrays
+  RankedSchool.java         record for ranking entries
 ```
 
 ### Build system (Maven)
@@ -240,10 +252,18 @@ Files you will touch most often:
 - Java source files under `java/src/main/java/nvo/`:
   - `Decomplexor.java` — main jar entry point, CSV processing + schools-{grade}.js generation
   - `CSVNormalizer.java` — CSV reformatting for varying source formats
-  - `JsonGenerator.java` — generates `docs/api/v1/` (JSON endpoints + HTML docs)
   - `School.java` — domain model, school name constants, code lookups
   - `Cities.java` — city definitions, ordering tiers
   - `Record.java` — simple DTO for CSV records
+- Java API generators under `java/src/main/java/nvo/api/`:
+  - `JsonGenerator.java` — entry point, dispatches to sub-generators
+  - `IndexGenerator.java` — index.json + API docs HTML
+  - `SchoolsGenerator.java` — schools.json + per-school files
+  - `CitiesGenerator.java` — cities.json + per-city files
+  - `GradeDataGenerator.java` — CSV → per-grade/city/school JSON
+  - `RankingsGenerator.java` — per-year + median rankings
+  - `LandingPageGenerator.java` — city + year landing pages
+  - `SitemapGenerator.java` — sitemap.xml
 
 ## Static Assets
 

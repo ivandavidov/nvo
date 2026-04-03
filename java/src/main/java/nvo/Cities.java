@@ -2,12 +2,12 @@ package nvo;
 
 import java.util.List;
 
-final class Cities {
-    record City(String fullName, String shortName, String hrefName, int orderPosition, int i) {}
+public final class Cities {
+    public record City(String fullName, String shortName, String hrefName, int orderPosition, int i) {}
 
     private static int NEXT_INDEX = 0;
 
-    static final List<City> ORDERED = List.of(
+    public static final List<City> ORDERED = List.of(
             city("София", "sofia", "София", 1),
             city("Пловдив", "plovdiv", "Пловдив", 1),
             city("Варна", "varna", "Варна", 1),

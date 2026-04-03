@@ -11,7 +11,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @EqualsAndHashCode
 @ToString
-class Record {
+public class Record {
     private String city;
     private String code;
     private String school;

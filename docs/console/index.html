@@ -1,0 +1,1910 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8">
+  <title>Конзола – НВО и ДЗИ | Иван Давидов</title>
+  <meta name="description" content="Linux-подобна конзола, изцяло реализирана в JavaScript.">
+  <meta name="author" content="Иван Давидов">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../css/normalize.css">
+  <link rel="stylesheet" href="../css/custom.css">
+  <link rel="icon" type="image/png" href="../images/favicon-7.png">
+  <link rel="canonical" href="https://ivandavidov.github.io/nvo/console/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ivandavidov.github.io/nvo/console/">
+  <meta property="og:title" content="Конзола – НВО и ДЗИ | Иван Давидов">
+  <meta property="og:description" content="Linux-подобна конзола, изцяло реализирана в JavaScript.">
+  <meta property="og:image" content="https://ivandavidov.github.io/nvo/images/social-preview.png">
+  <meta property="og:locale" content="bg_BG">
+  <meta property="og:site_name" content="НВО и ДЗИ – Иван Давидов">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Конзола – НВО и ДЗИ | Иван Давидов">
+  <meta name="twitter:description" content="Linux-подобна конзола, изцяло реализирана в JavaScript.">
+  <meta name="twitter:image" content="https://ivandavidov.github.io/nvo/images/social-preview.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "name": "НВО и ДЗИ – Иван Давидов",
+        "url": "https://ivandavidov.github.io/nvo/",
+        "author": { "@id": "#author" },
+        "inLanguage": "bg"
+      },
+      {
+        "@type": "Person",
+        "@id": "#author",
+        "name": "Иван Давидов",
+        "url": "https://www.linkedin.com/in/ivandavidov"
+      },
+      {
+        "@type": "WebApplication",
+        "name": "Конзола – НВО и ДЗИ",
+        "description": "Linux-подобна конзола, изцяло реализирана в JavaScript.",
+        "url": "https://ivandavidov.github.io/nvo/console/",
+        "author": { "@id": "#author" },
+        "inLanguage": "bg"
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    /* --- Console-specific styles --- */
+    .console-wrapper {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+    .console-back {
+      display: inline-block;
+      margin: 1rem 0 0.5rem;
+    }
+    .console-title {
+      margin-bottom: 0.5rem;
+    }
+    .console-subtitle {
+      color: var(--color-text-muted);
+      margin-bottom: 1rem;
+      font-size: 0.93rem;
+    }
+    .terminal {
+      background: #1e1e2e;
+      color: #cdd6f4;
+      border-radius: var(--radius-md);
+      padding: 0;
+      font-family: var(--font-mono);
+      font-size: 14px;
+      line-height: 1.5;
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+      min-height: 480px;
+      display: flex;
+      flex-direction: column;
+    }
+    /* Light terminal */
+    :root .terminal {
+      background: #fafafa;
+      color: #383a42;
+    }
+    [data-theme="dark"] .terminal {
+      background: #1e1e2e;
+      color: #cdd6f4;
+    }
+    /* Title bar */
+    .terminal-titlebar {
+      display: flex;
+      align-items: center;
+      padding: 8px 12px;
+      gap: 8px;
+      user-select: none;
+    }
+    :root .terminal-titlebar {
+      background: #e8e8e8;
+    }
+    [data-theme="dark"] .terminal-titlebar {
+      background: #181825;
+    }
+    .terminal-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .terminal-dot.red { background: #ff5f57; }
+    .terminal-dot.yellow { background: #febc2e; }
+    .terminal-dot.green { background: #28c840; }
+    .terminal-titlebar-text {
+      flex: 1;
+      text-align: center;
+      font-size: 12px;
+      opacity: 0.6;
+    }
+    /* Output area */
+    .terminal-body {
+      flex: 1;
+      padding: 12px 14px;
+      overflow-y: auto;
+      max-height: 520px;
+      cursor: text;
+    }
+    .terminal-body::-webkit-scrollbar { width: 6px; }
+    .terminal-body::-webkit-scrollbar-thumb {
+      border-radius: 3px;
+    }
+    :root .terminal-body::-webkit-scrollbar-thumb { background: #ccc; }
+    [data-theme="dark"] .terminal-body::-webkit-scrollbar-thumb { background: #45475a; }
+
+    .terminal-line {
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+    /* Prompt */
+    .prompt-user {
+      font-weight: bold;
+    }
+    :root .prompt-user { color: #50a14f; }
+    [data-theme="dark"] .prompt-user { color: #a6e3a1; }
+    .prompt-separator {
+      font-weight: bold;
+    }
+    :root .prompt-separator { color: #383a42; }
+    [data-theme="dark"] .prompt-separator { color: #cdd6f4; }
+    .prompt-path {
+      font-weight: bold;
+    }
+    :root .prompt-path { color: #4078f2; }
+    [data-theme="dark"] .prompt-path { color: #89b4fa; }
+    .prompt-dollar {
+      font-weight: bold;
+    }
+    :root .prompt-dollar { color: #383a42; }
+    [data-theme="dark"] .prompt-dollar { color: #cdd6f4; }
+
+    /* Input line */
+    .input-line {
+      display: flex;
+      align-items: center;
+    }
+    .input-line input {
+      background: transparent;
+      border: none;
+      outline: none;
+      font-family: inherit;
+      font-size: inherit;
+      flex: 1;
+      padding: 0;
+      margin: 0;
+      caret-color: currentColor;
+    }
+    :root .input-line input { color: #383a42; }
+    [data-theme="dark"] .input-line input { color: #cdd6f4; }
+
+    /* Output colors */
+    .out-dir { font-weight: bold; }
+    :root .out-dir { color: #4078f2; }
+    [data-theme="dark"] .out-dir { color: #89b4fa; }
+    .out-link {  }
+    :root .out-link { color: #0184bc; }
+    [data-theme="dark"] .out-link { color: #94e2d5; }
+    .out-exec { }
+    :root .out-exec { color: #50a14f; }
+    [data-theme="dark"] .out-exec { color: #a6e3a1; }
+    .out-error { }
+    :root .out-error { color: #e45649; }
+    [data-theme="dark"] .out-error { color: #f38ba8; }
+    .out-bold { font-weight: bold; }
+    .out-muted { }
+    :root .out-muted { color: #a0a1a7; }
+    [data-theme="dark"] .out-muted { color: #6c7086; }
+    .out-highlight { }
+    :root .out-highlight { color: #a626a4; }
+    [data-theme="dark"] .out-highlight { color: #cba6f7; }
+    .out-yellow { }
+    :root .out-yellow { color: #c18401; }
+    [data-theme="dark"] .out-yellow { color: #f9e2af; }
+
+    /* Tab completion hint */
+    .tab-hint {
+      display: inline-flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .terminal { font-size: 12px; min-height: 380px; }
+      .terminal-body { max-height: 420px; padding: 8px 10px; }
+    }
+  </style>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nvo-theme');
+      if (!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        saved = 'dark';
+      }
+      if (saved === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
+</head>
+<body class="games-theme">
+  <header class="site-header games-site-header">
+    <div class="header-inner">
+      <a class="site-brand" href="../" aria-label="Начало">
+        <svg class="site-logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+        <span class="site-name">НВО и ДЗИ</span>
+      </a>
+      <nav class="grade-tabs">
+        <a class="grade-tab" href="../4/">4 клас</a>
+        <a class="grade-tab" href="../7/">7 клас</a>
+        <a class="grade-tab" href="../10/">10 клас</a>
+        <a class="grade-tab" href="../12/">12 клас</a>
+        <a class="grade-tab" href="../games/">Игри</a>
+      </nav>
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Смяна на тема">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <div class="console-wrapper">
+    <a class="console-back" href="../7/">← Обратно</a>
+    <h2 class="console-title">Конзола</h2>
+    <p class="console-subtitle">Linux-подобна конзола с виртуална файлова система. Напиши <strong>help</strong> за списък с команди.</p>
+
+    <div class="terminal" id="terminal">
+      <div class="terminal-titlebar">
+        <span class="terminal-dot red"></span>
+        <span class="terminal-dot yellow"></span>
+        <span class="terminal-dot green"></span>
+        <span class="terminal-titlebar-text">nvo-console — bash</span>
+      </div>
+      <div class="terminal-body" id="terminal-body">
+        <!-- output lines go here -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+  'use strict';
+
+  /* ==========================================
+     toggleTheme (same pattern as games)
+     ========================================== */
+  window.toggleTheme = window.toggleTheme || function() {
+    var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    if (isDark) {
+      document.documentElement.removeAttribute('data-theme');
+      localStorage.setItem('nvo-theme', 'light');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      localStorage.setItem('nvo-theme', 'dark');
+    }
+    setTimeout(function() {
+      if (document.activeElement) document.activeElement.blur();
+    }, 50);
+  };
+
+  /* ==========================================
+     Virtual Filesystem
+     ========================================== */
+  var FS = {
+    '/': {
+      type: 'dir', children: {
+        'home': {
+          type: 'dir', children: {
+            'user': {
+              type: 'dir', children: {
+                'documents': {
+                  type: 'dir', children: {
+                    'notes.txt': { type: 'file', content: 'Това е примерен файл с бележки.\nМожеш да го прочетеш с cat.\n' },
+                    'todo.txt': { type: 'file', content: '1. Научи Linux команди\n2. Практикувай в конзолата\n3. Забавлявай се!\n' }
+                  }
+                },
+                'pictures': { type: 'dir', children: {} },
+                'music': { type: 'dir', children: {} },
+                '.bashrc': { type: 'file', content: '# ~/.bashrc\nexport PS1="\\u@nvo:\\w$ "\nalias ll="ls -la"\n' },
+                '.profile': { type: 'file', content: '# ~/.profile\nexport LANG=bg_BG.UTF-8\nexport EDITOR=vim\n' },
+                'hello.sh': { type: 'file', content: '#!/bin/bash\necho "Здравей, свят!"\n', executable: true }
+              }
+            }
+          }
+        },
+        'etc': {
+          type: 'dir', children: {
+            'hostname': { type: 'file', content: 'nvo-console\n' },
+            'os-release': { type: 'file', content: 'NAME="NVO Linux"\nVERSION="1.0"\nID=nvo\nPRETTY_NAME="NVO Linux 1.0"\n' },
+            'passwd': { type: 'file', content: 'root:x:0:0:root:/root:/bin/bash\nuser:x:1000:1000:user:/home/user:/bin/bash\n' },
+            'motd': { type: 'file', content: 'Добре дошъл в NVO Linux!\nНапиши help за помощ.\n' }
+          }
+        },
+        'var': {
+          type: 'dir', children: {
+            'log': {
+              type: 'dir', children: {
+                'syslog': { type: 'file', content: 'Mar 29 10:00:01 nvo systemd[1]: Started NVO Console.\nMar 29 10:00:02 nvo kernel: All systems operational.\n' }
+              }
+            },
+            'tmp': { type: 'dir', children: {} }
+          }
+        },
+        'tmp': { type: 'dir', children: {} },
+        'usr': {
+          type: 'dir', children: {
+            'bin': { type: 'dir', children: {} },
+            'share': {
+              type: 'dir', children: {
+                'doc': { type: 'dir', children: {} }
+              }
+            }
+          }
+        },
+        'bin': { type: 'dir', children: {} }
+      }
+    }
+  };
+
+  var cwd = '/home/user';
+  var USERNAME = 'user';
+  var HOSTNAME = 'nvo';
+  var ENV = {
+    HOME: '/home/user',
+    USER: 'user',
+    SHELL: '/bin/bash',
+    PATH: '/usr/bin:/bin',
+    LANG: 'bg_BG.UTF-8',
+    TERM: 'xterm-256color',
+    EDITOR: 'vim',
+    PWD: '/home/user'
+  };
+  var cmdHistory = [];
+  var historyIndex = -1;
+  var aliases = { ll: 'ls -la', la: 'ls -a', '..': 'cd ..', 'cls': 'clear' };
+
+  /* ==========================================
+     FS Helpers
+     ========================================== */
+  function resolvePath(p) {
+    if (!p) return cwd;
+    p = p.replace(/^~/, ENV.HOME);
+    if (p[0] !== '/') p = cwd + '/' + p;
+    var parts = p.split('/').filter(Boolean);
+    var resolved = [];
+    for (var i = 0; i < parts.length; i++) {
+      if (parts[i] === '.') continue;
+      if (parts[i] === '..') { resolved.pop(); continue; }
+      resolved.push(parts[i]);
+    }
+    return '/' + resolved.join('/');
+  }
+
+  function getNode(path) {
+    if (path === '/') return FS['/'];
+    var parts = path.split('/').filter(Boolean);
+    var node = FS['/'];
+    for (var i = 0; i < parts.length; i++) {
+      if (!node || node.type !== 'dir' || !node.children[parts[i]]) return null;
+      node = node.children[parts[i]];
+    }
+    return node;
+  }
+
+  function getParent(path) {
+    var parts = path.split('/').filter(Boolean);
+    if (parts.length === 0) return null;
+    parts.pop();
+    return getNode('/' + parts.join('/'));
+  }
+
+  function basename(path) {
+    var parts = path.split('/').filter(Boolean);
+    return parts.length ? parts[parts.length - 1] : '/';
+  }
+
+  function dirname(path) {
+    var parts = path.split('/').filter(Boolean);
+    if (parts.length <= 1) return '/';
+    parts.pop();
+    return '/' + parts.join('/');
+  }
+
+  function displayPath(path) {
+    if (path === ENV.HOME) return '~';
+    if (path.indexOf(ENV.HOME + '/') === 0) return '~' + path.slice(ENV.HOME.length);
+    return path;
+  }
+
+  /* ==========================================
+     Commands
+     ========================================== */
+  var commands = {};
+
+  commands.help = function() {
+    return [
+      span('Налични команди:', 'out-bold'),
+      '',
+      span('  Файлова система:', 'out-yellow'),
+      '  ls [path]          — списък на файлове и директории',
+      '  cd [path]          — смяна на директория',
+      '  pwd                — текуща директория',
+      '  cat <file>         — показване съдържанието на файл',
+      '  head <file> [-n N] — първите N реда (по подразбиране 10)',
+      '  tail <file> [-n N] — последните N реда (по подразбиране 10)',
+      '  touch <file>       — създаване на празен файл',
+      '  mkdir [-p] <dir>   — създаване на директория',
+      '  rm [-r] <path>     — изтриване на файл или директория',
+      '  cp <src> <dst>     — копиране на файл',
+      '  mv <src> <dst>     — преместване / преименуване',
+      '  find <path> -name <pattern> — търсене на файлове',
+      '  wc <file>          — брой редове, думи и символи',
+      '  chmod +x <file>    — маркиране като изпълним',
+      '',
+      span('  Текст и търсене:', 'out-yellow'),
+      '  echo <text>        — извеждане на текст',
+      '  grep <pattern> <file> — търсене в съдържанието на файл',
+      '  sort <file>        — сортиране на редовете',
+      '  uniq <file>        — премахване на дублирани редове',
+      '  tee <file>         — записва stdin в файл (echo ... | tee)',
+      '',
+      span('  Системни:', 'out-yellow'),
+      '  whoami             — текущ потребител',
+      '  hostname           — име на машината',
+      '  uname [-a]         — системна информация',
+      '  date               — текуща дата и час',
+      '  uptime             — време на работа',
+      '  df                 — дисково пространство',
+      '  free               — памет',
+      '  ps                 — процеси',
+      '  env                — променливи на средата',
+      '  export VAR=val     — задаване на променлива',
+      '  id                 — потребителски идентификатори',
+      '',
+      span('  Други:', 'out-yellow'),
+      '  history            — история на командите',
+      '  alias [name=cmd]   — създаване / списък на псевдоними',
+      '  man <command>       — помощ за команда',
+      '  clear              — изчистване на екрана',
+      '  tree [path]        — дървовидна структура',
+      '  du [path]          — размер на файлове',
+      '  rev <text>         — обръщане на текст',
+      '  cal                — календар',
+      '  factor <n>         — прости множители',
+      '  seq <start> <end>  — последователност от числа',
+      '  yes [text]         — повтаряне на текст (5 пъти)',
+      '  base64 <text>      — кодиране / декодиране',
+      '',
+      span('  НВО данни:', 'out-yellow'),
+      '  nvo grades              — налични класове и години',
+      '  nvo cities              — списък на градовете',
+      '  nvo schools <град>      — училища в град (slug)',
+      '  nvo search <текст>      — търсене на училище по име',
+      '  nvo top <клас> <година>  — класация на училища',
+      '  nvo info <код>          — подробности за училище',
+      '  nvo compare <к1> <к2>   — сравнение на две училища',
+      '  nvo stats <клас> [год]  — обобщена статистика',
+      '',
+      span('  Tip:', 'out-muted') + ' Използвай Tab за автодовършване, ↑/↓ за история, | за pipe.'
+    ];
+  };
+
+  commands.ls = function(args) {
+    var showAll = false, showLong = false, target = null;
+    for (var i = 0; i < args.length; i++) {
+      if (args[i] === '-a' || args[i] === '--all') showAll = true;
+      else if (args[i] === '-l') showLong = true;
+      else if (args[i] === '-la' || args[i] === '-al') { showAll = true; showLong = true; }
+      else target = args[i];
+    }
+    var path = resolvePath(target);
+    var node = getNode(path);
+    if (!node) return [span('ls: няма достъп до \'' + (target || path) + '\': Няма такъв файл или директория', 'out-error')];
+    if (node.type === 'file') {
+      if (showLong) return [formatLong(basename(path), node)];
+      return [basename(path)];
+    }
+    var names = Object.keys(node.children);
+    if (showAll) names = ['.', '..'].concat(names);
+    else names = names.filter(function(n) { return n[0] !== '.'; });
+    names.sort();
+    if (showLong) {
+      var lines = [];
+      lines.push(span('общо ' + names.length, 'out-muted'));
+      for (var j = 0; j < names.length; j++) {
+        var child = (names[j] === '.' || names[j] === '..') ? node : node.children[names[j]];
+        lines.push(formatLong(names[j], child));
+      }
+      return lines;
+    }
+    var out = [];
+    var line = [];
+    for (var k = 0; k < names.length; k++) {
+      var ch = (names[k] === '.' || names[k] === '..') ? node : node.children[names[k]];
+      if (ch && ch.type === 'dir') line.push(span(names[k], 'out-dir'));
+      else if (ch && ch.executable) line.push(span(names[k], 'out-exec'));
+      else line.push(names[k]);
+    }
+    return [line.join('  ')];
+  };
+
+  function formatLong(name, node) {
+    if (!node) return name;
+    var isDir = node.type === 'dir';
+    var perm = isDir ? 'drwxr-xr-x' : (node.executable ? '-rwxr-xr-x' : '-rw-r--r--');
+    var size = isDir ? '4096' : ((node.content || '').length + '');
+    var date = 'Mar 29 10:00';
+    var display = isDir ? span(name, 'out-dir') : (node.executable ? span(name, 'out-exec') : name);
+    return perm + '  1 user user  ' + padLeft(size, 6) + ' ' + date + ' ' + display;
+  }
+
+  function padLeft(s, n) { while (s.length < n) s = ' ' + s; return s; }
+
+  commands.cd = function(args) {
+    var target = args[0] || '~';
+    if (target === '-') target = ENV.OLDPWD || cwd;
+    var path = resolvePath(target);
+    var node = getNode(path);
+    if (!node) return [span('cd: ' + target + ': Няма такъв файл или директория', 'out-error')];
+    if (node.type !== 'dir') return [span('cd: ' + target + ': Не е директория', 'out-error')];
+    ENV.OLDPWD = cwd;
+    cwd = path;
+    ENV.PWD = cwd;
+    return [];
+  };
+
+  commands.pwd = function() { return [cwd]; };
+
+  commands.cat = function(args) {
+    if (!args.length) return [span('cat: липсва операнд', 'out-error')];
+    var output = [];
+    for (var i = 0; i < args.length; i++) {
+      var path = resolvePath(args[i]);
+      var node = getNode(path);
+      if (!node) { output.push(span('cat: ' + args[i] + ': Няма такъв файл или директория', 'out-error')); continue; }
+      if (node.type === 'dir') { output.push(span('cat: ' + args[i] + ': Е директория', 'out-error')); continue; }
+      var lines = (node.content || '').replace(/\n$/, '').split('\n');
+      output = output.concat(lines);
+    }
+    return output;
+  };
+
+  commands.head = function(args) {
+    var n = 10, file = null;
+    for (var i = 0; i < args.length; i++) {
+      if (args[i] === '-n' && args[i + 1]) { n = parseInt(args[++i], 10) || 10; }
+      else file = args[i];
+    }
+    if (!file) return [span('head: липсва операнд', 'out-error')];
+    var path = resolvePath(file);
+    var node = getNode(path);
+    if (!node) return [span('head: ' + file + ': Няма такъв файл или директория', 'out-error')];
+    if (node.type === 'dir') return [span('head: ' + file + ': Е директория', 'out-error')];
+    return (node.content || '').replace(/\n$/, '').split('\n').slice(0, n);
+  };
+
+  commands.tail = function(args) {
+    var n = 10, file = null;
+    for (var i = 0; i < args.length; i++) {
+      if (args[i] === '-n' && args[i + 1]) { n = parseInt(args[++i], 10) || 10; }
+      else file = args[i];
+    }
+    if (!file) return [span('tail: липсва операнд', 'out-error')];
+    var path = resolvePath(file);
+    var node = getNode(path);
+    if (!node) return [span('tail: ' + file + ': Няма такъв файл или директория', 'out-error')];
+    if (node.type === 'dir') return [span('tail: ' + file + ': Е директория', 'out-error')];
+    var lines = (node.content || '').replace(/\n$/, '').split('\n');
+    return lines.slice(-n);
+  };
+
+  commands.touch = function(args) {
+    if (!args.length) return [span('touch: липсва операнд', 'out-error')];
+    for (var i = 0; i < args.length; i++) {
+      var path = resolvePath(args[i]);
+      var existing = getNode(path);
+      if (existing) continue;
+      var parent = getParent(path);
+      if (!parent || parent.type !== 'dir') return [span('touch: невъзможно създаване на \'' + args[i] + '\': Няма такъв файл или директория', 'out-error')];
+      parent.children[basename(path)] = { type: 'file', content: '' };
+    }
+    return [];
+  };
+
+  commands.mkdir = function(args) {
+    var mkParents = false;
+    var targets = [];
+    for (var i = 0; i < args.length; i++) {
+      if (args[i] === '-p') mkParents = true;
+      else targets.push(args[i]);
+    }
+    if (!targets.length) return [span('mkdir: липсва операнд', 'out-error')];
+    for (var j = 0; j < targets.length; j++) {
+      var path = resolvePath(targets[j]);
+      if (getNode(path)) return [span('mkdir: невъзможно създаване на директория \'' + targets[j] + '\': Файлът съществува', 'out-error')];
+      if (mkParents) {
+        var parts = path.split('/').filter(Boolean);
+        var current = FS['/'];
+        for (var k = 0; k < parts.length; k++) {
+          if (!current.children[parts[k]]) {
+            current.children[parts[k]] = { type: 'dir', children: {} };
+          }
+          current = current.children[parts[k]];
+        }
+      } else {
+        var parent = getParent(path);
+        if (!parent || parent.type !== 'dir') return [span('mkdir: невъзможно създаване на директория \'' + targets[j] + '\': Няма такъв файл или директория', 'out-error')];
+        parent.children[basename(path)] = { type: 'dir', children: {} };
+      }
+    }
+    return [];
+  };
+
+  commands.rm = function(args) {
+    var recursive = false;
+    var targets = [];
+    for (var i = 0; i < args.length; i++) {
+      if (args[i] === '-r' || args[i] === '-rf' || args[i] === '-fr') recursive = true;
+      else if (args[i] === '-f') continue;
+      else targets.push(args[i]);
+    }
+    if (!targets.length) return [span('rm: липсва операнд', 'out-error')];
+    for (var j = 0; j < targets.length; j++) {
+      var path = resolvePath(targets[j]);
+      var node = getNode(path);
+      if (!node) return [span('rm: невъзможно изтриване на \'' + targets[j] + '\': Няма такъв файл или директория', 'out-error')];
+      if (node.type === 'dir' && !recursive) return [span('rm: невъзможно изтриване на \'' + targets[j] + '\': Е директория', 'out-error')];
+      if (path === '/') return [span('rm: отказ за изтриване на \'/\'', 'out-error')];
+      var parent = getParent(path);
+      if (parent) delete parent.children[basename(path)];
+    }
+    return [];
+  };
+
+  commands.cp = function(args) {
+    if (args.length < 2) return [span('cp: липсват операнди', 'out-error')];
+    var srcPath = resolvePath(args[0]);
+    var srcNode = getNode(srcPath);
+    if (!srcNode) return [span('cp: ' + args[0] + ': Няма такъв файл или директория', 'out-error')];
+    if (srcNode.type === 'dir') return [span('cp: пропускане на директория \'' + args[0] + '\' (използвай -r)', 'out-error')];
+    var dstPath = resolvePath(args[1]);
+    var dstNode = getNode(dstPath);
+    if (dstNode && dstNode.type === 'dir') {
+      dstNode.children[basename(srcPath)] = { type: 'file', content: srcNode.content, executable: srcNode.executable };
+    } else {
+      var parent = getParent(dstPath);
+      if (!parent || parent.type !== 'dir') return [span('cp: ' + args[1] + ': Няма такъв файл или директория', 'out-error')];
+      parent.children[basename(dstPath)] = { type: 'file', content: srcNode.content, executable: srcNode.executable };
+    }
+    return [];
+  };
+
+  commands.mv = function(args) {
+    if (args.length < 2) return [span('mv: липсват операнди', 'out-error')];
+    var srcPath = resolvePath(args[0]);
+    var srcNode = getNode(srcPath);
+    if (!srcNode) return [span('mv: ' + args[0] + ': Няма такъв файл или директория', 'out-error')];
+    var dstPath = resolvePath(args[1]);
+    var dstNode = getNode(dstPath);
+    var srcParent = getParent(srcPath);
+    if (dstNode && dstNode.type === 'dir') {
+      dstNode.children[basename(srcPath)] = srcNode;
+      if (srcParent) delete srcParent.children[basename(srcPath)];
+    } else {
+      var dstParent = getParent(dstPath);
+      if (!dstParent || dstParent.type !== 'dir') return [span('mv: ' + args[1] + ': Няма такъв файл или директория', 'out-error')];
+      dstParent.children[basename(dstPath)] = srcNode;
+      if (srcParent) delete srcParent.children[basename(srcPath)];
+    }
+    return [];
+  };
+
+  commands.echo = function(args, rawInput) {
+    var text = rawInput.replace(/^echo\s*/, '');
+    // Handle variable expansion
+    text = text.replace(/\$(\w+)/g, function(_, v) { return ENV[v] || ''; });
+    // Remove wrapping quotes
+    text = text.replace(/^(['"])(.*)\1$/, '$2');
+    return [text];
+  };
+
+  commands.grep = function(args, rawInput, stdin) {
+    var caseInsensitive = false;
+    var showLineNum = false;
+    var pattern = null;
+    var files = [];
+    for (var i = 0; i < args.length; i++) {
+      if (args[i] === '-i') caseInsensitive = true;
+      else if (args[i] === '-n') showLineNum = true;
+      else if (args[i] === '-in' || args[i] === '-ni') { caseInsensitive = true; showLineNum = true; }
+      else if (!pattern) pattern = args[i];
+      else files.push(args[i]);
+    }
+    if (!pattern) return [span('grep: липсва шаблон', 'out-error')];
+    var lines;
+    if (stdin) {
+      lines = stdin;
+    } else if (files.length) {
+      lines = [];
+      for (var f = 0; f < files.length; f++) {
+        var path = resolvePath(files[f]);
+        var node = getNode(path);
+        if (!node) { lines.push(span('grep: ' + files[f] + ': Няма такъв файл или директория', 'out-error')); continue; }
+        if (node.type === 'dir') { lines.push(span('grep: ' + files[f] + ': Е директория', 'out-error')); continue; }
+        var fileLines = (node.content || '').replace(/\n$/, '').split('\n');
+        for (var fl = 0; fl < fileLines.length; fl++) {
+          var prefix = files.length > 1 ? (span(files[f] + ':', 'out-highlight')) : '';
+          lines.push({ text: fileLines[fl], prefix: prefix, lineNum: fl + 1 });
+        }
+      }
+    } else {
+      return [span('grep: липсва файл', 'out-error')];
+    }
+    var output = [];
+    var re;
+    try { re = new RegExp(pattern, caseInsensitive ? 'gi' : 'g'); } catch(e) { return [span('grep: невалиден шаблон', 'out-error')]; }
+    for (var j = 0; j < lines.length; j++) {
+      var item = lines[j];
+      var text = typeof item === 'object' && item.text !== undefined ? item.text : (typeof item === 'string' ? item : '');
+      if (typeof item === 'string' && item.indexOf('<span') === 0) { output.push(item); continue; }
+      if (re.test(text)) {
+        re.lastIndex = 0;
+        var highlighted = text.replace(re, function(m) { return span(m, 'out-error out-bold'); });
+        var pref = typeof item === 'object' ? (item.prefix || '') : '';
+        var ln = (showLineNum && typeof item === 'object') ? span(item.lineNum + ':', 'out-muted') : '';
+        output.push(pref + ln + highlighted);
+      }
+      re.lastIndex = 0;
+    }
+    return output;
+  };
+
+  commands.find = function(args) {
+    var searchPath = '.';
+    var namePattern = null;
+    for (var i = 0; i < args.length; i++) {
+      if (args[i] === '-name' && args[i + 1]) { namePattern = args[++i]; }
+      else if (args[i][0] !== '-') searchPath = args[i];
+    }
+    var basePath = resolvePath(searchPath);
+    var baseNode = getNode(basePath);
+    if (!baseNode || baseNode.type !== 'dir') return [span('find: \'' + searchPath + '\': Няма такъв файл или директория', 'out-error')];
+    var results = [];
+    function walk(node, path) {
+      var names = Object.keys(node.children).sort();
+      for (var j = 0; j < names.length; j++) {
+        var fullPath = path + '/' + names[j];
+        var child = node.children[names[j]];
+        if (!namePattern || matchGlob(names[j], namePattern)) {
+          results.push(child.type === 'dir' ? span(fullPath, 'out-dir') : fullPath);
+        }
+        if (child.type === 'dir') walk(child, fullPath);
+      }
+    }
+    walk(baseNode, basePath === '/' ? '' : basePath);
+    return results.length ? results : [];
+  };
+
+  function matchGlob(name, pattern) {
+    var re = '^' + pattern.replace(/\./g, '\\.').replace(/\*/g, '.*').replace(/\?/g, '.') + '$';
+    return new RegExp(re).test(name);
+  }
+
+  commands.wc = function(args, rawInput, stdin) {
+    var lines;
+    var fname = '';
+    if (stdin) {
+      lines = stdin;
+    } else {
+      if (!args.length) return [span('wc: липсва операнд', 'out-error')];
+      fname = args[0];
+      var path = resolvePath(args[0]);
+      var node = getNode(path);
+      if (!node) return [span('wc: ' + args[0] + ': Няма такъв файл или директория', 'out-error')];
+      if (node.type === 'dir') return [span('wc: ' + args[0] + ': Е директория', 'out-error')];
+      lines = (node.content || '').replace(/\n$/, '').split('\n');
+    }
+    var text = lines.join('\n');
+    var lineCount = lines.length;
+    var wordCount = text.split(/\s+/).filter(Boolean).length;
+    var charCount = text.length;
+    return ['  ' + padLeft(lineCount + '', 5) + ' ' + padLeft(wordCount + '', 5) + ' ' + padLeft(charCount + '', 5) + (fname ? ' ' + fname : '')];
+  };
+
+  commands.sort = function(args, rawInput, stdin) {
+    var lines;
+    if (stdin) {
+      lines = stdin.slice();
+    } else {
+      if (!args.length) return [span('sort: липсва операнд', 'out-error')];
+      var path = resolvePath(args[0]);
+      var node = getNode(path);
+      if (!node || node.type === 'dir') return [span('sort: ' + args[0] + ': Грешка', 'out-error')];
+      lines = (node.content || '').replace(/\n$/, '').split('\n');
+    }
+    var rev = args.indexOf('-r') !== -1;
+    lines.sort();
+    if (rev) lines.reverse();
+    return lines;
+  };
+
+  commands.uniq = function(args, rawInput, stdin) {
+    var lines;
+    if (stdin) {
+      lines = stdin;
+    } else {
+      if (!args.length) return [span('uniq: липсва операнд', 'out-error')];
+      var path = resolvePath(args[0]);
+      var node = getNode(path);
+      if (!node || node.type === 'dir') return [span('uniq: ' + args[0] + ': Грешка', 'out-error')];
+      lines = (node.content || '').replace(/\n$/, '').split('\n');
+    }
+    var out = [];
+    for (var i = 0; i < lines.length; i++) {
+      if (i === 0 || lines[i] !== lines[i - 1]) out.push(lines[i]);
+    }
+    return out;
+  };
+
+  commands.tee = function(args, rawInput, stdin) {
+    if (!args.length) return stdin || [];
+    var path = resolvePath(args[0]);
+    var parent = getParent(path);
+    if (!parent || parent.type !== 'dir') return [span('tee: ' + args[0] + ': Грешка', 'out-error')];
+    var content = (stdin || []).join('\n') + '\n';
+    parent.children[basename(path)] = { type: 'file', content: content };
+    return stdin || [];
+  };
+
+  commands.chmod = function(args) {
+    if (args.length < 2) return [span('chmod: липсват операнди', 'out-error')];
+    var mode = args[0];
+    var path = resolvePath(args[1]);
+    var node = getNode(path);
+    if (!node) return [span('chmod: ' + args[1] + ': Няма такъв файл или директория', 'out-error')];
+    if (mode === '+x') node.executable = true;
+    else if (mode === '-x') node.executable = false;
+    return [];
+  };
+
+  commands.whoami = function() { return [USERNAME]; };
+  commands.hostname = function() { return [HOSTNAME]; };
+
+  commands.uname = function(args) {
+    if (args.indexOf('-a') !== -1) return ['NVO Linux 1.0 nvo-console x86_64 GNU/Linux'];
+    return ['NVO Linux'];
+  };
+
+  commands.date = function() { return [new Date().toString()]; };
+
+  commands.uptime = function() {
+    var now = new Date();
+    return [' ' + now.toTimeString().split(' ')[0] + '  up 42 days, 3:14,  1 user,  load average: 0.08, 0.03, 0.01'];
+  };
+
+  commands.df = function() {
+    return [
+      'Файлова с-ма       1K-блокове   Използвано  Налично  Изп%  Монтирана на',
+      '/dev/sda1            51200000     12345678  38854322   24%  /',
+      'tmpfs                 4096000            0   4096000    0%  /tmp'
+    ];
+  };
+
+  commands.free = function() {
+    return [
+      '              общо     използвана  свободна  споделена  буф./кеш   налична',
+      'Памет:      8192000     3456000     2048000      256000    2432000  4480000',
+      'Суап:       2048000           0     2048000'
+    ];
+  };
+
+  commands.ps = function() {
+    return [
+      '  PID TTY          TIME CMD',
+      '    1 pts/0    00:00:00 bash',
+      '  ' + (Math.floor(Math.random() * 9000) + 1000) + ' pts/0    00:00:00 ps'
+    ];
+  };
+
+  commands.env = function() {
+    var out = [];
+    for (var k in ENV) out.push(k + '=' + ENV[k]);
+    return out;
+  };
+
+  commands.export = function(args, rawInput) {
+    var expr = rawInput.replace(/^export\s+/, '');
+    var eq = expr.indexOf('=');
+    if (eq === -1) return [span('export: невалиден синтаксис', 'out-error')];
+    var key = expr.slice(0, eq).trim();
+    var val = expr.slice(eq + 1).trim().replace(/^['"]|['"]$/g, '');
+    ENV[key] = val;
+    return [];
+  };
+
+  commands.id = function() {
+    return ['uid=1000(user) gid=1000(user) групи=1000(user),27(sudo)'];
+  };
+
+  commands.history = function() {
+    return cmdHistory.map(function(cmd, i) {
+      return '  ' + padLeft((i + 1) + '', 4) + '  ' + cmd;
+    });
+  };
+
+  commands.alias = function(args, rawInput) {
+    if (!args.length) {
+      var out = [];
+      for (var k in aliases) out.push("alias " + k + "='" + aliases[k] + "'");
+      return out;
+    }
+    var expr = rawInput.replace(/^alias\s+/, '');
+    var eq = expr.indexOf('=');
+    if (eq === -1) {
+      if (aliases[args[0]]) return ["alias " + args[0] + "='" + aliases[args[0]] + "'"];
+      return [span('alias: ' + args[0] + ': не е намерен', 'out-error')];
+    }
+    var name = expr.slice(0, eq);
+    var val = expr.slice(eq + 1).replace(/^['"]|['"]$/g, '');
+    aliases[name] = val;
+    return [];
+  };
+
+  commands.man = function(args) {
+    if (!args.length) return [span('Какъв man page искаш? Напиши: man <команда>', 'out-error')];
+    var cmd = args[0];
+    if (!commands[cmd]) return [span('Няма man page за \'' + cmd + '\'', 'out-error')];
+    var pages = {
+      ls: 'ls — списък на файловете в директория\n\nУпотреба: ls [-a] [-l] [path]\n\n  -a    показва скритите файлове (започващи с .)\n  -l    дълъг формат с подробности',
+      cd: 'cd — смяна на работната директория\n\nУпотреба: cd [path]\n\n  cd ~     домашна директория\n  cd ..    нагоре\n  cd -     предишна директория',
+      cat: 'cat — извеждане съдържанието на файл\n\nУпотреба: cat <file> [file2 ...]',
+      grep: 'grep — търсене на текст в файлове\n\nУпотреба: grep [-i] [-n] <pattern> <file>\n\n  -i    без разлика главни/малки букви\n  -n    показва номера на редовете',
+      echo: 'echo — извеждане на текст\n\nУпотреба: echo <text>\n\nПоддържа $VARIABLE разширение.',
+      find: 'find — търсене на файлове по име\n\nУпотреба: find [path] -name <pattern>\n\n  *     съвпада с всичко\n  ?     съвпада с един символ',
+      mkdir: 'mkdir — създаване на директория\n\nУпотреба: mkdir [-p] <dir>\n\n  -p    създава и родителските директории',
+      rm: 'rm — изтриване на файлове\n\nУпотреба: rm [-r] [-f] <path>\n\n  -r    рекурсивно изтриване\n  -f    без потвърждение',
+      cp: 'cp — копиране на файлове\n\nУпотреба: cp <source> <destination>',
+      mv: 'mv — преместване / преименуване\n\nУпотреба: mv <source> <destination>',
+      nvo: 'nvo — достъп до данните за НВО и ДЗИ\n\nУпотреба: nvo <подкоманда> [опции]\n\nПодкоманди:\n  grades              налични класове и години\n  cities              списък на градовете\n  schools <град>      училища в град (по slug)\n  search <текст>      търсене на училище\n  top <клас> <год>    класация\n  info <код>          подробности за училище\n  compare <к1> <к2>   сравнение\n  stats <клас> [год]  статистика\n\nФлагове:\n  -n <N>        брой резултати (top)\n  --median      3-годишна медиана (top)\n  --private     само частни училища\n  --bel         само БЕЛ\n  --mat         само МАТ\n  --city <slug> филтър по град (top)\n  --json        JSON изход\n\nПримери:\n  nvo top 7 2024 -n 5\n  nvo top 7 2024 --median --city sofia\n  nvo info 2216306\n  nvo search СМГ\n  nvo stats 7 2024\n  nvo top 7 2024 --json | grep СМГ'
+    };
+    var page = pages[cmd] || cmd + ' — няма подробна документация.\n\nНапиши: help за списък с команди.';
+    return [span(cmd.toUpperCase() + '(1)', 'out-bold'), ''].concat(page.split('\n'));
+  };
+
+  commands.clear = function() { return '__CLEAR__'; };
+
+  commands.tree = function(args) {
+    var target = args[0] || '.';
+    var path = resolvePath(target);
+    var node = getNode(path);
+    if (!node || node.type !== 'dir') return [span('tree: \'' + target + '\' не е директория', 'out-error')];
+    var output = [span(displayPath(path), 'out-dir')];
+    var dirCount = 0, fileCount = 0;
+    function walk(n, prefix) {
+      var names = Object.keys(n.children).sort();
+      for (var i = 0; i < names.length; i++) {
+        var isLast = i === names.length - 1;
+        var connector = isLast ? '└── ' : '├── ';
+        var child = n.children[names[i]];
+        if (child.type === 'dir') {
+          dirCount++;
+          output.push(prefix + connector + span(names[i], 'out-dir'));
+          walk(child, prefix + (isLast ? '    ' : '│   '));
+        } else {
+          fileCount++;
+          output.push(prefix + connector + (child.executable ? span(names[i], 'out-exec') : names[i]));
+        }
+      }
+    }
+    walk(node, '');
+    output.push('');
+    output.push(span(dirCount + ' директории, ' + fileCount + ' файла', 'out-muted'));
+    return output;
+  };
+
+  commands.du = function(args) {
+    var target = args[0] || '.';
+    var path = resolvePath(target);
+    var node = getNode(path);
+    if (!node) return [span('du: ' + target + ': Няма такъв файл или директория', 'out-error')];
+    if (node.type === 'file') return [padLeft(((node.content || '').length) + '', 8) + '\t' + path];
+    var total = 0;
+    var output = [];
+    function walk(n, p) {
+      var size = 4096;
+      var names = Object.keys(n.children);
+      for (var i = 0; i < names.length; i++) {
+        var child = n.children[names[i]];
+        if (child.type === 'dir') walk(child, p + '/' + names[i]);
+        else size += (child.content || '').length;
+      }
+      total += size;
+      output.push(padLeft(size + '', 8) + '\t' + p);
+    }
+    walk(node, path);
+    return output;
+  };
+
+  commands.rev = function(args, rawInput) {
+    var text = rawInput.replace(/^rev\s*/, '');
+    if (!text) return [''];
+    return [text.split('').reverse().join('')];
+  };
+
+  commands.cal = function() {
+    var now = new Date();
+    var month = now.getMonth();
+    var year = now.getFullYear();
+    var monthNames = ['Януари', 'Февруари', 'Март', 'Април', 'Май', 'Юни', 'Юли', 'Август', 'Септември', 'Октомври', 'Ноември', 'Декември'];
+    var header = '     ' + monthNames[month] + ' ' + year;
+    var days = 'Пн Вт Ср Чт Пт Сб Нд';
+    var firstDay = new Date(year, month, 1).getDay();
+    firstDay = firstDay === 0 ? 6 : firstDay - 1;
+    var daysInMonth = new Date(year, month + 1, 0).getDate();
+    var today = now.getDate();
+    var lines = [header, days];
+    var line = '';
+    for (var i = 0; i < firstDay; i++) line += '   ';
+    for (var d = 1; d <= daysInMonth; d++) {
+      var ds = d < 10 ? ' ' + d : '' + d;
+      if (d === today) ds = span(ds, 'out-bold out-highlight');
+      line += ds + ' ';
+      if ((firstDay + d) % 7 === 0) { lines.push(line.trimEnd()); line = ''; }
+    }
+    if (line.trim()) lines.push(line.trimEnd());
+    return lines;
+  };
+
+  commands.factor = function(args) {
+    if (!args.length) return [span('factor: липсва число', 'out-error')];
+    var n = parseInt(args[0], 10);
+    if (isNaN(n) || n < 1) return [span('factor: невалидно число', 'out-error')];
+    var orig = n;
+    var factors = [];
+    for (var d = 2; d * d <= n; d++) {
+      while (n % d === 0) { factors.push(d); n /= d; }
+    }
+    if (n > 1) factors.push(n);
+    return [orig + ': ' + factors.join(' ')];
+  };
+
+  commands.seq = function(args) {
+    var start = 1, end = 1, step = 1;
+    if (args.length === 1) { end = parseInt(args[0], 10); }
+    else if (args.length === 2) { start = parseInt(args[0], 10); end = parseInt(args[1], 10); }
+    else if (args.length >= 3) { start = parseInt(args[0], 10); step = parseInt(args[1], 10); end = parseInt(args[2], 10); }
+    if (isNaN(start) || isNaN(end) || isNaN(step) || step === 0) return [span('seq: невалидни аргументи', 'out-error')];
+    var out = [];
+    if (step > 0) { for (var i = start; i <= end && out.length < 1000; i += step) out.push('' + i); }
+    else { for (var j = start; j >= end && out.length < 1000; j += step) out.push('' + j); }
+    return out;
+  };
+
+  commands.yes = function(args) {
+    var text = args.length ? args.join(' ') : 'y';
+    var out = [];
+    for (var i = 0; i < 5; i++) out.push(text);
+    return out;
+  };
+
+  commands.base64 = function(args, rawInput) {
+    var decode = args[0] === '-d' || args[0] === '--decode';
+    var text = decode ? args.slice(1).join(' ') : args.join(' ');
+    if (!text) return [span('base64: липсва вход', 'out-error')];
+    try {
+      if (decode) return [decodeURIComponent(atob(text).split('').map(function(c) { return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2); }).join(''))];
+      return [btoa(unescape(encodeURIComponent(text)))];
+    } catch(e) { return [span('base64: грешка при обработка', 'out-error')]; }
+  };
+
+  /* ==========================================
+     NVO Command — async data from API
+     ========================================== */
+  var API = '../api/v1/';
+  var nvoCache = {};
+
+  function nvoFetch(path) {
+    if (nvoCache[path]) return Promise.resolve(nvoCache[path]);
+    return fetch(API + path).then(function(r) {
+      if (!r.ok) throw new Error(r.status);
+      return r.json();
+    }).then(function(data) {
+      nvoCache[path] = data;
+      return data;
+    });
+  }
+
+  function padR(s, n) { s = String(s); while (s.length < n) s += ' '; return s; }
+
+  function nvoParseFlags(args) {
+    var flags = { n: 10, median: false, private: false, bel: false, mat: false, city: null, json: false };
+    var positional = [];
+    for (var i = 0; i < args.length; i++) {
+      if (args[i] === '-n' && args[i + 1]) { flags.n = parseInt(args[++i], 10) || 10; }
+      else if (args[i] === '--median') flags.median = true;
+      else if (args[i] === '--private') flags.private = true;
+      else if (args[i] === '--bel') flags.bel = true;
+      else if (args[i] === '--mat') flags.mat = true;
+      else if (args[i] === '--city' && args[i + 1]) flags.city = args[++i];
+      else if (args[i] === '--json') flags.json = true;
+      else positional.push(args[i]);
+    }
+    return { flags: flags, positional: positional };
+  }
+
+  /* nvo grades */
+  function nvoGrades() {
+    return nvoFetch('index.json').then(function(data) {
+      var out = [span('Налични класове:', 'out-bold'), ''];
+      out.push(span(padR('Клас', 14) + padR('Етикет', 20) + padR('Години', 30) + 'Скала', 'out-muted'));
+      out.push(span('─'.repeat(76), 'out-muted'));
+      data.grades.forEach(function(g) {
+        var years = g.yearsRange[0] + '–' + g.yearsRange[g.yearsRange.length - 1] + ' (' + g.yearsRange.length + ')';
+        out.push(
+          span(padR(g.grade + '', 14), 'out-highlight') +
+          padR(g.label, 20) +
+          padR(years, 30) +
+          g.scaleMin + '–' + g.scaleMax
+        );
+      });
+      return out;
+    });
+  }
+
+  /* nvo cities */
+  function nvoCities() {
+    return nvoFetch('cities.json').then(function(data) {
+      var cities = data.cities;
+      var slugs = Object.keys(cities).sort(function(a, b) {
+        var d = cities[a].orderPosition - cities[b].orderPosition;
+        return d || cities[a].fullName.localeCompare(cities[b].fullName, 'bg');
+      });
+      var out = [span('Градове (' + slugs.length + '):', 'out-bold'), ''];
+      out.push(span(padR('Slug', 24) + padR('Име', 28) + 'Приоритет', 'out-muted'));
+      out.push(span('─'.repeat(60), 'out-muted'));
+      slugs.forEach(function(s) {
+        var c = cities[s];
+        var prio = c.orderPosition === 1 ? span('★ основен', 'out-yellow') :
+                   c.orderPosition === 2 ? span('● среден', 'out-highlight') :
+                   span('○ друг', 'out-muted');
+        out.push(span(padR(s, 24), 'out-dir') + padR(c.fullName, 28) + prio);
+      });
+      return out;
+    });
+  }
+
+  /* nvo schools <city> */
+  function nvoSchools(city, flags) {
+    if (!city) return Promise.resolve([span('nvo schools: липсва град. Пример: nvo schools sofia', 'out-error')]);
+    return nvoFetch('cities.json').then(function(citiesData) {
+      if (!citiesData.cities[city]) return [span('nvo schools: непознат град \'' + city + '\'. Напиши nvo cities за списък.', 'out-error')];
+      return nvoFetch('7/data.json').then(function(gradeData) {
+        var cityData = gradeData.cities[city];
+        if (!cityData) return [span('nvo schools: няма данни за \'' + city + '\' в 7 клас', 'out-error')];
+        var codes = Object.keys(cityData.schools);
+        var schools = codes.map(function(code) { return { code: code, s: cityData.schools[code] }; });
+        if (flags.private) schools = schools.filter(function(s) { return s.s.isPrivate; });
+        schools.sort(function(a, b) { return a.s.fullName.localeCompare(b.s.fullName, 'bg'); });
+        if (flags.json) {
+          return schools.map(function(s) { return JSON.stringify({ code: s.code, name: s.s.fullName, private: s.s.isPrivate }); });
+        }
+        var out = [span(cityData.fullName + ' — ' + schools.length + ' училища:', 'out-bold'), ''];
+        out.push(span(padR('Код', 10) + padR('Училище', 50) + 'Тип', 'out-muted'));
+        out.push(span('─'.repeat(68), 'out-muted'));
+        schools.forEach(function(s) {
+          var name = s.s.shortName || s.s.fullName;
+          if (name.length > 48) name = name.slice(0, 45) + '...';
+          out.push(
+            span(padR(s.code, 10), 'out-highlight') +
+            padR(name, 50) +
+            (s.s.isPrivate ? span('частно', 'out-yellow') : span('държавно', 'out-muted'))
+          );
+        });
+        return out;
+      });
+    });
+  }
+
+  /* nvo search <text> */
+  function nvoSearch(text, flags) {
+    if (!text) return Promise.resolve([span('nvo search: липсва текст. Пример: nvo search СМГ', 'out-error')]);
+    return nvoFetch('schools.json').then(function(data) {
+      var schools = data.schools;
+      var lower = text.toLowerCase();
+      var results = [];
+      Object.keys(schools).forEach(function(code) {
+        var s = schools[code];
+        if (s.fullName.toLowerCase().indexOf(lower) !== -1 ||
+            s.shortName.toLowerCase().indexOf(lower) !== -1 ||
+            code.indexOf(text) !== -1) {
+          results.push({ code: code, s: s });
+        }
+      });
+      if (!results.length) return [span('Няма намерени резултати за \'' + text + '\'', 'out-muted')];
+      results.sort(function(a, b) { return a.s.fullName.localeCompare(b.s.fullName, 'bg'); });
+      if (results.length > 50) results = results.slice(0, 50);
+      if (flags.json) {
+        return results.map(function(r) { return JSON.stringify({ code: r.code, name: r.s.fullName, private: r.s.isPrivate }); });
+      }
+      var out = [span('Намерени: ' + results.length + (results.length === 50 ? '+ (показани първите 50)' : ''), 'out-bold'), ''];
+      out.push(span(padR('Код', 10) + padR('Училище', 50) + 'Тип', 'out-muted'));
+      out.push(span('─'.repeat(68), 'out-muted'));
+      results.forEach(function(r) {
+        var name = r.s.fullName;
+        if (name.length > 48) name = name.slice(0, 45) + '...';
+        out.push(
+          span(padR(r.code, 10), 'out-highlight') +
+          padR(name, 50) +
+          (r.s.isPrivate ? span('частно', 'out-yellow') : span('държавно', 'out-muted'))
+        );
+      });
+      return out;
+    });
+  }
+
+  /* nvo top <grade> <year> */
+  function nvoTop(grade, year, flags) {
+    if (!grade || !year) return Promise.resolve([span('nvo top: употреба: nvo top <клас> <година> [-n N] [--median] [--city <град>]', 'out-error')]);
+    var validGrades = [4, 7, 10, 12];
+    var g = parseInt(grade, 10);
+    if (validGrades.indexOf(g) === -1) return Promise.resolve([span('nvo top: невалиден клас. Валидни: 4, 7, 10, 12', 'out-error')]);
+    var y = parseInt(year, 10);
+    var path = flags.median ? ('rankings/median/' + g + '/' + y + '.json') : ('rankings/' + g + '/' + y + '.json');
+    return nvoFetch(path).then(function(data) {
+      var schools = data.schools;
+      if (flags.city) {
+        schools = schools.filter(function(s) { return s.cities && s.cities.indexOf(flags.city) !== -1; });
+      }
+      if (flags.private) {
+        schools = schools.filter(function(s) { return s.isPrivate; });
+      }
+      schools = schools.slice(0, flags.n);
+      if (!schools.length) return [span('Няма резултати.', 'out-muted')];
+      var typeLabel = flags.median ? 'Медиана' : 'Годишно';
+      var gradeLabel = g === 12 ? 'ДЗИ ' + g + ' клас' : 'НВО ' + g + ' клас';
+      var belKey = flags.median ? 'belMedian' : 'belScore';
+      var matKey = flags.median ? 'matMedian' : 'matScore';
+      if (flags.json) {
+        return schools.map(function(s) {
+          return JSON.stringify({ rank: s.rank, code: s.code, name: s.shortName, bel: s[belKey], mat: s[matKey], score: s.score });
+        });
+      }
+      var out = [];
+      out.push(span(gradeLabel + ' — ' + typeLabel + ' класация ' + y, 'out-bold'));
+      if (flags.city) out.push(span('Филтър: ' + flags.city, 'out-muted'));
+      out.push('');
+      if (flags.bel && !flags.mat) {
+        out.push(span(padR('#', 5) + padR('Училище', 40) + padR('БЕЛ', 10), 'out-muted'));
+        out.push(span('─'.repeat(55), 'out-muted'));
+        schools.forEach(function(s) {
+          var name = s.shortName; if (name.length > 38) name = name.slice(0, 35) + '...';
+          out.push(span(padR(s.rank + '', 5), 'out-yellow') + padR(name, 40) + colorScore(s[belKey], g));
+        });
+      } else if (flags.mat && !flags.bel) {
+        out.push(span(padR('#', 5) + padR('Училище', 40) + padR('МАТ', 10), 'out-muted'));
+        out.push(span('─'.repeat(55), 'out-muted'));
+        schools.forEach(function(s) {
+          var name = s.shortName; if (name.length > 38) name = name.slice(0, 35) + '...';
+          out.push(span(padR(s.rank + '', 5), 'out-yellow') + padR(name, 40) + colorScore(s[matKey], g));
+        });
+      } else {
+        out.push(span(padR('#', 5) + padR('Училище', 34) + padR('БЕЛ', 10) + padR('МАТ', 10) + 'Общо', 'out-muted'));
+        out.push(span('─'.repeat(65), 'out-muted'));
+        schools.forEach(function(s) {
+          var name = s.shortName; if (name.length > 32) name = name.slice(0, 29) + '...';
+          out.push(
+            span(padR(s.rank + '', 5), 'out-yellow') +
+            padR(name, 34) +
+            padR(fmtScore(s[belKey]), 10) +
+            padR(fmtScore(s[matKey]), 10) +
+            span(fmtScore(s.score), 'out-bold')
+          );
+        });
+      }
+      out.push('');
+      out.push(span('Показани: ' + schools.length + ' от ' + data.schools.length, 'out-muted'));
+      return out;
+    }).catch(function() {
+      return [span('nvo top: няма данни за клас ' + g + ', година ' + y + (flags.median ? ' (медиана)' : ''), 'out-error')];
+    });
+  }
+
+  function fmtScore(v) { return v == null ? '—' : v.toFixed(2); }
+
+  function colorScore(v, grade, width) {
+    var w = width || 0;
+    if (v == null) return span(padR('—', w), 'out-muted');
+    var s = v.toFixed(2);
+    if (w) s = padR(s, w);
+    var high, mid;
+    if (grade === 12) { high = 5; mid = 4; }
+    else { high = 80; mid = 50; }
+    if (v >= high) return span(s, 'out-exec');
+    if (v >= mid) return span(s, 'out-yellow');
+    return span(s, 'out-error');
+  }
+
+  /* nvo info <code> */
+  function nvoInfo(code, flags) {
+    if (!code) return Promise.resolve([span('nvo info: липсва код. Пример: nvo info 2216306', 'out-error')]);
+    return nvoFetch('schools.json').then(function(schoolsData) {
+      var school = schoolsData.schools[code];
+      if (!school) return [span('nvo info: непознат код \'' + code + '\'. Опитай nvo search <име>', 'out-error')];
+      var out = [];
+      out.push(span('╔══════════════════════════════════════════════════════════╗', 'out-highlight'));
+      out.push(span('║ ', 'out-highlight') + span(school.fullName, 'out-bold'));
+      out.push(span('╚══════════════════════════════════════════════════════════╝', 'out-highlight'));
+      out.push('');
+      out.push(span('  Код:     ', 'out-muted') + span(code, 'out-highlight'));
+      out.push(span('  Тип:     ', 'out-muted') + (school.isPrivate ? span('Частно', 'out-yellow') : 'Държавно'));
+      out.push(span('  Уебсайт: ', 'out-muted') + (school.website ? span(school.website, 'out-link') : span('няма', 'out-muted')));
+      out.push('');
+      var grades = [4, 7, 10, 12];
+      var fetches = grades.map(function(g) {
+        return nvoFetch(g + '/data.json').then(function(d) { return { grade: g, data: d }; }).catch(function() { return null; });
+      });
+      return Promise.all(fetches).then(function(results) {
+        var found = false;
+        results.forEach(function(r) {
+          if (!r) return;
+          var cities = r.data.cities;
+          Object.keys(cities).forEach(function(citySlug) {
+            var cityObj = cities[citySlug];
+            if (!cityObj.schools[code]) return;
+            found = true;
+            var s = cityObj.schools[code];
+            var years = r.data.yearsRange;
+            var gradeLabel = r.grade === 12 ? 'ДЗИ ' + r.grade + ' клас' : 'НВО ' + r.grade + ' клас';
+            out.push(span('  ' + gradeLabel + ' — ' + cityObj.fullName, 'out-bold'));
+            out.push('');
+            if (!flags.mat) {
+              out.push(span('  БЕЛ резултати:', 'out-muted'));
+              out.push('  ' + years.map(function(y) { return span(padR(y + '', 10), 'out-muted'); }).join(''));
+              out.push('  ' + years.map(function(_, i) {
+                return colorScore(s.belScore[i], r.grade, 10);
+              }).join(''));
+              if (s.belStudents) {
+                out.push('  ' + years.map(function(_, i) {
+                  return span(padR(s.belStudents[i] != null ? s.belStudents[i] + ' уч.' : '', 10), 'out-muted');
+                }).join(''));
+              }
+              out.push('');
+            }
+            if (!flags.bel) {
+              var matLabel = r.grade === 12 ? '  ДЗИ-2 резултати:' : '  МАТ резултати:';
+              out.push(span(matLabel, 'out-muted'));
+              out.push('  ' + years.map(function(y) { return span(padR(y + '', 10), 'out-muted'); }).join(''));
+              out.push('  ' + years.map(function(_, i) {
+                return colorScore(s.matScore[i], r.grade, 10);
+              }).join(''));
+              if (s.matStudents) {
+                out.push('  ' + years.map(function(_, i) {
+                  return span(padR(s.matStudents[i] != null ? s.matStudents[i] + ' уч.' : '', 10), 'out-muted');
+                }).join(''));
+              }
+              out.push('');
+            }
+          });
+        });
+        if (!found) out.push(span('  Няма намерени резултати за това училище.', 'out-muted'));
+        return out;
+      });
+    });
+  }
+
+  /* nvo compare <code1> <code2> */
+  function nvoCompare(code1, code2, flags) {
+    if (!code1 || !code2) return Promise.resolve([span('nvo compare: употреба: nvo compare <код1> <код2>', 'out-error')]);
+    return nvoFetch('schools.json').then(function(schoolsData) {
+      var s1 = schoolsData.schools[code1];
+      var s2 = schoolsData.schools[code2];
+      if (!s1) return [span('nvo compare: непознат код \'' + code1 + '\'', 'out-error')];
+      if (!s2) return [span('nvo compare: непознат код \'' + code2 + '\'', 'out-error')];
+      return nvoFetch('7/data.json').then(function(gradeData) {
+        var years = gradeData.yearsRange;
+        var d1 = null, d2 = null, city1 = '', city2 = '';
+        Object.keys(gradeData.cities).forEach(function(slug) {
+          var c = gradeData.cities[slug];
+          if (c.schools[code1]) { d1 = c.schools[code1]; city1 = c.fullName; }
+          if (c.schools[code2]) { d2 = c.schools[code2]; city2 = c.fullName; }
+        });
+        if (!d1) return [span('nvo compare: няма данни за ' + code1 + ' в 7 клас', 'out-error')];
+        if (!d2) return [span('nvo compare: няма данни за ' + code2 + ' в 7 клас', 'out-error')];
+        var n1 = s1.shortName, n2 = s2.shortName;
+        if (n1.length > 22) n1 = n1.slice(0, 19) + '...';
+        if (n2.length > 22) n2 = n2.slice(0, 19) + '...';
+        var out = [];
+        out.push(span('НВО 7 клас — Сравнение', 'out-bold'));
+        out.push(span('  ' + s1.fullName, 'out-highlight') + span(' (' + city1 + ')', 'out-muted'));
+        out.push(span('  ' + s2.fullName, 'out-link') + span(' (' + city2 + ')', 'out-muted'));
+        out.push('');
+        if (!flags.mat) {
+          out.push(span('  БЕЛ:', 'out-bold'));
+          out.push('  ' + padR('Година', 10) + span(padR(n1, 24), 'out-highlight') + span(padR(n2, 24), 'out-link') + 'Разлика');
+          out.push('  ' + span('─'.repeat(68), 'out-muted'));
+          years.forEach(function(y, i) {
+            var v1 = d1.belScore[i], v2 = d2.belScore[i];
+            var diff = (v1 != null && v2 != null) ? (v1 - v2) : null;
+            var diffStr = diff != null ? (diff > 0 ? span('+' + diff.toFixed(2), 'out-exec') : diff < 0 ? span(diff.toFixed(2), 'out-error') : span('0.00', 'out-muted')) : span('—', 'out-muted');
+            out.push('  ' + padR(y, 10) + padR(fmtScore(v1), 24) + padR(fmtScore(v2), 24) + diffStr);
+          });
+          out.push('');
+        }
+        if (!flags.bel) {
+          out.push(span('  МАТ:', 'out-bold'));
+          out.push('  ' + padR('Година', 10) + span(padR(n1, 24), 'out-highlight') + span(padR(n2, 24), 'out-link') + 'Разлика');
+          out.push('  ' + span('─'.repeat(68), 'out-muted'));
+          years.forEach(function(y, i) {
+            var v1 = d1.matScore[i], v2 = d2.matScore[i];
+            var diff = (v1 != null && v2 != null) ? (v1 - v2) : null;
+            var diffStr = diff != null ? (diff > 0 ? span('+' + diff.toFixed(2), 'out-exec') : diff < 0 ? span(diff.toFixed(2), 'out-error') : span('0.00', 'out-muted')) : span('—', 'out-muted');
+            out.push('  ' + padR(y, 10) + padR(fmtScore(v1), 24) + padR(fmtScore(v2), 24) + diffStr);
+          });
+          out.push('');
+        }
+        return out;
+      });
+    });
+  }
+
+  /* nvo stats <grade> [year] */
+  function nvoStats(grade, year, flags) {
+    if (!grade) return Promise.resolve([span('nvo stats: употреба: nvo stats <клас> [година]', 'out-error')]);
+    var g = parseInt(grade, 10);
+    if ([4, 7, 10, 12].indexOf(g) === -1) return Promise.resolve([span('nvo stats: невалиден клас. Валидни: 4, 7, 10, 12', 'out-error')]);
+    return nvoFetch(g + '/data.json').then(function(data) {
+      var years = data.yearsRange;
+      var out = [];
+      var gradeLabel = g === 12 ? 'ДЗИ ' + g + ' клас' : 'НВО ' + g + ' клас';
+      out.push(span(gradeLabel + ' — Статистика', 'out-bold'));
+      out.push('');
+      if (year) {
+        var yi = years.indexOf(parseInt(year, 10));
+        if (yi === -1) return [span('nvo stats: няма данни за ' + year + '. Налични: ' + years.join(', '), 'out-error')];
+        var belScores = [], matScores = [], totalStudents = 0, schoolCount = 0;
+        Object.keys(data.cities).forEach(function(slug) {
+          var city = data.cities[slug];
+          Object.keys(city.schools).forEach(function(code) {
+            var s = city.schools[code];
+            if (flags.private && !s.isPrivate) return;
+            if (s.belScore[yi] != null) { belScores.push(s.belScore[yi]); schoolCount++; }
+            if (s.matScore[yi] != null) matScores.push(s.matScore[yi]);
+            if (s.belStudents && s.belStudents[yi] != null) totalStudents += s.belStudents[yi];
+          });
+        });
+        out.push(span('  Година: ' + year, 'out-highlight'));
+        out.push(span('  Училища с данни: ', 'out-muted') + schoolCount);
+        out.push(span('  Общо ученици:    ', 'out-muted') + totalStudents.toLocaleString('bg'));
+        out.push('');
+        if (belScores.length) {
+          belScores.sort(function(a, b) { return a - b; });
+          out.push(span('  БЕЛ:', 'out-bold'));
+          out.push(span('    Средно:  ', 'out-muted') + colorScore(avg(belScores), g));
+          out.push(span('    Медиана: ', 'out-muted') + colorScore(median(belScores), g));
+          out.push(span('    Мин:     ', 'out-muted') + colorScore(belScores[0], g));
+          out.push(span('    Макс:    ', 'out-muted') + colorScore(belScores[belScores.length - 1], g));
+          out.push('');
+        }
+        if (matScores.length) {
+          matScores.sort(function(a, b) { return a - b; });
+          var matLabel = g === 12 ? '  ДЗИ-2:' : '  МАТ:';
+          out.push(span(matLabel, 'out-bold'));
+          out.push(span('    Средно:  ', 'out-muted') + colorScore(avg(matScores), g));
+          out.push(span('    Медиана: ', 'out-muted') + colorScore(median(matScores), g));
+          out.push(span('    Мин:     ', 'out-muted') + colorScore(matScores[0], g));
+          out.push(span('    Макс:    ', 'out-muted') + colorScore(matScores[matScores.length - 1], g));
+        }
+      } else {
+        /* Summary across all years */
+        out.push(span(padR('Година', 10) + padR('Училища', 10) + padR('Ученици', 12) + padR('Ср. БЕЛ', 12) + (g === 12 ? 'Ср. ДЗИ-2' : 'Ср. МАТ'), 'out-muted'));
+        out.push(span('─'.repeat(58), 'out-muted'));
+        years.forEach(function(y, yi) {
+          var belScores = [], matScores = [], students = 0, count = 0;
+          Object.keys(data.cities).forEach(function(slug) {
+            var city = data.cities[slug];
+            Object.keys(city.schools).forEach(function(code) {
+              var s = city.schools[code];
+              if (flags.private && !s.isPrivate) return;
+              if (s.belScore[yi] != null) { belScores.push(s.belScore[yi]); count++; }
+              if (s.matScore[yi] != null) matScores.push(s.matScore[yi]);
+              if (s.belStudents && s.belStudents[yi] != null) students += s.belStudents[yi];
+            });
+          });
+          if (!count) {
+            out.push(padR(y + '', 10) + span('— няма данни —', 'out-muted'));
+            return;
+          }
+          out.push(
+            span(padR(y + '', 10), 'out-highlight') +
+            padR(count + '', 10) +
+            padR(students.toLocaleString('bg'), 12) +
+            padR(fmtScore(avg(belScores)), 12) +
+            fmtScore(avg(matScores))
+          );
+        });
+      }
+      return out;
+    });
+  }
+
+  function avg(arr) {
+    if (!arr.length) return null;
+    var sum = 0; for (var i = 0; i < arr.length; i++) sum += arr[i];
+    return sum / arr.length;
+  }
+
+  function median(arr) {
+    if (!arr.length) return null;
+    var mid = Math.floor(arr.length / 2);
+    return arr.length % 2 ? arr[mid] : (arr[mid - 1] + arr[mid]) / 2;
+  }
+
+  /* nvo main dispatcher (async) */
+  commands.nvo = function(args) {
+    var parsed = nvoParseFlags(args);
+    var pos = parsed.positional;
+    var flags = parsed.flags;
+    var subcmd = pos[0] || '';
+
+    var promise;
+    switch (subcmd) {
+      case 'grades': promise = nvoGrades(); break;
+      case 'cities': promise = nvoCities(); break;
+      case 'schools': promise = nvoSchools(pos[1], flags); break;
+      case 'search': promise = nvoSearch(pos.slice(1).join(' '), flags); break;
+      case 'top': promise = nvoTop(pos[1], pos[2], flags); break;
+      case 'info': promise = nvoInfo(pos[1], flags); break;
+      case 'compare': promise = nvoCompare(pos[1], pos[2], flags); break;
+      case 'stats': promise = nvoStats(pos[1], pos[2], flags); break;
+      default:
+        return [
+          span('nvo', 'out-bold') + ' — достъп до данните за НВО и ДЗИ',
+          '',
+          '  nvo grades              — налични класове и години',
+          '  nvo cities              — списък на градовете',
+          '  nvo schools <град>      — училища в град',
+          '  nvo search <текст>      — търсене по име или код',
+          '  nvo top <клас> <година>  — класация',
+          '  nvo info <код>          — подробности за училище',
+          '  nvo compare <к1> <к2>   — сравнение на две училища',
+          '  nvo stats <клас> [год]  — обобщена статистика',
+          '',
+          span('  Флагове:', 'out-muted'),
+          '  -n <N>        брой резултати (за top, по подразбиране 10)',
+          '  --median      използва 3-годишна медиана (за top)',
+          '  --private     само частни училища',
+          '  --bel         само БЕЛ резултати',
+          '  --mat         само МАТ резултати',
+          '  --city <slug> филтър по град (за top)',
+          '  --json        извежда в JSON формат'
+        ];
+    }
+    return { __async__: true, promise: promise };
+  };
+
+  /* ==========================================
+     Pipe Support
+     ========================================== */
+  function executePipeline(input) {
+    var segments = input.split(/\s*\|\s*/);
+    var stdin = null;
+    for (var i = 0; i < segments.length; i++) {
+      var result = executeCommand(segments[i].trim(), stdin);
+      if (result === '__CLEAR__') return '__CLEAR__';
+      if (result && result.__async__) {
+        // Wrap remaining pipe segments to execute after async resolves
+        var remaining = segments.slice(i + 1);
+        if (!remaining.length) return result;
+        return {
+          __async__: true,
+          promise: result.promise.then(function(lines) {
+            var pipeResult = lines;
+            for (var j = 0; j < remaining.length; j++) {
+              pipeResult = executeCommand(remaining[j].trim(), pipeResult);
+              if (pipeResult === '__CLEAR__') return [];
+              if (pipeResult && pipeResult.__async__) return pipeResult.promise;
+            }
+            return pipeResult;
+          })
+        };
+      }
+      stdin = result;
+    }
+    return stdin;
+  }
+
+  /* ==========================================
+     Output redirect (>>  and >)
+     ========================================== */
+  function handleRedirect(input) {
+    var appendMatch = input.match(/^(.+?)\s*>>\s*(\S+)\s*$/);
+    var writeMatch = input.match(/^(.+?)\s*>\s*(\S+)\s*$/);
+    if (appendMatch) {
+      var result = executePipeline(appendMatch[1]);
+      if (result === '__CLEAR__') return '__CLEAR__';
+      var path = resolvePath(appendMatch[2]);
+      var node = getNode(path);
+      var content = (result || []).join('\n') + '\n';
+      if (node && node.type === 'file') { node.content += content; }
+      else {
+        var parent = getParent(path);
+        if (parent && parent.type === 'dir') parent.children[basename(path)] = { type: 'file', content: content };
+      }
+      return [];
+    }
+    if (writeMatch) {
+      var result2 = executePipeline(writeMatch[1]);
+      if (result2 === '__CLEAR__') return '__CLEAR__';
+      var path2 = resolvePath(writeMatch[2]);
+      var content2 = (result2 || []).join('\n') + '\n';
+      var parent2 = getParent(path2);
+      if (parent2 && parent2.type === 'dir') {
+        parent2.children[basename(path2)] = { type: 'file', content: content2 };
+      }
+      return [];
+    }
+    return null;
+  }
+
+  /* ==========================================
+     Command Parser & Executor
+     ========================================== */
+  function parseArgs(input) {
+    var args = [];
+    var current = '';
+    var inSingle = false, inDouble = false;
+    for (var i = 0; i < input.length; i++) {
+      var c = input[i];
+      if (c === "'" && !inDouble) { inSingle = !inSingle; continue; }
+      if (c === '"' && !inSingle) { inDouble = !inDouble; continue; }
+      if (c === ' ' && !inSingle && !inDouble) {
+        if (current) { args.push(current); current = ''; }
+        continue;
+      }
+      current += c;
+    }
+    if (current) args.push(current);
+    return args;
+  }
+
+  function executeCommand(input, stdin) {
+    input = input.trim();
+    if (!input) return [];
+
+    // Variable expansion in args
+    input = input.replace(/\$(\w+)/g, function(_, v) { return ENV[v] || ''; });
+
+    var parts = parseArgs(input);
+    var cmd = parts[0];
+    var args = parts.slice(1);
+
+    // Alias expansion
+    if (aliases[cmd]) {
+      var expanded = aliases[cmd] + (args.length ? ' ' + args.join(' ') : '');
+      return executeCommand(expanded, stdin);
+    }
+
+    if (commands[cmd]) {
+      return commands[cmd](args, input, stdin);
+    }
+
+    return [span(cmd + ': командата не е намерена. Напиши help за помощ.', 'out-error')];
+  }
+
+  /* ==========================================
+     HTML helper
+     ========================================== */
+  function span(text, cls) {
+    return '<span class="' + cls + '">' + escapeHtml(text) + '</span>';
+  }
+
+  function escapeHtml(s) {
+    return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
+  /* ==========================================
+     Terminal UI
+     ========================================== */
+  var body = document.getElementById('terminal-body');
+
+  function promptHtml() {
+    return '<span class="prompt-user">' + USERNAME + '@' + HOSTNAME + '</span>' +
+           '<span class="prompt-separator">:</span>' +
+           '<span class="prompt-path">' + escapeHtml(displayPath(cwd)) + '</span>' +
+           '<span class="prompt-dollar">$ </span>';
+  }
+
+  function addOutput(lines) {
+    for (var i = 0; i < lines.length; i++) {
+      var div = document.createElement('div');
+      div.className = 'terminal-line';
+      div.innerHTML = typeof lines[i] === 'string' ? lines[i] : escapeHtml(String(lines[i]));
+      body.appendChild(div);
+    }
+  }
+
+  function addPrompt() {
+    var div = document.createElement('div');
+    div.className = 'terminal-line input-line';
+    div.innerHTML = promptHtml() + '<input type="text" id="cmd-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">';
+    body.appendChild(div);
+    var input = document.getElementById('cmd-input');
+    input.addEventListener('keydown', handleKey);
+    input.focus();
+    body.scrollTop = body.scrollHeight;
+  }
+
+  function handleKey(e) {
+    var input = e.target;
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      var val = input.value;
+      // Freeze the line
+      var line = input.parentElement;
+      line.innerHTML = promptHtml() + escapeHtml(val);
+      line.classList.remove('input-line');
+
+      if (val.trim()) {
+        cmdHistory.push(val.trim());
+        historyIndex = cmdHistory.length;
+
+        // Check redirects first
+        var redirectResult = handleRedirect(val.trim());
+        if (redirectResult !== null) {
+          if (redirectResult === '__CLEAR__') { body.innerHTML = ''; }
+          else if (redirectResult.length) addOutput(redirectResult);
+          addPrompt();
+        } else {
+          // Execute with pipe support
+          var result = executePipeline(val.trim());
+          if (result === '__CLEAR__') { body.innerHTML = ''; addPrompt(); }
+          else if (result && result.__async__) {
+            // Async command — show spinner, wait for promise
+            var spinner = document.createElement('div');
+            spinner.className = 'terminal-line';
+            spinner.innerHTML = span('⏳ Зареждане...', 'out-muted');
+            body.appendChild(spinner);
+            body.scrollTop = body.scrollHeight;
+            result.promise.then(function(lines) {
+              body.removeChild(spinner);
+              if (lines && lines.length) addOutput(lines);
+              addPrompt();
+            }).catch(function(err) {
+              body.removeChild(spinner);
+              addOutput([span('nvo: грешка при зареждане: ' + err.message, 'out-error')]);
+              addPrompt();
+            });
+            return;
+          }
+          else { if (result && result.length) addOutput(result); addPrompt(); }
+        }
+      } else {
+        addPrompt();
+      }
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (historyIndex > 0) {
+        historyIndex--;
+        input.value = cmdHistory[historyIndex];
+      }
+    } else if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      if (historyIndex < cmdHistory.length - 1) {
+        historyIndex++;
+        input.value = cmdHistory[historyIndex];
+      } else {
+        historyIndex = cmdHistory.length;
+        input.value = '';
+      }
+    } else if (e.key === 'Tab') {
+      e.preventDefault();
+      tabComplete(input);
+    } else if (e.key === 'l' && e.ctrlKey) {
+      e.preventDefault();
+      body.innerHTML = '';
+      addPrompt();
+    } else if (e.key === 'c' && e.ctrlKey) {
+      e.preventDefault();
+      var line2 = input.parentElement;
+      line2.innerHTML = promptHtml() + escapeHtml(input.value) + '^C';
+      line2.classList.remove('input-line');
+      addPrompt();
+    }
+  }
+
+  /* Tab completion */
+  function tabComplete(input) {
+    var val = input.value;
+    var parts = val.split(/\s+/);
+    var completing = parts[parts.length - 1] || '';
+
+    // Command completion
+    if (parts.length <= 1) {
+      var matches = Object.keys(commands).filter(function(c) { return c.indexOf(completing) === 0; });
+      if (matches.length === 1) {
+        input.value = matches[0] + ' ';
+      } else if (matches.length > 1) {
+        var line = input.parentElement;
+        line.innerHTML = promptHtml() + escapeHtml(val);
+        line.classList.remove('input-line');
+        var div = document.createElement('div');
+        div.className = 'terminal-line tab-hint';
+        div.innerHTML = matches.map(function(m) { return span(m, 'out-bold'); }).join('');
+        body.appendChild(div);
+        addPrompt();
+        document.getElementById('cmd-input').value = val;
+      }
+      return;
+    }
+
+    // File/dir completion
+    var dir, prefix;
+    var lastSlash = completing.lastIndexOf('/');
+    if (lastSlash !== -1) {
+      dir = resolvePath(completing.slice(0, lastSlash + 1));
+      prefix = completing.slice(lastSlash + 1);
+    } else {
+      dir = cwd;
+      prefix = completing;
+    }
+    var node = getNode(dir);
+    if (!node || node.type !== 'dir') return;
+    var matches2 = Object.keys(node.children).filter(function(n) { return n.indexOf(prefix) === 0; });
+    if (matches2.length === 1) {
+      var completed = matches2[0];
+      var child = node.children[completed];
+      var base = lastSlash !== -1 ? completing.slice(0, lastSlash + 1) : '';
+      parts[parts.length - 1] = base + completed + (child.type === 'dir' ? '/' : ' ');
+      input.value = parts.join(' ');
+    } else if (matches2.length > 1) {
+      var line2 = input.parentElement;
+      line2.innerHTML = promptHtml() + escapeHtml(val);
+      line2.classList.remove('input-line');
+      var div2 = document.createElement('div');
+      div2.className = 'terminal-line tab-hint';
+      div2.innerHTML = matches2.map(function(m) {
+        var ch = node.children[m];
+        return ch && ch.type === 'dir' ? span(m + '/', 'out-dir') : m;
+      }).join('');
+      body.appendChild(div2);
+      // Common prefix
+      var common = matches2[0];
+      for (var i = 1; i < matches2.length; i++) {
+        while (matches2[i].indexOf(common) !== 0) common = common.slice(0, -1);
+      }
+      if (common.length > prefix.length) {
+        var base2 = lastSlash !== -1 ? completing.slice(0, lastSlash + 1) : '';
+        parts[parts.length - 1] = base2 + common;
+        addPrompt();
+        document.getElementById('cmd-input').value = parts.join(' ');
+      } else {
+        addPrompt();
+        document.getElementById('cmd-input').value = val;
+      }
+    }
+  }
+
+  /* Click to focus */
+  body.addEventListener('click', function(e) {
+    if (e.target.tagName !== 'INPUT') {
+      var input = document.getElementById('cmd-input');
+      if (input) input.focus();
+    }
+  });
+
+  /* Welcome message */
+  addOutput([
+    span('NVO Linux 1.0', 'out-bold') + ' — ' + span('JavaScript конзола', 'out-muted'),
+    'Напиши ' + span('help', 'out-highlight') + ' за списък с команди.',
+    ''
+  ]);
+
+  addPrompt();
+
+  </script>
+</body>
+</html>
