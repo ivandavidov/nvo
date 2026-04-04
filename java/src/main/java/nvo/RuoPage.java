@@ -113,11 +113,20 @@ public class RuoPage {
                     .ruo-search { display: block; width: 100%%; margin-bottom: 1rem; background: var(--color-bg-alt); color: var(--color-text); border: 1px solid var(--color-border); border-radius: var(--radius-sm); padding: 0.5rem 0.75rem; font-size: 0.9rem; box-sizing: border-box; }
                     .ruo-search:focus { outline: none; border-color: var(--color-primary); }
                     #overview-table { overflow: visible; }
-                    #overview-thead th { position: sticky; top: var(--header-height, 60px); z-index: 1; background: var(--color-surface); }
+                    #overview-table th:first-child, #overview-table td:first-child { position: sticky; left: 0; z-index: 1; background: var(--color-surface); }
+                    #overview-tbody tr:nth-child(even) td:first-child { background: var(--color-bg-alt); }
+                    #overview-tbody tr:hover td:first-child { background: var(--color-border); }
+                    #overview-thead th { background: var(--color-surface); }
                     #overview-tbody tr { cursor: pointer; }
                     #overview-tbody tr:nth-child(even) { background: var(--color-bg-alt); }
                     #overview-tbody tr:hover { background: var(--color-border); }
                     .sort-arrow { color: var(--color-primary); margin-left: 0.25em; }
+                    @media (min-width: 901px) {
+                      .ruo-overview-panel > .ruo-table-wrap { overflow-x: visible; overflow-y: visible; }
+                      #overview-table { overflow: visible; }
+                      #overview-table th:first-child, #overview-table td:first-child { position: static; }
+                      #overview-thead th { position: sticky; top: 60px; top: var(--header-height, 60px); z-index: 2; }
+                    }
                     @media (max-width: 900px) { .ruo-section-intro { grid-template-columns: 1fr; } }
                     @media (max-width: 700px) {
                       .ruo-charts { grid-template-columns: 1fr; }
@@ -222,10 +231,12 @@ public class RuoPage {
                       <div class="ruo-overview-panel">
                         <input type="text" id="overview-search" class="ruo-search"
                                placeholder="Търси по училище или паралелка&hellip;">
-                        <table id="overview-table">
-                          <thead id="overview-thead"></thead>
-                          <tbody id="overview-tbody"></tbody>
-                        </table>
+                        <div class="ruo-table-wrap">
+                          <table id="overview-table">
+                            <thead id="overview-thead"></thead>
+                            <tbody id="overview-tbody"></tbody>
+                          </table>
+                        </div>
                       </div>
 
                     </div>
