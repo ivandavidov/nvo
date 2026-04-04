@@ -81,24 +81,49 @@ public class RuoPage {
                   <meta property="og:site_name" content="НВО и ДЗИ – Иван Давидов">
                   <script src="../../../js/theme.js"></script>
                   <style>
-                    #detail-school-name { text-align: center; }
-                    .ruo-section-title { margin-top: 2rem; padding-bottom: 0.4rem; border-bottom: 2px solid var(--color-border); }
-                    .ruo-section-help { margin: 0.85rem 0 1.1rem; color: var(--color-text-muted); line-height: 1.6; max-width: 70rem; }
-                    .ruo-filters { display: flex; gap: 1.25rem; flex-wrap: wrap; margin: 1rem 0; align-items: flex-end; }
-                    .ruo-select-group { display: flex; flex-direction: column; gap: 0.25rem; }
+                    #detail-school-name { text-align: center; margin: 1.5rem 0 1rem; color: var(--color-text-muted); font-size: 1.15rem; font-weight: 600; }
+                    .ruo-section-title { margin-top: 2.25rem; padding-bottom: 0.4rem; border-bottom: 2px solid var(--color-border); }
+                    .ruo-section-help-toggle { margin: 0.75rem 0 1rem; }
+                    .ruo-section-help-toggle summary { cursor: pointer; font-size: 0.9rem; color: var(--color-text-muted); padding: 0.5rem 0; user-select: none; }
+                    .ruo-section-help-toggle summary:hover { color: var(--color-text); }
+                    .ruo-section-help-toggle[open] summary { margin-bottom: 0.5rem; }
+                    .ruo-section-intro { display: grid; grid-template-columns: minmax(0, 1.8fr) minmax(260px, 1fr); gap: 1rem 1.5rem; padding: 1rem 1.2rem; background: linear-gradient(135deg, var(--color-surface), var(--color-bg-alt)); border: 1px solid var(--color-border); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); }
+                    .ruo-section-help { margin: 0; color: var(--color-text-muted); line-height: 1.72; max-width: 46rem; }
+                    .ruo-help-points { margin: 0; padding-left: 1.15rem; color: var(--color-text-muted); line-height: 1.65; }
+                    .ruo-help-points li + li { margin-top: 0.35rem; }
+                    .ruo-filters-card, .ruo-overview-panel { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 1rem 1.2rem 1.2rem; box-shadow: var(--shadow-sm); }
+                    .ruo-filters { display: flex; gap: 1rem 1.25rem; flex-wrap: wrap; margin: 0; align-items: flex-end; }
+                    .ruo-select-group { display: flex; flex: 1 1 250px; min-width: 220px; flex-direction: column; gap: 0.35rem; }
                     .ruo-select-group label { font-size: 0.8rem; font-weight: 600; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.04em; }
-                    .ruo-gender-label { display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; cursor: pointer; padding-bottom: 0.3rem; }
+                    .ruo-select-group select { width: 100%%; min-height: 44px; padding: 0.7rem 0.85rem; background: var(--color-bg-alt); color: var(--color-text); border: 1px solid var(--color-border); border-radius: var(--radius-sm); font-size: 0.95rem; }
+                    .ruo-select-group select:disabled { opacity: 0.7; cursor: not-allowed; }
+                    .ruo-gender-label { display: flex; align-items: center; gap: 0.65rem; min-height: 44px; font-size: 0.92rem; cursor: pointer; padding: 0.7rem 0.9rem; background: var(--color-bg-alt); border: 1px solid var(--color-border); border-radius: var(--radius-sm); }
+                    .ruo-gender-label input { display: none; }
+                    .ruo-toggle-track { position: relative; width: 36px; height: 20px; background: var(--color-border); border-radius: 10px; transition: background 0.2s; flex-shrink: 0; }
+                    .ruo-toggle-track::after { content: ''; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; background: #fff; border-radius: 50%%; transition: transform 0.2s; }
+                    .ruo-gender-label input:checked + .ruo-toggle-track { background: var(--color-primary); }
+                    .ruo-gender-label input:checked + .ruo-toggle-track::after { transform: translateX(16px); }
                     .ruo-table-wrap { overflow-x: auto; }
+                    .ruo-overview-panel { margin-top: 1rem; }
                     .ruo-charts { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1.5rem; }
                     .ruo-chart-box { background: var(--color-surface); border-radius: var(--radius-md); padding: 1rem; border: 1px solid var(--color-border); box-shadow: var(--shadow-sm); }
                     .trend-up   { color: var(--color-success); font-weight: 700; }
                     .trend-down { color: var(--color-danger);  font-weight: 700; }
                     .trend-same { color: var(--color-text-muted); }
-                    .ruo-search { width: 100%%; max-width: 380px; background: var(--color-surface); color: var(--color-text); border: 1px solid var(--color-border); border-radius: var(--radius-sm); padding: 0.5rem 0.75rem; font-size: 0.9rem; }
+                    .ruo-search { display: block; width: 100%%; margin-bottom: 1rem; background: var(--color-bg-alt); color: var(--color-text); border: 1px solid var(--color-border); border-radius: var(--radius-sm); padding: 0.5rem 0.75rem; font-size: 0.9rem; box-sizing: border-box; }
                     .ruo-search:focus { outline: none; border-color: var(--color-primary); }
+                    #overview-table { overflow: visible; }
+                    #overview-thead th { position: sticky; top: var(--header-height, 60px); z-index: 1; background: var(--color-surface); }
                     #overview-tbody tr { cursor: pointer; }
+                    #overview-tbody tr:nth-child(even) { background: var(--color-bg-alt); }
+                    #overview-tbody tr:hover { background: var(--color-border); }
                     .sort-arrow { color: var(--color-primary); margin-left: 0.25em; }
-                    @media (max-width: 700px) { .ruo-charts { grid-template-columns: 1fr; } }
+                    @media (max-width: 900px) { .ruo-section-intro { grid-template-columns: 1fr; } }
+                    @media (max-width: 700px) {
+                      .ruo-charts { grid-template-columns: 1fr; }
+                      .ruo-filters-card, .ruo-overview-panel, .ruo-section-intro { padding: 0.9rem 1rem; }
+                      .ruo-gender-label, .ruo-select-group { width: 100%%; }
+                    }
                   </style>
                 </head>
                 <body>
@@ -132,28 +157,40 @@ public class RuoPage {
                   </header>
                   <main>
                     <div class="container">
-                      <h1>Минимални и максимални балове по паралелки след 7 клас &ndash; %s</h1>
+                      <h1><a href="./" style="color:inherit;text-decoration:none">Минимални и максимални балове по паралелки след 7 клас &ndash; %s</a></h1>
                       <p><a href="../../">&larr; Към 7 клас</a></p>
 
                       <!-- ── Section 1: Detail selectors ──────────────── -->
                       <h2 class="ruo-section-title">Детайли за паралелка</h2>
-                      <p class="ruo-section-help">Тази секция показва минималните и максималните балове по класирания за избрано училище и паралелка през последните години. Ако избереш „Всички паралелки“, таблицата и графиките обобщават всички паралелки в училището; отметката за пол добавя разбивка за последната година, а двете графики помагат да проследиш едновременно тренда във времето и разликите между отделните класирания.</p>
-                      <div class="ruo-filters">
-                        <div class="ruo-select-group">
-                          <label for="school-select">Училище</label>
-                          <select id="school-select">
-                            <option value="">— Избери училище —</option>
-                          </select>
+                      <details class="ruo-section-help-toggle">
+                        <summary>Как работи тази секция?</summary>
+                        <div class="ruo-section-intro">
+                          <p class="ruo-section-help">Тази секция показва минималните и максималните балове по класирания за избрано училище и паралелка през последните години. Ако избереш „Всички паралелки", таблицата и графиките обобщават всички паралелки в училището и помагат да видиш картината за цялото училище.</p>
+                          <ul class="ruo-help-points">
+                            <li>Избери училище и паралелка, за да видиш конкретните данни.</li>
+                            <li>Отметката за пол добавя по-подробна разбивка за последната година.</li>
+                            <li>Графиките показват както промяната по години, така и разликите между отделните класирания.</li>
+                          </ul>
                         </div>
-                        <div class="ruo-select-group">
-                          <label for="profile-select">Паралелка</label>
-                          <select id="profile-select" disabled>
-                            <option value="">— Избери паралелка —</option>
-                          </select>
+                      </details>
+                      <div class="ruo-filters-card">
+                        <div class="ruo-filters">
+                          <div class="ruo-select-group">
+                            <label for="school-select">Училище</label>
+                            <select id="school-select">
+                              <option value="">— Избери училище —</option>
+                            </select>
+                          </div>
+                          <div class="ruo-select-group">
+                            <label for="profile-select">Паралелка</label>
+                            <select id="profile-select" disabled>
+                              <option value="">— Избери паралелка —</option>
+                            </select>
+                          </div>
+                          <label class="ruo-gender-label">
+                            <input type="checkbox" id="gender-toggle"><span class="ruo-toggle-track"></span> Разбивка по пол за последната година
+                          </label>
                         </div>
-                        <label class="ruo-gender-label">
-                          <input type="checkbox" id="gender-toggle"> Разбивка по пол за последната година
-                        </label>
                       </div>
 
                       <!-- ── Section 2+3: Detail table + charts ────────── -->
@@ -171,10 +208,20 @@ public class RuoPage {
 
                       <!-- ── Section 5: Overview table ─────────────────── -->
                       <h2 class="ruo-section-title">Топ паралелки по минимален бал (1-во класиране)</h2>
-                      <p class="ruo-section-help">Тук са показани паралелките с най-висок минимален бал на 1-во класиране за последните години. Полето за търсене филтрира по училище и паралелка, клик върху ред отваря детайлите по-горе, а заглавията на колоните „Училище“, „Паралелка“ и „Мин.“ позволяват сортиране във възходящ или низходящ ред; колоната „Тренд“ показва дали минималният бал за последната година се е повишил, понижил или е останал близък до предходната.</p>
-                      <input type="text" id="overview-search" class="ruo-search"
-                             placeholder="Търси по училище или паралелка&hellip;">
-                      <div class="ruo-table-wrap">
+                      <details class="ruo-section-help-toggle">
+                        <summary>Как работи тази секция?</summary>
+                        <div class="ruo-section-intro">
+                          <p class="ruo-section-help">Тук са събрани паралелките с най-висок минимален бал на 1-во класиране за последните години. Това е най-бързият начин да сравниш водещите профили и да преминеш към детайлите само с един клик.</p>
+                          <ul class="ruo-help-points">
+                            <li>Полето за търсене филтрира по училище и паралелка.</li>
+                            <li>Клик върху заглавията „Училище", „Паралелка" и „Мин." сортира във възходящ или низходящ ред.</li>
+                            <li>Клик върху ред отваря детайлите за избраната паралелка по-горе.</li>
+                          </ul>
+                        </div>
+                      </details>
+                      <div class="ruo-overview-panel">
+                        <input type="text" id="overview-search" class="ruo-search"
+                               placeholder="Търси по училище или паралелка&hellip;">
                         <table id="overview-table">
                           <thead id="overview-thead"></thead>
                           <tbody id="overview-tbody"></tbody>
