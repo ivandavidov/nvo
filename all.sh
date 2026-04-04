@@ -17,4 +17,7 @@ java -cp nvo-v2.jar nvo.api.JsonGenerator 4
 java -cp nvo-v2.jar nvo.api.JsonGenerator 7
 java -cp nvo-v2.jar nvo.api.JsonGenerator 10
 java -cp nvo-v2.jar nvo.api.JsonGenerator 12
-java -cp nvo-v2.jar nvo.api.JsonGenerator sitemap
+java -cp nvo-v2.jar nvo.RuoNormalizer all
+java -cp nvo-v2.jar nvo.RuoDecomplexor sofia
+java -cp nvo-v2.jar nvo.RuoPage sofia
+java -cp nvo-v2.jar nvo.SitemapGenerator

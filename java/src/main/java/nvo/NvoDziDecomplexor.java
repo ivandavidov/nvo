@@ -14,7 +14,7 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
-public class Decomplexor {
+public class NvoDziDecomplexor {
     private static final boolean COMPRESSED = false;
 
     private String header = null;
@@ -29,7 +29,7 @@ public class Decomplexor {
         if(args.length == 0) {
             System.err.println("Expected argument normalize/4/7/10/12 is not provided.");
         } else {
-            Decomplexor d = new Decomplexor();
+            NvoDziDecomplexor d = new NvoDziDecomplexor();
             d.decomplex(args[0]);
         }
     }
@@ -37,11 +37,11 @@ public class Decomplexor {
     private void decomplex(String mode) throws Exception {
         String[] files = null;
 
-        String normalizedPath = "/Users/mac/projects/nvo/data/normalized/";
-        String schoolsPath = "/Users/mac/projects/nvo/docs/js/";
+        String normalizedPath = ProjectConfig.DATA_NORMALIZED_DIR;
+        String schoolsPath = ProjectConfig.DOCS_JS_DIR;
 
         if(mode.equals("normalize")) {
-          CSVNormalizer.main((String)null);
+          NvoDziNormalizer.main((String)null);
           System.exit(0);
         } else if(mode.equals("12")) {
             header = "// https://data.egov.bg/data/view/066b4b04-d81d-444e-a61c-8ca0516079e4";

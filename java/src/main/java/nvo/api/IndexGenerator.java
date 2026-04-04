@@ -45,6 +45,10 @@ public class IndexGenerator {
 
     private String buildIndexHtml() {
         StringBuilder sb = new StringBuilder();
+        String siteBaseUrl = SITE_BASE_URL;
+        String apiBaseUrl = SITE_BASE_URL + "api/v1/";
+        String socialPreviewUrl = SITE_BASE_URL + "images/social-preview.png";
+        String apiBaseDisplay = SITE_BASE_URL + "api/v1";
         sb.append("""
                 <!DOCTYPE html>
                 <html lang="bg">
@@ -54,19 +58,19 @@ public class IndexGenerator {
                   <meta name="description" content="Публично JSON API с резултати от НВО и ДЗИ (2018–2025) от Иван Давидов. Данни за училища, градове и класации.">
                   <meta name="author" content="Иван Давидов">
                   <meta name="viewport" content="width=device-width, initial-scale=1">
-                  <link rel="canonical" href="https://ivandavidov.github.io/nvo/api/v1/">
+                  <link rel="canonical" href="%s">
 
                   <meta property="og:type" content="website">
-                  <meta property="og:url" content="https://ivandavidov.github.io/nvo/api/v1/">
+                  <meta property="og:url" content="%s">
                   <meta property="og:title" content="НВО и ДЗИ API v1 | Иван Давидов">
                   <meta property="og:description" content="Публично JSON API с резултати от НВО и ДЗИ (2018–2025) от Иван Давидов.">
-                  <meta property="og:image" content="https://ivandavidov.github.io/nvo/images/social-preview.png">
+                  <meta property="og:image" content="%s">
                   <meta property="og:locale" content="bg_BG">
                   <meta property="og:site_name" content="НВО и ДЗИ – Иван Давидов">
                   <meta name="twitter:card" content="summary_large_image">
                   <meta name="twitter:title" content="НВО и ДЗИ API v1 | Иван Давидов">
                   <meta name="twitter:description" content="Публично JSON API с резултати от НВО и ДЗИ (2018–2025) от Иван Давидов.">
-                  <meta name="twitter:image" content="https://ivandavidov.github.io/nvo/images/social-preview.png">
+                  <meta name="twitter:image" content="%s">
 
                   <script type="application/ld+json">
                   {
@@ -75,7 +79,7 @@ public class IndexGenerator {
                       {
                         "@type": "WebSite",
                         "name": "НВО и ДЗИ – Иван Давидов",
-                        "url": "https://ivandavidov.github.io/nvo/",
+                        "url": "%s",
                         "author": { "@id": "#author" },
                         "inLanguage": "bg"
                       },
@@ -89,9 +93,9 @@ public class IndexGenerator {
                         "@type": "WebAPI",
                         "name": "НВО и ДЗИ API v1",
                         "description": "Публично JSON API с резултати от Национално външно оценяване и Държавни зрелостни изпити (2018–2025) за всички училища в България.",
-                        "url": "https://ivandavidov.github.io/nvo/api/v1/",
+                        "url": "%s",
                         "provider": { "@id": "#author" },
-                        "documentation": "https://ivandavidov.github.io/nvo/api/v1/"
+                        "documentation": "%s"
                       }
                     ]
                   }
@@ -175,10 +179,18 @@ public class IndexGenerator {
         sb.append("""
                 )</p>
                     </div>
-                    <div class="api-base">Base URL: <code>https://ivandavidov.github.io/nvo/api/v1</code></div>
+                    <div class="api-base">Base URL: <code>%s</code></div>
 
                     <h4 style="margin-bottom:0.75rem">Общи</h4>
-                """);
+                """.formatted(
+                apiBaseUrl,
+                apiBaseUrl,
+                socialPreviewUrl,
+                socialPreviewUrl,
+                siteBaseUrl,
+                apiBaseUrl,
+                apiBaseUrl,
+                apiBaseDisplay));
 
         // Index endpoint
         sb.append(endpointCard(

@@ -17,13 +17,12 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-public class CSVNormalizer {
-    private static final String BASE_DIR = "/Users/mac/projects/nvo/data/";
-    private static final String BASE_DIR_MON = BASE_DIR + "mon/";
-    private static final String BASE_DIR_NORMALIZED = BASE_DIR + "normalized/";
+public class NvoDziNormalizer {
+    private static final String BASE_DIR_MON = ProjectConfig.DATA_MON_DIR;
+    private static final String BASE_DIR_NORMALIZED = ProjectConfig.DATA_NORMALIZED_DIR;
 
     public static void main(String... args) throws Exception {
-        CSVNormalizer worker = new CSVNormalizer();
+        NvoDziNormalizer worker = new NvoDziNormalizer();
         worker.reformat("nvo-4-2018", ',', "", 2, 3, 4, 10, 9, 6, 5, 0, 0, 0, 0);
         worker.reformat("nvo-4-2019", ',', "", 2, 3, 4, 10, 9, 6, 5, 0, 0, 0, 0);
         worker.reformat("nvo-4-2021", ',', "ГР.", 2, 3, 4, 6, 8, 5, 7, 0, 0, 0, 0);
