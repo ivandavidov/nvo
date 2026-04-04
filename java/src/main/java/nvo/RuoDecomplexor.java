@@ -215,8 +215,9 @@ public class RuoDecomplexor {
     // ── Profile merging ───────────────────────────────────────────────────────
 
     /**
-     * Merges profiles with identical names within each school when their year/klasirane
-     * data does not overlap. Profiles with conflicting data are kept separate.
+     * Merges profiles with identical names within each school. Non-overlapping profiles
+     * are merged directly. Overlapping profiles are resolved by keeping the code that
+     * appears in the most recent year (the "newer" code wins on conflict).
      */
     private void mergeProfilesByName(Map<String, Map<String, String>> profileNames,
                                      Map<String, Map<String, List<List<double[]>>>> scores,
@@ -235,7 +236,7 @@ public class RuoDecomplexor {
                 List<String> codes = group.getValue();
                 if (codes.size() < 2) continue;
 
-                // Try to merge all codes into the first one
+                // Try to merge all codes into the first one (non-overlapping)
                 String targetCode = codes.get(0);
                 List<List<double[]>> targetData = schoolScores.get(targetCode);
 
@@ -255,8 +256,48 @@ public class RuoDecomplexor {
                     profiles.remove(code);
                     schoolScores.remove(code);
                 }
+
+                // Handle remaining overlapping duplicates: keep the newest code
+                List<String> remaining = new ArrayList<>();
+                for (String code : codes) {
+                    if (profiles.containsKey(code)) remaining.add(code);
+                }
+                if (remaining.size() < 2) continue;
+
+                String newestCode = remaining.get(0);
+                int newestYear = latestYearWithData(schoolScores.get(newestCode));
+                for (int i = 1; i < remaining.size(); i++) {
+                    int yr = latestYearWithData(schoolScores.get(remaining.get(i)));
+                    if (yr > newestYear) {
+                        newestYear = yr;
+                        newestCode = remaining.get(i);
+                    }
+                }
+
+                // Merge old codes into the newest (newest data wins on overlap)
+                List<List<double[]>> newestData = schoolScores.get(newestCode);
+                for (String code : remaining) {
+                    if (code.equals(newestCode)) continue;
+                    System.out.println("  Overlap resolved: school " + schoolCode
+                            + " profile \"" + group.getKey()
+                            + "\" — keeping code " + newestCode
+                            + ", discarding code " + code);
+                    mergeInto(newestData, schoolScores.get(code));
+                    profiles.remove(code);
+                    schoolScores.remove(code);
+                }
             }
         }
+    }
+
+    /** Returns the highest year index that has any non-null klasirane data, or -1 if empty. */
+    private int latestYearWithData(List<List<double[]>> data) {
+        for (int yi = data.size() - 1; yi >= 0; yi--) {
+            for (int ki = 0; ki < 4; ki++) {
+                if (data.get(yi).get(ki) != null) return yi;
+            }
+        }
+        return -1;
     }
 
     /** Returns true if no year/klasirane slot has non-null data in both sources. */
