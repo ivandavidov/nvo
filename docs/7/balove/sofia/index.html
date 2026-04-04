@@ -62,7 +62,8 @@
     @media (min-width: 901px) {
       .ruo-overview-panel > .ruo-table-wrap { overflow-x: visible; overflow-y: visible; }
       #overview-table { overflow: visible; }
-      #overview-table th:first-child, #overview-table td:first-child { position: static; }
+      #overview-table td:first-child { position: static; }
+      #overview-table th:first-child { position: sticky; top: 60px; top: var(--header-height, 60px); left: auto; z-index: 2; }
       #overview-thead th { position: sticky; top: 60px; top: var(--header-height, 60px); z-index: 2; }
     }
     @media (max-width: 900px) { .ruo-section-intro { grid-template-columns: 1fr; } }
