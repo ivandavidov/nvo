@@ -65,7 +65,7 @@
 
       <!-- ── Section 1: Detail selectors ──────────────── -->
       <h2 class="ruo-section-title">Детайли за паралелка</h2>
-      <p class="ruo-section-help">Тази секция показва минималните и максималните балове по класирания за избрано училище и паралелка през последните години. Ако оставиш „Всички паралелки“, таблицата и графиките обобщават всички паралелки в училището; отметката за пол добавя разбивка за последната година, а двете графики помагат да проследиш едновременно тренда във времето и разликите между отделните класирания.</p>
+      <p class="ruo-section-help">Тази секция показва минималните и максималните балове по класирания за избрано училище и паралелка през последните години. Ако избереш „Всички паралелки“, таблицата и графиките обобщават всички паралелки в училището; отметката за пол добавя разбивка за последната година, а двете графики помагат да проследиш едновременно тренда във времето и разликите между отделните класирания.</p>
       <div class="ruo-filters">
         <div class="ruo-select-group">
           <label for="school-select">Училище</label>
@@ -153,6 +153,57 @@
       return row.yearMins[parseInt(col.substring(5), 10)];
     }
     return row[col];
+  }
+
+  function updateUrlState() {
+    var url = new URL(window.location.href);
+    var schoolCode = document.getElementById('school-select').value;
+    var profileCode = document.getElementById('profile-select').value;
+    var genderChecked = document.getElementById('gender-toggle').checked;
+
+    url.searchParams.delete('school');
+    url.searchParams.delete('profile');
+    url.searchParams.delete('gender');
+
+    if (schoolCode && ruoSchools[schoolCode]) {
+      url.searchParams.set('school', schoolCode);
+      if (profileCode && ruoSchools[schoolCode].p[profileCode]) {
+        url.searchParams.set('profile', profileCode);
+      }
+      if (genderChecked) {
+        url.searchParams.set('gender', 'true');
+      }
+    }
+
+    var query = url.searchParams.toString();
+    history.replaceState(null, '', url.pathname + (query ? '?' + query : '') + url.hash);
+  }
+
+  function restoreStateFromUrl() {
+    var params = new URLSearchParams(window.location.search);
+    var schoolCode = params.get('school') || '';
+    var profileCode = params.get('profile') || '';
+    var genderValue = params.get('gender');
+    var genderChecked = genderValue === 'true' || genderValue === '1';
+
+    document.getElementById('gender-toggle').checked = genderChecked;
+
+    if (!schoolCode || !ruoSchools[schoolCode]) {
+      updateUrlState();
+      return;
+    }
+
+    document.getElementById('school-select').value = schoolCode;
+    populateProfileSelect(schoolCode);
+
+    if (profileCode && ruoSchools[schoolCode].p[profileCode]) {
+      document.getElementById('profile-select').value = profileCode;
+    } else {
+      document.getElementById('profile-select').value = '';
+    }
+
+    showDetail(schoolCode, document.getElementById('profile-select').value);
+    updateUrlState();
   }
 
   // ── Overview: build rows ──────────────────────────────────
@@ -302,6 +353,7 @@
     populateProfileSelect(code);
     document.getElementById('profile-select').value = pcode;
     showDetail(code, pcode);
+    updateUrlState();
   }
 
   // ── Aggregation (all profiles) ────────────────────────────
@@ -499,12 +551,14 @@
       populateProfileSelect(code);
       if (code) showDetail(code, '');
       else document.getElementById('detail-section').style.display = 'none';
+      updateUrlState();
     });
 
     // Profile select
     document.getElementById('profile-select').addEventListener('change', function () {
       var code = document.getElementById('school-select').value;
       if (code) showDetail(code, this.value);
+      updateUrlState();
     });
 
     // Gender toggle
@@ -515,7 +569,10 @@
         var d = pcode ? getVisibleData(ruoSchools[code].p[pcode].d) : aggregateAllProfiles(code);
         renderDetailTable(d, this.checked);
       }
+      updateUrlState();
     });
+
+    restoreStateFromUrl();
   });
 
 })();

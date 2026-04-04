@@ -233,6 +233,57 @@ public class RuoPage {
                     return row[col];
                   }
 
+                  function updateUrlState() {
+                    var url = new URL(window.location.href);
+                    var schoolCode = document.getElementById('school-select').value;
+                    var profileCode = document.getElementById('profile-select').value;
+                    var genderChecked = document.getElementById('gender-toggle').checked;
+
+                    url.searchParams.delete('school');
+                    url.searchParams.delete('profile');
+                    url.searchParams.delete('gender');
+
+                    if (schoolCode && ruoSchools[schoolCode]) {
+                      url.searchParams.set('school', schoolCode);
+                      if (profileCode && ruoSchools[schoolCode].p[profileCode]) {
+                        url.searchParams.set('profile', profileCode);
+                      }
+                      if (genderChecked) {
+                        url.searchParams.set('gender', 'true');
+                      }
+                    }
+
+                    var query = url.searchParams.toString();
+                    history.replaceState(null, '', url.pathname + (query ? '?' + query : '') + url.hash);
+                  }
+
+                  function restoreStateFromUrl() {
+                    var params = new URLSearchParams(window.location.search);
+                    var schoolCode = params.get('school') || '';
+                    var profileCode = params.get('profile') || '';
+                    var genderValue = params.get('gender');
+                    var genderChecked = genderValue === 'true' || genderValue === '1';
+
+                    document.getElementById('gender-toggle').checked = genderChecked;
+
+                    if (!schoolCode || !ruoSchools[schoolCode]) {
+                      updateUrlState();
+                      return;
+                    }
+
+                    document.getElementById('school-select').value = schoolCode;
+                    populateProfileSelect(schoolCode);
+
+                    if (profileCode && ruoSchools[schoolCode].p[profileCode]) {
+                      document.getElementById('profile-select').value = profileCode;
+                    } else {
+                      document.getElementById('profile-select').value = '';
+                    }
+
+                    showDetail(schoolCode, document.getElementById('profile-select').value);
+                    updateUrlState();
+                  }
+
                   // ── Overview: build rows ──────────────────────────────────
 
                   function buildOverviewRows() {
@@ -380,6 +431,7 @@ public class RuoPage {
                     populateProfileSelect(code);
                     document.getElementById('profile-select').value = pcode;
                     showDetail(code, pcode);
+                    updateUrlState();
                   }
 
                   // ── Aggregation (all profiles) ────────────────────────────
@@ -577,12 +629,14 @@ public class RuoPage {
                       populateProfileSelect(code);
                       if (code) showDetail(code, '');
                       else document.getElementById('detail-section').style.display = 'none';
+                      updateUrlState();
                     });
 
                     // Profile select
                     document.getElementById('profile-select').addEventListener('change', function () {
                       var code = document.getElementById('school-select').value;
                       if (code) showDetail(code, this.value);
+                      updateUrlState();
                     });
 
                     // Gender toggle
@@ -593,7 +647,10 @@ public class RuoPage {
                         var d = pcode ? getVisibleData(ruoSchools[code].p[pcode].d) : aggregateAllProfiles(code);
                         renderDetailTable(d, this.checked);
                       }
+                      updateUrlState();
                     });
+
+                    restoreStateFromUrl();
                   });
 
                 })();
