@@ -83,6 +83,7 @@ public class RuoPage {
                   <style>
                     #detail-school-name { text-align: center; }
                     .ruo-section-title { margin-top: 2rem; padding-bottom: 0.4rem; border-bottom: 2px solid var(--color-border); }
+                    .ruo-section-help { margin: 0.85rem 0 1.1rem; color: var(--color-text-muted); line-height: 1.6; max-width: 70rem; }
                     .ruo-filters { display: flex; gap: 1.25rem; flex-wrap: wrap; margin: 1rem 0; align-items: flex-end; }
                     .ruo-select-group { display: flex; flex-direction: column; gap: 0.25rem; }
                     .ruo-select-group label { font-size: 0.8rem; font-weight: 600; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.04em; }
@@ -136,6 +137,7 @@ public class RuoPage {
 
                       <!-- ── Section 1: Detail selectors ──────────────── -->
                       <h2 class="ruo-section-title">Детайли за паралелка</h2>
+                      <p class="ruo-section-help">Тази секция показва минималните и максималните балове по класирания за избрано училище и паралелка през последните години. Ако избереш „Всички паралелки“, таблицата и графиките обобщават всички паралелки в училището; отметката за пол добавя разбивка за последната година, а двете графики помагат да проследиш едновременно тренда във времето и разликите между отделните класирания.</p>
                       <div class="ruo-filters">
                         <div class="ruo-select-group">
                           <label for="school-select">Училище</label>
@@ -169,6 +171,7 @@ public class RuoPage {
 
                       <!-- ── Section 5: Overview table ─────────────────── -->
                       <h2 class="ruo-section-title">Топ паралелки по минимален бал (1-во класиране)</h2>
+                      <p class="ruo-section-help">Тук са показани паралелките с най-висок минимален бал на 1-во класиране за последните години. Полето за търсене филтрира по училище и паралелка, клик върху ред отваря детайлите по-горе, а заглавията на колоните „Училище“, „Паралелка“ и „Мин.“ позволяват сортиране във възходящ или низходящ ред; колоната „Тренд“ показва дали минималният бал за последната година се е повишил, понижил или е останал близък до предходната.</p>
                       <input type="text" id="overview-search" class="ruo-search"
                              placeholder="Търси по училище или паралелка&hellip;">
                       <div class="ruo-table-wrap">
