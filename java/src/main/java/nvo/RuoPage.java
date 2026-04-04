@@ -7,7 +7,7 @@ import java.util.Comparator;
 
 public class RuoPage {
 
-    private static final String OUTPUT_BASE = ProjectConfig.DOCS_DIR + "7/klasirane/";
+    private static final String OUTPUT_BASE = ProjectConfig.DOCS_DIR + "7/" + ProjectConfig.RUO_DIR_NAME + "/";
     private static final int YEARS_TO_SHOW = 3;
 
     public static void main(String... args) throws Exception {
@@ -48,10 +48,10 @@ public class RuoPage {
     private String buildHtml(Cities.City city) {
         String cityName = city.fullName();
         String hrefName = city.hrefName();
-        String title = "Класирания след 7 клас – " + cityName + " | Иван Давидов";
-        String description = "Минимален и максимален бал по паралелки след 7 клас в "
+        String title = "Минимални и максимални балове по паралелки след 7 клас – " + cityName + " | Иван Давидов";
+        String description = "Минимални и максимални балове по паралелки след 7 клас в "
                 + cityName + ". Таблици и графики за всички класирания.";
-        String canonical = ProjectConfig.SITE_BASE_URL + "7/klasirane/" + hrefName + "/";
+        String canonical = ProjectConfig.SITE_BASE_URL + "7/" + ProjectConfig.RUO_DIR_NAME + "/" + hrefName + "/";
 
         return buildHead(title, description, canonical)
                 + buildBody(city)
@@ -81,6 +81,7 @@ public class RuoPage {
                   <meta property="og:site_name" content="НВО и ДЗИ – Иван Давидов">
                   <script src="../../../js/theme.js"></script>
                   <style>
+                    #detail-school-name { text-align: center; }
                     .ruo-section-title { margin-top: 2rem; padding-bottom: 0.4rem; border-bottom: 2px solid var(--color-border); }
                     .ruo-filters { display: flex; gap: 1.25rem; flex-wrap: wrap; margin: 1rem 0; align-items: flex-end; }
                     .ruo-select-group { display: flex; flex-direction: column; gap: 0.25rem; }
@@ -130,7 +131,7 @@ public class RuoPage {
                   </header>
                   <main>
                     <div class="container">
-                      <h1>Класирания след 7 клас &ndash; %s</h1>
+                      <h1>Минимални и максимални балове по паралелки след 7 клас &ndash; %s</h1>
                       <p><a href="../../">&larr; Към 7 клас</a></p>
 
                       <!-- ── Section 1: Detail selectors ──────────────── -->
@@ -155,6 +156,7 @@ public class RuoPage {
 
                       <!-- ── Section 2+3: Detail table + charts ────────── -->
                       <div id="detail-section" style="display:none">
+                        <h3 id="detail-school-name"></h3>
                         <div class="ruo-table-wrap">
                           <table id="detail-table"></table>
                         </div>
@@ -166,7 +168,7 @@ public class RuoPage {
                       </div>
 
                       <!-- ── Section 5: Overview table ─────────────────── -->
-                      <h2 class="ruo-section-title">Топ паралелки по мин. бал (1-во класиране)</h2>
+                      <h2 class="ruo-section-title">Топ паралелки по минимален бал (1-во класиране)</h2>
                       <input type="text" id="overview-search" class="ruo-search"
                              placeholder="Търси по училище или паралелка&hellip;">
                       <div class="ruo-table-wrap">
@@ -421,6 +423,7 @@ public class RuoPage {
                   function showDetail(code, pcode) {
                     var showGender = document.getElementById('gender-toggle').checked;
                     document.getElementById('detail-section').style.display = '';
+                    document.getElementById('detail-school-name').textContent = ruoSchools[code].f;
                     var d = pcode ? getVisibleData(ruoSchools[code].p[pcode].d) : aggregateAllProfiles(code);
                     var label = pcode ? ruoSchools[code].p[pcode].n : 'Всички паралелки';
                     renderDetailTable(d, showGender);

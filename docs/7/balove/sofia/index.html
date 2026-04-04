@@ -2,23 +2,24 @@
 <html lang="bg">
 <head>
   <meta charset="utf-8">
-  <title>Класирания след 7 клас – София | Иван Давидов</title>
-  <meta name="description" content="Минимален и максимален бал по паралелки след 7 клас в София. Таблици и графики за всички класирания.">
+  <title>Минимални и максимални балове по паралелки след 7 клас – София | Иван Давидов</title>
+  <meta name="description" content="Минимални и максимални балове по паралелки след 7 клас в София. Таблици и графики за всички класирания.">
   <meta name="author" content="Иван Давидов">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../../../css/normalize.css">
   <link rel="stylesheet" href="../../../css/custom.css">
   <link rel="icon" type="image/png" href="../../../images/favicon-7.png">
-  <link rel="canonical" href="https://ivandavidov.github.io/nvo/7/klasirane/sofia/">
+  <link rel="canonical" href="https://ivandavidov.github.io/nvo/7/balove/sofia/">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://ivandavidov.github.io/nvo/7/klasirane/sofia/">
-  <meta property="og:title" content="Класирания след 7 клас – София | Иван Давидов">
-  <meta property="og:description" content="Минимален и максимален бал по паралелки след 7 клас в София. Таблици и графики за всички класирания.">
+  <meta property="og:url" content="https://ivandavidov.github.io/nvo/7/balove/sofia/">
+  <meta property="og:title" content="Минимални и максимални балове по паралелки след 7 клас – София | Иван Давидов">
+  <meta property="og:description" content="Минимални и максимални балове по паралелки след 7 клас в София. Таблици и графики за всички класирания.">
   <meta property="og:image" content="https://ivandavidov.github.io/nvo/images/social-preview.png">
   <meta property="og:locale" content="bg_BG">
   <meta property="og:site_name" content="НВО и ДЗИ – Иван Давидов">
   <script src="../../../js/theme.js"></script>
   <style>
+    #detail-school-name { text-align: center; }
     .ruo-section-title { margin-top: 2rem; padding-bottom: 0.4rem; border-bottom: 2px solid var(--color-border); }
     .ruo-filters { display: flex; gap: 1.25rem; flex-wrap: wrap; margin: 1rem 0; align-items: flex-end; }
     .ruo-select-group { display: flex; flex-direction: column; gap: 0.25rem; }
@@ -58,7 +59,7 @@
   </header>
   <main>
     <div class="container">
-      <h1>Класирания след 7 клас &ndash; София</h1>
+      <h1>Минимални и максимални балове по паралелки след 7 клас &ndash; София</h1>
       <p><a href="../../">&larr; Към 7 клас</a></p>
 
       <!-- ── Section 1: Detail selectors ──────────────── -->
@@ -83,6 +84,7 @@
 
       <!-- ── Section 2+3: Detail table + charts ────────── -->
       <div id="detail-section" style="display:none">
+        <h3 id="detail-school-name"></h3>
         <div class="ruo-table-wrap">
           <table id="detail-table"></table>
         </div>
@@ -94,7 +96,7 @@
       </div>
 
       <!-- ── Section 5: Overview table ─────────────────── -->
-      <h2 class="ruo-section-title">Топ паралелки по мин. бал (1-во класиране)</h2>
+      <h2 class="ruo-section-title">Топ паралелки по минимален бал (1-во класиране)</h2>
       <input type="text" id="overview-search" class="ruo-search"
              placeholder="Търси по училище или паралелка&hellip;">
       <div class="ruo-table-wrap">
@@ -343,6 +345,7 @@
   function showDetail(code, pcode) {
     var showGender = document.getElementById('gender-toggle').checked;
     document.getElementById('detail-section').style.display = '';
+    document.getElementById('detail-school-name').textContent = ruoSchools[code].f;
     var d = pcode ? getVisibleData(ruoSchools[code].p[pcode].d) : aggregateAllProfiles(code);
     var label = pcode ? ruoSchools[code].p[pcode].n : 'Всички паралелки';
     renderDetailTable(d, showGender);

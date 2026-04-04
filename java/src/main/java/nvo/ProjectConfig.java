@@ -15,6 +15,8 @@ public final class ProjectConfig {
 
     public static final String SITE_BASE_URL = "https://ivandavidov.github.io/nvo/";
 
+    public static final String RUO_DIR_NAME = "balove";
+
     public static final String[][] GRADES = {
             {"4", "НВО 4 клас", "0", "100"},
             {"7", "НВО 7 клас", "0", "100"},

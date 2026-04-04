@@ -25,6 +25,8 @@ public class NvoDziDecomplexor {
 
     private static int numYears = 0;
 
+    private static String grade = null;
+
     public static void main(String... args) throws Exception {
         if(args.length == 0) {
             System.err.println("Expected argument normalize/4/7/10/12 is not provided.");
@@ -93,6 +95,7 @@ public class NvoDziDecomplexor {
         }
 
         numYears = files.length;
+        grade = mode;
 
         Map<String, Map<String, School>> cities = new HashMap<>();
         for(int f = 0; f < files.length; f++) {
@@ -206,12 +209,12 @@ public class NvoDziDecomplexor {
         final String templateIndexExcl;
         if(COMPRESSED) {
             templateSchool = "s[__index__]={l:'__label__',n:'__name__',b:[__b18__,__b19__,__b20__,__b21__,__b22__,__b23__],m:[__m18__,__m19__,__m20__,__m21__,__m22__,__m23__],bu:[__bu18__,__bu19__,__bu20__,__bu21__,__bu22__,__bu23__],mu:[__mu18__,__mu19__,__mu20__,__mu21__,__mu22__,__mu23__]};";
-            templateIndexIncl = "si['__city__']={n:[__n_begin__,__n_end__],p:[__p_begin__,__p_end__],l:'__city_label__',h:'__city_href__',o:__city_order__,i:__city_index__};";
-            templateIndexExcl = "si['__city__']={n:[__n_begin__,__n_end__],p:null,l:'__city_label__',h:'__city_href__',o:__city_order__,i:__city_index__};";
+            templateIndexIncl = "si['__city__']={n:[__n_begin__,__n_end__],p:[__p_begin__,__p_end__],l:'__city_label__',h:'__city_href__',o:__city_order__,i:__city_index__,r:__city_ruo__};";
+            templateIndexExcl = "si['__city__']={n:[__n_begin__,__n_end__],p:null,l:'__city_label__',h:'__city_href__',o:__city_order__,i:__city_index__,r:__city_ruo__};";
         } else {
             templateSchool = "s[__index__] = {l: '__label__', n: '__name__', " + generateSection("b") + ", " + generateSection("m") + ", " + generateSection("bu") + ", " + generateSection("mu") + ", w: __website__};\n";
-            templateIndexIncl = "si['__city__'] = {n: [__n_begin__, __n_end__], p: [__p_begin__, __p_end__], l: '__city_label__', h: '__city_href__', o: __city_order__, i: __city_index__};\n";
-            templateIndexExcl = "si['__city__'] = {n: [__n_begin__, __n_end__], p: null, l: '__city_label__', h: '__city_href__', o: __city_order__, i: __city_index__};\n";
+            templateIndexIncl = "si['__city__'] = {n: [__n_begin__, __n_end__], p: [__p_begin__, __p_end__], l: '__city_label__', h: '__city_href__', o: __city_order__, i: __city_index__, r: __city_ruo__};\n";
+            templateIndexExcl = "si['__city__'] = {n: [__n_begin__, __n_end__], p: null, l: '__city_label__', h: '__city_href__', o: __city_order__, i: __city_index__, r: __city_ruo__};\n";
         }
 
         Comparator<School> schoolsAlphaComparator = (o1, o2) -> {
@@ -281,6 +284,8 @@ public class NvoDziDecomplexor {
             }
         }
 
+        boolean hasRuo = new File(ProjectConfig.DOCS_DIR + grade + "/" + ProjectConfig.RUO_DIR_NAME + "/" + cityMeta.hrefName()).isDirectory();
+
         String siLine;
         if(privateSchoolsSet.size() > 0) {
             siLine = templateIndexIncl.replace("__city__", city)
@@ -291,7 +296,8 @@ public class NvoDziDecomplexor {
                     .replace("__city_label__", cityMeta.shortName())
                     .replace("__city_href__", cityMeta.hrefName())
                     .replace("__city_order__", "" + cityMeta.orderPosition())
-                    .replace("__city_index__", "" + cityMeta.i());
+                    .replace("__city_index__", "" + cityMeta.i())
+                    .replace("__city_ruo__", "" + hasRuo);
         } else {
             siLine = templateIndexExcl.replace("__city__", city)
                     .replace("__n_begin__", "" + index)
@@ -299,7 +305,8 @@ public class NvoDziDecomplexor {
                     .replace("__city_label__", cityMeta.shortName())
                     .replace("__city_href__", cityMeta.hrefName())
                     .replace("__city_order__", "" + cityMeta.orderPosition())
-                    .replace("__city_index__", "" + cityMeta.i());
+                    .replace("__city_index__", "" + cityMeta.i())
+                    .replace("__city_ruo__", "" + hasRuo);
         }
 
         StringBuilder sb = new StringBuilder();

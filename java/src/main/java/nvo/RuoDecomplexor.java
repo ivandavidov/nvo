@@ -46,6 +46,9 @@ public class RuoDecomplexor {
             loadYear(city, years.get(yi), yi, years.size(), schoolNames, profileNames, scores);
         }
 
+        // Merge profiles with identical names within a school when their data does not overlap
+        mergeProfilesByName(profileNames, scores, years.size());
+
         // Sort schools alphabetically by name
         List<String> sortedCodes = new ArrayList<>(schoolNames.keySet());
         sortedCodes.sort((a, b) -> schoolNames.get(a).compareToIgnoreCase(schoolNames.get(b)));
@@ -136,6 +139,7 @@ public class RuoDecomplexor {
         sb.append("//\n");
         sb.append("// ruoSchools — обект с ключ = код на училище\n");
         sb.append("//   n        — кратко наименование (от School.schoolCodes; при липса — от CSV)\n");
+        sb.append("//   f        — пълно наименование (от School.schoolCodes; при липса — от CSV)\n");
         sb.append("//   c        — true ако е частно училище\n");
         sb.append("//   p        — паралелки, обект с ключ = код на паралелка\n");
         sb.append("//     n  — наименование на паралелката\n");
@@ -164,6 +168,8 @@ public class RuoDecomplexor {
         for (String schoolCode : sortedCodes) {
             sb.append("ruoSchools[\"").append(schoolCode).append("\"] = {n: \"")
               .append(escapeJs(resolveLabel(schoolCode, schoolNames.get(schoolCode))))
+              .append("\", f: \"")
+              .append(escapeJs(resolveFullName(schoolCode, schoolNames.get(schoolCode))))
               .append("\", c: ").append(isPrivate(schoolCode))
               .append(", p: {\n");
 
@@ -206,6 +212,80 @@ public class RuoDecomplexor {
         }
     }
 
+    // ── Profile merging ───────────────────────────────────────────────────────
+
+    /**
+     * Merges profiles with identical names within each school when their year/klasirane
+     * data does not overlap. Profiles with conflicting data are kept separate.
+     */
+    private void mergeProfilesByName(Map<String, Map<String, String>> profileNames,
+                                     Map<String, Map<String, List<List<double[]>>>> scores,
+                                     int totalYears) {
+        for (String schoolCode : new ArrayList<>(profileNames.keySet())) {
+            Map<String, String> profiles = profileNames.get(schoolCode);
+            Map<String, List<List<double[]>>> schoolScores = scores.get(schoolCode);
+
+            // Group profile codes by name
+            Map<String, List<String>> byName = new LinkedHashMap<>();
+            for (Map.Entry<String, String> entry : profiles.entrySet()) {
+                byName.computeIfAbsent(entry.getValue(), k -> new ArrayList<>()).add(entry.getKey());
+            }
+
+            for (Map.Entry<String, List<String>> group : byName.entrySet()) {
+                List<String> codes = group.getValue();
+                if (codes.size() < 2) continue;
+
+                // Try to merge all codes into the first one
+                String targetCode = codes.get(0);
+                List<List<double[]>> targetData = schoolScores.get(targetCode);
+
+                List<String> merged = new ArrayList<>();
+                for (int ci = 1; ci < codes.size(); ci++) {
+                    String sourceCode = codes.get(ci);
+                    List<List<double[]>> sourceData = schoolScores.get(sourceCode);
+
+                    if (canMerge(targetData, sourceData)) {
+                        mergeInto(targetData, sourceData);
+                        merged.add(sourceCode);
+                    }
+                }
+
+                // Remove merged profiles
+                for (String code : merged) {
+                    profiles.remove(code);
+                    schoolScores.remove(code);
+                }
+            }
+        }
+    }
+
+    /** Returns true if no year/klasirane slot has non-null data in both sources. */
+    private boolean canMerge(List<List<double[]>> target, List<List<double[]>> source) {
+        for (int yi = 0; yi < target.size(); yi++) {
+            List<double[]> tYear = target.get(yi);
+            List<double[]> sYear = source.get(yi);
+            for (int ki = 0; ki < 4; ki++) {
+                if (tYear.get(ki) != null && sYear.get(ki) != null) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    /** Copies non-null slots from source into target. */
+    private void mergeInto(List<List<double[]>> target, List<List<double[]>> source) {
+        for (int yi = 0; yi < target.size(); yi++) {
+            List<double[]> tYear = target.get(yi);
+            List<double[]> sYear = source.get(yi);
+            for (int ki = 0; ki < 4; ki++) {
+                if (tYear.get(ki) == null && sYear.get(ki) != null) {
+                    tYear.set(ki, sYear.get(ki));
+                }
+            }
+        }
+    }
+
     // ── Helpers ──────────────────────────────────────────────────────────────
 
     private double parseScore(String s) {
@@ -234,6 +314,12 @@ public class RuoDecomplexor {
     private String resolveLabel(String schoolCode, String csvName) {
         String[] entry = School.schoolCodes.get(schoolCode);
         return (entry != null && entry.length > 1) ? entry[1] : csvName;
+    }
+
+    /** Returns the full name from School.schoolCodes if available, otherwise falls back to the CSV name. */
+    private String resolveFullName(String schoolCode, String csvName) {
+        String[] entry = School.schoolCodes.get(schoolCode);
+        return (entry != null && entry.length > 2) ? entry[2] : csvName;
     }
 
     private String escapeJs(String s) {

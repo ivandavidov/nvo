@@ -5,6 +5,10 @@ set -ex
 cd java
 ./mvnw clean package
 cd target
+# Generate balove pages first so schools-{grade}.js can expose city RUO availability via si[*].r.
+java -cp nvo-v2.jar nvo.RuoNormalizer all
+java -cp nvo-v2.jar nvo.RuoDecomplexor sofia
+java -cp nvo-v2.jar nvo.RuoPage sofia
 java -jar nvo-v2.jar normalize
 java -jar nvo-v2.jar 4
 java -jar nvo-v2.jar 7
@@ -17,7 +21,4 @@ java -cp nvo-v2.jar nvo.api.JsonGenerator 4
 java -cp nvo-v2.jar nvo.api.JsonGenerator 7
 java -cp nvo-v2.jar nvo.api.JsonGenerator 10
 java -cp nvo-v2.jar nvo.api.JsonGenerator 12
-java -cp nvo-v2.jar nvo.RuoNormalizer all
-java -cp nvo-v2.jar nvo.RuoDecomplexor sofia
-java -cp nvo-v2.jar nvo.RuoPage sofia
 java -cp nvo-v2.jar nvo.SitemapGenerator

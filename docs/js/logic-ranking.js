@@ -663,6 +663,14 @@ function generateDownloadCSVLink(el, tableKey, cityName, data) {
     }
   }
   span.appendChild(a);
+  if(si[cityName] && si[cityName].r) {
+    span.appendChild(document.createTextNode('\u00A0\u00A0\u00A0|\u00A0\u00A0\u00A0'));
+    let ruoLink = document.createElement('a');
+    ruoLink.href = 'balove/' + tableKey + '/';
+    ruoLink.title = 'Минимални и максимални балове по паралелки - ' + cityName;
+    ruoLink.appendChild(document.createTextNode('Балове'));
+    span.appendChild(ruoLink);
+  }
   span.appendChild(document.createTextNode('\u00A0\u00A0\u00A0|\u00A0\u00A0\u00A0'));
   a = document.createElement('a');
   a.style.cursor = 'pointer';

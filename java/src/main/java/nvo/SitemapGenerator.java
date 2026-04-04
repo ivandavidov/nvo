@@ -45,13 +45,13 @@ public class SitemapGenerator {
             }
         }
 
-        // Scan docs/{grade}/klasirane/**/index.html for beta ranking pages.
+        // Scan docs/{grade}/{RUO_DIR_NAME}/**/index.html for generated balove pages.
         for (String[] gradeDef : ProjectConfig.GRADES) {
             String grade = gradeDef[0];
-            Path klasiraneDir = Path.of(ProjectConfig.DOCS_DIR, grade, "klasirane");
-            if (!Files.isDirectory(klasiraneDir)) continue;
+            Path ruoDir = Path.of(ProjectConfig.DOCS_DIR, grade, ProjectConfig.RUO_DIR_NAME);
+            if (!Files.isDirectory(ruoDir)) continue;
 
-            try (Stream<Path> stream = Files.walk(klasiraneDir)) {
+            try (Stream<Path> stream = Files.walk(ruoDir)) {
                 stream.filter(Files::isRegularFile)
                         .filter(path -> "index.html".equals(path.getFileName().toString()))
                         .forEach(path -> urls.add(pathToUrl(path)));
