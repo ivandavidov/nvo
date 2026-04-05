@@ -1,3 +1,21 @@
+/* Google Tag (GA4) with Consent Mode v2 */
+(function() {
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  window.gtag = gtag;
+  gtag('consent', 'default', {
+    'analytics_storage': 'denied',
+    'ad_storage': 'denied',
+    'wait_for_update': 500
+  });
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-V0P6LBF76F';
+  document.head.appendChild(s);
+  gtag('js', new Date());
+  gtag('config', 'G-V0P6LBF76F', {'anonymize_ip': true});
+})();
+
 /* Theme init for games pages (no separate theme.js loaded) */
 (function() {
   var saved = localStorage.getItem('nvo-theme');

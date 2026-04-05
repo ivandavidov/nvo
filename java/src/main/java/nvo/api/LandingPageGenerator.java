@@ -228,6 +228,22 @@ public class LandingPageGenerator {
                   <meta name="twitter:title" content="%s">
                   <meta name="twitter:description" content="%s">
                   <meta name="twitter:image" content="%simages/social-preview.png">
+                  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google-analytics.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com; font-src 'self'">
+                  <meta name="referrer" content="strict-origin-when-cross-origin">
+                  <script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){dataLayer.push(arguments);}
+                    gtag('consent', 'default', {
+                      'analytics_storage': 'denied',
+                      'ad_storage': 'denied',
+                      'wait_for_update': 500
+                    });
+                  </script>
+                  <script async src="https://www.googletagmanager.com/gtag/js?id=G-V0P6LBF76F"></script>
+                  <script>
+                    gtag('js', new Date());
+                    gtag('config', 'G-V0P6LBF76F', {'anonymize_ip': true});
+                  </script>
                   <script src="../../js/theme.js"></script>
                 </head>
                 <body>
