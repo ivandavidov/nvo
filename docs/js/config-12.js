@@ -1,5 +1,6 @@
 applyGradeConfig({
   rankBase: 2,
+  numYears: numYearsByGrade[12],
   tableTitleName: 'Класация на гимназиите',
   tableTitleType: 'ДЗИ след 12 клас',
   cookieName: 'i12',

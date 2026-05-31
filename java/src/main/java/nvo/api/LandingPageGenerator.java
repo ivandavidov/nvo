@@ -189,7 +189,8 @@ public class LandingPageGenerator {
             double score = (bel + mat) / 2.0;
             sb.append("<tr>");
             sb.append("<td>").append(rank).append("</td>");
-            sb.append("<td>").append(escHtml(rs.fullName())).append("</td>");
+            sb.append("<td><a href=\"../../school/").append(rs.code()).append("/\">")
+                    .append(escHtml(rs.fullName())).append("</a></td>");
             if (showCity && slugToCity != null) {
                 String cityName = rs.citySlugs().isEmpty() ? "" : slugToCity.getOrDefault(rs.citySlugs().get(0), "");
                 sb.append("<td>").append(escHtml(cityName)).append("</td>");

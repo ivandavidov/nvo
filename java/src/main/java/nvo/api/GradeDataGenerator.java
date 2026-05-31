@@ -24,48 +24,7 @@ public class GradeDataGenerator {
     private final LandingPageGenerator landingPageGenerator = new LandingPageGenerator();
 
     public void generate(String grade) throws Exception {
-        String prefix = grade.equals("12") ? "dzi" : "nvo-" + grade;
-
-        // city -> code -> SchoolData
-        Map<String, Map<String, SchoolData>> citySchools = new HashMap<>();
-
-        for (int yearIndex = 0; yearIndex < NUM_YEARS; yearIndex++) {
-            int year = FIRST_YEAR + yearIndex;
-            String filePath = NORMALIZED_PATH + prefix + "-" + year + "-normalized.csv";
-            File file = new File(filePath);
-            if (!file.exists()) {
-                System.out.println("Warning: file not found: " + filePath);
-                continue;
-            }
-
-            List<String> lines = Files.readAllLines(file.toPath());
-            for (int i = 1; i < lines.size(); i++) {
-                Record record = lineToRecord(lines.get(i));
-                if (record == null) {
-                    continue;
-                }
-                if (record.getSchool().startsWith("РУО")
-                        || record.getSchool().startsWith("Регионално управление на образованието")) {
-                    continue;
-                }
-
-                String code = School.fixedCodes.getOrDefault(record.getCode(), record.getCode());
-
-                Map<String, SchoolData> schools = citySchools.computeIfAbsent(
-                        record.getCity(), k -> new HashMap<>());
-                SchoolData sd = schools.computeIfAbsent(code, k -> new SchoolData());
-                sd.csvName = record.getSchool();
-
-                sd.belScore[yearIndex] = record.getBelScore() != null && record.getBelScore() > 0
-                        ? record.getBelScore() : null;
-                sd.matScore[yearIndex] = record.getMatScore() != null && record.getMatScore() > 0
-                        ? record.getMatScore() : null;
-                sd.belStudents[yearIndex] = record.getBelStudents() != null && record.getBelStudents() > 0
-                        ? record.getBelStudents() : null;
-                sd.matStudents[yearIndex] = record.getMatStudents() != null && record.getMatStudents() > 0
-                        ? record.getMatStudents() : null;
-            }
-        }
+        Map<String, Map<String, SchoolData>> citySchools = parseGrade(grade);
 
         Gson gson = new GsonBuilder()
                 .serializeNulls()
@@ -154,6 +113,58 @@ public class GradeDataGenerator {
         // Generate city and year landing pages under docs/{grade}/
         landingPageGenerator.generateCityPages(grade, citySchools);
         landingPageGenerator.generateYearPages(grade, citySchools);
+    }
+
+    /**
+     * Parses the normalized CSV files for a grade into a {city -> code -> SchoolData} map.
+     * Shared by {@link #generate(String)} and {@link SchoolsGenerator} so the cross-grade
+     * per-school documents are built from the exact same parsing rules as the grade data.
+     */
+    public Map<String, Map<String, SchoolData>> parseGrade(String grade) throws Exception {
+        String prefix = grade.equals("12") ? "dzi" : "nvo-" + grade;
+
+        // city -> code -> SchoolData
+        Map<String, Map<String, SchoolData>> citySchools = new HashMap<>();
+
+        for (int yearIndex = 0; yearIndex < NUM_YEARS; yearIndex++) {
+            int year = FIRST_YEAR + yearIndex;
+            String filePath = NORMALIZED_PATH + prefix + "-" + year + "-normalized.csv";
+            File file = new File(filePath);
+            if (!file.exists()) {
+                System.out.println("Warning: file not found: " + filePath);
+                continue;
+            }
+
+            List<String> lines = Files.readAllLines(file.toPath());
+            for (int i = 1; i < lines.size(); i++) {
+                Record record = lineToRecord(lines.get(i));
+                if (record == null) {
+                    continue;
+                }
+                if (record.getSchool().startsWith("РУО")
+                        || record.getSchool().startsWith("Регионално управление на образованието")) {
+                    continue;
+                }
+
+                String code = School.fixedCodes.getOrDefault(record.getCode(), record.getCode());
+
+                Map<String, SchoolData> schools = citySchools.computeIfAbsent(
+                        record.getCity(), k -> new HashMap<>());
+                SchoolData sd = schools.computeIfAbsent(code, k -> new SchoolData());
+                sd.csvName = record.getSchool();
+
+                sd.belScore[yearIndex] = record.getBelScore() != null && record.getBelScore() > 0
+                        ? record.getBelScore() : null;
+                sd.matScore[yearIndex] = record.getMatScore() != null && record.getMatScore() > 0
+                        ? record.getMatScore() : null;
+                sd.belStudents[yearIndex] = record.getBelStudents() != null && record.getBelStudents() > 0
+                        ? record.getBelStudents() : null;
+                sd.matStudents[yearIndex] = record.getMatStudents() != null && record.getMatStudents() > 0
+                        ? record.getMatStudents() : null;
+            }
+        }
+
+        return citySchools;
     }
 
     static JsonObject buildSchoolJson(String code, SchoolData sd) {

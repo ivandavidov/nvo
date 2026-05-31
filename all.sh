@@ -21,4 +21,6 @@ java -cp nvo-v2.jar nvo.api.JsonGenerator 4
 java -cp nvo-v2.jar nvo.api.JsonGenerator 7
 java -cp nvo-v2.jar nvo.api.JsonGenerator 10
 java -cp nvo-v2.jar nvo.api.JsonGenerator 12
+# Per-school pages read the schools/{code}.json produced by the 'schools' step above.
+java -cp nvo-v2.jar nvo.api.JsonGenerator school-pages
 java -cp nvo-v2.jar nvo.SitemapGenerator

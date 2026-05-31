@@ -26,6 +26,13 @@ function setButtonState(id, state) {
 
 function getDefaultClickedButtonIds() {
   let url = new URL(window.location.href);
+  let schoolCode = url.searchParams.get('school');
+  if(schoolCode) {
+    let schoolIndex = findSchoolIndexByCode(schoolCode);
+    if(schoolIndex >= 0) {
+      return [String(schoolIndex)];
+    }
+  }
   let indices = url.searchParams.get(cookieName);
   if(indices) {
     return indices.split(',').map((i) => i.split('#')[0]).filter((i) => i !== '');

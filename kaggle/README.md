@@ -50,7 +50,7 @@ School rankings by composite score (average of BEL and MAT). Two types:
 | mat_score | float | MAT score (or median for type=median) |
 | score | float | Composite score |
 
-### schools.csv (1,388 rows)
+### schools.csv (1,414 rows)
 
 Master directory of all schools.
 
@@ -61,6 +61,8 @@ Master directory of all schools.
 | full_name | string | Full official name (Bulgarian) |
 | website | string | School website URL (if available) |
 | is_private | bool | True for private schools |
+| city | string | City slug (Latin) |
+| grades | string | Grades the school has data for, e.g. `4;7;10;12` |
 
 ### cities.csv (145 rows)
 

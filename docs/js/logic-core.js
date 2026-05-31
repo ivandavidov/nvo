@@ -83,6 +83,18 @@ function findCityForSchool(schoolIndex) {
   return null;
 }
 
+function findSchoolIndexByCode(code) {
+  if(!code) {
+    return -1;
+  }
+  for(let i = 0; i < s.length; i++) {
+    if(s[i] && s[i].c === code) {
+      return i;
+    }
+  }
+  return -1;
+}
+
 function calculateNationalAverages() {
   let totalYears = s[baseSchoolIndex].b.length;
   let natB = [];

@@ -31,6 +31,7 @@ public class IndexGenerator {
         }
         root.add("grades", gradesArr);
         root.addProperty("schoolsUrl", "schools.json");
+        root.addProperty("schoolsIndexUrl", "schools-index.json");
         root.addProperty("citiesUrl", "cities.json");
         root.addProperty("rankingsPath", "rankings/");
 
@@ -237,16 +238,36 @@ public class IndexGenerator {
                         <p class="section-label">Отговор</p>
                         <table class="schema-table">
                           <tr><th>Поле</th><th>Тип</th><th>Описание</th></tr>
-                          <tr><td>schools</td><td class="type">object</td><td>Училища (ключ = код)</td></tr>
+                          <tr><td>schools</td><td class="type">object</td><td>Училища с данни (ключ = код)</td></tr>
                           <tr><td>schools.*.shortName</td><td class="type">string</td><td>Кратко име</td></tr>
                           <tr><td>schools.*.fullName</td><td class="type">string</td><td>Пълно име на училището</td></tr>
                           <tr><td>schools.*.website</td><td class="type">string|null</td><td>Уебсайт (null ако няма)</td></tr>
                           <tr><td>schools.*.isPrivate</td><td class="type">boolean</td><td>Частно училище</td></tr>
+                          <tr><td>schools.*.city</td><td class="type">string|null</td><td>Slug на града</td></tr>
+                          <tr><td>schools.*.grades</td><td class="type">array</td><td>Класове, в които има данни</td></tr>
+                        </table>"""));
+
+        sb.append(endpointCard(
+                "/schools-index.json",
+                "schools-index.json",
+                "Компактен индекс за търсене на училище",
+                """
+                        <p class="section-label">Отговор</p>
+                        <table class="schema-table">
+                          <tr><th>Поле</th><th>Тип</th><th>Описание</th></tr>
+                          <tr><td>schools</td><td class="type">array</td><td>Списък училища</td></tr>
+                          <tr><td>schools[].code</td><td class="type">string</td><td>Код на училището</td></tr>
+                          <tr><td>schools[].shortName</td><td class="type">string</td><td>Кратко име</td></tr>
+                          <tr><td>schools[].fullName</td><td class="type">string</td><td>Пълно име</td></tr>
+                          <tr><td>schools[].isPrivate</td><td class="type">boolean</td><td>Частно училище</td></tr>
+                          <tr><td>schools[].city</td><td class="type">string</td><td>Име на града</td></tr>
+                          <tr><td>schools[].cityOrder</td><td class="type">number</td><td>Подредба на града (както в сайта)</td></tr>
+                          <tr><td>schools[].grades</td><td class="type">array</td><td>Класове с данни</td></tr>
                         </table>"""));
 
         sb.append(endpointCardNoLink(
                 "/schools/{code}.json",
-                "Метаданни за конкретно училище",
+                "Данни за училище: резултати по класове + рангове",
                 """
                         <div class="try-it">
                           <label>Код:</label>
@@ -263,6 +284,15 @@ public class IndexGenerator {
                           <tr><td>fullName</td><td class="type">string</td><td>Пълно име на училището</td></tr>
                           <tr><td>website</td><td class="type">string|null</td><td>Уебсайт (null ако няма)</td></tr>
                           <tr><td>isPrivate</td><td class="type">boolean</td><td>Частно училище</td></tr>
+                          <tr><td>city</td><td class="type">object|null</td><td>Град: {slug, name}</td></tr>
+                          <tr><td>yearsRange</td><td class="type">array</td><td>Масив с години</td></tr>
+                          <tr><td>grades</td><td class="type">object</td><td>Данни по клас (ключ = 4/7/10/12)</td></tr>
+                          <tr><td>grades.*.belScore / matScore</td><td class="type">array</td><td>Резултати по години (null = няма)</td></tr>
+                          <tr><td>grades.*.belStudents / matStudents</td><td class="type">array</td><td>Брой ученици по години</td></tr>
+                          <tr><td>grades.*.latestYear</td><td class="type">number</td><td>Последна година с данни</td></tr>
+                          <tr><td>grades.*.nationalRank / nationalTotal</td><td class="type">number</td><td>Национален ранг (последна година)</td></tr>
+                          <tr><td>grades.*.cityRank / cityTotal</td><td class="type">number</td><td>Ранг в града (последна година)</td></tr>
+                          <tr><td>grades.*.medianRank / medianAdjustedRank / medianTotal</td><td class="type">number</td><td>3-годишен медианен ранг</td></tr>
                         </table>"""));
 
         sb.append(endpointCard(

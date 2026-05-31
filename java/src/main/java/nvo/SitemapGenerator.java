@@ -58,6 +58,20 @@ public class SitemapGenerator {
             }
         }
 
+        // Scan docs/school/{code}/index.html for generated per-school pages.
+        Path schoolDir = Path.of(ProjectConfig.DOCS_DIR, "school");
+        if (Files.isDirectory(schoolDir)) {
+            try (var stream = Files.list(schoolDir)) {
+                stream.filter(Files::isDirectory)
+                        .forEach(subDir -> {
+                            if (Files.exists(subDir.resolve("index.html"))) {
+                                urls.add(ProjectConfig.SITE_BASE_URL + "school/"
+                                        + subDir.getFileName() + "/");
+                            }
+                        });
+            }
+        }
+
         StringBuilder sb = new StringBuilder();
         sb.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
         sb.append("<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n");

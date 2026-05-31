@@ -212,7 +212,7 @@ public class NvoDziDecomplexor {
             templateIndexIncl = "si['__city__']={n:[__n_begin__,__n_end__],p:[__p_begin__,__p_end__],l:'__city_label__',h:'__city_href__',o:__city_order__,i:__city_index__,r:__city_ruo__};";
             templateIndexExcl = "si['__city__']={n:[__n_begin__,__n_end__],p:null,l:'__city_label__',h:'__city_href__',o:__city_order__,i:__city_index__,r:__city_ruo__};";
         } else {
-            templateSchool = "s[__index__] = {l: '__label__', n: '__name__', " + generateSection("b") + ", " + generateSection("m") + ", " + generateSection("bu") + ", " + generateSection("mu") + ", w: __website__};\n";
+            templateSchool = "s[__index__] = {l: '__label__', n: '__name__', " + generateSection("b") + ", " + generateSection("m") + ", " + generateSection("bu") + ", " + generateSection("mu") + ", w: __website__, c: '__code__'};\n";
             templateIndexIncl = "si['__city__'] = {n: [__n_begin__, __n_end__], p: [__p_begin__, __p_end__], l: '__city_label__', h: '__city_href__', o: __city_order__, i: __city_index__, r: __city_ruo__};\n";
             templateIndexExcl = "si['__city__'] = {n: [__n_begin__, __n_end__], p: null, l: '__city_label__', h: '__city_href__', o: __city_order__, i: __city_index__, r: __city_ruo__};\n";
         }
@@ -348,7 +348,8 @@ public class NvoDziDecomplexor {
         templateSchool = templateSchool.replace("__index__", "" + index)
                 .replace("__label__", school.getLabel())
                 .replace("__name__", school.getName())
-                .replace("__website__", school.getWebsite() != null ? "'" + school.getWebsite() + "'": "null");
+                .replace("__website__", school.getWebsite() != null ? "'" + school.getWebsite() + "'": "null")
+                .replace("__code__", school.getCode());
 
         for(int i = 0; i < numYears; i++) {
             templateSchool = templateSchool

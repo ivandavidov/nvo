@@ -33,7 +33,7 @@
     },
     {
       "path": "data/schools.csv",
-      "description": "Master directory of all 1,388 schools (code, name, website, public/private)"
+      "description": "Master directory of all 1,414 schools (code, name, website, public/private, city, grades)"
     },
     {
       "path": "data/cities.csv",

@@ -77,6 +77,7 @@
   <script src="../js/logic-ranking.js" defer></script>
   <script src="../js/logic-city.js" defer></script>
   <script src="../js/logic-init.js" defer></script>
+  <script src="../js/school-search.js" defer></script>
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google-analytics.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com; font-src 'self'">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <script>
@@ -119,6 +120,10 @@
       <section class="hero-section">
         <h1 class="page-title"><a class="page-title-link" href="">НВО след 7 клас</a></h1>
         <h2 class="page-subtitle">Графики, класации и статистики</h2>
+        <div class="school-search" id="schoolSearch">
+          <input type="text" id="schoolSearchInput" class="school-search-input" placeholder="Търси училище по име..." autocomplete="off" aria-label="Търси училище по име">
+          <div id="schoolSearchResults" class="school-search-results" role="listbox"></div>
+        </div>
         <div class="card hero-card">
           <div class="hero-grid">
             <div class="hero-left">

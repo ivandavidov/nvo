@@ -18,7 +18,7 @@ public class JsonGenerator {
 
     public static void main(String... args) throws Exception {
         if (args.length == 0) {
-            System.err.println("Expected argument: index, schools, cities, 4, 7, 10, or 12");
+            System.err.println("Expected argument: index, schools, school-pages, cities, 4, 7, 10, or 12");
             System.exit(1);
         }
 
@@ -28,12 +28,14 @@ public class JsonGenerator {
             new IndexGenerator().generate();
         } else if ("schools".equals(mode)) {
             new SchoolsGenerator().generate();
+        } else if ("school-pages".equals(mode)) {
+            new SchoolPageGenerator().generate();
         } else if ("cities".equals(mode)) {
             new CitiesGenerator().generate();
         } else if (Set.of("4", "7", "10", "12").contains(mode)) {
             new GradeDataGenerator().generate(mode);
         } else {
-            System.err.println("Invalid argument: " + mode + ". Expected: index, schools, cities, 4, 7, 10, or 12");
+            System.err.println("Invalid argument: " + mode + ". Expected: index, schools, school-pages, cities, 4, 7, 10, or 12");
             System.exit(1);
         }
     }

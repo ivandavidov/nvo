@@ -15,9 +15,10 @@ with open(os.path.join(API, 'schools.json')) as f:
 
 with open(os.path.join(OUT, 'schools.csv'), 'w', newline='', encoding='utf-8') as f:
     w = csv.writer(f)
-    w.writerow(['code', 'short_name', 'full_name', 'website', 'is_private'])
+    w.writerow(['code', 'short_name', 'full_name', 'website', 'is_private', 'city', 'grades'])
     for code, s in sorted(schools_data['schools'].items()):
-        w.writerow([code, s['shortName'], s['fullName'], s.get('website') or '', s['isPrivate']])
+        w.writerow([code, s['shortName'], s['fullName'], s.get('website') or '', s['isPrivate'],
+                    s.get('city') or '', ';'.join(str(g) for g in s.get('grades', []))])
 
 print('schools.csv')
 

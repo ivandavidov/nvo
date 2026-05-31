@@ -1,4 +1,5 @@
 applyGradeConfig({
+  numYears: numYearsByGrade[4],
   tableTitleType: 'НВО след 4 клас',
   cookieName: 'i4',
   exportPrefix: 'nvo-4',

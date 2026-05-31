@@ -18,6 +18,7 @@ Main public pages:
 - `docs/stats/` — Обобщена статистика
 - `docs/games/` — Мини игри
 - `docs/api/` — Static JSON API + interactive documentation
+- `docs/school/{code}/` — Per-school page (grade-agnostic profile; generated)
 
 `docs/index.html` is only a redirect to `./7/` (preserves URL params and hash via JS).
 `docs/api/index.html` is a redirect to `./v1/`.
@@ -29,7 +30,7 @@ Each grade page also has `docs/{4,7,10,12}/embed.html` — embeddable chart view
 ```bash
 ./all.sh
 ```
-Builds Java tool, normalizes CSV/XLSX files, regenerates all `schools-{4,7,10,12}.js` files, generates the API (`docs/api/v1/`), city/year landing pages (`docs/{grade}/{city|year}/`), `docs/7/balove/` pages, and `docs/sitemap.xml`.
+Builds Java tool, normalizes CSV/XLSX files, regenerates all `schools-{4,7,10,12}.js` files, generates the API (`docs/api/v1/`), city/year landing pages (`docs/{grade}/{city|year}/`), per-school pages (`docs/school/{code}/`), `docs/7/balove/` pages, and `docs/sitemap.xml`.
 The pipeline intentionally generates `balove` pages before `schools-{grade}.js`, because the school bundles expose RUO availability through `si[city].r` based on the published `docs/{grade}/balove/{city}/` directories.
 
 ### Java tool — NvoDziDecomplexor (main jar)
@@ -48,6 +49,7 @@ java -jar nvo-v2.jar 12
 ```bash
 java -cp nvo-v2.jar nvo.api.JsonGenerator index
 java -cp nvo-v2.jar nvo.api.JsonGenerator schools
+java -cp nvo-v2.jar nvo.api.JsonGenerator school-pages
 java -cp nvo-v2.jar nvo.api.JsonGenerator cities
 java -cp nvo-v2.jar nvo.api.JsonGenerator 4
 java -cp nvo-v2.jar nvo.api.JsonGenerator 7
@@ -55,7 +57,8 @@ java -cp nvo-v2.jar nvo.api.JsonGenerator 10
 java -cp nvo-v2.jar nvo.api.JsonGenerator 12
 ```
 - `index` generates `docs/api/v1/index.json` (API metadata) and `docs/api/v1/index.html` (interactive Swagger-like docs)
-- `schools` generates `docs/api/v1/schools.json` (all schools) and `docs/api/v1/schools/{code}.json` (per-school lookup by code)
+- `schools` generates `docs/api/v1/schools.json` (all schools with data — identity + city + grades list), `docs/api/v1/schools/{code}.json` (per-school cross-grade document: identity, city, per-grade scores/students + national/city/median ranks), and `docs/api/v1/schools-index.json` (compact array for the search box). The school set is data-driven (codes that appear in the normalized data across grades), not the full `School.schoolCodes` map.
+- `school-pages` generates the per-school pages `docs/school/{code}/index.html` from the `schools/{code}.json` documents — must run after `schools`
 - `cities` generates `docs/api/v1/cities.json` (all cities) and `docs/api/v1/cities/{slug}.json` (per-city lookup by slug)
 - `4`/`7`/`10`/`12` generates per-grade `data.json`, per-city `data.json`, per-school `.json` files, rankings under `docs/api/v1/rankings/`, city landing pages `docs/{grade}/{city-slug}/index.html`, and year landing pages `docs/{grade}/{year}/index.html`
 - All per-grade generated files share a unified JSON envelope: `{ grade, yearsRange, cities: { ... } }`
@@ -65,7 +68,7 @@ java -cp nvo-v2.jar nvo.api.JsonGenerator 12
 ```bash
 java -cp nvo-v2.jar nvo.SitemapGenerator
 ```
-- scans all generated landing pages, static pages, and pages under `docs/*/balove/`
+- scans all generated landing pages, static pages, per-school pages under `docs/school/`, and pages under `docs/*/balove/`
 - writes `docs/sitemap.xml`
 
 ### RUO Sofia pipeline
@@ -107,18 +110,22 @@ data/ruo-sofia/*.xlsx -> data/normalized/ruo-sofia-*.csv -> java (RuoDecomplexor
 ```
 `NvoDziDecomplexor` then detects published `docs/{grade}/balove/{city}/` directories and emits `si[city].r` into `schools-{grade}.js`, which lets the main frontend surface a `Балове` link for supported cities.
 
+`SchoolsGenerator` aggregates the normalized CSVs across all four grades into per-school documents (`docs/api/v1/schools/{code}.json`) plus a compact `schools-index.json`; `SchoolPageGenerator` then renders the `docs/school/{code}/` pages from those documents (and inlines the same JSON so `logic-school.js` can hydrate the charts client-side).
+
 ### Frontend structure
 ```text
 docs/
   4/, 7/, 10/, 12/           grade pages
+  school/{code}/             per-school page (generated, grade-agnostic profile)
   7/balove/{city}/           min/max scores by class/profile for 7th-grade admissions
   stats/                     statistics page (separate logic)
   games/                     games hub + standalone games
   api/                       redirect to api/v1/
   api/v1/                    static JSON API + interactive Swagger-like docs
   api/v1/index.json          API metadata (grades list + schoolsUrl)
-  api/v1/schools.json        all schools lookup (code → name, website, isPrivate)
-  api/v1/schools/{code}.json per-school lookup by code
+  api/v1/schools.json        all schools with data (code → name, website, isPrivate, city, grades)
+  api/v1/schools/{code}.json per-school cross-grade document (identity, city, per-grade scores/students + ranks)
+  api/v1/schools-index.json  compact array for the client-side school search box
   api/v1/cities.json         all cities lookup (slug → name, orderPosition)
   api/v1/cities/{slug}.json  per-city lookup by slug
   api/v1/rankings/{grade}/{year}.json          per-year ranking
@@ -141,6 +148,8 @@ docs/
     logic-ranking.js           ranking tables, sorting, filtering, median tables, CSV/PDF links
     logic-city.js              city sections, school buttons, lazy loading (IntersectionObserver)
     logic-init.js              navigation, year nav, DOMContentLoaded bootstrap
+    logic-school.js            per-school page chart hydration (standalone, not part of the 6-file split)
+    school-search.js           grade-page school search box (reads schools-index.json)
     theme.js                   dark/light mode toggle, localStorage persistence
     jokes.js                   Bulgarian jokes collection
     highcharts.js              vendored Highcharts library
@@ -189,11 +198,12 @@ java/src/main/java/nvo/
 java/src/main/java/nvo/api/
   JsonGenerator.java        entry point (-cp), dispatches to sub-generators below
   IndexGenerator.java       generates index.json + index.html (API docs page)
-  SchoolsGenerator.java     generates schools.json + schools/{code}.json
+  SchoolsGenerator.java     schools.json + schools-index.json + cross-grade schools/{code}.json
+  SchoolPageGenerator.java  per-school HTML pages docs/school/{code}/ from schools/{code}.json
   CitiesGenerator.java      generates cities.json + cities/{slug}.json
-  GradeDataGenerator.java   CSV parsing → {grade}/data.json, per-city/per-school JSON files
-  RankingsGenerator.java    rankings/{grade}/{year}.json + median rankings
-  LandingPageGenerator.java city + year landing pages (HTML)
+  GradeDataGenerator.java   CSV parsing → {grade}/data.json, per-city/per-school JSON files (parseGrade() reused by SchoolsGenerator)
+  RankingsGenerator.java    rankings/{grade}/{year}.json + median rankings (buildAllSchools/nationalYearRank/nationalMedianRank reused by SchoolsGenerator)
+  LandingPageGenerator.java city + year landing pages (HTML; school names link to /school/{code}/)
   GeneratorUtils.java       shared utilities (collapseArrays, cleanDirectory, etc.)
   SchoolData.java           data class for per-school score/student arrays
   RankedSchool.java         record for ranking entries
@@ -210,6 +220,7 @@ java/src/main/java/nvo/api/
 - `config-global.js` defines `GRADE_CONFIG_DEFAULTS` and shared constants.
 - Each per-grade config (`config-*.js`) calls `applyGradeConfig({...})` with overrides.
 - The `logic-*.js` files read these globals (`firstYear`, `numYears`, `cookieName`, chart titles, ranking params, etc.).
+- `numYearsByGrade` in `config-global.js` is the single source of truth for the per-grade chart window (8 for 4/7/12, 5 for 10). The main pages apply it via `config-{grade}.js`; the per-school page loads `config-global.js` and `logic-school.js` reads `numYearsByGrade` directly (falling back to 8).
 
 ## Generated Data Contract
 
@@ -222,7 +233,8 @@ s[i] = {
   mu: [/* MAT/DZI-2 participants */],
   l: 'short label',
   n: 'full name',
-  w: 'website URL'
+  w: 'website URL',
+  c: 'school code'   /* canonical code; used to link to /school/{code}/ */
 }
 
 si = {
@@ -230,6 +242,30 @@ si = {
 }
 ```
 `n` = public schools range, `p` = private schools range, `l` = short label, `h` = slug, `o` = order tier, `i` = city index, `r` = has RUO balove page for this grade.
+`c` (on `s[i]`) = canonical school code, used to link each row to its `/school/{code}/` page.
+
+In `schools/{code}.json` (per-school cross-grade document):
+```javascript
+{
+  code, fullName, shortName, isPrivate, website,
+  city: { slug, name },
+  yearsRange: [2018, /* … */ 2025],
+  grades: {
+    "7": {
+      belScore: [/* … */], matScore: [/* … */], belStudents: [/* … */], matStudents: [/* … */],
+      latestYear, nationalRank, nationalTotal, cityRank, cityTotal,
+      medianRank, medianAdjustedRank, medianTotal, medianEndYear
+    }
+    /* one entry per grade the school participates in */
+  }
+}
+```
+
+In `schools-index.json` (search box index):
+```javascript
+{ schools: [ { code, shortName, fullName, isPrivate, city, cityOrder, grades: [4, 7] } ] }
+```
+`cityOrder` mirrors the position in `Cities.ORDERED`, so the search box sorts results in the site's city order.
 
 In `ruo-{city}.js`:
 ```javascript
@@ -261,7 +297,7 @@ let ruoSchools = {
 
 ## Important Rules
 
-1. Do not manually edit generated files: `docs/js/schools-{4,7,10,12}.js`, `docs/js/ruo-*.js`, `docs/api/v1/` (all contents), and generated `docs/7/balove/**/index.html` pages.
+1. Do not manually edit generated files: `docs/js/schools-{4,7,10,12}.js`, `docs/js/ruo-*.js`, `docs/api/v1/` (all contents), generated `docs/7/balove/**/index.html` pages, and generated `docs/school/**/index.html` pages.
 2. Keep relative paths correct for nested pages (`../` vs `../../`).
 3. For grade page navigation, prefer existing `data-*` hooks; `logic-init.js` resolves links dynamically.
 4. `stats/index.html` intentionally allows `unsafe-eval` in CSP because `stats/logic.js` loads config/data through `new Function(...)` in isolated scope.
@@ -290,6 +326,9 @@ Use manual verification in browser:
 - API docs page loads with working interactive dropdowns
 - embed pages render charts correctly with theme/chart params
 - `docs/7/balove/sofia/` loads its table, filters, charts, search/sort, and relative asset paths correctly
+- per-school pages (`docs/school/{code}/`) render the charts, tables, ranks, and JSON-LD; charts use the per-grade `numYears` window and trim empty leading/trailing years
+- the grade-page school search box finds schools (ordered by city) and links to `/school/{code}/`
+- school name links in the ranking tables open the correct `/school/{code}/`
 
 ## Key Files (Quick Reference)
 
@@ -306,6 +345,8 @@ Files you will touch most often:
 - `docs/js/config-global.js` + `docs/js/config-{4,7,10,12}.js` — configuration
 - `docs/css/custom.css` — main styling
 - `docs/js/theme.js` — dark/light mode toggle
+- `docs/js/logic-school.js` — per-school page chart hydration (standalone)
+- `docs/js/school-search.js` — grade-page school search box (reads `schools-index.json`)
 - `docs/js/ruo-sofia.js` — generated RUO min/max scores data for Sofia
 - `docs/games/*` + `docs/games/games.css` — games pages and theme
 - `docs/games/games-header.js` — games navigation header
@@ -331,7 +372,8 @@ Files you will touch most often:
   - `CitiesGenerator.java` — cities.json + per-city files
   - `GradeDataGenerator.java` — CSV → per-grade/city/school JSON
   - `RankingsGenerator.java` — per-year + median rankings
-  - `LandingPageGenerator.java` — city + year landing pages
+  - `LandingPageGenerator.java` — city + year landing pages (school names link to `/school/{code}/`)
+  - `SchoolPageGenerator.java` — per-school pages under `docs/school/{code}/`
 
 ## Static Assets
 
@@ -356,7 +398,7 @@ kaggle/
   data/                    generated CSV files (gitignored)
     scores.csv             25,945 rows — scores per school/grade/year
     rankings.csv           45,724 rows — annual + 3-year median rankings
-    schools.csv            1,388 rows — school directory
+    schools.csv            1,414 rows — school directory (data-driven: schools that appear in the data)
     cities.csv             145 rows — city directory
 ```
 

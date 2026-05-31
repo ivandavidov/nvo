@@ -798,6 +798,103 @@ select:focus {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2394a3b8' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
 }
 
+/* --- School Search --- */
+.school-search {
+  position: relative;
+  max-width: 520px;
+  margin: 0 0 1.45rem 0;
+}
+
+.school-search-input {
+  width: 100%;
+  padding: 0.6rem 0.9rem;
+  font-size: 0.95rem;
+  font-family: var(--font-sans);
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.school-search-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-lighter);
+}
+
+.school-search-results {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  max-height: 360px;
+  overflow-y: auto;
+  display: none;
+}
+
+.school-search-results.open {
+  display: block;
+}
+
+.school-search-item {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.school-search-item:last-child {
+  border-bottom: none;
+}
+
+.school-search-item:hover,
+.school-search-item.active {
+  background: var(--color-primary-lighter);
+  text-decoration: none;
+}
+
+.school-search-item-name {
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: var(--color-text);
+}
+
+.school-search-item-city {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.school-search-grades {
+  display: inline-flex;
+  gap: 0.2rem;
+  margin-left: 0.4rem;
+}
+
+.school-search-grade {
+  font-size: 0.7rem;
+  padding: 0.05rem 0.4rem;
+  border-radius: var(--radius-full);
+  background: var(--color-bg);
+  color: var(--color-text-muted);
+}
+
+.school-search-empty {
+  padding: 0.6rem 0.75rem;
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+}
+
 /* --- Responsive --- */
 @media (max-width: 600px) {
   .header-inner {

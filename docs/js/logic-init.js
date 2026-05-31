@@ -103,6 +103,7 @@ function generateJoke() {
 }
 
 function onLoad() {
+  let deepLinkSchool = new URL(window.location.href).searchParams.get('school');
   generateJoke();
   generateYearRankingLinks();
   generateYearNavigation();
@@ -118,6 +119,12 @@ function onLoad() {
   setDefaultClickedButtons();
   initializeHighcharts();
   redraw();
+  if(deepLinkSchool) {
+    let hrCharts = document.getElementById('hrCharts');
+    if(hrCharts) {
+      requestAnimationFrame(() => hrCharts.scrollIntoView());
+    }
+  }
 }
 
 if(!window.__NVO_TEST_MODE__) {

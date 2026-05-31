@@ -5,6 +5,15 @@ const latestYearByGrade = {
   12: 2025
 };
 
+// Single source of truth for the per-grade chart window (number of most-recent years shown).
+// Read by each config-{grade}.js (main pages) and by logic-school.js (per-school pages).
+const numYearsByGrade = {
+  4: 8,
+  7: 8,
+  10: 5,
+  12: 8
+};
+
 const CHART_HEIGHT_PERCENT = 85 / 100;
 const CHART_MIN_HEIGHT_PX = 500;
 const CHART_EXPORT_WIDTH = 960;

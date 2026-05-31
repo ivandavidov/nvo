@@ -1,5 +1,6 @@
 applyGradeConfig({
   fix2018: true,
+  numYears: numYearsByGrade[7],
   tableTitleType: 'НВО след 7 клас',
   cookieName: 'i7',
   exportPrefix: 'nvo-7',

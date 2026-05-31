@@ -521,15 +521,26 @@ function buildRankingTable(div, name, puSchools, prSchools, rankingState) {
     td.appendChild(document.createTextNode(++counter));
     tr.appendChild(td);
     td = document.createElement('td');
-    if(s[o.i].w) {
+    let schoolCode = s[o.i].c;
+    if(schoolCode) {
       let a = document.createElement('a');
       a.appendChild(document.createTextNode(s[o.i].l));
-      a.href = s[o.i].w;
-      a.target = '_blank';
-      a.rel = 'noopener noreferrer';
+      a.href = '../school/' + schoolCode + '/';
+      a.title = 'Профил на ' + s[o.i].n;
       td.appendChild(a);
     } else {
       td.appendChild(document.createTextNode(s[o.i].l));
+    }
+    if(s[o.i].w) {
+      td.appendChild(document.createTextNode(' '));
+      let wlink = document.createElement('a');
+      wlink.href = s[o.i].w;
+      wlink.target = '_blank';
+      wlink.rel = 'noopener noreferrer';
+      wlink.className = 'city-page-link';
+      wlink.title = 'Уебсайт на ' + s[o.i].n;
+      wlink.appendChild(document.createTextNode('↗'));
+      td.appendChild(wlink);
     }
     td.title = s[o.i].n;
     tr.appendChild(td);
