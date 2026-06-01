@@ -946,7 +946,7 @@ public class School implements Comparable<School> {
         schoolCodes.put("400044", new String[]{"0", "ПГ по икономика", "ПГ по икономика Д-р Иван Богоров", "http://pgi-varna.com"});
         schoolCodes.put("400045", new String[]{"0", "1 ЕГ", "Първа ЕГ", "http://1eg.eu"});
         schoolCodes.put("400046", new String[]{"0", "МГ Петър Берон", "МГ Д-р Петър Берон", "http://mgberon.com"});
-        schoolCodes.put("400047", new String[]{"0", "СУ за хуман. науки и изк.", "СУ за хуманитарни науки и изкуства", "http://nghni-varna.com"});
+        schoolCodes.put("400047", new String[]{"0", "СУ за ХНИ.", "СУ за хуманитарни науки и изкуства", "http://hnivarna.eu"});
         schoolCodes.put("400054", new String[]{"0", "Спец. у-ще за уч. с нар. зр.", "Специално у-ще за ученици с нарушено зрение", "http://suunzvarna.com"});
         schoolCodes.put("400055", new String[]{"0", "Проф. техн. гимназия", "Професионална техническа гимназия", "http://ptgvarna.com"});
         schoolCodes.put("400058", new String[]{"0", "ПГ по хим. и хр.-вк. техн.", "ПГ по химични и хранително-вкусови технологии", "http://pghhvt-varna.com"});
