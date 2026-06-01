@@ -652,7 +652,7 @@ public class School implements Comparable<School> {
         schoolCodes.put("2212079", new String[] {"0", "79 СУ", "79 СУ Индира Ганди", "http://79su.bg"});
         schoolCodes.put("2207108", new String[] {"0", "108 СУ", "108 СУ Никола Беловеждов", "http://108su.net"});
         schoolCodes.put("2213131", new String[] {"0", "131 СУ", "131 СУ Климент Аркад. Тимирязев", "http://131su.eu"});
-        schoolCodes.put("2206410", new String[] {"0", "ПГ по аудио, видео и телек.", "ПГ по аудио, видое и телекомуникация", "http://aspopov.bg"});
+        schoolCodes.put("2206410", new String[] {"0", "ПГВТ Ал. Попов", "ПГ по високи технологии Ал. Попов", "http://aspopov.bg"});
         schoolCodes.put("2213307", new String[] {"0", "СпУ Вл. Стойчев", "Спортно у-ще ген. Владимир Стойчев", "http://sugvs-sofia.com"});
         schoolCodes.put("2207069", new String[] {"0", "69 СУ", "69 СУ Димитър Маринов", "http://sou69.com"});
         schoolCodes.put("2220014", new String[] {"0", "14 СУ", "14 СУ Проф. Д-р Асен Златаров", "http://14su.bg"});
