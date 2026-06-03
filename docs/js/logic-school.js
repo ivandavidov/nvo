@@ -330,7 +330,27 @@
   // theme.js calls redraw() after toggling the theme.
   window.redraw = render;
 
+  // Keep the sticky class-nav and section scroll offsets aligned with the ACTUAL header
+  // height. On mobile the header wraps to two rows and is taller than --header-height (60px),
+  // so a fixed offset would tuck the nav (and the targeted sections) under it. We expose the
+  // measured heights as CSS vars consumed by the page's inline <style>:
+  //   --sticky-top    -> .school-section-nav { top }
+  //   --sticky-offset -> .school-grade { scroll-margin-top }  (header + nav + small gap)
+  function updateStickyOffsets() {
+    var header = document.querySelector('.site-header');
+    if (!header) {
+      return;
+    }
+    var nav = document.querySelector('.school-section-nav');
+    var h = Math.round(header.getBoundingClientRect().height);
+    var n = nav ? Math.round(nav.getBoundingClientRect().height) : 0;
+    var style = document.documentElement.style;
+    style.setProperty('--sticky-top', h + 'px');
+    style.setProperty('--sticky-offset', (h + n + 12) + 'px');
+  }
+
   function init() {
+    updateStickyOffsets();
     render();
     var pdfBtn = document.getElementById('schoolPdfBtn');
     if (pdfBtn) {
@@ -344,7 +364,11 @@
     init();
   }
 
+  window.addEventListener('load', updateStickyOffsets);
+  window.addEventListener('orientationchange', updateStickyOffsets);
+
   window.addEventListener('resize', function() {
+    updateStickyOffsets();
     charts.forEach(function(c) {
       try { c.reflow(); } catch (e) {}
     });

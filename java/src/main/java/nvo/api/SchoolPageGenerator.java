@@ -324,17 +324,19 @@ public class SchoolPageGenerator {
                   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google-analytics.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com; font-src 'self'">
                   <meta name="referrer" content="strict-origin-when-cross-origin">
                   <style>
-                    .school-grade { margin-bottom: 1.5rem; scroll-margin-top: calc(var(--header-height) + 3.75rem); }
+                    .school-grade { margin-bottom: 1.5rem; scroll-margin-top: var(--sticky-offset, calc(var(--header-height) + 3.75rem)); }
+                    .hero-section { padding: 0.6rem 0 0; }
                     .breadcrumb { display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem; font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 0.6rem; }
                     .breadcrumb a { color: var(--color-text-muted); text-decoration: none; }
                     .breadcrumb a:hover { color: var(--color-primary); text-decoration: underline; }
                     .breadcrumb-sep { color: var(--color-text-light); }
                     .breadcrumb-current { color: var(--color-text); font-weight: 600; }
-                    .school-hero-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem 1rem; }
+                    .school-hero-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.6rem 1rem; margin-bottom: 0.6rem; }
                     .school-hero-head .page-title { margin: 0; }
                     .school-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; }
                     .school-actions .button { margin: 0; }
-                    .school-section-nav { position: sticky; top: var(--header-height); z-index: 90; display: flex; flex-wrap: wrap; gap: 0.5rem; padding: 0.55rem 0; margin-bottom: 1.5rem; background: var(--color-surface-glass); backdrop-filter: blur(8px); border-bottom: 1px solid var(--color-border); }
+                    .hero-section .page-subtitle { margin-bottom: 0.6rem; }
+                    .school-section-nav { position: sticky; top: var(--sticky-top, var(--header-height)); z-index: 90; display: flex; flex-wrap: wrap; gap: 0.5rem; padding: 0.55rem 0; margin-bottom: 1.5rem; background: var(--color-surface-glass); backdrop-filter: blur(8px); border-bottom: 1px solid var(--color-border); }
                     .school-section-nav a { font-size: 0.85rem; font-weight: 600; padding: 0.3rem 0.85rem; border-radius: var(--radius-full); background: var(--color-primary-lighter); color: var(--color-primary-dark); text-decoration: none; transition: background 0.15s ease, color 0.15s ease; }
                     .school-section-nav a:hover { background: var(--color-primary); color: #fff; }
                     .school-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.6rem; margin: 0 0 1.1rem; }
