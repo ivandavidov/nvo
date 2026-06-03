@@ -79,8 +79,11 @@ public class SchoolPageGenerator {
         boolean isPrivate = doc.has("isPrivate") && doc.get("isPrivate").getAsBoolean();
         String website = str(doc, "website");
         String cityName = null;
+        String citySlug = null;
         if (doc.has("city") && doc.get("city").isJsonObject()) {
-            cityName = str(doc.getAsJsonObject("city"), "name");
+            JsonObject cityObj = doc.getAsJsonObject("city");
+            cityName = str(cityObj, "name");
+            citySlug = str(cityObj, "slug");
         }
         JsonArray years = doc.getAsJsonArray("yearsRange");
         JsonObject grades = doc.getAsJsonObject("grades");
@@ -94,32 +97,60 @@ public class SchoolPageGenerator {
         String primaryGrade = firstGrade(grades);
 
         StringBuilder sb = new StringBuilder();
-        sb.append(head(title, description, canonical, primaryGrade, fullName, website, cityName));
+        sb.append(head(title, description, canonical, primaryGrade, fullName, website, cityName, citySlug));
 
         sb.append("<main>\n<div class=\"container\">\n");
         sb.append("<section class=\"hero-section\">\n");
+
+        // Breadcrumb — upward navigation + city context (replaces the old "back to home" link).
+        sb.append("<nav class=\"breadcrumb\" aria-label=\"breadcrumb\">");
+        sb.append("<a href=\"../../\">Начало</a>");
+        if (cityName != null && citySlug != null) {
+            sb.append("<span class=\"breadcrumb-sep\">›</span>")
+                    .append("<a href=\"../../").append(primaryGrade).append("/").append(citySlug)
+                    .append("/\">").append(escHtml(cityName)).append("</a>");
+        }
+        sb.append("<span class=\"breadcrumb-sep\">›</span>")
+                .append("<span class=\"breadcrumb-current\">").append(escHtml(fullName)).append("</span>");
+        sb.append("</nav>\n");
+
+        // Title + actions on one row (actions wrap below the title on narrow screens).
+        sb.append("<div class=\"school-hero-head\">\n");
         sb.append("<h1 class=\"page-title\">").append(escHtml(fullName)).append("</h1>\n");
+        sb.append("<div class=\"school-actions\">");
+        if (website != null) {
+            sb.append("<a class=\"button\" href=\"").append(escHtml(website))
+                    .append("\" target=\"_blank\" rel=\"noopener noreferrer\">Уебсайт ↗</a>");
+        }
+        sb.append("<button type=\"button\" id=\"schoolPdfBtn\" class=\"button button-primary\">Изтегли PDF</button>");
+        sb.append("</div>\n");
+        sb.append("</div>\n");
+
+        // Subtitle — identity facts only.
         sb.append("<p class=\"page-subtitle\">").append(escHtml(typeLabel));
         if (cityName != null) {
             sb.append(" · ").append(escHtml(cityName));
         }
-        if (website != null) {
-            sb.append(" · <a href=\"").append(escHtml(website))
-                    .append("\" target=\"_blank\" rel=\"noopener noreferrer\">Уебсайт</a>");
-        }
         sb.append("</p>\n");
+        sb.append("</section>\n");
 
-        // Grade availability badges
-        sb.append("<div class=\"grade-badges\">");
+        // Sticky in-page navigation across the grade sections (data grades only; skip when just one).
+        int gradeCount = 0;
         for (String grade : GRADE_KEYS) {
             if (grades.has(grade)) {
-                sb.append("<span class=\"grade-badge\">").append(gradeMeta(grade).heading()).append("</span>");
+                gradeCount++;
             }
         }
-        sb.append("</div>\n");
-        sb.append("<p><a href=\"../../\">&#8592; Към началната страница</a>")
-                .append("&nbsp;&nbsp;<button type=\"button\" id=\"schoolPdfBtn\" class=\"button\">Изтегли PDF</button></p>\n");
-        sb.append("</section>\n");
+        if (gradeCount > 1) {
+            sb.append("<nav class=\"school-section-nav\" aria-label=\"Класове\">");
+            for (String grade : GRADE_KEYS) {
+                if (grades.has(grade)) {
+                    sb.append("<a href=\"#grade-").append(grade).append("\">")
+                            .append(grade).append(" клас</a>");
+                }
+            }
+            sb.append("</nav>\n");
+        }
 
         for (String grade : GRADE_KEYS) {
             if (!grades.has(grade)) {
@@ -147,26 +178,26 @@ public class SchoolPageGenerator {
         sb.append("<section class=\"card school-grade\" id=\"grade-").append(grade).append("\">\n");
         sb.append("<h3 class=\"card-title\">").append(meta.heading()).append("</h3>\n");
 
-        // Stats line
+        // Stats — compact 2x2 grid of labelled stat cells (4-up on wider screens via CSS).
         sb.append("<div class=\"school-stats\">");
         Integer latestYear = intOrNull(g, "latestYear");
         if (latestYear != null) {
-            sb.append("<span>Последна година: <b>").append(latestYear).append("</b></span>");
+            sb.append(statCell("Последна година", String.valueOf(latestYear), null));
         }
         Integer natRank = intOrNull(g, "nationalRank");
         Integer natTotal = intOrNull(g, "nationalTotal");
         if (natRank != null && natTotal != null) {
-            sb.append("<span>Национален ранг: <b>").append(natRank).append("</b> / ").append(natTotal).append("</span>");
+            sb.append(statCell("Национален ранг", String.valueOf(natRank), "/ " + natTotal));
         }
         Integer cityRank = intOrNull(g, "cityRank");
         Integer cityTotal = intOrNull(g, "cityTotal");
         if (cityRank != null && cityTotal != null) {
-            sb.append("<span>В града: <b>").append(cityRank).append("</b> / ").append(cityTotal).append("</span>");
+            sb.append(statCell("В града", String.valueOf(cityRank), "/ " + cityTotal));
         }
         Integer medianRank = intOrNull(g, "medianRank");
         Integer medianTotal = intOrNull(g, "medianTotal");
         if (medianRank != null && medianTotal != null) {
-            sb.append("<span>Медианен ранг (3 г.): <b>").append(medianRank).append("</b> / ").append(medianTotal).append("</span>");
+            sb.append(statCell("Медианен ранг (3 г.)", String.valueOf(medianRank), "/ " + medianTotal));
         }
         sb.append("</div>\n");
 
@@ -234,7 +265,7 @@ public class SchoolPageGenerator {
     }
 
     private String head(String title, String description, String canonical, String primaryGrade,
-                        String fullName, String website, String cityName) {
+                        String fullName, String website, String cityName, String citySlug) {
         StringBuilder jsonLd = new StringBuilder();
         jsonLd.append("{\"@context\":\"https://schema.org\",\"@type\":\"EducationalOrganization\",")
                 .append("\"name\":").append(jsonString(fullName)).append(",")
@@ -247,6 +278,22 @@ public class SchoolPageGenerator {
                     .append(jsonString(cityName)).append(",\"addressCountry\":\"BG\"}");
         }
         jsonLd.append("}");
+
+        // BreadcrumbList mirrors the on-page breadcrumb (Начало › City › School) for SEO.
+        StringBuilder crumbs = new StringBuilder();
+        crumbs.append("{\"@context\":\"https://schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[");
+        int pos = 1;
+        crumbs.append("{\"@type\":\"ListItem\",\"position\":").append(pos++)
+                .append(",\"name\":\"Начало\",\"item\":").append(jsonString(SITE_BASE_URL)).append("}");
+        if (cityName != null && citySlug != null) {
+            crumbs.append(",{\"@type\":\"ListItem\",\"position\":").append(pos++)
+                    .append(",\"name\":").append(jsonString(cityName))
+                    .append(",\"item\":").append(jsonString(SITE_BASE_URL + primaryGrade + "/" + citySlug + "/")).append("}");
+        }
+        crumbs.append(",{\"@type\":\"ListItem\",\"position\":").append(pos)
+                .append(",\"name\":").append(jsonString(fullName))
+                .append(",\"item\":").append(jsonString(canonical)).append("}");
+        crumbs.append("]}");
 
         return """
                 <!DOCTYPE html>
@@ -273,19 +320,34 @@ public class SchoolPageGenerator {
                   <meta name="twitter:description" content="%s">
                   <meta name="twitter:image" content="%simages/social-preview.png">
                   <script type="application/ld+json">%s</script>
+                  <script type="application/ld+json">%s</script>
                   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google-analytics.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com; font-src 'self'">
                   <meta name="referrer" content="strict-origin-when-cross-origin">
                   <style>
-                    .school-grade { margin-bottom: 1.5rem; }
-                    .grade-badges { display: flex; gap: 0.5rem; flex-wrap: wrap; margin: 0.5rem 0 1rem; }
-                    .grade-badge { font-size: 0.8rem; font-weight: 600; padding: 0.2rem 0.7rem; border-radius: var(--radius-full); background: var(--color-primary-lighter); color: var(--color-primary-dark); }
-                    .school-stats { display: flex; flex-wrap: wrap; gap: 0.4rem 1.25rem; margin: 0 0 1rem; font-size: 0.9rem; color: var(--color-text-muted); }
-                    .school-stats b { color: var(--color-text); }
+                    .school-grade { margin-bottom: 1.5rem; scroll-margin-top: calc(var(--header-height) + 3.75rem); }
+                    .breadcrumb { display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem; font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 0.6rem; }
+                    .breadcrumb a { color: var(--color-text-muted); text-decoration: none; }
+                    .breadcrumb a:hover { color: var(--color-primary); text-decoration: underline; }
+                    .breadcrumb-sep { color: var(--color-text-light); }
+                    .breadcrumb-current { color: var(--color-text); font-weight: 600; }
+                    .school-hero-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem 1rem; }
+                    .school-hero-head .page-title { margin: 0; }
+                    .school-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+                    .school-actions .button { margin: 0; }
+                    .school-section-nav { position: sticky; top: var(--header-height); z-index: 90; display: flex; flex-wrap: wrap; gap: 0.5rem; padding: 0.55rem 0; margin-bottom: 1.5rem; background: var(--color-surface-glass); backdrop-filter: blur(8px); border-bottom: 1px solid var(--color-border); }
+                    .school-section-nav a { font-size: 0.85rem; font-weight: 600; padding: 0.3rem 0.85rem; border-radius: var(--radius-full); background: var(--color-primary-lighter); color: var(--color-primary-dark); text-decoration: none; transition: background 0.15s ease, color 0.15s ease; }
+                    .school-section-nav a:hover { background: var(--color-primary); color: #fff; }
+                    .school-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.6rem; margin: 0 0 1.1rem; }
+                    .school-stats .stat { display: flex; flex-direction: column; gap: 0.15rem; padding: 0.5rem 0.7rem; background: var(--color-bg); border-radius: var(--radius-md); }
+                    .school-stats .stat-label { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.02em; color: var(--color-text-muted); }
+                    .school-stats .stat-value { font-size: 1.05rem; font-weight: 700; color: var(--color-text); }
+                    .school-stats .stat-total { font-size: 0.82rem; font-weight: 500; color: var(--color-text-muted); }
                     .school-chart { width: 100%%; min-height: 360px; }
                     .school-grade table { margin: 1rem 0 0.75rem; }
                     .school-links { font-size: 0.9rem; }
                     .school-related { margin: 0.5rem 0 0; font-size: 0.85rem; color: var(--color-text-muted); line-height: 1.7; }
                     .school-related-label { font-weight: 600; color: var(--color-text); }
+                    @media (min-width: 640px) { .school-stats { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
                   </style>
                   <script>
                     window.dataLayer = window.dataLayer || [];
@@ -326,7 +388,7 @@ public class SchoolPageGenerator {
                 escHtml(title), escHtml(description), primaryGrade, canonical,
                 canonical, escHtml(title), escHtml(description), SITE_BASE_URL,
                 escHtml(title), escHtml(description), SITE_BASE_URL,
-                jsonLd
+                jsonLd, crumbs
         );
     }
 
@@ -420,6 +482,18 @@ public class SchoolPageGenerator {
     private static String cell(JsonArray arr, int i) {
         JsonElement e = arr.get(i);
         return e.isJsonNull() ? "" : String.valueOf(e.getAsInt());
+    }
+
+    /** One stat cell: small label above a bold value, with an optional muted "/ total" suffix. */
+    private static String statCell(String label, String value, String total) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("<div class=\"stat\"><span class=\"stat-label\">").append(escHtml(label))
+                .append("</span><span class=\"stat-value\">").append(escHtml(value));
+        if (total != null) {
+            sb.append(" <span class=\"stat-total\">").append(escHtml(total)).append("</span>");
+        }
+        sb.append("</span></div>");
+        return sb.toString();
     }
 
     private static String fmt(double v) {

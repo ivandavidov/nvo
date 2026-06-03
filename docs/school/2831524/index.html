@@ -22,19 +22,34 @@
   <meta name="twitter:description" content="Резултати, класации и графики за ОУ Паисий Хилендарски (Елхово) по БЕЛ и математика за НВО и ДЗИ за последните години.">
   <meta name="twitter:image" content="https://ivandavidov.github.io/nvo/images/social-preview.png">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"EducationalOrganization","name":"ОУ Паисий Хилендарски","url":"https://ivandavidov.github.io/nvo/school/2831524/","address":{"@type":"PostalAddress","addressLocality":"Елхово","addressCountry":"BG"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Начало","item":"https://ivandavidov.github.io/nvo/"},{"@type":"ListItem","position":2,"name":"Елхово","item":"https://ivandavidov.github.io/nvo/4/elhovo/"},{"@type":"ListItem","position":3,"name":"ОУ Паисий Хилендарски","item":"https://ivandavidov.github.io/nvo/school/2831524/"}]}</script>
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google-analytics.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com; font-src 'self'">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <style>
-    .school-grade { margin-bottom: 1.5rem; }
-    .grade-badges { display: flex; gap: 0.5rem; flex-wrap: wrap; margin: 0.5rem 0 1rem; }
-    .grade-badge { font-size: 0.8rem; font-weight: 600; padding: 0.2rem 0.7rem; border-radius: var(--radius-full); background: var(--color-primary-lighter); color: var(--color-primary-dark); }
-    .school-stats { display: flex; flex-wrap: wrap; gap: 0.4rem 1.25rem; margin: 0 0 1rem; font-size: 0.9rem; color: var(--color-text-muted); }
-    .school-stats b { color: var(--color-text); }
+    .school-grade { margin-bottom: 1.5rem; scroll-margin-top: calc(var(--header-height) + 3.75rem); }
+    .breadcrumb { display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem; font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 0.6rem; }
+    .breadcrumb a { color: var(--color-text-muted); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--color-primary); text-decoration: underline; }
+    .breadcrumb-sep { color: var(--color-text-light); }
+    .breadcrumb-current { color: var(--color-text); font-weight: 600; }
+    .school-hero-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem 1rem; }
+    .school-hero-head .page-title { margin: 0; }
+    .school-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .school-actions .button { margin: 0; }
+    .school-section-nav { position: sticky; top: var(--header-height); z-index: 90; display: flex; flex-wrap: wrap; gap: 0.5rem; padding: 0.55rem 0; margin-bottom: 1.5rem; background: var(--color-surface-glass); backdrop-filter: blur(8px); border-bottom: 1px solid var(--color-border); }
+    .school-section-nav a { font-size: 0.85rem; font-weight: 600; padding: 0.3rem 0.85rem; border-radius: var(--radius-full); background: var(--color-primary-lighter); color: var(--color-primary-dark); text-decoration: none; transition: background 0.15s ease, color 0.15s ease; }
+    .school-section-nav a:hover { background: var(--color-primary); color: #fff; }
+    .school-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.6rem; margin: 0 0 1.1rem; }
+    .school-stats .stat { display: flex; flex-direction: column; gap: 0.15rem; padding: 0.5rem 0.7rem; background: var(--color-bg); border-radius: var(--radius-md); }
+    .school-stats .stat-label { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.02em; color: var(--color-text-muted); }
+    .school-stats .stat-value { font-size: 1.05rem; font-weight: 700; color: var(--color-text); }
+    .school-stats .stat-total { font-size: 0.82rem; font-weight: 500; color: var(--color-text-muted); }
     .school-chart { width: 100%; min-height: 360px; }
     .school-grade table { margin: 1rem 0 0.75rem; }
     .school-links { font-size: 0.9rem; }
     .school-related { margin: 0.5rem 0 0; font-size: 0.85rem; color: var(--color-text-muted); line-height: 1.7; }
     .school-related-label { font-weight: 600; color: var(--color-text); }
+    @media (min-width: 640px) { .school-stats { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
   </style>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -74,14 +89,17 @@
 <main>
 <div class="container">
 <section class="hero-section">
+<nav class="breadcrumb" aria-label="breadcrumb"><a href="../../">Начало</a><span class="breadcrumb-sep">›</span><a href="../../4/elhovo/">Елхово</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">ОУ Паисий Хилендарски</span></nav>
+<div class="school-hero-head">
 <h1 class="page-title">ОУ Паисий Хилендарски</h1>
+<div class="school-actions"><button type="button" id="schoolPdfBtn" class="button button-primary">Изтегли PDF</button></div>
+</div>
 <p class="page-subtitle">Държавно · Елхово</p>
-<div class="grade-badges"><span class="grade-badge">НВО 4 клас</span><span class="grade-badge">НВО 7 клас</span></div>
-<p><a href="../../">&#8592; Към началната страница</a>&nbsp;&nbsp;<button type="button" id="schoolPdfBtn" class="button">Изтегли PDF</button></p>
 </section>
+<nav class="school-section-nav" aria-label="Класове"><a href="#grade-4">4 клас</a><a href="#grade-7">7 клас</a></nav>
 <section class="card school-grade" id="grade-4">
 <h3 class="card-title">НВО 4 клас</h3>
-<div class="school-stats"><span>Последна година: <b>2025</b></span><span>Национален ранг: <b>662</b> / 852</span><span>В града: <b>2</b> / 2</span><span>Медианен ранг (3 г.): <b>650</b> / 866</span></div>
+<div class="school-stats"><div class="stat"><span class="stat-label">Последна година</span><span class="stat-value">2025</span></div><div class="stat"><span class="stat-label">Национален ранг</span><span class="stat-value">662 <span class="stat-total">/ 852</span></span></div><div class="stat"><span class="stat-label">В града</span><span class="stat-value">2 <span class="stat-total">/ 2</span></span></div><div class="stat"><span class="stat-label">Медианен ранг (3 г.)</span><span class="stat-value">650 <span class="stat-total">/ 866</span></span></div></div>
 <div class="school-chart" id="chart-4"></div>
 <table>
 <thead><tr><th>Година</th><th>БЕЛ</th><th>уч.</th><th>МАТ</th><th>уч.</th></tr></thead>
@@ -101,7 +119,7 @@
 </section>
 <section class="card school-grade" id="grade-7">
 <h3 class="card-title">НВО 7 клас</h3>
-<div class="school-stats"><span>Последна година: <b>2025</b></span><span>Национален ранг: <b>323</b> / 850</span><span>В града: <b>1</b> / 2</span><span>Медианен ранг (3 г.): <b>574</b> / 863</span></div>
+<div class="school-stats"><div class="stat"><span class="stat-label">Последна година</span><span class="stat-value">2025</span></div><div class="stat"><span class="stat-label">Национален ранг</span><span class="stat-value">323 <span class="stat-total">/ 850</span></span></div><div class="stat"><span class="stat-label">В града</span><span class="stat-value">1 <span class="stat-total">/ 2</span></span></div><div class="stat"><span class="stat-label">Медианен ранг (3 г.)</span><span class="stat-value">574 <span class="stat-total">/ 863</span></span></div></div>
 <div class="school-chart" id="chart-7"></div>
 <table>
 <thead><tr><th>Година</th><th>БЕЛ</th><th>уч.</th><th>МАТ</th><th>уч.</th></tr></thead>
