@@ -45,6 +45,47 @@ function toggleOtherCities() {
   }
 }
 
+function copyDonation(btn) {
+  let text = btn.getAttribute('data-copy');
+  if(!text) {
+    return;
+  }
+  let markCopied = function() {
+    btn.classList.add('copied');
+    clearTimeout(btn._copyResetTimer);
+    btn._copyResetTimer = setTimeout(function() {
+      btn.classList.remove('copied');
+    }, 1500);
+  };
+  if(navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(markCopied).catch(function() {
+      if(copyTextFallback(text)) {
+        markCopied();
+      }
+    });
+  } else if(copyTextFallback(text)) {
+    markCopied();
+  }
+}
+
+function copyTextFallback(text) {
+  let textarea = document.createElement('textarea');
+  textarea.value = text;
+  textarea.setAttribute('readonly', '');
+  textarea.style.position = 'absolute';
+  textarea.style.left = '-9999px';
+  document.body.appendChild(textarea);
+  textarea.select();
+  let ok = false;
+  try {
+    ok = document.execCommand('copy');
+  } catch(e) {
+    ok = false;
+  }
+  document.body.removeChild(textarea);
+  return ok;
+}
+
 function safeDivide(numerator, denominator, fallback = 0) {
   return denominator ? numerator / denominator : fallback;
 }

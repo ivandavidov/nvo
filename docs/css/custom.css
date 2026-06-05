@@ -300,14 +300,133 @@ img {
   margin-bottom: 0.5rem;
 }
 
-.hero-left .crypto-info,
-.hero-right .crypto-info {
-  font-size: 0.7rem !important;
-  word-break: break-all;
-  padding: 0.5rem;
-  background: var(--color-bg-alt);
+/* --- Support / donations --- */
+.support-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-top: 0.6rem;
+}
+
+.support-tagline {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.support-heart {
+  color: #e0245e;
+  font-size: 0.95rem;
+  line-height: 1;
+}
+
+.support-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.support-crypto {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding-left: 0.6rem;
+  border-left: 1.5px solid var(--color-border);
+}
+
+.support-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  font-family: var(--font-sans);
+  line-height: 1.4;
+  white-space: nowrap;
+  color: var(--color-text);
+  background-color: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-sm);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.support-btn:hover {
+  border-color: var(--color-primary-light);
+  color: var(--color-primary);
+  background-color: var(--color-primary-lighter);
+  box-shadow: var(--shadow-md);
+  text-decoration: none;
+}
+
+.support-btn:active {
+  transform: scale(0.97);
+}
+
+.support-revolut {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.support-revolut:hover {
+  color: #fff;
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.support-arrow {
+  font-size: 0.95rem;
+  transition: transform 0.15s ease;
+}
+
+.support-revolut:hover .support-arrow {
+  transform: translateX(2px);
+}
+
+.support-ic {
+  font-size: 0.9rem;
+  opacity: 0.65;
+}
+
+.support-copy {
+  position: relative;
+}
+
+.support-copy.copied {
+  border-color: var(--color-success);
+  color: var(--color-success);
+  background-color: var(--color-surface);
+}
+
+.support-copy.copied .support-ic {
+  opacity: 1;
+}
+
+.support-copy.copied::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.2rem 0.45rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--color-bg);
+  background: var(--color-text);
   border-radius: var(--radius-sm);
-  margin-top: 0.5rem;
+  box-shadow: var(--shadow-md);
+  pointer-events: none;
+  z-index: 5;
 }
 
 /* --- Quote Strip --- */
