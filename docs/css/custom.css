@@ -309,12 +309,12 @@ img {
   margin-top: 0.6rem;
 }
 
-.support-tagline {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  margin: 0;
+.support-heading {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--color-border-light);
   font-size: 0.85rem;
+  font-weight: 600;
   color: var(--color-text-muted);
 }
 
@@ -322,6 +322,7 @@ img {
   color: #e0245e;
   font-size: 0.95rem;
   line-height: 1;
+  vertical-align: middle;
 }
 
 .support-actions {
