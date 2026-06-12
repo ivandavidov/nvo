@@ -102,6 +102,7 @@ public class SchoolsGenerator {
 
             JsonArray gradeListArr = new JsonArray();
             JsonObject gradesJson = new JsonObject();
+            int maxGradeYears = 0;
             for (String grade : GRADE_KEYS) {
                 RankedSchool rs = byCodeByGrade.get(grade).get(code);
                 if (rs == null) {
@@ -110,6 +111,7 @@ public class SchoolsGenerator {
                 gradeListArr.add(Integer.parseInt(grade));
                 gradesJson.add(grade, buildGradeObject(rs, allByGrade.get(grade),
                         citySchoolsByGrade.get(grade), cityBySlug));
+                maxGradeYears = Math.max(maxGradeYears, rs.sd().belScore.length);
             }
 
             // ---- schools/{code}.json (full cross-grade document) ----
@@ -124,7 +126,9 @@ public class SchoolsGenerator {
                 individual.add("website", JsonNull.INSTANCE);
             }
             individual.add("city", cityJson(cityObj));
-            individual.add("yearsRange", buildYearsRange());
+            // Span the widest grade this school has (DZI reaches 2026, NVO 2025); per-grade blocks
+            // each carry their own yearsRange, so consumers align each grade to its own years.
+            individual.add("yearsRange", buildYearsRange(FIRST_YEAR + maxGradeYears - 1));
             individual.add("grades", gradesJson);
             Files.writeString(schoolsDir.resolve(code + ".json"), collapseArrays(gson.toJson(individual)) + "\n");
 
@@ -180,14 +184,18 @@ public class SchoolsGenerator {
                                         Map<String, Map<String, SchoolData>> citySchools,
                                         Map<String, Cities.City> cityBySlug) {
         SchoolData sd = rs.sd();
+        // Per-grade arrays carry only that grade's own years (DZI reaches one year further than
+        // NVO), so every index below is bounded by this grade's length, never the global maximum.
+        int lastIdx = sd.belScore.length - 1;
         JsonObject gj = new JsonObject();
         gj.add("belScore", toDoubleArray(sd.belScore));
         gj.add("matScore", toDoubleArray(sd.matScore));
         gj.add("belStudents", toIntArray(sd.belStudents));
         gj.add("matStudents", toIntArray(sd.matStudents));
+        gj.add("yearsRange", buildYearsRange(FIRST_YEAR + lastIdx));
 
         int latestIdx = -1;
-        for (int i = NUM_YEARS - 1; i >= 0; i--) {
+        for (int i = lastIdx; i >= 0; i--) {
             if (sd.belScore[i] != null && sd.matScore[i] != null) {
                 latestIdx = i;
                 break;
@@ -210,7 +218,7 @@ public class SchoolsGenerator {
             gj.add("latestYear", JsonNull.INSTANCE);
         }
 
-        int[] median = RankingsGenerator.nationalMedianRank(all, NUM_YEARS - 1).get(rs.code());
+        int[] median = RankingsGenerator.nationalMedianRank(all, lastIdx).get(rs.code());
         if (median != null) {
             gj.addProperty("medianRank", median[0]);
             if (median[1] >= 0) {
@@ -219,7 +227,7 @@ public class SchoolsGenerator {
                 gj.add("medianAdjustedRank", JsonNull.INSTANCE);
             }
             gj.addProperty("medianTotal", median[2]);
-            gj.addProperty("medianEndYear", LAST_YEAR);
+            gj.addProperty("medianEndYear", FIRST_YEAR + lastIdx);
         }
         return gj;
     }

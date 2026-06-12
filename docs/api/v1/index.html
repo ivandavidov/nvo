@@ -138,7 +138,7 @@
     </div>
     <div class="api-header">
       <h2>НВО &amp; ДЗИ API</h2>
-      <p>Публично JSON API с резултати от НВО и ДЗИ (2018&ndash;2025)</p>
+      <p>Публично JSON API с резултати от НВО и ДЗИ (2018&ndash;2026)</p>
     </div>
     <div class="api-base">Base URL: <code>https://ivandavidov.github.io/nvo/api/v1/</code></div>
 
@@ -580,13 +580,13 @@
       });
       ['rank-year-year'].forEach(function(id) {
         var sel = document.getElementById(id);
-        for (var y =2025; y >= 2018; y--) {
+        for (var y =2026; y >= 2018; y--) {
       var o = document.createElement('option'); o.value = y; o.textContent = y; sel.appendChild(o);
     }
   });
   ['rank-med-year'].forEach(function(id) {
     var sel = document.getElementById(id);
-    for (var y =2025; y >= 2020    ; y--) {
+    for (var y =2026; y >= 2020    ; y--) {
           var o = document.createElement('option'); o.value = y; o.textContent = y; sel.appendChild(o);
         }
       });

@@ -7,8 +7,22 @@ import java.util.Set;
 public class JsonGenerator {
 
     static final int FIRST_YEAR = 2018;
-    static final int LAST_YEAR = 2025;
+    // Global maximum span across all grades (the widest grade defines it). DZI (grade 12) leads
+    // the other grades — its results are published ~2 weeks before NVO — so the data axis is
+    // per-grade: NVO ends one year behind DZI. LAST_YEAR/NUM_YEARS size the widest arrays; the
+    // per-grade helpers below clamp every loop and range so a grade never reads past its own data.
+    static final int LAST_YEAR = 2026;
     static final int NUM_YEARS = LAST_YEAR - FIRST_YEAR + 1;
+
+    /** Most recent year with data for a grade (DZI is one year ahead of NVO). */
+    static int lastYearForGrade(String grade) {
+        return "12".equals(grade) ? 2026 : 2025;
+    }
+
+    /** Number of year slots for a grade ([FIRST_YEAR .. lastYearForGrade]). */
+    static int numYearsForGrade(String grade) {
+        return lastYearForGrade(grade) - FIRST_YEAR + 1;
+    }
 
     static final String NORMALIZED_PATH = ProjectConfig.DATA_NORMALIZED_DIR;
     static final String OUTPUT_BASE = ProjectConfig.DOCS_API_V1_DIR;

@@ -2,7 +2,7 @@ const latestYearByGrade = {
   4: 2025,
   7: 2025,
   10: 2025,
-  12: 2025
+  12: 2026
 };
 
 // Single source of truth for the per-grade chart window (number of most-recent years shown).

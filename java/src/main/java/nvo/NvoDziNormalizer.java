@@ -51,6 +51,7 @@ public class NvoDziNormalizer {
         worker.reformat("dzi-2023", ',', "ГР.", 2, 4, 3, 6, -1, 5, -1, 8, 7, 74, 73);
         worker.reformat("dzi-2024", ',', "ГР.", 2, 4, 3, 6, -1, 5, -1, 8, 7, 74, 73);
         worker.reformat("dzi-2025", ',', "ГР.", 2, 4, 3, 6, -1, 5, -1, 8, 7, 74, 73);
+        worker.reformat("dzi-2026", ',', "ГР.", 2, 4, 3, 6, -1, 5, -1, 8, 7, 74, 73);
 
         Files.copy(Path.of(BASE_DIR_NORMALIZED + "nvo-4-2019-normalized.csv"),
                 Path.of(BASE_DIR_NORMALIZED + "nvo-4-2020-normalized.csv"),

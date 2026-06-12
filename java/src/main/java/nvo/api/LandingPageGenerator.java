@@ -20,8 +20,8 @@ public class LandingPageGenerator {
         String gradeLabel = gradeLabel(grade);
         String belLabel = grade.equals("12") ? "БЕЛ" : "БЕЛ";
         String matLabel = grade.equals("12") ? "ДЗИ-2" : "МАТ";
-        int latestYearIndex = NUM_YEARS - 1;
-        int latestYear = LAST_YEAR;
+        int latestYearIndex = numYearsForGrade(grade) - 1;
+        int latestYear = lastYearForGrade(grade);
         int cityPageCount = 0;
 
         for (Cities.City city : Cities.ORDERED) {
@@ -69,7 +69,7 @@ public class LandingPageGenerator {
         }
         List<RankedSchool> allSchools = new ArrayList<>(seenSchools.values());
 
-        for (int yearIndex = 0; yearIndex < NUM_YEARS; yearIndex++) {
+        for (int yearIndex = 0; yearIndex < numYearsForGrade(grade); yearIndex++) {
             int year = FIRST_YEAR + yearIndex;
             final int yi = yearIndex;
 

@@ -89,9 +89,15 @@ public class GeneratorUtils {
         return arr;
     }
 
+    /** Full span [FIRST_YEAR .. LAST_YEAR] — the widest grade. Prefer {@link #buildYearsRange(int)}. */
     public static JsonArray buildYearsRange() {
+        return buildYearsRange(JsonGenerator.LAST_YEAR);
+    }
+
+    /** Year span [FIRST_YEAR .. lastYear], inclusive — used per grade so NVO and DZI differ. */
+    public static JsonArray buildYearsRange(int lastYear) {
         JsonArray arr = new JsonArray();
-        for (int y = JsonGenerator.FIRST_YEAR; y <= JsonGenerator.LAST_YEAR; y++) arr.add(y);
+        for (int y = JsonGenerator.FIRST_YEAR; y <= lastYear; y++) arr.add(y);
         return arr;
     }
 

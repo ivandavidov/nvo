@@ -55,7 +55,8 @@ public class NvoDziDecomplexor {
             String file23 = normalizedPath + "dzi-2023-normalized.csv";
             String file24 = normalizedPath + "dzi-2024-normalized.csv";
             String file25 = normalizedPath + "dzi-2025-normalized.csv";
-            files = new String[] {file18, file19, file20, file21, file22, file23, file24, file25};
+            String file26 = normalizedPath + "dzi-2026-normalized.csv";
+            files = new String[] {file18, file19, file20, file21, file22, file23, file24, file25, file26};
         } else if(mode.equals("10")) {
             header = "// https://data.egov.bg/data/view/2f801b2f-d4cb-4ddb-a23d-3e372339c80f";
             String file18 = normalizedPath + "nvo-10-2018-normalized.csv";

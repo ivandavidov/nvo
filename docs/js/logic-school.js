@@ -39,6 +39,9 @@
 
   function buildConfig(grade, g) {
     var meta = GRADE_META[grade] || { bel: 'БЕЛ', mat: 'МАТ', floor: 0, ceiling: 100 };
+    // Per-grade year axis: ДЗИ (12) spans one more year than НВО, so a school with both must
+    // render each chart on its own range. Fall back to the document-level range for older data.
+    var years = (g && g.yearsRange) || data.yearsRange || [];
     var bel = g.belScore || [];
     var mat = g.matScore || [];
 
@@ -247,6 +250,7 @@
 
   function tableRows(g) {
     var rows = [];
+    var years = (g && g.yearsRange) || data.yearsRange || [];
     var bel = g.belScore || [], mat = g.matScore || [], bu = g.belStudents || [], mu = g.matStudents || [];
     for (var i = years.length - 1; i >= 0; i--) {
       if (bel[i] == null && mat[i] == null) { continue; }

@@ -29,7 +29,8 @@ public class RankingsGenerator {
         cleanDirectory(rankingsDir);
 
         // Per-year rankings
-        for (int yearIndex = 0; yearIndex < NUM_YEARS; yearIndex++) {
+        int numYears = numYearsForGrade(grade);
+        for (int yearIndex = 0; yearIndex < numYears; yearIndex++) {
             int year = FIRST_YEAR + yearIndex;
             final int yi = yearIndex;
 
@@ -76,7 +77,7 @@ public class RankingsGenerator {
         cleanDirectory(medianDir);
         int medianFileCount = 0;
 
-        for (int endYear = medianStartYear; endYear <= LAST_YEAR; endYear++) {
+        for (int endYear = medianStartYear; endYear <= lastYearForGrade(grade); endYear++) {
             int endYearIndex = endYear - FIRST_YEAR;
 
             List<double[]> medianList = new ArrayList<>();
@@ -152,7 +153,7 @@ public class RankingsGenerator {
         }
 
         System.out.println("Generated rankings for grade " + grade + ": "
-                + medianFileCount + " median files, " + NUM_YEARS + " year files");
+                + medianFileCount + " median files, " + numYears + " year files");
     }
 
     /**

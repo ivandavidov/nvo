@@ -23,7 +23,7 @@ public class IndexGenerator {
             JsonObject gObj = new JsonObject();
             gObj.addProperty("grade", Integer.parseInt(g[0]));
             gObj.addProperty("label", g[1]);
-            gObj.add("yearsRange", GeneratorUtils.buildYearsRange());
+            gObj.add("yearsRange", GeneratorUtils.buildYearsRange(lastYearForGrade(g[0])));
             gObj.addProperty("scaleMin", Integer.parseInt(g[2]));
             gObj.addProperty("scaleMax", Integer.parseInt(g[3]));
             gObj.addProperty("dataUrl", g[0] + "/data.json");

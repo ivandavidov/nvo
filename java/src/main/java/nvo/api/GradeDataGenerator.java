@@ -33,7 +33,7 @@ public class GradeDataGenerator {
         // Build JSON using Cities.ORDERED for consistent city ordering
         JsonObject root = new JsonObject();
         root.addProperty("grade", Integer.parseInt(grade));
-        root.add("yearsRange", buildYearsRange());
+        root.add("yearsRange", buildYearsRange(lastYearForGrade(grade)));
 
         JsonObject citiesJson = new JsonObject();
         Path gradeDir = Path.of(OUTPUT_BASE, grade);
@@ -75,7 +75,7 @@ public class GradeDataGenerator {
                             oneCities.add(city.hrefName(), oneCity);
                             JsonObject schoolRoot = new JsonObject();
                             schoolRoot.addProperty("grade", gradeNum);
-                            schoolRoot.add("yearsRange", buildYearsRange());
+                            schoolRoot.add("yearsRange", buildYearsRange(lastYearForGrade(grade)));
                             schoolRoot.add("cities", oneCities);
                             Files.writeString(cityDir.resolve(code + ".json"),
                                     collapseArrays(gson.toJson(schoolRoot)) + "\n");
@@ -92,7 +92,7 @@ public class GradeDataGenerator {
             oneCities.add(city.hrefName(), cityJson);
             JsonObject cityRoot = new JsonObject();
             cityRoot.addProperty("grade", gradeNum);
-            cityRoot.add("yearsRange", buildYearsRange());
+            cityRoot.add("yearsRange", buildYearsRange(lastYearForGrade(grade)));
             cityRoot.add("cities", oneCities);
             String cityJsonStr = collapseArrays(gson.toJson(cityRoot));
             Files.writeString(cityDir.resolve("data.json"), cityJsonStr + "\n");
@@ -126,7 +126,8 @@ public class GradeDataGenerator {
         // city -> code -> SchoolData
         Map<String, Map<String, SchoolData>> citySchools = new HashMap<>();
 
-        for (int yearIndex = 0; yearIndex < NUM_YEARS; yearIndex++) {
+        int numYears = numYearsForGrade(grade);
+        for (int yearIndex = 0; yearIndex < numYears; yearIndex++) {
             int year = FIRST_YEAR + yearIndex;
             String filePath = NORMALIZED_PATH + prefix + "-" + year + "-normalized.csv";
             File file = new File(filePath);
@@ -150,7 +151,7 @@ public class GradeDataGenerator {
 
                 Map<String, SchoolData> schools = citySchools.computeIfAbsent(
                         record.getCity(), k -> new HashMap<>());
-                SchoolData sd = schools.computeIfAbsent(code, k -> new SchoolData());
+                SchoolData sd = schools.computeIfAbsent(code, k -> new SchoolData(numYears));
                 sd.csvName = record.getSchool();
 
                 sd.belScore[yearIndex] = record.getBelScore() != null && record.getBelScore() > 0
