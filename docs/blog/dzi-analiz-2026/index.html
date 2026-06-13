@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8">
+  <title>Девет години ДЗИ (2018–2026): тенденции и анализ | Иван Давидов</title>
+  <meta name="description" content="Обзорен анализ на ДЗИ след 12 клас за 2018–2026 г.: национални тенденции, частни срещу държавни училища, вечните отличници и училищата на дъното, география и растящото неравенство.">
+  <meta name="author" content="Иван Давидов">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../css/normalize.css">
+  <link rel="stylesheet" href="../../css/custom.css">
+  <link rel="icon" type="image/png" href="../../images/favicon-12.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../images/favicon-12.png">
+  <link rel="canonical" href="https://ivandavidov.github.io/nvo/blog/dzi-analiz-2026/">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://ivandavidov.github.io/nvo/blog/dzi-analiz-2026/">
+  <meta property="og:title" content="Девет години ДЗИ (2018–2026): тенденции и анализ">
+  <meta property="og:description" content="Какво се промени (и какво не) между 2018 и 2026 г.: национални тенденции, частни срещу държавни, вечните отличници и дъното, география и неравенство.">
+  <meta property="og:image" content="https://ivandavidov.github.io/nvo/images/social-preview.png">
+  <meta property="og:locale" content="bg_BG">
+  <meta property="og:site_name" content="НВО и ДЗИ – Иван Давидов">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Девет години ДЗИ (2018–2026): тенденции и анализ">
+  <meta name="twitter:description" content="Национални тенденции, частни срещу държавни, вечните отличници и дъното, география и неравенство в ДЗИ.">
+  <meta name="twitter:image" content="https://ivandavidov.github.io/nvo/images/social-preview.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Девет години ДЗИ (2018–2026): тенденции и анализ",
+    "description": "Обзорен анализ на резултатите от Държавните зрелостни изпити след 12 клас за периода 2018–2026 г.",
+    "inLanguage": "bg",
+    "datePublished": "2026-06-13",
+    "dateModified": "2026-06-13",
+    "author": { "@type": "Person", "name": "Иван Давидов", "url": "https://www.linkedin.com/in/ivandavidov" },
+    "publisher": { "@type": "Person", "name": "Иван Давидов" },
+    "mainEntityOfPage": "https://ivandavidov.github.io/nvo/blog/dzi-analiz-2026/",
+    "image": "https://ivandavidov.github.io/nvo/images/social-preview.png",
+    "isBasedOn": "https://ivandavidov.github.io/nvo/api/v1/12/data.json"
+  }
+  </script>
+
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/highcharts.js" defer></script>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google-analytics.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com; font-src 'self'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      'analytics_storage': 'denied',
+      'ad_storage': 'denied',
+      'wait_for_update': 500
+    });
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-V0P6LBF76F"></script>
+  <script>
+    gtag('js', new Date());
+    gtag('config', 'G-V0P6LBF76F', {'anonymize_ip': true});
+  </script>
+
+  <link rel="stylesheet" href="../../css/blog.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="site-brand" href="../../" aria-label="Начало">
+        <svg class="site-logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        <span class="site-name">НВО и ДЗИ</span>
+      </a>
+      <nav class="grade-tabs">
+        <a href="../../4/" class="grade-tab">4 клас</a>
+        <a href="../../7/" class="grade-tab">7 клас</a>
+        <a href="../../10/" class="grade-tab">10 клас</a>
+        <a href="../../12/" class="grade-tab">12 клас</a>
+      </nav>
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Смяна на тема">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <article class="article">
+        <nav class="breadcrumb" aria-label="breadcrumb"><a href="../../">Начало</a><span class="breadcrumb-sep">›</span><a href="../">Блог</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Девет години ДЗИ</span></nav>
+        <h1 class="page-title" style="margin-top:10px">Девет години ДЗИ на една страница</h1>
+        <h2 class="page-subtitle" style="border:0;margin:6px 0 0;padding:0">Какво се промени (и какво не) между 2018 и 2026</h2>
+        <p class="article-meta">Анализ от Иван Давидов · 13 юни 2026 · данни: data.egov.bg</p>
+        <div class="article-actions" aria-label="Действия за статията">
+          <button type="button" class="article-action" data-copy-link data-copy-url="https://ivandavidov.github.io/nvo/blog/dzi-analiz-2026/">Копирай линк</button>
+          <button type="button" class="article-action" data-share-link data-share-url="https://ivandavidov.github.io/nvo/blog/dzi-analiz-2026/" data-share-title="Девет години ДЗИ на една страница" hidden>Сподели</button>
+        </div>
+
+        <p class="article-lead">
+          Всяка година над 45 000 зрелостници се явяват на матура по БЕЛ и на втора матура по избор.
+          Събрах резултатите на <strong>827 училища от 142 града</strong> за девет последователни випуска
+          и погледнах картината от дистанция: кои тенденции се повтарят, кой е винаги най-отпред,
+          кой — неизменно на дъното, и доколко изобщо държавните и частните училища играят в една и съща лига.
+        </p>
+
+        <div class="stat-row">
+          <div class="stat"><div class="num">9</div><div class="lbl">випуска (2018–2026)</div></div>
+          <div class="stat"><div class="num">827</div><div class="lbl">училища</div></div>
+          <div class="stat"><div class="num">142</div><div class="lbl">града</div></div>
+          <div class="stat"><div class="num">~46 200</div><div class="lbl">зрелостници (2026)</div></div>
+        </div>
+
+        <nav class="article-toc" aria-label="Съдържание">
+          <p class="article-toc-title">В статията</p>
+          <div class="article-toc-links">
+            <a href="#nationalna-kriva">Националната крива</a>
+            <a href="#chastni-darzhavni">Частни срещу държавни</a>
+            <a href="#tip-uchilishte">Типът училище</a>
+            <a href="#varhat">Вечните отличници</a>
+            <a href="#danoto">Дъното</a>
+            <a href="#geografia">Географията</a>
+            <a href="#neravenstvo">Неравенството</a>
+            <a href="#izvodi">Изводи</a>
+          </div>
+        </nav>
+
+        <div class="callout">
+          <strong>Какво сравнявам.</strong> Основната мярка е средният успех от ДЗИ по <strong>БЕЛ</strong>,
+          претеглен по броя явили се ученици. Защо точно БЕЛ? Защото това е единственият изпит, който
+          <em>всички</em> полагат — затова е най-честното мерило между различни училища. Втората матура
+          е по избор и смесва различни предмети, затова я използвам само за национален контекст. Всички
+          средни стойности са на 6-балната скала.
+        </div>
+
+        <h2 id="nationalna-kriva"><span class="kicker">Националната крива</span>Пропадане и отскок <a class="heading-link" href="#nationalna-kriva" aria-label="Линк към секцията: Пропадане и отскок">#</a></h2>
+        <p>
+          Националната средна по БЕЛ не върви по права линия — има ясно изразено „V“. След стабилни
+          ~4,25–4,30 до 2021 г. идва рязко пропадане: <strong>4,02 през 2022 г.</strong> и дъно
+          <strong>3,88 през 2023 г.</strong> Това са точно випуските, прекарали голяма част от гимназията
+          в онлайн обучение през 2020–2021 г. После — категоричен отскок: 4,35 (2024) и нов връх
+          <strong>4,37 през 2026 г.</strong>, малко над предпандемичните нива. Втората матура повтаря
+          същата форма, но по-плитко — логично, защото на нея се явяват предимно по-мотивираните ученици,
+          и то по силния си предмет.
+        </p>
+        <div class="chart-card">
+          <p class="chart-title">Национална средна по години</p>
+          <p class="chart-sub">Среден успех, претеглен по брой явили се · 6-балната скала</p>
+          <div id="chart-nat" class="chart-box"></div>
+          <p class="fig-note">Защрихованата зона маркира пандемичните випуски (2022–2023).</p>
+        </div>
+
+        <h2 id="chastni-darzhavni"><span class="kicker">Частни срещу държавни</span>Устойчива, но тясна преднина <a class="heading-link" href="#chastni-darzhavni" aria-label="Линк към секцията: Частни срещу държавни">#</a></h2>
+        <p>
+          Частните училища изпреварват държавните по БЕЛ <strong>всяка от деветте години</strong> — с между
+          0,5 и 0,7 точки. Звучи много, но контекстът е важен: частните са малко на брой (<strong>51 от 827</strong>),
+          концентрирани в големите градове и често със селективен прием. Делът им расте — от 1,5% от
+          зрелостниците през 2018 г. до 2,4% днес — но остава малък. И най-важното: <strong>върхът на
+          класацията не е частен</strong>. С едно изключение (Американски колеж), всички „вечни отличници“
+          по-долу са държавни гимназии.
+        </p>
+        <div class="chart-card">
+          <p class="chart-title">Държавни срещу частни — среден успех по БЕЛ</p>
+          <p class="chart-sub">Претеглена средна по групи · 6-балната скала</p>
+          <div id="chart-pubpriv" class="chart-box"></div>
+        </div>
+
+        <h2 id="tip-uchilishte"><span class="kicker">Структурният разлом</span>Типът училище решава почти всичко <a class="heading-link" href="#tip-uchilishte" aria-label="Линк към секцията: Типът училище">#</a></h2>
+        <p>
+          Ако успехът на едно училище трябва да се предвиди по една-единствена характеристика, това е
+          <strong>типът</strong> му. Езиковите гимназии са на върха (5,10 среден БЕЛ), плътно следвани от
+          математическите и природоматематическите (4,97). Средните училища са по средата (4,22). А
+          професионалните гимназии — <strong>3,69</strong> — са с цели 1,4 точки под езиковите. Разломът е
+          структурен: <strong>81 от 100-те най-слаби</strong> училища са професионални, докато
+          <strong>64 от топ-100</strong> са селективни гимназии — езикови или математически.
+        </p>
+        <div class="chart-card">
+          <p class="chart-title">Среден успех по БЕЛ според типа училище</p>
+          <p class="chart-sub">Средно за 2018–2026 · в скоби — брой училища от типа</p>
+          <div id="chart-types" class="chart-box"></div>
+        </div>
+        <div class="callout">
+          <strong>Важна уговорка.</strong> ДЗИ по БЕЛ измерва общообразователна подготовка, а мисията на
+          професионалните гимназии е друга — професия и реализация на пазара на труда. Ниският резултат там
+          отразява входящия профил и целите на учениците (мнозина изобщо не се целят в университет), а не
+          „лошо училище“. Същото важи и в обратната посока: за елитните гимназии по-долу високият успех е
+          до голяма степен следствие от строгия подбор на входа.
+        </div>
+
+        <h2 id="varhat"><span class="kicker">Върхът</span>Вечните отличници <a class="heading-link" href="#varhat" aria-label="Линк към секцията: Вечните отличници">#</a></h2>
+        <p>
+          Пет училища попадат в националната <strong>топ-10 по БЕЛ всяка от деветте години</strong> — без
+          нито едно изключение. Това е клуб, в който почти не се влиза и не се излиза: софийските езикови и
+          математически гимназии, плюс първенците на Пловдив и Варна.
+        </p>
+        <div class="table-scroll">
+        <table class="data-table">
+          <thead>
+            <tr><th>Училище</th><th>Град</th><th class="num">Години в топ-10</th><th class="num">Среден БЕЛ</th><th class="num">БЕЛ 2026</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><a href="../../school/2204091/">91 НЕГ</a> <span class="sub">Немска ЕГ</span></td><td>София</td><td class="num">9 / 9</td><td class="num">5,63</td><td class="num">5,78</td></tr>
+            <tr><td><a href="../../school/2216164/">164 ГПИЕ</a> <span class="sub">Мигел де Сервантес</span></td><td>София</td><td class="num">9 / 9</td><td class="num">5,56</td><td class="num">5,67</td></tr>
+            <tr><td><a href="../../school/2224073/">73 СУ</a> <span class="sub">Владислав Граматик</span></td><td>София</td><td class="num">9 / 9</td><td class="num">5,54</td><td class="num">5,63</td></tr>
+            <tr><td><a href="../../school/2216306/">СМГ</a> <span class="sub">Паисий Хилендарски</span></td><td>София</td><td class="num">9 / 9</td><td class="num">5,51</td><td class="num">5,75</td></tr>
+            <tr><td><a href="../../school/2213507/">Американски колеж</a><span class="badge">частно</span></td><td>София</td><td class="num">9 / 9</td><td class="num">5,49</td><td class="num">5,64</td></tr>
+            <tr><td><a href="../../school/1690449/">ЕГ Пловдив</a></td><td>Пловдив</td><td class="num">8 / 9</td><td class="num">5,45</td><td class="num">5,55</td></tr>
+            <tr><td><a href="../../school/400045/">Първа ЕГ</a></td><td>Варна</td><td class="num">7 / 9</td><td class="num">5,43</td><td class="num">5,55</td></tr>
+            <tr><td><a href="../../school/2216301/">Първа английска ЕГ</a></td><td>София</td><td class="num">5 / 9</td><td class="num">5,37</td><td class="num">5,50</td></tr>
+          </tbody>
+        </table>
+        </div>
+
+        <h2 id="danoto"><span class="kicker">Дъното</span>И то е също толкова постоянно <a class="heading-link" href="#danoto" aria-label="Линк към секцията: Дъното">#</a></h2>
+        <p>
+          В другия край картината е огледална — и също толкова обяснима. Едно училище,
+          <strong>ПГ „Васил Левски“ в Ихтиман</strong>, е сред последните 25 в страната всяка от деветте
+          години, със среден БЕЛ <strong>2,42</strong>. Останалите имена са почти изцяло професионални
+          гимназии по земеделие, транспорт и механизация в по-малки градове. Тук важи уговорката отгоре:
+          това са училища с друга мисия и тежък входящ профил — не „виновници“.
+        </p>
+        <div class="table-scroll">
+        <table class="data-table">
+          <thead>
+            <tr><th>Училище</th><th>Град</th><th class="num">Години в дъно-25</th><th class="num">Среден БЕЛ</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><a href="../../school/2300417/">ПГ „Васил Левски“</a></td><td>Ихтиман</td><td class="num">9 / 9</td><td class="num">2,42</td></tr>
+            <tr><td><a href="../../school/1302993/">ПГ по механизация на земеделието</a></td><td>Септември</td><td class="num">8 / 9</td><td class="num">2,59</td></tr>
+            <tr><td><a href="../../school/2000123/">ПГ по механотехника</a></td><td>Сливен</td><td class="num">8 / 9</td><td class="num">2,61</td></tr>
+            <tr><td><a href="../../school/909503/">ПГ по транспорт „Хр. Смирненски“</a></td><td>Крумовград</td><td class="num">7 / 9</td><td class="num">2,67</td></tr>
+            <tr><td><a href="../../school/200114/">ПГ по селско стопанство</a></td><td>Айтос</td><td class="num">7 / 9</td><td class="num">2,77</td></tr>
+            <tr><td><a href="../../school/2700282/">ПГ по селско стопанство</a></td><td>Велики Преслав</td><td class="num">6 / 9</td><td class="num">2,61</td></tr>
+            <tr><td><a href="../../school/1301911/">ПГ по селско стопанство</a></td><td>Пазарджик</td><td class="num">6 / 9</td><td class="num">2,63</td></tr>
+            <tr><td><a href="../../school/200249/">ПГ по транспорт</a></td><td>Бургас</td><td class="num">6 / 9</td><td class="num">2,76</td></tr>
+            <tr><td><a href="../../school/1302979/">ОУ „Неофит Рилски“</a></td><td>Велинград</td><td class="num">6 / 9</td><td class="num">2,80</td></tr>
+            <tr><td><a href="../../school/2601904/">ПГ по транспорт и аграрни технологии</a></td><td>Хасково</td><td class="num">5 / 9</td><td class="num">2,75</td></tr>
+          </tbody>
+        </table>
+        </div>
+
+        <h2 id="geografia"><span class="kicker">Географията</span>София води, но не сама <a class="heading-link" href="#geografia" aria-label="Линк към секцията: Географията">#</a></h2>
+        <p>
+          Сред областните центрове <strong>София</strong> е първа (4,55), но плътно зад нея има цял клъстер:
+          Варна, Благоевград, Пловдив, Велико Търново и — изненадващо — Смолян, всички около 4,44–4,46.
+          На опашката сред по-големите градове са Горна Оряховица (3,73), Асеновград и Велинград. Разликата
+          между най-силния и най-слабия областен център е около <strong>0,8 точки</strong> — почти колкото
+          между езикова и обикновена средна гимназия.
+        </p>
+        <div class="chart-card">
+          <p class="chart-title">Областни центрове по среден успех (БЕЛ)</p>
+          <p class="chart-sub">Средно за 2018–2026 · градове с поне 300 зрелостници годишно</p>
+          <div id="chart-cities" class="chart-box"></div>
+        </div>
+
+        <h3 id="koncentracia-varh">Върхът е заключен в няколко града <a class="heading-link" href="#koncentracia-varh" aria-label="Линк към секцията: Върхът е заключен в няколко града">#</a></h3>
+        <p>
+          Концентрацията е по-крайна, отколкото средните подсказват. Ако всички училища се подредят по успех,
+          <strong>цялата национална топ-10 е от голямата четворка</strong> (седем от тях само в София), а
+          топ-25 е 88% оттам. Чак около топ-50 започват да се появяват силни училища от по-малки градове.
+          Върхът не е разпределен из страната — той е предимно столичен.
+        </p>
+        <div class="chart-card">
+          <p class="chart-title">Откъде са най-добрите училища (по БЕЛ)</p>
+          <p class="chart-sub">Дял на София / друг град от голямата четворка / останалата страна във всяка горна група</p>
+          <div id="chart-conc" class="chart-box"></div>
+        </div>
+
+        <h2 id="neravenstvo"><span class="kicker">Неравенството</span>Ножицата се разтваря <a class="heading-link" href="#neravenstvo" aria-label="Линк към секцията: Неравенството">#</a></h2>
+        <p>
+          Най-показателната тенденция не е в средната стойност, а в <strong>разпръсването на резултатите</strong>. Разликата между
+          най-силните (90-и персентил) и най-слабите (10-и персентил) училища расте: от 1,74 точки през
+          2018 г. до <strong>2,08 точки през 2026 г.</strong> И асиметрията говори много — върхът се
+          възстанови от пандемията и дори се покачи (90-и персентил: 5,06 → 5,16), докато дъното така и не
+          се върна (10-и персентил: 3,32 → 3,08). Накратко: <strong>силните училища излязоха от кризата
+          по-силни, а слабите — по-слаби.</strong>
+        </p>
+        <div class="chart-card">
+          <p class="chart-title">Разпределение на училищата по успех (БЕЛ)</p>
+          <p class="chart-sub">10-и, 50-и и 90-и персентил по години · училища с поне 20 зрелостници</p>
+          <div id="chart-ineq" class="chart-box"></div>
+        </div>
+        <p>
+          Същото личи и когато училищата се групират по успех. По време на пандемията делът на
+          училищата със среден БЕЛ <strong>под 3,00</strong> скочи от ~3% до <strong>23% през 2023 г.</strong>
+          — почти всяко четвърто училище — докато елитът (≥5,00) се сви до 2,8%. После картината се обърна:
+          през 2026 г. училищата със среден успех поне 5,00 са рекордните <strong>15,4%</strong>, но и слабите
+          остават над двойно повече от 2018 г. Средната лента (3–4) бавно се изпразва — резултатите се
+          изтеглят към двата края.
+        </p>
+        <div class="chart-card">
+          <p class="chart-title">Разпределение на училищата по ленти на успеха (БЕЛ)</p>
+          <p class="chart-sub">Дял на училищата във всяка лента по години · училища с поне 20 зрелостници</p>
+          <div id="chart-polar" class="chart-box"></div>
+        </div>
+
+        <h2 id="izvodi" style="border-top:2px solid var(--color-primary)"><span class="kicker">Изводи</span>Какво показват деветте випуска <a class="heading-link" href="#izvodi" aria-label="Линк към секцията: Изводи">#</a></h2>
+        <p>
+          Четири извода от деветте випуска:
+        </p>
+        <p>
+          <strong>1. Системата се възстанови.</strong> По средните показатели пандемичният шок е преодолян —
+          2026 е връх и за двете матури.<br>
+          <strong>2. Класацията е огледало на приема.</strong> Училищата, които подбират най-силните седмокласници,
+          излизат най-отпред на матурата. Затова ДЗИ казва изненадващо малко за „добавената стойност“ на едно
+          училище — повече за това кого е приело.<br>
+          <strong>3. Истинският проблем е ножицата.</strong> Разликата между върха и дъното расте и не се е
+          върнала на предпандемичните си нива.<br>
+          <strong>4. Частните печелят по среден резултат, но не доминират върха.</strong> Елитът остава държавен.
+        </p>
+
+        <aside class="article-end" aria-label="След статията">
+          <div class="article-end-main">
+            <a class="article-back-link" href="../">Всички анализи</a>
+            <button type="button" class="article-action" data-copy-link data-copy-url="https://ivandavidov.github.io/nvo/blog/dzi-analiz-2026/">Копирай линк</button>
+          </div>
+          <div class="article-end-resources">
+            <p class="article-end-title">Продължи с данните</p>
+            <div class="article-resource-links">
+              <a href="../../12/">Интерактивни графики и пълни класации за 12 клас</a>
+              <a href="../../stats/?grade=12">Обобщена статистика</a>
+              <a href="../../api/">API с отворени данни</a>
+            </div>
+          </div>
+        </aside>
+      </article>
+    </div>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p class="footer-minimal">&copy; Иван Давидов – НВО и ДЗИ</p>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    function fallbackCopy(text) {
+      var area = document.createElement('textarea');
+      area.value = text;
+      area.setAttribute('readonly', '');
+      area.style.position = 'fixed';
+      area.style.top = '-1000px';
+      document.body.appendChild(area);
+      area.select();
+      var ok = false;
+      try {
+        ok = document.execCommand('copy');
+      } catch (e) {
+        ok = false;
+      }
+      document.body.removeChild(area);
+      return ok;
+    }
+
+    function showActionFeedback(button, text) {
+      var original = button.getAttribute('data-original-text');
+      if (!original) {
+        original = button.textContent;
+        button.setAttribute('data-original-text', original);
+      }
+      button.textContent = text;
+      button.classList.add('is-copied');
+      window.clearTimeout(button._feedbackTimer);
+      button._feedbackTimer = window.setTimeout(function () {
+        button.textContent = original;
+        button.classList.remove('is-copied');
+      }, 1800);
+    }
+
+    function copyArticleLink(button) {
+      var url = button.getAttribute('data-copy-url') || button.getAttribute('data-share-url') || window.location.href.split('#')[0];
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(url).then(function () {
+          showActionFeedback(button, 'Копирано');
+        }, function () {
+          if (fallbackCopy(url)) showActionFeedback(button, 'Копирано');
+          else window.prompt('Копирай линка:', url);
+        });
+      } else if (fallbackCopy(url)) {
+        showActionFeedback(button, 'Копирано');
+      } else {
+        window.prompt('Копирай линка:', url);
+      }
+    }
+
+    function initArticleActions() {
+      var copyButtons = document.querySelectorAll('[data-copy-link]');
+      for (var i = 0; i < copyButtons.length; i++) {
+        copyButtons[i].addEventListener('click', function () {
+          copyArticleLink(this);
+        });
+      }
+
+      var shareButtons = document.querySelectorAll('[data-share-link]');
+      for (var j = 0; j < shareButtons.length; j++) {
+        var button = shareButtons[j];
+        if (!navigator.share) continue;
+        button.hidden = false;
+        button.addEventListener('click', function () {
+          var clicked = this;
+          var title = this.getAttribute('data-share-title') || document.title;
+          var url = this.getAttribute('data-share-url') || window.location.href.split('#')[0];
+          navigator.share({ title: title, url: url }).catch(function (err) {
+            if (!err || err.name !== 'AbortError') copyArticleLink(clicked);
+          });
+        });
+      }
+    }
+
+    var D = {"years":[2018,2019,2020,2021,2022,2023,2024,2025,2026],"nat":{"bel":[4.325,4.181,4.302,4.256,4.02,3.883,4.345,4.255,4.371],"mat":[4.631,4.37,4.584,4.629,4.481,4.51,4.688,4.788,4.812]},"pubpriv":{"pubBel":[4.316,4.169,4.292,4.245,4.007,3.87,4.332,4.242,4.359],"privBel":[4.885,4.914,4.953,4.919,4.778,4.54,4.921,4.779,4.897]},"types":[{"type":"Езикови гимназии","n":42,"mean":5.104},{"type":"Математически / природомат.","n":31,"mean":4.968},{"type":"Профилирани / други","n":137,"mean":4.43},{"type":"Средни училища (СУ)","n":306,"mean":4.215},{"type":"Професионални гимназии","n":310,"mean":3.691}],"percentiles":{"p10":[3.315,3.14,3.2,3.228,2.61,2.63,3.12,3.01,3.08],"p50":[4.097,3.895,4.02,3.96,3.74,3.59,4.14,4.05,4.13],"p90":[5.059,4.91,5.06,4.946,4.77,4.63,5.07,5.047,5.16]},"citiesAll":[{"city":"София","mean":4.549},{"city":"Варна","mean":4.461},{"city":"Благоевград","mean":4.46},{"city":"Пловдив","mean":4.457},{"city":"Велико Търново","mean":4.446},{"city":"Смолян","mean":4.44},{"city":"Ловеч","mean":4.367},{"city":"Стара Загора","mean":4.335},{"city":"Габрово","mean":4.329},{"city":"Враца","mean":4.27},{"city":"Гоце Делчев","mean":4.266},{"city":"Бургас","mean":4.253},{"city":"Видин","mean":4.238},{"city":"Русе","mean":4.223},{"city":"Сливен","mean":4.161},{"city":"Добрич","mean":4.143},{"city":"Монтана","mean":4.135},{"city":"Казанлък","mean":4.131},{"city":"Плевен","mean":4.112},{"city":"Дупница","mean":4.097},{"city":"Перник","mean":4.089},{"city":"Кюстендил","mean":4.081},{"city":"Пазарджик","mean":4.071},{"city":"Хасково","mean":4.061},{"city":"Кърджали","mean":4.046},{"city":"Шумен","mean":4.035},{"city":"Силистра","mean":4.033},{"city":"Ямбол","mean":4.028},{"city":"Търговище","mean":4.007},{"city":"Разград","mean":3.993},{"city":"Петрич","mean":3.947},{"city":"Асеновград","mean":3.836}]};
+
+    D.polar = {
+      b1: [1.1, 4.6, 3, 3.2, 20.7, 23, 7.2, 9.6, 8.9],
+      b2: [42.9, 50.8, 46, 49.2, 40.3, 43.7, 37.7, 37, 34.9],
+      b3: [44.5, 37.3, 39.1, 38.2, 33.7, 30.4, 42.9, 42.3, 40.9],
+      b4: [11.5, 7.4, 11.8, 9.3, 5.2, 2.8, 12.2, 11.1, 15.4]
+    };
+    D.conc = {
+      labels: ['Топ-10', 'Топ-25', 'Топ-50', 'Топ-100'],
+      sofia: [7, 14, 21, 31],
+      big: [3, 8, 12, 18],
+      rest: [0, 3, 17, 51]
+    };
+
+    function pal() {
+      var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+      return {
+        dark: dark,
+        text: dark ? '#e2e8f0' : '#1e293b',
+        muted: dark ? '#94a3b8' : '#64748b',
+        grid: dark ? '#334155' : '#e2e8f0',
+        tipBg: dark ? '#1e293b' : '#ffffff',
+        tipBorder: dark ? '#334155' : '#e2e8f0',
+        blue: dark ? '#60a5fa' : '#2563eb',
+        amber: '#f59e0b',
+        green: dark ? '#4ade80' : '#16a34a',
+        red: dark ? '#f87171' : '#dc2626',
+        slate: dark ? '#94a3b8' : '#64748b'
+      };
+    }
+
+    function base(p, height) {
+      return {
+        chart: { backgroundColor: 'transparent', height: height, style: { fontFamily: 'inherit' } },
+        credits: { enabled: false },
+        title: { text: null },
+        legend: { itemStyle: { color: p.text, fontWeight: '500' }, itemHoverStyle: { color: p.dark ? '#fff' : '#000' } },
+        xAxis: { labels: { style: { color: p.muted, fontSize: '0.85em' } }, lineColor: p.grid, tickColor: p.grid },
+        yAxis: { labels: { style: { color: p.muted, fontSize: '0.85em' } }, gridLineColor: p.grid, title: { text: null } },
+        tooltip: { backgroundColor: p.tipBg, borderColor: p.tipBorder, style: { color: p.text }, valueDecimals: 2 },
+        plotOptions: { series: { animation: false } }
+      };
+    }
+
+    var charts = [];
+
+    function renderCharts() {
+      while (charts.length) { try { charts.pop().destroy(); } catch (e) {} }
+      var p = pal();
+      var years = D.years.map(String);
+      var pandemicBand = [{
+        from: 3.5, to: 5.5,
+        color: p.dark ? 'rgba(248,113,113,0.10)' : 'rgba(220,38,38,0.06)',
+        label: { text: 'пандемични випуски', style: { color: p.muted, fontSize: '0.72em' }, y: 16 }
+      }];
+
+      // 1. National trend
+      charts.push(Highcharts.chart('chart-nat', Highcharts.merge(base(p, 420), {
+        chart: { type: 'line' },
+        xAxis: { categories: years, plotBands: pandemicBand },
+        yAxis: { min: 3.5, max: 5, tickInterval: 0.5 },
+        tooltip: { shared: true },
+        plotOptions: { line: { marker: { enabled: true, radius: 3 }, lineWidth: 3 } },
+        series: [
+          { name: 'БЕЛ (задължителен)', data: D.nat.bel, color: p.blue },
+          { name: 'Втора матура (по избор)', data: D.nat.mat, color: p.amber, dashStyle: 'ShortDash' }
+        ]
+      })));
+
+      // 2. Public vs private
+      charts.push(Highcharts.chart('chart-pubpriv', Highcharts.merge(base(p, 420), {
+        chart: { type: 'line' },
+        xAxis: { categories: years },
+        yAxis: { min: 3.7, max: 5.1, tickInterval: 0.5 },
+        tooltip: { shared: true },
+        plotOptions: { line: { marker: { enabled: true, radius: 3 }, lineWidth: 3 } },
+        series: [
+          { name: 'Частни', data: D.pubpriv.privBel, color: p.amber },
+          { name: 'Държавни', data: D.pubpriv.pubBel, color: p.blue }
+        ]
+      })));
+
+      // 3. By type (horizontal bar)
+      var typeCats = D.types.map(function (t) { return t.type + ' (' + t.n + ')'; });
+      var typeData = D.types.map(function (t) {
+        var c = p.blue;
+        if (t.type.indexOf('Езикови') === 0 || t.type.indexOf('Математ') === 0) c = p.green;
+        if (t.type.indexOf('Професионални') === 0) c = p.red;
+        return { y: t.mean, color: c };
+      });
+      charts.push(Highcharts.chart('chart-types', Highcharts.merge(base(p, 360), {
+        chart: { type: 'bar' },
+        xAxis: { categories: typeCats, labels: { style: { color: p.text, fontSize: '0.85em' } } },
+        yAxis: { min: 3, max: 5.4, tickInterval: 0.5 },
+        legend: { enabled: false },
+        tooltip: { pointFormat: 'Среден БЕЛ: <b>{point.y:.2f}</b>' },
+        plotOptions: { bar: { dataLabels: { enabled: true, format: '{point.y:.2f}', style: { color: p.text, fontWeight: '700', textOutline: 'none' } } } },
+        series: [{ name: 'Среден БЕЛ', data: typeData }]
+      })));
+
+      // 4. Cities (horizontal bar)
+      var cityCats = D.citiesAll.map(function (c) { return c.city; });
+      var cityData = D.citiesAll.map(function (c, i) { return { y: c.mean, color: i === 0 ? p.amber : p.blue }; });
+      charts.push(Highcharts.chart('chart-cities', Highcharts.merge(base(p, 760), {
+        chart: { type: 'bar' },
+        xAxis: { categories: cityCats, labels: { style: { color: p.text, fontSize: '0.8em' } } },
+        yAxis: { min: 3.5, max: 4.7, tickInterval: 0.25 },
+        legend: { enabled: false },
+        tooltip: { pointFormat: 'Среден БЕЛ: <b>{point.y:.2f}</b>' },
+        plotOptions: { bar: { dataLabels: { enabled: true, format: '{point.y:.2f}', style: { color: p.muted, fontWeight: '600', fontSize: '0.72em', textOutline: 'none' } } } },
+        series: [{ name: 'Среден БЕЛ', data: cityData }]
+      })));
+
+      // 5. Inequality (percentile lines)
+      charts.push(Highcharts.chart('chart-ineq', Highcharts.merge(base(p, 440), {
+        chart: { type: 'line' },
+        xAxis: { categories: years, plotBands: pandemicBand },
+        yAxis: { min: 2.5, max: 5.3, tickInterval: 0.5 },
+        tooltip: { shared: true },
+        plotOptions: { line: { marker: { enabled: true, radius: 3 }, lineWidth: 3 } },
+        series: [
+          { name: 'Най-силни (90-и персентил)', data: D.percentiles.p90, color: p.green },
+          { name: 'Медиана (50-и)', data: D.percentiles.p50, color: p.slate, dashStyle: 'ShortDash', lineWidth: 2 },
+          { name: 'Най-слаби (10-и персентил)', data: D.percentiles.p10, color: p.red }
+        ]
+      })));
+
+      // 6. Polarization — 100% stacked bands of school averages, by year
+      charts.push(Highcharts.chart('chart-polar', Highcharts.merge(base(p, 440), {
+        chart: { type: 'column' },
+        xAxis: { categories: years },
+        yAxis: { min: 0, max: 100, reversedStacks: false, labels: { format: '{value}%' } },
+        tooltip: { shared: true, pointFormat: '<span style="color:{series.color}">●</span> {series.name}: <b>{point.y:.1f}%</b><br/>' },
+        plotOptions: { column: { stacking: 'percent', borderWidth: 0, groupPadding: 0.06 } },
+        series: [
+          { name: '< 3,00 (много слаби)', data: D.polar.b1, color: p.red },
+          { name: '3,00–3,99', data: D.polar.b2, color: p.amber },
+          { name: '4,00–4,99', data: D.polar.b3, color: p.blue },
+          { name: '≥ 5,00 (отличници)', data: D.polar.b4, color: p.green }
+        ]
+      })));
+
+      // 7. Concentration of excellence — geographic split of each top-N group
+      charts.push(Highcharts.chart('chart-conc', Highcharts.merge(base(p, 360), {
+        chart: { type: 'column' },
+        xAxis: { categories: D.conc.labels, labels: { style: { color: p.text } } },
+        yAxis: { min: 0, max: 100, reversedStacks: false, labels: { format: '{value}%' } },
+        tooltip: { shared: true, pointFormat: '<span style="color:{series.color}">●</span> {series.name}: <b>{point.percentage:.0f}%</b> ({point.y} у-ща)<br/>' },
+        plotOptions: { column: { stacking: 'percent', borderWidth: 0, groupPadding: 0.1 } },
+        series: [
+          { name: 'София', data: D.conc.sofia, color: p.blue },
+          { name: 'Друг град от голямата четворка', data: D.conc.big, color: p.amber },
+          { name: 'Останалата страна', data: D.conc.rest, color: p.slate }
+        ]
+      })));
+    }
+
+    window.redraw = renderCharts;
+    document.addEventListener('DOMContentLoaded', function () {
+      initArticleActions();
+      if (window.Highcharts) {
+        Highcharts.setOptions({ accessibility: { enabled: false } });
+        renderCharts();
+      }
+    });
+  </script>
+</body>
+</html>
