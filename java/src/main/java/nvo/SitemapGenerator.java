@@ -26,6 +26,7 @@ public class SitemapGenerator {
         urls.add(ProjectConfig.SITE_BASE_URL + "games/");
         urls.add(ProjectConfig.SITE_BASE_URL + "api/v1/");
         urls.add(ProjectConfig.SITE_BASE_URL + "embed/");
+        urls.add(ProjectConfig.SITE_BASE_URL + "blog/");
 
         // Scan docs/{grade}/ for city and year subdirectories with index.html
         for (String[] gradeDef : ProjectConfig.GRADES) {
@@ -66,6 +67,20 @@ public class SitemapGenerator {
                         .forEach(subDir -> {
                             if (Files.exists(subDir.resolve("index.html"))) {
                                 urls.add(ProjectConfig.SITE_BASE_URL + "school/"
+                                        + subDir.getFileName() + "/");
+                            }
+                        });
+            }
+        }
+
+        // Scan docs/blog/{slug}/index.html for blog post pages.
+        Path blogDir = Path.of(ProjectConfig.DOCS_DIR, "blog");
+        if (Files.isDirectory(blogDir)) {
+            try (var stream = Files.list(blogDir)) {
+                stream.filter(Files::isDirectory)
+                        .forEach(subDir -> {
+                            if (Files.exists(subDir.resolve("index.html"))) {
+                                urls.add(ProjectConfig.SITE_BASE_URL + "blog/"
                                         + subDir.getFileName() + "/");
                             }
                         });

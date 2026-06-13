@@ -383,6 +383,7 @@ public class SchoolPageGenerator {
                         <a href="../../7/" class="grade-tab">7 клас</a>
                         <a href="../../10/" class="grade-tab">10 клас</a>
                         <a href="../../12/" class="grade-tab">12 клас</a>
+                        <a href="../../blog/" class="grade-tab">Блог</a>
                       </nav>
                       <button class="theme-toggle" onclick="toggleTheme()" aria-label="Смяна на тема">
                         <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>

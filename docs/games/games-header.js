@@ -63,6 +63,7 @@ window.toggleTheme = window.toggleTheme || function() {
     '<a class="grade-tab" href="' + rootPrefix + '7/">7 клас</a>',
     '<a class="grade-tab" href="' + rootPrefix + '10/">10 клас</a>',
     '<a class="grade-tab" href="' + rootPrefix + '12/">12 клас</a>',
+    '<a class="grade-tab" href="' + rootPrefix + 'blog/">Блог</a>',
     '<a class="grade-tab active" href="' + (isGamesHub ? './' : '../') + '">Игри</a>',
     '</nav>',
     '<button class="theme-toggle" onclick="toggleTheme()" aria-label="Смяна на тема">',
