@@ -805,8 +805,15 @@ tbody td + td {
 .site-footer {
   background: var(--color-text);
   color: var(--color-border);
-  padding: 1rem 0;
+  padding: 1.5rem 0;
   margin-top: 3rem;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
 }
 
 .footer-minimal {
@@ -814,6 +821,24 @@ tbody td + td {
   font-size: 0.8rem;
   color: var(--color-text-light);
   margin: 0;
+}
+
+.footer-links {
+  display: flex;
+  gap: 1.25rem;
+  justify-content: center;
+}
+
+.footer-links a {
+  color: var(--color-text-light);
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+  color: var(--color-primary-light);
+  text-decoration: none;
 }
 
 /* --- Schools Section Styling --- */
