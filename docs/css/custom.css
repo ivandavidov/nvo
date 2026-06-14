@@ -506,6 +506,13 @@ img {
   flex-direction: column;
 }
 
+.nav-hint {
+  font-size: 0.8rem;
+  color: var(--color-text-light);
+  line-height: 1.5;
+  margin: 0 0 0.85rem 0;
+}
+
 .nav-links-grid {
   display: flex;
   flex-direction: column;
@@ -521,17 +528,36 @@ img {
 }
 
 .nav-link-item a:first-child {
-  font-weight: 500;
+  font-weight: 600;
+  font-size: 1.02rem;
 }
 
 .years-nav {
+  display: contents;
+}
+
+.year-current {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.year-history {
+  flex-basis: 100%;
   font-size: 0.85em;
+  line-height: 1.5;
   color: var(--color-text-muted);
 }
 
+.year-history-icon {
+  color: var(--color-accent);
+}
+
 .years-nav a {
-  color: var(--color-text-muted);
-  font-size: 0.95em;
+  color: var(--color-primary-light);
+  font-size: 0.9em;
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 .years-nav a:hover {

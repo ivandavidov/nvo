@@ -25,32 +25,55 @@ function generateYearRankingLinks() {
 function generateYearNavigation() {
   let fallbackLatestYear = firstYear + s[baseSchoolIndex].b.length - 1;
   let navItems = document.querySelectorAll('.years-nav[data-year-grade]');
+  let navGrid = document.querySelector('.nav-links-grid');
+  if(navGrid && !document.getElementById('navHint')) {
+    let hint = document.createElement('p');
+    hint.id = 'navHint';
+    hint.className = 'nav-hint';
+    hint.textContent = 'Връзката с класа отваря последните данни. Годините водят към по-стари (исторически) изгледи.';
+    navGrid.parentNode.insertBefore(hint, navGrid);
+  }
   navItems.forEach((el) => {
+    el.textContent = '';
     let grade = Number.parseInt(el.getAttribute('data-year-grade'), 10);
     if(!Number.isInteger(grade)) {
-      el.textContent = '';
       return;
     }
     let configuredLastYear = typeof latestYearByGrade !== 'undefined' ? latestYearByGrade[grade] : null;
     let latestYear = Number.isFinite(configuredLastYear) ? configuredLastYear : fallbackLatestYear;
+
+    let current = document.createElement('span');
+    current.className = 'year-current';
+    current.textContent = '· ' + latestYear;
+    el.appendChild(current);
+
     let endYear = latestYear - 1;
     if(endYear < NAV_FIRST_YEAR) {
-      el.textContent = '';
       return;
     }
+
+    let history = document.createElement('span');
+    history.className = 'year-history';
+    let icon = document.createElement('span');
+    icon.className = 'year-history-icon';
+    icon.setAttribute('aria-hidden', 'true');
+    icon.innerHTML = '<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px"><path d="M3 12a9 9 0 1 0 9-9 9 9 0 0 0-6.36 2.64L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l3 2"/></svg>';
+    history.appendChild(icon);
+    history.appendChild(document.createTextNode(' по-стари: '));
+
     let baseHref = '../' + grade + '/?year=';
-    el.textContent = '';
-    el.appendChild(document.createTextNode('('));
     for(let year = endYear; year >= NAV_FIRST_YEAR; year--) {
       if(year < endYear) {
-        el.appendChild(document.createTextNode(', '));
+        history.appendChild(document.createTextNode(', '));
       }
       let a = document.createElement('a');
       a.href = baseHref + year;
       a.textContent = year;
-      el.appendChild(a);
+      a.title = 'Исторически изглед — данни до ' + year + ' г.';
+      a.setAttribute('aria-label', 'Исторически изглед до ' + year + ' година');
+      history.appendChild(a);
     }
-    el.appendChild(document.createTextNode(')'));
+    el.appendChild(history);
   });
 }
 
