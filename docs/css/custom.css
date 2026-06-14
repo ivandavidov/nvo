@@ -250,6 +250,27 @@ img {
 }
 
 /* --- Hero Section --- */
+/* --- Historical (time-travel) mode banner --- */
+.history-banner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem 1rem;
+  padding: 0.6rem 1.25rem;
+  background: var(--color-accent-light);
+  border-bottom: 2px solid var(--color-accent);
+  color: var(--color-text);
+  font-size: 0.95rem;
+  text-align: center;
+}
+.history-banner-exit,
+.history-banner-exit:visited {
+  color: var(--color-primary);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
 .hero-section {
   padding: calc(var(--header-height) * 0.4) 0 1.5rem 0;
 }

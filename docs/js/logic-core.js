@@ -405,6 +405,34 @@ function calculateTimeTravel() {
   let targetYear = Math.min(Math.max(parsedYear, minYear), maxYear);
   removeYears(currentYear - targetYear);
   numYears = 3;
+  renderHistoryBanner(targetYear);
+}
+
+function renderHistoryBanner(targetYear) {
+  let main = document.querySelector('main');
+  if(!main || document.getElementById('historyBanner')) {
+    return;
+  }
+  let banner = document.createElement('div');
+  banner.id = 'historyBanner';
+  banner.className = 'history-banner';
+  banner.setAttribute('role', 'status');
+
+  let text = document.createElement('span');
+  text.className = 'history-banner-text';
+  let label = document.createElement('strong');
+  label.textContent = 'Исторически изглед';
+  text.appendChild(label);
+  text.appendChild(document.createTextNode(' — всички данни и графики по-долу са към ' + targetYear + ' г.'));
+
+  let exit = document.createElement('a');
+  exit.className = 'history-banner-exit';
+  exit.href = window.location.pathname;
+  exit.textContent = 'Покажи актуалните данни →';
+
+  banner.appendChild(text);
+  banner.appendChild(exit);
+  main.insertBefore(banner, main.firstChild);
 }
 
 function disableEntries() {
