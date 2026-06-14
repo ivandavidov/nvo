@@ -101,6 +101,9 @@ function enableFixedButtons() {
       for(let mBtn of mBtns) {
         mBtn.classList.remove('button-primary');
       }
+      if(window.location.hash) {
+        history.replaceState(null, '', window.location.pathname + window.location.search);
+      }
       redraw();
     };
   }
