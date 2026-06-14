@@ -552,8 +552,6 @@ img {
 .years-nav a {
   color: var(--color-primary-light);
   font-size: 0.9em;
-  text-decoration: underline;
-  text-underline-offset: 2px;
 }
 
 .years-nav a:hover {
