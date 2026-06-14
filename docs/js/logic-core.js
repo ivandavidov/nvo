@@ -5,6 +5,7 @@ var pendingSelectedButtonIds = null;
 var rankingTableBuilders = {};
 var selectedSchoolIndices = new Set();
 var pdfFontBase64Promise = null;
+var timeTravelYear = null;
 
 function getAppBasePath() {
   let pathname = window.location.pathname || '/';
@@ -403,6 +404,7 @@ function calculateTimeTravel() {
     return;
   }
   let targetYear = Math.min(Math.max(parsedYear, minYear), maxYear);
+  timeTravelYear = targetYear;
   removeYears(currentYear - targetYear);
   numYears = 3;
   renderHistoryBanner(targetYear);

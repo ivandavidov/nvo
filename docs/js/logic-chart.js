@@ -261,16 +261,19 @@ function handleURL(indices) {
   let url = new URL(window.location.href);
   let anchor = url.hash.replace('#', '');
   let baseURL = url.origin + url.pathname;
+  let yearQuery = (typeof timeTravelYear !== 'undefined' && timeTravelYear) ? 'year=' + timeTravelYear : '';
   if(indices.length === 0) {
     document.cookie = cookieName + '=;path=/;max-age=-1';
-    window.history.replaceState(indices, null, anchor ? baseURL + '#' + anchor : baseURL);
+    let query = yearQuery ? '?' + yearQuery : '';
+    window.history.replaceState(indices, null, anchor ? baseURL + query + '#' + anchor : baseURL + query);
   } else {
     let endURL = indices.join(',');
     document.cookie = cookieName + '=' + endURL + ';path=/;max-age=' + COOKIE_MAX_AGE_SECONDS;
     if(anchor) {
       endURL += '#' + anchor;
     }
-    window.history.replaceState(indices, null, baseURL + '?' + cookieName + '=' + endURL);
+    let query = (yearQuery ? yearQuery + '&' : '') + cookieName + '=' + endURL;
+    window.history.replaceState(indices, null, baseURL + '?' + query);
   }
 }
 
