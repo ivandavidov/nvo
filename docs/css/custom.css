@@ -527,7 +527,7 @@ img {
   flex-wrap: wrap;
 }
 
-.nav-link-item a:first-child {
+.nav-link-item > a:first-child {
   font-weight: 600;
   font-size: 1.02rem;
 }
