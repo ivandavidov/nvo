@@ -516,14 +516,14 @@ img {
 .nav-links-grid {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 1.1rem;
   margin-bottom: 1rem;
 }
 
 .nav-link-item {
   display: flex;
   align-items: baseline;
-  gap: 0.5rem;
+  gap: 3px 0.5rem;
   flex-wrap: wrap;
 }
 
