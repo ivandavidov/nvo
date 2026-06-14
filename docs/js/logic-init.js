@@ -54,12 +54,7 @@ function generateYearNavigation() {
 
     let history = document.createElement('span');
     history.className = 'year-history';
-    let icon = document.createElement('span');
-    icon.className = 'year-history-icon';
-    icon.setAttribute('aria-hidden', 'true');
-    icon.innerHTML = '<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px"><path d="M3 12a9 9 0 1 0 9-9 9 9 0 0 0-6.36 2.64L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l3 2"/></svg>';
-    history.appendChild(icon);
-    history.appendChild(document.createTextNode(' по-стари: '));
+    history.appendChild(document.createTextNode('по-стари: '));
 
     let baseHref = '../' + grade + '/?year=';
     for(let year = endYear; year >= NAV_FIRST_YEAR; year--) {

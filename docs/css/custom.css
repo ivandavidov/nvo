@@ -549,10 +549,6 @@ img {
   color: var(--color-text-muted);
 }
 
-.year-history-icon {
-  color: var(--color-accent);
-}
-
 .years-nav a {
   color: var(--color-primary-light);
   font-size: 0.9em;
