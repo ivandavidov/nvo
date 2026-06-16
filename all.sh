@@ -9,6 +9,11 @@ cd target
 java -cp nvo-v2.jar nvo.RuoNormalizer all
 java -cp nvo-v2.jar nvo.RuoDecomplexor sofia
 java -cp nvo-v2.jar nvo.RuoPage sofia
+for ruo_city in plovdiv asenovgrad karlovo sopot purvomai rakovski hisaria stanbiliiski kuklen suedinenie perushtitsa krichim varna aksakovo beloslav dulgopol provadia suvorovo burgas aitos karnobat nesebar pomorie sozopol sredets tsarevo ruse biala-ruse stara-zagora kazanluk radnevo chirpan pleven belene knezha levski sliven kotel dobrich balchik kavarna tervel shumen veliki-preslav pernik radomir; do
+  java -cp nvo-v2.jar nvo.RuoDecomplexor "$ruo_city"
+  java -cp nvo-v2.jar nvo.RuoPage "$ruo_city"
+done
+java -cp nvo-v2.jar nvo.RuoIndexPage
 java -jar nvo-v2.jar normalize
 java -jar nvo-v2.jar 4
 java -jar nvo-v2.jar 7

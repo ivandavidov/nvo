@@ -582,6 +582,24 @@ img {
   border-top: 1px solid var(--color-border-light);
 }
 
+/* --- "Балове по градове" nav section --- */
+/* Same divider treatment as .nav-extra / .nav-section-label (border-top), so the line above
+   it matches the rest of the menu. The divider below is provided by the following .nav-extra. */
+.balove-nav-item {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--color-border-light);
+}
+.balove-nav-item > a {
+  font-weight: 600;
+  font-size: 1.02rem;
+}
+.balove-nav-desc {
+  color: var(--color-text-muted);
+  font-size: 0.82rem;
+  margin-top: 0.25rem;
+}
+
 /* --- Scroll offset for sticky header --- */
 [id] {
   scroll-margin-top: calc(var(--header-height) + 1rem);

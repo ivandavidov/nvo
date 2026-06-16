@@ -60,11 +60,16 @@ public class RuoDecomplexor {
 
     private List<Integer> findYears(String city) throws IOException {
         List<Integer> years = new ArrayList<>();
+        // Extract the year by stripping the known prefix/suffix rather than splitting on '-',
+        // because the city slug may itself contain hyphens (e.g. "biala-ruse").
+        String prefix = "ruo-" + city + "-";
+        String suffix = "-normalized.csv";
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(
                 Path.of(NORMALIZED_DIR), "ruo-" + city + "-*-normalized.csv")) {
             for (Path p : stream) {
-                String[] parts = p.getFileName().toString().split("-");
-                years.add(Integer.parseInt(parts[2]));
+                String fname = p.getFileName().toString();
+                String yearStr = fname.substring(prefix.length(), fname.length() - suffix.length());
+                years.add(Integer.parseInt(yearStr));
             }
         }
         Collections.sort(years);
