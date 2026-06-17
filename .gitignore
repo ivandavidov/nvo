@@ -11,3 +11,19 @@ java/.factorypath
 java/.project
 java/.settings/
 kaggle/data/
+
+# one-off RUO Plovdiv PDF parsing scripts (working dir, not committed)
+tmp-ruo-plovdiv/
+tmp-ruo-varna/
+tmp-ruo-burgas/
+tmp-ruo-ruse/
+tmp-ruo-stara-zagora/
+tmp-ruo-pleven/
+tmp-ruo-sliven/
+tmp-ruo-dobrich/
+tmp-ruo-shumen/
+tmp-ruo-pernik/
+tmp-ruo-haskovo/
+tmp-ruo-blagoevgrad/
+tmp-ruo-iambol/
+tmp-ruo-veliko-turnovo/

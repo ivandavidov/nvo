@@ -25,14 +25,6 @@ function generateYearRankingLinks() {
 function generateYearNavigation() {
   let fallbackLatestYear = firstYear + s[baseSchoolIndex].b.length - 1;
   let navItems = document.querySelectorAll('.years-nav[data-year-grade]');
-  let navGrid = document.querySelector('.nav-links-grid');
-  if(navGrid && !document.getElementById('navHint')) {
-    let hint = document.createElement('p');
-    hint.id = 'navHint';
-    hint.className = 'nav-hint';
-    hint.textContent = 'Връзката с класа отваря последните данни. Годините водят към по-стари (исторически) изгледи.';
-    navGrid.parentNode.insertBefore(hint, navGrid);
-  }
   navItems.forEach((el) => {
     el.textContent = '';
     let grade = Number.parseInt(el.getAttribute('data-year-grade'), 10);
