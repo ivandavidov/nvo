@@ -174,8 +174,8 @@ public class SchoolPageGenerator {
 
     private String gradeSection(String grade, JsonObject g, JsonArray fallbackYears, JsonObject doc) {
         GradeMeta meta = gradeMeta(grade);
-        // Each grade carries its own yearsRange (DZI spans one more year than NVO); the score arrays
-        // are sized to it, so the table must iterate this grade's range, not the document-wide one.
+        // Each grade carries its own yearsRange (DZI may span one more year than NVO); the score
+        // arrays are sized to it, so the table must iterate this grade's range, not the document-wide one.
         JsonArray years = g.has("yearsRange") && g.get("yearsRange").isJsonArray()
                 ? g.getAsJsonArray("yearsRange") : fallbackYears;
         StringBuilder sb = new StringBuilder();

@@ -126,8 +126,8 @@ public class SchoolsGenerator {
                 individual.add("website", JsonNull.INSTANCE);
             }
             individual.add("city", cityJson(cityObj));
-            // Span the widest grade this school has (DZI reaches 2026, NVO 2025); per-grade blocks
-            // each carry their own yearsRange, so consumers align each grade to its own years.
+            // Span the widest grade this school has; per-grade blocks each carry their own
+            // yearsRange, so consumers align each grade to its own years.
             individual.add("yearsRange", buildYearsRange(FIRST_YEAR + maxGradeYears - 1));
             individual.add("grades", gradesJson);
             Files.writeString(schoolsDir.resolve(code + ".json"), collapseArrays(gson.toJson(individual)) + "\n");

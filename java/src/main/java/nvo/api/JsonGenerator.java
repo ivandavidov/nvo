@@ -7,16 +7,17 @@ import java.util.Set;
 public class JsonGenerator {
 
     static final int FIRST_YEAR = 2018;
-    // Global maximum span across all grades (the widest grade defines it). DZI (grade 12) leads
-    // the other grades — its results are published ~2 weeks before NVO — so the data axis is
-    // per-grade: NVO ends one year behind DZI. LAST_YEAR/NUM_YEARS size the widest arrays; the
-    // per-grade helpers below clamp every loop and range so a grade never reads past its own data.
+    // Global maximum span across all grades (the widest grade defines it). LAST_YEAR/NUM_YEARS
+    // size the widest arrays; the per-grade helpers below clamp every loop and range so a grade
+    // never reads past its own data. NVO and DZI currently both end at LAST_YEAR, but the axis is
+    // kept per-grade (via lastYearForGrade) since DZI is published ~2 weeks ahead of NVO and can
+    // lead by a year when a new season's data lands.
     static final int LAST_YEAR = 2026;
     static final int NUM_YEARS = LAST_YEAR - FIRST_YEAR + 1;
 
-    /** Most recent year with data for a grade (DZI is one year ahead of NVO). */
+    /** Most recent year with data for a grade. */
     static int lastYearForGrade(String grade) {
-        return "12".equals(grade) ? 2026 : 2025;
+        return 2026;
     }
 
     /** Number of year slots for a grade ([FIRST_YEAR .. lastYearForGrade]). */

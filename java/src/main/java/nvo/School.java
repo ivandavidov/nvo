@@ -566,6 +566,7 @@ public class School implements Comparable<School> {
         schoolCodes.put("2206302", new String[] {"0", "2 АЕГ", "Втора английска ЕГ", "http://2els.com"});
         schoolCodes.put("2209529", new String[] {"1", "Дорис Тенеди", "ЧЕСУ Дорис Тенеди", "http://doristenedi.com"});
         schoolCodes.put("2213503", new String[] {"1", "Меридиан 22", "ЧПГ Меридиан 22", "http://meridian22.bg"});
+        schoolCodes.put("2200040", new String[] {"1", "Прогресивно обр.", "ЧПГ Прогресивно образование", "https://highschool1.transform.bg"});
         schoolCodes.put("2222009", new String[] {"0", "9 ФЕГ", "9 Френска ЕГ Алфонс дьо Ламартин", "http://feg.bg"});
         schoolCodes.put("2211304", new String[] {"0", "НПМГ", "НПМГ Акад. Любомир Чакалов", "http://npmg.org"});
         schoolCodes.put("2212540", new String[] {"1", "Ерих Кестнер", "ЧНГ Ерих Кестнер", "http://e-kestner.eu"});
@@ -832,8 +833,8 @@ public class School implements Comparable<School> {
         schoolCodes.put("2200039", new String[] {"1", "Асен Йорданов", "ЧГ по прир. науки и предпр. Асен Йорданов", "http://tzarsimeon.bg/gimnazia-asen-yordanov"});
         schoolCodes.put("2200013", new String[] {"1", "СофтУни Будител", "ЧПГ по дигитални науки СофтУни Будител", "http://buditel.softuni.bg"});
         schoolCodes.put("2200014", new String[] {"1", "Светилник", "ЧНУ Светилник", "http://svetilnik.bg"});
-        schoolCodes.put("2200022", new String[] {"1", "Милеа", "ЧНУ Милеа", "http://school.milea.bg"});
-        schoolCodes.put("2200031", new String[] {"1", "Канадско Мече", "ЧНУ Канадско мече", "http://maplebear-cee.com/bg/find-location/sofia"});
+        schoolCodes.put("2200022", new String[] {"1", "Милеа", "ЧОУ Милеа", "http://school.milea.bg"});
+        schoolCodes.put("2200031", new String[] {"1", "Канадско Мече", "ЧОУ Канадско мече", "http://maplebear-cee.com/bg/find-location/sofia"});
         schoolCodes.put("2200045", new String[] {"1", "Фюжън", "ЧОУ Фюжън", "http://school.fusion.bg"});
         schoolCodes.put("2200034", new String[] {"1", "Дени Дидро", "ЧСУ Дени Дидро", "http://denisdiderot.bg"});
         schoolCodes.put("2300005", new String[] {"1", "Космос", "ЧСУ Космос", "http://cischool.bg"});
@@ -2394,7 +2395,6 @@ public class School implements Comparable<School> {
 
         schoolCodes.put("2000201", new String[]{"0", SU_GEORGI_RAKOVSKI, SU_GEORGI_RAKOVSKI});
         schoolCodes.put("2000402", new String[]{"0", SU_NEOFIT_RILSKI, SU_NEOFIT_RILSKI});
-        schoolCodes.put("2902201", new String[]{"0", "НУФИ Филип Кутев", "НУФИ Филип Кутев"});
 
         return schoolCodes;
     }

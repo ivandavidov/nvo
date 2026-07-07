@@ -67,7 +67,8 @@ public class NvoDziDecomplexor {
             String file23 = normalizedPath + "nvo-10-2023-normalized.csv";
             String file24 = normalizedPath + "nvo-10-2024-normalized.csv";
             String file25 = normalizedPath + "nvo-10-2025-normalized.csv";
-            files = new String[] {file18, file19, file20, file21, file22, file23, file24, file25};
+            String file26 = normalizedPath + "nvo-10-2026-normalized.csv";
+            files = new String[] {file18, file19, file20, file21, file22, file23, file24, file25, file26};
         } else if(mode.equals("7")) {
             header = "// https://data.egov.bg/data/view/b56288b6-25aa-4049-9aa6-de2cd4cdabf8";
             String file18 = normalizedPath + "nvo-7-2018-normalized.csv";
@@ -78,7 +79,8 @@ public class NvoDziDecomplexor {
             String file23 = normalizedPath + "nvo-7-2023-normalized.csv";
             String file24 = normalizedPath + "nvo-7-2024-normalized.csv";
             String file25 = normalizedPath + "nvo-7-2025-normalized.csv";
-            files = new String[] {file18, file19, file20, file21, file22, file23, file24, file25};
+            String file26 = normalizedPath + "nvo-7-2026-normalized.csv";
+            files = new String[] {file18, file19, file20, file21, file22, file23, file24, file25, file26};
         } else if(mode.equals("4")) {
             header = "// https://data.egov.bg/data/view/5613e75f-2b1b-4244-9f54-b27580a91dfb";
             String file18 = normalizedPath + "nvo-4-2018-normalized.csv";
@@ -89,7 +91,8 @@ public class NvoDziDecomplexor {
             String file23 = normalizedPath + "nvo-4-2023-normalized.csv";
             String file24 = normalizedPath + "nvo-4-2024-normalized.csv";
             String file25 = normalizedPath + "nvo-4-2025-normalized.csv";
-            files = new String[] {file18, file19, file20, file21, file22, file23, file24, file25};
+            String file26 = normalizedPath + "nvo-4-2026-normalized.csv";
+            files = new String[] {file18, file19, file20, file21, file22, file23, file24, file25, file26};
         } else {
             System.out.println("Mode '" + mode + "' is not recognized.");
             System.exit(0);

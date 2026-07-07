@@ -56,7 +56,7 @@ public class IndexGenerator {
                 <head>
                   <meta charset="utf-8">
                   <title>НВО и ДЗИ API v1 | Иван Давидов</title>
-                  <meta name="description" content="Публично JSON API с резултати от НВО и ДЗИ (2018–2025) от Иван Давидов. Данни за училища, градове и класации.">
+                  <meta name="description" content="Публично JSON API с резултати от НВО и ДЗИ (от 2018 г.) от Иван Давидов. Данни за училища, градове и класации.">
                   <meta name="author" content="Иван Давидов">
                   <meta name="viewport" content="width=device-width, initial-scale=1">
                   <link rel="canonical" href="%s">
@@ -64,13 +64,13 @@ public class IndexGenerator {
                   <meta property="og:type" content="website">
                   <meta property="og:url" content="%s">
                   <meta property="og:title" content="НВО и ДЗИ API v1 | Иван Давидов">
-                  <meta property="og:description" content="Публично JSON API с резултати от НВО и ДЗИ (2018–2025) от Иван Давидов.">
+                  <meta property="og:description" content="Публично JSON API с резултати от НВО и ДЗИ (от 2018 г.) от Иван Давидов.">
                   <meta property="og:image" content="%s">
                   <meta property="og:locale" content="bg_BG">
                   <meta property="og:site_name" content="НВО и ДЗИ – Иван Давидов">
                   <meta name="twitter:card" content="summary_large_image">
                   <meta name="twitter:title" content="НВО и ДЗИ API v1 | Иван Давидов">
-                  <meta name="twitter:description" content="Публично JSON API с резултати от НВО и ДЗИ (2018–2025) от Иван Давидов.">
+                  <meta name="twitter:description" content="Публично JSON API с резултати от НВО и ДЗИ (от 2018 г.) от Иван Давидов.">
                   <meta name="twitter:image" content="%s">
 
                   <script type="application/ld+json">
@@ -93,7 +93,7 @@ public class IndexGenerator {
                       {
                         "@type": "WebAPI",
                         "name": "НВО и ДЗИ API v1",
-                        "description": "Публично JSON API с резултати от Национално външно оценяване и Държавни зрелостни изпити (2018–2025) за всички училища в България.",
+                        "description": "Публично JSON API с резултати от Национално външно оценяване и Държавни зрелостни изпити (от 2018 г.) за всички училища в България.",
                         "url": "%s",
                         "provider": { "@id": "#author" },
                         "documentation": "%s"

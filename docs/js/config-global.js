@@ -1,7 +1,7 @@
 const latestYearByGrade = {
-  4: 2025,
-  7: 2025,
-  10: 2025,
+  4: 2026,
+  7: 2026,
+  10: 2026,
   12: 2026
 };
 
@@ -10,7 +10,7 @@ const latestYearByGrade = {
 const numYearsByGrade = {
   4: 8,
   7: 8,
-  10: 5,
+  10: 6,
   12: 8
 };
 
