@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8">
+  <title>Как се движат учениците в частните училища (2018–2026) | Иван Давидов</title>
+  <meta name="description" content="Кохортен анализ на частните училища в България: проследявам випуските от 4. към 7., от 7. към 10. и от 10. към 12. клас — расте ли секторът, има ли „изтичане“ на ученици и как растежът се отразява на резултатите.">
+  <meta name="author" content="Иван Давидов">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../css/normalize.css">
+  <link rel="stylesheet" href="../../css/custom.css">
+  <link rel="icon" type="image/png" href="../../images/favicon-7.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../images/favicon-7.png">
+  <link rel="canonical" href="https://ivandavidov.github.io/nvo/blog/chastni-uchilishta-kohorti-2026/">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://ivandavidov.github.io/nvo/blog/chastni-uchilishta-kohorti-2026/">
+  <meta property="og:title" content="Как се движат учениците в частните училища (2018–2026)">
+  <meta property="og:description" content="Проследявам випуските на частните училища между отделните НВО и ДЗИ: расте ли секторът, има ли „изтичане“ и как растежът се отразява на резултатите.">
+  <meta property="og:image" content="https://ivandavidov.github.io/nvo/images/social-preview.png">
+  <meta property="og:locale" content="bg_BG">
+  <meta property="og:site_name" content="НВО и ДЗИ – Иван Давидов">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Как се движат учениците в частните училища (2018–2026)">
+  <meta name="twitter:description" content="Проследявам випуските на частните училища между отделните НВО и ДЗИ: расте ли секторът, има ли „изтичане“ и как растежът се отразява на резултатите.">
+  <meta name="twitter:image" content="https://ivandavidov.github.io/nvo/images/social-preview.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Как се движат учениците в частните училища (2018–2026)",
+    "description": "Кохортен анализ на частните училища в България: випуските между НВО-4, НВО-7, НВО-10 и ДЗИ.",
+    "inLanguage": "bg",
+    "datePublished": "2026-07-08",
+    "dateModified": "2026-07-08",
+    "author": { "@type": "Person", "name": "Иван Давидов", "url": "https://www.linkedin.com/in/ivandavidov" },
+    "publisher": { "@type": "Person", "name": "Иван Давидов" },
+    "mainEntityOfPage": "https://ivandavidov.github.io/nvo/blog/chastni-uchilishta-kohorti-2026/",
+    "image": "https://ivandavidov.github.io/nvo/images/social-preview.png",
+    "isBasedOn": "https://ivandavidov.github.io/nvo/api/v1/"
+  }
+  </script>
+
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/highcharts.js" defer></script>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google-analytics.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com; font-src 'self'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      'analytics_storage': 'denied',
+      'ad_storage': 'denied',
+      'wait_for_update': 500
+    });
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-V0P6LBF76F"></script>
+  <script>
+    gtag('js', new Date());
+    gtag('config', 'G-V0P6LBF76F', {'anonymize_ip': true});
+  </script>
+
+  <link rel="stylesheet" href="../../css/blog.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="site-brand" href="../../" aria-label="Начало">
+        <svg class="site-logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        <span class="site-name">НВО и ДЗИ</span>
+      </a>
+      <nav class="grade-tabs">
+        <a href="../../4/" class="grade-tab">4 клас</a>
+        <a href="../../7/" class="grade-tab">7 клас</a>
+        <a href="../../10/" class="grade-tab">10 клас</a>
+        <a href="../../12/" class="grade-tab">12 клас</a>
+        <a href="../" class="grade-tab active">Блог</a>
+      </nav>
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Смяна на тема">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <article class="article">
+        <nav class="breadcrumb" aria-label="breadcrumb"><a href="../../">Начало</a><span class="breadcrumb-sep">›</span><a href="../">Блог</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Частните училища</span></nav>
+        <h1 class="page-title" style="margin-top:10px">Как се движат учениците в частните училища</h1>
+        <h2 class="page-subtitle" style="border:0;margin:6px 0 0;padding:0">Кохортен поглед през НВО и ДЗИ (2018–2026)</h2>
+        <p class="article-meta">Анализ от Иван Давидов · 8 юли 2026 · данни: МОН / data.egov.bg</p>
+        <div class="article-actions" aria-label="Действия за статията">
+          <button type="button" class="article-action" data-copy-link data-copy-url="https://ivandavidov.github.io/nvo/blog/chastni-uchilishta-kohorti-2026/">Копирай линк</button>
+          <button type="button" class="article-action" data-share-link data-share-url="https://ivandavidov.github.io/nvo/blog/chastni-uchilishta-kohorti-2026/" data-share-title="Как се движат учениците в частните училища" hidden>Сподели</button>
+        </div>
+
+        <p class="article-lead">
+          Националните изпити дават рядка възможност: да „срещнем“ един и същи випуск на няколко
+          контролни точки. Ако едно училище е имало 20 четвъртокласници на НВО през 2023 г., колко
+          седмокласници има то три години по-късно? Тази статия проследява <strong>випуските на
+          частните училища</strong> между 4. и 7., 7. и 10., 10. и 12. клас — общо
+          <strong>525 „кохорти“ в 88 училища</strong> — и разглежда три въпроса: расте ли секторът,
+          задържат ли се учениците и как движението на випуска се отразява на мястото на училището
+          в класациите.
+        </p>
+
+        <div class="stat-row">
+          <div class="stat"><div class="num">88</div><div class="lbl">частни училища</div></div>
+          <div class="stat"><div class="num">525</div><div class="lbl">проследени випуска</div></div>
+          <div class="stat"><div class="num">9</div><div class="lbl">години (2018–2026)</div></div>
+          <div class="stat"><div class="num">1,00</div><div class="lbl">медианно задържане 4→7</div></div>
+        </div>
+
+        <nav class="article-toc" aria-label="Съдържание">
+          <p class="article-toc-title">В статията</p>
+          <div class="article-toc-links">
+            <a href="#sektorat-raste">Секторът расте</a>
+            <a href="#ima-li-iztichane">Има ли „изтичане“</a>
+            <a href="#prehod-10-klas">Уговорката за 10. клас</a>
+            <a href="#rastezh-i-rezultati">Растеж и резултати</a>
+            <a href="#izvodi">Изводи</a>
+          </div>
+        </nav>
+
+        <div class="callout">
+          <strong>Изясняване на понятията.</strong> „Кохорта“ наричаме випуска на едно училище, видян на два
+          последователни изпита — например НВО-4 през 2023 г. и НВО-7 през 2026 г. „Задържане“ е
+          отношението между броя на явилите се на втория и на първия изпит: 1,00 значи същия брой,
+          0,80 — с една пета по-малко, 1,25 — с една четвърт повече. Три важни уговорки:
+          броим <strong>явили се на изпита</strong>, а не записани ученици (болен ученик „изчезва“
+          от данните, без да е напускал); виждаме <strong>нетния ефект</strong>, а не отделните деца
+          (5 напуснали и 3 новодошли дават нетен резултат от −2); и при малки паралелки — медианният випуск на
+          частно училище на НВО-4 е <strong>14 деца</strong> срещу 48 в общинските — само едно-две
+          деца разлика променят чувствително и бройката, и средния резултат. Затова гледаме общата картина,
+          а не отделни училища. НВО-4 през 2020 г. не се е провело (пандемията), а НВО-10 съществува
+          от 2021 г. — засегнатите преходи са изключени.
+        </div>
+
+        <h2 id="sektorat-raste"><span class="kicker">Контекст</span>Секторът расте — на всички етапи <a class="heading-link" href="#sektorat-raste" aria-label="Линк към секцията: Секторът расте">#</a></h2>
+        <p>
+          Преди да погледнем отделните випуски, ето общата рамка: частното образование в България се
+          разширява устойчиво. Явилите се на НВО-4 от частни училища растат от <strong>755 (2018)</strong>
+          на <strong>1297 (2026)</strong> — над 70% повече, а училищата с четвърти клас в данните — от 44 на 63.
+          При 7. клас ръстът е почти двоен (658 → 1273), а на матурите — от 736 на 1111 зрелостници.
+          Това е важен контекст за следващите изводи: голяма част от „движението“ в данните е просто
+          растеж — нови паралелки, нови училища, повече деца.
+        </p>
+        <div class="chart-card">
+          <p class="chart-title">Ученици от частни училища на националните изпити</p>
+          <p class="chart-sub">Брой явили се по клас и година · прекъсванията са години без изпит/данни</p>
+          <div id="chart-sector" class="chart-box"></div>
+        </div>
+
+        <h2 id="ima-li-iztichane"><span class="kicker">Задържане</span>Има ли „изтичане“ на ученици? <a class="heading-link" href="#ima-li-iztichane" aria-label="Линк към секцията: Има ли изтичане">#</a></h2>
+        <p>
+          Често срещано допускане е, че между началния и прогимназиалния етап частните училища
+          системно губят ученици. Данните не потвърждават такава обща тенденция:
+          <strong>медианното задържане между 4. и 7. клас е точно 1,00</strong> — колкото при
+          общинските училища (0,99). В 52% от проследените випуски броят се запазва или расте.
+          Разпределението обаче е широко: има випуски, които се стопяват наполовина, и випуски,
+          които се удвояват. При паралелки от по 10–15 деца това е очаквано — преместването на две
+          семейства е 15–20% от випуска — затова широката „камбана“ по-долу говори повече за
+          малкия мащаб на паралелките, отколкото за посока на движение.
+        </p>
+        <div class="chart-card">
+          <p class="chart-title">Как се променя броят на випуска между 4. и 7. клас</p>
+          <p class="chart-sub">248 випуска в частни училища · задържане = ученици на НВО-7 ÷ ученици на НВО-4</p>
+          <div id="chart-hist" class="chart-box"></div>
+        </div>
+        <p>
+          Между 10. и 12. клас картината е сходна, дори леко положителна: медианното задържане в
+          частните гимназии е <strong>1,06</strong> — към горния етап по-често се <em>добавят</em>
+          ученици, отколкото да си тръгват. Това е разбираемо: гимназиалният етап е моментът, в
+          който семействата търсят смяна на средата, индивидуален темп или подготовка за конкретни
+          матури, и частните училища често са естественият адрес за това.
+        </p>
+
+        <h2 id="prehod-10-klas"><span class="kicker">Уговорка</span>Защо преходът към 10. клас подвежда на пръв поглед <a class="heading-link" href="#prehod-10-klas" aria-label="Линк към секцията: Уговорката за 10. клас">#</a></h2>
+        <p>
+          Ако сравним 7. и 10. клас механично, ще видим „загуба“ от около една четвърт от учениците —
+          медианното съотношение е <strong>0,74</strong>. Преди да направим извод обаче, си струва да
+          погледнем общинските училища: там числото е… <strong>същото — 0,74</strong>. Причината не е
+          в преместване на ученици, а в самия изпит: НВО-10 е с ниска тежест и без последствия за
+          ученика, затова участието в него е осезаемо по-ниско от НВО-7 навсякъде. Този преход
+          е полезен за други сравнения, но не бива да се тълкува като мярка за задържане — и в тази
+          статия не го използвам така.
+        </p>
+
+        <h2 id="rastezh-i-rezultati"><span class="kicker">Резултати</span>Какво се случва с резултатите при растеж <a class="heading-link" href="#rastezh-i-rezultati" aria-label="Линк към секцията: Растеж и резултати">#</a></h2>
+        <p>
+          Най-интересният въпрос е връзката между движението на випуска и мястото на училището в
+          класациите. За всеки випуск изчислих <strong>национален персентил</strong> — процентът
+          училища в страната с по-нисък среден резултат същата година — на първия и на втория изпит,
+          и разделих випуските на три групи: свиващи се (загуба над 25%), стабилни и растящи
+          (ръст над 25%).
+        </p>
+        <p>
+          Резултатът е любопитен и донякъде контраинтуитивен. <strong>Свиващите се випуски запазват
+          нивото си</strong> — персентилът им между 4. и 7. клас на практика не мърда (84,8 → 84,3).
+          Стабилните също (92,2 → 91,3). Осезаема промяна има само при <strong>растящите</strong>
+          випуски: те слизат средно с около 10 персентилни пункта (89,6 → 79,7). Между 10. и 12. клас
+          моделът се повтаря още по-ясно: стабилните гимназиални випуски задържат позицията си
+          (86,6 → 86,9), а бързо растящите отстъпват (75,6 → 64,6).
+        </p>
+        <div class="chart-card">
+          <p class="chart-title">Национален персентил на випуска: 4. срещу 7. клас</p>
+          <p class="chart-sub">Медиани по група · частни училища · в скоби — брой випуски</p>
+          <div id="chart-b47" class="chart-box"></div>
+        </div>
+        <div class="chart-card">
+          <p class="chart-title">Национален персентил на випуска: 10. срещу 12. клас</p>
+          <p class="chart-sub">Медиани по група · частни училища · свиващите се випуски са твърде малко за отделна колона (5)</p>
+          <div id="chart-b1012" class="chart-box"></div>
+        </div>
+        <p>
+          Как да разбираме това? Най-простото обяснение е аритметично, не педагогическо. Когато випуск
+          от 12 деца приеме 6 нови, две трети от „старото“ ниво се смесва с една трета ученици,
+          идващи от други училища и програми — често именно защото там учениците са срещали трудности. Средният
+          резултат на паралелката се „разрежда“ временно, без това да казва каквото и да е за
+          качеството на преподаването. Обратното също е важно: данните <strong>не показват</strong>,
+          че при свиващите се випуски си тръгват по-силните ученици — ако беше така, персентилът на
+          оставащите щеше да пада, а той се задържа. С други думи: движението на броя ученици се
+          отразява на класациите главно през входа (кой идва), а не през изхода (кой си тръгва).
+        </p>
+        <div class="callout">
+          <strong>Уговорка.</strong> Връзката е статистическа и умерена по сила — тя описва средното
+          поведение на стотици випуски, не съдбата на конкретно училище. Отделният випуск от 8–10
+          деца може да се движи във всяка посока по съвсем житейски причини: преместване, пътуване,
+          един силен или един труден випуск. Затова умишлено не посочвам отделни училища — при този
+          мащаб числата им са твърде чувствителни към единични случаи, за да носят изводи.
+        </div>
+
+        <h2 id="izvodi" style="border-top:2px solid var(--color-primary)"><span class="kicker">Изводи</span>Какво показват девет години данни <a class="heading-link" href="#izvodi" aria-label="Линк към секцията: Изводи">#</a></h2>
+        <p>
+          <strong>1. Частният сектор расте на всички етапи</strong> — със 70–90% повече явили се на
+          изпитите спрямо 2018 г.<br>
+          <strong>2. Масово „изтичане“ няма.</strong> Медианният випуск запазва размера си между 4. и
+          7. клас и дори расте между 10. и 12.<br>
+          <strong>3. Привидната загуба към 10. клас е ефект на изпита</strong>, не на преместване —
+          същата е и в общинските училища.<br>
+          <strong>4. Бързият растеж временно сваля класирането.</strong> Випуските с много новоприети
+          ученици слизат с около 10 персентилни пункта — най-вероятно ефект на смесването, а не на
+          промяна в обучението.<br>
+          <strong>5. За родителите:</strong> едногодишна класация казва малко за малко училище.
+          По-добрият въпрос е как се движи училището през няколко випуска — точно за това са
+          многогодишните графики на <a href="../../">страниците по класове</a> и профилите на
+          отделните училища.
+        </p>
+
+        <aside class="article-end" aria-label="След статията">
+          <div class="article-end-main">
+            <a class="article-back-link" href="../">Всички анализи</a>
+            <button type="button" class="article-action" data-copy-link data-copy-url="https://ivandavidov.github.io/nvo/blog/chastni-uchilishta-kohorti-2026/">Копирай линк</button>
+          </div>
+          <div class="article-end-resources">
+            <p class="article-end-title">Продължи с данните</p>
+            <div class="article-resource-links">
+              <a href="../../4/">НВО след 4 клас — класации и графики</a>
+              <a href="../../7/">НВО след 7 клас — класации и графики</a>
+              <a href="../dzi-analiz-2026/">Девет години ДЗИ на една страница</a>
+            </div>
+          </div>
+        </aside>
+      </article>
+    </div>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-content">
+          <p class="footer-minimal">&copy; Иван Давидов – НВО и ДЗИ</p>
+          <nav class="footer-links">
+            <a href="../../">Начало</a>
+            <a href="../">Блог</a>
+            <a href="../../stats/">Статистика</a>
+          </nav>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    function fallbackCopy(text) {
+      var area = document.createElement('textarea');
+      area.value = text;
+      area.setAttribute('readonly', '');
+      area.style.position = 'fixed';
+      area.style.top = '-1000px';
+      document.body.appendChild(area);
+      area.select();
+      var ok = false;
+      try {
+        ok = document.execCommand('copy');
+      } catch (e) {
+        ok = false;
+      }
+      document.body.removeChild(area);
+      return ok;
+    }
+
+    function showActionFeedback(button, text) {
+      var original = button.getAttribute('data-original-text');
+      if (!original) {
+        original = button.textContent;
+        button.setAttribute('data-original-text', original);
+      }
+      button.textContent = text;
+      button.classList.add('is-copied');
+      window.clearTimeout(button._feedbackTimer);
+      button._feedbackTimer = window.setTimeout(function () {
+        button.textContent = original;
+        button.classList.remove('is-copied');
+      }, 1800);
+    }
+
+    function copyArticleLink(button) {
+      var url = button.getAttribute('data-copy-url') || button.getAttribute('data-share-url') || window.location.href.split('#')[0];
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(url).then(function () {
+          showActionFeedback(button, 'Копирано');
+        }, function () {
+          if (fallbackCopy(url)) showActionFeedback(button, 'Копирано');
+          else window.prompt('Копирай линка:', url);
+        });
+      } else if (fallbackCopy(url)) {
+        showActionFeedback(button, 'Копирано');
+      } else {
+        window.prompt('Копирай линка:', url);
+      }
+    }
+
+    function initArticleActions() {
+      var copyButtons = document.querySelectorAll('[data-copy-link]');
+      for (var i = 0; i < copyButtons.length; i++) {
+        copyButtons[i].addEventListener('click', function () {
+          copyArticleLink(this);
+        });
+      }
+
+      var shareButtons = document.querySelectorAll('[data-share-link]');
+      for (var j = 0; j < shareButtons.length; j++) {
+        var button = shareButtons[j];
+        if (!navigator.share) continue;
+        button.hidden = false;
+        button.addEventListener('click', function () {
+          var clicked = this;
+          var title = this.getAttribute('data-share-title') || document.title;
+          var url = this.getAttribute('data-share-url') || window.location.href.split('#')[0];
+          navigator.share({ title: title, url: url }).catch(function (err) {
+            if (!err || err.name !== 'AbortError') copyArticleLink(clicked);
+          });
+        });
+      }
+    }
+
+    var D = {
+      sector: {
+        years: ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026'],
+        g4: [755, 961, null, 1077, 1071, 1261, 1133, 1290, 1297],
+        g7: [658, 801, 797, 847, 973, 1184, 1187, 1189, 1273],
+        g10: [null, null, null, 749, 869, 961, 973, 1019, 1100],
+        g12: [736, 728, 665, 686, 694, 854, 1034, 1120, 1111]
+      },
+      hist: {
+        labels: ['под 0,5', '0,5–0,75', '0,75–1', '1–1,25', '1,25–1,5', 'над 1,5'],
+        counts: [20, 32, 68, 65, 24, 38]
+      },
+      b47: {
+        cats: ['Свиващи се<br>≤0,75 (55)', 'Стабилни<br>0,75–1,25 (130)', 'Растящи<br>≥1,25 (63)'],
+        p1: [84.8, 92.2, 89.6],
+        p2: [84.3, 91.3, 79.7]
+      },
+      b1012: {
+        cats: ['Стабилни<br>0,75–1,25 (100)', 'Растящи<br>≥1,25 (52)'],
+        p1: [86.6, 75.6],
+        p2: [86.9, 64.6]
+      }
+    };
+
+    function pal() {
+      var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+      return {
+        dark: dark,
+        text: dark ? '#e2e8f0' : '#1e293b',
+        muted: dark ? '#94a3b8' : '#64748b',
+        grid: dark ? '#334155' : '#e2e8f0',
+        tipBg: dark ? '#1e293b' : '#ffffff',
+        tipBorder: dark ? '#334155' : '#e2e8f0',
+        blue: dark ? '#60a5fa' : '#2563eb',
+        amber: '#f59e0b',
+        green: dark ? '#4ade80' : '#16a34a',
+        red: dark ? '#f87171' : '#dc2626',
+        purple: dark ? '#c084fc' : '#9333ea',
+        slate: dark ? '#94a3b8' : '#64748b'
+      };
+    }
+
+    function base(p, height) {
+      return {
+        chart: { backgroundColor: 'transparent', height: height, style: { fontFamily: 'inherit' } },
+        credits: { enabled: false },
+        title: { text: null },
+        legend: { itemStyle: { color: p.text, fontWeight: '500' }, itemHoverStyle: { color: p.dark ? '#fff' : '#000' } },
+        xAxis: { labels: { style: { color: p.muted, fontSize: '0.85em' } }, lineColor: p.grid, tickColor: p.grid },
+        yAxis: { labels: { style: { color: p.muted, fontSize: '0.85em' } }, gridLineColor: p.grid, title: { text: null } },
+        tooltip: { backgroundColor: p.tipBg, borderColor: p.tipBorder, style: { color: p.text } },
+        plotOptions: { series: { animation: false } }
+      };
+    }
+
+    var charts = [];
+
+    function renderCharts() {
+      while (charts.length) { try { charts.pop().destroy(); } catch (e) {} }
+      var p = pal();
+
+      // 1. Sector growth: participants per grade over the years
+      charts.push(Highcharts.chart('chart-sector', Highcharts.merge(base(p, 400), {
+        chart: { type: 'line' },
+        xAxis: { categories: D.sector.years },
+        yAxis: { min: 0 },
+        tooltip: { shared: true, pointFormat: '<span style="color:{series.color}">●</span> {series.name}: <b>{point.y}</b><br/>' },
+        plotOptions: { line: { marker: { enabled: true, radius: 3 } } },
+        series: [
+          { name: '4 клас', data: D.sector.g4, color: p.blue },
+          { name: '7 клас', data: D.sector.g7, color: p.green },
+          { name: '10 клас', data: D.sector.g10, color: p.amber },
+          { name: '12 клас (ДЗИ)', data: D.sector.g12, color: p.purple }
+        ]
+      })));
+
+      // 2. Histogram of 4->7 retention ratios
+      charts.push(Highcharts.chart('chart-hist', Highcharts.merge(base(p, 380), {
+        chart: { type: 'column' },
+        xAxis: { categories: D.hist.labels, labels: { style: { color: p.text, fontSize: '0.85em' } } },
+        yAxis: { min: 0 },
+        legend: { enabled: false },
+        tooltip: { pointFormat: '<b>{point.y}</b> випуска' },
+        plotOptions: { column: { dataLabels: { enabled: true, format: '{point.y}', style: { color: p.text, fontWeight: '700', textOutline: 'none' } } } },
+        series: [{ name: 'Випуски', data: D.hist.counts.map(function (y, i) { return { y: y, color: (i === 2 || i === 3) ? p.blue : p.slate }; }) }]
+      })));
+
+      // 3 + 4. Percentile before/after by retention bucket
+      function bucketChart(el, d, lbl1, lbl2) {
+        charts.push(Highcharts.chart(el, Highcharts.merge(base(p, 380), {
+          chart: { type: 'column' },
+          xAxis: { categories: d.cats, labels: { style: { color: p.text, fontSize: '0.85em' } } },
+          yAxis: { min: 0, max: 100, tickInterval: 20 },
+          tooltip: { shared: true, pointFormat: '<span style="color:{series.color}">●</span> {series.name}: <b>{point.y}</b><br/>' },
+          plotOptions: { column: { pointPadding: 0.08, groupPadding: 0.18, dataLabels: { enabled: true, format: '{point.y:.1f}', style: { color: p.text, fontWeight: '700', textOutline: 'none' } } } },
+          series: [
+            { name: lbl1, data: d.p1, color: p.slate },
+            { name: lbl2, data: d.p2, color: p.blue }
+          ]
+        })));
+      }
+      bucketChart('chart-b47', D.b47, 'Персентил в 4. клас', 'Персентил в 7. клас');
+      bucketChart('chart-b1012', D.b1012, 'Персентил в 10. клас', 'Персентил в 12. клас');
+    }
+
+    window.redraw = renderCharts;
+    document.addEventListener('DOMContentLoaded', function () {
+      initArticleActions();
+      if (window.Highcharts) {
+        Highcharts.setOptions({ accessibility: { enabled: false } });
+        renderCharts();
+      }
+    });
+  </script>
+</body>
+</html>
