@@ -461,13 +461,13 @@ To publish the notebook from the repo (instead of editing on kaggle.com), use th
 ```bash
 cd kaggle
 kaggle kernels push -p .
-kaggle kernels status johnddavidson/v1-0-initial-exploratory-analysis  # check the server-side run
+kaggle kernels status johnddavidson/initial-exploratory-analysis-2018-2026  # check the server-side run
 ```
 `dataset_sources` in `kernel-metadata.json` is unpinned, so each push runs against the latest dataset version.
 
 ### Kaggle links
 - Dataset: https://www.kaggle.com/datasets/johnddavidson/bulgarian-school-exam-results-20182025
-- Notebook: https://www.kaggle.com/code/johnddavidson/v1-0-initial-exploratory-analysis
+- Notebook: https://www.kaggle.com/code/johnddavidson/initial-exploratory-analysis-2018-2026
 
 ## Editing Conventions
 
