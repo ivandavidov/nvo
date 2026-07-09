@@ -35,8 +35,6 @@ with open(os.path.join(OUT, 'cities.csv'), 'w', newline='', encoding='utf-8') as
 print('cities.csv')
 
 # --- scores.csv (main dataset: one row per school per grade per year) ---
-YEARS = list(range(2018, 2026))
-
 with open(os.path.join(OUT, 'scores.csv'), 'w', newline='', encoding='utf-8') as f:
     w = csv.writer(f)
     w.writerow(['grade', 'year', 'city', 'school_code', 'bel_score', 'mat_score', 'bel_students', 'mat_students'])
@@ -45,6 +43,7 @@ with open(os.path.join(OUT, 'scores.csv'), 'w', newline='', encoding='utf-8') as
         data_path = os.path.join(API, grade, 'data.json')
         with open(data_path) as gf:
             grade_data = json.load(gf)
+        YEARS = grade_data['yearsRange']
 
         for city_slug, city_info in grade_data['cities'].items():
             for school_code, school in city_info['schools'].items():
@@ -72,12 +71,14 @@ with open(os.path.join(OUT, 'rankings.csv'), 'w', newline='', encoding='utf-8') 
     w = csv.writer(f)
     w.writerow(['grade', 'year', 'type', 'rank', 'adjusted_rank', 'school_code', 'city', 'bel_score', 'mat_score', 'score'])
 
+    def ranking_years(*dirs):
+        d = os.path.join(API, 'rankings', *dirs)
+        return sorted(int(fn[:-5]) for fn in os.listdir(d) if fn.endswith('.json'))
+
     for grade in ['4', '7', '10', '12']:
         # Year rankings
-        for year in YEARS:
+        for year in ranking_years(grade):
             path = os.path.join(API, 'rankings', grade, f'{year}.json')
-            if not os.path.exists(path):
-                continue
             with open(path) as rf:
                 rdata = json.load(rf)
             for s in rdata['schools']:
@@ -86,10 +87,8 @@ with open(os.path.join(OUT, 'rankings.csv'), 'w', newline='', encoding='utf-8') 
                             s.get('belScore', ''), s.get('matScore', ''), s.get('score', '')])
 
         # Median rankings
-        for year in range(2020, 2026):
+        for year in ranking_years('median', grade):
             path = os.path.join(API, 'rankings', 'median', grade, f'{year}.json')
-            if not os.path.exists(path):
-                continue
             with open(path) as rf:
                 rdata = json.load(rf)
             for s in rdata['schools']:

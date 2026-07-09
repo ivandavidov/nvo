@@ -426,15 +426,16 @@ The `kaggle/` directory contains everything needed to publish and maintain the K
 ```text
 kaggle/
   dataset-metadata.json   Kaggle dataset metadata (title, subtitle, tags, resources)
+  kernel-metadata.json    Kaggle notebook metadata (for `kaggle kernels push`)
   README.md               dataset description (shown on Kaggle dataset page)
   notebook.ipynb           exploratory analysis notebook (published on Kaggle)
   prepare.py               converts JSON API → 4 CSV files in data/
   generate_cover.py        generates cover.png for the Kaggle dataset page
   cover.png                generated cover image (1128×568)
   data/                    generated CSV files (gitignored)
-    scores.csv             25,945 rows — scores per school/grade/year
-    rankings.csv           45,724 rows — annual + 3-year median rankings
-    schools.csv            1,414 rows — school directory (data-driven: schools that appear in the data)
+    scores.csv             29,301 rows — scores per school/grade/year
+    rankings.csv           52,434 rows — annual + 3-year median rankings
+    schools.csv            1,417 rows — school directory (data-driven: schools that appear in the data)
     cities.csv             145 rows — city directory
 ```
 
@@ -455,6 +456,14 @@ python3 generate_cover.py
 After generating the CSVs, upload to Kaggle via the Kaggle web interface or CLI.
 
 The notebook (`notebook.ipynb`) is stored without outputs — Kaggle runs it server-side on publish.
+
+To publish the notebook from the repo (instead of editing on kaggle.com), use the Kaggle CLI with `kernel-metadata.json` (requires an API token in `~/.kaggle/kaggle.json`, created from Kaggle → Settings → API):
+```bash
+cd kaggle
+kaggle kernels push -p .
+kaggle kernels status johnddavidson/v1-0-initial-exploratory-analysis  # check the server-side run
+```
+`dataset_sources` in `kernel-metadata.json` is unpinned, so each push runs against the latest dataset version.
 
 ### Kaggle links
 - Dataset: https://www.kaggle.com/datasets/johnddavidson/bulgarian-school-exam-results-20182025

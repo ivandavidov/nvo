@@ -40,7 +40,7 @@ gap = 10
 
 # Load actual top-10 scores from grade 7, year 2025 for realistic data
 try:
-    with open(os.path.join(API, 'rankings', '7', '2025.json')) as f:
+    with open(os.path.join(API, 'rankings', '7', '2026.json')) as f:
         rdata = json.load(f)
     top_schools = rdata['schools'][:9]
     bel_scores = [s['belScore'] for s in top_schools]
@@ -75,7 +75,7 @@ draw.rectangle([(lx, ly), (lx + 14, ly + 14)], fill=BAR1)
 draw.text((lx + 20, ly - 2), "БЕЛ", fill=TEXT_DIM, font=font(16))
 draw.rectangle([(lx + 75, ly), (lx + 89, ly + 14)], fill=BAR2)
 draw.text((lx + 95, ly - 2), "МАТ", fill=TEXT_DIM, font=font(16))
-draw.text((lx + 155, ly - 2), "Топ 9 училища, НВО 7 клас, 2025", fill=TEXT_DIM, font=font(14))
+draw.text((lx + 155, ly - 2), "Топ 9 училища, НВО 7 клас, 2026", fill=TEXT_DIM, font=font(14))
 
 # --- Right side: text content ---
 tx = 570
@@ -84,17 +84,17 @@ draw.text((tx, 50), "Bulgarian School", fill=TEXT, font=font(44))
 draw.text((tx, 104), "Exam Results", fill=TEXT, font=font(44))
 
 # Subtitle with accent
-draw.text((tx, 170), "НВО & ДЗИ  2018–2025", fill=ACCENT, font=font(28))
+draw.text((tx, 170), "НВО & ДЗИ  2018–2026", fill=ACCENT, font=font(28))
 
 # Author
 draw.text((tx, 220), "by Ivan Davidov", fill=TEXT_DIM, font=font(22))
 
 # Stats boxes
 stats = [
-    ("1,388", "schools"),
+    ("1,417", "schools"),
     ("145", "cities"),
-    ("25,945", "score records"),
-    ("45,724", "rankings"),
+    ("29,301", "score records"),
+    ("52,434", "rankings"),
 ]
 
 sy = 280

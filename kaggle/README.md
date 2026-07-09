@@ -1,4 +1,4 @@
-# Bulgarian School Exam Results — НВО and ДЗИ (2018–2025)
+# Bulgarian School Exam Results — НВО and ДЗИ (2018–2026)
 
 Comprehensive dataset of national exam results for all schools in Bulgaria, covering the National External Assessment (НВО) for grades 4, 7, and 10, and the State Matriculation Exams (ДЗИ) for grade 12.
 
@@ -13,14 +13,14 @@ Raw data originates from the Bulgarian Open Data Portal ([data.egov.bg](https://
 
 ## Files
 
-### scores.csv (25,945 rows)
+### scores.csv (29,301 rows)
 
 One row per school per grade per year where at least one exam score exists.
 
 | Column | Type | Description |
 |--------|------|-------------|
 | grade | int | Grade level: 4, 7, 10, or 12 |
-| year | int | Exam year (2018–2025) |
+| year | int | Exam year (2018–2026) |
 | city | string | City slug (e.g., "sofia", "plovdiv") |
 | school_code | string | Unique school identifier |
 | bel_score | float | Bulgarian Language and Literature score |
@@ -30,7 +30,7 @@ One row per school per grade per year where at least one exam score exists.
 
 **Score scale:** 0–100 for grades 4, 7, 10; 2–6 for grade 12 (ДЗИ).
 
-### rankings.csv (45,724 rows)
+### rankings.csv (52,434 rows)
 
 School rankings by composite score (average of BEL and MAT). Two types:
 
@@ -50,7 +50,7 @@ School rankings by composite score (average of BEL and MAT). Two types:
 | mat_score | float | MAT score (or median for type=median) |
 | score | float | Composite score |
 
-### schools.csv (1,414 rows)
+### schools.csv (1,417 rows)
 
 Master directory of all schools.
 
@@ -79,10 +79,17 @@ All cities where schools participate in national exams.
 
 | Grade | Exam | Years | Scale |
 |-------|------|-------|-------|
-| 4 | НВО (National External Assessment) | 2018–2025 | 0–100 |
-| 7 | НВО (National External Assessment) | 2018–2025 | 0–100 |
-| 10 | НВО (National External Assessment) | 2021–2025 | 0–100 |
-| 12 | ДЗИ (State Matriculation Exams) | 2018–2025 | 2–6 |
+| 4 | НВО (National External Assessment) | 2018–2026 | 0–100 |
+| 7 | НВО (National External Assessment) | 2018–2026 | 0–100 |
+| 10 | НВО (National External Assessment) | 2021–2026 | 0–100 |
+| 12 | ДЗИ (State Matriculation Exams) | 2018–2026 | 2–6 |
+
+### Data caveats
+
+A few grade/year slices are placeholder copies of adjacent years, kept for structural consistency with the source website. Exclude them from year-over-year, trend, or cohort analyses:
+
+- **Grade 4, 2020** — copy of 2019 (the exam was cancelled due to COVID-19)
+- **Grade 10, 2018–2020** — НВО for grade 10 was first held in 2021; earlier years mirror adjacent data (2018 = 2019, 2020 = 2021)
 
 ## Usage Ideas
 
@@ -100,4 +107,4 @@ MIT — free to use, modify, and redistribute with attribution.
 
 If you use this dataset, please cite:
 
-> Ivan Davidov, "Bulgarian School Exam Results — НВО and ДЗИ (2018–2025)", https://ivandavidov.github.io/nvo
+> Ivan Davidov, "Bulgarian School Exam Results — НВО and ДЗИ (2018–2026)", https://ivandavidov.github.io/nvo
