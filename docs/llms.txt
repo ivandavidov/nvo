@@ -48,7 +48,7 @@
 ## Kaggle
 
 - [Kaggle Dataset](https://www.kaggle.com/datasets/johnddavidson/bulgarian-school-exam-results-20182025): CSV данни за всички училища — оценки, класации, справочници
-- [Kaggle Notebook](https://www.kaggle.com/code/johnddavidson/v1-0-initial-exploratory-analysis): Анализ с визуализации — тенденции, топ училища, сравнение частни/държавни
+- [Kaggle Notebook](https://www.kaggle.com/code/johnddavidson/initial-exploratory-analysis-2018-2026): Анализ с визуализации — тенденции, топ училища, сравнение частни/държавни
 
 ## API
 
