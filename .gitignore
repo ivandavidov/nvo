@@ -27,6 +27,11 @@ tmp-ruo-haskovo/
 tmp-ruo-blagoevgrad/
 tmp-ruo-iambol/
 tmp-ruo-veliko-turnovo/
+tmp-ruo-pazardjik/
+tmp-ruo-vraca/
+
+# one-off RUO responses/attachments dump (not part of the build)
+tmp-all-ruo/
 
 # one-off RUO school-name → code fuzzy-matching script (working dir, not committed)
 scratch_mapping_v2/
