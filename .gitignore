@@ -35,6 +35,11 @@ tmp-ruo-montana/
 tmp-ruo-vidin/
 tmp-ruo-kiustendil/
 tmp-ruo-targovishte/
+tmp-ruo-lovech/
+tmp-ruo-razgrad/
+tmp-ruo-silistra/
+tmp-ruo-smolian/
+tmp-ruo-sofia-oblast/
 
 # one-off RUO responses/attachments dump (not part of the build)
 tmp-all-ruo/
