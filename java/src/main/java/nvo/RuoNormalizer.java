@@ -29,7 +29,7 @@ public class RuoNormalizer {
 
     public static void main(String... args) throws Exception {
         if (args.length == 0) {
-            System.err.println("Expected argument: 2023, 2024, 2025, or all");
+            System.err.println("Expected argument: 2023, 2024, 2025, 2026, or all");
             System.exit(1);
         }
 
@@ -38,13 +38,15 @@ public class RuoNormalizer {
             case "2023" -> normalizer.normalizeYear(2023);
             case "2024" -> normalizer.normalizeYear(2024);
             case "2025" -> normalizer.normalizeYear(2025);
+            case "2026" -> normalizer.normalizeYear(2026);
             case "all" -> {
                 normalizer.normalizeYear(2023);
                 normalizer.normalizeYear(2024);
                 normalizer.normalizeYear(2025);
+                normalizer.normalizeYear(2026);
             }
             default -> {
-                System.err.println("Invalid argument: " + args[0] + ". Expected: 2023, 2024, 2025, or all");
+                System.err.println("Invalid argument: " + args[0] + ". Expected: 2023, 2024, 2025, 2026, or all");
                 System.exit(1);
             }
         }
@@ -55,6 +57,7 @@ public class RuoNormalizer {
             case 2023 -> normalize2023();
             case 2024 -> normalize2024();
             case 2025 -> normalize2025();
+            case 2026 -> normalize2026();
             default -> throw new IllegalArgumentException("Unsupported year: " + year);
         }
     }
@@ -86,6 +89,12 @@ public class RuoNormalizer {
         rows.addAll(normalizeKlasirane(2025, 3, 5));
         rows.addAll(normalizeKlasirane(2025, 4, 5));
         writeCSV(2025, rows);
+    }
+
+    private void normalize2026() throws Exception {
+        // Only klasirane 1 is published so far (11-column format, no Брой паралелки)
+        List<String[]> rows = new ArrayList<>(normalizeKlasirane(2026, 1, 5));
+        writeCSV(2026, rows);
     }
 
     // ── Core parsing ─────────────────────────────────────────────────────────

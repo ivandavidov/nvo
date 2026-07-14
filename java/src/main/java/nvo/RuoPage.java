@@ -8,7 +8,9 @@ import java.util.Comparator;
 public class RuoPage {
 
     private static final String OUTPUT_BASE = ProjectConfig.DOCS_DIR + "7/" + ProjectConfig.RUO_DIR_NAME + "/";
-    private static final int YEARS_TO_SHOW = 3;
+    private static final int YEARS_TO_SHOW = 4;
+    private static final int OVERVIEW_YEARS_TO_SHOW = 3;
+    private static final int KLASIRANE_CHARTS = 3;
 
     public static void main(String... args) throws Exception {
         if (args.length == 0) {
@@ -206,6 +208,7 @@ public class RuoPage {
                             <li>Избери училище и паралелка, за да видиш конкретните данни.</li>
                             <li>Отметката за пол добавя по-подробна разбивка за последната година.</li>
                             <li>Графиките показват както промяната по години, така и разликите между отделните класирания.</li>
+                            <li>Ако училището е преименувало паралелка или е сменило профила ѝ, данните от предишните години се показват под новото ѝ име.</li>
                           </ul>
                         </div>
                       </details>
@@ -237,7 +240,9 @@ public class RuoPage {
                         </div>
                         <div class="ruo-charts">
                           <div class="ruo-chart-box"><div id="trend-chart" style="height:280px"></div></div>
-                          <div class="ruo-chart-box"><div id="klasirane-chart" style="height:280px"></div></div>
+                          <div class="ruo-chart-box" id="klasirane-box-0"><div id="klasirane-chart-0" style="height:280px"></div></div>
+                          <div class="ruo-chart-box" id="klasirane-box-1"><div id="klasirane-chart-1" style="height:280px"></div></div>
+                          <div class="ruo-chart-box" id="klasirane-box-2"><div id="klasirane-chart-2" style="height:280px"></div></div>
                         </div>
 
                       </div>
@@ -283,13 +288,16 @@ public class RuoPage {
                   // ── Shared state ──────────────────────────────────────────
 
                   var yearsToShow = %d;
+                  var overviewYearsToShow = %d;
+                  var klasiraneChartsCount = %d;
                   var firstVisibleYi = Math.max(0, ruoYears.length - yearsToShow);
                   var pageYears = ruoYears.slice(firstVisibleYi);
                   var latestYi  = pageYears.length - 1;
+                  var overviewFirstYi = Math.max(0, latestYi - (overviewYearsToShow - 1));
                   var overviewRows = [];
                   var sortCol   = latestYi >= 0 ? 'year-' + latestYi : 'school';
                   var sortDir   = -1;   // -1 = desc, 1 = asc
-                  var trendChart, klasiraneChart;
+                  var trendChart, klasiraneCharts = [];
 
                   // ── Utilities ─────────────────────────────────────────────
 
@@ -359,6 +367,11 @@ public class RuoPage {
                     document.getElementById('school-select').value = schoolCode;
                     populateProfileSelect(schoolCode);
 
+                    // Older links may use a zero-padded profile code (e.g. "03909" for "3909")
+                    if (profileCode && !ruoSchools[schoolCode].p[profileCode]) {
+                      profileCode = profileCode.replace(/^0+(?=.)/, '');
+                    }
+
                     if (profileCode && ruoSchools[schoolCode].p[profileCode]) {
                       document.getElementById('profile-select').value = profileCode;
                     } else {
@@ -426,7 +439,7 @@ public class RuoPage {
                       + '<th class="col-num">#</th>'
                       + '<th class="col-school" data-sortable="1" data-col="school">Училище</th>'
                       + '<th class="col-profile" data-sortable="1" data-col="profile">Паралелка</th>';
-                    for (var yi = latestYi; yi >= 0; yi--) {
+                    for (var yi = latestYi; yi >= overviewFirstYi; yi--) {
                       html += '<th class="col-score" data-sortable="1" data-col="year-' + yi + '">Мин. ' + pageYears[yi] + '</th>';
                     }
                     html += '<th class="col-trend">Тренд</th></tr>';
@@ -452,7 +465,7 @@ public class RuoPage {
                         + '<td>' + (i + 1) + '</td>'
                         + '<td class="col-school"><div class="ruo-clip" title="' + esc(r.school) + '">' + esc(r.school) + '</div></td>'
                         + '<td class="col-profile"><div class="ruo-clip" title="' + esc(r.profile) + '">' + esc(r.profile) + '</div></td>';
-                      for (var yi = latestYi; yi >= 0; yi--) {
+                      for (var yi = latestYi; yi >= overviewFirstYi; yi--) {
                         var minScore = r.yearMins[yi];
                         html += '<td>' + (minScore !== null ? minScore : '\\u2014') + '</td>';
                       }
@@ -578,7 +591,7 @@ public class RuoPage {
                       : '<th>Мин</th><th>Макс</th>';
                     var yis = showGender
                       ? [latestYi]
-                      : pageYears.map(function (y, i) { return i; });
+                      : pageYears.map(function (y, i) { return i; }).reverse();
 
                     var thead = '<thead><tr><th>Класиране</th>';
                     yis.forEach(function (yi) {
@@ -664,23 +677,36 @@ public class RuoPage {
                     if (trendChart) trendChart.destroy();
                     trendChart = Highcharts.chart('trend-chart', opts1);
 
-                    // Chart 2: Min/max per klasirane (latest year)
-                    var minKlas = [], maxKlas = [];
-                    for (var ki = 0; ki < 4; ki++) {
-                      var k = d[latestYi] ? d[latestYi][ki] : null;
-                      minKlas.push(k ? k[0] : null);
-                      maxKlas.push(k ? k[3] : null);
+                    // Charts 2+: Min/max per klasirane — one chart per year,
+                    // starting from the latest year with data and going back.
+                    var availYis = [];
+                    for (var ayi = latestYi; ayi >= 0 && availYis.length < klasiraneChartsCount; ayi--) {
+                      var hasData = d[ayi] && d[ayi].some(function (k) { return !!k; });
+                      if (hasData) availYis.push(ayi);
                     }
-                    var opts2 = baseChartOpts(c,
-                        'Балове по класирания (' + pageYears[latestYi] + ')',
-                        ['1-во', '2-ро', '3-то', '4-то']);
-                    opts2.chart.type = 'column';
-                    opts2.series = [
-                      { name: 'Мин. бал', data: minKlas, color: '#3b82f6' },
-                      { name: 'Макс. бал', data: maxKlas, color: '#f59e0b' }
-                    ];
-                    if (klasiraneChart) klasiraneChart.destroy();
-                    klasiraneChart = Highcharts.chart('klasirane-chart', opts2);
+                    klasiraneCharts.forEach(function (ch) { if (ch) ch.destroy(); });
+                    klasiraneCharts = [];
+                    for (var ci = 0; ci < klasiraneChartsCount; ci++) {
+                      var box = document.getElementById('klasirane-box-' + ci);
+                      if (ci >= availYis.length) { box.style.display = 'none'; continue; }
+                      box.style.display = '';
+                      var yi = availYis[ci];
+                      var minKlas = [], maxKlas = [];
+                      for (var ki = 0; ki < 4; ki++) {
+                        var k = d[yi] ? d[yi][ki] : null;
+                        minKlas.push(k ? k[0] : null);
+                        maxKlas.push(k ? k[3] : null);
+                      }
+                      var opts2 = baseChartOpts(c,
+                          'Балове по класирания (' + pageYears[yi] + ')',
+                          ['1-во', '2-ро', '3-то', '4-то']);
+                      opts2.chart.type = 'column';
+                      opts2.series = [
+                        { name: 'Мин. бал', data: minKlas, color: '#3b82f6' },
+                        { name: 'Макс. бал', data: maxKlas, color: '#f59e0b' }
+                      ];
+                      klasiraneCharts.push(Highcharts.chart('klasirane-chart-' + ci, opts2));
+                    }
                   }
 
                   // ── Init ──────────────────────────────────────────────────
@@ -740,7 +766,7 @@ public class RuoPage {
 
                 })();
                   </script>
-                """.formatted(hrefName, YEARS_TO_SHOW);
+                """.formatted(hrefName, YEARS_TO_SHOW, OVERVIEW_YEARS_TO_SHOW, KLASIRANE_CHARTS);
     }
 
     private String buildFooter() {

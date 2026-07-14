@@ -87,7 +87,7 @@ public class RuoDecomplexor {
             while ((row = reader.readNext()) != null) {
                 String schoolCode  = row[2];
                 String schoolName  = row[3];
-                String profileCode = row[4];
+                String profileCode = canonicalProfileCode(row[4]);
                 String profileName = row[5];
                 int klasirane      = Integer.parseInt(row[1]) - 1; // 0-based index
 
@@ -99,11 +99,30 @@ public class RuoDecomplexor {
                 schoolNames.put(schoolCode, schoolName);
                 profileNames.computeIfAbsent(schoolCode, k -> new LinkedHashMap<>())
                             .put(profileCode, profileName);
-                scores.computeIfAbsent(schoolCode, k -> new LinkedHashMap<>())
-                      .computeIfAbsent(profileCode, k -> initSlots(totalYears))
-                      .get(yearIndex).set(klasirane, entry);
+                List<double[]> yearSlots = scores
+                        .computeIfAbsent(schoolCode, k -> new LinkedHashMap<>())
+                        .computeIfAbsent(profileCode, k -> initSlots(totalYears))
+                        .get(yearIndex);
+                if (yearSlots.get(klasirane) != null) {
+                    System.out.println("  WARNING: duplicate entry for school " + schoolCode
+                            + " profile " + profileCode + " year " + year
+                            + " klasirane " + (klasirane + 1) + " — keeping the last row");
+                }
+                yearSlots.set(klasirane, entry);
             }
         }
+    }
+
+    /**
+     * Strips leading zeros so the same profile keeps one code across years even when
+     * a raw file pads codes differently (e.g. Sofia 2026 writes "03909" for "3909").
+     * Profiles are keyed by this canonical code, so a renamed/repurposed profile keeps
+     * its history and is shown under the most recent year's name.
+     */
+    private String canonicalProfileCode(String code) {
+        int i = 0;
+        while (i < code.length() - 1 && code.charAt(i) == '0') i++;
+        return code.substring(i);
     }
 
     /** Initializes an empty [totalYears][4] structure with null entries. */

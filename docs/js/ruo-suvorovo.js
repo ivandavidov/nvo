@@ -14,45 +14,82 @@
 //            всяко класиране: [мин_общо, мин_м, мин_ж, макс_общо, макс_м, макс_ж]
 //                             или null (паралелката е попълнена в предходно класиране)
 
-let ruoYears = [2023, 2024, 2025];
+let ruoYears = [2023, 2024, 2025, 2026];
 
 let ruoSchools = {};
 ruoSchools["400166"] = {n: "ПГ по сел. стоп.", f: "ПГ по селско стопанство", c: false, p: {
   "4406": {n: "Ветеринарен техник - БИБРИЧЕ_РЕ", d: [
     [[46,0,0,334.5,0,0], null, [70,0,0,214,0,0], null],
     [[52,52,110,271,180,271], null, null, null],
-    [[93,0,0,224,0,0], null, null, null]
+    [[93,0,0,224,0,0], null, null, null],
+    [null, null, null, null]
   ]},
   "3822": {n: "Подпомагане на деца - БИБРИЧЕ_РЕ", d: [
     [[51,0,0,252.5,0,0], null, [115,0,0,115,0,0], null],
+    [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null]
   ]},
   "2505": {n: "Пътно-строителна техника - БИБРИЧЕ_РЕ", d: [
     [[74,0,0,265,0,0], null, [92,0,0,92,0,0], null],
     [[73,73,0,231.5,231.5,0], null, null, null],
-    [[30,0,0,214,0,0], null, [30,0,0,65,0,0], null]
+    [[30,0,0,214,0,0], null, [30,0,0,65,0,0], null],
+    [null, null, null, null]
   ]},
   "5079": {n: "Трайни насаждения - БИБРИЧЕ_РЕ", d: [
     [null, null, null, null],
     [null, null, null, null],
-    [[90,0,0,324,0,0], null, null, null]
+    [[90,0,0,324,0,0], null, null, null],
+    [null, null, null, null]
+  ]},
+  "29997": {n: "Агрономство и агробизнес_БИБРИЧЕ_АЕ", d: [
+    [null, null, null, null],
+    [null, null, null, null],
+    [null, null, null, null],
+    [[30,30,76,212,185,212], null, null, null]
+  ]},
+  "30002": {n: "Асистиране в денталната медицина_РИЧЕ_АЕ", d: [
+    [null, null, null, null],
+    [null, null, null, null],
+    [null, null, null, null],
+    [[96,116,96,272,191.5,272], null, null, null]
+  ]},
+  "29974": {n: "Ветринарен техник_БИБРИЧЕ_АЕ", d: [
+    [null, null, null, null],
+    [null, null, null, null],
+    [null, null, null, null],
+    [[101,118,101,292.5,292.5,187], null, null, null]
+  ]},
+  "29965": {n: "Пътностроителна техника_БИБРИЧЕ_АЕ", d: [
+    [null, null, null, null],
+    [null, null, null, null],
+    [null, null, null, null],
+    [[82,82,0,188,188,0], null, null, null]
   ]},
 }};
 ruoSchools["400163"] = {n: "СУ Никола Вапцаров", f: "СУ Никола Вапцаров", c: false, p: {
   "3745": {n: "Екскурзовод - РИЧЕ_АЕ", d: [
     [[30,0,0,354.5,0,0], [354.5,0,0,354.5,0,0], [314,0,0,330.5,0,0], null],
     [null, null, null, null],
+    [null, null, null, null],
     [null, null, null, null]
   ]},
   "3742": {n: "Хуманитарни науки_РИЧЕ_АЕ_проф. предм._БЕЛ_Философия", d: [
     [[229,0,0,229,0,0], [229,0,0,229,0,0], null, null],
+    [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null]
   ]},
   "4649": {n: "Производство и обслужване в заведенията за хранене и развлечения -РИЧЕ-АЕ", d: [
     [null, null, null, null],
     [[30,41,30,285,210,285], null, null, null],
-    [[41,0,0,348.5,0,0], [242,0,0,242,0,0], null, null]
+    [[41,0,0,348.5,0,0], [242,0,0,242,0,0], null, null],
+    [null, null, null, null]
+  ]},
+  "28285": {n: "Ресторантьорство и кетъринг - РИЧЕ - АЕ", d: [
+    [null, null, null, null],
+    [null, null, null, null],
+    [null, null, null, null],
+    [[54,94,54,332,332,315.5], null, null, null]
   ]},
 }};

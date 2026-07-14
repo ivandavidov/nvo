@@ -460,6 +460,7 @@ public class School implements Comparable<School> {
         schoolCodes.putAll(prepareSchoolCodesBalchik());
         // Bankia - part of Sofia
         schoolCodes.putAll(prepareSchoolCodesBerkovitsa());
+        schoolCodes.putAll(prepareSchoolCodesBialaRuse());
         schoolCodes.putAll(prepareSchoolCodesBotevgrad());
         schoolCodes.putAll(prepareSchoolCodesVelingrad());
         schoolCodes.putAll(prepareSchoolCodesGornaOryahovitsa());
@@ -1731,6 +1732,15 @@ public class School implements Comparable<School> {
         schoolCodes.put("1202004", new String[]{"0", "4 ОУ", "4 ОУ Георги Раковски"});
         schoolCodes.put("1202000", new String[]{"0", "ПГ Иван Панов", "ПГ Д-р Иван Панов"});
         schoolCodes.put("1202011", new String[]{"0", "Лесотехн. ПГ", "Лесотехническа ПГ"});
+
+        return schoolCodes;
+    }
+
+    private static Map<String, String[]> prepareSchoolCodesBialaRuse() {
+        Map<String, String[]> schoolCodes = new HashMap<>();
+
+        schoolCodes.put("1802004", new String[]{"0", SU_PANAIOT_VOLOV, SU_PANAIOT_VOLOV});
+        schoolCodes.put("1802005", new String[]{"0", "ПГ Бяла", "ПГ Бяла"});
 
         return schoolCodes;
     }
