@@ -14,28 +14,44 @@
 //            всяко класиране: [мин_общо, мин_м, мин_ж, макс_общо, макс_м, макс_ж]
 //                             или null (паралелката е попълнена в предходно класиране)
 
-let ruoYears = [2023, 2024, 2025];
+let ruoYears = [2023, 2024, 2025, 2026];
 
 let ruoSchools = {};
 ruoSchools["1208002"] = {n: "СУ Иван Вазов", f: "СУ Иван Вазов", c: false, p: {
   "4065": {n: "Готвач", d: [
     [[30,30,30,129,121,129], null, null, null],
     [null, null, null, null],
-    [[66,66,79,94,94,94], null, null, null]
+    [[66,66,79,94,94,94], null, null, null],
+    [null, null, null, null]
   ]},
   "4063": {n: "Изпълнител на термални процедури", d: [
     [[83,83,106,305,291,305], null, null, null],
     [[84,90,84,138.5,138.5,126], null, null, null],
-    [[30,30,78,90,90,82], null, null, null]
+    [[30,30,78,90,90,82], null, null, null],
+    [null, null, null, null]
   ]},
-  "2671": {n: "Чужди езици - АЕ", d: [
+  "2671": {n: "Икономическо развитие", d: [
     [[157,157,172,404,404,345], null, null, null],
     [[83,128,83,340,340,299.5], null, null, null],
-    [[113,148,113,440.5,361,440.5], null, null, null]
+    [[113,148,113,440.5,361,440.5], null, null, null],
+    [[70,0,0,419,0,0], null, null, null]
   ]},
   "4725": {n: "Ресторантьор", d: [
     [null, null, null, null],
     [[30,30,30,106,100,106], null, null, null],
-    [[54,54,68,222,222,156], null, null, null]
+    [[54,54,68,222,222,156], null, null, null],
+    [null, null, null, null]
+  ]},
+  "29947": {n: "Балнеологични и възстановителни процедури", d: [
+    [null, null, null, null],
+    [null, null, null, null],
+    [null, null, null, null],
+    [[52,0,0,75,0,0], null, null, null]
+  ]},
+  "29945": {n: "Готварство", d: [
+    [null, null, null, null],
+    [null, null, null, null],
+    [null, null, null, null],
+    [[73,0,0,117,0,0], null, null, null]
   ]},
 }};
