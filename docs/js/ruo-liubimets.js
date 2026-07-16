@@ -14,28 +14,44 @@
 //            всяко класиране: [мин_общо, мин_м, мин_ж, макс_общо, макс_м, макс_ж]
 //                             или null (паралелката е попълнена в предходно класиране)
 
-let ruoYears = [2023, 2024, 2025];
+let ruoYears = [2023, 2024, 2025, 2026];
 
 let ruoSchools = {};
 ruoSchools["2606005"] = {n: "СУ Желязко Терпешев", f: "СУ Желязко Терпешев", c: false, p: {
-  "2406": {n: "Природни науки", d: [
+  "2406": {n: "Обществени науки", d: [
     [[142,0,0,408,0,0], null, null, null],
     [[32,36,32,445.5,349.5,445.5], null, null, null],
-    [[182,0,0,424.5,0,0], [143,0,0,175,0,0], null, null]
+    [[182,0,0,424.5,0,0], [143,0,0,175,0,0], null, null],
+    [[178,0,0,456,0,0], null, null, null]
   ]},
   "2412": {n: "Монтьор на транспортна техника", d: [
     [[66,0,0,240,0,0], null, null, null],
     [[71,71,192,211,134,211], [66,0,0,66,0,0], null, null],
-    [[30,0,0,263,0,0], null, null, null]
+    [[30,0,0,263,0,0], null, null, null],
+    [null, null, null, null]
   ]},
   "4005": {n: "Готвач", d: [
     [[30,0,0,224,0,0], null, null, null],
     [[88,123,88,253,233,253], null, null, null],
-    [[30,0,0,310,0,0], null, null, null]
+    [[30,0,0,310,0,0], null, null, null],
+    [null, null, null, null]
+  ]},
+  "x16600": {n: "Автомобилна техника и мехатроника", d: [
+    [null, null, null, null],
+    [null, null, null, null],
+    [null, null, null, null],
+    [[50,0,0,255,0,0], null, null, null]
+  ]},
+  "x8b9ab": {n: "Готварство", d: [
+    [null, null, null, null],
+    [null, null, null, null],
+    [null, null, null, null],
+    [[30,0,0,320,0,0], null, null, null]
   ]},
 }};
 ruoSchools["2606006"] = {n: "СУ \"Желязко Терпешев\"", f: "СУ \"Желязко Терпешев\"", c: false, p: {
   "2412": {n: "Монтьор на транспортна техника", d: [
+    [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null]
@@ -43,6 +59,7 @@ ruoSchools["2606006"] = {n: "СУ \"Желязко Терпешев\"", f: "СУ
 }};
 ruoSchools["2606007"] = {n: "СУ \"Желязко Терпешев\"", f: "СУ \"Желязко Терпешев\"", c: false, p: {
   "2406": {n: "Природни науки", d: [
+    [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null]

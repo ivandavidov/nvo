@@ -123,9 +123,10 @@ data/
                       ruo-silistra, ruo-smolian, ruo-sofia-oblast)
                       naming: min_max_{1-4}_klasirane_{2023-2026}.{pdf|xlsx}
                       format varies per region/year (PDF and/or XLSX; some files missing;
-                      2026 so far: klasirane 1 only, for Sofia, Plovdiv, Varna, Burgas,
-                      Ruse, Stara Zagora + Blagoevgrad, Veliko Turnovo, Dobrich, Kiustendil,
-                      Lovech, Vidin, Montana, Kurdzhali (2nd batch via tmp-ruo-2026/build.py);
+                      2026 so far: klasirane 1 only, for 16 of the 29 regions — Sofia,
+                      Plovdiv, Varna, Burgas, Ruse, Stara Zagora + Blagoevgrad, Veliko
+                      Turnovo, Dobrich, Kiustendil, Lovech, Vidin, Montana, Kurdzhali
+                      (2nd batch via tmp-ruo-2026/build.py) + Haskovo, Pernik (own scripts);
                       2026 profile codes are 5-digit everywhere, zero-padded in some regions
                       — RuoDecomplexor canonicalizes them. Gabrovo 2026 is an image-only PDF
                       (not imported, needs OCR/machine-readable file); Montana 2026 has one

@@ -14,18 +14,32 @@
 //            всяко класиране: [мин_общо, мин_м, мин_ж, макс_общо, макс_м, макс_ж]
 //                             или null (паралелката е попълнена в предходно класиране)
 
-let ruoYears = [2023, 2024, 2025];
+let ruoYears = [2023, 2024, 2025, 2026];
 
 let ruoSchools = {};
 ruoSchools["2604004"] = {n: "СУ Кл. Охридски", f: "СУ Климент Охридски", c: false, p: {
   "1533": {n: "Готвач", d: [
     [[30,0,0,255,0,0], null, null, null],
     [[54,54,62,245,196,245], null, null, null],
-    [[41,0,0,246,0,0], null, null, null]
+    [[41,0,0,246,0,0], null, null, null],
+    [null, null, null, null]
   ]},
   "3257": {n: "Машинен монтьор", d: [
     [[30,0,0,168,0,0], null, null, null],
     [[41,41,41,294.5,294.5,41], null, null, null],
-    [[56,0,0,290,0,0], null, null, null]
+    [[56,0,0,290,0,0], null, null, null],
+    [null, null, null, null]
+  ]},
+  "x0c6c3": {n: "Автоматизирани системи и технологии в машиностроенето", d: [
+    [null, null, null, null],
+    [null, null, null, null],
+    [null, null, null, null],
+    [[40,0,0,271,0,0], null, null, null]
+  ]},
+  "x8b9ab": {n: "готварство", d: [
+    [null, null, null, null],
+    [null, null, null, null],
+    [null, null, null, null],
+    [[49,0,0,223.5,0,0], null, null, null]
   ]},
 }};
