@@ -2,6 +2,11 @@
 
 Guidance for AI coding agents working in this repository.
 
+## General Rules
+
+- **No Automatic Commits**: NEVER run `git commit` or `git push` automatically without explicit user approval. Always wait for the user to review the changes and explicitly confirm before pushing code to the repository.
+
+
 ## Project Snapshot
 
 - Project: Bulgarian school comparison site (НВО и ДЗИ)
@@ -229,6 +234,8 @@ The embed pages communicate height to the parent via `postMessage`. Full documen
 - `docs/css/blog.css` — shared article + post-card styles, built on `custom.css` + `theme.js` (so dark/light themes work automatically). Both the home and every post load `custom.css` + `blog.css`.
 
 First post: `dzi-analiz-2026` (ДЗИ 2018–2026 analysis). Its charts use the vendored `highcharts.js` with the aggregates **inlined as a precomputed `var D = {…}`** (not read from `schools-{grade}.js`), so the post is a **snapshot** — it does NOT auto-update when the pipeline reruns. To refresh it, recompute the aggregates (a small Node script over `docs/js/schools-12.js`) and replace `D`. Call `Highcharts.setOptions({accessibility:{enabled:false}})` inside the `DOMContentLoaded` handler (Highcharts is loaded with `defer`, so a top-level call runs too early) and set `window.redraw` so the theme toggle re-renders the charts.
+
+Second post: `kak-da-chetem-balovete` (Как да четем баловете — ръководство за родители). Uses the same inlined `var D = {…}` + `highcharts.js` pattern (snapshot, not auto-updated). Covers: how the admission score is calculated, minimum vs. maximum score, what happens across klasirania, and the limitations of the data. Target audience: parents of 7th-graders. The Revolut support CTA block (`.chart-card` + `.support-btn.support-revolut`) is placed just before the `<aside class="article-end">` footer.
 
 **To add a post:** create `docs/blog/{slug}/index.html` (copy the header/footer from an existing post), add a `.post-card` to `docs/blog/index.html` and a `blogPost` entry to that page's JSON-LD, then run `./all.sh` (SitemapGenerator auto-discovers `docs/blog/{slug}/`).
 
