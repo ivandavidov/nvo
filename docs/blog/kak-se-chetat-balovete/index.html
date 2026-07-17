@@ -97,7 +97,7 @@
 
         <p class="article-lead">
           Досега наблягах на сухите анализи. Тук обаче ще си говорим за онова, което наистина
-          имате нужда да знаете, преди изобщо да отворите някоя таблица. Ако сте родител на седмокласник
+          имаме нужда да знаем, преди изобщо да отворим някоя таблица. Ако сте родител на седмокласник
           и за пръв път гледате лист с балове по паралелки, вероятно сте се хванали за най-голямото число
           на реда. Нека ви спестя малко време: то е най-безполезното.
         </p>
@@ -417,48 +417,45 @@
       while (charts.length) { try { charts.pop().destroy(); } catch (e) {} }
       var p = pal();
 
-      // 1. Min–max range per paralelka — floating bars via a transparent stacked base
-      // (Highcharts core has no columnrange; highcharts-more is not vendored).
-      charts.push(Highcharts.chart('chart-gap', Highcharts.merge(base(p, 400), {
-        chart: { type: 'bar' },
+      // 1. Min–max range per paralelka — dumbbell (range) plot.
+      // Highcharts core has no columnrange, so the connecting band is faked with a
+      // transparent base (0→min) and a visible band (min→max) stacked on top. The
+      // band is listed BEFORE base on purpose: the later bar series sinks to the
+      // bottom of the stack, so base ends up at the bottom (0→min, invisible) and the
+      // band on top (min→max). Two scatter series mark the endpoints + drive the legend.
+      charts.push(Highcharts.chart('chart-gap', Highcharts.merge(base(p, 420), {
+        chart: { type: 'bar', marginRight: 46 },
         xAxis: { categories: D.gap.map(function (g) { return g.t; }), labels: { style: { color: p.text, fontSize: '0.8em' } } },
-        yAxis: { min: 0, max: 500, tickInterval: 100, title: { text: null }, stackLabels: { enabled: false } },
-        legend: { enabled: false },
+        yAxis: { min: 0, max: 500, tickInterval: 100, title: { text: null } },
+        legend: { enabled: true, symbolRadius: 6 },
         tooltip: {
           formatter: function () {
             var g = D.gap[this.point.index];
-            return '<b>' + g.t + '</b><br>Минимален: <b>' + g.min + '</b><br>Максимален: <b>' + g.max + '</b>';
+            return '<b>' + g.t + '</b><br>Летвата (мин.): <b>' + g.min + '</b><br>Първенецът (макс.): <b>' + g.max + '</b><br>Разлика: <b>' + (g.max - g.min).toFixed(2) + '</b>';
           }
         },
-        plotOptions: { bar: { stacking: 'normal', borderWidth: 0, groupPadding: 0.12 } },
         series: [
           {
-            name: 'основа',
-            data: D.gap.map(function (g) { return g.min; }),
-            color: 'rgba(0,0,0,0)',
-            enableMouseTracking: false,
-            showInLegend: false,
-            dataLabels: {
-              enabled: true,
-              inside: false,
-              align: 'right',
-              formatter: function () { return this.y; },
-              style: { color: p.muted, fontWeight: '600', fontSize: '0.72em', textOutline: 'none' }
-            }
+            name: 'band', type: 'bar', stacking: 'normal', showInLegend: false, enableMouseTracking: false,
+            data: D.gap.map(function (g) { return +(g.max - g.min).toFixed(2); }),
+            color: p.grid, borderWidth: 0, pointWidth: 5
           },
           {
-            name: 'Диапазон',
-            data: D.gap.map(function (g) {
-              return { y: +(g.max - g.min).toFixed(2), color: (g.max - g.min) > 200 ? p.amber : p.blue };
-            }),
-            borderRadius: 3,
-            dataLabels: {
-              enabled: true,
-              inside: false,
-              align: 'left',
-              formatter: function () { return D.gap[this.point.index].max; },
-              style: { color: p.text, fontWeight: '700', fontSize: '0.72em', textOutline: 'none' }
-            }
+            name: 'base', type: 'bar', stacking: 'normal', showInLegend: false, enableMouseTracking: false,
+            data: D.gap.map(function (g) { return g.min; }),
+            color: 'rgba(0,0,0,0)', borderWidth: 0, pointWidth: 5
+          },
+          {
+            name: 'Максимален (първенецът)', type: 'scatter', legendIndex: 1,
+            data: D.gap.map(function (g, i) { return { x: i, y: g.max }; }),
+            marker: { symbol: 'circle', radius: 6, fillColor: p.tipBg, lineColor: p.amber, lineWidth: 2.5 },
+            dataLabels: { enabled: true, align: 'left', verticalAlign: 'middle', x: 8, crop: false, overflow: 'allow', formatter: function () { return this.y; }, style: { color: p.muted, fontWeight: '600', fontSize: '0.72em', textOutline: 'none' } }
+          },
+          {
+            name: 'Минимален (летвата)', type: 'scatter', legendIndex: 0,
+            data: D.gap.map(function (g, i) { return { x: i, y: g.min }; }),
+            marker: { symbol: 'circle', radius: 6, fillColor: p.blue, lineColor: p.blue, lineWidth: 0 },
+            dataLabels: { enabled: true, align: 'right', verticalAlign: 'middle', x: -8, crop: false, overflow: 'allow', formatter: function () { return this.y; }, style: { color: p.blue, fontWeight: '700', fontSize: '0.72em', textOutline: '2px ' + p.tipBg } }
           }
         ]
       })));
