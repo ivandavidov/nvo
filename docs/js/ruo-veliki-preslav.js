@@ -84,7 +84,7 @@ ruoSchools["2700024"] = {n: "ПТГ Симеон Велики", f: "ПТГ Си�
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[78,78,0,268,268,0], null, null, null]
+    [[78,78,0,268,268,0], [114,114,0,114,114,0], null, null]
   ]},
   "28713": {n: "Пътностроителна техника - дуална", d: [
     [null, null, null, null],
