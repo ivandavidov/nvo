@@ -58,7 +58,7 @@ ruoSchools["2401179"] = {n: "ПГ по селско стоп.", f: "ПГ по с
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[161,161,226,459,301.5,459], null, null, null]
+    [[161,161,226,459,301.5,459], [159,159,0,159,159,0], null, null]
   ]},
   "29886": {n: "проф. Ресторантьорство и кетаринг", d: [
     [null, null, null, null],
