@@ -92,8 +92,11 @@ public class RuoNormalizer {
     }
 
     private void normalize2026() throws Exception {
-        // Only klasirane 1 is published so far (11-column format, no Брой паралелки)
+        // Klasirane 1: 11-column layout with a leading № column (code at col 1, scores at 5).
+        // Klasirane 2: different layout — NO № column (code at col 0, scores at 4), still with
+        // the min/max gender split.
         List<String[]> rows = new ArrayList<>(normalizeKlasirane(2026, 1, 5));
+        rows.addAll(normalizeKlasirane(2026, 2, 0, 4));
         writeCSV(2026, rows);
     }
 
@@ -106,6 +109,14 @@ public class RuoNormalizer {
      *                       5 for 11-column files, 6 for 12-column files (extra Брой паралелки column).
      */
     private List<String[]> normalizeKlasirane(int year, int klasirane, int scoreColOffset) throws Exception {
+        return normalizeKlasirane(year, klasirane, 1, scoreColOffset);
+    }
+
+    /**
+     * @param codeCol 0-based column of the school code. 1 for the layout with a leading №
+     *                column, 0 for the layout without it (Sofia 2026 klasirane 2).
+     */
+    private List<String[]> normalizeKlasirane(int year, int klasirane, int codeCol, int scoreColOffset) throws Exception {
         String filename = resolveFilename(year, klasirane);
         List<String[]> rows = new ArrayList<>();
 
@@ -113,7 +124,7 @@ public class RuoNormalizer {
              Workbook workbook = new XSSFWorkbook(fis)) {
 
             for (int i = 0; i < workbook.getNumberOfSheets(); i++) {
-                rows.addAll(parseSheet(workbook.getSheetAt(i), year, klasirane, scoreColOffset));
+                rows.addAll(parseSheet(workbook.getSheetAt(i), year, klasirane, codeCol, scoreColOffset));
             }
         }
 
@@ -121,16 +132,14 @@ public class RuoNormalizer {
         return rows;
     }
 
-    private List<String[]> parseSheet(Sheet sheet, int year, int klasirane, int scoreColOffset) {
+    private List<String[]> parseSheet(Sheet sheet, int year, int klasirane, int codeCol, int scoreColOffset) {
         List<String[]> rows = new ArrayList<>();
 
         for (Row row : sheet) {
-            if (!isPositiveInteger(row.getCell(0))) {
-                continue;
-            }
-
-            String schoolCode = readNumericCellAsId(row.getCell(1));
-            String schoolName = readStringCell(row.getCell(2));
+            // Data rows are identified by a numeric school code at codeCol; header/blank rows
+            // (text or empty there) are skipped.
+            String schoolCode = readNumericCellAsId(row.getCell(codeCol));
+            String schoolName = readStringCell(row.getCell(codeCol + 1));
             if (schoolCode == null || schoolName == null || schoolName.isBlank()) {
                 continue;
             }
@@ -140,8 +149,8 @@ public class RuoNormalizer {
                 String.valueOf(klasirane),
                 schoolCode,
                 schoolName,
-                readIdCell(row.getCell(3)),
-                readStringCell(row.getCell(4)),
+                readIdCell(row.getCell(codeCol + 2)),
+                readStringCell(row.getCell(codeCol + 3)),
                 readScoreCell(row.getCell(scoreColOffset)),
                 readScoreCell(row.getCell(scoreColOffset + 1)),
                 readScoreCell(row.getCell(scoreColOffset + 2)),
