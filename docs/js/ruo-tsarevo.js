@@ -40,6 +40,6 @@ ruoSchools["201305"] = {n: "СУ Никола Вапцаров", f: "СУ Ник
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[129,129,151,403.5,348,403.5], null, null, null]
+    [[129,129,151,403.5,348,403.5], [348,348,0,348,348,0], null, null]
   ]},
 }};
