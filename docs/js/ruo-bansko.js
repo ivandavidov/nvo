@@ -90,7 +90,7 @@ ruoSchools["102015"] = {n: "ПГ по електроника", f: "ПГ по е�
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[98.5,98.5,196,353,353,196], null, null, null]
+    [[98.5,98.5,196,353,353,196], [96,96,0,172,172,0], null, null]
   ]},
   "29677": {n: "Отопление, вентилация, климатизация и газова техника- РИЧЕ - АЕ", d: [
     [null, null, null, null],
@@ -102,7 +102,7 @@ ruoSchools["102015"] = {n: "ПГ по електроника", f: "ПГ по е�
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[183,183,0,385.5,385.5,0], null, null, null]
+    [[183,183,0,385.5,385.5,0], [207.5,207.5,0,207.5,207.5,0], null, null]
   ]},
 }};
 ruoSchools["102004"] = {n: "ПГ лесотехническа", f: "ПГ лесотехническа Н. Вапцаров", c: false, p: {
@@ -128,7 +128,7 @@ ruoSchools["102004"] = {n: "ПГ лесотехническа", f: "ПГ лес�
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[42,48,42,310.5,310.5,96], null, null, null]
+    [[42,48,42,310.5,310.5,96], [152,152,0,152,152,0], null, null]
   ]},
 }};
 ruoSchools["105201"] = {n: "СУ Неофит Рилски", f: "СУ Неофит Рилски", c: false, p: {
