@@ -58,13 +58,13 @@ ruoSchools["2304717"] = {n: "ПГ Г.С. Раковски", f: "ПГ Георг�
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[259.5,268,259.5,415,327,415], null, null, null]
+    [[259.5,268,259.5,415,327,415], [158,0,0,251,0,0], null, null]
   ]},
   "28905": {n: "Устойчива мода", d: [
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[110,116,110,236,140,236], null, null, null]
+    [[110,116,110,236,140,236], [110,0,0,110,0,0], null, null]
   ]},
 }};
 ruoSchools["2303490"] = {n: "СУ Кл. Охридски", f: "СУ Климент Охридски", c: false, p: {

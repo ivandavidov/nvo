@@ -90,12 +90,12 @@ ruoSchools["2300188"] = {n: "СУ Христо Ботев", f: "СУ Христ�
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[215,215,216.5,442,442,429.5], null, null, null]
+    [[215,215,216.5,442,442,429.5], [205,0,0,214.5,0,0], null, null]
   ]},
   "29697": {n: "Технологии на фармацевтични и парфюмерийно-козметични продукти", d: [
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[70,70,102,345,345,247], null, null, null]
+    [[70,70,102,345,345,247], [78,0,0,204,0,0], null, null]
   ]},
 }};
