@@ -14,35 +14,58 @@
 //            всяко класиране: [мин_общо, мин_м, мин_ж, макс_общо, макс_м, макс_ж]
 //                             или null (паралелката е попълнена в предходно класиране)
 
-let ruoYears = [2023, 2024, 2025];
+let ruoYears = [2023, 2024, 2025, 2026];
 
 let ruoSchools = {};
 ruoSchools["2100903"] = {n: "ПГ сел. горско стоп.", f: "ПГ по сел. горско стоп. Н. Вапцаров", c: false, p: {
   "4387": {n: "Организатор на туристическа агентска дейност", d: [
     [[150,0,0,376.5,0,0], null, null, null],
     [[151,0,0,439.5,0,0], null, null, null],
-    [[153,0,0,247,0,0], null, null, null]
+    [[153,0,0,247,0,0], null, null, null],
+    [null, null, null, null]
   ]},
   "548": {n: "Техник - лесовъд", d: [
     [[108,0,0,297.5,0,0], [189,0,0,189,0,0], null, null],
     [[144,0,0,274.5,0,0], null, null, null],
-    [[101,0,0,245,0,0], null, null, null]
+    [[101,0,0,245,0,0], null, null, null],
+    [null, null, null, null]
   ]},
   "4385": {n: "Техник на селскостопанска техника", d: [
     [[88,0,0,364,0,0], null, [160.5,0,0,160.5,0,0], null],
     [[85,0,0,378.5,0,0], null, null, null],
+    [null, null, null, null],
     [null, null, null, null]
   ]},
   "4740": {n: "Мехатроника", d: [
     [null, null, null, null],
     [[104,0,0,321,0,0], null, null, null],
+    [null, null, null, null],
     [null, null, null, null]
+  ]},
+  "29959": {n: "Автомобилна техника и мехатроника", d: [
+    [null, null, null, null],
+    [null, null, null, null],
+    [null, null, null, null],
+    [[101,101,147,261.5,261.5,194], null, null, null]
+  ]},
+  "29933": {n: "Стопанисване на горите", d: [
+    [null, null, null, null],
+    [null, null, null, null],
+    [null, null, null, null],
+    [[139,139,204,367.5,150,367.5], null, null, null]
   ]},
 }};
 ruoSchools["2100901"] = {n: "СУ Васил Дечев", f: "СУ Васил Дечев", c: false, p: {
   "4273": {n: "Предприемачески", d: [
     [[30,0,0,313,0,0], [211,0,0,211,0,0], [206.5,0,0,211,0,0], null],
     [[30,0,0,410.5,0,0], null, [267.5,0,0,341.5,0,0], null],
-    [[86,0,0,362,0,0], null, null, null]
+    [[86,0,0,362,0,0], null, null, null],
+    [null, null, null, null]
+  ]},
+  "29828": {n: "Природни науки", d: [
+    [null, null, null, null],
+    [null, null, null, null],
+    [null, null, null, null],
+    [[109,109,124,467,467,346], null, null, null]
   ]},
 }};
