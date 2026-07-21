@@ -46,7 +46,7 @@ ruoSchools["300619"] = {n: "ПГ по аграрни техн.", f: "ПГ по �
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[108,0,0,417,0,0], null, null, null]
+    [[108,0,0,417,0,0], [46,0,0,46,0,0], null, null]
   ]},
   "29488": {n: "Автоматизирани системи и технологии в машиностроенето", d: [
     [null, null, null, null],
@@ -64,7 +64,7 @@ ruoSchools["300619"] = {n: "ПГ по аграрни техн.", f: "ПГ по �
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[109,0,0,344,0,0], null, null, null]
+    [[109,0,0,344,0,0], [30,0,0,30,0,0], null, null]
   ]},
 }};
 ruoSchools["300618"] = {n: "СУ Бачо Киро", f: "СУ Бачо Киро", c: false, p: {
@@ -72,7 +72,7 @@ ruoSchools["300618"] = {n: "СУ Бачо Киро", f: "СУ Бачо Киро"
     [[54,0,0,366.5,0,0], null, [61,0,0,128,0,0], null],
     [null, null, null, null],
     [null, null, null, null],
-    [[97,0,0,457.5,0,0], null, null, null]
+    [[97,0,0,457.5,0,0], [225,0,0,225,0,0], null, null]
   ]},
   "2885": {n: "Хуманитарни науки", d: [
     [[42,0,0,424,0,0], null, null, null],
