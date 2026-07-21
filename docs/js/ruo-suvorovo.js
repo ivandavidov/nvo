@@ -46,7 +46,7 @@ ruoSchools["400166"] = {n: "ПГ по сел. стоп.", f: "ПГ по селс
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[30,30,76,212,185,212], null, null, null]
+    [[30,30,76,212,185,212], [30,30,0,30,30,0], null, null]
   ]},
   "30002": {n: "Асистиране в денталната медицина_РИЧЕ_АЕ", d: [
     [null, null, null, null],

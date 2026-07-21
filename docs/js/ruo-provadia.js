@@ -46,19 +46,19 @@ ruoSchools["400150"] = {n: "ПГ по селско стоп.", f: "ПГ по с�
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[59.5,59.5,0,314,314,0], null, null, null]
+    [[59.5,59.5,0,314,314,0], [118,118,0,137,137,0], null, null]
   ]},
   "28694": {n: "Агроекология и растителна защита - БИБРИЧЕ_АЕ", d: [
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[72,72,75,248.5,248.5,104], null, null, null]
+    [[72,72,75,248.5,248.5,104], [106,106,0,142,142,0], null, null]
   ]},
   "28685": {n: "Мениджмънт и икономика - БИБРИЧЕ_АЕ", d: [
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[122,122,141.5,344.25,207,344.25], null, null, null]
+    [[122,122,141.5,344.25,207,344.25], [218.5,0,218.5,218.5,0,218.5], null, null]
   ]},
   "30072": {n: "Фермерство-БИБРИЧЕ - АЕ", d: [
     [null, null, null, null],
@@ -96,7 +96,7 @@ ruoSchools["400149"] = {n: "ПГ по хотелиерство", f: "ПГ по �
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[50,50,86,209,209,195], null, null, null]
+    [[50,50,86,209,209,195], [149,155,149,155,155,149], null, null]
   ]},
 }};
 ruoSchools["400148"] = {n: "СУ Димитър Благоев", f: "СУ Димитър Благоев", c: false, p: {

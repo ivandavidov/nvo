@@ -40,7 +40,7 @@ ruoSchools["400098"] = {n: "ПГ Св. Димитър Солунски", f: "П�
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[38,56,38,143,143,126], null, null, null]
+    [[38,56,38,143,143,126], [92,0,92,92,0,92], null, null]
   ]},
   "29570": {n: "Пристанищна механизация-БИБРИЧЕ_АЕ", d: [
     [null, null, null, null],
@@ -72,6 +72,6 @@ ruoSchools["400096"] = {n: "СУ Кирил и Методий", f: "СУ Кир�
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[133.5,133.5,173,384.25,326,384.25], null, null, null]
+    [[133.5,133.5,173,384.25,326,384.25], [280.25,280.25,333.5,339.75,280.25,339.75], null, null]
   ]},
 }};
