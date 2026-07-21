@@ -42,19 +42,19 @@ ruoSchools["2605016"] = {n: "ПГ по селско стоп.", f: "ПГ по с
     [[148,0,0,460.5,0,0], [137,0,0,137,0,0], null, null],
     [null, null, null, null]
   ]},
-  "x28da6": {n: "Икономическа информатика", d: [
+  "28459": {n: "Икономическа информатика", d: [
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[177,0,0,405.5,0,0], null, null, null]
+    [[177,0,0,405.5,0,0], [175,0,0,175,0,0], null, null]
   ]},
-  "x8ff91": {n: "Митническо обслужване", d: [
+  "28457": {n: "Митническо обслужване", d: [
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
     [[149.5,0,0,453.5,0,0], null, null, null]
   ]},
-  "x537eb": {n: "Хотелиерство", d: [
+  "28460": {n: "Хотелиерство", d: [
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
@@ -78,9 +78,9 @@ ruoSchools["2605008"] = {n: "СУ Петър Берон", f: "СУ Д-р Пет�
     [[92,0,0,477.5,0,0], null, null, null],
     [[148,195.5,148,441.75,441.75,426.75], null, null, null],
     [[121,0,0,443.25,0,0], null, [291.75,0,0,291.75,0,0], null],
-    [[54,0,0,379,0,0], null, null, null]
+    [[54,0,0,379,0,0], [186,0,0,226,0,0], null, null]
   ]},
-  "xdf06d": {n: "Предприемачески", d: [
+  "29108": {n: "Предприемачески", d: [
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],

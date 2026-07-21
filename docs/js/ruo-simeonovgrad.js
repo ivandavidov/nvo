@@ -30,13 +30,13 @@ ruoSchools["2604004"] = {n: "СУ Кл. Охридски", f: "СУ Климен
     [[56,0,0,290,0,0], null, null, null],
     [null, null, null, null]
   ]},
-  "x0c6c3": {n: "Автоматизирани системи и технологии в машиностроенето", d: [
+  "28728": {n: "Автоматизирани системи и технологии в машиностроенето", d: [
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
     [[40,0,0,271,0,0], null, null, null]
   ]},
-  "x8b9ab": {n: "готварство", d: [
+  "28501": {n: "Готварство", d: [
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],

@@ -36,13 +36,13 @@ ruoSchools["2611018"] = {n: "СУ Петър Берон", f: "СУ Д-р Пет�
     [[30,0,0,259,0,0], null, null, null],
     [null, null, null, null]
   ]},
-  "x16600": {n: "Автомобилна техника и мехатроника", d: [
+  "29257": {n: "Автомобилна техника и мехатроника", d: [
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
     [[84,0,0,250,0,0], null, null, null]
   ]},
-  "x8fb30": {n: "Машини, съоръжения и системи в ундустрията", d: [
+  "29258": {n: "Машини, съоръжения и системи в ундустрията", d: [
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
