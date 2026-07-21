@@ -124,7 +124,7 @@ data/
                       ruo-stara-zagora, ruo-pleven, ruo-sliven, ruo-dobrich, ruo-shumen,
                       ruo-pernik, ruo-haskovo, ruo-blagoevgrad, ruo-iambol, ruo-veliko-turnovo,
                       ruo-pazardjik, ruo-vraca, ruo-gabrovo, ruo-kurdzhali, ruo-montana,
-                      ruo-vidin, ruo-kiustendil, ruo-targovishte, ruo-lovech, ruo-razgrad,
+                      ruo-vidin, ruo-kiustendil, ruo-turgovishte, ruo-lovech, ruo-razgrad,
                       ruo-silistra, ruo-smolian, ruo-sofia-oblast)
                       naming: min_max_{1-4}_klasirane_{2023-2026}.{pdf|xlsx}
                       format varies per region/year (PDF and/or XLSX; some files missing;
