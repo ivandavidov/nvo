@@ -60,6 +60,6 @@ ruoSchools["700204"] = {n: "СУ Максим Райкович", f: "СУ Мак
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[106,106,176,397.5,397.5,232.5], null, null, null]
+    [[106,106,176,397.5,397.5,232.5], [224,224,0,256,256,0], null, null]
   ]},
 }};
