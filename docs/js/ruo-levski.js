@@ -60,12 +60,12 @@ ruoSchools["1500611"] = {n: "СУ Крум Попов", f: "СУ Крум Поп
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[176,0,0,423.25,0,0], null, null, null]
+    [[176,0,0,423.25,0,0], [164,0,0,171.5,0,0], null, null]
   ]},
   "29415": {n: "Хуманитарни науки - Български език и литература и История и цивилизация, с Английски език", d: [
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[53,0,0,232.5,0,0], null, null, null]
+    [[53,0,0,232.5,0,0], [139.25,0,0,139.25,0,0], null, null]
   ]},
 }};
