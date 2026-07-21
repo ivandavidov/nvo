@@ -84,7 +84,7 @@ ruoSchools["1802004"] = {n: "СУ Панайот Волов", f: "СУ Пана�
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[61,0,0,229.5,0,0], null, null, null]
+    [[61,0,0,229.5,0,0], [98.5,0,0,98.5,0,0], null, null]
   ]},
   "29985": {n: "Туристическа анимация", d: [
     [null, null, null, null],
