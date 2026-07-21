@@ -52,7 +52,7 @@ ruoSchools["1602511"] = {n: "ПГ Петър Парчевич", f: "ПГ Пет�
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[66,66,0,362,362,0], null, null, null]
+    [[66,66,0,362,362,0], [34,34,0,34,34,0], null, null]
   ]},
   "29141": {n: "Готварство", d: [
     [null, null, null, null],
@@ -70,7 +70,7 @@ ruoSchools["1602511"] = {n: "ПГ Петър Парчевич", f: "ПГ Пет�
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[35,35,41,357,252,357], null, null, null]
+    [[35,35,41,357,252,357], [357,0,357,357,0,357], null, null]
   ]},
   "28952": {n: "Спедиторски услуги", d: [
     [null, null, null, null],

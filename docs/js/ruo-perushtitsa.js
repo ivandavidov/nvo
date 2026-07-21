@@ -34,12 +34,12 @@ ruoSchools["1602402"] = {n: "ПГ по лозарство и винарство"
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[78.5,117,78.5,219,140.5,219], null, null, null]
+    [[78.5,117,78.5,219,140.5,219], [77.5,77.5,0,77.5,77.5,0], null, null]
   ]},
   "29857": {n: "Механизация и цифровизация в аграрния сектор", d: [
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[40,66,40,174.5,174.5,59.5], null, null, null]
+    [[40,66,40,174.5,174.5,59.5], [30,30,0,30,30,0], null, null]
   ]},
 }};

@@ -28,6 +28,6 @@ ruoSchools["1601403"] = {n: "СУ Петко Славейков", f: "СУ Пе�
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[30,30,30,256.5,256.5,256], null, null, null]
+    [[30,30,30,256.5,256.5,256], [256.5,256.5,0,256.5,256.5,0], null, null]
   ]},
 }};

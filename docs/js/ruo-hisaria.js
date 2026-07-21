@@ -52,6 +52,6 @@ ruoSchools["1603708"] = {n: "СУ Хр. Смирненски", f: "СУ Хрис
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[74,74,108,358.5,358.5,330], null, null, null]
+    [[74,74,108,358.5,358.5,330], [358.5,358.5,0,358.5,358.5,0], null, null]
   ]},
 }};

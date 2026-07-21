@@ -52,13 +52,13 @@ ruoSchools["1602315"] = {n: "ПГ по селско стоп.", f: "ПГ по с
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[120,120,123,260,169.5,260], null, null, null]
+    [[120,120,123,260,169.5,260], [119,120,119,212.5,142,212.5], null, null]
   ]},
   "29271": {n: "Икономическа информатика", d: [
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[171.5,176,171.5,298,298,284], null, null, null]
+    [[171.5,176,171.5,298,298,284], [187,0,187,211.5,0,211.5], null, null]
   ]},
   "29286": {n: "Машини, съоръжения и системи в индустрията", d: [
     [null, null, null, null],
@@ -70,13 +70,13 @@ ruoSchools["1602315"] = {n: "ПГ по селско стоп.", f: "ПГ по с
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[57,57,0,168,168,0], null, null, null]
+    [[57,57,0,168,168,0], [156,156,0,156,156,0], null, null]
   ]},
   "29285": {n: "Устойчива мода", d: [
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[118,136.5,118,195,155,195], null, null, null]
+    [[118,136.5,118,195,155,195], [118,136.5,118,192,136.5,192], null, null]
   ]},
 }};
 ruoSchools["1602314"] = {n: "СУ Асен Златаров", f: "СУ Асен Златаров", c: false, p: {
@@ -102,7 +102,7 @@ ruoSchools["1602314"] = {n: "СУ Асен Златаров", f: "СУ Асен 
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[216,216,226.5,327.5,321,327.5], null, null, null]
+    [[216,216,226.5,327.5,321,327.5], [213,213,0,261,261,0], null, null]
   ]},
   "29067": {n: "Електронна търговия, маркетинг и реклама", d: [
     [null, null, null, null],
@@ -114,6 +114,6 @@ ruoSchools["1602314"] = {n: "СУ Асен Златаров", f: "СУ Асен 
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[209,209,210,384,294.5,384], null, null, null]
+    [[209,209,210,384,294.5,384], [200,0,200,280,0,280], null, null]
   ]},
 }};
