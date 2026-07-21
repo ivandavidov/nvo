@@ -60,7 +60,7 @@ ruoSchools["800105"] = {n: "ПГ по техника и облекло", f: "П�
     [null, null, null, null],
     [[67,0,0,231,0,0], null, null, null]
   ]},
-  "28452": {n: "Механизация и цифровизация в аграрния сектор", d: [
+  "28452": {n: "Механизация и цифровизация в аграрния", d: [
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
