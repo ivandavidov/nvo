@@ -402,7 +402,7 @@ public class RuoPage {
                                 : minLatest < minPrev - 0.5 ? 'down' : 'same';
                         }
                         rows.push({ code: code, pcode: pcode,
-                          school: school.n, profile: school.p[pcode].n,
+                          school: school.n, schoolFull: school.f, profile: school.p[pcode].n,
                           yearMins: yearMins,
                           trend: trend });
                       });
@@ -463,7 +463,7 @@ public class RuoPage {
                                 : r.trend === 'same' ? '<span class="trend-same">&#8594;</span>' : '';
                       html += '<tr data-code="' + r.code + '" data-pcode="' + r.pcode + '">'
                         + '<td>' + (i + 1) + '</td>'
-                        + '<td class="col-school"><div class="ruo-clip" title="' + esc(r.school) + '">' + esc(r.school) + '</div></td>'
+                        + '<td class="col-school"><div class="ruo-clip" title="' + esc(r.schoolFull) + '">' + esc(r.school) + '</div></td>'
                         + '<td class="col-profile"><div class="ruo-clip" title="' + esc(r.profile) + '">' + esc(r.profile) + '</div></td>';
                       for (var yi = latestYi; yi >= overviewFirstYi; yi--) {
                         var minScore = r.yearMins[yi];
