@@ -52,19 +52,19 @@ ruoSchools["2000118"] = {n: "ПГ по електрот.", f: "ПГ по еле�
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[134,0,0,248.5,0,0], null, null, null]
+    [[134,0,0,248.5,0,0], null, [54,0,0,54,0,0], null]
   ]},
   "29198": {n: "Компютърни системи и технологии", d: [
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[65,0,0,314.5,0,0], null, null, null]
+    [[65,0,0,314.5,0,0], null, [113,0,0,113,0,0], null]
   ]},
   "29199": {n: "Разработка на софтуер", d: [
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[30,0,0,314,0,0], null, null, null]
+    [[30,0,0,314,0,0], null, [135,0,0,163,0,0], null]
   ]},
 }};
 ruoSchools["2000119"] = {n: "ПГ по икономика", f: "ПГ по икономика Проф. д-р Димитър Табаков", c: false, p: {
@@ -126,7 +126,7 @@ ruoSchools["2000119"] = {n: "ПГ по икономика", f: "ПГ по ико
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[99,0,0,287,0,0], [154,0,0,170,0,0], null, null]
+    [[99,0,0,287,0,0], [154,0,0,170,0,0], [106,0,0,288,0,0], null]
   ]},
 }};
 ruoSchools["2000123"] = {n: "ПГ по механотехника", f: "ПГ по механотехника", c: false, p: {
@@ -244,25 +244,25 @@ ruoSchools["2000117"] = {n: "ПГ по текстил", f: "ПГ по текст
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[118,0,0,233,0,0], null, null, null]
+    [[118,0,0,233,0,0], null, [155,0,0,244,0,0], null]
   ]},
   "29779": {n: "Дигитален дизайн на текстил", d: [
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[53,0,0,177,0,0], null, null, null]
+    [[53,0,0,177,0,0], null, [118,0,0,236,0,0], null]
   ]},
   "29782": {n: "Текстилни технологии", d: [
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[30,0,0,228,0,0], null, null, null]
+    [[30,0,0,228,0,0], null, [66,0,0,109,0,0], null]
   ]},
   "29784": {n: "Устойчива мода", d: [
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[54,0,0,271,0,0], null, null, null]
+    [[54,0,0,271,0,0], null, [91,0,0,91,0,0], null]
   ]},
 }};
 ruoSchools["2000120"] = {n: "ПГ по хотелиерство", f: "ПГ по хотелиерство и туризъм", c: false, p: {
@@ -312,7 +312,7 @@ ruoSchools["2000120"] = {n: "ПГ по хотелиерство", f: "ПГ по 
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[53,0,0,361.5,0,0], null, null, null]
+    [[53,0,0,361.5,0,0], null, [30,0,0,287,0,0], null]
   ]},
 }};
 ruoSchools["2000127"] = {n: "Гимн. със зап. ез.", f: "ПГ с преподаване на западни езици", c: false, p: {
@@ -460,7 +460,7 @@ ruoSchools["2000109"] = {n: "СУ Пейо Яворов", f: "СУ Пейо Яв
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[130.5,0,0,310.5,0,0], [304.5,0,0,304.5,0,0], null, null]
+    [[130.5,0,0,310.5,0,0], [304.5,0,0,304.5,0,0], [209.5,0,0,209.5,0,0], null]
   ]},
 }};
 ruoSchools["2000114"] = {n: "СУ Йордан Йовков", f: "СУ Йордан Йовков", c: false, p: {
@@ -488,7 +488,7 @@ ruoSchools["2000115"] = {n: "СУ К. Константинов", f: "СУ Кон
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[78,0,0,378,0,0], [116,0,0,116,0,0], null, null]
+    [[78,0,0,378,0,0], [116,0,0,116,0,0], [138,0,0,138,0,0], null]
   ]},
 }};
 ruoSchools["2000105"] = {n: "СУ Хаджи Мина Пашов", f: "СУ Хаджи Мина Пашов", c: false, p: {
