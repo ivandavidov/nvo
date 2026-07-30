@@ -52,7 +52,7 @@ ruoSchools["2831609"] = {n: "ПГ Стефан Караджа", f: "ПГ Сте�
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[86,0,86,177,0,177], null, null, null]
+    [[86,0,86,177,0,177], null, [92,0,92,92,0,92], null]
   ]},
   "28155": {n: "Помощник - възпитател", d: [
     [null, null, null, null],
