@@ -52,7 +52,7 @@ ruoSchools["800105"] = {n: "ПГ по техника и облекло", f: "П�
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[40,0,0,262.5,0,0], null, null, null]
+    [[40,0,0,262.5,0,0], null, [74,0,0,86,0,0], null]
   ]},
   "28449": {n: "Електроснабдяване и електрообзавеждане", d: [
     [null, null, null, null],
@@ -60,7 +60,7 @@ ruoSchools["800105"] = {n: "ПГ по техника и облекло", f: "П�
     [null, null, null, null],
     [[67,0,0,231,0,0], null, null, null]
   ]},
-  "28452": {n: "Механизация и цифровизация в аграрния", d: [
+  "28452": {n: "Механизация и цифровизация в аграрния сектор", d: [
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
