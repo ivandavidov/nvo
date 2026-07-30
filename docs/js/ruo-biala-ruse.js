@@ -90,6 +90,6 @@ ruoSchools["1802004"] = {n: "СУ Панайот Волов", f: "СУ Пана�
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[63,0,0,178,0,0], null, null, null]
+    [[63,0,0,178,0,0], null, [98.5,0,0,98.5,0,0], null]
   ]},
 }};
