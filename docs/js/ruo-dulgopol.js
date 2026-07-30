@@ -40,6 +40,6 @@ ruoSchools["400136"] = {n: "СУ Кл. Охридски", f: "СУ Климен�
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[54,54,60,197,86,197], null, null, null]
+    [[54,54,60,197,86,197], null, [62,0,62,89,0,89], null]
   ]},
 }};

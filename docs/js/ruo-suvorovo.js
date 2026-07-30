@@ -46,7 +46,7 @@ ruoSchools["400166"] = {n: "ПГ по сел. стоп.", f: "ПГ по селс
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[30,30,76,212,185,212], [30,30,0,30,30,0], null, null]
+    [[30,30,76,212,185,212], [30,30,0,30,30,0], [61.5,61.5,0,61.5,61.5,0], null]
   ]},
   "30002": {n: "Асистиране в денталната медицина_РИЧЕ_АЕ", d: [
     [null, null, null, null],
@@ -64,7 +64,7 @@ ruoSchools["400166"] = {n: "ПГ по сел. стоп.", f: "ПГ по селс
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[82,82,0,188,188,0], null, null, null]
+    [[82,82,0,188,188,0], null, [50,50,0,50,50,0], null]
   ]},
 }};
 ruoSchools["400163"] = {n: "СУ Никола Вапцаров", f: "СУ Никола Вапцаров", c: false, p: {
@@ -90,6 +90,6 @@ ruoSchools["400163"] = {n: "СУ Никола Вапцаров", f: "СУ Ник
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[54,94,54,332,332,315.5], null, null, null]
+    [[54,94,54,332,332,315.5], null, [54,0,54,54,0,54], null]
   ]},
 }};
