@@ -40,7 +40,7 @@ ruoSchools["2302504"] = {n: "ПГ по механоел.", f: "ПГ по мех�
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[41,41,0,204,204,0], null, null, null]
+    [[41,41,0,204,204,0], null, [211,0,0,211,0,0], null]
   ]},
   "28326": {n: "Електрообзавеждане и електроснабдяване", d: [
     [null, null, null, null],
@@ -52,7 +52,7 @@ ruoSchools["2302504"] = {n: "ПГ по механоел.", f: "ПГ по мех�
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[54,0,54,270,0,270], null, null, null]
+    [[54,0,54,270,0,270], null, [177,0,0,177,0,0], null]
   ]},
 }};
 ruoSchools["2300448"] = {n: "ПГ по туризъм", f: "ПГ по туризъм Никола Димов", c: false, p: {
@@ -78,7 +78,7 @@ ruoSchools["2300448"] = {n: "ПГ по туризъм", f: "ПГ по туриз
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[198.5,249,198.5,317.75,317.75,198.5], null, null, null]
+    [[198.5,249,198.5,317.75,317.75,198.5], null, [30,0,0,196.5,0,0], null]
   ]},
   "29910": {n: "Сладкарство и пекарство", d: [
     [null, null, null, null],
@@ -90,7 +90,7 @@ ruoSchools["2300448"] = {n: "ПГ по туризъм", f: "ПГ по туриз
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[128.5,145.75,128.5,328.5,145.75,328.5], null, null, null]
+    [[128.5,145.75,128.5,328.5,145.75,328.5], null, [30,0,0,314,0,0], null]
   ]},
 }};
 ruoSchools["2300105"] = {n: "СУ Саво Ценов Савов", f: "СУ Саво Ценов Савов", c: false, p: {

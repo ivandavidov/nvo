@@ -64,7 +64,7 @@ ruoSchools["2300417"] = {n: "ПГ Васил Левски", f: "ПГ Васил 
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[30,0,30,122,0,122], null, null, null]
+    [[30,0,30,122,0,122], null, [74,0,0,80,0,0], null]
   ]},
 }};
 ruoSchools["2300188"] = {n: "СУ Христо Ботев", f: "СУ Христо Ботев", c: false, p: {
@@ -96,6 +96,6 @@ ruoSchools["2300188"] = {n: "СУ Христо Ботев", f: "СУ Христ�
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[70,70,102,345,345,247], [78,0,0,204,0,0], null, null]
+    [[70,70,102,345,345,247], [78,0,0,204,0,0], [265,0,0,265,0,0], null]
   ]},
 }};

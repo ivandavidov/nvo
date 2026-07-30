@@ -40,7 +40,7 @@ ruoSchools["2303582"] = {n: "ПГ Христо Ботев", f: "ПГ Христ�
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [null, null, null, null]
+    [null, null, [30,0,0,113,0,0], null]
   ]},
   "30057": {n: "Хотелиерство, ресторантьорство и кетъринг - Готварство", d: [
     [null, null, null, null],
