@@ -92,11 +92,12 @@ public class RuoNormalizer {
     }
 
     private void normalize2026() throws Exception {
-        // Klasirane 1: 11-column layout with a leading № column (code at col 1, scores at 5).
-        // Klasirane 2: different layout — NO № column (code at col 0, scores at 4), still with
-        // the min/max gender split.
+        // Klasirane 1 and 3: 11-column layout with a leading № column (code at col 1,
+        // scores at 5). Klasirane 2: different layout — NO № column (code at col 0,
+        // scores at 4), still with the min/max gender split.
         List<String[]> rows = new ArrayList<>(normalizeKlasirane(2026, 1, 5));
         rows.addAll(normalizeKlasirane(2026, 2, 0, 4));
+        rows.addAll(normalizeKlasirane(2026, 3, 5));
         writeCSV(2026, rows);
     }
 
