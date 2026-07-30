@@ -52,7 +52,7 @@ ruoSchools["2401179"] = {n: "ПГ по селско стоп.", f: "ПГ по с
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[76,76,90,317.5,317.5,196], null, null, null]
+    [[76,76,90,317.5,317.5,196], null, [177,177,0,189,189,0], null]
   ]},
   "29799": {n: "проф. Електронна търговия, маркетинг и реклама", d: [
     [null, null, null, null],
@@ -64,13 +64,13 @@ ruoSchools["2401179"] = {n: "ПГ по селско стоп.", f: "ПГ по с
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[158,159,158,330,303,330], null, null, null]
+    [[158,159,158,330,303,330], null, [30,0,30,30,0,30], null]
   ]},
   "29806": {n: "проф. Фермерство", d: [
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[47,47,97,226,217,226], null, null, null]
+    [[47,47,97,226,217,226], null, [74,74,0,206,206,0], null]
   ]},
 }};
 ruoSchools["2401178"] = {n: "СУ Пейо Яворов", f: "СУ Пейо Яворов", c: false, p: {
@@ -96,12 +96,12 @@ ruoSchools["2401178"] = {n: "СУ Пейо Яворов", f: "СУ Пейо Яв
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[149,284.5,149,392.5,354.5,392.5], null, null, null]
+    [[149,284.5,149,392.5,354.5,392.5], null, [54,0,54,97,0,97], null]
   ]},
   "28960": {n: "Хуманитарни науки", d: [
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[54,74,54,339,284.5,339], null, null, null]
+    [[54,74,54,339,284.5,339], null, [141,141,0,141,141,0], null]
   ]},
 }};
