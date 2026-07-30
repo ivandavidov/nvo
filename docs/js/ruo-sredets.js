@@ -46,7 +46,7 @@ ruoSchools["201106"] = {n: "ПГ по механизация", f: "ПГ по м�
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[41,50,41,328.5,328.5,137], null, null, null]
+    [[41,50,41,328.5,328.5,137], null, [96,96,0,96,96,0], null]
   ]},
 }};
 ruoSchools["201104"] = {n: "СУ Кирил и Методий", f: "СУ Кирил и Методий", c: false, p: {

@@ -40,6 +40,6 @@ ruoSchools["201009"] = {n: "СУ Кирил и Методий", f: "СУ Кир�
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[54,54,70,286.5,136,286.5], null, null, null]
+    [[54,54,70,286.5,136,286.5], null, [109,109,0,109,109,0], null]
   ]},
 }};

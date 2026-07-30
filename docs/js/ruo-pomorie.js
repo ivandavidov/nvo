@@ -34,7 +34,7 @@ ruoSchools["200712"] = {n: "ПГ по туризъм", f: "ПГ по туриз�
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[99,99,99,174,143,174], null, null, null]
+    [[99,99,99,174,143,174], null, [249.5,0,249.5,249.5,0,249.5], null]
   ]},
   "28863": {n: "Ресторантьорство и кетъринг", d: [
     [null, null, null, null],
