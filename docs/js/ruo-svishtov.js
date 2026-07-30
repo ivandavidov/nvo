@@ -46,7 +46,7 @@ ruoSchools["300817"] = {n: "Търговска гимн.", f: "ПДТГ Дими
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[30,0,0,405,0,0], null, null, null]
+    [[30,0,0,405,0,0], null, [101,0,0,101,0,0], null]
   ]},
   "29116": {n: "Електронна търговия, маркетинг и реклама", d: [
     [null, null, null, null],
@@ -140,7 +140,7 @@ ruoSchools["300816"] = {n: "СУ Димитър Благоев", f: "СУ Дим
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[222,0,0,453,0,0], null, null, null]
+    [[222,0,0,453,0,0], null, [220,0,0,220,0,0], null]
   ]},
 }};
 ruoSchools["300815"] = {n: "СУ Николай Катранов", f: "СУ Николай Катранов", c: false, p: {
