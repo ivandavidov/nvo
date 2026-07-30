@@ -28,7 +28,7 @@ ruoSchools["1600035"] = {n: "СУ Н. Шилева", f: "СУ Недялка Ш�
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[34,41,34,300,175,300], null, null, null]
+    [[34,41,34,300,175,300], null, [295,0,295,295,0,295], null]
   ]},
 }};
 ruoSchools["1603301"] = {n: "СУ Христо Ботев", f: "СУ Христо Ботев", c: false, p: {
