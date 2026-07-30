@@ -172,13 +172,13 @@ ruoSchools["2100115"] = {n: "ПГ по туризъм", f: "Смолянска �
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[30,52,30,359,295.75,359], null, null, null]
+    [[30,52,30,359,295.75,359], null, [211.5,211.5,0,211.5,211.5,0], null]
   ]},
   "29111": {n: "Строителство и архитектура", d: [
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[30,30,176,308.25,212.75,308.25], null, null, null]
+    [[30,30,176,308.25,212.75,308.25], null, [30,30,30,30,30,30], null]
   ]},
 }};
 ruoSchools["2100105"] = {n: "СУ Отец Паисий", f: "СУ Отец Паисий", c: false, p: {
