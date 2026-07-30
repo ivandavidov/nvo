@@ -46,7 +46,7 @@ ruoSchools["1100410"] = {n: "ПГ по селско стоп.", f: "ПГ по с
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[89,0,0,263,0,0], null, null, null]
+    [[89,0,0,263,0,0], null, [180,0,0,342.5,0,0], null]
   ]},
   "29951": {n: "Агрономство и агробизнес", d: [
     [null, null, null, null],
@@ -64,7 +64,7 @@ ruoSchools["1100410"] = {n: "ПГ по селско стоп.", f: "ПГ по с
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[88,0,0,280,0,0], null, null, null]
+    [[88,0,0,280,0,0], null, [97,0,0,200,0,0], null]
   ]},
 }};
 ruoSchools["1100402"] = {n: "СУ А. Константинов", f: "СУ Алеко Константинов", c: false, p: {
@@ -102,7 +102,7 @@ ruoSchools["1100402"] = {n: "СУ А. Константинов", f: "СУ Але
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[38,0,0,243.5,0,0], null, null, null]
+    [[38,0,0,243.5,0,0], null, [84,0,0,84,0,0], null]
   ]},
   "28621": {n: "Ресторантьорство и кетъринг", d: [
     [null, null, null, null],

@@ -46,7 +46,7 @@ ruoSchools["1100511"] = {n: "НПГ горско стоп.", f: "НПГ горс
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[152,0,0,355.5,0,0], null, null, null]
+    [[152,0,0,355.5,0,0], null, [163,0,0,163,0,0], null]
   ]},
   "28750": {n: "Мебелно производство и реставрация", d: [
     [null, null, null, null],
