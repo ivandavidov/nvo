@@ -58,7 +58,7 @@ ruoSchools["2540602"] = {n: "ПГ по селско стоп.", f: "ПГ по с
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[78,0,0,406.5,0,0], null, null, null]
+    [[78,0,0,406.5,0,0], null, [75,0,0,267,0,0], null]
   ]},
   "28971": {n: "Механизация и цифровизация в аграрния сектор", d: [
     [null, null, null, null],
@@ -126,7 +126,7 @@ ruoSchools["2540601"] = {n: "ПГ по техника", f: "ПГ по техни
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[41,0,0,248,0,0], null, null, null]
+    [[41,0,0,248,0,0], null, [275,0,0,275,0,0], null]
   ]},
 }};
 ruoSchools["2540401"] = {n: "ПГ Христо Ботев", f: "ПГ Христо Ботев", c: false, p: {

@@ -52,13 +52,13 @@ ruoSchools["2520601"] = {n: "ПГ по транспорт", f: "ПГ по тра
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[30,0,0,215,0,0], null, null, null]
+    [[30,0,0,215,0,0], null, [84,0,0,130,0,0], null]
   ]},
   "28584": {n: "Социални дейности", d: [
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[130,0,0,336,0,0], null, null, null]
+    [[130,0,0,336,0,0], null, [68,0,0,206,0,0], null]
   ]},
 }};
 ruoSchools["2520401"] = {n: "ПГ Симеон Велчев", f: "ПГ Симеон Велчев", c: false, p: {
