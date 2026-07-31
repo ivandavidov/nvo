@@ -126,25 +126,25 @@ ruoSchools["102009"] = {n: "ПГ по механоел.", f: "ПГ по меха
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[44,64,44,164,164,141], null, null, null]
+    [[44,64,44,164,164,141], null, [50,0,50,200,0,200], null]
   ]},
   "29402": {n: "Организация на автомобилния транспорт- без интензивно и без разширено АЕ", d: [
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[30,30,36,91,79,91], null, null, null]
+    [[30,30,36,91,79,91], null, [67,67,0,151,151,0], null]
   ]},
   "29412": {n: "Отопление, вентилация, климатизация и газова техника-без интензивно и без разширено АЕ", d: [
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[46,46,0,120,120,0], null, null, null]
+    [[46,46,0,120,120,0], null, [30,30,0,62,62,0], null]
   ]},
   "29406": {n: "Спедиторски услуги-без интензивно и без разширено АЕ", d: [
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[30,84,30,84,84,68], null, null, null]
+    [[30,84,30,84,84,68], null, [42,42,50,125,125,50], null]
   ]},
 }};
 ruoSchools["104001"] = {n: "ПГ П. К. Яворов", f: "ПГ Пейо К. Яворов", c: false, p: {
@@ -182,7 +182,7 @@ ruoSchools["104001"] = {n: "ПГ П. К. Яворов", f: "ПГ Пейо К. Я
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[54,115,54,452,435,452], null, null, null]
+    [[54,115,54,452,435,452], null, [69,112,69,247,247,112], null]
   ]},
 }};
 ruoSchools["104002"] = {n: "СУ А. Попов", f: "СУ Антон Попов", c: false, p: {

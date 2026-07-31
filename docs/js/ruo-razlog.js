@@ -152,7 +152,7 @@ ruoSchools["102012"] = {n: "Разложка ПГ", f: "Разложка ПГ", 
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[81,0,81,214.5,0,214.5], null, null, null]
+    [[81,0,81,214.5,0,214.5], null, [208.5,208.5,0,208.5,208.5,0], null]
   ]},
 }};
 ruoSchools["103501"] = {n: "СУ бр. Каназиреви", f: "СУ братя Каназиреви", c: false, p: {
