@@ -34,7 +34,7 @@ ruoSchools["1302662"] = {n: "СУ Кирил и Методий", f: "СУ Кир
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[197,197,0,238.5,238.5,0], null, null, null]
+    [[197,197,0,238.5,238.5,0], null, [215,215,236,236,215,236], null]
   ]},
   "28525": {n: "Ресторантьорство и кетъринг- трета степен", d: [
     [null, null, null, null],

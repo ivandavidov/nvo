@@ -40,7 +40,7 @@ ruoSchools["1301770"] = {n: "СУ Кл. Охридски", f: "СУ Климен
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[30,30,0,162,162,0], null, null, null]
+    [[30,30,0,162,162,0], null, [77,77,0,77,77,0], null]
   ]},
   "28545": {n: "Профил- Предприемачески- с интензивно изучаване на английски език", d: [
     [null, null, null, null],
@@ -52,6 +52,6 @@ ruoSchools["1301770"] = {n: "СУ Кл. Охридски", f: "СУ Климен
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[55,96,55,291,178,291], null, null, null]
+    [[55,96,55,291,178,291], null, [71,71,0,71,71,0], null]
   ]},
 }};

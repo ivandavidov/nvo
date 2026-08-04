@@ -46,13 +46,13 @@ ruoSchools["1302993"] = {n: "ПГ по мех. на земеделието", f: 
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[30,30,0,244,244,0], null, null, null]
+    [[30,30,0,244,244,0], null, [112,112,0,112,112,0], null]
   ]},
   "28938": {n: "Флористика и озеленяване", d: [
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[57,88.5,57,220,88.5,220], null, null, null]
+    [[57,88.5,57,220,88.5,220], null, [91,0,91,139.5,0,139.5], null]
   ]},
 }};
 ruoSchools["1301788"] = {n: "СУ Христо Ботев", f: "СУ Христо Ботев", c: false, p: {
