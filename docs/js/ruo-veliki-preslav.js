@@ -40,13 +40,13 @@ ruoSchools["2700282"] = {n: "ПГ по селско стоп.", f: "ПГ по с
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[49,49,0,155,155,0], null, null, null]
+    [[49,49,0,155,155,0], null, [122.5,122.5,0,122.5,122.5,0], null]
   ]},
   "29819": {n: "Агроекология и растителна защита", d: [
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[41,44,41,137,137,127], null, null, null]
+    [[41,44,41,137,137,127], null, [62,0,62,62,0,62], null]
   ]},
 }};
 ruoSchools["2700024"] = {n: "ПТГ Симеон Велики", f: "ПТГ Симеон Велики", c: false, p: {
@@ -84,7 +84,7 @@ ruoSchools["2700024"] = {n: "ПТГ Симеон Велики", f: "ПТГ Си�
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[78,78,0,268,268,0], [114,114,0,114,114,0], null, null]
+    [[78,78,0,268,268,0], [114,114,0,114,114,0], [114,114,0,114,114,0], null]
   ]},
   "28713": {n: "Пътностроителна техника - дуална", d: [
     [null, null, null, null],
