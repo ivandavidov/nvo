@@ -96,7 +96,7 @@ ruoSchools["603101"] = {n: "ПГ Васил Левски", f: "ПГ Васил �
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[30,0,0,378,0,0], null, null, null]
+    [[30,0,0,378,0,0], null, [153,0,0,153,0,0], null]
   ]},
   "29157": {n: "Разработка на софтуер", d: [
     [null, null, null, null],
