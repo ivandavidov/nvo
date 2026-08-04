@@ -94,7 +94,7 @@ ruoSchools["1209012"] = {n: "ПГ по произв. техн.", f: "ПГ по �
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[57,0,0,257,0,0], null, null, null]
+    [[57,0,0,257,0,0], null, [101,0,0,172,0,0], null]
   ]},
   "29118": {n: "Икономическа информатика -2", d: [
     [null, null, null, null],
