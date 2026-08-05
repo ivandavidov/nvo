@@ -22,7 +22,7 @@ ruoSchools["1600035"] = {n: "СУ Н. Шилева", f: "СУ Недялка Ш�
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[30,30,30,298,260,298], null, null, null]
+    [[30,30,30,298,260,298], null, null, [30,30,0,30,30,0]]
   ]},
   "28224": {n: "Електронна търговия, маркетинг и реклама", d: [
     [null, null, null, null],
