@@ -52,7 +52,7 @@ ruoSchools["300817"] = {n: "Търговска гимн.", f: "ПДТГ Дими
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[208,0,0,272.5,0,0], null, null, null]
+    [[208,0,0,272.5,0,0], null, null, [74,0,0,171,0,0]]
   ]},
   "29119": {n: "Спедиторски услуги", d: [
     [null, null, null, null],
@@ -114,7 +114,7 @@ ruoSchools["300819"] = {n: "ПГ Ал. Константинов", f: "Свищо
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [[155,0,0,396,0,0], null, null, null]
+    [[155,0,0,396,0,0], null, null, [84,0,0,144,0,0]]
   ]},
   "29571": {n: "Електронна техника и технологии", d: [
     [null, null, null, null],
