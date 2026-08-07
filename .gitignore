@@ -12,6 +12,10 @@ java/.project
 java/.settings/
 kaggle/data/
 
+# Maven wrapper's local download dir — lands here when ./mvnw runs with $HOME
+# pointing outside the user's real home (e.g. a sandboxed shell)
+.m2/
+
 # one-off RUO Plovdiv PDF parsing scripts (working dir, not committed)
 tmp-ruo-plovdiv/
 tmp-ruo-varna/
