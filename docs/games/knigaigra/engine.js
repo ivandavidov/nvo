@@ -105,6 +105,20 @@
     return String(Math.round(n * 100) / 100).replace('.', ',');
   }
 
+  /* Правописно правило: предлогът „в“ става „във“ пред дума, започваща с „в“ или „ф“
+     (във Варна, във Враца, във Велико Търново, във Варненска морска гимназия).
+     Прилага се след заместването на плейсхолдърите, защото имената на градовете и
+     училищата идват от данните и не се знаят предварително. Пропуска HTML таговете
+     между предлога и думата, за да работи и при „в <strong>{city}</strong>“. */
+  function fixPrepositions(txt) {
+    return txt.replace(
+      /(^|[\s(\[„"'>\u2014\u2013-])([\u0412\u0432])(?:\u044a\u0432)?(\s+(?:<[^>]+>\s*)*)(?=([\u0410-\u042f\u0430-\u044f]))/g,
+      function (m, pre, v, gap, next) {
+        return pre + v + (/[\u0412\u0424\u0432\u0444]/.test(next) ? '\u044a\u0432' : '') + gap;
+      }
+    );
+  }
+
   function fill(txt) {
     if (!txt) { return ''; }
     var top = (cityData && cityData.top) || { school: 'Математическата гимназия', profile: 'Математика и АЕ', min: 450, max: 498 };
@@ -112,7 +126,7 @@
     var tech = (cityData && cityData.tech) || { school: 'ПГ по транспорт и туризъм', profile: 'Компютърна техника и кулинария', min: 210, max: 320 };
     var rm = rumor || (cityData && cityData.pickRumor && cityData.pickRumor()) || { school: top.school, profile: top.profile, claim: 485, min: top.min, max: top.max, truth: 'lower' };
 
-    return txt
+    return fixPrepositions(txt
       .replace(/\{city\}/g, S.cityName)
       .replace(/\{topSchool\}/g, top.school)
       .replace(/\{topProfile\}/g, top.profile)
@@ -130,7 +144,7 @@
       .replace(/\{rumorProfile\}/g, rm.profile)
       .replace(/\{rumorClaim\}/g, num(rm.claim))
       .replace(/\{rumorMin\}/g, num(rm.min))
-      .replace(/\{rumorMax\}/g, num(rm.max));
+      .replace(/\{rumorMax\}/g, num(rm.max)));
   }
 
   function paint(ep) {
