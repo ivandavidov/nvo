@@ -24,6 +24,7 @@ public class SitemapGenerator {
         urls.add(ProjectConfig.SITE_BASE_URL + "12/");
         urls.add(ProjectConfig.SITE_BASE_URL + "stats/");
         urls.add(ProjectConfig.SITE_BASE_URL + "games/");
+        urls.add(ProjectConfig.SITE_BASE_URL + "games/knigaigra/");
         urls.add(ProjectConfig.SITE_BASE_URL + "api/v1/");
         urls.add(ProjectConfig.SITE_BASE_URL + "embed/");
         urls.add(ProjectConfig.SITE_BASE_URL + "blog/");
