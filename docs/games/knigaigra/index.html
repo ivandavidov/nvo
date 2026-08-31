@@ -40,9 +40,9 @@
     .ki-setup select { min-height: 46px; padding: 0 0.85rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); background: var(--color-surface); color: var(--color-text); font-size: 1rem; font-weight: 600; }
 
     .ki-hud { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.6rem; margin-bottom: 1.35rem; padding: 0.85rem; border-radius: var(--radius-md); background: var(--color-bg-alt); border: 1px solid var(--color-border-light); }
-    .ki-stat { text-align: center; font-size: 0.74rem; color: var(--color-text-muted); font-weight: 600; }
+    .ki-stat { text-align: center; font-size: 0.74rem; color: var(--color-text-muted); font-weight: 600; display: flex; flex-direction: column; height: 100%; }
     .ki-stat-e { display: block; font-size: 1.25rem; line-height: 1.25; }
-    .ki-stat-n { display: block; letter-spacing: 0.01em; margin-top: 3px; }
+    .ki-stat-n { display: block; letter-spacing: 0.01em; margin-top: 3px; flex: 1 1 auto; }
     .ki-bar { display: block; height: 6px; margin-top: 6px; border-radius: var(--radius-full); background: var(--color-border-light); overflow: hidden; }
     .ki-bar i { display: block; height: 100%; background: var(--color-primary); transition: width 0.35s ease; }
     .ki-stat.ki-low .ki-bar i { background: var(--color-danger); }
@@ -81,9 +81,12 @@
     .ki-w-q { font-size: 0.98rem; font-weight: 600; color: var(--color-text-muted); margin-top: 0.5rem; margin-bottom: 0.75rem; }
     .ki-w-opts { display: flex; flex-direction: column; gap: 0.55rem; }
     .ki-w-opts .ki-choice { background: var(--color-surface); }
-    .ki-w-tbl { width: 100%; border-collapse: collapse; font-size: 0.96rem; margin: 0.85rem 0; }
-    .ki-w-tbl td { padding: 0.5rem 0; border-bottom: 1px solid var(--color-border-light); color: var(--color-text-muted); }
-    .ki-w-tbl td:last-child { text-align: right; color: var(--color-text); font-variant-numeric: tabular-nums; font-weight: 600; white-space: nowrap; }
+    .ki-w-tbl { width: 100%; border-collapse: collapse; font-size: 0.96rem; margin: 0.85rem 0;
+      background: transparent; border: 0; box-shadow: none; border-radius: 0; }
+    .ki-w-tbl tbody td + td { border-left: 0; }
+    .ki-w-tbl td { padding: 0.5rem 0; border-bottom: 1px solid var(--color-border-light); color: var(--color-text-muted); white-space: normal; overflow: visible; vertical-align: top; }
+    .ki-w-tbl td:first-child { padding-right: 0.75rem; }
+    .ki-w-tbl td:last-child { width: 1%; text-align: right; color: var(--color-text); font-variant-numeric: tabular-nums; font-weight: 600; white-space: nowrap; }
     .ki-w-tbl tr:last-child td { border-bottom: 0; }
     .ki-w-link { display: inline-block; margin-top: 0.95rem; font-weight: 700; font-size: 0.96rem; color: var(--color-primary); text-decoration: none; }
     .ki-w-link:hover { text-decoration: underline; }
