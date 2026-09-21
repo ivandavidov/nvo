@@ -1,0 +1,96 @@
+/* ==========================================================================
+   НВО Навигатор — Новогодишна тема (New Year Theme)
+   Поддържа: Светъл и Тъмен режим
+   ========================================================================== */
+
+/* --- Светъл режим (Light New Year / Champagne & Navy) --- */
+:root {
+  --color-primary: #1e293b;          /* Елегантно среднощно индиго / графит */
+  --color-primary-light: #334155;
+  --color-primary-lighter: #f1f5f9;
+  --color-primary-dark: #0f172a;
+  --color-primary-rgb: 30, 41, 59;
+  --color-accent: #d97706;           /* Шампанско / празнично злато */
+  --color-accent-light: #fef3c7;
+  --color-on-primary: #ffffff;
+  --color-on-accent: #ffffff;
+
+  --color-surface: #ffffff;
+  --color-bg: #f8fafc;
+  --color-bg-alt: #f1f5f9;
+  --color-surface-glass: rgba(255, 255, 255, 0.95);
+
+  --color-text: #0f172a;
+  --color-text-muted: #475569;
+  --color-text-light: #94a3b8;
+
+  --color-border: #e2e8f0;
+  --color-border-light: #f1f5f9;
+
+  --color-success: #10b981;
+  --color-danger: #f43f5e;
+
+  --color-footer-bg: #0f172a;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.09), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-full: 9999px;
+
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Code", "Fira Code", monospace;
+
+  --container-max: 1400px;
+  --header-height: 60px;
+
+  /* Графики (Highcharts) */
+  --chart-bel: #0284c7;
+  --chart-mat: #d97706;
+
+  /* Празничен акцент */
+  --theme-brand-icon: " ✨";
+}
+
+/* --- Тъмен режим (Dark New Year / Midnight Sparkle) --- */
+[data-theme="dark"] {
+  --color-primary: #f59e0b;          /* Искрящо злато / шампанско */
+  --color-primary-light: #fbbf24;
+  --color-primary-lighter: #3f2504;
+  --color-primary-dark: #d97706;
+  --color-primary-rgb: 245, 158, 11;
+  --color-accent: #38bdf8;           /* Звездно небе / кристално синьо */
+  --color-accent-light: #082f49;
+  --color-on-primary: #ffffff;
+  --color-on-accent: #ffffff;
+
+  --color-surface: #111827;          /* Дълбок среднощен оникс */
+  --color-bg: #070b13;
+  --color-bg-alt: #162032;
+  --color-surface-glass: rgba(17, 24, 39, 0.95);
+
+  --color-text: #f3f4f6;
+  --color-text-muted: #9ca3af;
+  --color-text-light: #6b7280;
+
+  --color-border: #263349;
+  --color-border-light: #172233;
+
+  --color-success: #34d399;
+  --color-danger: #fb7185;
+
+  --color-footer-bg: #04060b;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.6), 0 4px 6px -4px rgba(0, 0, 0, 0.4);
+
+  /* Графики (Highcharts) */
+  --chart-bel: #38bdf8;
+  --chart-mat: #fbbf24;
+
+  --theme-brand-icon: " ✨";
+}

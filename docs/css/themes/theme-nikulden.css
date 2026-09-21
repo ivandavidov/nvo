@@ -1,0 +1,97 @@
+/* ==========================================================================
+   НВО Навигатор — Тема "Никулден"
+   6 декември — море, сребро и рибени люспи
+   Поддържа: Светъл и Тъмен режим
+   ========================================================================== */
+
+/* --- Светъл режим (Light Nikulden / Deep Sea & Silver) --- */
+:root {
+  --color-primary: #0c4a6e;          /* Дълбоко морско синьо */
+  --color-primary-light: #0369a1;
+  --color-primary-lighter: #e0f2fe;
+  --color-primary-dark: #082f49;
+  --color-primary-rgb: 12, 74, 110;
+  --color-accent: #0e7490;          /* Студен тюркоаз */
+  --color-accent-light: #cffafe;
+  --color-on-primary: #ffffff;
+  --color-on-accent: #ffffff;
+
+  --color-surface: #ffffff;
+  --color-bg: #f0f7fb;
+  --color-bg-alt: #f6fafd;
+  --color-surface-glass: rgba(255, 255, 255, 0.95);
+
+  --color-text: #0f2536;
+  --color-text-muted: #4b6478;
+  --color-text-light: #8399ad;
+
+  --color-border: #d5e3ec;
+  --color-border-light: #e8f0f5;
+
+  --color-success: #16a34a;
+  --color-danger: #dc2626;
+
+  --color-footer-bg: #0f2536;
+
+  --shadow-sm: 0 1px 2px rgba(12, 74, 110, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(12, 74, 110, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(12, 74, 110, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-full: 9999px;
+
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Code", "Fira Code", monospace;
+
+  --container-max: 1400px;
+  --header-height: 60px;
+
+  /* Графики (Highcharts) */
+  --chart-bel: #0369a1;
+  --chart-mat: #64748b;
+
+  /* Празничен акцент */
+  --theme-brand-icon: " 🐟";
+}
+
+/* --- Тъмен режим (Dark Nikulden / Winter Sea Night) --- */
+[data-theme="dark"] {
+  --color-primary: #38bdf8;          /* Светло морско */
+  --color-primary-light: #7dd3fc;
+  --color-primary-lighter: #0c3a52;
+  --color-primary-dark: #0ea5e9;
+  --color-primary-rgb: 56, 189, 248;
+  --color-accent: #67e8f9;          /* Ледена пяна */
+  --color-accent-light: #164e63;
+  --color-on-primary: #ffffff;
+  --color-on-accent: #000000;
+
+  --color-surface: #0f2233;          /* Зимно море през нощта */
+  --color-bg: #071521;
+  --color-bg-alt: #142c40;
+  --color-surface-glass: rgba(7, 21, 33, 0.95);
+
+  --color-text: #e3f1fa;
+  --color-text-muted: #94b0c4;
+  --color-text-light: #5f7a8e;
+
+  --color-border: #23405a;
+  --color-border-light: #142c40;
+
+  --color-success: #4ade80;
+  --color-danger: #fb7185;
+
+  --color-footer-bg: #040d15;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
+
+  /* Графики (Highcharts) */
+  --chart-bel: #7dd3fc;
+  --chart-mat: #cbd5e1;
+
+  --theme-brand-icon: " 🐟";
+}

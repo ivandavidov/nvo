@@ -37,6 +37,14 @@
     return document.documentElement.getAttribute('data-theme') === 'dark';
   }
 
+  function getThemeColor(varName, fallback) {
+    if (typeof window !== 'undefined' && window.getComputedStyle) {
+      var val = getComputedStyle(document.documentElement).getPropertyValue(varName);
+      if (val && val.trim()) return val.trim();
+    }
+    return fallback;
+  }
+
   function buildConfig(grade, g) {
     var meta = GRADE_META[grade] || { bel: 'БЕЛ', mat: 'МАТ', floor: 0, ceiling: 100 };
     // Per-grade year axis: ДЗИ (12) spans one more year than НВО, so a school with both must
@@ -69,10 +77,12 @@
     }
 
     var dark = isDark();
-    var textColor = dark ? '#e2e8f0' : '#1e293b';
-    var muted = dark ? '#94a3b8' : '#64748b';
-    var grid = dark ? '#334155' : '#e2e8f0';
-    var tooltipBg = dark ? '#1e293b' : '#ffffff';
+    var textColor = getThemeColor('--color-text', dark ? '#e2e8f0' : '#1e293b');
+    var muted = getThemeColor('--color-text-muted', dark ? '#94a3b8' : '#64748b');
+    var grid = getThemeColor('--color-border', dark ? '#334155' : '#e2e8f0');
+    var tooltipBg = getThemeColor('--color-surface', dark ? '#1e293b' : '#ffffff');
+    var belColor = getThemeColor('--chart-bel', getThemeColor('--color-primary-light', '#3b82f6'));
+    var matColor = getThemeColor('--chart-mat', getThemeColor('--color-accent', '#f59e0b'));
 
     return {
       chart: { type: 'line', backgroundColor: 'transparent', height: 360, animation: false },
@@ -110,8 +120,8 @@
         series: { animation: false, connectNulls: false, marker: { enabled: true, radius: 4 } }
       },
       series: [
-        { name: meta.bel, data: belData, color: '#3b82f6' },
-        { name: meta.mat, data: matData, color: '#f59e0b' }
+        { name: meta.bel, data: belData, color: belColor },
+        { name: meta.mat, data: matData, color: matColor }
       ]
     };
   }

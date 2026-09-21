@@ -1,0 +1,97 @@
+/* ==========================================================================
+   НВО Навигатор — Тема "24 май" (Cyrillic Alphabet & Culture Theme)
+   Ден на светите братя Кирил и Методий, на българската азбука, просвета и култура
+   Поддържа: Светъл и Тъмен режим
+   ========================================================================== */
+
+/* --- Светъл режим (Light 24 May / Royal Purple & Gold) --- */
+:root {
+  --color-primary: #6b21a8;          /* Тържествен царски пурпур / божурено */
+  --color-primary-light: #8b5cf6;
+  --color-primary-lighter: #f3e8ff;
+  --color-primary-dark: #581c87;
+  --color-primary-rgb: 107, 33, 168;
+  --color-accent: #b45309;           /* Старинно книжовно злато / месинг */
+  --color-accent-light: #fef3c7;
+  --color-on-primary: #ffffff;
+  --color-on-accent: #ffffff;
+
+  --color-surface: #ffffff;
+  --color-bg: #faf7fc;               /* Фин пергаментов оттенък */
+  --color-bg-alt: #f5f0fa;
+  --color-surface-glass: rgba(255, 255, 255, 0.95);
+
+  --color-text: #1e152a;
+  --color-text-muted: #68587b;
+  --color-text-light: #9c8ea8;
+
+  --color-border: #e5def0;
+  --color-border-light: #f4eff9;
+
+  --color-success: #16a34a;
+  --color-danger: #dc2626;
+
+  --color-footer-bg: #2d1045;
+
+  --shadow-sm: 0 1px 2px rgba(107, 33, 168, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(107, 33, 168, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(107, 33, 168, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-full: 9999px;
+
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Code", "Fira Code", monospace;
+
+  --container-max: 1400px;
+  --header-height: 60px;
+
+  /* Графики (Highcharts) */
+  --chart-bel: #7c3aed;
+  --chart-mat: #d97706;
+
+  /* Празничен акцент */
+  --theme-brand-icon: " 📖";
+}
+
+/* --- Тъмен режим (Dark 24 May) --- */
+[data-theme="dark"] {
+  --color-primary: #c084fc;          /* Царски аметист */
+  --color-primary-light: #d8b4fe;
+  --color-primary-lighter: #3b0764;
+  --color-primary-dark: #a855f7;
+  --color-primary-rgb: 192, 132, 252;
+  --color-accent: #fbbf24;           /* Златен пламък */
+  --color-accent-light: #451a03;
+  --color-on-primary: #ffffff;
+  --color-on-accent: #000000;
+
+  --color-surface: #1a102b;
+  --color-bg: #0d0717;
+  --color-bg-alt: #24163b;
+  --color-surface-glass: rgba(26, 16, 43, 0.95);
+
+  --color-text: #f3e8ff;
+  --color-text-muted: #a896be;
+  --color-text-light: #726188;
+
+  --color-border: #3e2863;
+  --color-border-light: #24163b;
+
+  --color-success: #4ade80;
+  --color-danger: #f87171;
+
+  --color-footer-bg: #08040f;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
+
+  /* Графики (Highcharts) */
+  --chart-bel: #c084fc;
+  --chart-mat: #fbbf24;
+
+  --theme-brand-icon: " 📖";
+}

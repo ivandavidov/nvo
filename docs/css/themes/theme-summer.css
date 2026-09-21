@@ -1,0 +1,97 @@
+/* ==========================================================================
+   НВО Навигатор — Тема "Лятна ваканция"
+   1 юли – 31 август — небе, море и слънце
+   Поддържа: Светъл и Тъмен режим
+   ========================================================================== */
+
+/* --- Светъл режим (Light Summer / Sky & Sun) --- */
+:root {
+  --color-primary: #0284c7;          /* Лятно небе */
+  --color-primary-light: #0ea5e9;
+  --color-primary-lighter: #e0f2fe;
+  --color-primary-dark: #0369a1;
+  --color-primary-rgb: 2, 132, 199;
+  --color-accent: #f59e0b;          /* Слънце */
+  --color-accent-light: #fef3c7;
+  --color-on-primary: #ffffff;
+  --color-on-accent: #ffffff;
+
+  --color-surface: #ffffff;
+  --color-bg: #f0f9ff;
+  --color-bg-alt: #f7fcff;
+  --color-surface-glass: rgba(255, 255, 255, 0.95);
+
+  --color-text: #0c2a3d;
+  --color-text-muted: #4f6b7c;
+  --color-text-light: #8aa3b3;
+
+  --color-border: #d6e8f2;
+  --color-border-light: #e9f3f9;
+
+  --color-success: #16a34a;
+  --color-danger: #e11d48;
+
+  --color-footer-bg: #0c2a3d;
+
+  --shadow-sm: 0 1px 2px rgba(2, 132, 199, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(2, 132, 199, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(2, 132, 199, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-full: 9999px;
+
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Code", "Fira Code", monospace;
+
+  --container-max: 1400px;
+  --header-height: 60px;
+
+  /* Графики (Highcharts) */
+  --chart-bel: #0ea5e9;
+  --chart-mat: #f59e0b;
+
+  /* Празничен акцент */
+  --theme-brand-icon: " ☀️";
+}
+
+/* --- Тъмен режим (Dark Summer / Warm Summer Night) --- */
+[data-theme="dark"] {
+  --color-primary: #38bdf8;          /* Лятна вечер край морето */
+  --color-primary-light: #7dd3fc;
+  --color-primary-lighter: #0c3a52;
+  --color-primary-dark: #0ea5e9;
+  --color-primary-rgb: 56, 189, 248;
+  --color-accent: #fbbf24;          /* Залез */
+  --color-accent-light: #422006;
+  --color-on-primary: #ffffff;
+  --color-on-accent: #000000;
+
+  --color-surface: #0f2a3d;          /* Топла лятна нощ */
+  --color-bg: #071a29;
+  --color-bg-alt: #133449;
+  --color-surface-glass: rgba(7, 26, 41, 0.95);
+
+  --color-text: #e6f4fb;
+  --color-text-muted: #94b6c8;
+  --color-text-light: #5f8194;
+
+  --color-border: #214a63;
+  --color-border-light: #133449;
+
+  --color-success: #4ade80;
+  --color-danger: #fb7185;
+
+  --color-footer-bg: #040f18;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
+
+  /* Графики (Highcharts) */
+  --chart-bel: #7dd3fc;
+  --chart-mat: #fde047;
+
+  --theme-brand-icon: " ☀️";
+}

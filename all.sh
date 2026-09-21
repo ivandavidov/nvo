@@ -2,6 +2,9 @@
 
 set -ex
 
+# Compile all colour themes into docs/css/skins.css (see theme.sh).
+./theme.sh build
+
 cd java
 ./mvnw clean package
 cd target

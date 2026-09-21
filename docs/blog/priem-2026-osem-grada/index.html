@@ -555,19 +555,24 @@
       }
     };
 
+    function themeVar(name, fallback) {
+      var v = getComputedStyle(document.documentElement).getPropertyValue(name);
+      return (v && v.trim()) ? v.trim() : fallback;
+    }
+
     function pal() {
       var dark = document.documentElement.getAttribute('data-theme') === 'dark';
       return {
         dark: dark,
-        text: dark ? '#e2e8f0' : '#1e293b',
-        muted: dark ? '#94a3b8' : '#64748b',
-        grid: dark ? '#334155' : '#e2e8f0',
-        tipBg: dark ? '#1e293b' : '#ffffff',
-        tipBorder: dark ? '#334155' : '#e2e8f0',
-        blue: dark ? '#60a5fa' : '#2563eb',
-        amber: '#f59e0b',
-        green: dark ? '#4ade80' : '#16a34a',
-        red: dark ? '#f87171' : '#dc2626',
+        text: themeVar('--color-text', dark ? '#e2e8f0' : '#1e293b'),
+        muted: themeVar('--color-text-muted', dark ? '#94a3b8' : '#64748b'),
+        grid: themeVar('--color-border', dark ? '#334155' : '#e2e8f0'),
+        tipBg: themeVar('--color-surface', dark ? '#1e293b' : '#ffffff'),
+        tipBorder: themeVar('--color-border', dark ? '#334155' : '#e2e8f0'),
+        blue: themeVar('--chart-bel', dark ? '#60a5fa' : '#2563eb'),
+        amber: themeVar('--chart-mat', '#f59e0b'),
+        green: themeVar('--color-success', dark ? '#4ade80' : '#16a34a'),
+        red: themeVar('--color-danger', dark ? '#f87171' : '#dc2626'),
         slate: dark ? '#64748b' : '#cbd5e1'
       };
     }

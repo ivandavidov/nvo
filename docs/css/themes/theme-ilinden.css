@@ -1,0 +1,97 @@
+/* ==========================================================================
+   НВО Навигатор — Тема "Илинден"
+   2 август — трибагреник в топли летни тонове
+   Поддържа: Светъл и Тъмен режим
+   ========================================================================== */
+
+/* --- Светъл режим (Light Ilinden / Warm Tricolour) --- */
+:root {
+  --color-primary: #166534;
+  --color-primary-light: #15803d;
+  --color-primary-lighter: #dcfce7;
+  --color-primary-dark: #14532d;
+  --color-primary-rgb: 22, 101, 52;
+  --color-accent: #b91c1c;
+  --color-accent-light: #fee2e2;
+  --color-on-primary: #ffffff;
+  --color-on-accent: #ffffff;
+
+  --color-surface: #fffdf9;
+  --color-bg: #f7f3ea;
+  --color-bg-alt: #fbf8f1;
+  --color-surface-glass: rgba(255, 253, 249, 0.95);
+
+  --color-text: #1c1a12;
+  --color-text-muted: #5b5646;
+  --color-text-light: #8c8776;
+
+  --color-border: #e5dfd0;
+  --color-border-light: #efeae0;
+
+  --color-success: #15803d;
+  --color-danger: #b91c1c;
+
+  --color-footer-bg: #1c1a12;
+
+  --shadow-sm: 0 1px 2px rgba(22, 101, 52, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(22, 101, 52, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(22, 101, 52, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-full: 9999px;
+
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Code", "Fira Code", monospace;
+
+  --container-max: 1400px;
+  --header-height: 60px;
+
+  /* Графики (Highcharts) */
+  --chart-bel: #15803d;
+  --chart-mat: #d97706;
+
+  /* Празничен акцент */
+  --theme-brand-icon: " 🏔️";
+}
+
+/* --- Тъмен режим (Dark Ilinden / Summer Night) --- */
+[data-theme="dark"] {
+  --color-primary: #4ade80;
+  --color-primary-light: #86efac;
+  --color-primary-lighter: #14381d;
+  --color-primary-dark: #22c55e;
+  --color-primary-rgb: 74, 222, 128;
+  --color-accent: #f87171;
+  --color-accent-light: #450a0a;
+  --color-on-primary: #000000;
+  --color-on-accent: #ffffff;
+
+  --color-surface: #1c1a14;
+  --color-bg: #0e0d09;
+  --color-bg-alt: #26231b;
+  --color-surface-glass: rgba(14, 13, 9, 0.95);
+
+  --color-text: #f2efe6;
+  --color-text-muted: #b1ac9c;
+  --color-text-light: #77725f;
+
+  --color-border: #3a362a;
+  --color-border-light: #26231b;
+
+  --color-success: #4ade80;
+  --color-danger: #f87171;
+
+  --color-footer-bg: #060503;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
+
+  /* Графики (Highcharts) */
+  --chart-bel: #86efac;
+  --chart-mat: #fbbf24;
+
+  --theme-brand-icon: " 🏔️";
+}

@@ -1,0 +1,96 @@
+/* ==========================================================================
+   НВО Навигатор — Тема "Баба Марта" (Martenitsa Theme)
+   Поддържа: Светъл и Тъмен режим
+   ========================================================================== */
+
+/* --- Светъл режим (Light Martenitsa) --- */
+:root {
+  --color-primary: #b91c1c;          /* Рубинено червено */
+  --color-primary-light: #dc2626;
+  --color-primary-lighter: #fef2f2;
+  --color-primary-dark: #991b1b;
+  --color-primary-rgb: 185, 28, 28;
+  --color-accent: #e11d48;           /* Ален акцент */
+  --color-accent-light: #ffe4e6;
+  --color-on-primary: #ffffff;
+  --color-on-accent: #ffffff;
+
+  --color-surface: #ffffff;
+  --color-bg: #faf9f9;
+  --color-bg-alt: #fdf2f2;
+  --color-surface-glass: rgba(255, 255, 255, 0.95);
+
+  --color-text: #1c1917;
+  --color-text-muted: #78716c;
+  --color-text-light: #a8a29e;
+
+  --color-border: #e7e5e4;
+  --color-border-light: #f5f5f4;
+
+  --color-success: #16a34a;
+  --color-danger: #dc2626;
+
+  --color-footer-bg: #1c1917;
+
+  --shadow-sm: 0 1px 2px rgba(185, 28, 28, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(185, 28, 28, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(185, 28, 28, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-full: 9999px;
+
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Code", "Fira Code", monospace;
+
+  --container-max: 1400px;
+  --header-height: 60px;
+
+  /* Графики (Highcharts) */
+  --chart-bel: #dc2626;
+  --chart-mat: #e11d48;
+
+  /* Празничен акцент */
+  --theme-brand-icon: " 🌸";
+}
+
+/* --- Тъмен режим (Dark Martenitsa) --- */
+[data-theme="dark"] {
+  --color-primary: #f87171;          /* Ярко алено червено */
+  --color-primary-light: #fca5a5;
+  --color-primary-lighter: #450a0a;
+  --color-primary-dark: #ef4444;
+  --color-primary-rgb: 248, 113, 113;
+  --color-accent: #fb7185;
+  --color-accent-light: #4c0519;
+  --color-on-primary: #ffffff;
+  --color-on-accent: #ffffff;
+
+  --color-surface: #1c1917;
+  --color-bg: #0c0a09;
+  --color-bg-alt: #292524;
+  --color-surface-glass: rgba(28, 25, 23, 0.95);
+
+  --color-text: #f5f5f4;
+  --color-text-muted: #a8a29e;
+  --color-text-light: #78716c;
+
+  --color-border: #44403c;
+  --color-border-light: #292524;
+
+  --color-success: #4ade80;
+  --color-danger: #f87171;
+
+  --color-footer-bg: #050404;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
+
+  /* Графики (Highcharts) */
+  --chart-bel: #f87171;
+  --chart-mat: #fb7185;
+
+  --theme-brand-icon: " 🌸";
+}

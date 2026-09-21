@@ -1,81 +1,14 @@
-/* ============================================
+/* ==========================================================================
    НВО Навигатор — Modern Design v2
-   Replaces: skeleton.css + custom.css
-   ============================================ */
+   Тематични променливи: theme.css (базова тема) + skins.css (всички теми под
+   html[data-skin="..."], избирани от theme.js по календар / от селектора)
+   ========================================================================== */
 
-/* --- CSS Variables --- */
-:root {
-  --color-primary: #1e40af;
-  --color-primary-light: #3b82f6;
-  --color-primary-lighter: #dbeafe;
-  --color-primary-dark: #1e3a8a;
-  --color-accent: #f59e0b;
-  --color-accent-light: #fef3c7;
-
-  --color-surface: #ffffff;
-  --color-bg: #f1f5f9;
-  --color-bg-alt: #f8fafc;
-
-  --color-text: #1e293b;
-  --color-text-muted: #64748b;
-  --color-text-light: #94a3b8;
-
-  --color-border: #e2e8f0;
-  --color-border-light: #f1f5f9;
-
-  --color-success: #22c55e;
-  --color-danger: #ef4444;
-
-  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -2px rgba(0,0,0,0.05);
-  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -4px rgba(0,0,0,0.04);
-
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 14px;
-  --radius-full: 9999px;
-
-  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-mono: ui-monospace, "Cascadia Code", "Fira Code", monospace;
-
-  --container-max: 1400px;
-  --header-height: 60px;
-
-  --color-surface-glass: rgba(255,255,255,0.95);
-}
-
-/* --- Dark Theme --- */
-[data-theme="dark"] {
-  --color-primary: #3b82f6;
-  --color-primary-light: #60a5fa;
-  --color-primary-lighter: #1e3a5f;
-  --color-primary-dark: #2563eb;
-  --color-accent: #f59e0b;
-  --color-accent-light: #451a03;
-
-  --color-surface: #1e293b;
-  --color-bg: #0f172a;
-  --color-bg-alt: #1e293b;
-
-  --color-text: #e2e8f0;
-  --color-text-muted: #94a3b8;
-  --color-text-light: #64748b;
-
-  --color-border: #334155;
-  --color-border-light: #1e293b;
-
-  --color-success: #4ade80;
-  --color-danger: #f87171;
-
-  --shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
-  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.4), 0 2px 4px -2px rgba(0,0,0,0.3);
-  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.5), 0 4px 6px -4px rgba(0,0,0,0.3);
-
-  --color-surface-glass: rgba(15, 23, 42, 0.95);
-}
+@import "theme.css";
+@import "skins.css";
 
 [data-theme="dark"] .site-footer {
-  background: #0b1120;
+  background: var(--color-footer-bg, #0b1120);
   color: var(--color-text-muted);
 }
 
@@ -216,6 +149,14 @@ img {
   letter-spacing: -0.02em;
 }
 
+.site-name::after {
+  content: var(--theme-brand-icon, "");
+  font-size: 1.05rem;
+  margin-left: 0.35rem;
+  display: inline-block;
+  vertical-align: middle;
+}
+
 .grade-tabs {
   display: flex;
   gap: 0.25rem;
@@ -240,12 +181,12 @@ img {
 
 .grade-tab.active {
   background: var(--color-primary);
-  color: white;
+  color: var(--color-on-primary, #ffffff);
 }
 
 .grade-tab.active:hover {
   background: var(--color-primary-dark);
-  color: white;
+  color: var(--color-on-primary, #ffffff);
   text-decoration: none;
 }
 
@@ -340,7 +281,7 @@ img {
 }
 
 .support-heart {
-  color: #e0245e;
+  color: var(--color-heart, #e0245e);
   font-size: 0.95rem;
   line-height: 1;
   vertical-align: middle;
@@ -400,7 +341,7 @@ img {
 }
 
 .support-revolut:hover {
-  color: #fff;
+  color: var(--color-on-primary, #ffffff);
   background-color: var(--color-primary);
   border-color: var(--color-primary);
 }
@@ -704,13 +645,13 @@ input[type="reset"].button-primary,
 input[type="button"].button-primary {
   background-color: var(--color-primary);
   border-color: var(--color-primary);
-  color: white;
+  color: var(--color-on-primary, #ffffff);
 }
 
 .button-primary:hover {
   background-color: var(--color-primary-dark);
   border-color: var(--color-primary-dark);
-  color: white;
+  color: var(--color-on-primary, #ffffff);
 }
 
 .button:focus,
@@ -729,14 +670,14 @@ button.mbtn {
 
 button.mbtn:hover {
   background: var(--color-accent);
-  color: white;
+  color: var(--color-on-accent, #ffffff);
   border-color: var(--color-accent);
 }
 
 button.mbtn.button-primary {
   background: var(--color-accent);
   border-color: var(--color-accent);
-  color: white;
+  color: var(--color-on-accent, #ffffff);
 }
 
 /* --- Tables --- */
@@ -829,7 +770,7 @@ tbody td + td {
 
 .school-report-link:hover {
   background-color: var(--color-primary);
-  color: white;
+  color: var(--color-on-primary, #ffffff);
 }
 
 /* --- Fixed Floating Buttons --- */
@@ -856,12 +797,12 @@ tbody td + td {
 
 .buttons-fixed button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 20px -5px rgba(30,64,175,0.25);
+  box-shadow: 0 12px 20px -5px rgba(var(--color-primary-rgb, 30, 64, 175), 0.25);
 }
 
 /* --- Footer --- */
 .site-footer {
-  background: var(--color-text);
+  background: var(--color-footer-bg, var(--color-text));
   color: var(--color-border);
   padding: 1.5rem 0;
   margin-top: 3rem;
@@ -897,6 +838,25 @@ tbody td + td {
 .footer-links a:hover {
   color: var(--color-primary-light);
   text-decoration: none;
+}
+
+/* Селектор на цветова тема (инжектира се от theme.js) */
+.skin-picker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  color: var(--color-text-light);
+}
+
+.skin-picker select {
+  font-size: 0.8rem;
+  padding: 0.2rem 2rem 0.2rem 0.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  cursor: pointer;
 }
 
 /* --- Schools Section Styling --- */

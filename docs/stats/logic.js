@@ -1040,12 +1040,19 @@ function _isDark() {
 
 function _themeColors() {
   const dark = _isDark();
+  function getThemeColor(varName, fallback) {
+    if (typeof window !== 'undefined' && window.getComputedStyle) {
+      const val = getComputedStyle(document.documentElement).getPropertyValue(varName);
+      if (val && val.trim()) return val.trim();
+    }
+    return fallback;
+  }
   return {
-    text:    dark ? '#e2e8f0' : '#1e293b',
-    muted:   dark ? '#94a3b8' : '#64748b',
-    grid:    dark ? '#334155' : '#e2e8f0',
-    tipBg:   dark ? '#1e293b' : '#ffffff',
-    tipBord: dark ? '#334155' : '#e2e8f0'
+    text:    getThemeColor('--color-text', dark ? '#e2e8f0' : '#1e293b'),
+    muted:   getThemeColor('--color-text-muted', dark ? '#94a3b8' : '#64748b'),
+    grid:    getThemeColor('--color-border', dark ? '#334155' : '#e2e8f0'),
+    tipBg:   getThemeColor('--color-surface', dark ? '#1e293b' : '#ffffff'),
+    tipBord: getThemeColor('--color-border', dark ? '#334155' : '#e2e8f0')
   };
 }
 

@@ -1,0 +1,97 @@
+/* ==========================================================================
+   НВО Навигатор — Тема "Трифон Зарезан / Св. Валентин"
+   14 февруари — бордо, вино и розов акцент
+   Поддържа: Светъл и Тъмен режим
+   ========================================================================== */
+
+/* --- Светъл режим (Light Trifon / Burgundy & Rose) --- */
+:root {
+  --color-primary: #881337;          /* Бордо / зряло вино */
+  --color-primary-light: #be123c;
+  --color-primary-lighter: #ffe4e6;
+  --color-primary-dark: #4c0519;
+  --color-primary-rgb: 136, 19, 55;
+  --color-accent: #db2777;          /* Розов акцент */
+  --color-accent-light: #fce7f3;
+  --color-on-primary: #ffffff;
+  --color-on-accent: #ffffff;
+
+  --color-surface: #ffffff;
+  --color-bg: #fdf5f7;
+  --color-bg-alt: #fef9fa;
+  --color-surface-glass: rgba(255, 255, 255, 0.95);
+
+  --color-text: #2b0b17;
+  --color-text-muted: #6e4a56;
+  --color-text-light: #9f8089;
+
+  --color-border: #f0d9df;
+  --color-border-light: #f7e9ed;
+
+  --color-success: #16a34a;
+  --color-danger: #c2410c;
+
+  --color-footer-bg: #2b0b17;
+
+  --shadow-sm: 0 1px 2px rgba(136, 19, 55, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(136, 19, 55, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(136, 19, 55, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-full: 9999px;
+
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Code", "Fira Code", monospace;
+
+  --container-max: 1400px;
+  --header-height: 60px;
+
+  /* Графики (Highcharts) */
+  --chart-bel: #be123c;
+  --chart-mat: #7e22ce;
+
+  /* Празничен акцент */
+  --theme-brand-icon: " 🍇";
+}
+
+/* --- Тъмен режим (Dark Trifon / Wine Cellar) --- */
+[data-theme="dark"] {
+  --color-primary: #fb7185;          /* Розе */
+  --color-primary-light: #fda4af;
+  --color-primary-lighter: #4c0f22;
+  --color-primary-dark: #f43f5e;
+  --color-primary-rgb: 251, 113, 133;
+  --color-accent: #f472b6;          /* Роза */
+  --color-accent-light: #500724;
+  --color-on-primary: #ffffff;
+  --color-on-accent: #ffffff;
+
+  --color-surface: #2a0f19;          /* Винарска изба */
+  --color-bg: #170710;
+  --color-bg-alt: #33141f;
+  --color-surface-glass: rgba(23, 7, 16, 0.95);
+
+  --color-text: #fbe9ee;
+  --color-text-muted: #c39aa6;
+  --color-text-light: #85606c;
+
+  --color-border: #4a1f2e;
+  --color-border-light: #33141f;
+
+  --color-success: #4ade80;
+  --color-danger: #fb923c;
+
+  --color-footer-bg: #0c0308;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
+
+  /* Графики (Highcharts) */
+  --chart-bel: #fda4af;
+  --chart-mat: #c084fc;
+
+  --theme-brand-icon: " 🍇";
+}

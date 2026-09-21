@@ -1,0 +1,97 @@
+/* ==========================================================================
+   НВО Навигатор — Тема "Първа пролет"
+   9 март до Великден — свежо зелено и цвят на дърво
+   Поддържа: Светъл и Тъмен режим
+   ========================================================================== */
+
+/* --- Светъл режим (Light Spring / Fresh Green & Blossom) --- */
+:root {
+  --color-primary: #059669;
+  --color-primary-light: #10b981;
+  --color-primary-lighter: #d1fae5;
+  --color-primary-dark: #047857;
+  --color-primary-rgb: 5, 150, 105;
+  --color-accent: #db2777;
+  --color-accent-light: #fce7f3;
+  --color-on-primary: #ffffff;
+  --color-on-accent: #ffffff;
+
+  --color-surface: #ffffff;
+  --color-bg: #f2fbf6;
+  --color-bg-alt: #f7fdf9;
+  --color-surface-glass: rgba(255, 255, 255, 0.95);
+
+  --color-text: #0f2a1c;
+  --color-text-muted: #4c6b5a;
+  --color-text-light: #83a090;
+
+  --color-border: #d3e9dc;
+  --color-border-light: #e5f3ea;
+
+  --color-success: #10b981;
+  --color-danger: #e11d48;
+
+  --color-footer-bg: #0f2a1c;
+
+  --shadow-sm: 0 1px 2px rgba(5, 150, 105, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(5, 150, 105, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(5, 150, 105, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-full: 9999px;
+
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Code", "Fira Code", monospace;
+
+  --container-max: 1400px;
+  --header-height: 60px;
+
+  /* Графики (Highcharts) */
+  --chart-bel: #10b981;
+  --chart-mat: #f59e0b;
+
+  /* Празничен акцент */
+  --theme-brand-icon: " 🌱";
+}
+
+/* --- Тъмен режим (Dark Spring / Spring Night) --- */
+[data-theme="dark"] {
+  --color-primary: #34d399;
+  --color-primary-light: #6ee7b7;
+  --color-primary-lighter: #0f3d2a;
+  --color-primary-dark: #10b981;
+  --color-primary-rgb: 52, 211, 153;
+  --color-accent: #f472b6;
+  --color-accent-light: #500724;
+  --color-on-primary: #000000;
+  --color-on-accent: #ffffff;
+
+  --color-surface: #0f2a1e;
+  --color-bg: #06170f;
+  --color-bg-alt: #143526;
+  --color-surface-glass: rgba(6, 23, 15, 0.95);
+
+  --color-text: #e4f5ec;
+  --color-text-muted: #96b8a6;
+  --color-text-light: #5f7f6d;
+
+  --color-border: #1f4a35;
+  --color-border-light: #143526;
+
+  --color-success: #34d399;
+  --color-danger: #fb7185;
+
+  --color-footer-bg: #030c07;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
+
+  /* Графики (Highcharts) */
+  --chart-bel: #6ee7b7;
+  --chart-mat: #fde047;
+
+  --theme-brand-icon: " 🌱";
+}

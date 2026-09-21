@@ -1,0 +1,97 @@
+/* ==========================================================================
+   НВО Навигатор — Тема "Ден на детето"
+   1 юни — балони, ярки цветове и игра
+   Поддържа: Светъл и Тъмен режим
+   ========================================================================== */
+
+/* --- Светъл режим (Light Children / Balloons) --- */
+:root {
+  --color-primary: #7c3aed;          /* Игриво виолетово */
+  --color-primary-light: #8b5cf6;
+  --color-primary-lighter: #ede9fe;
+  --color-primary-dark: #6d28d9;
+  --color-primary-rgb: 124, 58, 237;
+  --color-accent: #ea580c;          /* Оранжев балон */
+  --color-accent-light: #ffedd5;
+  --color-on-primary: #ffffff;
+  --color-on-accent: #ffffff;
+
+  --color-surface: #ffffff;
+  --color-bg: #faf5ff;
+  --color-bg-alt: #fdf9ff;
+  --color-surface-glass: rgba(255, 255, 255, 0.95);
+
+  --color-text: #1f1235;
+  --color-text-muted: #5b4b73;
+  --color-text-light: #8f82a3;
+
+  --color-border: #e9e0f5;
+  --color-border-light: #f3eefa;
+
+  --color-success: #16a34a;
+  --color-danger: #e11d48;
+
+  --color-footer-bg: #1f1235;
+
+  --shadow-sm: 0 1px 2px rgba(124, 58, 237, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(124, 58, 237, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(124, 58, 237, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-full: 9999px;
+
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Code", "Fira Code", monospace;
+
+  --container-max: 1400px;
+  --header-height: 60px;
+
+  /* Графики (Highcharts) */
+  --chart-bel: #8b5cf6;
+  --chart-mat: #f97316;
+
+  /* Празничен акцент */
+  --theme-brand-icon: " 🎈";
+}
+
+/* --- Тъмен режим (Dark Children / Confetti Night) --- */
+[data-theme="dark"] {
+  --color-primary: #a78bfa;          /* Люляково */
+  --color-primary-light: #c4b5fd;
+  --color-primary-lighter: #2e1a5e;
+  --color-primary-dark: #8b5cf6;
+  --color-primary-rgb: 167, 139, 250;
+  --color-accent: #fb923c;          /* Конфети */
+  --color-accent-light: #431407;
+  --color-on-primary: #ffffff;
+  --color-on-accent: #ffffff;
+
+  --color-surface: #1d1533;          /* Детска нощ */
+  --color-bg: #100b20;
+  --color-bg-alt: #261c42;
+  --color-surface-glass: rgba(16, 11, 32, 0.95);
+
+  --color-text: #ede8f7;
+  --color-text-muted: #a99cc2;
+  --color-text-light: #6f6389;
+
+  --color-border: #382a5c;
+  --color-border-light: #261c42;
+
+  --color-success: #4ade80;
+  --color-danger: #fb7185;
+
+  --color-footer-bg: #08050f;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
+
+  /* Графики (Highcharts) */
+  --chart-bel: #c4b5fd;
+  --chart-mat: #fdba74;
+
+  --theme-brand-icon: " 🎈";
+}

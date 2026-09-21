@@ -50,6 +50,11 @@ window.toggleTheme = window.toggleTheme || function() {
   var isGamesHub = /\/games(?:\/index\.html)?\/?$/.test(path);
   var rootPrefix = isGamesHub ? '../' : '../../';
 
+  // Цветова тема по календар (data-skin) — същият theme.js като на останалите страници.
+  var skinScript = document.createElement('script');
+  skinScript.src = rootPrefix + 'js/theme.js';
+  document.head.appendChild(skinScript);
+
   var header = document.createElement('header');
   header.className = 'site-header games-site-header';
   header.innerHTML = [

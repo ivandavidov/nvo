@@ -1,0 +1,97 @@
+/* ==========================================================================
+   НВО Навигатор — Тема "Ден на народните будители"
+   1 ноември — свещ, пергамент и старо злато
+   Поддържа: Светъл и Тъмен режим
+   ========================================================================== */
+
+/* --- Светъл режим (Light Buditeli / Parchment & Candle) --- */
+:root {
+  --color-primary: #92400e;          /* Опушено кафяво / стар пергамент */
+  --color-primary-light: #b45309;
+  --color-primary-lighter: #fef3c7;
+  --color-primary-dark: #78350f;
+  --color-primary-rgb: 146, 64, 14;
+  --color-accent: #a16207;          /* Старо злато */
+  --color-accent-light: #fef9c3;
+  --color-on-primary: #ffffff;
+  --color-on-accent: #ffffff;
+
+  --color-surface: #fffdf7;
+  --color-bg: #faf5eb;
+  --color-bg-alt: #fdf8ee;
+  --color-surface-glass: rgba(255, 253, 247, 0.95);
+
+  --color-text: #2a1d0e;
+  --color-text-muted: #6b5a45;
+  --color-text-light: #9a8a75;
+
+  --color-border: #e8dcc8;
+  --color-border-light: #f3ebdc;
+
+  --color-success: #16a34a;
+  --color-danger: #dc2626;
+
+  --color-footer-bg: #2a1d0e;
+
+  --shadow-sm: 0 1px 2px rgba(146, 64, 14, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(146, 64, 14, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(146, 64, 14, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-full: 9999px;
+
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Code", "Fira Code", monospace;
+
+  --container-max: 1400px;
+  --header-height: 60px;
+
+  /* Графики (Highcharts) */
+  --chart-bel: #b45309;
+  --chart-mat: #9d174d;
+
+  /* Празничен акцент */
+  --theme-brand-icon: " 🕯️";
+}
+
+/* --- Тъмен режим (Dark Buditeli / Candle in the Night) --- */
+[data-theme="dark"] {
+  --color-primary: #fbbf24;          /* Пламък на свещ */
+  --color-primary-light: #fcd34d;
+  --color-primary-lighter: #3d2a0f;
+  --color-primary-dark: #f59e0b;
+  --color-primary-rgb: 251, 191, 36;
+  --color-accent: #fde68a;          /* Восъчно злато */
+  --color-accent-light: #422006;
+  --color-on-primary: #000000;
+  --color-on-accent: #000000;
+
+  --color-surface: #1f160c;          /* Нощ в килийното училище */
+  --color-bg: #120d06;
+  --color-bg-alt: #261b0f;
+  --color-surface-glass: rgba(18, 13, 6, 0.95);
+
+  --color-text: #f5ecdc;
+  --color-text-muted: #b8a68a;
+  --color-text-light: #7d6d55;
+
+  --color-border: #3b2d1b;
+  --color-border-light: #241a0e;
+
+  --color-success: #4ade80;
+  --color-danger: #f87171;
+
+  --color-footer-bg: #0a0603;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
+
+  /* Графики (Highcharts) */
+  --chart-bel: #fbbf24;
+  --chart-mat: #f472b6;
+
+  --theme-brand-icon: " 🕯️";
+}

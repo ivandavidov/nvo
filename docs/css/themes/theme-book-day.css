@@ -1,0 +1,97 @@
+/* ==========================================================================
+   НВО Навигатор — Тема "Ден на книгата"
+   23 април — кожена подвързия, крем и мастило
+   Поддържа: Светъл и Тъмен режим
+   ========================================================================== */
+
+/* --- Светъл режим (Light Book Day / Leather & Cream) --- */
+:root {
+  --color-primary: #713f12;
+  --color-primary-light: #92400e;
+  --color-primary-lighter: #fef3c7;
+  --color-primary-dark: #5a3210;
+  --color-primary-rgb: 113, 63, 18;
+  --color-accent: #1e3a5f;
+  --color-accent-light: #e2e8f0;
+  --color-on-primary: #ffffff;
+  --color-on-accent: #ffffff;
+
+  --color-surface: #fffdf8;
+  --color-bg: #f8f3ea;
+  --color-bg-alt: #fcf9f3;
+  --color-surface-glass: rgba(255, 253, 248, 0.95);
+
+  --color-text: #2b1d10;
+  --color-text-muted: #6a5848;
+  --color-text-light: #9a8977;
+
+  --color-border: #e6dac7;
+  --color-border-light: #f0e8da;
+
+  --color-success: #15803d;
+  --color-danger: #b91c1c;
+
+  --color-footer-bg: #2b1d10;
+
+  --shadow-sm: 0 1px 2px rgba(113, 63, 18, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(113, 63, 18, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(113, 63, 18, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-full: 9999px;
+
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Code", "Fira Code", monospace;
+
+  --container-max: 1400px;
+  --header-height: 60px;
+
+  /* Графики (Highcharts) */
+  --chart-bel: #92400e;
+  --chart-mat: #1e40af;
+
+  /* Празничен акцент */
+  --theme-brand-icon: " 📚";
+}
+
+/* --- Тъмен режим (Dark Book Day / Library Night) --- */
+[data-theme="dark"] {
+  --color-primary: #e0b070;
+  --color-primary-light: #ecc48f;
+  --color-primary-lighter: #3a2a14;
+  --color-primary-dark: #d19a4e;
+  --color-primary-rgb: 224, 176, 112;
+  --color-accent: #93b4dc;
+  --color-accent-light: #1c2f4a;
+  --color-on-primary: #000000;
+  --color-on-accent: #ffffff;
+
+  --color-surface: #211710;
+  --color-bg: #120c08;
+  --color-bg-alt: #2c1f16;
+  --color-surface-glass: rgba(18, 12, 8, 0.95);
+
+  --color-text: #f5ebdd;
+  --color-text-muted: #bda78f;
+  --color-text-light: #7e6c5a;
+
+  --color-border: #3f2e21;
+  --color-border-light: #2c1f16;
+
+  --color-success: #4ade80;
+  --color-danger: #f87171;
+
+  --color-footer-bg: #080503;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
+
+  /* Графики (Highcharts) */
+  --chart-bel: #ecc48f;
+  --chart-mat: #93c5fd;
+
+  --theme-brand-icon: " 📚";
+}

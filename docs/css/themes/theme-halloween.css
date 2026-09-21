@@ -1,0 +1,97 @@
+/* ==========================================================================
+   НВО Навигатор — Тема "Хелоуин"
+   31 октомври — тиква, графит и малко магия
+   Поддържа: Светъл и Тъмен режим
+   ========================================================================== */
+
+/* --- Светъл режим (Light Halloween / Pumpkin & Graphite) --- */
+:root {
+  --color-primary: #c2410c;          /* Тиквено оранжево */
+  --color-primary-light: #ea580c;
+  --color-primary-lighter: #ffedd5;
+  --color-primary-dark: #9a3412;
+  --color-primary-rgb: 194, 65, 12;
+  --color-accent: #6d28d9;          /* Магьосническо виолетово */
+  --color-accent-light: #ede9fe;
+  --color-on-primary: #ffffff;
+  --color-on-accent: #ffffff;
+
+  --color-surface: #ffffff;
+  --color-bg: #f5f3f0;
+  --color-bg-alt: #faf8f5;
+  --color-surface-glass: rgba(255, 255, 255, 0.95);
+
+  --color-text: #1c1917;
+  --color-text-muted: #57534e;
+  --color-text-light: #8c8780;
+
+  --color-border: #e4e0da;
+  --color-border-light: #efece7;
+
+  --color-success: #16a34a;
+  --color-danger: #dc2626;
+
+  --color-footer-bg: #1c1917;
+
+  --shadow-sm: 0 1px 2px rgba(194, 65, 12, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(194, 65, 12, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(194, 65, 12, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-full: 9999px;
+
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Code", "Fira Code", monospace;
+
+  --container-max: 1400px;
+  --header-height: 60px;
+
+  /* Графики (Highcharts) */
+  --chart-bel: #ea580c;
+  --chart-mat: #7c3aed;
+
+  /* Празничен акцент */
+  --theme-brand-icon: " 🎃";
+}
+
+/* --- Тъмен режим (Dark Halloween / Haunted Night) --- */
+[data-theme="dark"] {
+  --color-primary: #fb923c;          /* Светеща тиква */
+  --color-primary-light: #fdba74;
+  --color-primary-lighter: #431407;
+  --color-primary-dark: #f97316;
+  --color-primary-rgb: 251, 146, 60;
+  --color-accent: #a78bfa;          /* Лунно виолетово */
+  --color-accent-light: #2e1065;
+  --color-on-primary: #ffffff;
+  --color-on-accent: #ffffff;
+
+  --color-surface: #1c1917;          /* Графит */
+  --color-bg: #0c0a09;
+  --color-bg-alt: #292524;
+  --color-surface-glass: rgba(12, 10, 9, 0.95);
+
+  --color-text: #f5f0eb;
+  --color-text-muted: #a8a29e;
+  --color-text-light: #6f6a64;
+
+  --color-border: #3b3633;
+  --color-border-light: #292524;
+
+  --color-success: #4ade80;
+  --color-danger: #f87171;
+
+  --color-footer-bg: #050403;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
+
+  /* Графики (Highcharts) */
+  --chart-bel: #fdba74;
+  --chart-mat: #c4b5fd;
+
+  --theme-brand-icon: " 🎃";
+}

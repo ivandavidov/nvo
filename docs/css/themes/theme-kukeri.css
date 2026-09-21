@@ -1,0 +1,97 @@
+/* ==========================================================================
+   НВО Навигатор — Тема "Кукери / Сурва"
+   Сирни Заговезни — кожух, звънци и кукерско червено
+   Поддържа: Светъл и Тъмен режим
+   ========================================================================== */
+
+/* --- Светъл режим (Light Kukeri / Fur & Red) --- */
+:root {
+  --color-primary: #7f1d1d;
+  --color-primary-light: #b91c1c;
+  --color-primary-lighter: #fee2e2;
+  --color-primary-dark: #450a0a;
+  --color-primary-rgb: 127, 29, 29;
+  --color-accent: #a16207;
+  --color-accent-light: #fef3c7;
+  --color-on-primary: #ffffff;
+  --color-on-accent: #ffffff;
+
+  --color-surface: #fffaf5;
+  --color-bg: #f5efe6;
+  --color-bg-alt: #faf6f0;
+  --color-surface-glass: rgba(255, 250, 245, 0.95);
+
+  --color-text: #1c1412;
+  --color-text-muted: #5c4f48;
+  --color-text-light: #8f817a;
+
+  --color-border: #e3d8cc;
+  --color-border-light: #efe7dd;
+
+  --color-success: #16a34a;
+  --color-danger: #dc2626;
+
+  --color-footer-bg: #1c1412;
+
+  --shadow-sm: 0 1px 2px rgba(127, 29, 29, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(127, 29, 29, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(127, 29, 29, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-full: 9999px;
+
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Code", "Fira Code", monospace;
+
+  --container-max: 1400px;
+  --header-height: 60px;
+
+  /* Графики (Highcharts) */
+  --chart-bel: #b91c1c;
+  --chart-mat: #ca8a04;
+
+  /* Празничен акцент */
+  --theme-brand-icon: " 🎭";
+}
+
+/* --- Тъмен режим (Dark Kukeri / Fire Night) --- */
+[data-theme="dark"] {
+  --color-primary: #f87171;
+  --color-primary-light: #fca5a5;
+  --color-primary-lighter: #450a0a;
+  --color-primary-dark: #ef4444;
+  --color-primary-rgb: 248, 113, 113;
+  --color-accent: #fbbf24;
+  --color-accent-light: #422006;
+  --color-on-primary: #ffffff;
+  --color-on-accent: #000000;
+
+  --color-surface: #1f1715;
+  --color-bg: #0f0a09;
+  --color-bg-alt: #2a201d;
+  --color-surface-glass: rgba(15, 10, 9, 0.95);
+
+  --color-text: #f3ebe6;
+  --color-text-muted: #b3a49c;
+  --color-text-light: #7a6c65;
+
+  --color-border: #3d302b;
+  --color-border-light: #2a201d;
+
+  --color-success: #4ade80;
+  --color-danger: #f87171;
+
+  --color-footer-bg: #070404;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
+
+  /* Графики (Highcharts) */
+  --chart-bel: #fca5a5;
+  --chart-mat: #fde047;
+
+  --theme-brand-icon: " 🎭";
+}

@@ -127,6 +127,14 @@ function isDarkTheme() {
   return document.documentElement.getAttribute('data-theme') === 'dark';
 }
 
+function getThemeColor(varName, fallback) {
+  if (typeof window !== 'undefined' && window.getComputedStyle) {
+    let val = getComputedStyle(document.documentElement).getPropertyValue(varName);
+    if (val && val.trim()) return val.trim();
+  }
+  return fallback;
+}
+
 function getLayout(title, series, exportPrefix) {
   let removedYears = normalizeSeries(series);
   let lastYear = firstYear - 1 + s[baseSchoolIndex].b.length - removedYears;
@@ -135,11 +143,11 @@ function getLayout(title, series, exportPrefix) {
     categories.push(lastYear - (series[0].data.length - i - 1) + '');
   }
   let dark = isDarkTheme();
-  let textColor = dark ? '#e2e8f0' : '#1e293b';
-  let mutedColor = dark ? '#94a3b8' : '#64748b';
-  let gridColor = dark ? '#334155' : '#e2e8f0';
-  let tooltipBg = dark ? '#1e293b' : '#ffffff';
-  let tooltipBorder = dark ? '#334155' : '#e2e8f0';
+  let textColor = getThemeColor('--color-text', dark ? '#e2e8f0' : '#1e293b');
+  let mutedColor = getThemeColor('--color-text-muted', dark ? '#94a3b8' : '#64748b');
+  let gridColor = getThemeColor('--color-border', dark ? '#334155' : '#e2e8f0');
+  let tooltipBg = getThemeColor('--color-surface', dark ? '#1e293b' : '#ffffff');
+  let tooltipBorder = getThemeColor('--color-border', dark ? '#334155' : '#e2e8f0');
   return {
     title: {
       text: title,
