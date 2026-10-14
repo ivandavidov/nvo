@@ -178,9 +178,23 @@ public class SchoolPageGenerator {
         // arrays are sized to it, so the table must iterate this grade's range, not the document-wide one.
         JsonArray years = g.has("yearsRange") && g.get("yearsRange").isJsonArray()
                 ? g.getAsJsonArray("yearsRange") : fallbackYears;
+        String schoolFullName = str(doc, "fullName");
+        String schoolCityName = null;
+        if (doc.has("city") && doc.get("city").isJsonObject()) {
+            schoolCityName = str(doc.getAsJsonObject("city"), "name");
+        }
         StringBuilder sb = new StringBuilder();
         sb.append("<section class=\"card school-grade\" id=\"grade-").append(grade).append("\">\n");
-        sb.append("<h3 class=\"card-title\">").append(meta.heading()).append("</h3>\n");
+        sb.append("<h3 class=\"card-title\">").append(meta.heading());
+        if (schoolFullName != null) {
+            sb.append("<span class=\"card-title-sep\" aria-hidden=\"true\"> · </span>")
+              .append("<span class=\"card-title-meta\">").append(escHtml(schoolFullName));
+            if (schoolCityName != null) {
+                sb.append(" (").append(escHtml(schoolCityName)).append(")");
+            }
+            sb.append("</span>");
+        }
+        sb.append("</h3>\n");
 
         // Stats — compact 2x2 grid of labelled stat cells (4-up on wider screens via CSS).
         sb.append("<div class=\"school-stats\">");
@@ -353,6 +367,8 @@ public class SchoolPageGenerator {
                     .school-links { font-size: 0.9rem; }
                     .school-related { margin: 0.5rem 0 0; font-size: 0.85rem; color: var(--color-text-muted); line-height: 1.7; }
                     .school-related-label { font-weight: 600; color: var(--color-text); }
+                    .card-title-sep { color: var(--color-text-light); font-weight: 400; }
+                    .card-title-meta { font-size: 0.72em; font-weight: 500; color: var(--color-text-muted); white-space: normal; }
                     @media (min-width: 640px) { .school-stats { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
                   </style>
                   <script>
