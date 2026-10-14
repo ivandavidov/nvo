@@ -367,8 +367,8 @@ public class SchoolPageGenerator {
                     .school-links { font-size: 0.9rem; }
                     .school-related { margin: 0.5rem 0 0; font-size: 0.85rem; color: var(--color-text-muted); line-height: 1.7; }
                     .school-related-label { font-weight: 600; color: var(--color-text); }
-                    .card-title-sep { color: var(--color-text-light); font-weight: 400; }
-                    .card-title-meta { font-size: 0.72em; font-weight: 500; color: var(--color-text-muted); white-space: normal; }
+                    .card-title-sep { color: var(--color-text-light); }
+                    .card-title-meta { color: var(--color-text-muted); }
                     @media (min-width: 640px) { .school-stats { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
                   </style>
                   <script>
