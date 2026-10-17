@@ -2,6 +2,7 @@
 // Индексът data/search-index.json се зарежда при първото отваряне.
 import { icon } from './icons.js';
 import { showModal } from './dom.js';
+import { searchKey, toCyrillic, expandAbbreviations } from './search-text.js';
 import { siteUrl } from '../site.js';
 
 const MAX_SCHOOLS = 12;
@@ -81,7 +82,7 @@ function loadIndex() {
       })
       .then((data) => {
         const cities = data.cities.map(([slug, name, order, grades, balove], i) => ({
-          slug, name, order, grades, balove: !!balove, rank: i, _n: normalize(name)
+          slug, name, order, grades, balove: !!balove, rank: i, _k: searchKey(name)
         }));
         const bySlug = {};
         cities.forEach((c) => { bySlug[c.slug] = c; });
@@ -89,9 +90,10 @@ function loadIndex() {
           const city = bySlug[citySlug];
           const s = {
             code, shortName, fullName, city, isPrivate: !!isPrivate, grades,
-            _nf: normalize(fullName), _ns: normalize(shortName)
+            _kf: searchKey(fullName), _ks: searchKey(shortName)
           };
-          s._h = s._nf + ' ' + s._ns + ' ' + (city ? city._n : '') + ' ' + code;
+          // Името, градът, кодът и разписаните съкращения (МГ → математическа гимназия …).
+          s._h = [s._kf, s._ks, city ? city._k : '', code, searchKey(expandAbbreviations(fullName + ' ' + shortName))].join(' ');
           return s;
         });
         return { cities, schools };
@@ -129,22 +131,25 @@ function cityHref(city) {
 
 function search(index, raw) {
   const q = normalize(raw);
-  const terms = q.split(' ').filter(Boolean);
+  // Сравняваме по общ ключ (латиница = кирилица); за оцветяването — заявката на кирилица.
+  const kq = searchKey(raw);
+  const keys = kq.split(' ').filter(Boolean);
+  const terms = normalize(toCyrillic(raw)).split(' ').filter(Boolean);
   const pages = q
-    ? PAGES.filter((p) => terms.every((t) => normalize(p.title + ' ' + (p.sub || '') + ' ' + p.terms).includes(t)))
+    ? PAGES.filter((p) => keys.every((t) => searchKey(p.title + ' ' + (p.sub || '') + ' ' + p.terms).includes(t)))
     : PAGES.slice(1, 8);
   if (!index || q.length < 2) {
     return { pages, cities: [], schools: [], terms };
   }
   const cities = index.cities
-    .filter((c) => terms.every((t) => c._n.includes(t)))
-    .sort((a, b) => nameTier(a._n, q) - nameTier(b._n, q) || a.rank - b.rank)
+    .filter((c) => keys.every((t) => c._k.includes(t)))
+    .sort((a, b) => nameTier(a._k, kq) - nameTier(b._k, kq) || a.rank - b.rank)
     .slice(0, MAX_CITIES);
   const schools = index.schools
-    .filter((s) => terms.every((t) => s._h.includes(t)))
+    .filter((s) => keys.every((t) => s._h.includes(t)))
     .sort((a, b) => {
-      const ra = Math.min(nameTier(a._nf, q), nameTier(a._ns, q));
-      const rb = Math.min(nameTier(b._nf, q), nameTier(b._ns, q));
+      const ra = Math.min(nameTier(a._kf, kq), nameTier(a._ks, kq));
+      const rb = Math.min(nameTier(b._kf, kq), nameTier(b._ks, kq));
       if (ra !== rb) {
         return ra - rb;
       }

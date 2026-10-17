@@ -1,6 +1,6 @@
 // Страници по град и година (/{клас}/{град}/, /{клас}/{година}/): сортиране по
 // колона, търсене и (за годишната класация) филтър по град. Таблицата е статична HTML.
-import { normalize } from '../ui/dom.js';
+import { searchKey, expandAbbreviations } from '../ui/search-text.js';
 
 const table = document.querySelector('table[data-sortable]');
 const filter = document.querySelector('[data-filter]');
@@ -12,7 +12,7 @@ if (table) {
   const rows = Array.from(tbody.rows).map((tr) => ({
     tr,
     cells: Array.from(tr.cells).map((td) => td.textContent.trim()),
-    hay: normalize(tr.textContent)
+    hay: searchKey(tr.textContent + ' ' + expandAbbreviations(tr.textContent))
   }));
   const ths = Array.from(table.tHead.rows[0].cells);
   const cityCol = ths.findIndex((th) => th.textContent.trim().startsWith('Град'));
@@ -23,7 +23,7 @@ if (table) {
   }
 
   const apply = () => {
-    const q = filter ? normalize(filter.value) : '';
+    const q = filter ? searchKey(filter.value) : '';
     const city = citySelect ? citySelect.value : '';
     let visible = 0;
     rows.forEach((r) => {

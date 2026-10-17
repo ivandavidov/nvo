@@ -1,13 +1,13 @@
 // Хъбът на баловете (/7/balove/): търсене на град.
-import { normalize } from '../ui/dom.js';
+import { searchKey } from '../ui/search-text.js';
 
 const input = document.getElementById('city-search');
 const empty = document.getElementById('city-empty');
-const items = Array.from(document.querySelectorAll('[data-name]')).map((li) => ({ li, name: normalize(li.dataset.name) }));
+const items = Array.from(document.querySelectorAll('[data-name]')).map((li) => ({ li, name: searchKey(li.dataset.name) }));
 
 if (input) {
   input.addEventListener('input', () => {
-    const q = normalize(input.value);
+    const q = searchKey(input.value);
     let shown = 0;
     items.forEach((it) => {
       const show = !q || it.name.includes(q);

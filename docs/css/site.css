@@ -1925,6 +1925,8 @@
   .landing__filters { flex: 1 1 420px; }
   .landing__filters .input-icon { flex: 0 1 320px; min-width: 200px; }
   .landing__filters .select { width: auto; min-width: 200px; }
+  /* Ограничена ширина — на широк екран числата стоят до имената, а не в другия край на екрана. */
+  .landing__card { max-width: 920px; }
   .landing__table { border: 0; border-radius: 0 0 var(--radius-lg) var(--radius-lg); }
   .landing__table .data-table td:nth-child(2) { white-space: normal; min-width: 220px; }
 }

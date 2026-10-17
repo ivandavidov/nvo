@@ -96,7 +96,9 @@ public class SchoolPageGenerator {
         ctx.put("header", SiteLayout.header(page));
         ctx.put("footer", SiteLayout.footer(page));
         ctx.put("siteUrl", SITE_BASE_URL);
-        ctx.put("title", fullName + " – резултати от НВО и ДЗИ | Иван Давидов");
+        // Градът в заглавието: много училища имат еднакви имена в различни градове (напр. „ОУ Кирил и Методий“).
+        String titleCity = cityName != null && !fullName.contains(cityName) ? " (" + cityName + ")" : "";
+        ctx.put("title", fullName + titleCity + " – резултати от НВО и ДЗИ | Иван Давидов");
         ctx.put("description", "Резултати, класации и графики за " + fullName
                 + (cityName != null ? " (" + cityName + ")" : "")
                 + " по БЕЛ и математика за НВО и ДЗИ за последните години.");

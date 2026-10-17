@@ -3,7 +3,8 @@
 // Логиката е пренесена 1:1 от стария шаблон на RuoPage; състоянието е в адреса
 // (?school=&profile=&gender=true).
 import { icon } from '../ui/icons.js';
-import { esc, normalize } from '../ui/dom.js';
+import { esc } from '../ui/dom.js';
+import { searchKey, expandAbbreviations } from '../ui/search-text.js';
 import { createCombobox } from '../ui/combobox.js';
 import { whenHighcharts, lineOptions, createChart, token, onThemeChange } from '../ui/chart-theme.js';
 
@@ -300,7 +301,7 @@ function buildOverviewRows() {
         trend = latest > prev + 0.5 ? 'up' : latest < prev - 0.5 ? 'down' : 'same';
       }
       rows.push({ code, pcode, school: school.n, schoolFull: school.f, profile: school.p[pcode].n, yearMins, trend,
-        hay: normalize(school.n + ' ' + school.f + ' ' + school.p[pcode].n) });
+        hay: searchKey(school.n + ' ' + school.f + ' ' + school.p[pcode].n + ' ' + expandAbbreviations(school.n + ' ' + school.f)) });
     });
   });
   return rows;
@@ -350,7 +351,7 @@ const TREND = {
 };
 
 function renderOverview() {
-  const terms = normalize(state.filter).split(' ').filter(Boolean);
+  const terms = searchKey(state.filter).split(' ').filter(Boolean);
   const rows = sortRows(terms.length ? overviewRows.filter((r) => terms.every((t) => r.hay.includes(t))) : overviewRows);
   el.tbody.innerHTML = rows.map((r, i) => {
     let html = '<tr tabindex="0" data-code="' + esc(r.code) + '" data-pcode="' + esc(r.pcode) + '">'
@@ -383,7 +384,7 @@ function setupSchoolCombobox() {
       }
       return a.name.localeCompare(b.name, 'bg');
     })
-    .map((s) => Object.assign(s, { hay: normalize(s.name + ' ' + s.full + ' ' + s.code) }));
+    .map((s) => Object.assign(s, { hay: searchKey(s.name + ' ' + s.full + ' ' + s.code + ' ' + expandAbbreviations(s.name + ' ' + s.full)) }));
   createCombobox({
     input: el.schoolInput,
     host: el.schoolInput.closest('.combo'),
@@ -391,7 +392,7 @@ function setupSchoolCombobox() {
     hint: '',
     emptyText: 'Няма такова училище',
     search(q) {
-      const terms = normalize(q).split(' ').filter(Boolean);
+      const terms = searchKey(q).split(' ').filter(Boolean);
       const items = list.filter((s) => terms.every((t) => s.hay.includes(t)))
         .map((s) => ({ id: s.code, title: s.name, meta: s.full !== s.name ? s.full : '', checked: s.code === state.school }));
       return [{ label: '', items }];

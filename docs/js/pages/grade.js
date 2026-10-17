@@ -8,7 +8,8 @@ import {
 } from '../core/model.js';
 import { initialSelection, writeSelection, shareUrl, readYearParam, readCityHash } from '../core/url-state.js';
 import { icon } from '../ui/icons.js';
-import { esc, normalize, download, fmt, showModal } from '../ui/dom.js';
+import { esc, download, fmt, showModal } from '../ui/dom.js';
+import { searchKey } from '../ui/search-text.js';
 import { createCombobox } from '../ui/combobox.js';
 import { buildSchoolIndex, searchSchools } from '../ui/school-search.js';
 import { embedCode } from '../core/embed.js';
@@ -339,11 +340,11 @@ function setupCitySwitcher() {
   });
   if (el.cityFilter) {
     el.cityFilter.addEventListener('input', () => {
-      const q = normalize(el.cityFilter.value);
+      const q = searchKey(el.cityFilter.value);
       let visibleOther = 0;
       el.switcher.querySelectorAll('[data-city]').forEach((a) => {
         const city = cityBySlug(a.dataset.city);
-        const match = !!city && (!q || normalize(city.name + ' ' + city.label).includes(q));
+        const match = !!city && (!q || searchKey(city.name + ' ' + city.label).includes(q));
         a.hidden = !match;
         if (match && city.tier === 3) {
           visibleOther++;

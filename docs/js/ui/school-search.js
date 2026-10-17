@@ -1,5 +1,6 @@
 // Търсене на училище в модела на един клас (за полетата „Добави училище“).
 import { normalize } from './dom.js';
+import { searchKey, expandAbbreviations } from './search-text.js';
 
 /** Индекс за търсене: всички училища в градовете с данни (вкл. без резултат за последната година). */
 export function buildSchoolIndex(model, cities) {
@@ -20,8 +21,9 @@ export function buildSchoolIndex(model, cities) {
           type,
           inactive: o.b[o.b.length - 1] === null,
           nl: normalize(o.l),
-          nn: normalize(o.n),
-          hay: normalize(o.n + ' ' + o.l + ' ' + c.name + ' ' + (o.c || ''))
+          kl: searchKey(o.l),
+          kn: searchKey(o.n),
+          hay: searchKey(o.n + ' ' + o.l + ' ' + c.name + ' ' + (o.c || '') + ' ' + expandAbbreviations(o.n + ' ' + o.l))
         });
       }
     });
@@ -31,7 +33,7 @@ export function buildSchoolIndex(model, cities) {
 
 function tier(it, nq) {
   let best = 2;
-  [it.nn, it.nl].forEach((name) => {
+  [it.kn, it.kl].forEach((name) => {
     const pos = name.indexOf(nq);
     if (pos >= 0) {
       best = Math.min(best, pos === 0 || name.charAt(pos - 1) === ' ' ? 0 : 1);
@@ -45,7 +47,7 @@ function tier(it, nq) {
  * Подредба: съвпадение в началото на име/дума → реда на градовете → азбучно.
  */
 export function searchSchools(model, index, query, { isSelected = () => false, limit = 40 } = {}) {
-  const nq = normalize(query);
+  const nq = searchKey(query);
   const terms = nq.split(' ').filter(Boolean);
   const latest = model.latestYear;
   const found = index.filter((it) => terms.every((t) => it.hay.includes(t)))
