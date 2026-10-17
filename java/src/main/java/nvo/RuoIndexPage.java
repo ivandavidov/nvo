@@ -12,7 +12,7 @@ import java.util.stream.Stream;
  * city that has a published min/max scores page. The hub decouples balove
  * discoverability from the NVO-7 ranking sections: cities that have RUO data but
  * no exam-taking schools (e.g. Куклен) are reachable here even though they get no
- * si[city] entry in schools-7.js.
+ * si[city] entry in data/grade-7.json.
  *
  * Source of truth = the per-city directories produced by RuoPage. Run this AFTER
  * all RuoPage invocations so every city directory is present.

@@ -28,10 +28,6 @@ import java.util.Map;
  */
 public final class GradePageGenerator {
 
-    /** Последната година с данни (същото като LATEST_YEAR_BY_GRADE в js/core/config.js). */
-    private static final Map<String, Integer> LATEST_YEAR = Map.of("4", 2026, "7", 2026, "10", 2026, "12", 2026);
-    /** От коя година са реалните данни (НВО 10 започва през 2021). */
-    private static final Map<String, Integer> COVERAGE_FROM = Map.of("4", 2018, "7", 2018, "10", 2021, "12", 2018);
     private static final int NAV_FIRST_YEAR = 2020;
 
     private GradePageGenerator() {
@@ -47,7 +43,7 @@ public final class GradePageGenerator {
     static void generate(String grade) throws IOException {
         Path docs = Path.of(ProjectConfig.DOCS_DIR);
         boolean dzi = "12".equals(grade);
-        int latest = LATEST_YEAR.get(grade);
+        int latest = GradeData.latestYear(docs, grade);
 
         SiteLayout.Page page = new SiteLayout.Page("../").active(grade).favicon("favicon-" + grade + ".png");
         Map<String, Object> ctx = page.context();
@@ -65,7 +61,7 @@ public final class GradePageGenerator {
         ctx.put("subjectMLong", dzi ? "Втори зрелостен изпит" : "Математика");
         ctx.put("scale", dzi ? "оценки от 2 до 6" : "точки от 0 до 100");
         ctx.put("latestYear", latest);
-        ctx.put("coverageFrom", COVERAGE_FROM.get(grade));
+        ctx.put("coverageFrom", GradeData.coverageFrom(grade));
         ctx.put("hasBalove", Files.isDirectory(docs.resolve(grade).resolve(ProjectConfig.RUO_DIR_NAME)));
 
         List<Integer> history = new ArrayList<>();

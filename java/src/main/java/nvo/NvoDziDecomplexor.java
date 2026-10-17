@@ -6,7 +6,6 @@ import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.ArrayList;
@@ -24,15 +23,13 @@ public class NvoDziDecomplexor {
 
     private String header = null;
 
-    private static Path of = null;
-
     private static int index = 1;
 
     private static int numYears = 0;
 
     private static String grade = null;
 
-    /** Същите данни като schools-{grade}.js, но като JSON за новия фронтенд (docs/data/grade-{grade}.json). */
+    /** Данните за фронтенда (docs/data/grade-{grade}.json): s = училищата по индекс, si = градовете с диапазоните им. */
     private final List<Object> jsonSchools = new ArrayList<>();
     private final Map<String, Object> jsonCities = new LinkedHashMap<>();
 
@@ -49,7 +46,6 @@ public class NvoDziDecomplexor {
         String[] files = null;
 
         String normalizedPath = ProjectConfig.DATA_NORMALIZED_DIR;
-        String schoolsPath = ProjectConfig.DOCS_JS_DIR;
 
         if(mode.equals("normalize")) {
           NvoDziNormalizer.main((String)null);
@@ -181,10 +177,6 @@ public class NvoDziDecomplexor {
 
         System.out.println();
 
-        of = Path.of(schoolsPath, "schools-" + mode + ".js");
-
-        Files.writeString(of, header + "\n\n", StandardOpenOption.TRUNCATE_EXISTING);
-        Files.writeString(of, "let si = [];\nlet s = [];\n\n", StandardOpenOption.APPEND);
 
         jsonSchools.add(null); // индексите започват от 1, както в schools-{grade}.js
         for(Cities.City city : Cities.ORDERED) {
@@ -365,16 +357,15 @@ public class NvoDziDecomplexor {
 
         if(!COMPRESSED) {
             System.out.println(sb.toString());
-            Files.writeString(of, sb.toString() + "\n", StandardOpenOption.APPEND);
         } else {
             System.out.print(sb.toString());
-            Files.writeString(of, sb.toString(), StandardOpenOption.APPEND);
         }
     }
 
     private void writeJson(String mode) throws Exception {
         Map<String, Object> root = new LinkedHashMap<>();
         root.put("grade", Integer.parseInt(mode));
+        root.put("source", header.replaceFirst("^//\\s*", ""));
         root.put("firstYear", 2018);
         root.put("si", jsonCities);
         root.put("s", jsonSchools);

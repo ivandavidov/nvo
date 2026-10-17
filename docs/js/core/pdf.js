@@ -1,5 +1,5 @@
-// PDF доклад за училище и PDF на класацията на град — съдържанието е като в
-// стария logic-pdf.js. jsPDF, AutoTable и Highcharts exporting се зареждат
+// PDF доклад за училище, PDF на класацията на град и PDF профил на училище.
+// jsPDF, AutoTable и Highcharts exporting се зареждат
 // едва при първото генериране (по-лека страница).
 import { findCityForSchool, nationalAverages, formatRankValue, rankFor } from './model.js';
 
@@ -436,7 +436,7 @@ function gradeHeading(grade) {
   return String(grade) === '12' ? 'ДЗИ 12 клас' : 'НВО ' + grade + ' клас';
 }
 
-/** Един PDF за всички класове на училището — като стария logic-school.js. */
+/** Един PDF за всички класове на училището (страницата /school/{код}/). */
 export async function schoolProfilePdf(data, gradeMeta, seriesForGrade) {
   const ns = await ensurePdfLibs();
   const doc = await newDoc(ns, 'portrait');

@@ -1,10 +1,7 @@
-// Конфигурация по клас — единственият източник за новия фронтенд.
-// Стойностите съвпадат 1:1 със старите config-global.js + config-{4,7,10,12}.js.
+// Конфигурация по клас за фронтенда. Последната година идва от самите данни
+// (data/grade-{g}.json), затова тук я няма.
 
 export const GRADES = [4, 7, 10, 12];
-
-/** Последната година с данни за всеки клас (ДЗИ излиза преди НВО). */
-export const LATEST_YEAR_BY_GRADE = { 4: 2026, 7: 2026, 10: 2026, 12: 2026 };
 
 /** Колко последни години показват графиките (прозорецът по подразбиране). */
 export const NUM_YEARS_BY_GRADE = { 4: 8, 7: 8, 10: 6, 12: 8 };
@@ -108,7 +105,6 @@ export function gradeConfig(grade) {
   const cfg = Object.assign({}, DEFAULTS, OVERRIDES[g]);
   cfg.grade = g;
   cfg.numYears = NUM_YEARS_BY_GRADE[g];
-  cfg.latestYear = LATEST_YEAR_BY_GRADE[g];
   cfg.disabledEntries = cfg.disabledEntries.slice();
   cfg.exportPrefixBel = cfg.exportPrefixBel || cfg.exportPrefix + '-bel';
   cfg.exportPrefixMat = cfg.exportPrefixMat || cfg.exportPrefix + '-mat';

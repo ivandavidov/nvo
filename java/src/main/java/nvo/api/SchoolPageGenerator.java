@@ -198,7 +198,8 @@ public class SchoolPageGenerator {
         // Contextual links: open the school in the interactive chart, plus the city/year rankings.
         List<Map<String, Object>> links = new ArrayList<>();
         links.add(link("../../" + grade + "/?school=" + code, "Виж в графиката"));
-        if (citySlug != null) {
+        // Само ако за града има страница с класация за този клас (напр. без данни за последната година няма).
+        if (citySlug != null && Files.exists(Path.of(DOCS_BASE, grade, citySlug, "index.html"))) {
             links.add(link("../../" + grade + "/" + citySlug + "/", "Класация в града"));
         }
         if (latestYear != null) {

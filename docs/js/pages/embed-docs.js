@@ -1,6 +1,6 @@
 // Генераторът на код на страницата /embed/: клас, училища, графики, тема и година
 // → готов iframe код и преглед на живо.
-import { NAV_FIRST_YEAR, LATEST_YEAR_BY_GRADE } from '../core/config.js';
+import { NAV_FIRST_YEAR } from '../core/config.js';
 import { fetchGradeData, buildModel, renderableCities } from '../core/model.js';
 import { embedCode, embedQuery } from '../core/embed.js';
 import { createCombobox } from '../ui/combobox.js';
@@ -47,7 +47,7 @@ async function loadGrade(grade) {
   state.model = buildModel(grade, await fetchGradeData(grade, siteUrl('data/grade-' + grade + '.json')), {});
   state.index = buildSchoolIndex(state.model, renderableCities(state.model));
   state.selection = [state.model.cfg.baseSchoolIndex, state.model.cfg.refSchoolIndex].filter((i) => state.model.s[i]);
-  const latest = LATEST_YEAR_BY_GRADE[grade];
+  const latest = state.model.dataLatestYear;
   let options = '<option value="">' + latest + ' — актуални данни</option>';
   for (let y = latest - 1; y >= NAV_FIRST_YEAR; y--) {
     options += '<option value="' + y + '">' + y + '</option>';

@@ -29,8 +29,6 @@ import java.util.stream.Stream;
 public final class HomePageGenerator {
 
     private static final String[] GRADES = {"4", "7", "10", "12"};
-    /** От коя година са реалните данни (НВО 10 започва през 2021). */
-    private static final Map<String, Integer> COVERAGE_FROM = Map.of("4", 2018, "7", 2018, "10", 2021, "12", 2018);
     private static final int FIRST_YEAR = 2018;
 
     private HomePageGenerator() {
@@ -108,7 +106,7 @@ public final class HomePageGenerator {
             avgM[y] = nM > 0 ? sumM / nM : 0;
         }
         int latestYear = FIRST_YEAR + years - 1;
-        int from = COVERAGE_FROM.get(grade) - FIRST_YEAR;
+        int from = GradeData.coverageFrom(grade) - FIRST_YEAR;
 
         Map<String, Object> e = new HashMap<>();
         e.put("grade", grade);
@@ -122,7 +120,7 @@ public final class HomePageGenerator {
         e.put("avgM", String.format(Locale.ROOT, "%.2f", avgM[years - 1]));
         e.put("scale", dzi ? "средна оценка" : "средно от 100 т.");
         e.put("spark", sparkline(avgB, avgM, from, years - 1));
-        e.put("range", COVERAGE_FROM.get(grade) + "–" + latestYear);
+        e.put("range", GradeData.coverageFrom(grade) + "–" + latestYear);
         return e;
     }
 
