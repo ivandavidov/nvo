@@ -44,6 +44,10 @@ public class IndexGenerator {
         System.out.println("Generated: " + outputDir.resolve("index.html"));
     }
 
+    private static nvo.site.SiteLayout.Page page() {
+        return new nvo.site.SiteLayout.Page("../../").favicon("favicon-7.png");
+    }
+
     private String buildIndexHtml() {
         StringBuilder sb = new StringBuilder();
         String siteBaseUrl = SITE_BASE_URL;
@@ -58,7 +62,6 @@ public class IndexGenerator {
                   <title>НВО и ДЗИ API v1 | Иван Давидов</title>
                   <meta name="description" content="Публично JSON API с резултати от НВО и ДЗИ (от 2018 г.) от Иван Давидов. Данни за училища, градове и класации.">
                   <meta name="author" content="Иван Давидов">
-                  <meta name="viewport" content="width=device-width, initial-scale=1">
                   <link rel="canonical" href="%s">
 
                   <meta property="og:type" content="website">
@@ -101,105 +104,57 @@ public class IndexGenerator {
                     ]
                   }
                   </script>
-
-                  <link rel="stylesheet" href="../../css/normalize.css">
-                  <link rel="stylesheet" href="../../css/custom.css">
-                  <link rel="icon" type="image/png" href="../../images/favicon-7.png">
-                  <script>
-                    (function() {
-                      var saved = localStorage.getItem('nvo-theme');
-                      if (!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                        saved = 'dark';
-                      }
-                      if (saved === 'dark') {
-                        document.documentElement.setAttribute('data-theme', 'dark');
-                      }
-                    })();
-                  </script>
-                  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google-analytics.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com; font-src 'self'">
-                  <meta name="referrer" content="strict-origin-when-cross-origin">
-                  <script>
-                    window.dataLayer = window.dataLayer || [];
-                    function gtag(){dataLayer.push(arguments);}
-                    gtag('consent', 'default', {
-                      'analytics_storage': 'denied',
-                      'ad_storage': 'denied',
-                      'wait_for_update': 500
-                    });
-                  </script>
-                  <script async src="https://www.googletagmanager.com/gtag/js?id=G-V0P6LBF76F"></script>
-                  <script>
-                    gtag('js', new Date());
-                    gtag('config', 'G-V0P6LBF76F', {'anonymize_ip': true});
-                  </script>
-                  <script src="../../js/theme.js" defer></script>
+                %s
                   <style>
-                    .api-header { margin: 2rem 0 1.5rem; }
-                    .api-header h2 { margin: 0 0 0.25rem; }
-                    .api-header p { color: var(--text-muted); margin: 0; }
-                    .api-base { font-family: var(--font-mono); font-size: 0.85rem; background: var(--bg-surface);
-                      border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 0.75rem 1rem;
-                      margin-bottom: 1.5rem; color: var(--text-muted); }
-                    .api-base code { color: var(--text-color); }
-                    .endpoint { background: var(--bg-surface); border: 1px solid var(--border-color);
-                      border-radius: var(--radius-md); margin-bottom: 1rem; overflow: hidden; }
-                    .endpoint-header { display: flex; align-items: center; gap: 0.75rem; padding: 0.875rem 1rem;
-                      cursor: pointer; user-select: none; }
-                    .endpoint-header:hover { background: var(--bg-hover, var(--border-light)); }
-                    .method { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700;
-                      padding: 0.2rem 0.5rem; border-radius: 4px; color: #fff; background: #22c55e; flex-shrink: 0; }
-                    .path { font-family: var(--font-mono); font-size: 0.9rem; color: var(--text-color); text-decoration: none; }
-                    a.path:hover { text-decoration: underline; }
+                    .api-docs .api-base { margin-bottom: var(--sp-6); padding: var(--sp-3) var(--sp-4); border: 1px solid var(--border);
+                      border-radius: var(--radius-md); background: var(--surface); font-family: var(--font-mono); font-size: var(--fs-sm); color: var(--text-3); }
+                    .api-docs .api-base code { border: 0; background: none; color: var(--text); }
+                    .api-docs h4 { margin: var(--sp-8) 0 var(--sp-3) !important; font-size: var(--fs-xs); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-4); }
+                    .endpoint { margin-bottom: var(--sp-2); overflow: hidden; border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--surface); }
+                    .endpoint-header { display: flex; align-items: center; gap: var(--sp-3); padding: var(--sp-3) var(--sp-4); cursor: pointer; user-select: none; }
+                    .endpoint-header:hover { background: var(--surface-2); }
+                    .method { flex-shrink: 0; padding: 0.15rem 0.5rem; border-radius: var(--radius-xs); background: var(--success-soft); color: var(--success);
+                      font-family: var(--font-mono); font-size: var(--fs-xs); font-weight: 700; }
+                    .path { font-family: var(--font-mono); font-size: var(--fs-md); color: var(--text); text-decoration: none; }
+                    a.path:hover { color: var(--primary); text-decoration: underline; }
                     .path-param { color: var(--primary); }
-                    .endpoint-desc { color: var(--text-muted); font-size: 0.85rem; margin-left: auto; }
-                    .endpoint-body { display: none; border-top: 1px solid var(--border-color); padding: 1rem; }
+                    .endpoint-desc { margin-left: auto; color: var(--text-3); font-size: var(--fs-sm); text-align: right; }
+                    .endpoint-body { display: none; padding: var(--sp-4); border-top: 1px solid var(--border); }
                     .endpoint.open .endpoint-body { display: block; }
-                    .try-it { margin-top: 0.75rem; padding: 0.75rem; background: var(--border-light);
-                      border-radius: var(--radius-sm); display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem 0; }
-                    .try-it label { font-size: 0.8rem; font-weight: 600; margin-right: 0.35rem; }
-                    .try-it select { font-size: 0.8rem; padding: 0.25rem 0.4rem; border: 1px solid var(--border-color);
-                      border-radius: 4px; background: var(--bg-color); color: var(--text-color); margin-right: 0.75rem;
-                      max-width: 12rem; text-overflow: ellipsis; }
-                    .try-it > div { flex-basis: 100%; }
-                    .try-it .try-link { display: inline-block; margin-top: 0.5rem; font-family: var(--font-mono);
-                      font-size: 0.85rem; }
+                    .endpoint-arrow { color: var(--text-4); font-size: var(--fs-xs); transition: transform var(--dur) var(--ease); }
                     .endpoint.open .endpoint-arrow { transform: rotate(90deg); }
-                    .endpoint-arrow { color: var(--text-light); transition: transform 0.15s; font-size: 0.8rem; }
-                    .schema-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin-top: 0.5rem; }
-                    .schema-table th { text-align: left; padding: 0.4rem 0.75rem; background: var(--border-light);
-                      font-weight: 600; border-bottom: 1px solid var(--border-color); }
-                    .schema-table td { padding: 0.4rem 0.75rem; border-bottom: 1px solid var(--border-light); }
-                    .schema-table .type { font-family: var(--font-mono); font-size: 0.8rem; color: var(--primary); }
-                    pre.example { background: var(--border-light); border-radius: var(--radius-sm); padding: 0.75rem 1rem;
-                      font-size: 0.8rem; overflow-x: auto; margin: 0.75rem 0 0; line-height: 1.5; }
-                    .section-label { font-weight: 600; font-size: 0.9rem; margin: 0.75rem 0 0.25rem; }
-                    .grade-endpoints { margin-top: 0.5rem; }
-                    .grade-endpoints h4 { margin: 1.5rem 0 0.75rem; padding-bottom: 0.4rem;
-                      border-bottom: 1px solid var(--border-color); }
-                    html { overflow-y: scroll; }
-                    .back-link { margin-top: 2rem; display: inline-block; }
+                    .try-it { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-2) var(--sp-3); margin-top: var(--sp-3); padding: var(--sp-3);
+                      border-radius: var(--radius-sm); background: var(--surface-2); }
+                    .try-it label { font-size: var(--fs-sm); font-weight: 600; color: var(--text-2); }
+                    .try-it select, .try-it input { height: 34px; max-width: 14rem; padding: 0 var(--sp-2); border: 1px solid var(--border-strong);
+                      border-radius: var(--radius-xs); background: var(--surface); color: var(--text); font-size: var(--fs-sm); }
+                    .try-it > div { flex-basis: 100%%; }
+                    .try-it .try-link { display: inline-block; margin-top: var(--sp-1); font-family: var(--font-mono); font-size: var(--fs-sm); word-break: break-all; }
+                    .schema-table { width: 100%%; margin-top: var(--sp-2); border-collapse: collapse; font-size: var(--fs-sm); }
+                    .schema-table th { padding: var(--sp-2) var(--sp-3); background: var(--surface-2); color: var(--text-3); font-size: var(--fs-xs); font-weight: 650; text-align: left; border-bottom: 1px solid var(--border); }
+                    .schema-table td { padding: var(--sp-2) var(--sp-3); border-bottom: 1px solid var(--border); vertical-align: top; }
+                    .schema-table td:first-child { font-family: var(--font-mono); font-size: var(--fs-xs); }
+                    .schema-table .type { color: var(--primary); font-family: var(--font-mono); font-size: var(--fs-xs); }
+                    pre.example { margin: var(--sp-3) 0 0; padding: var(--sp-3) var(--sp-4); overflow-x: auto; border-radius: var(--radius-sm);
+                      background: var(--surface-2); font-size: var(--fs-xs); line-height: 1.55; }
+                    .section-label { margin: var(--sp-3) 0 var(--sp-1); font-size: var(--fs-sm); font-weight: 650; }
+                    .grade-endpoints { margin-top: var(--sp-2); }
                     @media (max-width: 640px) {
                       .endpoint-desc { display: none; }
-                      .endpoint-header { gap: 0.5rem; }
+                      .endpoint-header { gap: var(--sp-2); }
                     }
                   </style>
                 </head>
                 <body>
-                  <div class="container">
-                    <div class="row">
-                      <a class="back-link" href="../../7/">&larr; Обратно</a>
-                    </div>
-                    <div class="api-header">
-                      <h2>НВО &amp; ДЗИ API</h2>
-                      <p>Публично JSON API с резултати от НВО и ДЗИ (2018&ndash;""");
-        sb.append(LAST_YEAR);
-        sb.append("""
-                )</p>
-                    </div>
-                    <div class="api-base">Base URL: <code>%s</code></div>
-
-                    <h4 style="margin-bottom:0.75rem">Общи</h4>
-                """.formatted(
+                %s
+                  <main id="main" class="container container--narrow page api-docs">
+                    <nav class="breadcrumbs" aria-label="Път">
+                      <ol><li><a href="../../">Начало</a></li><li><span aria-current="page">JSON API</span></li></ol>
+                    </nav>
+                    <header class="page-head">
+                      <p class="page-head__eyebrow">Отворени данни · v1</p>
+                      <h1 class="page-head__title">НВО &amp; ДЗИ API</h1>
+                      <p class="page-head__lead">Публично JSON API с резултати от НВО и ДЗИ (2018&ndash;""".formatted(
                 apiBaseUrl,
                 apiBaseUrl,
                 socialPreviewUrl,
@@ -207,7 +162,16 @@ public class IndexGenerator {
                 siteBaseUrl,
                 apiBaseUrl,
                 apiBaseUrl,
-                apiBaseDisplay));
+                nvo.site.SiteLayout.head(page()),
+                nvo.site.SiteLayout.header(page())));
+        sb.append(LAST_YEAR);
+        sb.append("""
+                ). Без ключ и без ограничения — статични файлове, които се обновяват заедно със сайта.</p>
+                    </header>
+                    <div class="api-base">Base URL: <code>%s</code></div>
+
+                    <h4 style="margin-bottom:0.75rem">Общи</h4>
+                """.formatted(apiBaseDisplay));
 
         // Index endpoint
         sb.append(endpointCard(
@@ -515,10 +479,9 @@ public class IndexGenerator {
 
         // Footer and script
         sb.append("""
-                    <div style="margin:2rem 0;color:var(--text-light);font-size:0.8rem">
-                      Данни: <a href="https://data.egov.bg" style="color:var(--text-muted)">data.egov.bg</a>
-                    </div>
-                  </div>
+                    <p class="muted text-sm mt-8">Данни: <a href="https://data.egov.bg">data.egov.bg</a> · <a href="../../embed/">Вграждане на графики</a> · <a href="../../za-proekta/">За проекта</a></p>
+                  </main>
+                """ + nvo.site.SiteLayout.footer(page()) + """
                   <script>
                     document.querySelectorAll('.endpoint-header').forEach(function(h) {
                       h.addEventListener('click', function() {

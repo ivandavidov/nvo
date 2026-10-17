@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8">
+  <title>НВО и ДЗИ – резултати, класации и графики за всички училища | Иван Давидов</title>
+  <meta name="description" content="Резултатите от НВО след 4, 7 и 10 клас и ДЗИ след 12 клас за всяко училище в България: графики, класации по градове, балове за прием и статистики по отворените данни на МОН.">
+  <meta name="author" content="Иван Давидов">
+  <script>
+    // Старите споделени линкове (/?i7=…, /#sofia) водят към страницата за 7 клас — както досега.
+    if (window.location.search || (window.location.hash && window.location.hash !== '#main')) {
+      window.location.replace('./7/' + window.location.search + window.location.hash);
+    }
+  </script>
+{{{head}}}
+  <link rel="canonical" href="{{siteUrl}}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{siteUrl}}">
+  <meta property="og:title" content="НВО и ДЗИ – резултати, класации и графики за всички училища">
+  <meta property="og:description" content="Графики, класации по градове, балове за прием и статистики за НВО и ДЗИ по отворените данни на МОН.">
+  <meta property="og:image" content="{{siteUrl}}images/social-preview.png">
+  <meta property="og:locale" content="bg_BG">
+  <meta property="og:site_name" content="НВО и ДЗИ – Иван Давидов">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="НВО и ДЗИ – резултати, класации и графики за всички училища">
+  <meta name="twitter:description" content="Графики, класации по градове, балове за прием и статистики за НВО и ДЗИ по отворените данни на МОН.">
+  <meta name="twitter:image" content="{{siteUrl}}images/social-preview.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "НВО и ДЗИ – Иван Давидов",
+    "url": "{{siteUrl}}",
+    "inLanguage": "bg",
+    "author": { "@type": "Person", "name": "Иван Давидов", "url": "https://www.linkedin.com/in/ivandavidov" }
+  }
+  </script>
+</head>
+<body class="home">
+{{{header}}}
+
+  <main id="main">
+    <section class="home-hero">
+      <div class="container home-hero__inner">
+        <p class="page-head__eyebrow">{{#icon}}database{{/icon}} Отворени данни на МОН · 2018–2026</p>
+        <h1 class="home-hero__title">Резултатите от НВО и ДЗИ<br>за всяко училище в България</h1>
+        <p class="home-hero__lead">Сравнявай училища в графики, разгледай класацията на всеки град, баловете за прием след 7 клас и тенденциите в цялата страна.</p>
+        <div class="home-search">
+          <div class="input-icon">
+            {{#icon}}search{{/icon}}
+            <input class="input home-search__input" type="search" data-search-input placeholder="Търси училище или град — напр. „СМГ“ или „Пловдив“" aria-label="Търси училище или град">
+          </div>
+          <span class="home-search__hint muted text-sm">или натисни <kbd class="kbd">/</kbd> навсякъде в сайта</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="container section" aria-labelledby="exams-title">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title" id="exams-title">Изпити</h2>
+          <p class="section-lead">Графики, класации по градове и средни резултати за всяка година.</p>
+        </div>
+      </div>
+      <div class="home-exams">
+{{#exams}}
+        <article class="card home-exam">
+          <a class="home-exam__main" href="{{grade}}/">
+            <span class="home-exam__badge">{{grade}}</span>
+            <span class="home-exam__head">
+              <span class="home-exam__title">{{title}}</span>
+              <span class="muted text-sm">{{range}} · {{schools}} училища през {{latestYear}}</span>
+            </span>
+          </a>
+          <div class="home-exam__stats">
+            <div><span class="home-exam__label">БЕЛ {{latestYear}}</span><span class="home-exam__value">{{avgB}}</span></div>
+            <div><span class="home-exam__label">{{subjectM}} {{latestYear}}</span><span class="home-exam__value">{{avgM}}</span></div>
+            <svg class="home-exam__spark" viewBox="0 0 120 40" role="img" aria-label="Средният резултат по години ({{range}})">
+              <path d="{{spark.b}}" class="spark-b"/>
+              <path d="{{spark.m}}" class="spark-m"/>
+            </svg>
+          </div>
+          <p class="home-exam__note muted text-xs">Средно за училищата в страната ({{scale}})</p>
+          <div class="cluster home-exam__links">
+            <a class="chip" href="{{grade}}/">{{#icon}}chart{{/icon}} Сравни училища</a>
+            <a class="chip" href="{{grade}}/{{latestYear}}/">{{#icon}}trophy{{/icon}} Класация {{latestYear}}</a>
+            <a class="chip" href="stats/?grade={{grade}}">{{#icon}}pie{{/icon}} Статистика</a>
+          </div>
+        </article>
+{{/exams}}
+      </div>
+    </section>
+
+    <section class="container section">
+      <a class="card card-link home-balove" href="7/balove/">
+        <span class="home-balove__icon">{{#icon}}target{{/icon}}</span>
+        <span class="home-balove__text">
+          <span class="home-balove__title">Балове за прием след 7 клас</span>
+          <span class="muted">Минимални и максимални балове по паралелки и класирания — {{balove.cities}} града, {{balove.profiles}} паралелки.</span>
+        </span>
+        <span class="btn btn--primary home-balove__cta">Към баловете {{#icon}}arrow-right{{/icon}}</span>
+      </a>
+    </section>
+
+    <section class="container section" aria-labelledby="blog-title">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title" id="blog-title">Последно от блога</h2>
+          <p class="section-lead">Анализи на тенденциите, които не се виждат зад таблиците.</p>
+        </div>
+        <a class="btn btn--ghost" href="blog/">Всички статии {{#icon}}arrow-right{{/icon}}</a>
+      </div>
+      <div class="home-posts">
+{{#posts}}
+        <a class="post-card" href="blog/{{slug}}/">
+          <div class="post-card-meta">
+            <time class="post-card-date" datetime="{{date}}">{{dateLabel}}</time>
+            <span class="post-tag">{{tag}}</span>
+          </div>
+          <h3 class="post-card-title">{{title}}</h3>
+          <p class="post-card-excerpt">{{excerpt}}</p>
+        </a>
+{{/posts}}
+      </div>
+    </section>
+
+    <section class="container section" aria-labelledby="tools-title">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title" id="tools-title">Данни и инструменти</h2>
+          <p class="section-lead">Всичко е отворено — ползвайте данните свободно.</p>
+        </div>
+      </div>
+      <div class="grid-auto home-tools" style="--grid-min: 220px">
+        <a class="card card-link card--pad home-tool" href="stats/"><span class="home-tool__icon">{{#icon}}pie{{/icon}}</span><strong>Обобщена статистика</strong><span class="muted text-sm">31 анализа на тенденциите по класове и години</span></a>
+        <a class="card card-link card--pad home-tool" href="api/v1/"><span class="home-tool__icon">{{#icon}}code{{/icon}}</span><strong>JSON API</strong><span class="muted text-sm">Резултати, класации и училища в машинно четим вид</span></a>
+        <a class="card card-link card--pad home-tool" href="embed/"><span class="home-tool__icon">{{#icon}}layers{{/icon}}</span><strong>Вграждане</strong><span class="muted text-sm">Интерактивни графики за вашия сайт</span></a>
+        <a class="card card-link card--pad home-tool" href="https://www.kaggle.com/datasets/johnddavidson/bulgarian-school-exam-results-20182025" target="_blank" rel="noopener noreferrer"><span class="home-tool__icon">{{#icon}}database{{/icon}}</span><strong>Kaggle</strong><span class="muted text-sm">CSV набор от данни и анализ в notebook</span></a>
+        <a class="card card-link card--pad home-tool" href="za-proekta/"><span class="home-tool__icon">{{#icon}}info{{/icon}}</span><strong>За проекта</strong><span class="muted text-sm">Методология, източници, контакти и подкрепа</span></a>
+      </div>
+    </section>
+  </main>
+
+{{{footer}}}
+</body>
+</html>

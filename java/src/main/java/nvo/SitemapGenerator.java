@@ -18,6 +18,8 @@ public class SitemapGenerator {
         Set<String> urls = new TreeSet<>();
 
         // Static pages
+        urls.add(ProjectConfig.SITE_BASE_URL);
+        urls.add(ProjectConfig.SITE_BASE_URL + "za-proekta/");
         urls.add(ProjectConfig.SITE_BASE_URL + "4/");
         urls.add(ProjectConfig.SITE_BASE_URL + "7/");
         urls.add(ProjectConfig.SITE_BASE_URL + "10/");
