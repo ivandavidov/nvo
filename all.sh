@@ -2,9 +2,6 @@
 
 set -ex
 
-# Compile all colour themes into docs/css/skins.css (see theme.sh).
-./theme.sh build
-
 cd java
 ./mvnw clean package
 cd target
@@ -31,4 +28,8 @@ java -cp nvo-v2.jar nvo.api.JsonGenerator 10
 java -cp nvo-v2.jar nvo.api.JsonGenerator 12
 # Per-school pages read the schools/{code}.json produced by the 'schools' step above.
 java -cp nvo-v2.jar nvo.api.JsonGenerator school-pages
+# Site-internal search index (reads api/v1/schools-index.json + cities.json) and the shared
+# header/footer/head blocks in hand-written pages (between <!-- nv:* --> markers).
+java -cp nvo-v2.jar nvo.site.SearchIndexGenerator
+java -cp nvo-v2.jar nvo.site.LayoutSync
 java -cp nvo-v2.jar nvo.SitemapGenerator

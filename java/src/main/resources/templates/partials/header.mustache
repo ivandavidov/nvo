@@ -1,0 +1,74 @@
+  <a class="skip-link" href="#main">Към съдържанието</a>
+  <header class="site-header">
+    <div class="container container--wide site-header__inner">
+      <a class="brand" href="{{root}}" aria-label="НВО и ДЗИ – начало"{{#activeHome}} aria-current="page"{{/activeHome}}>
+        <span class="brand__mark">{{#icon}}logo{{/icon}}</span>
+        <span>НВО <span class="brand__and">и</span> ДЗИ</span>
+      </a>
+      <nav class="site-nav" aria-label="Основна навигация">
+        <div class="exam-switch">
+{{#exams}}
+          <a href="{{root}}{{grade}}/" title="{{title}}"{{#active}} aria-current="page"{{/active}}>{{grade}}<span class="exam-switch__suffix"> клас</span></a>
+{{/exams}}
+        </div>
+        <a class="site-nav__link" href="{{root}}7/balove/" title="Минимални и максимални балове за прием след 7 клас"{{#activeBalove}} aria-current="page"{{/activeBalove}}>Балове</a>
+        <a class="site-nav__link" href="{{root}}stats/"{{#activeStats}} aria-current="page"{{/activeStats}}>Статистика</a>
+        <a class="site-nav__link" href="{{root}}blog/"{{#activeBlog}} aria-current="page"{{/activeBlog}}>Блог</a>
+      </nav>
+      <div class="site-header__actions">
+        <button type="button" class="search-trigger" data-search-open aria-label="Търсене на училище или град">
+          {{#icon}}search{{/icon}}
+          <span class="search-trigger__label">Търси училище или град…</span>
+          <kbd class="kbd">/</kbd>
+        </button>
+        <button type="button" class="icon-btn theme-toggle" onclick="toggleTheme()" aria-label="Светла или тъмна тема" title="Светла или тъмна тема">
+          <span class="icon-moon">{{#icon}}moon{{/icon}}</span>
+          <span class="icon-sun">{{#icon}}sun{{/icon}}</span>
+        </button>
+        <button type="button" class="icon-btn" data-menu-toggle aria-expanded="false" aria-controls="site-menu" aria-label="Още" title="Още">
+          {{#icon}}menu{{/icon}}
+        </button>
+      </div>
+    </div>
+    <div class="container container--wide">
+      <nav id="site-menu" class="menu-panel" aria-label="Още" hidden>
+        <div>
+          <h2>Данни</h2>
+          <ul>
+            <li><a href="{{root}}api/v1/">{{#icon}}code{{/icon}} JSON API</a></li>
+            <li><a href="{{root}}embed/">{{#icon}}layers{{/icon}} Вграждане на графики</a></li>
+            <li><a class="ext" href="https://www.kaggle.com/datasets/johnddavidson/bulgarian-school-exam-results-20182025" target="_blank" rel="noopener noreferrer">{{#icon}}database{{/icon}} Kaggle: данни</a></li>
+            <li><a class="ext" href="https://www.kaggle.com/code/johnddavidson/initial-exploratory-analysis-2018-2026" target="_blank" rel="noopener noreferrer">{{#icon}}chart{{/icon}} Kaggle: анализ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Отворени данни (МОН)</h2>
+          <ul>
+            <li><a class="ext" href="https://data.egov.bg/data/view/5613e75f-2b1b-4244-9f54-b27580a91dfb" target="_blank" rel="noopener noreferrer">НВО 4 клас</a></li>
+            <li><a class="ext" href="https://data.egov.bg/data/view/b56288b6-25aa-4049-9aa6-de2cd4cdabf8" target="_blank" rel="noopener noreferrer">НВО 7 клас</a></li>
+            <li><a class="ext" href="https://data.egov.bg/data/view/2f801b2f-d4cb-4ddb-a23d-3e372339c80f" target="_blank" rel="noopener noreferrer">НВО 10 клас</a></li>
+            <li><a class="ext" href="https://data.egov.bg/data/view/066b4b04-d81d-444e-a61c-8ca0516079e4" target="_blank" rel="noopener noreferrer">ДЗИ 12 клас</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Полезни връзки</h2>
+          <ul>
+            <li><a class="ext" href="https://e-xplore.education" target="_blank" rel="noopener noreferrer">e-xplore.education</a></li>
+            <li><a class="ext" href="https://danybon.com" target="_blank" rel="noopener noreferrer">Данибон</a></li>
+            <li><a class="ext" href="https://dideva.alle.bg" target="_blank" rel="noopener noreferrer">Дидева</a></li>
+            <li><a class="ext" href="https://sabev03.eu" target="_blank" rel="noopener noreferrer">Прием в 1 клас</a></li>
+            <li><a class="ext" href="https://izberi-gymnazia.info" target="_blank" rel="noopener noreferrer">Избери гимназия</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Проектът</h2>
+          <ul>
+            <li><a href="{{root}}za-proekta/">{{#icon}}info{{/icon}} За проекта и методология</a></li>
+            <li><a href="{{root}}za-proekta/#podkrepa">{{#icon}}heart{{/icon}} Подкрепи проекта</a></li>
+            <li><a class="ext" href="https://www.facebook.com/groups/3423312924552271" target="_blank" rel="noopener noreferrer">Facebook група</a></li>
+            <li><a class="ext" href="https://linkedin.com/in/ivandavidov" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>

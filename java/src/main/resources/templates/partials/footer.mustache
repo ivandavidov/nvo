@@ -1,0 +1,70 @@
+  <footer class="site-footer">
+    <div class="container container--wide site-footer__grid">
+      <div class="site-footer__about">
+        <a class="brand" href="{{root}}">
+          <span class="brand__mark">{{#icon}}logo{{/icon}}</span>
+          <span>НВО <span class="brand__and">и</span> ДЗИ</span>
+        </a>
+        <p>Резултатите от НВО и ДЗИ за всички училища в България — графики, класации и статистики по отворените данни на МОН.</p>
+      </div>
+      <nav aria-label="Изпити">
+        <h2>Изпити</h2>
+        <ul>
+          <li><a href="{{root}}4/">НВО след 4 клас</a></li>
+          <li><a href="{{root}}7/">НВО след 7 клас</a></li>
+          <li><a href="{{root}}10/">НВО след 10 клас</a></li>
+          <li><a href="{{root}}12/">ДЗИ след 12 клас</a></li>
+          <li><a href="{{root}}7/balove/">Балове след 7 клас</a></li>
+          <li><a href="{{root}}stats/">Обобщена статистика</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Данни">
+        <h2>Данни</h2>
+        <ul>
+          <li><a href="{{root}}api/v1/">JSON API</a></li>
+          <li><a href="{{root}}embed/">Вграждане на графики</a></li>
+          <li><a href="https://www.kaggle.com/datasets/johnddavidson/bulgarian-school-exam-results-20182025" target="_blank" rel="noopener noreferrer">Kaggle: данни</a> · <a href="https://www.kaggle.com/code/johnddavidson/initial-exploratory-analysis-2018-2026" target="_blank" rel="noopener noreferrer">анализ</a></li>
+          <li>
+            <span>data.egov.bg:</span>
+            <span class="site-footer__inline">
+              <a href="https://data.egov.bg/data/view/5613e75f-2b1b-4244-9f54-b27580a91dfb" target="_blank" rel="noopener noreferrer" title="Отворени данни – НВО 4 клас">4</a>
+              <a href="https://data.egov.bg/data/view/b56288b6-25aa-4049-9aa6-de2cd4cdabf8" target="_blank" rel="noopener noreferrer" title="Отворени данни – НВО 7 клас">7</a>
+              <a href="https://data.egov.bg/data/view/2f801b2f-d4cb-4ddb-a23d-3e372339c80f" target="_blank" rel="noopener noreferrer" title="Отворени данни – НВО 10 клас">10</a>
+              <a href="https://data.egov.bg/data/view/066b4b04-d81d-444e-a61c-8ca0516079e4" target="_blank" rel="noopener noreferrer" title="Отворени данни – ДЗИ 12 клас">12</a>
+            </span>
+          </li>
+        </ul>
+      </nav>
+      <nav aria-label="Ресурси">
+        <h2>Ресурси</h2>
+        <ul>
+          <li><a href="{{root}}blog/">Блог</a></li>
+          <li><a href="https://e-xplore.education" target="_blank" rel="noopener noreferrer">e-xplore.education</a></li>
+          <li><a href="https://danybon.com" target="_blank" rel="noopener noreferrer">Данибон</a></li>
+          <li><a href="https://dideva.alle.bg" target="_blank" rel="noopener noreferrer">Дидева</a></li>
+          <li><a href="https://sabev03.eu" target="_blank" rel="noopener noreferrer">Прием в 1 клас</a></li>
+          <li><a href="https://izberi-gymnazia.info" target="_blank" rel="noopener noreferrer">Избери гимназия</a></li>
+        </ul>
+      </nav>
+      <div>
+        <h2>Проектът</h2>
+        <ul>
+          <li><a href="{{root}}za-proekta/">За проекта и методология</a></li>
+          <li><a href="https://www.facebook.com/groups/3423312924552271" target="_blank" rel="noopener noreferrer">Facebook група</a></li>
+          <li><a href="https://linkedin.com/in/ivandavidov" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+          <li>
+            <span>Подкрепи проекта:</span>
+            <div class="support">
+              <a class="btn btn--sm btn--pill" href="https://revolut.me/ivanppek" target="_blank" rel="noopener noreferrer">{{#icon}}heart{{/icon}} Revolut</a>
+              <button type="button" class="btn btn--sm btn--pill copy-btn" data-copy="bc1q6fzgg277t8fex00flafx4mw7u54lvh0c9g3qaf" data-tip="Адресът е копиран" aria-label="Копирай BTC адреса">BTC {{#icon}}copy{{/icon}}</button>
+              <button type="button" class="btn btn--sm btn--pill copy-btn" data-copy="0x4ad101C3c9abf9899bD31845731ba7394E2Be4C8" data-tip="Адресът е копиран" aria-label="Копирай ETH адреса" title="davidov.eth">ETH {{#icon}}copy{{/icon}}</button>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="container container--wide site-footer__bottom">
+      <p class="joke" data-joke></p>
+      <p>&copy; Иван Давидов – НВО и ДЗИ · Данни: МОН и РУО</p>
+    </div>
+  </footer>

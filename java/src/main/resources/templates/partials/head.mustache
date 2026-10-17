@@ -1,0 +1,25 @@
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'{{#unsafeEval}} 'unsafe-eval'{{/unsafeEval}} https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google-analytics.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com; font-src 'self'; frame-src 'self'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f5f7fb" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a0e16" media="(prefers-color-scheme: dark)">
+  <link rel="icon" type="{{faviconType}}" href="{{root}}images/{{favicon}}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{root}}images/{{touchIcon}}">
+  <link rel="preload" href="{{root}}fonts/inter/inter-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="{{root}}css/site.css">
+{{#extraCss}}
+  <link rel="stylesheet" href="{{root}}css/{{.}}">
+{{/extraCss}}
+  <script src="{{root}}js/theme.js"></script>
+  <script type="module" src="{{root}}js/site.js"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {'analytics_storage': 'denied', 'ad_storage': 'denied', 'wait_for_update': 500});
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-V0P6LBF76F"></script>
+  <script>
+    gtag('js', new Date());
+    gtag('config', 'G-V0P6LBF76F', {'anonymize_ip': true});
+  </script>
