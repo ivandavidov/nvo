@@ -296,6 +296,7 @@ function selectCity(city, { scroll = false, keepTab = false, explicit = true, pu
   el.switcher.querySelectorAll('[data-city]').forEach((a) => {
     if (a.dataset.city === city.slug) {
       a.setAttribute('aria-current', 'true');
+      revealChip(a);
     } else {
       a.removeAttribute('aria-current');
     }
@@ -308,6 +309,16 @@ function selectCity(city, { scroll = false, keepTab = false, explicit = true, pu
   if (scroll) {
     setTimeout(() => document.getElementById('cities-section').scrollIntoView({ block: 'start', behavior: 'instant' }), 60);
   }
+}
+
+/** На телефон областните градове са хоризонтален ред — превъртаме го до избрания град (без вертикален скрол). */
+function revealChip(chip) {
+  const row = chip.parentElement;
+  if (!row || row.scrollWidth <= row.clientWidth) {
+    return;
+  }
+  const target = chip.offsetLeft - row.offsetLeft - (row.clientWidth - chip.offsetWidth) / 2;
+  row.scrollLeft = Math.max(0, target);
 }
 
 function setupCitySwitcher() {

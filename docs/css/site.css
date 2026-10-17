@@ -552,6 +552,25 @@
     .site-nav__link { padding-inline: 0.55rem; }
     :root { --header-h: 104px; }
   }
+  /* Телефон: целият втори ред (класове + Балове · Статистика · Блог) се побира без скрол. */
+  @media (max-width: 520px) {
+    .exam-switch { margin-right: 4px; }
+    .exam-switch a { padding-inline: 0.55rem; font-size: var(--fs-sm); }
+    .site-nav { gap: 2px; }
+    .site-nav__link { padding-inline: 0.4rem; font-size: var(--fs-sm); }
+  }
+  @media (max-width: 374px) {
+    .exam-switch { margin-right: 2px; }
+    .exam-switch a { padding-inline: 0.5rem; }
+    .site-nav { gap: 0; }
+    .site-nav__link { padding-inline: 0.35rem; }
+  }
+  /* Под 352px „Блог“ не се побира — минава в менюто „Още“. */
+  .menu-narrow { display: none; }
+  @media (max-width: 351px) {
+    .site-nav__link--blog { display: none; }
+    .menu-narrow { display: list-item; }
+  }
 
   /* --- Меню „Още“ --- */
   .menu-panel {
@@ -1482,6 +1501,27 @@
     .grade-hero { grid-template-columns: 1fr; align-items: start; }
     .grade-hero__side .field { min-width: 0; }
   }
+  /* Кратките надписи на бутоните са само за телефон. */
+  .chip__short { display: none; }
+  /* Телефон: компактно въведение — графиката да се вижда още на първия екран. */
+  @media (max-width: 640px) {
+    .grade-hero { gap: var(--sp-3); padding-top: var(--sp-5); }
+    .grade-hero .page-head__lead { display: none; }
+    .grade-hero .page-head__eyebrow { margin-bottom: var(--sp-1); }
+    .grade-hero__side .field { display: flex; align-items: center; gap: var(--sp-3); }
+    .grade-hero__side .field__label { flex-shrink: 0; margin: 0; }
+    .grade-hero__side .select { flex: 1; min-width: 0; }
+    .grade-hero__links { gap: 6px; }
+    .grade-hero .chip__long { display: none; }
+    .grade-hero .chip__short { display: inline; }
+    /* JSON е за разработчици — на телефон е достъпен от API документацията (менюто „Още“). */
+    .grade-hero__links .chip--desktop { display: none; }
+    .grade-page #compare { margin-top: var(--sp-6); }
+    /* Панелът с годините — закотвен за целия блок с бутони (бутонът може да е в края на реда). */
+    .grade-hero__links { position: relative; }
+    .grade-hero__links .year-links { position: static; }
+    .grade-page .compare__lead { display: none; }
+  }
 
   .year-links { position: relative; }
   .year-links > summary { list-style: none; cursor: pointer; }
@@ -1576,6 +1616,21 @@
   /* --- Градове --- */
   .city-filter { width: min(280px, 100%); }
   .city-switch { display: grid; gap: var(--sp-4); margin-bottom: var(--sp-5); }
+  /* Телефон: областните градове в един хоризонтален ред (вместо ~1 екран бутони преди класацията). */
+  @media (max-width: 640px) {
+    .city-switch { gap: var(--sp-3); }
+    .city-switch__group--main > .cluster {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      scrollbar-width: none;
+      margin-inline: calc(-1 * clamp(1rem, 4vw, 2rem));
+      padding: 2px clamp(1rem, 4vw, 2rem);
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 16px, #000 calc(100% - 28px), transparent);
+      mask-image: linear-gradient(90deg, transparent, #000 16px, #000 calc(100% - 28px), transparent);
+    }
+    .city-switch__group--main > .cluster::-webkit-scrollbar { display: none; }
+    .city-switch__group--main .city-chip { flex-shrink: 0; }
+  }
   .city-switch__group { display: grid; gap: var(--sp-2); }
   .city-switch__label {
     font-size: var(--fs-xs);
@@ -1733,6 +1788,10 @@
     animation: toast-in var(--dur) var(--ease);
   }
   .tray .btn { border-radius: var(--radius-full); }
+  /* Лентата е само за телефон — на по-широк екран графиката е близо и лентата би закривала таблицата. */
+  @media (min-width: 768px) {
+    .tray { display: none; }
+  }
   @media (max-width: 560px) {
     .compare .card__head { flex-wrap: nowrap; align-items: flex-start; }
     .compare__actions { flex-wrap: nowrap; gap: 0; }

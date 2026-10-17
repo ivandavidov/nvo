@@ -97,7 +97,7 @@
         </div>
         <a class="site-nav__link" href="../7/balove/" title="Минимални и максимални балове за прием след 7 клас">Балове</a>
         <a class="site-nav__link" href="../stats/">Статистика</a>
-        <a class="site-nav__link" href="../blog/">Блог</a>
+        <a class="site-nav__link site-nav__link--blog" href="../blog/">Блог</a>
       </nav>
       <div class="site-header__actions">
         <button type="button" class="search-trigger" data-search-open aria-label="Търси училище или град">
@@ -147,6 +147,7 @@
         <div>
           <h2>Проектът</h2>
           <ul>
+            <li class="menu-narrow"><a href="../blog/"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8M15 18h-5M10 6h8v4h-8V6Z"/></svg> Блог</a></li>
             <li><a href="../za-proekta/"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg> За проекта и методология</a></li>
             <li><a href="../za-proekta/#podkrepa"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg> Подкрепи проекта</a></li>
             <li><a class="ext" href="https://www.facebook.com/groups/3423312924552271" target="_blank" rel="noopener noreferrer">Facebook група</a></li>
@@ -169,7 +170,7 @@
       </div>
       <div class="grade-hero__side">
         <label class="field" for="year-select">
-          <span class="field__label"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 7v5l3 2"/></svg> Данни към година</span>
+          <span class="field__label"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 7v5l3 2"/></svg> <span class="chip__long">Данни към година</span><span class="chip__short">Година</span></span>
           <select class="select" id="year-select">
             <option value="">2026 — актуални данни</option>
             <option value="2025">2025 — исторически изглед</option>
@@ -182,12 +183,12 @@
         </label>
       </div>
       <nav class="grade-hero__links" aria-label="Бързи връзки">
-        <a class="chip" href="2026/" data-national><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg> Национална класация <span data-national-year>2026</span></a>
+        <a class="chip" href="2026/" data-national><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg> <span class="chip__long">Национална класация</span><span class="chip__short">Класация</span> <span data-national-year>2026</span></a>
         <a class="chip" href="../stats/?grade=4"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg> Статистика</a>
-        <button class="chip" type="button" data-action="csv-all"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg> CSV — всички градове</button>
-        <a class="chip" href="../api/v1/4/data.json"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg> JSON</a>
+        <button class="chip" type="button" data-action="csv-all" title="CSV — всички градове"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg> CSV<span class="chip__long"> — всички градове</span></button>
+        <a class="chip chip--desktop" href="../api/v1/4/data.json"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg> JSON</a>
         <details class="year-links">
-          <summary class="chip"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg> Класации по години</summary>
+          <summary class="chip"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg> <span class="chip__long">Класации по години</span><span class="chip__short">По години</span></summary>
           <div class="year-links__panel">
             <a href="2026/">2026</a>
             <a href="2025/">2025</a>
@@ -208,7 +209,7 @@
         <div class="card__head">
           <div>
             <h2 class="card__title" id="compare-title">Сравнение на училища</h2>
-            <p class="muted text-sm">Резултати по години — БЕЛ и МАТ (точки от 0 до 100)</p>
+            <p class="muted text-sm compare__lead">Резултати по години — БЕЛ и МАТ (точки от 0 до 100)</p>
           </div>
           <div class="cluster compare__actions">
             <button class="btn btn--sm btn--ghost" type="button" data-action="share" title="Копирай връзка към този избор"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg><span class="btn__label">Сподели</span></button>
@@ -262,7 +263,7 @@
         </div>
       </div>
       <nav class="city-switch" id="city-switch" aria-label="Градове">
-        <div class="city-switch__group">
+        <div class="city-switch__group city-switch__group--main">
           <span class="city-switch__label">Областни градове</span>
           <div class="cluster">
             <a class="chip city-chip city-chip--big" href="sofia/" data-city="sofia" title="София">София</a>

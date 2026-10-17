@@ -72,7 +72,7 @@
       </div>
       <div class="grade-hero__side">
         <label class="field" for="year-select">
-          <span class="field__label">{{#icon}}history{{/icon}} Данни към година</span>
+          <span class="field__label">{{#icon}}history{{/icon}} <span class="chip__long">Данни към година</span><span class="chip__short">Година</span></span>
           <select class="select" id="year-select">
             <option value="">{{latestYear}} — актуални данни</option>
 {{#historyYears}}
@@ -82,15 +82,15 @@
         </label>
       </div>
       <nav class="grade-hero__links" aria-label="Бързи връзки">
-        <a class="chip" href="{{latestYear}}/" data-national>{{#icon}}trophy{{/icon}} Национална класация <span data-national-year>{{latestYear}}</span></a>
+        <a class="chip" href="{{latestYear}}/" data-national>{{#icon}}trophy{{/icon}} <span class="chip__long">Национална класация</span><span class="chip__short">Класация</span> <span data-national-year>{{latestYear}}</span></a>
 {{#hasBalove}}
-        <a class="chip" href="balove/">{{#icon}}target{{/icon}} Балове по паралелки</a>
+        <a class="chip" href="balove/">{{#icon}}target{{/icon}} Балове<span class="chip__long"> по паралелки</span></a>
 {{/hasBalove}}
         <a class="chip" href="../stats/?grade={{grade}}">{{#icon}}pie{{/icon}} Статистика</a>
-        <button class="chip" type="button" data-action="csv-all">{{#icon}}download{{/icon}} CSV — всички градове</button>
-        <a class="chip" href="../api/v1/{{grade}}/data.json">{{#icon}}code{{/icon}} JSON</a>
+        <button class="chip" type="button" data-action="csv-all" title="CSV — всички градове">{{#icon}}download{{/icon}} CSV<span class="chip__long"> — всички градове</span></button>
+        <a class="chip chip--desktop" href="../api/v1/{{grade}}/data.json">{{#icon}}code{{/icon}} JSON</a>
         <details class="year-links">
-          <summary class="chip">{{#icon}}calendar{{/icon}} Класации по години</summary>
+          <summary class="chip">{{#icon}}calendar{{/icon}} <span class="chip__long">Класации по години</span><span class="chip__short">По години</span></summary>
           <div class="year-links__panel">
 {{#rankingYears}}
             <a href="{{.}}/">{{.}}</a>
@@ -105,7 +105,7 @@
         <div class="card__head">
           <div>
             <h2 class="card__title" id="compare-title">Сравнение на училища</h2>
-            <p class="muted text-sm">Резултати по години — {{subjectB}} и {{subjectM}} ({{scale}})</p>
+            <p class="muted text-sm compare__lead">Резултати по години — {{subjectB}} и {{subjectM}} ({{scale}})</p>
           </div>
           <div class="cluster compare__actions">
             <button class="btn btn--sm btn--ghost" type="button" data-action="share" title="Копирай връзка към този избор">{{#icon}}link{{/icon}}<span class="btn__label">Сподели</span></button>
@@ -159,7 +159,7 @@
         </div>
       </div>
       <nav class="city-switch" id="city-switch" aria-label="Градове">
-        <div class="city-switch__group">
+        <div class="city-switch__group city-switch__group--main">
           <span class="city-switch__label">Областни градове</span>
           <div class="cluster">
 {{#tier1}}

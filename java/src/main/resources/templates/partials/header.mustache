@@ -13,7 +13,7 @@
         </div>
         <a class="site-nav__link" href="{{root}}7/balove/" title="Минимални и максимални балове за прием след 7 клас"{{#activeBalove}} aria-current="page"{{/activeBalove}}>Балове</a>
         <a class="site-nav__link" href="{{root}}stats/"{{#activeStats}} aria-current="page"{{/activeStats}}>Статистика</a>
-        <a class="site-nav__link" href="{{root}}blog/"{{#activeBlog}} aria-current="page"{{/activeBlog}}>Блог</a>
+        <a class="site-nav__link site-nav__link--blog" href="{{root}}blog/"{{#activeBlog}} aria-current="page"{{/activeBlog}}>Блог</a>
       </nav>
       <div class="site-header__actions">
         <button type="button" class="search-trigger" data-search-open aria-label="Търси училище или град">
@@ -63,6 +63,7 @@
         <div>
           <h2>Проектът</h2>
           <ul>
+            <li class="menu-narrow"><a href="{{root}}blog/">{{#icon}}news{{/icon}} Блог</a></li>
             <li><a href="{{root}}za-proekta/">{{#icon}}info{{/icon}} За проекта и методология</a></li>
             <li><a href="{{root}}za-proekta/#podkrepa">{{#icon}}heart{{/icon}} Подкрепи проекта</a></li>
             <li><a class="ext" href="https://www.facebook.com/groups/3423312924552271" target="_blank" rel="noopener noreferrer">Facebook група</a></li>
