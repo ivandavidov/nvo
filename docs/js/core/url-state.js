@@ -53,17 +53,20 @@ export function initialSelection(model) {
       }
     }
   }
-  if (!ids) {
-    ids = [String(cfg.baseSchoolIndex), String(cfg.refSchoolIndex)];
-  }
-  const out = [];
-  ids.forEach((id) => {
-    const n = Number(id);
-    if (Number.isInteger(n) && s[n] && !out.includes(n)) {
-      out.push(n);
-    }
-  });
-  return out;
+  const defaults = [String(cfg.baseSchoolIndex), String(cfg.refSchoolIndex)];
+  const valid = (list) => {
+    const out = [];
+    list.forEach((id) => {
+      const n = Number(id);
+      if (Number.isInteger(n) && s[n] && !out.includes(n)) {
+        out.push(n);
+      }
+    });
+    return out;
+  };
+  const out = valid(ids || defaults);
+  // Невалиден ?i{g}= или бисквитка (напр. i7=abc) — както при невалиден ?s=: изборът по подразбиране.
+  return out.length ? out : valid(defaults);
 }
 
 /** Записва избора в адреса (replaceState) и в бисквитката — като стария handleURL. */

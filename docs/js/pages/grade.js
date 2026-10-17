@@ -503,21 +503,21 @@ function rankingHtml() {
     const rank = isInactive ? null : rankFor(r, state.filter);
     let cells = '<td class="num col-pos muted">' + (isInactive ? '—' : pos) + '</td>'
       + '<td class="col-name"><div class="school-cell">'
-      + '<button type="button" class="add-toggle" data-add="' + r.i + '" aria-pressed="false" aria-label="Покажи ' + esc(o.n) + ' в графиката">' + icon('plus', 'add-toggle__plus') + icon('check', 'add-toggle__check') + '</button>'
+      + '<button type="button" class="add-toggle ci" data-add="' + r.i + '" aria-pressed="false" aria-label="Покажи ' + esc(o.n) + ' в графиката"></button>'
       + (o.c ? '<a href="../school/' + esc(o.c) + '/" title="' + esc('Профил на ' + o.n) + '">' + esc(o.l) + '</a>' : '<span title="' + esc(o.n) + '">' + esc(o.l) + '</span>')
-      + (o.w ? '<a class="web-link" href="' + esc(o.w) + '" target="_blank" rel="noopener noreferrer" title="' + esc('Уебсайт на ' + o.n) + '" aria-label="Уебсайт">' + icon('external') + '</a>' : '')
+      + (o.w ? '<a class="web-link ci" href="' + esc(o.w) + '" target="_blank" rel="noopener noreferrer" title="' + esc('Уебсайт на ' + o.n) + '" aria-label="Уебсайт"></a>' : '')
       + '</div></td>'
       + '<td class="nowrap"><span class="badge' + (r.type === 'Ч' ? ' badge--accent' : '') + '" title="' + (r.type === 'Ч' ? 'Частно' : 'Държавно') + '">' + r.type + '</span>'
       + (isInactive ? '' : ' <span class="muted">' + r.typeNo + '</span>') + '</td>'
       + '<td class="col-rank">' + (rank === null || rank === undefined ? '<span class="muted">—</span>'
-        : '<span class="rank" title="Среден резултат = ' + r.avg.toFixed(2) + '"><span class="rank__val">' + rank.toFixed(2) + '</span><span class="rank__bar" style="--v:' + rank + '"></span></span>') + '</td>';
+        : '<span class="rank" title="Среден резултат = ' + r.avg.toFixed(2) + '">' + rank.toFixed(2) + '<span class="rank__bar" style="--v:' + rank + '"></span></span>') + '</td>';
     r.years.forEach((y) => {
       cells += '<td class="yv group-start"' + (y.b ? ' title="' + esc(cfg.subjectB + ' ' + y.year + ': ' + fmt(y.b) + ' · ' + y.bu + ' ученици') + '"' : '') + '>'
         + (y.b ? '<span class="v">' + fmt(y.b) + '</span><span class="sub">/' + y.bu + '</span>' : '') + '</td>'
         + '<td class="yv"' + (y.m ? ' title="' + esc(cfg.subjectM + ' ' + y.year + ': ' + fmt(y.m) + ' · ' + y.mu + ' ученици') + '"' : '') + '>'
         + (y.m ? '<span class="v">' + fmt(y.m) + '</span><span class="sub">/' + y.mu + '</span>' : '') + '</td>';
     });
-    cells += '<td class="center group-start col-report"><button type="button" class="icon-btn icon-btn--sm" data-report="' + r.i + '" title="' + esc('PDF доклад за ' + o.n) + '" aria-label="PDF доклад">' + icon('file') + '</button></td>';
+    cells += '<td class="center group-start col-report"><button type="button" class="icon-btn icon-btn--sm ci ci--file" data-report="' + r.i + '" title="' + esc('PDF доклад за ' + o.n) + '" aria-label="PDF доклад"></button></td>';
     const divide = !isInactive && divider >= 0 && pos - 1 === divider;
     return '<tr data-row="' + r.i + '"' + (divide ? ' class="divider-top"' : '') + '>' + cells + '</tr>';
   };

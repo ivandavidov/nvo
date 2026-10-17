@@ -63,6 +63,12 @@
    ========================================================================== */
 @layer tokens {
   :root {
+    /* Икони като CSS маска за повтарящите се елементи в големите таблици (без SVG възли на ред). */
+    --ci-plus: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 5v14M5 12h14'/%3E%3C/svg%3E");
+    --ci-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E");
+    --ci-external: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 17 17 7M8 7h9v9'/%3E%3C/svg%3E");
+    --ci-file: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z'/%3E%3Cpath d='M14 2v6h6M8 13h8M8 17h5'/%3E%3C/svg%3E");
+
     color-scheme: light;
 
     /* Повърхности и текст */
@@ -1133,10 +1139,14 @@
 
   /* Клетка „Ранг“: число + лента */
   .rank {
-    display: inline-flex;
+    display: inline-grid;
+    grid-template-columns: 6ch minmax(40px, 1fr);
     align-items: center;
     gap: var(--sp-2);
     min-width: 92px;
+    text-align: right;
+    font-weight: 650;
+    font-variant-numeric: tabular-nums;
   }
   .rank__bar {
     position: relative;
@@ -1155,7 +1165,6 @@
     border-radius: inherit;
     background: color-mix(in oklab, var(--rank-hi) calc(var(--v, 0) * 1%), var(--rank-lo));
   }
-  .rank__val { min-width: 6ch; text-align: right; font-weight: 650; font-variant-numeric: tabular-nums; }
 
   /* --- Табове --- */
   .tabs {
@@ -1729,9 +1738,26 @@
   .compare__chips .chip__label { max-width: 320px; }
   .school-cell { display: flex; align-items: center; gap: var(--sp-2); }
   .school-cell > a:first-of-type { font-weight: 600; }
+  /* „Училище“ поема свободното място; когато то не стига, дългите имена се отрязват с „…“
+     (без пренасяне — пълното име е в подсказката и в профила). Иконките не се свиват. */
+  .ranking .col-name { width: 100%; max-width: 0; }
+  .ranking .school-cell > a:first-of-type { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .ranking .school-cell > .add-toggle, .ranking .school-cell > .web-link { flex-shrink: 0; }
   .web-link { display: inline-grid; color: var(--text-4); }
   .web-link:hover { color: var(--primary); }
-  .web-link svg { width: 14px; height: 14px; }
+  .ci::before {
+    content: "";
+    display: block;
+    width: var(--ci-size, 14px);
+    height: var(--ci-size, 14px);
+    background: currentColor;
+    -webkit-mask: var(--ci) center / contain no-repeat;
+    mask: var(--ci) center / contain no-repeat;
+  }
+  .ci--file { --ci: var(--ci-file); --ci-size: 15px; }
+  .web-link.ci { --ci: var(--ci-external); }
+  .add-toggle.ci { --ci: var(--ci-plus); }
+  .add-toggle.ci[aria-pressed="true"] { --ci: var(--ci-check); }
   .add-toggle {
     --dot: var(--primary);
     display: inline-grid;
@@ -1747,11 +1773,7 @@
     transition: background var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
   }
   .add-toggle:hover { border-color: var(--primary); color: var(--primary); }
-  .add-toggle svg { width: 14px; height: 14px; }
-  .add-toggle .add-toggle__check { display: none; }
   .add-toggle[aria-pressed="true"] { background: var(--dot); border-color: var(--dot); color: #fff; }
-  .add-toggle[aria-pressed="true"] .add-toggle__plus { display: none; }
-  .add-toggle[aria-pressed="true"] .add-toggle__check { display: block; }
   .icon-btn--sm { width: 30px; height: 30px; }
   .icon-btn--sm svg { width: 15px; height: 15px; }
   .ranking__subhead td {
@@ -1848,7 +1870,7 @@
   @media (max-width: 640px) {
     .city-panel__body { padding: var(--sp-3); }
     .ranking .col-pos { width: 34px; min-width: 34px; padding-inline: 0.35rem; }
-    .ranking .col-name { left: 34px; min-width: 150px; max-width: 168px; white-space: normal; line-height: 1.25; }
+    .ranking .col-name { left: 34px; width: 168px; min-width: 150px; max-width: 168px; }
     .ranking .web-link { display: none; }
     .ranking__groups > .muted.text-sm { flex-basis: 100%; }
   }
