@@ -1220,7 +1220,6 @@ public class School implements Comparable<School> {
         schoolCodes.put("1001670", new String[]{"0", "ПГ по лека пром.", "ПГ по лека промишленост"});
         schoolCodes.put("1000053", new String[]{"0", OU_HRISTO_BOTEV, "5 ОУ Христо Ботев"});
         schoolCodes.put("1000330", new String[]{"0", OU_MARIN_DRINOV_SHORT, OU_MARIN_DRINOV_LONG});
-        schoolCodes.put("1000340", new String[]{"0", OU_IVAN_VAZOV, OU_IVAN_VAZOV});
         schoolCodes.put("1001410", new String[]{"0", "ОУ П. Хилендарски", "6 ОУ Св. Паисий Хилендарски"});
         schoolCodes.put("1001590", new String[]{"0", "ОУ Ильо войвода", "7 ОУ Ильо войвода"});
         schoolCodes.put("1001680", new String[]{"0", OU_DASKAL_DIMITRI, OU_DASKAL_DIMITRI});

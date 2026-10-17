@@ -16,6 +16,7 @@ import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -123,6 +124,14 @@ public class NvoDziNormalizer {
         return lines;
     }
 
+    /**
+     * Смени на код от МОН, потвърдени ръчно в регистъра на МОН: старият код → актуалният.
+     * Историята на училището се обединява под актуалния код (старият профил пренасочва — вж.
+     * SchoolPageGenerator.LEGACY_REDIRECTS). Добавяй само след потвърждение.
+     */
+    private static final Map<String, String> CODE_ALIASES = Map.of(
+            "1000340", "1000005");  // ОУ „Иван Вазов“, Кюстендил — потвърдено 2026-10-18
+
     /** Код във вида „800-08“ — втората група е загубила нулите накрая (вж. canonicalCode). */
     private static final Pattern TRUNCATED_CODE = Pattern.compile("(\\d{3})-(\\d{1,2})");
 
@@ -132,15 +141,14 @@ public class NvoDziNormalizer {
      * Във файла за НВО 7 клас 2018 г. част от кодовете са записани като „800-08“ или „100-2“:
      * кодът е бил десетично число (800.080), което е загубило нулите накрая. Верният код е
      * 800080 — втората група се допълва с нули до 3 цифри. Пълните кодове („1-000-340“,
-     * „800-082“, „1 000 550“) остават както са, само без разделителите.
+     * „800-082“, „1 000 550“) остават както са, само без разделителите. Накрая се прилагат
+     * потвърдените смени на код (CODE_ALIASES).
      */
     static String canonicalCode(String raw) {
         String code = raw.replaceAll(" ", "");
         Matcher m = TRUNCATED_CODE.matcher(code);
-        if (m.matches()) {
-            return m.group(1) + (m.group(2) + "00").substring(0, 3);
-        }
-        return code.replace("-", "");
+        code = m.matches() ? m.group(1) + (m.group(2) + "00").substring(0, 3) : code.replace("-", "");
+        return CODE_ALIASES.getOrDefault(code, code);
     }
 
     private List<String[]> parseCity(List<String[]> lines, String city, String cityPrefix, int cityPos,
