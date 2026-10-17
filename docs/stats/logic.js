@@ -1,4 +1,6 @@
-'use strict';
+// Обобщена статистика (/stats/) — ES модул. Данните идват от data/grade-{g}.json,
+// настройките по клас — от js/core/config.js (същите като на страниците по клас).
+import { gradeConfig } from '../js/core/config.js';
 
 const TABLE_ROWS        = 15;
 const STABLE_MIN_SCORES = 4;
@@ -20,36 +22,26 @@ let _activeGrade = 7;
 
 // ─── Зареждане на данни ───────────────────────────────────────────────────────
 //
-// Всяко ниво се зарежда с fetch() и се изпълнява в изолиран скоуп чрез
-// new Function(), за да се избегнат конфликти при `let s` / `let si`.
 // Fix-ът за 2018 г. (само 7 клас) се прилага веднъж при зареждане.
 
 async function loadGrade(grade) {
   if (_cache[grade]) return _cache[grade];
 
-  const [globalCfgText, cfgText, schoolsText] = await Promise.all([
-    fetch('../js/config-global.js').then(r => r.text()),
-    fetch('../js/config-' + grade + '.js').then(r => r.text()),
-    fetch('../js/schools-' + grade + '.js').then(r => r.text())
-  ]);
-
-  const sandboxWindow = {};
-  const data = new Function(
-    '__sandboxWindow',
-    'const window = __sandboxWindow;\n' +
-    globalCfgText + '\n' + cfgText + '\n' + schoolsText + '\n' +
-    'return {' +
-      's,' +
-      'si,' +
-      'firstYear: (typeof firstYear !== "undefined" ? firstYear : window.firstYear),' +
-      'numYears: (typeof numYears !== "undefined" ? numYears : window.numYears),' +
-      'chartBTitle: (typeof chartBTitle !== "undefined" ? chartBTitle : window.chartBTitle),' +
-      'chartMTitle: (typeof chartMTitle !== "undefined" ? chartMTitle : window.chartMTitle),' +
-      'chartFloor: (typeof chartFloor !== "undefined" ? chartFloor : window.chartFloor),' +
-      'chartCeiling: (typeof chartCeiling !== "undefined" ? chartCeiling : window.chartCeiling),' +
-      'fix2018: (typeof fix2018 !== "undefined" ? fix2018 : window.fix2018)' +
-    '};'
-  )(sandboxWindow);
+  const cfg = gradeConfig(grade);
+  const res = await fetch('../data/grade-' + grade + '.json');
+  if (!res.ok) throw new Error('HTTP ' + res.status);
+  const raw = await res.json();
+  const data = {
+    s: raw.s.map(o => (o ? { l: o.l, n: o.n, w: o.w, c: o.c, b: o.b.slice(), m: o.m.slice(), bu: o.bu.slice(), mu: o.mu.slice() } : o)),
+    si: raw.si,
+    firstYear: cfg.firstYear,
+    numYears: cfg.numYears,
+    chartBTitle: cfg.chartBTitle,
+    chartMTitle: cfg.chartMTitle,
+    chartFloor: cfg.chartFloor,
+    chartCeiling: cfg.chartCeiling,
+    fix2018: cfg.fix2018
+  };
 
   // 2018: резултатите са по 65-точкова скала → нормализиране към 0-100
   // (идентична логика с fixForYear2018() в основния logic.js)
@@ -269,13 +261,17 @@ function setSectionBaseTitle(id, title) {
   if (el) el.dataset.baseTitle = title;
 }
 
+// Класът се показва над заглавието на всяка секция (вместо като префикс в него).
 function applyGradeSuffixToSectionTitles() {
-  const prefix = gradeLabel() + ' - ';
+  const label = gradeLabel();
   document.querySelectorAll('#stats-content .stat-section h2').forEach(h => {
     if (!h.dataset.baseTitle) {
-      h.dataset.baseTitle = h.textContent.replace(/\s+-\s+(НВО 4 клас|НВО 7 клас|НВО 10 клас|ДЗИ 12 клас)$/, '');
+      h.dataset.baseTitle = h.textContent;
     }
-    h.textContent = prefix + h.dataset.baseTitle;
+    h.textContent = h.dataset.baseTitle;
+  });
+  document.querySelectorAll('#stats-content [data-grade-label]').forEach(el => {
+    el.textContent = label;
   });
 }
 
@@ -1059,10 +1055,10 @@ function _themeColors() {
 function chart(id, config) {
   if (_charts[id]) _charts[id].destroy();
   const tc = _themeColors();
-  config.chart      = Object.assign({ animation: false, height: 430, backgroundColor: 'transparent' }, config.chart || {});
+  config.chart      = Object.assign({ animation: false, height: 400, backgroundColor: 'transparent' }, config.chart || {});
   config.title      = Object.assign({ text: null }, config.title || {});
   config.credits    = { enabled: false };
-  config.tooltip    = Object.assign({ animation: false, backgroundColor: tc.tipBg, borderColor: tc.tipBord, style: { fontSize: '1.25em', color: tc.text } }, config.tooltip || {});
+  config.tooltip    = Object.assign({ animation: false, backgroundColor: tc.tipBg, borderColor: tc.tipBord, borderRadius: 10, style: { fontSize: '13px', color: tc.text } }, config.tooltip || {});
   config.plotOptions = Object.assign({ series: { animation: false } }, config.plotOptions || {});
   // Apply theme-aware axis defaults
   const axisDefaults = { labels: { style: { color: tc.muted } }, title: { style: { color: tc.muted } }, gridLineColor: tc.grid, lineColor: tc.grid, tickColor: tc.grid };
@@ -1072,7 +1068,7 @@ function chart(id, config) {
     config.yAxis = Object.assign({}, axisDefaults, config.yAxis || {});
   }
   config.xAxis = Object.assign({}, axisDefaults, config.xAxis || {});
-  config.legend = Object.assign({ itemStyle: { fontSize: '1.25em', color: tc.text }, itemHoverStyle: { color: tc.text } }, config.legend || {});
+  config.legend = Object.assign({ itemStyle: { fontSize: '12px', fontWeight: '600', color: tc.text }, itemHoverStyle: { color: tc.text } }, config.legend || {});
   _charts[id] = Highcharts.chart(id, config);
 }
 
@@ -1671,9 +1667,11 @@ function ensureCitySelectors() {
     const wrap = document.createElement('div');
     wrap.className = 'section-city-filter';
     wrap.innerHTML =
-      '<label for="city-filter-' + def.key + '">Град:</label>' +
-      '<select id="city-filter-' + def.key + '" class="city-filter-select"></select>';
-    title.insertAdjacentElement('afterend', wrap);
+      '<label class="sr-only" for="city-filter-' + def.key + '">Град</label>' +
+      '<select id="city-filter-' + def.key + '" class="select city-filter-select"></select>';
+    const tools = section.querySelector('.stat-tools');
+    if (tools) tools.appendChild(wrap);
+    else title.insertAdjacentElement('afterend', wrap);
 
     const sel = wrap.querySelector('select');
     _citySelects[def.key] = sel;
@@ -1757,10 +1755,10 @@ function renderAllSections() {
 function updateBackLink(grade) {
   const backLink = document.getElementById('back-link');
   if (!backLink) return;
-  const target = grade === 4 ? '../4'
-    : grade === 10 ? '../10'
-    : grade === 12 ? '../12'
-    : '../7';
+  const target = grade === 4 ? '../4/'
+    : grade === 10 ? '../10/'
+    : grade === 12 ? '../12/'
+    : '../7/';
   backLink.href = target;
 }
 
@@ -1777,11 +1775,11 @@ async function activate(grade) {
   history.replaceState(null, '', '?grade=' + grade);
 
   document.querySelectorAll('.grade-btn').forEach(b => {
-    b.classList.toggle('active', +b.dataset.grade === grade);
+    b.setAttribute('aria-pressed', String(+b.dataset.grade === grade));
   });
 
-  document.getElementById('loading').style.display = 'block';
-  document.getElementById('stats-content').style.display = 'none';
+  document.getElementById('loading').hidden = false;
+  document.getElementById('stats-content').hidden = true;
 
   try {
     const data = await loadGrade(grade);
@@ -1792,8 +1790,8 @@ async function activate(grade) {
 
     renderAllSections();
 
-    document.getElementById('loading').style.display = 'none';
-    document.getElementById('stats-content').style.display = '';
+    document.getElementById('loading').hidden = true;
+    document.getElementById('stats-content').hidden = false;
 
     // Prefetch на останалите нива в background
     [7, 4, 10, 12].filter(g => g !== grade).forEach(g => loadGrade(g).catch(() => {}));
@@ -1806,31 +1804,44 @@ async function activate(grade) {
 
 Highcharts.setOptions({
   accessibility: { enabled: false },
+  chart: { style: { fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' } },
   xAxis: {
-    labels: { style: { fontSize: '1.25em' } },
-    title:  { style: { fontSize: '1.25em' } }
+    labels: { style: { fontSize: '12px' } },
+    title:  { style: { fontSize: '12px' } }
   },
   yAxis: {
-    labels: { style: { fontSize: '1.25em' } },
-    title:  { style: { fontSize: '1.25em' } }
+    labels: { style: { fontSize: '12px' } },
+    title:  { style: { fontSize: '12px' } }
   },
-  legend: { itemStyle: { fontSize: '1.25em' } }
+  legend: { itemStyle: { fontSize: '12px' } }
 });
 
-// Re-render all charts on theme toggle
-(function() {
-  var _origToggle = window.toggleTheme;
-  if (_origToggle) {
-    window.toggleTheme = function() {
-      _origToggle();
-      if (_activeData) renderAllSections();
-    };
-  }
-})();
+// Прерисуване при смяна на светла/тъмна тема (бутон или системна настройка).
+document.addEventListener('nvo:themechange', () => {
+  if (_activeData) renderAllSections();
+});
 
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.grade-btn').forEach(btn => {
-    btn.addEventListener('click', () => activate(+btn.dataset.grade));
+// Съдържанието: маркира главата, която се вижда в момента.
+function setupToc() {
+  const links = Array.from(document.querySelectorAll('[data-toc]'));
+  if (!links.length || !('IntersectionObserver' in window)) return;
+  const visible = new Set();
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) visible.add(e.target.id);
+      else visible.delete(e.target.id);
+    });
+    const first = links.find(a => visible.has(a.dataset.toc));
+    links.forEach(a => a.classList.toggle('is-active', a === first));
+  }, { rootMargin: '-20% 0px -60% 0px' });
+  links.forEach(a => {
+    const ch = document.getElementById(a.dataset.toc);
+    if (ch) io.observe(ch);
   });
-  activate(gradeFromUrl());
+}
+
+document.querySelectorAll('.grade-btn').forEach(btn => {
+  btn.addEventListener('click', () => activate(+btn.dataset.grade));
 });
+setupToc();
+activate(gradeFromUrl());

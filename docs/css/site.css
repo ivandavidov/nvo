@@ -1906,3 +1906,94 @@
   .balove-city--big { border-color: color-mix(in srgb, var(--primary) 30%, var(--border)); }
   .balove-city--big .balove-city__name { color: var(--primary); font-size: var(--fs-lg); }
 }
+
+/* ==========================================================================
+   pages — обобщена статистика (/stats/)
+   ========================================================================== */
+@layer pages {
+  .stats-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: var(--sp-5) var(--sp-8); }
+  .stats-head > div:first-child { flex: 1 1 520px; }
+  .stats-head__grade { display: grid; gap: var(--sp-2); justify-items: start; }
+  .stats-layout { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: var(--sp-8); align-items: start; }
+  .stats-toc {
+    position: sticky;
+    top: calc(var(--header-h) + var(--sp-4));
+    display: grid;
+    gap: var(--sp-2);
+  }
+  .stats-toc ol { list-style: none; padding: 0; margin: 0; display: grid; gap: 2px; }
+  .stats-toc a {
+    display: block;
+    padding: 0.45rem 0.75rem;
+    border-left: 2px solid var(--border);
+    color: var(--text-3);
+    font-size: var(--fs-md);
+    font-weight: 550;
+    text-decoration: none;
+  }
+  .stats-toc a:hover { color: var(--text); border-color: var(--border-strong); }
+  .stats-toc a.is-active { color: var(--primary); border-color: var(--primary); background: var(--primary-soft); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
+  .stats-main { min-width: 0; }
+  .stats-chapter { scroll-margin-top: calc(var(--header-h) + var(--sp-4)); }
+  .stats-chapter + .stats-chapter { margin-top: var(--sp-12); }
+  .stats-chapter__title { display: flex; align-items: center; gap: var(--sp-3); font-size: var(--fs-2xl); margin-bottom: var(--sp-4); }
+  .stats-chapter__icon {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-sm);
+    background: var(--primary-soft);
+    color: var(--primary);
+  }
+  .stats-chapter__icon svg { width: 18px; height: 18px; }
+  .stat-section + .stat-section { margin-top: var(--sp-4); }
+  .stat-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--sp-3) var(--sp-5);
+    padding: var(--sp-5) clamp(var(--sp-4), 3vw, var(--sp-6)) 0;
+  }
+  .stat-head__text { flex: 1 1 420px; min-width: 0; }
+  .stat-grade { font-size: var(--fs-xs); font-weight: 650; color: var(--primary); margin-bottom: 2px; }
+  .stat-title { font-size: var(--fs-lg); }
+  .stat-note { margin-top: var(--sp-2); color: var(--text-3); font-size: var(--fs-md); max-width: var(--measure); }
+  .stat-tools .select { width: auto; min-width: 200px; height: 36px; font-size: var(--fs-sm); }
+  .stat-body { display: grid; gap: var(--sp-3); padding: var(--sp-3) clamp(var(--sp-4), 3vw, var(--sp-6)) var(--sp-5); }
+  .stat-body > .stat-note, .stat-body > .stat-detail { margin: 0; }
+  .stat-help .disclosure__body { padding-bottom: var(--sp-2); }
+  .stat-chart { min-height: 400px; }
+  .stat-sub { display: block; margin-bottom: var(--sp-2); font-size: var(--fs-sm); }
+  .stats-page .two-col { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-4); }
+  .stats-page .table-wrap { max-height: 560px; }
+  .stats-page .data-table td.pos { color: var(--success); font-weight: 650; }
+  .stats-page .data-table td.neg { color: var(--danger); font-weight: 650; }
+  .stats-page .data-table td:nth-child(2) { white-space: normal; min-width: 180px; }
+  .stats-loading { margin-top: var(--sp-2); }
+  @media (max-width: 1000px) {
+    .stats-layout { grid-template-columns: 1fr; gap: var(--sp-4); }
+    .stats-toc {
+      position: sticky;
+      top: var(--header-h);
+      z-index: 15;
+      margin-inline: calc(-1 * clamp(1rem, 4vw, 2rem));
+      padding: var(--sp-2) clamp(1rem, 4vw, 2rem);
+      background: color-mix(in srgb, var(--bg) 90%, transparent);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+    }
+    .stats-toc > .city-switch__label { display: none; }
+    .stats-toc ol { display: flex; gap: var(--sp-2); overflow-x: auto; scrollbar-width: none; }
+    .stats-toc ol::-webkit-scrollbar { display: none; }
+    .stats-toc a { white-space: nowrap; border: 1px solid var(--border); border-radius: var(--radius-full); padding: 0.3rem 0.8rem; background: var(--surface); }
+    .stats-toc a.is-active { border-radius: var(--radius-full); }
+    .stats-chapter { scroll-margin-top: calc(var(--header-h) + 56px); }
+  }
+  @media (max-width: 700px) {
+    .stats-page .two-col { grid-template-columns: 1fr; }
+    .stat-tools, .stat-tools .section-city-filter, .stat-tools .select { width: 100%; }
+    .stat-chart { min-height: 340px; }
+  }
+}
