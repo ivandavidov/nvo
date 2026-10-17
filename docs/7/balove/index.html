@@ -6,9 +6,28 @@
   <meta name="description" content="Минимални и максимални балове по паралелки за прием след 7 клас, по градове. Изберете град, за да видите таблици и графики по класирания.">
   <meta name="author" content="Иван Давидов">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="../../css/normalize.css">
-  <link rel="stylesheet" href="../../css/custom.css">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com; font-src 'self'; frame-src 'self'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f5f7fb" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a0e16" media="(prefers-color-scheme: dark)">
   <link rel="icon" type="image/png" href="../../images/favicon-7.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../images/favicon-7.png">
+  <link rel="preload" href="../../fonts/inter/inter-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../css/site.css">
+  <script src="../../js/theme.js"></script>
+  <script type="module" src="../../js/site.js"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {'analytics_storage': 'denied', 'ad_storage': 'denied', 'wait_for_update': 500});
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-V0P6LBF76F"></script>
+  <script>
+    gtag('js', new Date());
+    gtag('config', 'G-V0P6LBF76F', {'anonymize_ip': true});
+  </script>
+
   <link rel="canonical" href="https://ivandavidov.github.io/nvo/7/balove/">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://ivandavidov.github.io/nvo/7/balove/">
@@ -17,213 +36,1115 @@
   <meta property="og:image" content="https://ivandavidov.github.io/nvo/images/social-preview.png">
   <meta property="og:locale" content="bg_BG">
   <meta property="og:site_name" content="НВО и ДЗИ – Иван Давидов">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google-analytics.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com; font-src 'self'">
-  <meta name="referrer" content="strict-origin-when-cross-origin">
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('consent', 'default', {
-      'analytics_storage': 'denied',
-      'ad_storage': 'denied',
-      'wait_for_update': 500
-    });
-  </script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-V0P6LBF76F"></script>
-  <script>
-    gtag('js', new Date());
-    gtag('config', 'G-V0P6LBF76F', {'anonymize_ip': true});
-  </script>
-  <script src="../../js/theme.js"></script>
-  <style>
-    .balove-intro { margin: 1rem 0 1.75rem; color: var(--color-text-muted); line-height: 1.7; max-width: 46rem; }
-    .balove-tier-title { margin: 2rem 0 0.9rem; padding-bottom: 0.4rem; border-bottom: 2px solid var(--color-border); font-size: 1.15rem; color: var(--color-text-muted); }
-    .balove-tier-title:first-of-type { margin-top: 1rem; }
-    .balove-subdivider { height: 2rem; }
-    .balove-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 0.75rem; margin: 0 0 1rem; padding: 0; list-style: none; }
-    .balove-grid li { margin: 0; }
-    .balove-grid a { display: block; padding: 0.85rem 1rem; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); box-shadow: var(--shadow-sm); color: var(--color-text); text-decoration: none; font-weight: 600; transition: border-color 0.15s, transform 0.15s; }
-    .balove-grid a:hover { border-color: var(--color-primary); transform: translateY(-2px); }
-  </style>
+  <script type="module" src="../../js/pages/balove-hub.js"></script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Към съдържанието</a>
   <header class="site-header">
-    <div class="header-inner">
-      <a class="site-brand" href="../../" aria-label="Начало">
-        <svg class="site-logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-        <span class="site-name">НВО и ДЗИ</span>
+    <div class="container container--wide site-header__inner">
+      <a class="brand" href="../../" aria-label="НВО и ДЗИ – начало">
+        <span class="brand__mark"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/></svg></span>
+        <span>НВО <span class="brand__and">и</span> ДЗИ</span>
       </a>
-      <nav class="grade-tabs">
-        <a href="../../4/" class="grade-tab">4 клас</a>
-        <a href="../" class="grade-tab active">7 клас</a>
-        <a href="../../10/" class="grade-tab">10 клас</a>
-        <a href="../../12/" class="grade-tab">12 клас</a>
-        <a href="../../blog/" class="grade-tab">Блог</a>
+      <nav class="site-nav" aria-label="Основна навигация">
+        <div class="exam-switch">
+          <a href="../../4/" title="НВО след 4 клас">4<span class="exam-switch__suffix"> клас</span></a>
+          <a href="../../7/" title="НВО след 7 клас">7<span class="exam-switch__suffix"> клас</span></a>
+          <a href="../../10/" title="НВО след 10 клас">10<span class="exam-switch__suffix"> клас</span></a>
+          <a href="../../12/" title="ДЗИ след 12 клас">12<span class="exam-switch__suffix"> клас</span></a>
+        </div>
+        <a class="site-nav__link" href="../../7/balove/" title="Минимални и максимални балове за прием след 7 клас" aria-current="page">Балове</a>
+        <a class="site-nav__link" href="../../stats/">Статистика</a>
+        <a class="site-nav__link" href="../../blog/">Блог</a>
       </nav>
-      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Смяна на тема">
-        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-      </button>
-    </div>
-  </header>
-  <main>
-    <div class="container">
-      <h1>Минимални и максимални балове по паралелки след 7 клас</h1>
-      <p><a href="../">&larr; Към 7 клас</a></p>
-      <p class="balove-intro">Изберете град, за да видите минималните и максималните балове по паралелки за прием след 7 клас &mdash; с таблици и графики по отделните класирания.</p>
-                      <h2 class="balove-tier-title">Областни градове</h2>
-                      <ul class="balove-grid">
-                        <li><a href="./sofia/">София</a></li>
-                        <li><a href="./plovdiv/">Пловдив</a></li>
-                        <li><a href="./varna/">Варна</a></li>
-                        <li><a href="./burgas/">Бургас</a></li>
-                      </ul>
-                      <div class="balove-subdivider"></div>
-                      <ul class="balove-grid">
-                        <li><a href="./blagoevgrad/">Благоевград</a></li>
-                        <li><a href="./veliko-turnovo/">Велико Търново</a></li>
-                        <li><a href="./vidin/">Видин</a></li>
-                        <li><a href="./vratsa/">Враца</a></li>
-                        <li><a href="./gabrovo/">Габрово</a></li>
-                        <li><a href="./dobrich/">Добрич</a></li>
-                        <li><a href="./kurdzhali/">Кърджали</a></li>
-                        <li><a href="./kiustendil/">Кюстендил</a></li>
-                        <li><a href="./lovech/">Ловеч</a></li>
-                        <li><a href="./montana/">Монтана</a></li>
-                        <li><a href="./pazardzhik/">Пазарджик</a></li>
-                        <li><a href="./pernik/">Перник</a></li>
-                        <li><a href="./pleven/">Плевен</a></li>
-                        <li><a href="./razgrad/">Разград</a></li>
-                        <li><a href="./ruse/">Русе</a></li>
-                        <li><a href="./silistra/">Силистра</a></li>
-                        <li><a href="./sliven/">Сливен</a></li>
-                        <li><a href="./smolian/">Смолян</a></li>
-                        <li><a href="./stara-zagora/">Стара Загора</a></li>
-                        <li><a href="./turgovishte/">Търговище</a></li>
-                        <li><a href="./haskovo/">Хасково</a></li>
-                        <li><a href="./shumen/">Шумен</a></li>
-                        <li><a href="./iambol/">Ямбол</a></li>
-                      </ul>
-                      <h2 class="balove-tier-title">Други градове</h2>
-                      <ul class="balove-grid">
-                        <li><a href="./aitos/">Айтос</a></li>
-                        <li><a href="./aksakovo/">Аксаково</a></li>
-                        <li><a href="./asenovgrad/">Асеновград</a></li>
-                        <li><a href="./balchik/">Балчик</a></li>
-                        <li><a href="./bansko/">Банско</a></li>
-                        <li><a href="./belene/">Белене</a></li>
-                        <li><a href="./belogradchik/">Белоградчик</a></li>
-                        <li><a href="./beloslav/">Белослав</a></li>
-                        <li><a href="./berkovitsa/">Берковица</a></li>
-                        <li><a href="./bobov-dol/">Бобов дол</a></li>
-                        <li><a href="./bozhurishte/">Божурище</a></li>
-                        <li><a href="./botevgrad/">Ботевград</a></li>
-                        <li><a href="./biala-ruse/">Бяла (Русе)</a></li>
-                        <li><a href="./biala-slatina/">Бяла Слатина</a></li>
-                        <li><a href="./veliki-preslav/">Велики Преслав</a></li>
-                        <li><a href="./velingrad/">Велинград</a></li>
-                        <li><a href="./vurshets/">Вършец</a></li>
-                        <li><a href="./godech/">Годеч</a></li>
-                        <li><a href="./gorna-oryahovitsa/">Горна Оряховица</a></li>
-                        <li><a href="./devin/">Девин</a></li>
-                        <li><a href="./dimitrovgrad/">Димитровград</a></li>
-                        <li><a href="./dolna-bania/">Долна баня</a></li>
-                        <li><a href="./drianovo/">Дряново</a></li>
-                        <li><a href="./dulovo/">Дулово</a></li>
-                        <li><a href="./dupnitsa/">Дупница</a></li>
-                        <li><a href="./dulgopol/">Дългопол</a></li>
-                        <li><a href="./elena/">Елена</a></li>
-                        <li><a href="./elin-pelin/">Елин Пелин</a></li>
-                        <li><a href="./elhovo/">Елхово</a></li>
-                        <li><a href="./etropole/">Етрополе</a></li>
-                        <li><a href="./zlatitsa/">Златица</a></li>
-                        <li><a href="./zlatograd/">Златоград</a></li>
-                        <li><a href="./isperih/">Исперих</a></li>
-                        <li><a href="./ihtiman/">Ихтиман</a></li>
-                        <li><a href="./kavarna/">Каварна</a></li>
-                        <li><a href="./kazanluk/">Казанлък</a></li>
-                        <li><a href="./karlovo/">Карлово</a></li>
-                        <li><a href="./karnobat/">Карнобат</a></li>
-                        <li><a href="./knezha/">Кнежа</a></li>
-                        <li><a href="./kozlodui/">Козлодуй</a></li>
-                        <li><a href="./kostenets/">Костенец</a></li>
-                        <li><a href="./kostinbrod/">Костинброд</a></li>
-                        <li><a href="./kotel/">Котел</a></li>
-                        <li><a href="./krichim/">Кричим</a></li>
-                        <li><a href="./krumovgrad/">Крумовград</a></li>
-                        <li><a href="./kubrat/">Кубрат</a></li>
-                        <li><a href="./kuklen/">Куклен</a></li>
-                        <li><a href="./levski/">Левски</a></li>
-                        <li><a href="./lom/">Лом</a></li>
-                        <li><a href="./lukovit/">Луковит</a></li>
-                        <li><a href="./liubimets/">Любимец</a></li>
-                        <li><a href="./liaskovets/">Лясковец</a></li>
-                        <li><a href="./madan/">Мадан</a></li>
-                        <li><a href="./mezdra/">Мездра</a></li>
-                        <li><a href="./momchilgrad/">Момчилград</a></li>
-                        <li><a href="./nesebar/">Несебър</a></li>
-                        <li><a href="./omurtag/">Омуртаг</a></li>
-                        <li><a href="./oriahovo/">Оряхово</a></li>
-                        <li><a href="./pavlikeni/">Павликени</a></li>
-                        <li><a href="./panagiurishte/">Панагюрище</a></li>
-                        <li><a href="./perushtitsa/">Перущица</a></li>
-                        <li><a href="./petrich/">Петрич</a></li>
-                        <li><a href="./peshtera/">Пещера</a></li>
-                        <li><a href="./pirdop/">Пирдоп</a></li>
-                        <li><a href="./pomorie/">Поморие</a></li>
-                        <li><a href="./popovo/">Попово</a></li>
-                        <li><a href="./pravets/">Правец</a></li>
-                        <li><a href="./provadia/">Провадия</a></li>
-                        <li><a href="./purvomai/">Първомай</a></li>
-                        <li><a href="./radnevo/">Раднево</a></li>
-                        <li><a href="./radomir/">Радомир</a></li>
-                        <li><a href="./rakitovo/">Ракитово</a></li>
-                        <li><a href="./razlog/">Разлог</a></li>
-                        <li><a href="./rakovski/">Раковски</a></li>
-                        <li><a href="./samokov/">Самоков</a></li>
-                        <li><a href="./sandanski/">Сандански</a></li>
-                        <li><a href="./svilengrad/">Свиленград</a></li>
-                        <li><a href="./svishtov/">Свищов</a></li>
-                        <li><a href="./svoge/">Своге</a></li>
-                        <li><a href="./sevlievo/">Севлиево</a></li>
-                        <li><a href="./septemvri/">Септември</a></li>
-                        <li><a href="./simeonovgrad/">Симеоновград</a></li>
-                        <li><a href="./simitli/">Симитли</a></li>
-                        <li><a href="./slivnitsa/">Сливница</a></li>
-                        <li><a href="./sozopol/">Созопол</a></li>
-                        <li><a href="./sopot/">Сопот</a></li>
-                        <li><a href="./sredets/">Средец</a></li>
-                        <li><a href="./stanbiliiski/">Стамболийски</a></li>
-                        <li><a href="./strazhitsa/">Стражица</a></li>
-                        <li><a href="./straldzha/">Стралджа</a></li>
-                        <li><a href="./strelcha/">Стрелча</a></li>
-                        <li><a href="./suvorovo/">Суворово</a></li>
-                        <li><a href="./suedinenie/">Съединение</a></li>
-                        <li><a href="./tervel/">Тервел</a></li>
-                        <li><a href="./teteven/">Тетевен</a></li>
-                        <li><a href="./topolovgrad/">Тополовград</a></li>
-                        <li><a href="./troyan/">Троян</a></li>
-                        <li><a href="./triavna/">Трявна</a></li>
-                        <li><a href="./tutrakan/">Тутракан</a></li>
-                        <li><a href="./harmanli/">Харманли</a></li>
-                        <li><a href="./hisaria/">Хисаря</a></li>
-                        <li><a href="./tsarevo/">Царево</a></li>
-                        <li><a href="./chepelare/">Чепеларе</a></li>
-                        <li><a href="./chirpan/">Чирпан</a></li>
-                        <li><a href="./iakoruda/">Якоруда</a></li>
-                      </ul>
-            </div>
-  </main>
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-content">
-        <p class="footer-minimal">&copy; Иван Давидов – НВО и ДЗИ</p>
-        <nav class="footer-links">
-          <a href="../../">Начало</a>
-          <a href="../../blog/">Блог</a>
-          <a href="../../stats/">Статистика</a>
-        </nav>
+      <div class="site-header__actions">
+        <button type="button" class="search-trigger" data-search-open aria-label="Търсене на училище или град">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <span class="search-trigger__label">Търси училище или град…</span>
+          <kbd class="kbd">/</kbd>
+        </button>
+        <button type="button" class="icon-btn theme-toggle" onclick="toggleTheme()" aria-label="Светла или тъмна тема" title="Светла или тъмна тема">
+          <span class="icon-moon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
+          <span class="icon-sun"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg></span>
+        </button>
+        <button type="button" class="icon-btn" data-menu-toggle aria-expanded="false" aria-controls="site-menu" aria-label="Още" title="Още">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
       </div>
     </div>
+    <div class="container container--wide">
+      <nav id="site-menu" class="menu-panel" aria-label="Още" hidden>
+        <div>
+          <h2>Данни</h2>
+          <ul>
+            <li><a href="../../api/v1/"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg> JSON API</a></li>
+            <li><a href="../../embed/"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m12 2 10 5-10 5L2 7l10-5z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg> Вграждане на графики</a></li>
+            <li><a class="ext" href="https://www.kaggle.com/datasets/johnddavidson/bulgarian-school-exam-results-20182025" target="_blank" rel="noopener noreferrer"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"/></svg> Kaggle: данни</a></li>
+            <li><a class="ext" href="https://www.kaggle.com/code/johnddavidson/initial-exploratory-analysis-2018-2026" target="_blank" rel="noopener noreferrer"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></svg> Kaggle: анализ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Отворени данни (МОН)</h2>
+          <ul>
+            <li><a class="ext" href="https://data.egov.bg/data/view/5613e75f-2b1b-4244-9f54-b27580a91dfb" target="_blank" rel="noopener noreferrer">НВО 4 клас</a></li>
+            <li><a class="ext" href="https://data.egov.bg/data/view/b56288b6-25aa-4049-9aa6-de2cd4cdabf8" target="_blank" rel="noopener noreferrer">НВО 7 клас</a></li>
+            <li><a class="ext" href="https://data.egov.bg/data/view/2f801b2f-d4cb-4ddb-a23d-3e372339c80f" target="_blank" rel="noopener noreferrer">НВО 10 клас</a></li>
+            <li><a class="ext" href="https://data.egov.bg/data/view/066b4b04-d81d-444e-a61c-8ca0516079e4" target="_blank" rel="noopener noreferrer">ДЗИ 12 клас</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Полезни връзки</h2>
+          <ul>
+            <li><a class="ext" href="https://e-xplore.education" target="_blank" rel="noopener noreferrer">e-xplore.education</a></li>
+            <li><a class="ext" href="https://danybon.com" target="_blank" rel="noopener noreferrer">Данибон</a></li>
+            <li><a class="ext" href="https://dideva.alle.bg" target="_blank" rel="noopener noreferrer">Дидева</a></li>
+            <li><a class="ext" href="https://sabev03.eu" target="_blank" rel="noopener noreferrer">Прием в 1 клас</a></li>
+            <li><a class="ext" href="https://izberi-gymnazia.info" target="_blank" rel="noopener noreferrer">Избери гимназия</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Проектът</h2>
+          <ul>
+            <li><a href="../../za-proekta/"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg> За проекта и методология</a></li>
+            <li><a href="../../za-proekta/#podkrepa"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg> Подкрепи проекта</a></li>
+            <li><a class="ext" href="https://www.facebook.com/groups/3423312924552271" target="_blank" rel="noopener noreferrer">Facebook група</a></li>
+            <li><a class="ext" href="https://linkedin.com/in/ivandavidov" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+
+  <main id="main" class="container page balove-hub">
+    <nav class="breadcrumbs" aria-label="Път">
+      <ol>
+        <li><a href="../../">Начало</a></li>
+        <li><a href="../">НВО след 7 клас</a></li>
+        <li><span aria-current="page">Балове</span></li>
+      </ol>
+    </nav>
+
+    <header class="page-head">
+      <p class="page-head__eyebrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> Прием след 7 клас · 132 града</p>
+      <h1 class="page-head__title">Минимални и максимални балове по паралелки след 7 клас</h1>
+      <p class="page-head__lead">Изберете град, за да видите минималните и максималните балове по паралелки за прием след 7 клас — с таблици и графики по отделните класирания.</p>
+      <div class="page-head__actions cluster">
+        <div class="input-icon balove-hub__search">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <input class="input" type="search" id="city-search" placeholder="Намери град…" aria-label="Намери град">
+        </div>
+        <a class="btn btn--ghost" href="../../blog/kak-da-chetem-balovete/"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8M15 18h-5M10 6h8v4h-8V6Z"/></svg> Как да четем баловете</a>
+      </div>
+    </header>
+
+    <section class="section balove-hub__tier" data-tier>
+      <h2 class="city-switch__label">Областни градове</h2>
+      <ul class="grid-auto balove-hub__grid" role="list">
+        <li data-name="София">
+          <a class="card card-link balove-city balove-city--big" href="./sofia/">
+            <span class="balove-city__name">София</span>
+            <span class="balove-city__meta">116 училища · 646 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Пловдив">
+          <a class="card card-link balove-city balove-city--big" href="./plovdiv/">
+            <span class="balove-city__name">Пловдив</span>
+            <span class="balove-city__meta">37 училища · 237 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Варна">
+          <a class="card card-link balove-city balove-city--big" href="./varna/">
+            <span class="balove-city__name">Варна</span>
+            <span class="balove-city__meta">25 училища · 230 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Бургас">
+          <a class="card card-link balove-city balove-city--big" href="./burgas/">
+            <span class="balove-city__name">Бургас</span>
+            <span class="balove-city__meta">26 училища · 173 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Благоевград">
+          <a class="card card-link balove-city" href="./blagoevgrad/">
+            <span class="balove-city__name">Благоевград</span>
+            <span class="balove-city__meta">10 училища · 57 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Велико Търново">
+          <a class="card card-link balove-city" href="./veliko-turnovo/">
+            <span class="balove-city__name">Велико Търново</span>
+            <span class="balove-city__meta">11 училища · 68 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Видин">
+          <a class="card card-link balove-city" href="./vidin/">
+            <span class="balove-city__name">Видин</span>
+            <span class="balove-city__meta">8 училища · 37 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Враца">
+          <a class="card card-link balove-city" href="./vratsa/">
+            <span class="balove-city__name">Враца</span>
+            <span class="balove-city__meta">10 училища · 44 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Габрово">
+          <a class="card card-link balove-city" href="./gabrovo/">
+            <span class="balove-city__name">Габрово</span>
+            <span class="balove-city__meta">6 училища · 39 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Добрич">
+          <a class="card card-link balove-city" href="./dobrich/">
+            <span class="balove-city__name">Добрич</span>
+            <span class="balove-city__meta">14 училища · 66 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Кърджали">
+          <a class="card card-link balove-city" href="./kurdzhali/">
+            <span class="balove-city__name">Кърджали</span>
+            <span class="balove-city__meta">12 училища · 54 паралелки</span>
+            <span class="balove-city__years">2024–2026</span>
+          </a>
+        </li>
+        <li data-name="Кюстендил">
+          <a class="card card-link balove-city" href="./kiustendil/">
+            <span class="balove-city__name">Кюстендил</span>
+            <span class="balove-city__meta">7 училища · 33 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Ловеч">
+          <a class="card card-link balove-city" href="./lovech/">
+            <span class="balove-city__name">Ловеч</span>
+            <span class="balove-city__meta">8 училища · 30 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Монтана">
+          <a class="card card-link balove-city" href="./montana/">
+            <span class="balove-city__name">Монтана</span>
+            <span class="balove-city__meta">8 училища · 45 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Пазарджик">
+          <a class="card card-link balove-city" href="./pazardzhik/">
+            <span class="balove-city__name">Пазарджик</span>
+            <span class="balove-city__meta">14 училища · 75 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Перник">
+          <a class="card card-link balove-city" href="./pernik/">
+            <span class="balove-city__name">Перник</span>
+            <span class="balove-city__meta">11 училища · 65 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Плевен">
+          <a class="card card-link balove-city" href="./pleven/">
+            <span class="balove-city__name">Плевен</span>
+            <span class="balove-city__meta">20 училища · 111 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Разград">
+          <a class="card card-link balove-city" href="./razgrad/">
+            <span class="balove-city__name">Разград</span>
+            <span class="balove-city__meta">8 училища · 49 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Русе">
+          <a class="card card-link balove-city" href="./ruse/">
+            <span class="balove-city__name">Русе</span>
+            <span class="balove-city__meta">19 училища · 110 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Силистра">
+          <a class="card card-link balove-city" href="./silistra/">
+            <span class="balove-city__name">Силистра</span>
+            <span class="balove-city__meta">8 училища · 31 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Сливен">
+          <a class="card card-link balove-city" href="./sliven/">
+            <span class="balove-city__name">Сливен</span>
+            <span class="balove-city__meta">13 училища · 76 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Смолян">
+          <a class="card card-link balove-city" href="./smolian/">
+            <span class="balove-city__name">Смолян</span>
+            <span class="balove-city__meta">9 училища · 28 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Стара Загора">
+          <a class="card card-link balove-city" href="./stara-zagora/">
+            <span class="balove-city__name">Стара Загора</span>
+            <span class="balove-city__meta">17 училища · 81 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Търговище">
+          <a class="card card-link balove-city" href="./turgovishte/">
+            <span class="balove-city__name">Търговище</span>
+            <span class="balove-city__meta">7 училища · 43 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Хасково">
+          <a class="card card-link balove-city" href="./haskovo/">
+            <span class="balove-city__name">Хасково</span>
+            <span class="balove-city__meta">15 училища · 76 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Шумен">
+          <a class="card card-link balove-city" href="./shumen/">
+            <span class="balove-city__name">Шумен</span>
+            <span class="balove-city__meta">12 училища · 69 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Ямбол">
+          <a class="card card-link balove-city" href="./iambol/">
+            <span class="balove-city__name">Ямбол</span>
+            <span class="balove-city__meta">12 училища · 68 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+    <section class="section balove-hub__tier" data-tier>
+      <h2 class="city-switch__label">Други градове</h2>
+      <ul class="grid-auto balove-hub__grid" role="list">
+        <li data-name="Айтос">
+          <a class="card card-link balove-city" href="./aitos/">
+            <span class="balove-city__name">Айтос</span>
+            <span class="balove-city__meta">3 училища · 13 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Аксаково">
+          <a class="card card-link balove-city" href="./aksakovo/">
+            <span class="balove-city__name">Аксаково</span>
+            <span class="balove-city__meta">1 училища · 2 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Асеновград">
+          <a class="card card-link balove-city" href="./asenovgrad/">
+            <span class="balove-city__name">Асеновград</span>
+            <span class="balove-city__meta">5 училища · 30 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Балчик">
+          <a class="card card-link balove-city" href="./balchik/">
+            <span class="balove-city__name">Балчик</span>
+            <span class="balove-city__meta">1 училища · 6 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Банско">
+          <a class="card card-link balove-city" href="./bansko/">
+            <span class="balove-city__name">Банско</span>
+            <span class="balove-city__meta">4 училища · 19 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Белене">
+          <a class="card card-link balove-city" href="./belene/">
+            <span class="balove-city__name">Белене</span>
+            <span class="balove-city__meta">2 училища · 4 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Белоградчик">
+          <a class="card card-link balove-city" href="./belogradchik/">
+            <span class="balove-city__name">Белоградчик</span>
+            <span class="balove-city__meta">1 училища · 7 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Белослав">
+          <a class="card card-link balove-city" href="./beloslav/">
+            <span class="balove-city__name">Белослав</span>
+            <span class="balove-city__meta">2 училища · 9 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Берковица">
+          <a class="card card-link balove-city" href="./berkovitsa/">
+            <span class="balove-city__name">Берковица</span>
+            <span class="balove-city__meta">2 училища · 12 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Бобов дол">
+          <a class="card card-link balove-city" href="./bobov-dol/">
+            <span class="balove-city__name">Бобов дол</span>
+            <span class="balove-city__meta">2 училища · 5 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Божурище">
+          <a class="card card-link balove-city" href="./bozhurishte/">
+            <span class="balove-city__name">Божурище</span>
+            <span class="balove-city__meta">1 училища · 2 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Ботевград">
+          <a class="card card-link balove-city" href="./botevgrad/">
+            <span class="balove-city__name">Ботевград</span>
+            <span class="balove-city__meta">3 училища · 19 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Бяла (Русе)">
+          <a class="card card-link balove-city" href="./biala-ruse/">
+            <span class="balove-city__name">Бяла (Русе)</span>
+            <span class="balove-city__meta">2 училища · 12 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Бяла Слатина">
+          <a class="card card-link balove-city" href="./biala-slatina/">
+            <span class="balove-city__name">Бяла Слатина</span>
+            <span class="balove-city__meta">3 училища · 19 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Велики Преслав">
+          <a class="card card-link balove-city" href="./veliki-preslav/">
+            <span class="balove-city__name">Велики Преслав</span>
+            <span class="balove-city__meta">3 училища · 13 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Велинград">
+          <a class="card card-link balove-city" href="./velingrad/">
+            <span class="balove-city__name">Велинград</span>
+            <span class="balove-city__meta">5 училища · 27 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Вършец">
+          <a class="card card-link balove-city" href="./vurshets/">
+            <span class="balove-city__name">Вършец</span>
+            <span class="balove-city__meta">1 училища · 6 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Годеч">
+          <a class="card card-link balove-city" href="./godech/">
+            <span class="balove-city__name">Годеч</span>
+            <span class="balove-city__meta">1 училища · 2 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Горна Оряховица">
+          <a class="card card-link balove-city" href="./gorna-oryahovitsa/">
+            <span class="balove-city__name">Горна Оряховица</span>
+            <span class="balove-city__meta">7 училища · 35 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Девин">
+          <a class="card card-link balove-city" href="./devin/">
+            <span class="balove-city__name">Девин</span>
+            <span class="balove-city__meta">2 училища · 8 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Димитровград">
+          <a class="card card-link balove-city" href="./dimitrovgrad/">
+            <span class="balove-city__name">Димитровград</span>
+            <span class="balove-city__meta">6 училища · 20 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Долна баня">
+          <a class="card card-link balove-city" href="./dolna-bania/">
+            <span class="balove-city__name">Долна баня</span>
+            <span class="balove-city__meta">2 училища · 7 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Дряново">
+          <a class="card card-link balove-city" href="./drianovo/">
+            <span class="balove-city__name">Дряново</span>
+            <span class="balove-city__meta">2 училища · 7 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Дулово">
+          <a class="card card-link balove-city" href="./dulovo/">
+            <span class="balove-city__name">Дулово</span>
+            <span class="balove-city__meta">2 училища · 9 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Дупница">
+          <a class="card card-link balove-city" href="./dupnitsa/">
+            <span class="balove-city__name">Дупница</span>
+            <span class="balove-city__meta">6 училища · 25 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Дългопол">
+          <a class="card card-link balove-city" href="./dulgopol/">
+            <span class="balove-city__name">Дългопол</span>
+            <span class="balove-city__meta">1 училища · 4 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Елена">
+          <a class="card card-link balove-city" href="./elena/">
+            <span class="balove-city__name">Елена</span>
+            <span class="balove-city__meta">1 училища · 5 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Елин Пелин">
+          <a class="card card-link balove-city" href="./elin-pelin/">
+            <span class="balove-city__name">Елин Пелин</span>
+            <span class="balove-city__meta">1 училища · 5 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Елхово">
+          <a class="card card-link balove-city" href="./elhovo/">
+            <span class="balove-city__name">Елхово</span>
+            <span class="balove-city__meta">2 училища · 9 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Етрополе">
+          <a class="card card-link balove-city" href="./etropole/">
+            <span class="balove-city__name">Етрополе</span>
+            <span class="balove-city__meta">2 училища · 8 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Златица">
+          <a class="card card-link balove-city" href="./zlatitsa/">
+            <span class="balove-city__name">Златица</span>
+            <span class="balove-city__meta">2 училища · 10 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Златоград">
+          <a class="card card-link balove-city" href="./zlatograd/">
+            <span class="balove-city__name">Златоград</span>
+            <span class="balove-city__meta">1 училища · 5 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Исперих">
+          <a class="card card-link balove-city" href="./isperih/">
+            <span class="balove-city__name">Исперих</span>
+            <span class="balove-city__meta">2 училища · 16 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Ихтиман">
+          <a class="card card-link balove-city" href="./ihtiman/">
+            <span class="balove-city__name">Ихтиман</span>
+            <span class="balove-city__meta">2 училища · 13 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Каварна">
+          <a class="card card-link balove-city" href="./kavarna/">
+            <span class="balove-city__name">Каварна</span>
+            <span class="balove-city__meta">2 училища · 7 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Казанлък">
+          <a class="card card-link balove-city" href="./kazanluk/">
+            <span class="balove-city__name">Казанлък</span>
+            <span class="balove-city__meta">7 училища · 34 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Карлово">
+          <a class="card card-link balove-city" href="./karlovo/">
+            <span class="balove-city__name">Карлово</span>
+            <span class="balove-city__meta">4 училища · 20 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Карнобат">
+          <a class="card card-link balove-city" href="./karnobat/">
+            <span class="balove-city__name">Карнобат</span>
+            <span class="balove-city__meta">3 училища · 13 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Кнежа">
+          <a class="card card-link balove-city" href="./knezha/">
+            <span class="balove-city__name">Кнежа</span>
+            <span class="balove-city__meta">3 училища · 19 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Козлодуй">
+          <a class="card card-link balove-city" href="./kozlodui/">
+            <span class="balove-city__name">Козлодуй</span>
+            <span class="balove-city__meta">3 училища · 14 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Костенец">
+          <a class="card card-link balove-city" href="./kostenets/">
+            <span class="balove-city__name">Костенец</span>
+            <span class="balove-city__meta">2 училища · 10 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Костинброд">
+          <a class="card card-link balove-city" href="./kostinbrod/">
+            <span class="balove-city__name">Костинброд</span>
+            <span class="balove-city__meta">2 училища · 8 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Котел">
+          <a class="card card-link balove-city" href="./kotel/">
+            <span class="balove-city__name">Котел</span>
+            <span class="balove-city__meta">1 училища · 5 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Кричим">
+          <a class="card card-link balove-city" href="./krichim/">
+            <span class="balove-city__name">Кричим</span>
+            <span class="balove-city__meta">1 училища · 2 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Крумовград">
+          <a class="card card-link balove-city" href="./krumovgrad/">
+            <span class="balove-city__name">Крумовград</span>
+            <span class="balove-city__meta">2 училища · 7 паралелки</span>
+            <span class="balove-city__years">2024–2026</span>
+          </a>
+        </li>
+        <li data-name="Кубрат">
+          <a class="card card-link balove-city" href="./kubrat/">
+            <span class="balove-city__name">Кубрат</span>
+            <span class="balove-city__meta">2 училища · 6 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Куклен">
+          <a class="card card-link balove-city" href="./kuklen/">
+            <span class="balove-city__name">Куклен</span>
+            <span class="balove-city__meta">2 училища · 2 паралелки</span>
+            <span class="balove-city__years">2025–2026</span>
+          </a>
+        </li>
+        <li data-name="Левски">
+          <a class="card card-link balove-city" href="./levski/">
+            <span class="balove-city__name">Левски</span>
+            <span class="balove-city__meta">2 училища · 8 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Лом">
+          <a class="card card-link balove-city" href="./lom/">
+            <span class="balove-city__name">Лом</span>
+            <span class="balove-city__meta">5 училища · 27 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Луковит">
+          <a class="card card-link balove-city" href="./lukovit/">
+            <span class="balove-city__name">Луковит</span>
+            <span class="balove-city__meta">2 училища · 15 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Любимец">
+          <a class="card card-link balove-city" href="./liubimets/">
+            <span class="balove-city__name">Любимец</span>
+            <span class="balove-city__meta">3 училища · 7 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Лясковец">
+          <a class="card card-link balove-city" href="./liaskovets/">
+            <span class="balove-city__name">Лясковец</span>
+            <span class="balove-city__meta">1 училища · 4 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Мадан">
+          <a class="card card-link balove-city" href="./madan/">
+            <span class="balove-city__name">Мадан</span>
+            <span class="balove-city__meta">2 училища · 9 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Мездра">
+          <a class="card card-link balove-city" href="./mezdra/">
+            <span class="balove-city__name">Мездра</span>
+            <span class="balove-city__meta">3 училища · 19 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Момчилград">
+          <a class="card card-link balove-city" href="./momchilgrad/">
+            <span class="balove-city__name">Момчилград</span>
+            <span class="balove-city__meta">2 училища · 6 паралелки</span>
+            <span class="balove-city__years">2024–2026</span>
+          </a>
+        </li>
+        <li data-name="Несебър">
+          <a class="card card-link balove-city" href="./nesebar/">
+            <span class="balove-city__name">Несебър</span>
+            <span class="balove-city__meta">2 училища · 11 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Омуртаг">
+          <a class="card card-link balove-city" href="./omurtag/">
+            <span class="balove-city__name">Омуртаг</span>
+            <span class="balove-city__meta">2 училища · 9 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Оряхово">
+          <a class="card card-link balove-city" href="./oriahovo/">
+            <span class="balove-city__name">Оряхово</span>
+            <span class="balove-city__meta">2 училища · 7 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Павликени">
+          <a class="card card-link balove-city" href="./pavlikeni/">
+            <span class="balove-city__name">Павликени</span>
+            <span class="balove-city__meta">2 училища · 12 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Панагюрище">
+          <a class="card card-link balove-city" href="./panagiurishte/">
+            <span class="balove-city__name">Панагюрище</span>
+            <span class="balove-city__meta">2 училища · 21 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Перущица">
+          <a class="card card-link balove-city" href="./perushtitsa/">
+            <span class="balove-city__name">Перущица</span>
+            <span class="balove-city__meta">1 училища · 4 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Петрич">
+          <a class="card card-link balove-city" href="./petrich/">
+            <span class="balove-city__name">Петрич</span>
+            <span class="balove-city__meta">5 училища · 33 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Пещера">
+          <a class="card card-link balove-city" href="./peshtera/">
+            <span class="balove-city__name">Пещера</span>
+            <span class="balove-city__meta">3 училища · 12 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Пирдоп">
+          <a class="card card-link balove-city" href="./pirdop/">
+            <span class="balove-city__name">Пирдоп</span>
+            <span class="balove-city__meta">3 училища · 13 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Поморие">
+          <a class="card card-link balove-city" href="./pomorie/">
+            <span class="balove-city__name">Поморие</span>
+            <span class="balove-city__meta">2 училища · 8 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Попово">
+          <a class="card card-link balove-city" href="./popovo/">
+            <span class="balove-city__name">Попово</span>
+            <span class="balove-city__meta">3 училища · 20 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Правец">
+          <a class="card card-link balove-city" href="./pravets/">
+            <span class="balove-city__name">Правец</span>
+            <span class="balove-city__meta">2 училища · 11 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Провадия">
+          <a class="card card-link balove-city" href="./provadia/">
+            <span class="balove-city__name">Провадия</span>
+            <span class="balove-city__meta">3 училища · 15 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Първомай">
+          <a class="card card-link balove-city" href="./purvomai/">
+            <span class="balove-city__name">Първомай</span>
+            <span class="balove-city__meta">2 училища · 16 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Раднево">
+          <a class="card card-link balove-city" href="./radnevo/">
+            <span class="balove-city__name">Раднево</span>
+            <span class="balove-city__meta">2 училища · 7 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Радомир">
+          <a class="card card-link balove-city" href="./radomir/">
+            <span class="balove-city__name">Радомир</span>
+            <span class="balove-city__meta">3 училища · 10 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Ракитово">
+          <a class="card card-link balove-city" href="./rakitovo/">
+            <span class="balove-city__name">Ракитово</span>
+            <span class="balove-city__meta">1 училища · 6 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Разлог">
+          <a class="card card-link balove-city" href="./razlog/">
+            <span class="balove-city__name">Разлог</span>
+            <span class="balove-city__meta">4 училища · 25 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Раковски">
+          <a class="card card-link balove-city" href="./rakovski/">
+            <span class="balove-city__name">Раковски</span>
+            <span class="balove-city__meta">1 училища · 10 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Самоков">
+          <a class="card card-link balove-city" href="./samokov/">
+            <span class="balove-city__name">Самоков</span>
+            <span class="balove-city__meta">5 училища · 25 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Сандански">
+          <a class="card card-link balove-city" href="./sandanski/">
+            <span class="balove-city__name">Сандански</span>
+            <span class="balove-city__meta">3 училища · 26 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Свиленград">
+          <a class="card card-link balove-city" href="./svilengrad/">
+            <span class="balove-city__name">Свиленград</span>
+            <span class="balove-city__meta">2 училища · 11 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Свищов">
+          <a class="card card-link balove-city" href="./svishtov/">
+            <span class="balove-city__name">Свищов</span>
+            <span class="balove-city__meta">5 училища · 23 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Своге">
+          <a class="card card-link balove-city" href="./svoge/">
+            <span class="balove-city__name">Своге</span>
+            <span class="balove-city__meta">2 училища · 11 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Севлиево">
+          <a class="card card-link balove-city" href="./sevlievo/">
+            <span class="balove-city__name">Севлиево</span>
+            <span class="balove-city__meta">3 училища · 17 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Септември">
+          <a class="card card-link balove-city" href="./septemvri/">
+            <span class="balove-city__name">Септември</span>
+            <span class="balove-city__meta">3 училища · 8 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Симеоновград">
+          <a class="card card-link balove-city" href="./simeonovgrad/">
+            <span class="balove-city__name">Симеоновград</span>
+            <span class="balove-city__meta">1 училища · 4 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Симитли">
+          <a class="card card-link balove-city" href="./simitli/">
+            <span class="balove-city__name">Симитли</span>
+            <span class="balove-city__meta">1 училища · 3 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Сливница">
+          <a class="card card-link balove-city" href="./slivnitsa/">
+            <span class="balove-city__name">Сливница</span>
+            <span class="balove-city__meta">2 училища · 4 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Созопол">
+          <a class="card card-link balove-city" href="./sozopol/">
+            <span class="balove-city__name">Созопол</span>
+            <span class="balove-city__meta">1 училища · 4 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Сопот">
+          <a class="card card-link balove-city" href="./sopot/">
+            <span class="balove-city__name">Сопот</span>
+            <span class="balove-city__meta">2 училища · 18 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Средец">
+          <a class="card card-link balove-city" href="./sredets/">
+            <span class="balove-city__name">Средец</span>
+            <span class="balove-city__meta">2 училища · 7 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Стамболийски">
+          <a class="card card-link balove-city" href="./stanbiliiski/">
+            <span class="balove-city__name">Стамболийски</span>
+            <span class="balove-city__meta">2 училища · 5 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Стражица">
+          <a class="card card-link balove-city" href="./strazhitsa/">
+            <span class="balove-city__name">Стражица</span>
+            <span class="balove-city__meta">2 училища · 7 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Стралджа">
+          <a class="card card-link balove-city" href="./straldzha/">
+            <span class="balove-city__name">Стралджа</span>
+            <span class="balove-city__meta">1 училища · 4 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Стрелча">
+          <a class="card card-link balove-city" href="./strelcha/">
+            <span class="balove-city__name">Стрелча</span>
+            <span class="balove-city__meta">1 училища · 4 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Суворово">
+          <a class="card card-link balove-city" href="./suvorovo/">
+            <span class="balove-city__name">Суворово</span>
+            <span class="balove-city__meta">2 училища · 12 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Съединение">
+          <a class="card card-link balove-city" href="./suedinenie/">
+            <span class="balove-city__name">Съединение</span>
+            <span class="balove-city__meta">2 училища · 4 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Тервел">
+          <a class="card card-link balove-city" href="./tervel/">
+            <span class="balove-city__name">Тервел</span>
+            <span class="balove-city__meta">2 училища · 10 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Тетевен">
+          <a class="card card-link balove-city" href="./teteven/">
+            <span class="balove-city__name">Тетевен</span>
+            <span class="balove-city__meta">3 училища · 21 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Тополовград">
+          <a class="card card-link balove-city" href="./topolovgrad/">
+            <span class="balove-city__name">Тополовград</span>
+            <span class="balove-city__meta">1 училища · 5 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Троян">
+          <a class="card card-link balove-city" href="./troyan/">
+            <span class="balove-city__name">Троян</span>
+            <span class="balove-city__meta">3 училища · 15 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Трявна">
+          <a class="card card-link balove-city" href="./triavna/">
+            <span class="balove-city__name">Трявна</span>
+            <span class="balove-city__meta">1 училища · 1 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Тутракан">
+          <a class="card card-link balove-city" href="./tutrakan/">
+            <span class="balove-city__name">Тутракан</span>
+            <span class="balove-city__meta">2 училища · 7 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Харманли">
+          <a class="card card-link balove-city" href="./harmanli/">
+            <span class="balove-city__name">Харманли</span>
+            <span class="balove-city__meta">2 училища · 10 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Хисаря">
+          <a class="card card-link balove-city" href="./hisaria/">
+            <span class="balove-city__name">Хисаря</span>
+            <span class="balove-city__meta">1 училища · 6 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Царево">
+          <a class="card card-link balove-city" href="./tsarevo/">
+            <span class="balove-city__name">Царево</span>
+            <span class="balove-city__meta">1 училища · 4 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Чепеларе">
+          <a class="card card-link balove-city" href="./chepelare/">
+            <span class="balove-city__name">Чепеларе</span>
+            <span class="balove-city__meta">2 училища · 8 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Чирпан">
+          <a class="card card-link balove-city" href="./chirpan/">
+            <span class="balove-city__name">Чирпан</span>
+            <span class="balove-city__meta">2 училища · 14 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+        <li data-name="Якоруда">
+          <a class="card card-link balove-city" href="./iakoruda/">
+            <span class="balove-city__name">Якоруда</span>
+            <span class="balove-city__meta">2 училища · 6 паралелки</span>
+            <span class="balove-city__years">2023–2026</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+    <p class="muted mt-6" id="city-empty" hidden>Няма град с такова име.</p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container container--wide site-footer__grid">
+      <div class="site-footer__about">
+        <a class="brand" href="../../">
+          <span class="brand__mark"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/></svg></span>
+          <span>НВО <span class="brand__and">и</span> ДЗИ</span>
+        </a>
+        <p>Резултатите от НВО и ДЗИ за всички училища в България — графики, класации и статистики по отворените данни на МОН.</p>
+      </div>
+      <nav aria-label="Изпити">
+        <h2>Изпити</h2>
+        <ul>
+          <li><a href="../../4/">НВО след 4 клас</a></li>
+          <li><a href="../../7/">НВО след 7 клас</a></li>
+          <li><a href="../../10/">НВО след 10 клас</a></li>
+          <li><a href="../../12/">ДЗИ след 12 клас</a></li>
+          <li><a href="../../7/balove/">Балове след 7 клас</a></li>
+          <li><a href="../../stats/">Обобщена статистика</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Данни">
+        <h2>Данни</h2>
+        <ul>
+          <li><a href="../../api/v1/">JSON API</a></li>
+          <li><a href="../../embed/">Вграждане на графики</a></li>
+          <li><a href="https://www.kaggle.com/datasets/johnddavidson/bulgarian-school-exam-results-20182025" target="_blank" rel="noopener noreferrer">Kaggle: данни</a> · <a href="https://www.kaggle.com/code/johnddavidson/initial-exploratory-analysis-2018-2026" target="_blank" rel="noopener noreferrer">анализ</a></li>
+          <li>
+            <span>data.egov.bg:</span>
+            <span class="site-footer__inline">
+              <a href="https://data.egov.bg/data/view/5613e75f-2b1b-4244-9f54-b27580a91dfb" target="_blank" rel="noopener noreferrer" title="Отворени данни – НВО 4 клас">4</a>
+              <a href="https://data.egov.bg/data/view/b56288b6-25aa-4049-9aa6-de2cd4cdabf8" target="_blank" rel="noopener noreferrer" title="Отворени данни – НВО 7 клас">7</a>
+              <a href="https://data.egov.bg/data/view/2f801b2f-d4cb-4ddb-a23d-3e372339c80f" target="_blank" rel="noopener noreferrer" title="Отворени данни – НВО 10 клас">10</a>
+              <a href="https://data.egov.bg/data/view/066b4b04-d81d-444e-a61c-8ca0516079e4" target="_blank" rel="noopener noreferrer" title="Отворени данни – ДЗИ 12 клас">12</a>
+            </span>
+          </li>
+        </ul>
+      </nav>
+      <nav aria-label="Ресурси">
+        <h2>Ресурси</h2>
+        <ul>
+          <li><a href="../../blog/">Блог</a></li>
+          <li><a href="https://e-xplore.education" target="_blank" rel="noopener noreferrer">e-xplore.education</a></li>
+          <li><a href="https://danybon.com" target="_blank" rel="noopener noreferrer">Данибон</a></li>
+          <li><a href="https://dideva.alle.bg" target="_blank" rel="noopener noreferrer">Дидева</a></li>
+          <li><a href="https://sabev03.eu" target="_blank" rel="noopener noreferrer">Прием в 1 клас</a></li>
+          <li><a href="https://izberi-gymnazia.info" target="_blank" rel="noopener noreferrer">Избери гимназия</a></li>
+        </ul>
+      </nav>
+      <div>
+        <h2>Проектът</h2>
+        <ul>
+          <li><a href="../../za-proekta/">За проекта и методология</a></li>
+          <li><a href="https://www.facebook.com/groups/3423312924552271" target="_blank" rel="noopener noreferrer">Facebook група</a></li>
+          <li><a href="https://linkedin.com/in/ivandavidov" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+          <li>
+            <span>Подкрепи проекта:</span>
+            <div class="support">
+              <a class="btn btn--sm btn--pill" href="https://revolut.me/ivanppek" target="_blank" rel="noopener noreferrer"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg> Revolut</a>
+              <button type="button" class="btn btn--sm btn--pill copy-btn" data-copy="bc1q6fzgg277t8fex00flafx4mw7u54lvh0c9g3qaf" data-tip="Адресът е копиран" aria-label="Копирай BTC адреса">BTC <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+              <button type="button" class="btn btn--sm btn--pill copy-btn" data-copy="0x4ad101C3c9abf9899bD31845731ba7394E2Be4C8" data-tip="Адресът е копиран" aria-label="Копирай ETH адреса" title="davidov.eth">ETH <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="container container--wide site-footer__bottom">
+      <p class="joke" data-joke></p>
+      <p>&copy; Иван Давидов – НВО и ДЗИ · Данни: МОН и РУО</p>
+    </div>
   </footer>
+
 </body>
 </html>

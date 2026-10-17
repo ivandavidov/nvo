@@ -6,9 +6,28 @@
   <meta name="description" content="Минимални и максимални балове по паралелки след 7 клас в Елхово. Таблици и графики за всички класирания.">
   <meta name="author" content="Иван Давидов">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="../../../css/normalize.css">
-  <link rel="stylesheet" href="../../../css/custom.css">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com; font-src 'self'; frame-src 'self'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f5f7fb" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a0e16" media="(prefers-color-scheme: dark)">
   <link rel="icon" type="image/png" href="../../../images/favicon-7.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../../images/favicon-7.png">
+  <link rel="preload" href="../../../fonts/inter/inter-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../../css/site.css">
+  <script src="../../../js/theme.js"></script>
+  <script type="module" src="../../../js/site.js"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {'analytics_storage': 'denied', 'ad_storage': 'denied', 'wait_for_update': 500});
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-V0P6LBF76F"></script>
+  <script>
+    gtag('js', new Date());
+    gtag('config', 'G-V0P6LBF76F', {'anonymize_ip': true});
+  </script>
+
   <link rel="canonical" href="https://ivandavidov.github.io/nvo/7/balove/elhovo/">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://ivandavidov.github.io/nvo/7/balove/elhovo/">
@@ -17,696 +36,270 @@
   <meta property="og:image" content="https://ivandavidov.github.io/nvo/images/social-preview.png">
   <meta property="og:locale" content="bg_BG">
   <meta property="og:site_name" content="НВО и ДЗИ – Иван Давидов">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google-analytics.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com; font-src 'self'">
-  <meta name="referrer" content="strict-origin-when-cross-origin">
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('consent', 'default', {
-      'analytics_storage': 'denied',
-      'ad_storage': 'denied',
-      'wait_for_update': 500
-    });
-  </script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-V0P6LBF76F"></script>
-  <script>
-    gtag('js', new Date());
-    gtag('config', 'G-V0P6LBF76F', {'anonymize_ip': true});
-  </script>
-  <script src="../../../js/theme.js"></script>
-  <style>
-    #detail-school-name { text-align: center; margin: 1.5rem 0 1rem; color: var(--color-text-muted); font-size: 1.15rem; font-weight: 600; }
-    .ruo-section-title { margin-top: 2.25rem; padding-bottom: 0.4rem; border-bottom: 2px solid var(--color-border); }
-    .ruo-section-help-toggle { margin: 0.75rem 0 1rem; }
-    .ruo-section-help-toggle summary { cursor: pointer; font-size: 0.9rem; color: var(--color-text-muted); padding: 0.5rem 0; user-select: none; }
-    .ruo-section-help-toggle summary:hover { color: var(--color-text); }
-    .ruo-section-help-toggle[open] summary { margin-bottom: 0.5rem; }
-    .ruo-section-intro { display: grid; grid-template-columns: minmax(0, 1.8fr) minmax(260px, 1fr); gap: 1rem 1.5rem; padding: 1rem 1.2rem; background: linear-gradient(135deg, var(--color-surface), var(--color-bg-alt)); border: 1px solid var(--color-border); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); }
-    .ruo-section-help { margin: 0; color: var(--color-text-muted); line-height: 1.72; max-width: 46rem; }
-    .ruo-help-points { margin: 0; padding-left: 1.15rem; color: var(--color-text-muted); line-height: 1.65; }
-    .ruo-help-points li + li { margin-top: 0.35rem; }
-    .ruo-filters-card, .ruo-overview-panel { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 1rem 1.2rem 1.2rem; box-shadow: var(--shadow-sm); }
-    .ruo-filters { display: flex; gap: 1rem 1.25rem; flex-wrap: wrap; margin: 0; align-items: flex-end; }
-    .ruo-select-group { display: flex; flex: 1 1 250px; min-width: 220px; flex-direction: column; gap: 0.35rem; }
-    .ruo-select-group label { font-size: 0.8rem; font-weight: 600; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.04em; }
-    .ruo-select-group select { width: 100%; min-height: 44px; padding: 0.7rem 0.85rem; background: var(--color-bg-alt); color: var(--color-text); border: 1px solid var(--color-border); border-radius: var(--radius-sm); font-size: 0.95rem; }
-    .ruo-select-group select:disabled { opacity: 0.7; cursor: not-allowed; }
-    .ruo-gender-label { display: flex; align-items: center; gap: 0.65rem; min-height: 44px; font-size: 0.92rem; cursor: pointer; padding: 0.7rem 0.9rem; background: var(--color-bg-alt); border: 1px solid var(--color-border); border-radius: var(--radius-sm); }
-    .ruo-gender-label input { display: none; }
-    .ruo-toggle-track { position: relative; width: 36px; height: 20px; background: var(--color-border); border-radius: 10px; transition: background 0.2s; flex-shrink: 0; }
-    .ruo-toggle-track::after { content: ''; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; background: #fff; border-radius: 50%; transition: transform 0.2s; }
-    .ruo-gender-label input:checked + .ruo-toggle-track { background: var(--color-primary); }
-    .ruo-gender-label input:checked + .ruo-toggle-track::after { transform: translateX(16px); }
-    .ruo-table-wrap { overflow-x: auto; }
-    .ruo-overview-panel { margin-top: 1rem; }
-    .ruo-charts { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1.5rem; }
-    .ruo-chart-box { background: var(--color-surface); border-radius: var(--radius-md); padding: 1rem; border: 1px solid var(--color-border); box-shadow: var(--shadow-sm); }
-    .trend-up   { color: var(--color-success); font-weight: 700; }
-    .trend-down { color: var(--color-danger);  font-weight: 700; }
-    .trend-same { color: var(--color-text-muted); }
-    .ruo-search { display: block; width: 100%; max-width: 360px; margin-bottom: 1rem; background: var(--color-bg-alt); color: var(--color-text); border: 1px solid var(--color-border); border-radius: var(--radius-sm); padding: 0.5rem 0.75rem; font-size: 0.9rem; box-sizing: border-box; }
-    .ruo-search:focus { outline: none; border-color: var(--color-primary); }
-    #overview-table { overflow: visible; width: 100%; min-width: 56rem; table-layout: fixed; }
-    #overview-table th, #overview-table td { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    #overview-table .col-num { width: 3rem; }
-    #overview-table .col-school { width: 14rem; }
-    #overview-table .col-score { width: 7rem; }
-    #overview-table .col-trend { width: 4.5rem; }
-    /* col-profile has no width -> absorbs the remaining space and truncates */
-    .ruo-clip { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    #overview-tbody tr:hover .ruo-clip { cursor: pointer; }
-    @media (max-width: 700px) { #overview-table .col-school { width: 9rem; } #overview-table .col-score { width: 5.5rem; } }
-    #overview-table th:first-child, #overview-table td:first-child { position: sticky; left: 0; z-index: 1; background: var(--color-surface); }
-    #overview-tbody tr:nth-child(even) td:first-child { background: var(--color-bg-alt); }
-    #overview-tbody tr:hover td:first-child { background: var(--color-border); }
-    #overview-thead th { background: var(--color-surface); }
-    #overview-tbody tr { cursor: pointer; }
-    #overview-tbody tr:nth-child(even) { background: var(--color-bg-alt); }
-    #overview-tbody tr:hover { background: var(--color-border); }
-    .sort-arrow { color: var(--color-primary); margin-left: 0.25em; }
-    @media (min-width: 901px) {
-      .ruo-overview-panel > .ruo-table-wrap { overflow-x: visible; overflow-y: visible; }
-      #overview-table { overflow: visible; }
-      #overview-table td:first-child { position: static; }
-      #overview-table th:first-child { position: sticky; top: 60px; top: var(--header-height, 60px); left: auto; z-index: 2; }
-      #overview-thead th { position: sticky; top: 60px; top: var(--header-height, 60px); z-index: 2; }
-    }
-    @media (max-width: 900px) { .ruo-section-intro { grid-template-columns: 1fr; } }
-    @media (max-width: 700px) {
-      .ruo-charts { grid-template-columns: 1fr; }
-      .ruo-filters-card, .ruo-overview-panel, .ruo-section-intro { padding: 0.9rem 1rem; }
-      .ruo-gender-label, .ruo-select-group { width: 100%; }
-    }
-  </style>
+  <script src="../../../js/highcharts.js" defer></script>
+  <script src="../../../js/ruo-elhovo.js" defer></script>
+  <script type="module" src="../../../js/pages/balove.js"></script>
 </head>
-<body>
+<body data-city="elhovo">
+  <a class="skip-link" href="#main">Към съдържанието</a>
   <header class="site-header">
-    <div class="header-inner">
-      <a class="site-brand" href="../../../" aria-label="Начало">
-        <svg class="site-logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-        <span class="site-name">НВО и ДЗИ</span>
+    <div class="container container--wide site-header__inner">
+      <a class="brand" href="../../../" aria-label="НВО и ДЗИ – начало">
+        <span class="brand__mark"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/></svg></span>
+        <span>НВО <span class="brand__and">и</span> ДЗИ</span>
       </a>
-      <nav class="grade-tabs">
-        <a href="../../../4/" class="grade-tab">4 клас</a>
-        <a href="../../" class="grade-tab active">7 клас</a>
-        <a href="../../../10/" class="grade-tab">10 клас</a>
-        <a href="../../../12/" class="grade-tab">12 клас</a>
-        <a href="../../../blog/" class="grade-tab">Блог</a>
+      <nav class="site-nav" aria-label="Основна навигация">
+        <div class="exam-switch">
+          <a href="../../../4/" title="НВО след 4 клас">4<span class="exam-switch__suffix"> клас</span></a>
+          <a href="../../../7/" title="НВО след 7 клас">7<span class="exam-switch__suffix"> клас</span></a>
+          <a href="../../../10/" title="НВО след 10 клас">10<span class="exam-switch__suffix"> клас</span></a>
+          <a href="../../../12/" title="ДЗИ след 12 клас">12<span class="exam-switch__suffix"> клас</span></a>
+        </div>
+        <a class="site-nav__link" href="../../../7/balove/" title="Минимални и максимални балове за прием след 7 клас" aria-current="page">Балове</a>
+        <a class="site-nav__link" href="../../../stats/">Статистика</a>
+        <a class="site-nav__link" href="../../../blog/">Блог</a>
       </nav>
-      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Смяна на тема">
-        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-      </button>
+      <div class="site-header__actions">
+        <button type="button" class="search-trigger" data-search-open aria-label="Търсене на училище или град">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <span class="search-trigger__label">Търси училище или град…</span>
+          <kbd class="kbd">/</kbd>
+        </button>
+        <button type="button" class="icon-btn theme-toggle" onclick="toggleTheme()" aria-label="Светла или тъмна тема" title="Светла или тъмна тема">
+          <span class="icon-moon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
+          <span class="icon-sun"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg></span>
+        </button>
+        <button type="button" class="icon-btn" data-menu-toggle aria-expanded="false" aria-controls="site-menu" aria-label="Още" title="Още">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="container container--wide">
+      <nav id="site-menu" class="menu-panel" aria-label="Още" hidden>
+        <div>
+          <h2>Данни</h2>
+          <ul>
+            <li><a href="../../../api/v1/"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg> JSON API</a></li>
+            <li><a href="../../../embed/"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m12 2 10 5-10 5L2 7l10-5z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg> Вграждане на графики</a></li>
+            <li><a class="ext" href="https://www.kaggle.com/datasets/johnddavidson/bulgarian-school-exam-results-20182025" target="_blank" rel="noopener noreferrer"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"/></svg> Kaggle: данни</a></li>
+            <li><a class="ext" href="https://www.kaggle.com/code/johnddavidson/initial-exploratory-analysis-2018-2026" target="_blank" rel="noopener noreferrer"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></svg> Kaggle: анализ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Отворени данни (МОН)</h2>
+          <ul>
+            <li><a class="ext" href="https://data.egov.bg/data/view/5613e75f-2b1b-4244-9f54-b27580a91dfb" target="_blank" rel="noopener noreferrer">НВО 4 клас</a></li>
+            <li><a class="ext" href="https://data.egov.bg/data/view/b56288b6-25aa-4049-9aa6-de2cd4cdabf8" target="_blank" rel="noopener noreferrer">НВО 7 клас</a></li>
+            <li><a class="ext" href="https://data.egov.bg/data/view/2f801b2f-d4cb-4ddb-a23d-3e372339c80f" target="_blank" rel="noopener noreferrer">НВО 10 клас</a></li>
+            <li><a class="ext" href="https://data.egov.bg/data/view/066b4b04-d81d-444e-a61c-8ca0516079e4" target="_blank" rel="noopener noreferrer">ДЗИ 12 клас</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Полезни връзки</h2>
+          <ul>
+            <li><a class="ext" href="https://e-xplore.education" target="_blank" rel="noopener noreferrer">e-xplore.education</a></li>
+            <li><a class="ext" href="https://danybon.com" target="_blank" rel="noopener noreferrer">Данибон</a></li>
+            <li><a class="ext" href="https://dideva.alle.bg" target="_blank" rel="noopener noreferrer">Дидева</a></li>
+            <li><a class="ext" href="https://sabev03.eu" target="_blank" rel="noopener noreferrer">Прием в 1 клас</a></li>
+            <li><a class="ext" href="https://izberi-gymnazia.info" target="_blank" rel="noopener noreferrer">Избери гимназия</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Проектът</h2>
+          <ul>
+            <li><a href="../../../za-proekta/"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg> За проекта и методология</a></li>
+            <li><a href="../../../za-proekta/#podkrepa"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg> Подкрепи проекта</a></li>
+            <li><a class="ext" href="https://www.facebook.com/groups/3423312924552271" target="_blank" rel="noopener noreferrer">Facebook група</a></li>
+            <li><a class="ext" href="https://linkedin.com/in/ivandavidov" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+          </ul>
+        </div>
+      </nav>
     </div>
   </header>
-  <main>
-    <div class="container">
-      <h1><a href="./" style="color:inherit;text-decoration:none">Минимални и максимални балове по паралелки след 7 клас &ndash; Елхово</a></h1>
-      <p><a href="../">&larr; Всички градове (Балове)</a>&nbsp;&nbsp;&middot;&nbsp;&nbsp;<a href="../../">Към 7 клас</a></p>
 
-      <!-- ── Section 1: Detail selectors ──────────────── -->
-      <h2 class="ruo-section-title">Детайли за паралелка</h2>
-      <details class="ruo-section-help-toggle">
-        <summary>Как работи тази секция?</summary>
-        <div class="ruo-section-intro">
-          <p class="ruo-section-help">Тази секция показва минималните и максималните балове по класирания за избрано училище и паралелка през последните години. Ако избереш „Всички паралелки", таблицата и графиките обобщават всички паралелки в училището и помагат да видиш картината за цялото училище.</p>
-          <ul class="ruo-help-points">
-            <li>Избери училище и паралелка, за да видиш конкретните данни.</li>
-            <li>Отметката за пол добавя по-подробна разбивка за последната година.</li>
-            <li>Графиките показват както промяната по години, така и разликите между отделните класирания.</li>
-            <li>Ако училището е преименувало паралелка или е сменило профила ѝ, данните от предишните години се показват под новото ѝ име.</li>
-          </ul>
+
+  <main id="main" class="container page balove-page">
+    <nav class="breadcrumbs" aria-label="Път">
+      <ol>
+        <li><a href="../../../">Начало</a></li>
+        <li><a href="../../">НВО след 7 клас</a></li>
+        <li><a href="../">Балове</a></li>
+        <li><span aria-current="page">Елхово</span></li>
+      </ol>
+    </nav>
+
+    <header class="page-head">
+      <p class="page-head__eyebrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> Прием след 7 клас · Елхово</p>
+      <h1 class="page-head__title">Минимални и максимални балове по паралелки след 7 клас – Елхово</h1>
+      <p class="page-head__lead">Баловете на приетите ученици по паралелки и класирания за последните години — избери паралелка за подробности или разгледай водещите паралелки в града.</p>
+      <div class="page-head__actions cluster">
+        <a class="btn" href="../../#elhovo"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg> НВО 7 клас – Елхово</a>
+        <a class="btn" href="../"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg> Всички градове</a>
+        <a class="btn btn--ghost" href="../../../blog/kak-da-chetem-balovete/"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8M15 18h-5M10 6h8v4h-8V6Z"/></svg> Как да четем баловете</a>
+      </div>
+    </header>
+
+    <section class="card balove-detail" id="detail" aria-labelledby="detail-title">
+      <div class="card__head">
+        <div>
+          <h2 class="card__title" id="detail-title">Детайли за паралелка</h2>
+          <p class="muted text-sm">Минимален и максимален бал по класирания и години.</p>
         </div>
-      </details>
-      <div class="ruo-filters-card">
-        <div class="ruo-filters">
-          <div class="ruo-select-group">
-            <label for="school-select">Училище</label>
-            <select id="school-select">
-              <option value="">— Избери училище —</option>
-            </select>
+      </div>
+      <div class="card__body stack">
+        <div class="balove-filters">
+          <div class="field balove-filters__school">
+            <span class="field__label">Училище</span>
+            <div class="combo">
+              <div class="input-icon">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+                <input class="input" id="school-input" type="text" placeholder="Избери училище…" aria-label="Училище">
+              </div>
+            </div>
           </div>
-          <div class="ruo-select-group">
-            <label for="profile-select">Паралелка</label>
-            <select id="profile-select" disabled>
+          <label class="field balove-filters__profile" for="profile-select">
+            <span class="field__label">Паралелка</span>
+            <select class="select" id="profile-select" disabled>
               <option value="">— Избери паралелка —</option>
             </select>
-          </div>
-          <label class="ruo-gender-label">
-            <input type="checkbox" id="gender-toggle"><span class="ruo-toggle-track"></span> Разбивка по пол за последната година
+          </label>
+          <label class="switch balove-filters__gender">
+            <input type="checkbox" id="gender-toggle"> Разбивка по пол за последната година
           </label>
         </div>
+        <details class="disclosure disclosure--plain">
+          <summary>Как работи тази секция?</summary>
+          <div class="disclosure__body prose">
+            <p>Тази секция показва минималните и максималните балове по класирания за избрано училище и паралелка през последните години. Ако избереш „Всички паралелки“, таблицата и графиките обобщават всички паралелки в училището и помагат да видиш картината за цялото училище.</p>
+            <ul>
+              <li>Избери училище и паралелка, за да видиш конкретните данни.</li>
+              <li>Отметката за пол добавя по-подробна разбивка за последната година.</li>
+              <li>Графиките показват както промяната по години, така и разликите между отделните класирания.</li>
+              <li>Ако училището е преименувало паралелка или е сменило профила ѝ, данните от предишните години се показват под новото ѝ име.</li>
+            </ul>
+          </div>
+        </details>
+        <div class="empty" id="detail-empty">
+          <div class="empty__icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+          <p class="empty__title">Избери училище</p>
+          <p>или кликни ред в класацията на паралелките по-долу.</p>
+        </div>
+        <div id="detail-section" hidden>
+          <h3 class="balove-detail__school" id="detail-school-name"></h3>
+          <div class="table-wrap"><table class="data-table data-table--compact balove-detail__table" id="detail-table"></table></div>
+          <div class="balove-charts">
+            <figure class="chart-frame"><div class="chart" id="trend-chart"></div></figure>
+            <figure class="chart-frame" id="klasirane-box-0"><div class="chart" id="klasirane-chart-0"></div></figure>
+            <figure class="chart-frame" id="klasirane-box-1"><div class="chart" id="klasirane-chart-1"></div></figure>
+            <figure class="chart-frame" id="klasirane-box-2"><div class="chart" id="klasirane-chart-2"></div></figure>
+          </div>
+        </div>
       </div>
+    </section>
 
-      <!-- ── Section 2+3: Detail table + charts ────────── -->
-      <div id="detail-section" style="display:none">
-        <h3 id="detail-school-name"></h3>
-        <div class="ruo-table-wrap">
-          <table id="detail-table"></table>
+    <section class="card section balove-overview" aria-labelledby="overview-title">
+      <div class="card__head">
+        <div>
+          <h2 class="card__title" id="overview-title">Топ паралелки по минимален бал (1-во класиране)</h2>
+          <p class="muted text-sm">Клик върху ред отваря детайлите за паралелката.</p>
         </div>
-        <div class="ruo-charts">
-          <div class="ruo-chart-box"><div id="trend-chart" style="height:280px"></div></div>
-          <div class="ruo-chart-box" id="klasirane-box-0"><div id="klasirane-chart-0" style="height:280px"></div></div>
-          <div class="ruo-chart-box" id="klasirane-box-1"><div id="klasirane-chart-1" style="height:280px"></div></div>
-          <div class="ruo-chart-box" id="klasirane-box-2"><div id="klasirane-chart-2" style="height:280px"></div></div>
+        <div class="input-icon balove-overview__search">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <input class="input" type="search" id="overview-search" placeholder="Търси по училище или паралелка…" aria-label="Търси по училище или паралелка">
         </div>
-
       </div>
-
-      <!-- ── Section 5: Overview table ─────────────────── -->
-      <h2 class="ruo-section-title">Топ паралелки по минимален бал (1-во класиране)</h2>
-      <details class="ruo-section-help-toggle">
-        <summary>Как работи тази секция?</summary>
-        <div class="ruo-section-intro">
-          <p class="ruo-section-help">Тук са събрани паралелките с най-висок минимален бал на 1-во класиране за последните години. Това е най-бързият начин да сравниш водещите профили и да преминеш към детайлите само с един клик.</p>
-          <ul class="ruo-help-points">
-            <li>Полето за търсене филтрира по училище и паралелка.</li>
-            <li>Клик върху заглавията „Училище", „Паралелка" и „Мин." сортира във възходящ или низходящ ред.</li>
-            <li>Клик върху ред отваря детайлите за избраната паралелка по-горе.</li>
-          </ul>
-        </div>
-      </details>
-      <div class="ruo-overview-panel">
-        <input type="text" id="overview-search" class="ruo-search"
-               placeholder="Търси по училище или паралелка&hellip;">
-        <div class="ruo-table-wrap">
-          <table id="overview-table">
+      <div class="card__body stack">
+        <details class="disclosure disclosure--plain">
+          <summary>Как работи тази секция?</summary>
+          <div class="disclosure__body prose">
+            <p>Тук са събрани паралелките с най-висок минимален бал на 1-во класиране за последните години. Това е най-бързият начин да сравниш водещите профили и да преминеш към детайлите само с един клик.</p>
+            <ul>
+              <li>Полето за търсене филтрира по училище и паралелка.</li>
+              <li>Клик върху заглавията „Училище“, „Паралелка“ и „Мин.“ сортира във възходящ или низходящ ред.</li>
+              <li>Клик върху ред отваря детайлите за избраната паралелка по-горе.</li>
+            </ul>
+          </div>
+        </details>
+        <div class="table-wrap table-wrap--tall">
+          <table class="data-table balove-overview__table" id="overview-table">
             <thead id="overview-thead"></thead>
             <tbody id="overview-tbody"></tbody>
           </table>
         </div>
       </div>
-
-    </div>
+    </section>
   </main>
-  <script src="../../../js/highcharts.js"></script>
-  <script src="../../../js/ruo-elhovo.js"></script>
-  <script>
-(function () {
-  'use strict';
 
-  // ── Shared state ──────────────────────────────────────────
-
-  var yearsToShow = 4;
-  var overviewYearsToShow = 3;
-  var klasiraneChartsCount = 3;
-  var firstVisibleYi = Math.max(0, ruoYears.length - yearsToShow);
-  var pageYears = ruoYears.slice(firstVisibleYi);
-  var latestYi  = pageYears.length - 1;
-  var overviewFirstYi = Math.max(0, latestYi - (overviewYearsToShow - 1));
-  var overviewRows = [];
-  var sortCol   = latestYi >= 0 ? 'year-' + latestYi : 'school';
-  var sortDir   = -1;   // -1 = desc, 1 = asc
-  var trendChart, klasiraneCharts = [];
-
-  // ── Utilities ─────────────────────────────────────────────
-
-  function esc(s) {
-    return String(s)
-      .replace(/&/g, '&amp;').replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-  }
-
-  function fmt(v) {
-    return (v !== null && v !== undefined && v !== 0) ? v : '\u2014';
-  }
-
-  function isDark() {
-    return document.documentElement.dataset.theme === 'dark';
-  }
-
-  function getVisibleData(d) {
-    return d.slice(firstVisibleYi);
-  }
-
-  function getSortValue(row, col) {
-    if (col.indexOf('year-') === 0) {
-      return row.yearMins[parseInt(col.substring(5), 10)];
-    }
-    return row[col];
-  }
-
-  function updateUrlState() {
-    var url = new URL(window.location.href);
-    var schoolCode = document.getElementById('school-select').value;
-    var profileCode = document.getElementById('profile-select').value;
-    var genderChecked = document.getElementById('gender-toggle').checked;
-
-    url.searchParams.delete('school');
-    url.searchParams.delete('profile');
-    url.searchParams.delete('gender');
-
-    if (schoolCode && ruoSchools[schoolCode]) {
-      url.searchParams.set('school', schoolCode);
-      if (profileCode && ruoSchools[schoolCode].p[profileCode]) {
-        url.searchParams.set('profile', profileCode);
-      }
-      if (genderChecked) {
-        url.searchParams.set('gender', 'true');
-      }
-    }
-
-    var query = url.searchParams.toString();
-    history.replaceState(null, '', url.pathname + (query ? '?' + query : '') + url.hash);
-  }
-
-  function restoreStateFromUrl() {
-    var params = new URLSearchParams(window.location.search);
-    var schoolCode = params.get('school') || '';
-    var profileCode = params.get('profile') || '';
-    var genderValue = params.get('gender');
-    var genderChecked = genderValue === 'true' || genderValue === '1';
-
-    document.getElementById('gender-toggle').checked = genderChecked;
-
-    if (!schoolCode || !ruoSchools[schoolCode]) {
-      updateUrlState();
-      return;
-    }
-
-    document.getElementById('school-select').value = schoolCode;
-    populateProfileSelect(schoolCode);
-
-    // Older links may use a zero-padded profile code (e.g. "03909" for "3909")
-    if (profileCode && !ruoSchools[schoolCode].p[profileCode]) {
-      profileCode = profileCode.replace(/^0+(?=.)/, '');
-    }
-
-    if (profileCode && ruoSchools[schoolCode].p[profileCode]) {
-      document.getElementById('profile-select').value = profileCode;
-    } else {
-      document.getElementById('profile-select').value = '';
-    }
-
-    showDetail(schoolCode, document.getElementById('profile-select').value);
-    updateUrlState();
-  }
-
-  // ── Overview: build rows ──────────────────────────────────
-
-  function buildOverviewRows() {
-    var rows = [];
-    Object.keys(ruoSchools).forEach(function (code) {
-      var school = ruoSchools[code];
-      Object.keys(school.p).forEach(function (pcode) {
-        var d = getVisibleData(school.p[pcode].d);
-        var yearMins = d.map(function (yearData) {
-          var k1 = yearData && yearData[0];
-          return k1 ? k1[0] : null;
-        });
-        var minLatest = latestYi >= 0 ? yearMins[latestYi] : null;
-        var minPrev   = latestYi >= 1 ? yearMins[latestYi - 1] : null;
-        var trend = '';
-        if (minLatest !== null && minPrev !== null) {
-          trend = minLatest > minPrev + 0.5 ? 'up'
-                : minLatest < minPrev - 0.5 ? 'down' : 'same';
-        }
-        rows.push({ code: code, pcode: pcode,
-          school: school.n, schoolFull: school.f, profile: school.p[pcode].n,
-          yearMins: yearMins,
-          trend: trend });
-      });
-    });
-    return rows;
-  }
-
-  function sortRows(rows) {
-    return rows.slice().sort(function (a, b) {
-      var va = getSortValue(a, sortCol), vb = getSortValue(b, sortCol);
-      if (va === null && vb === null) return 0;
-      if (va === null) return 1;
-      if (vb === null) return -1;
-      if (typeof va === 'string') return sortDir * va.localeCompare(vb, 'bg');
-      return sortDir * (va - vb);
-    });
-  }
-
-  function updateSortIndicators() {
-    document.querySelectorAll('#overview-table th[data-sortable="1"]').forEach(function (th) {
-      var arrow = th.querySelector('.sort-arrow');
-      if (arrow) arrow.remove();
-      if (th.dataset.col === sortCol) {
-        var span = document.createElement('span');
-        span.className = 'sort-arrow';
-        span.textContent = sortDir === -1 ? '\u2193' : '\u2191';
-        th.appendChild(span);
-      }
-    });
-  }
-
-  function renderOverviewHeader() {
-    var html = '<tr>'
-      + '<th class="col-num">#</th>'
-      + '<th class="col-school" data-sortable="1" data-col="school">Училище</th>'
-      + '<th class="col-profile" data-sortable="1" data-col="profile">Паралелка</th>';
-    for (var yi = latestYi; yi >= overviewFirstYi; yi--) {
-      html += '<th class="col-score" data-sortable="1" data-col="year-' + yi + '">Мин. ' + pageYears[yi] + '</th>';
-    }
-    html += '<th class="col-trend">Тренд</th></tr>';
-    document.getElementById('overview-thead').innerHTML = html;
-  }
-
-  function renderOverviewTable(filter) {
-    var rows = overviewRows;
-    if (filter) {
-      var f = filter.toLowerCase();
-      rows = rows.filter(function (r) {
-        return r.school.toLowerCase().indexOf(f) !== -1
-            || r.profile.toLowerCase().indexOf(f) !== -1;
-      });
-    }
-    rows = sortRows(rows);
-    var html = '';
-    rows.forEach(function (r, i) {
-      var tHtml = r.trend === 'up'   ? '<span class="trend-up">&#8593;</span>'
-                : r.trend === 'down' ? '<span class="trend-down">&#8595;</span>'
-                : r.trend === 'same' ? '<span class="trend-same">&#8594;</span>' : '';
-      html += '<tr data-code="' + r.code + '" data-pcode="' + r.pcode + '">'
-        + '<td>' + (i + 1) + '</td>'
-        + '<td class="col-school"><div class="ruo-clip" title="' + esc(r.schoolFull) + '">' + esc(r.school) + '</div></td>'
-        + '<td class="col-profile"><div class="ruo-clip" title="' + esc(r.profile) + '">' + esc(r.profile) + '</div></td>';
-      for (var yi = latestYi; yi >= overviewFirstYi; yi--) {
-        var minScore = r.yearMins[yi];
-        html += '<td>' + (minScore !== null ? minScore : '\u2014') + '</td>';
-      }
-      html += '<td>' + tHtml + '</td>'
-        + '</tr>';
-    });
-    document.getElementById('overview-tbody').innerHTML = html;
-    document.querySelectorAll('#overview-tbody tr').forEach(function (tr) {
-      tr.addEventListener('click', function () {
-        selectSchoolProfile(tr.dataset.code, tr.dataset.pcode);
-        document.getElementById('detail-section')
-                .scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
-    });
-  }
-
-  // ── School / Profile selectors ────────────────────────────
-
-  function populateSchoolSelect() {
-    var sel = document.getElementById('school-select');
-    var schools = Object.keys(ruoSchools).map(function (c) {
-      return { code: c, name: ruoSchools[c].n };
-    }).sort(function (a, b) {
-      var aIsNum = /^\d/.test(a.name);
-      var bIsNum = /^\d/.test(b.name);
-      if (aIsNum && bIsNum) return parseInt(a.name, 10) - parseInt(b.name, 10);
-      if (aIsNum) return -1;
-      if (bIsNum) return 1;
-      return a.name.localeCompare(b.name, 'bg');
-    });
-    schools.forEach(function (s) {
-      var opt = document.createElement('option');
-      opt.value = s.code; opt.textContent = s.name;
-      sel.appendChild(opt);
-    });
-  }
-
-  function populateProfileSelect(schoolCode) {
-    var sel = document.getElementById('profile-select');
-    sel.innerHTML = '';
-    if (!schoolCode) {
-      var ph = document.createElement('option');
-      ph.value = ''; ph.textContent = '\u2014 Избери паралелка \u2014';
-      sel.appendChild(ph);
-      sel.disabled = true; return;
-    }
-    var allOpt = document.createElement('option');
-    allOpt.value = ''; allOpt.textContent = 'Всички паралелки';
-    sel.appendChild(allOpt);
-    Object.keys(ruoSchools[schoolCode].p).forEach(function (pcode) {
-      var opt = document.createElement('option');
-      opt.value = pcode;
-      opt.textContent = ruoSchools[schoolCode].p[pcode].n;
-      sel.appendChild(opt);
-    });
-    sel.disabled = false;
-  }
-
-  function selectSchoolProfile(code, pcode) {
-    document.getElementById('school-select').value = code;
-    populateProfileSelect(code);
-    document.getElementById('profile-select').value = pcode;
-    showDetail(code, pcode);
-    updateUrlState();
-  }
-
-  // ── Aggregation (all profiles) ────────────────────────────
-
-  function minOf(entries, idx) {
-    var vals = entries.map(function (e) { return e[idx]; }).filter(function (v) { return v > 0; });
-    return vals.length ? Math.min.apply(null, vals) : 0;
-  }
-
-  function maxOf(entries, idx) {
-    var vals = entries.map(function (e) { return e[idx]; }).filter(function (v) { return v > 0; });
-    return vals.length ? Math.max.apply(null, vals) : 0;
-  }
-
-  function aggregateAllProfiles(code) {
-    var pcodes = Object.keys(ruoSchools[code].p);
-    var result = [];
-    for (var yi = 0; yi < pageYears.length; yi++) {
-      var sourceYi = firstVisibleYi + yi;
-      var yearData = [];
-      for (var ki = 0; ki < 4; ki++) {
-        var entries = [];
-        pcodes.forEach(function (pc) {
-          var d = ruoSchools[code].p[pc].d;
-          var k = d[sourceYi] ? d[sourceYi][ki] : null;
-          if (k) entries.push(k);
-        });
-        if (entries.length === 0) {
-          yearData.push(null);
-        } else {
-          yearData.push([
-            minOf(entries, 0), minOf(entries, 1), minOf(entries, 2),
-            maxOf(entries, 3), maxOf(entries, 4), maxOf(entries, 5)
-          ]);
-        }
-      }
-      result.push(yearData);
-    }
-    return result;
-  }
-
-  // ── Detail table ──────────────────────────────────────────
-
-  function showDetail(code, pcode) {
-    var showGender = document.getElementById('gender-toggle').checked;
-    document.getElementById('detail-section').style.display = '';
-    document.getElementById('detail-school-name').textContent = ruoSchools[code].f;
-    var d = pcode ? getVisibleData(ruoSchools[code].p[pcode].d) : aggregateAllProfiles(code);
-    var label = pcode ? ruoSchools[code].p[pcode].n : 'Всички паралелки';
-    renderDetailTable(d, showGender);
-    renderCharts(d, label);
-  }
-
-  function renderDetailTable(d, showGender) {
-    var klassNames = ['1-во', '2-ро', '3-то', '4-то'];
-    var colsPerYear = showGender ? 6 : 2;
-    var subHeaders  = showGender
-      ? '<th>Мин</th><th>Мин М</th><th>Мин Ж</th><th>Макс</th><th>Макс М</th><th>Макс Ж</th>'
-      : '<th>Мин</th><th>Макс</th>';
-    var yis = showGender
-      ? [latestYi]
-      : pageYears.map(function (y, i) { return i; }).reverse();
-
-    var thead = '<thead><tr><th>Класиране</th>';
-    yis.forEach(function (yi) {
-      thead += '<th colspan="' + colsPerYear + '">' + pageYears[yi] + '</th>';
-    });
-    thead += '</tr><tr><th></th>';
-    yis.forEach(function () { thead += subHeaders; });
-    thead += '</tr></thead>';
-
-    var tbody = '<tbody>';
-    klassNames.forEach(function (kname, ki) {
-      tbody += '<tr><td>' + kname + '</td>';
-      yis.forEach(function (yi) {
-        var k = d[yi] ? d[yi][ki] : null;
-        if (showGender) {
-          for (var si = 0; si < 6; si++) {
-            tbody += '<td>' + (k ? fmt(k[si]) : '\u2014') + '</td>';
-          }
-        } else {
-          tbody += '<td>' + (k ? fmt(k[0]) : '\u2014') + '</td>';
-          tbody += '<td>' + (k ? fmt(k[3]) : '\u2014') + '</td>';
-        }
-      });
-      tbody += '</tr>';
-    });
-    tbody += '</tbody>';
-
-    document.getElementById('detail-table').innerHTML = thead + tbody;
-  }
-
-  // ── Highcharts helpers ────────────────────────────────────
-
-  function getThemeColor(varName, fallback) {
-    if (typeof window !== 'undefined' && window.getComputedStyle) {
-      var val = getComputedStyle(document.documentElement).getPropertyValue(varName);
-      if (val && val.trim()) return val.trim();
-    }
-    return fallback;
-  }
-
-  function chartColors() {
-    var dark = isDark();
-    return {
-      bg:        getThemeColor('--color-surface', dark ? '#1e293b' : '#ffffff'),
-      text:      getThemeColor('--color-text', dark ? '#e2e8f0' : '#1e293b'),
-      muted:     getThemeColor('--color-text-muted', dark ? '#94a3b8' : '#64748b'),
-      grid:      getThemeColor('--color-border', dark ? '#334155' : '#e2e8f0'),
-      tooltipBg: getThemeColor('--color-surface', dark ? '#0f172a' : '#ffffff'),
-      min:       getThemeColor('--chart-bel', getThemeColor('--color-primary-light', '#3b82f6')),
-      max:       getThemeColor('--chart-mat', getThemeColor('--color-accent', '#f59e0b'))
-    };
-  }
-
-  function baseChartOpts(c, titleText, categories) {
-    return {
-      chart: { backgroundColor: c.bg, style: { fontFamily: 'system-ui,-apple-system,sans-serif' } },
-      title: { text: titleText, style: { color: c.text, fontSize: '13px', fontWeight: '600' } },
-      xAxis: { categories: categories, labels: { style: { color: c.muted } },
-               lineColor: c.grid, tickColor: c.grid },
-      yAxis: { title: { text: 'Бал', style: { color: c.muted } },
-               labels: { style: { color: c.muted } },
-               gridLineColor: c.grid, startOnTick: false, endOnTick: false },
-      legend: { itemStyle: { color: c.text, fontWeight: 'normal', fontSize: '12px' },
-                itemHoverStyle: { color: c.text } },
-      tooltip: { backgroundColor: c.tooltipBg, style: { color: c.text },
-                 borderColor: c.grid, shared: true },
-      credits: { enabled: false },
-      plotOptions: { series: { connectNulls: false } }
-    };
-  }
-
-  // ── Charts ────────────────────────────────────────────────
-
-  function renderCharts(d, label) {
-    var c = chartColors();
-
-    // Chart 1: Min/max trend across years (K1 only)
-    var minTrend = [], maxTrend = [];
-    pageYears.forEach(function (y, yi) {
-      var k1 = d[yi] ? d[yi][0] : null;
-      minTrend.push(k1 ? k1[0] : null);
-      maxTrend.push(k1 ? k1[3] : null);
-    });
-    var opts1 = baseChartOpts(c, label + ' — 1-во класиране, тренд по години',
-                              pageYears.map(String));
-    opts1.chart.type = 'line';
-    opts1.series = [
-      { name: 'Мин. бал', data: minTrend, color: c.min,
-        marker: { enabled: true, radius: 4 } },
-      { name: 'Макс. бал', data: maxTrend, color: c.max,
-        dashStyle: 'ShortDash', marker: { enabled: true, radius: 4 } }
-    ];
-    if (trendChart) trendChart.destroy();
-    trendChart = Highcharts.chart('trend-chart', opts1);
-
-    // Charts 2+: Min/max per klasirane — one chart per year,
-    // starting from the latest year with data and going back.
-    var availYis = [];
-    for (var ayi = latestYi; ayi >= 0 && availYis.length < klasiraneChartsCount; ayi--) {
-      var hasData = d[ayi] && d[ayi].some(function (k) { return !!k; });
-      if (hasData) availYis.push(ayi);
-    }
-    klasiraneCharts.forEach(function (ch) { if (ch) ch.destroy(); });
-    klasiraneCharts = [];
-    for (var ci = 0; ci < klasiraneChartsCount; ci++) {
-      var box = document.getElementById('klasirane-box-' + ci);
-      if (ci >= availYis.length) { box.style.display = 'none'; continue; }
-      box.style.display = '';
-      var yi = availYis[ci];
-      var minKlas = [], maxKlas = [];
-      for (var ki = 0; ki < 4; ki++) {
-        var k = d[yi] ? d[yi][ki] : null;
-        minKlas.push(k ? k[0] : null);
-        maxKlas.push(k ? k[3] : null);
-      }
-      var opts2 = baseChartOpts(c,
-          'Балове по класирания (' + pageYears[yi] + ')',
-          ['1-во', '2-ро', '3-то', '4-то']);
-      opts2.chart.type = 'column';
-      opts2.series = [
-        { name: 'Мин. бал', data: minKlas, color: c.min },
-        { name: 'Макс. бал', data: maxKlas, color: c.max }
-      ];
-      klasiraneCharts.push(Highcharts.chart('klasirane-chart-' + ci, opts2));
-    }
-  }
-
-  // ── Init ──────────────────────────────────────────────────
-
-  document.addEventListener('DOMContentLoaded', function () {
-    renderOverviewHeader();
-    overviewRows = buildOverviewRows();
-    renderOverviewTable('');
-    updateSortIndicators();
-
-    // Overview table — sortable headers
-    document.querySelectorAll('#overview-table th[data-sortable="1"]').forEach(function (th) {
-      th.addEventListener('click', function () {
-        var col = th.dataset.col;
-        sortDir = (sortCol === col) ? -sortDir : -1;
-        sortCol = col;
-        renderOverviewTable(document.getElementById('overview-search').value);
-        updateSortIndicators();
-      });
-    });
-
-    // Overview table — text search
-    document.getElementById('overview-search').addEventListener('input', function () {
-      renderOverviewTable(this.value);
-    });
-
-    // School select
-    populateSchoolSelect();
-    document.getElementById('school-select').addEventListener('change', function () {
-      var code = this.value;
-      populateProfileSelect(code);
-      if (code) showDetail(code, '');
-      else document.getElementById('detail-section').style.display = 'none';
-      updateUrlState();
-    });
-
-    // Profile select
-    document.getElementById('profile-select').addEventListener('change', function () {
-      var code = document.getElementById('school-select').value;
-      if (code) showDetail(code, this.value);
-      updateUrlState();
-    });
-
-    // Gender toggle
-    document.getElementById('gender-toggle').addEventListener('change', function () {
-      var code  = document.getElementById('school-select').value;
-      var pcode = document.getElementById('profile-select').value;
-      if (code) {
-        var d = pcode ? getVisibleData(ruoSchools[code].p[pcode].d) : aggregateAllProfiles(code);
-        renderDetailTable(d, this.checked);
-      }
-      updateUrlState();
-    });
-
-    restoreStateFromUrl();
-  });
-
-})();
-  </script>
   <footer class="site-footer">
-    <div class="container">
-      <div class="footer-content">
-        <p class="footer-minimal">&copy; Иван Давидов – НВО и ДЗИ</p>
-        <nav class="footer-links">
-          <a href="../../../">Начало</a>
-          <a href="../../../blog/">Блог</a>
-          <a href="../../../stats/">Статистика</a>
-        </nav>
+    <div class="container container--wide site-footer__grid">
+      <div class="site-footer__about">
+        <a class="brand" href="../../../">
+          <span class="brand__mark"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/></svg></span>
+          <span>НВО <span class="brand__and">и</span> ДЗИ</span>
+        </a>
+        <p>Резултатите от НВО и ДЗИ за всички училища в България — графики, класации и статистики по отворените данни на МОН.</p>
+      </div>
+      <nav aria-label="Изпити">
+        <h2>Изпити</h2>
+        <ul>
+          <li><a href="../../../4/">НВО след 4 клас</a></li>
+          <li><a href="../../../7/">НВО след 7 клас</a></li>
+          <li><a href="../../../10/">НВО след 10 клас</a></li>
+          <li><a href="../../../12/">ДЗИ след 12 клас</a></li>
+          <li><a href="../../../7/balove/">Балове след 7 клас</a></li>
+          <li><a href="../../../stats/">Обобщена статистика</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Данни">
+        <h2>Данни</h2>
+        <ul>
+          <li><a href="../../../api/v1/">JSON API</a></li>
+          <li><a href="../../../embed/">Вграждане на графики</a></li>
+          <li><a href="https://www.kaggle.com/datasets/johnddavidson/bulgarian-school-exam-results-20182025" target="_blank" rel="noopener noreferrer">Kaggle: данни</a> · <a href="https://www.kaggle.com/code/johnddavidson/initial-exploratory-analysis-2018-2026" target="_blank" rel="noopener noreferrer">анализ</a></li>
+          <li>
+            <span>data.egov.bg:</span>
+            <span class="site-footer__inline">
+              <a href="https://data.egov.bg/data/view/5613e75f-2b1b-4244-9f54-b27580a91dfb" target="_blank" rel="noopener noreferrer" title="Отворени данни – НВО 4 клас">4</a>
+              <a href="https://data.egov.bg/data/view/b56288b6-25aa-4049-9aa6-de2cd4cdabf8" target="_blank" rel="noopener noreferrer" title="Отворени данни – НВО 7 клас">7</a>
+              <a href="https://data.egov.bg/data/view/2f801b2f-d4cb-4ddb-a23d-3e372339c80f" target="_blank" rel="noopener noreferrer" title="Отворени данни – НВО 10 клас">10</a>
+              <a href="https://data.egov.bg/data/view/066b4b04-d81d-444e-a61c-8ca0516079e4" target="_blank" rel="noopener noreferrer" title="Отворени данни – ДЗИ 12 клас">12</a>
+            </span>
+          </li>
+        </ul>
+      </nav>
+      <nav aria-label="Ресурси">
+        <h2>Ресурси</h2>
+        <ul>
+          <li><a href="../../../blog/">Блог</a></li>
+          <li><a href="https://e-xplore.education" target="_blank" rel="noopener noreferrer">e-xplore.education</a></li>
+          <li><a href="https://danybon.com" target="_blank" rel="noopener noreferrer">Данибон</a></li>
+          <li><a href="https://dideva.alle.bg" target="_blank" rel="noopener noreferrer">Дидева</a></li>
+          <li><a href="https://sabev03.eu" target="_blank" rel="noopener noreferrer">Прием в 1 клас</a></li>
+          <li><a href="https://izberi-gymnazia.info" target="_blank" rel="noopener noreferrer">Избери гимназия</a></li>
+        </ul>
+      </nav>
+      <div>
+        <h2>Проектът</h2>
+        <ul>
+          <li><a href="../../../za-proekta/">За проекта и методология</a></li>
+          <li><a href="https://www.facebook.com/groups/3423312924552271" target="_blank" rel="noopener noreferrer">Facebook група</a></li>
+          <li><a href="https://linkedin.com/in/ivandavidov" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+          <li>
+            <span>Подкрепи проекта:</span>
+            <div class="support">
+              <a class="btn btn--sm btn--pill" href="https://revolut.me/ivanppek" target="_blank" rel="noopener noreferrer"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg> Revolut</a>
+              <button type="button" class="btn btn--sm btn--pill copy-btn" data-copy="bc1q6fzgg277t8fex00flafx4mw7u54lvh0c9g3qaf" data-tip="Адресът е копиран" aria-label="Копирай BTC адреса">BTC <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+              <button type="button" class="btn btn--sm btn--pill copy-btn" data-copy="0x4ad101C3c9abf9899bD31845731ba7394E2Be4C8" data-tip="Адресът е копиран" aria-label="Копирай ETH адреса" title="davidov.eth">ETH <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
+    <div class="container container--wide site-footer__bottom">
+      <p class="joke" data-joke></p>
+      <p>&copy; Иван Давидов – НВО и ДЗИ · Данни: МОН и РУО</p>
+    </div>
   </footer>
+
 </body>
 </html>

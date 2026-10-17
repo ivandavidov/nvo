@@ -1,0 +1,476 @@
+// Балове по паралелки за град (/7/balove/{град}/). Данните са в js/ruo-{град}.js
+// (глобални ruoYears и ruoSchools, зареждат се преди този модул).
+// Логиката е пренесена 1:1 от стария шаблон на RuoPage; състоянието е в адреса
+// (?school=&profile=&gender=true).
+import { icon } from '../ui/icons.js';
+import { esc, normalize } from '../ui/dom.js';
+import { createCombobox } from '../ui/combobox.js';
+import { whenHighcharts, lineOptions, createChart, token, onThemeChange } from '../ui/chart-theme.js';
+
+const YEARS_TO_SHOW = 4;
+const OVERVIEW_YEARS_TO_SHOW = 3;
+const KLASIRANE_CHARTS = 3;
+const KLASS_NAMES = ['1-во', '2-ро', '3-то', '4-то'];
+
+/* global ruoYears, ruoSchools */
+const years = typeof ruoYears !== 'undefined' ? ruoYears : [];
+const schools = typeof ruoSchools !== 'undefined' ? ruoSchools : {};
+
+const firstVisibleYi = Math.max(0, years.length - YEARS_TO_SHOW);
+const pageYears = years.slice(firstVisibleYi);
+const latestYi = pageYears.length - 1;
+const overviewFirstYi = Math.max(0, latestYi - (OVERVIEW_YEARS_TO_SHOW - 1));
+
+const state = {
+  school: '',
+  profile: '',
+  gender: false,
+  sortCol: latestYi >= 0 ? 'year-' + latestYi : 'school',
+  sortDir: -1,
+  filter: ''
+};
+let overviewRows = [];
+let trendChart = null;
+let klasiraneCharts = [];
+
+const el = {
+  schoolInput: document.getElementById('school-input'),
+  profile: document.getElementById('profile-select'),
+  gender: document.getElementById('gender-toggle'),
+  empty: document.getElementById('detail-empty'),
+  section: document.getElementById('detail-section'),
+  name: document.getElementById('detail-school-name'),
+  table: document.getElementById('detail-table'),
+  thead: document.getElementById('overview-thead'),
+  tbody: document.getElementById('overview-tbody'),
+  search: document.getElementById('overview-search')
+};
+
+function fmt(v) {
+  return v !== null && v !== undefined && v !== 0 ? v : '—';
+}
+
+function visibleData(d) {
+  return d.slice(firstVisibleYi);
+}
+
+/* ---------------- Адрес ---------------- */
+
+function writeUrl() {
+  const url = new URL(window.location.href);
+  url.searchParams.delete('school');
+  url.searchParams.delete('profile');
+  url.searchParams.delete('gender');
+  if (state.school && schools[state.school]) {
+    url.searchParams.set('school', state.school);
+    if (state.profile && schools[state.school].p[state.profile]) {
+      url.searchParams.set('profile', state.profile);
+    }
+    if (state.gender) {
+      url.searchParams.set('gender', 'true');
+    }
+  }
+  const query = url.searchParams.toString();
+  history.replaceState(null, '', url.pathname + (query ? '?' + query : '') + url.hash);
+}
+
+function readUrl() {
+  const params = new URLSearchParams(window.location.search);
+  const school = params.get('school') || '';
+  let profile = params.get('profile') || '';
+  const gender = params.get('gender');
+  state.gender = gender === 'true' || gender === '1';
+  el.gender.checked = state.gender;
+  if (!school || !schools[school]) {
+    writeUrl();
+    return;
+  }
+  // По-старите връзки може да са с водещи нули в кода на паралелката ("03909" → "3909").
+  if (profile && !schools[school].p[profile]) {
+    profile = profile.replace(/^0+(?=.)/, '');
+  }
+  selectSchool(school, profile && schools[school].p[profile] ? profile : '', false);
+  writeUrl();
+}
+
+/* ---------------- Обобщение за всички паралелки ---------------- */
+
+function minOf(entries, idx) {
+  const vals = entries.map((e) => e[idx]).filter((v) => v > 0);
+  return vals.length ? Math.min(...vals) : 0;
+}
+
+function maxOf(entries, idx) {
+  const vals = entries.map((e) => e[idx]).filter((v) => v > 0);
+  return vals.length ? Math.max(...vals) : 0;
+}
+
+function aggregateAllProfiles(code) {
+  const pcodes = Object.keys(schools[code].p);
+  const result = [];
+  for (let yi = 0; yi < pageYears.length; yi++) {
+    const sourceYi = firstVisibleYi + yi;
+    const yearData = [];
+    for (let ki = 0; ki < 4; ki++) {
+      const entries = [];
+      pcodes.forEach((pc) => {
+        const d = schools[code].p[pc].d;
+        const k = d[sourceYi] ? d[sourceYi][ki] : null;
+        if (k) {
+          entries.push(k);
+        }
+      });
+      yearData.push(entries.length === 0 ? null : [
+        minOf(entries, 0), minOf(entries, 1), minOf(entries, 2),
+        maxOf(entries, 3), maxOf(entries, 4), maxOf(entries, 5)
+      ]);
+    }
+    result.push(yearData);
+  }
+  return result;
+}
+
+function currentData() {
+  return state.profile ? visibleData(schools[state.school].p[state.profile].d) : aggregateAllProfiles(state.school);
+}
+
+/* ---------------- Детайли ---------------- */
+
+function populateProfiles() {
+  if (!state.school) {
+    el.profile.innerHTML = '<option value="">— Избери паралелка —</option>';
+    el.profile.disabled = true;
+    return;
+  }
+  const p = schools[state.school].p;
+  el.profile.innerHTML = '<option value="">Всички паралелки</option>'
+    + Object.keys(p).map((pc) => '<option value="' + esc(pc) + '">' + esc(p[pc].n) + '</option>').join('');
+  el.profile.disabled = false;
+  el.profile.value = state.profile;
+}
+
+function selectSchool(code, profile, scroll) {
+  state.school = code;
+  state.profile = profile || '';
+  el.schoolInput.value = code ? schools[code].n : '';
+  populateProfiles();
+  showDetail();
+  if (scroll) {
+    document.getElementById('detail').scrollIntoView({ block: 'start' });
+  }
+}
+
+function showDetail() {
+  const has = !!state.school;
+  el.section.hidden = !has;
+  el.empty.hidden = has;
+  if (!has) {
+    return;
+  }
+  el.name.textContent = schools[state.school].f;
+  const d = currentData();
+  renderDetailTable(d);
+  renderCharts(d, state.profile ? schools[state.school].p[state.profile].n : 'Всички паралелки');
+}
+
+function renderDetailTable(d) {
+  const showGender = state.gender;
+  const cols = showGender ? 6 : 2;
+  const sub = showGender
+    ? '<th class="num">Мин</th><th class="num">Мин М</th><th class="num">Мин Ж</th><th class="num">Макс</th><th class="num">Макс М</th><th class="num">Макс Ж</th>'
+    : '<th class="num group-start">Мин</th><th class="num">Макс</th>';
+  const yis = showGender ? [latestYi] : pageYears.map((y, i) => i).reverse();
+  let thead = '<thead><tr><th rowspan="2">Класиране</th>';
+  yis.forEach((yi) => {
+    thead += '<th colspan="' + cols + '" class="center group-start">' + pageYears[yi] + '</th>';
+  });
+  thead += '</tr><tr>';
+  yis.forEach(() => { thead += sub; });
+  thead += '</tr></thead>';
+  let tbody = '<tbody>';
+  KLASS_NAMES.forEach((kname, ki) => {
+    tbody += '<tr><td>' + kname + '</td>';
+    yis.forEach((yi) => {
+      const k = d[yi] ? d[yi][ki] : null;
+      if (showGender) {
+        for (let si = 0; si < 6; si++) {
+          tbody += '<td class="num' + (si === 0 ? ' group-start' : '') + '">' + (k ? fmt(k[si]) : '—') + '</td>';
+        }
+      } else {
+        tbody += '<td class="num group-start">' + (k ? fmt(k[0]) : '—') + '</td>';
+        tbody += '<td class="num">' + (k ? fmt(k[3]) : '—') + '</td>';
+      }
+    });
+    tbody += '</tr>';
+  });
+  el.table.innerHTML = thead + tbody + '</tbody>';
+}
+
+function chartBase(title, categories, type) {
+  const options = lineOptions({ height: 290, categories });
+  options.chart.type = type;
+  options.title = { text: title, align: 'left', style: { color: token('--text-2', '#3a465c'), fontSize: '13px', fontWeight: '650' } };
+  options.legend = { enabled: true, align: 'left', itemStyle: { color: token('--text-2', '#3a465c'), fontWeight: '600', fontSize: '12px' } };
+  options.yAxis.title = { text: 'Бал', style: { color: token('--chart-axis', '#5f6b82') } };
+  options.yAxis.startOnTick = false;
+  options.yAxis.endOnTick = false;
+  options.tooltip.useHTML = false;
+  options.tooltip.formatter = undefined;
+  options.plotOptions.column = { borderRadius: 4, borderWidth: 0, groupPadding: 0.18 };
+  return options;
+}
+
+function renderCharts(d, label) {
+  if (!window.Highcharts) {
+    return;
+  }
+  const minColor = token('--chart-bel', '#2f54e0');
+  const maxColor = token('--chart-mat', '#e8850c');
+
+  const minTrend = [];
+  const maxTrend = [];
+  pageYears.forEach((y, yi) => {
+    const k1 = d[yi] ? d[yi][0] : null;
+    minTrend.push(k1 ? k1[0] : null);
+    maxTrend.push(k1 ? k1[3] : null);
+  });
+  const trend = chartBase(label + ' — 1-во класиране, тренд по години', pageYears.map(String), 'line');
+  trend.series = [
+    { name: 'Мин. бал', data: minTrend, color: minColor },
+    { name: 'Макс. бал', data: maxTrend, color: maxColor, dashStyle: 'ShortDash' }
+  ];
+  if (trendChart) {
+    trendChart.destroy();
+  }
+  trendChart = createChart('trend-chart', trend);
+
+  const avail = [];
+  for (let yi = latestYi; yi >= 0 && avail.length < KLASIRANE_CHARTS; yi--) {
+    if (d[yi] && d[yi].some((k) => !!k)) {
+      avail.push(yi);
+    }
+  }
+  klasiraneCharts.forEach((ch) => ch && ch.destroy());
+  klasiraneCharts = [];
+  for (let ci = 0; ci < KLASIRANE_CHARTS; ci++) {
+    const box = document.getElementById('klasirane-box-' + ci);
+    if (ci >= avail.length) {
+      box.hidden = true;
+      continue;
+    }
+    box.hidden = false;
+    const yi = avail[ci];
+    const minK = [];
+    const maxK = [];
+    for (let ki = 0; ki < 4; ki++) {
+      const k = d[yi] ? d[yi][ki] : null;
+      minK.push(k ? k[0] : null);
+      maxK.push(k ? k[3] : null);
+    }
+    const opts = chartBase('Балове по класирания (' + pageYears[yi] + ')', KLASS_NAMES, 'column');
+    opts.series = [
+      { name: 'Мин. бал', data: minK, color: minColor },
+      { name: 'Макс. бал', data: maxK, color: maxColor }
+    ];
+    klasiraneCharts.push(createChart('klasirane-chart-' + ci, opts));
+  }
+}
+
+/* ---------------- Класация на паралелките ---------------- */
+
+function buildOverviewRows() {
+  const rows = [];
+  Object.keys(schools).forEach((code) => {
+    const school = schools[code];
+    Object.keys(school.p).forEach((pcode) => {
+      const d = visibleData(school.p[pcode].d);
+      const yearMins = d.map((yearData) => {
+        const k1 = yearData && yearData[0];
+        return k1 ? k1[0] : null;
+      });
+      const latest = latestYi >= 0 ? yearMins[latestYi] : null;
+      const prev = latestYi >= 1 ? yearMins[latestYi - 1] : null;
+      let trend = '';
+      if (latest !== null && prev !== null) {
+        trend = latest > prev + 0.5 ? 'up' : latest < prev - 0.5 ? 'down' : 'same';
+      }
+      rows.push({ code, pcode, school: school.n, schoolFull: school.f, profile: school.p[pcode].n, yearMins, trend,
+        hay: normalize(school.n + ' ' + school.f + ' ' + school.p[pcode].n) });
+    });
+  });
+  return rows;
+}
+
+function sortValue(row, col) {
+  return col.indexOf('year-') === 0 ? row.yearMins[Number.parseInt(col.substring(5), 10)] : row[col];
+}
+
+function sortRows(rows) {
+  return rows.slice().sort((a, b) => {
+    const va = sortValue(a, state.sortCol);
+    const vb = sortValue(b, state.sortCol);
+    if (va === null && vb === null) {
+      return 0;
+    }
+    if (va === null) {
+      return 1;
+    }
+    if (vb === null) {
+      return -1;
+    }
+    if (typeof va === 'string') {
+      return state.sortDir * va.localeCompare(vb, 'bg');
+    }
+    return state.sortDir * (va - vb);
+  });
+}
+
+function renderOverviewHeader() {
+  const th = (col, label, cls) => {
+    const on = state.sortCol === col;
+    return '<th class="' + cls + '" aria-sort="' + (on ? (state.sortDir === 1 ? 'ascending' : 'descending') : 'none') + '">'
+      + '<button type="button" class="th-sort" data-col="' + col + '">' + label + icon('sort') + '</button></th>';
+  };
+  let html = '<tr><th class="num col-num">#</th>' + th('school', 'Училище', 'col-school') + th('profile', 'Паралелка', 'col-profile');
+  for (let yi = latestYi; yi >= overviewFirstYi; yi--) {
+    html += th('year-' + yi, 'Мин. ' + pageYears[yi], 'num col-score');
+  }
+  el.thead.innerHTML = html + '<th class="center col-trend">Тренд</th></tr>';
+}
+
+const TREND = {
+  up: '<span class="trend trend--up" title="По-висок бал от предходната година">' + '↑' + '</span>',
+  down: '<span class="trend trend--down" title="По-нисък бал от предходната година">' + '↓' + '</span>',
+  same: '<span class="trend trend--same" title="Почти без промяна">' + '→' + '</span>'
+};
+
+function renderOverview() {
+  const terms = normalize(state.filter).split(' ').filter(Boolean);
+  const rows = sortRows(terms.length ? overviewRows.filter((r) => terms.every((t) => r.hay.includes(t))) : overviewRows);
+  el.tbody.innerHTML = rows.map((r, i) => {
+    let html = '<tr tabindex="0" data-code="' + esc(r.code) + '" data-pcode="' + esc(r.pcode) + '">'
+      + '<td class="num muted col-num">' + (i + 1) + '</td>'
+      + '<td class="col-school"><span class="clip" title="' + esc(r.schoolFull) + '">' + esc(r.school) + '</span></td>'
+      + '<td class="col-profile"><span class="clip" title="' + esc(r.profile) + '">' + esc(r.profile) + '</span></td>';
+    for (let yi = latestYi; yi >= overviewFirstYi; yi--) {
+      const v = r.yearMins[yi];
+      html += '<td class="num">' + (v !== null ? v : '—') + '</td>';
+    }
+    return html + '<td class="center">' + (TREND[r.trend] || '') + '</td></tr>';
+  }).join('') || '<tr><td colspan="' + (4 + latestYi - overviewFirstYi + 1) + '" class="muted">Няма паралелки за „' + esc(state.filter) + '“.</td></tr>';
+}
+
+/* ---------------- Старт ---------------- */
+
+function setupSchoolCombobox() {
+  const list = Object.keys(schools).map((code) => ({ code, name: schools[code].n, full: schools[code].f }))
+    .sort((a, b) => {
+      const an = /^\d/.test(a.name);
+      const bn = /^\d/.test(b.name);
+      if (an && bn) {
+        return Number.parseInt(a.name, 10) - Number.parseInt(b.name, 10);
+      }
+      if (an) {
+        return -1;
+      }
+      if (bn) {
+        return 1;
+      }
+      return a.name.localeCompare(b.name, 'bg');
+    })
+    .map((s) => Object.assign(s, { hay: normalize(s.name + ' ' + s.full + ' ' + s.code) }));
+  createCombobox({
+    input: el.schoolInput,
+    host: el.schoolInput.closest('.combo'),
+    minChars: 0,
+    hint: '',
+    emptyText: 'Няма такова училище',
+    search(q) {
+      const terms = normalize(q).split(' ').filter(Boolean);
+      const items = list.filter((s) => terms.every((t) => s.hay.includes(t)))
+        .map((s) => ({ id: s.code, title: s.name, meta: s.full !== s.name ? s.full : '', checked: s.code === state.school }));
+      return [{ label: '', items }];
+    },
+    onSelect(item) {
+      selectSchool(item.id, '', false);
+      writeUrl();
+      el.schoolInput.blur();
+    }
+  });
+  // При фокус показваме целия списък (както падащото меню преди).
+  el.schoolInput.addEventListener('focus', () => {
+    el.schoolInput.value = '';
+    el.schoolInput.dispatchEvent(new Event('input'));
+  });
+  el.schoolInput.addEventListener('blur', () => {
+    setTimeout(() => {
+      el.schoolInput.value = state.school ? schools[state.school].n : '';
+    }, 150);
+  });
+}
+
+function init() {
+  overviewRows = buildOverviewRows();
+  renderOverviewHeader();
+  renderOverview();
+  setupSchoolCombobox();
+
+  el.thead.addEventListener('click', (e) => {
+    const b = e.target.closest('[data-col]');
+    if (!b) {
+      return;
+    }
+    const col = b.dataset.col;
+    state.sortDir = state.sortCol === col ? -state.sortDir : -1;
+    state.sortCol = col;
+    renderOverviewHeader();
+    renderOverview();
+  });
+  el.search.addEventListener('input', () => {
+    state.filter = el.search.value;
+    renderOverview();
+  });
+  const openRow = (tr) => {
+    selectSchool(tr.dataset.code, tr.dataset.pcode, true);
+    writeUrl();
+  };
+  el.tbody.addEventListener('click', (e) => {
+    const tr = e.target.closest('tr[data-code]');
+    if (tr) {
+      openRow(tr);
+    }
+  });
+  el.tbody.addEventListener('keydown', (e) => {
+    const tr = e.target.closest('tr[data-code]');
+    if (tr && (e.key === 'Enter' || e.key === ' ')) {
+      e.preventDefault();
+      openRow(tr);
+    }
+  });
+  el.profile.addEventListener('change', () => {
+    state.profile = el.profile.value;
+    showDetail();
+    writeUrl();
+  });
+  el.gender.addEventListener('change', () => {
+    state.gender = el.gender.checked;
+    if (state.school) {
+      renderDetailTable(currentData());
+    }
+    writeUrl();
+  });
+
+  readUrl();
+  whenHighcharts().then(() => {
+    if (state.school) {
+      showDetail();
+    }
+  }).catch((err) => console.error(err));
+  onThemeChange(() => {
+    if (state.school) {
+      showDetail();
+    }
+  });
+}
+
+init();

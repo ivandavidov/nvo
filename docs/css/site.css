@@ -1850,3 +1850,59 @@
   .landing__table { border: 0; border-radius: 0 0 var(--radius-lg) var(--radius-lg); }
   .landing__table .data-table td:nth-child(2) { white-space: normal; min-width: 220px; }
 }
+
+/* ==========================================================================
+   pages — балове (/7/balove/ и /7/balove/{град}/)
+   ========================================================================== */
+@layer pages {
+  .balove-page .page-head__eyebrow svg, .balove-hub .page-head__eyebrow svg { width: 15px; height: 15px; }
+  .balove-page .page-head__title { font-size: clamp(1.5rem, 1.1rem + 1.6vw, 2.25rem); }
+  .balove-filters { display: flex; flex-wrap: wrap; align-items: flex-end; gap: var(--sp-4); }
+  .balove-filters__school { flex: 1 1 280px; }
+  .balove-filters__profile { flex: 1 1 280px; }
+  .balove-filters__gender { min-height: 40px; }
+  .balove-filters .combo__list { max-height: min(460px, 60vh); }
+  .balove-detail__school { font-size: var(--fs-lg); margin-bottom: var(--sp-3); }
+  .balove-detail__table { width: auto; min-width: 100%; }
+  .balove-charts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-4); margin-top: var(--sp-4); }
+  .balove-charts .chart { min-height: 290px; }
+  @media (max-width: 900px) { .balove-charts { grid-template-columns: 1fr; } }
+  .balove-overview { margin-top: var(--sp-8); }
+  .balove-overview__search { width: min(340px, 100%); }
+  .balove-overview__table { table-layout: fixed; min-width: 760px; }
+  .balove-overview__table .col-num { width: 3.2rem; }
+  .balove-overview__table .col-school { width: 13rem; }
+  .balove-overview__table .col-score { width: 6.5rem; }
+  .balove-overview__table .col-trend { width: 4.5rem; }
+  .balove-overview__table td { overflow: hidden; }
+  .balove-overview__table .clip { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .balove-overview__table tbody tr[data-code] { cursor: pointer; }
+  .balove-overview__table .col-num,
+  .balove-overview__table .col-school { position: sticky; z-index: 1; background: var(--surface); }
+  .balove-overview__table .col-num { left: 0; }
+  .balove-overview__table .col-school { left: 3.2rem; box-shadow: inset -1px 0 0 var(--border); }
+  .balove-overview__table thead .col-num,
+  .balove-overview__table thead .col-school { z-index: 3; background: var(--surface-2); }
+  .balove-overview__table tbody tr:hover .col-num,
+  .balove-overview__table tbody tr:hover .col-school { background: var(--surface-2); }
+  .balove-overview__table tbody tr[data-code]:focus-visible { outline: 2px solid var(--primary); outline-offset: -2px; }
+  .trend { font-weight: 800; font-size: var(--fs-base); }
+  .trend--up { color: var(--primary); }
+  .trend--down { color: var(--accent); }
+  .trend--same { color: var(--text-4); }
+  @media (max-width: 700px) {
+    .balove-overview__table .col-school { width: 8.5rem; }
+    .balove-overview__table .col-score { width: 5.25rem; }
+  }
+
+  .balove-hub__search { width: min(320px, 100%); }
+  .balove-hub__tier { margin-top: var(--sp-8); }
+  .balove-hub__tier .city-switch__label { display: block; margin-bottom: var(--sp-3); }
+  .balove-hub__grid { --grid-min: 200px; --grid-gap: var(--sp-3); list-style: none; padding: 0; }
+  .balove-city { display: grid; gap: 2px; height: 100%; padding: var(--sp-4); }
+  .balove-city__name { font-weight: 700; font-size: var(--fs-base); }
+  .balove-city__meta { color: var(--text-3); font-size: var(--fs-sm); }
+  .balove-city__years { color: var(--text-4); font-size: var(--fs-xs); font-variant-numeric: tabular-nums; }
+  .balove-city--big { border-color: color-mix(in srgb, var(--primary) 30%, var(--border)); }
+  .balove-city--big .balove-city__name { color: var(--primary); font-size: var(--fs-lg); }
+}
