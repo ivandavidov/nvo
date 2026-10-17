@@ -6,9 +6,28 @@
   <meta name="description" content="Резултати, класации и графики за ПГ по полиграфия и фотография (София) по БЕЛ и математика за НВО и ДЗИ за последните години.">
   <meta name="author" content="Иван Давидов">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="../../css/normalize.css">
-  <link rel="stylesheet" href="../../css/custom.css">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com; font-src 'self'; frame-src 'self'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f5f7fb" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a0e16" media="(prefers-color-scheme: dark)">
   <link rel="icon" type="image/png" href="../../images/favicon-10.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../images/favicon-10.png">
+  <link rel="preload" href="../../fonts/inter/inter-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../css/site.css">
+  <script src="../../js/theme.js"></script>
+  <script type="module" src="../../js/site.js"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {'analytics_storage': 'denied', 'ad_storage': 'denied', 'wait_for_update': 500});
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-V0P6LBF76F"></script>
+  <script>
+    gtag('js', new Date());
+    gtag('config', 'G-V0P6LBF76F', {'anonymize_ip': true});
+  </script>
+
   <link rel="canonical" href="https://ivandavidov.github.io/nvo/school/2902601/">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://ivandavidov.github.io/nvo/school/2902601/">
@@ -23,144 +42,309 @@
   <meta name="twitter:image" content="https://ivandavidov.github.io/nvo/images/social-preview.png">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"EducationalOrganization","name":"ПГ по полиграфия и фотография","url":"https://ivandavidov.github.io/nvo/school/2902601/","sameAs":"http://npgpf.com","address":{"@type":"PostalAddress","addressLocality":"София","addressCountry":"BG"}}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Начало","item":"https://ivandavidov.github.io/nvo/"},{"@type":"ListItem","position":2,"name":"София","item":"https://ivandavidov.github.io/nvo/10/sofia/"},{"@type":"ListItem","position":3,"name":"ПГ по полиграфия и фотография","item":"https://ivandavidov.github.io/nvo/school/2902601/"}]}</script>
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google-analytics.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com; font-src 'self'">
-  <meta name="referrer" content="strict-origin-when-cross-origin">
-  <style>
-    .school-grade { margin-bottom: 1.5rem; scroll-margin-top: var(--sticky-offset, calc(var(--header-height) + 3.75rem)); }
-    .hero-section { padding: 0.6rem 0 0; }
-    .breadcrumb { display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem; font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 0.6rem; }
-    .breadcrumb a { color: var(--color-text-muted); text-decoration: none; }
-    .breadcrumb a:hover { color: var(--color-primary); text-decoration: underline; }
-    .breadcrumb-sep { color: var(--color-text-light); }
-    .breadcrumb-current { color: var(--color-text); font-weight: 600; }
-    .school-hero-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.6rem 1rem; margin-bottom: 0.6rem; }
-    .school-hero-head .page-title { margin: 0; }
-    .school-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-    .school-actions .button { margin: 0; }
-    .hero-section .page-subtitle { margin-bottom: 0.6rem; }
-    .school-section-nav { position: sticky; top: var(--sticky-top, var(--header-height)); z-index: 90; display: flex; flex-wrap: wrap; gap: 0.5rem; padding: 0.55rem 0; margin-bottom: 1.5rem; background: var(--color-surface-glass); backdrop-filter: blur(8px); border-bottom: 1px solid var(--color-border); }
-    .school-section-nav a { font-size: 0.85rem; font-weight: 600; padding: 0.3rem 0.85rem; border-radius: var(--radius-full); background: var(--color-primary-lighter); color: var(--color-primary-dark); text-decoration: none; transition: background 0.15s ease, color 0.15s ease; }
-    .school-section-nav a:hover { background: var(--color-primary); color: #fff; }
-    .school-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.6rem; margin: 0 0 1.1rem; }
-    .school-stats .stat { display: flex; flex-direction: column; gap: 0.15rem; padding: 0.5rem 0.7rem; background: var(--color-bg); border-radius: var(--radius-md); }
-    .school-stats .stat-label { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.02em; color: var(--color-text-muted); }
-    .school-stats .stat-value { font-size: 1.05rem; font-weight: 700; color: var(--color-text); }
-    .school-stats .stat-total { font-size: 0.82rem; font-weight: 500; color: var(--color-text-muted); }
-    .school-chart { width: 100%; min-height: 360px; }
-    .school-grade table { margin: 1rem 0 0.75rem; }
-    .school-links { font-size: 0.9rem; }
-    .school-related { margin: 0.5rem 0 0; font-size: 0.85rem; color: var(--color-text-muted); line-height: 1.7; }
-    .school-related-label { font-weight: 600; color: var(--color-text); }
-    .card-title-sep { color: var(--color-text-light); }
-    .card-title-meta { color: var(--color-text-muted); }
-    @media (min-width: 640px) { .school-stats { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
-  </style>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('consent', 'default', {
-      'analytics_storage': 'denied',
-      'ad_storage': 'denied',
-      'wait_for_update': 500
-    });
-  </script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-V0P6LBF76F"></script>
-  <script>
-    gtag('js', new Date());
-    gtag('config', 'G-V0P6LBF76F', {'anonymize_ip': true});
-  </script>
-  <script src="../../js/theme.js"></script>
+  <script src="../../js/highcharts.js" defer></script>
+  <script type="module" src="../../js/pages/school.js"></script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Към съдържанието</a>
   <header class="site-header">
-    <div class="header-inner">
-      <a class="site-brand" href="../../" aria-label="Начало">
-        <svg class="site-logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-        <span class="site-name">НВО и ДЗИ</span>
+    <div class="container container--wide site-header__inner">
+      <a class="brand" href="../../" aria-label="НВО и ДЗИ – начало">
+        <span class="brand__mark"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/></svg></span>
+        <span>НВО <span class="brand__and">и</span> ДЗИ</span>
       </a>
-      <nav class="grade-tabs">
-        <a href="../../4/" class="grade-tab">4 клас</a>
-        <a href="../../7/" class="grade-tab">7 клас</a>
-        <a href="../../10/" class="grade-tab">10 клас</a>
-        <a href="../../12/" class="grade-tab">12 клас</a>
-        <a href="../../blog/" class="grade-tab">Блог</a>
+      <nav class="site-nav" aria-label="Основна навигация">
+        <div class="exam-switch">
+          <a href="../../4/" title="НВО след 4 клас">4<span class="exam-switch__suffix"> клас</span></a>
+          <a href="../../7/" title="НВО след 7 клас">7<span class="exam-switch__suffix"> клас</span></a>
+          <a href="../../10/" title="НВО след 10 клас">10<span class="exam-switch__suffix"> клас</span></a>
+          <a href="../../12/" title="ДЗИ след 12 клас">12<span class="exam-switch__suffix"> клас</span></a>
+        </div>
+        <a class="site-nav__link" href="../../7/balove/" title="Минимални и максимални балове за прием след 7 клас">Балове</a>
+        <a class="site-nav__link" href="../../stats/">Статистика</a>
+        <a class="site-nav__link" href="../../blog/">Блог</a>
       </nav>
-      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Смяна на тема">
-        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-      </button>
-    </div>
-  </header>
-<main>
-<div class="container">
-<section class="hero-section">
-<nav class="breadcrumb" aria-label="breadcrumb"><a href="../../">Начало</a><span class="breadcrumb-sep">›</span><a href="../../10/sofia/">София</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">ПГ по полиграфия и фотография</span></nav>
-<div class="school-hero-head">
-<h1 class="page-title">ПГ по полиграфия и фотография</h1>
-<div class="school-actions"><a class="button" href="http://npgpf.com" target="_blank" rel="noopener noreferrer">Уебсайт ↗</a><button type="button" id="schoolPdfBtn" class="button button-primary">Изтегли PDF</button></div>
-</div>
-<p class="page-subtitle">Държавно · София</p>
-</section>
-<nav class="school-section-nav" aria-label="Класове"><a href="#grade-10">10 клас</a><a href="#grade-12">12 клас</a></nav>
-<section class="card school-grade" id="grade-10">
-<h3 class="card-title">НВО 10 клас<span class="card-title-sep" aria-hidden="true"> · </span><span class="card-title-meta">ПГ по полиграфия и фотография (София)</span></h3>
-<div class="school-stats"><div class="stat"><span class="stat-label">Последна година</span><span class="stat-value">2026</span></div><div class="stat"><span class="stat-label">Национален ранг</span><span class="stat-value">260 <span class="stat-total">/ 818</span></span></div><div class="stat"><span class="stat-label">В града</span><span class="stat-value">83 <span class="stat-total">/ 160</span></span></div><div class="stat"><span class="stat-label">Медианен ранг (3 г.)</span><span class="stat-value">270 <span class="stat-total">/ 830</span></span></div></div>
-<div class="school-chart" id="chart-10"></div>
-<table>
-<thead><tr><th>Година</th><th>БЕЛ</th><th>уч.</th><th>МАТ</th><th>уч.</th></tr></thead>
-<tbody>
-<tr><td>2026</td><td>54.81</td><td>105</td><td>20.46</td><td>105</td></tr>
-<tr><td>2025</td><td>50.18</td><td>103</td><td>27.00</td><td>104</td></tr>
-<tr><td>2024</td><td>58.00</td><td>124</td><td>24.08</td><td>125</td></tr>
-<tr><td>2023</td><td>56.89</td><td>104</td><td>24.01</td><td>104</td></tr>
-<tr><td>2022</td><td>49.47</td><td>108</td><td>26.11</td><td>108</td></tr>
-<tr><td>2021</td><td>53.18</td><td>104</td><td>21.01</td><td>100</td></tr>
-<tr><td>2020</td><td>53.18</td><td>104</td><td>21.01</td><td>100</td></tr>
-<tr><td>2019</td><td>53.18</td><td>104</td><td>21.01</td><td>100</td></tr>
-<tr><td>2018</td><td>53.18</td><td>104</td><td>21.01</td><td>100</td></tr>
-</tbody>
-</table>
-<p class="school-links"><a href="../../10/?school=2902601">Виж в графиката</a> · <a href="../../10/sofia/">Класация в града</a> · <a href="../../10/2026/">Национална класация 2026</a> · <a href="../../10/">Към НВО 10 клас</a></p>
-<div class="school-related"><span class="school-related-label">Близки по успех в София:</span> <a href="../2219095/">95 СУ</a> · <a href="../2220029/">29 СУ</a> · <a href="../2221093/">93 СУ</a> · <a href="../2214101/">101 СУ</a> · <a href="../2206003/">3 СУ</a> · <a href="../2224121/">121 СУ</a></div>
-</section>
-<section class="card school-grade" id="grade-12">
-<h3 class="card-title">ДЗИ 12 клас<span class="card-title-sep" aria-hidden="true"> · </span><span class="card-title-meta">ПГ по полиграфия и фотография (София)</span></h3>
-<div class="school-stats"><div class="stat"><span class="stat-label">Последна година</span><span class="stat-value">2026</span></div><div class="stat"><span class="stat-label">Национален ранг</span><span class="stat-value">137 <span class="stat-total">/ 801</span></span></div><div class="stat"><span class="stat-label">В града</span><span class="stat-value">51 <span class="stat-total">/ 156</span></span></div><div class="stat"><span class="stat-label">Медианен ранг (3 г.)</span><span class="stat-value">112 <span class="stat-total">/ 819</span></span></div></div>
-<div class="school-chart" id="chart-12"></div>
-<table>
-<thead><tr><th>Година</th><th>БЕЛ</th><th>уч.</th><th>ДЗИ-2</th><th>уч.</th></tr></thead>
-<tbody>
-<tr><td>2026</td><td>4.69</td><td>135</td><td>5.27</td><td>135</td></tr>
-<tr><td>2025</td><td>4.63</td><td>103</td><td>5.24</td><td>103</td></tr>
-<tr><td>2024</td><td>4.65</td><td>107</td><td>5.39</td><td>105</td></tr>
-<tr><td>2023</td><td>4.44</td><td>101</td><td>5.30</td><td>101</td></tr>
-<tr><td>2022</td><td>4.37</td><td>103</td><td>4.90</td><td>103</td></tr>
-<tr><td>2021</td><td>4.57</td><td>135</td><td>3.14</td><td>1</td></tr>
-<tr><td>2020</td><td>4.36</td><td>108</td><td></td><td></td></tr>
-<tr><td>2019</td><td>4.57</td><td>111</td><td>4.33</td><td>2</td></tr>
-<tr><td>2018</td><td>4.77</td><td>126</td><td></td><td></td></tr>
-</tbody>
-</table>
-<p class="school-links"><a href="../../12/?school=2902601">Виж в графиката</a> · <a href="../../12/sofia/">Класация в града</a> · <a href="../../12/2026/">Национална класация 2026</a> · <a href="../../12/">Към ДЗИ 12 клас</a></p>
-<div class="school-related"><span class="school-related-label">Близки по успех в София:</span> <a href="../2211564/">Българско школо</a> · <a href="../2222007/">7 СУ</a> · <a href="../2902501/">Гимназия за приложни изкуства</a> · <a href="../2902401/">У-ще за изящни изкуства</a> · <a href="../2202002/">2 СУ</a> · <a href="../2219166/">СпУ В. Левски</a></div>
-</section>
-</div>
-</main>
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-content">
-        <p class="footer-minimal">&copy; Иван Давидов – НВО и ДЗИ</p>
-        <nav class="footer-links">
-          <a href="../../">Начало</a>
-          <a href="../../blog/">Блог</a>
-          <a href="../../stats/">Статистика</a>
-        </nav>
+      <div class="site-header__actions">
+        <button type="button" class="search-trigger" data-search-open aria-label="Търсене на училище или град">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <span class="search-trigger__label">Търси училище или град…</span>
+          <kbd class="kbd">/</kbd>
+        </button>
+        <button type="button" class="icon-btn theme-toggle" onclick="toggleTheme()" aria-label="Светла или тъмна тема" title="Светла или тъмна тема">
+          <span class="icon-moon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
+          <span class="icon-sun"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg></span>
+        </button>
+        <button type="button" class="icon-btn" data-menu-toggle aria-expanded="false" aria-controls="site-menu" aria-label="Още" title="Още">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
       </div>
     </div>
+    <div class="container container--wide">
+      <nav id="site-menu" class="menu-panel" aria-label="Още" hidden>
+        <div>
+          <h2>Данни</h2>
+          <ul>
+            <li><a href="../../api/v1/"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg> JSON API</a></li>
+            <li><a href="../../embed/"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m12 2 10 5-10 5L2 7l10-5z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg> Вграждане на графики</a></li>
+            <li><a class="ext" href="https://www.kaggle.com/datasets/johnddavidson/bulgarian-school-exam-results-20182025" target="_blank" rel="noopener noreferrer"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"/></svg> Kaggle: данни</a></li>
+            <li><a class="ext" href="https://www.kaggle.com/code/johnddavidson/initial-exploratory-analysis-2018-2026" target="_blank" rel="noopener noreferrer"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></svg> Kaggle: анализ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Отворени данни (МОН)</h2>
+          <ul>
+            <li><a class="ext" href="https://data.egov.bg/data/view/5613e75f-2b1b-4244-9f54-b27580a91dfb" target="_blank" rel="noopener noreferrer">НВО 4 клас</a></li>
+            <li><a class="ext" href="https://data.egov.bg/data/view/b56288b6-25aa-4049-9aa6-de2cd4cdabf8" target="_blank" rel="noopener noreferrer">НВО 7 клас</a></li>
+            <li><a class="ext" href="https://data.egov.bg/data/view/2f801b2f-d4cb-4ddb-a23d-3e372339c80f" target="_blank" rel="noopener noreferrer">НВО 10 клас</a></li>
+            <li><a class="ext" href="https://data.egov.bg/data/view/066b4b04-d81d-444e-a61c-8ca0516079e4" target="_blank" rel="noopener noreferrer">ДЗИ 12 клас</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Полезни връзки</h2>
+          <ul>
+            <li><a class="ext" href="https://e-xplore.education" target="_blank" rel="noopener noreferrer">e-xplore.education</a></li>
+            <li><a class="ext" href="https://danybon.com" target="_blank" rel="noopener noreferrer">Данибон</a></li>
+            <li><a class="ext" href="https://dideva.alle.bg" target="_blank" rel="noopener noreferrer">Дидева</a></li>
+            <li><a class="ext" href="https://sabev03.eu" target="_blank" rel="noopener noreferrer">Прием в 1 клас</a></li>
+            <li><a class="ext" href="https://izberi-gymnazia.info" target="_blank" rel="noopener noreferrer">Избери гимназия</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Проектът</h2>
+          <ul>
+            <li><a href="../../za-proekta/"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg> За проекта и методология</a></li>
+            <li><a href="../../za-proekta/#podkrepa"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg> Подкрепи проекта</a></li>
+            <li><a class="ext" href="https://www.facebook.com/groups/3423312924552271" target="_blank" rel="noopener noreferrer">Facebook група</a></li>
+            <li><a class="ext" href="https://linkedin.com/in/ivandavidov" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+
+  <main id="main" class="container page school-page">
+    <nav class="breadcrumbs" aria-label="Път">
+      <ol>
+        <li><a href="../../">Начало</a></li>
+        <li><a href="../../10/sofia/">София</a></li>
+        <li><span aria-current="page">ПГ по полиграфия и фотография</span></li>
+      </ol>
+    </nav>
+
+    <header class="card school-hero">
+      <div class="school-hero__main">
+        <span class="school-hero__icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 10 12 4l10 6"/><path d="M5 10v10M19 10v10M3 20h18M10 20v-5h4v5"/></svg></span>
+        <div class="school-hero__text">
+          <h1 class="school-hero__title">ПГ по полиграфия и фотография</h1>
+          <div class="cluster school-hero__meta">
+            <span class="badge">Държавно</span>
+            <span class="school-hero__fact"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg> София</span>
+            <span class="school-hero__fact">Код 2902601</span>
+            <span class="badge badge--primary">10 клас</span>
+            <span class="badge badge--primary">12 клас</span>
+          </div>
+        </div>
+      </div>
+      <div class="cluster school-hero__actions">
+        <a class="btn" href="http://npgpf.com" target="_blank" rel="noopener noreferrer"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Уебсайт</a>
+        <button type="button" class="btn btn--primary" id="school-pdf"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg> Изтегли PDF</button>
+      </div>
+    </header>
+
+    <nav class="school-nav" aria-label="Класове">
+      <div class="seg seg--pill">
+        <a href="#grade-10">10 клас</a>
+        <a href="#grade-12">12 клас</a>
+      </div>
+    </nav>
+
+    <section class="card school-grade" id="grade-10" aria-labelledby="grade-10-title">
+      <div class="card__head">
+        <div>
+          <h2 class="card__title" id="grade-10-title">НВО 10 клас</h2>
+          <p class="muted text-sm">ПГ по полиграфия и фотография (София)</p>
+        </div>
+        <a class="btn btn--sm btn--soft" href="../../10/?school=2902601"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></svg> Сравни с други училища</a>
+      </div>
+      <div class="card__body school-grade__body">
+        <div class="kpis">
+          <div class="kpi"><div class="kpi__label">Последна година</div><div class="kpi__value">2026</div></div>
+          <div class="kpi"><div class="kpi__label">Национален ранг</div><div class="kpi__value">260 <small>/ 818</small></div></div>
+          <div class="kpi"><div class="kpi__label">В града</div><div class="kpi__value">83 <small>/ 160</small></div></div>
+          <div class="kpi"><div class="kpi__label">Медианен ранг (3 г.)</div><div class="kpi__value">270 <small>/ 830</small></div></div>
+        </div>
+        <div class="school-grade__grid">
+          <figure class="chart-frame">
+            <figcaption class="chart-title">Резултати по години</figcaption>
+            <div class="chart" id="chart-10"><div class="skeleton chart-skeleton"></div></div>
+          </figure>
+          <div class="table-wrap">
+            <table class="data-table data-table--compact">
+              <thead><tr><th>Година</th><th class="num">БЕЛ</th><th class="num">уч.</th><th class="num group-start">МАТ</th><th class="num">уч.</th></tr></thead>
+              <tbody>
+                <tr><td>2026</td><td class="num">54.81</td><td class="num muted">105</td><td class="num group-start">20.46</td><td class="num muted">105</td></tr>
+                <tr><td>2025</td><td class="num">50.18</td><td class="num muted">103</td><td class="num group-start">27.00</td><td class="num muted">104</td></tr>
+                <tr><td>2024</td><td class="num">58.00</td><td class="num muted">124</td><td class="num group-start">24.08</td><td class="num muted">125</td></tr>
+                <tr><td>2023</td><td class="num">56.89</td><td class="num muted">104</td><td class="num group-start">24.01</td><td class="num muted">104</td></tr>
+                <tr><td>2022</td><td class="num">49.47</td><td class="num muted">108</td><td class="num group-start">26.11</td><td class="num muted">108</td></tr>
+                <tr><td>2021</td><td class="num">53.18</td><td class="num muted">104</td><td class="num group-start">21.01</td><td class="num muted">100</td></tr>
+                <tr><td>2020</td><td class="num">53.18</td><td class="num muted">104</td><td class="num group-start">21.01</td><td class="num muted">100</td></tr>
+                <tr><td>2019</td><td class="num">53.18</td><td class="num muted">104</td><td class="num group-start">21.01</td><td class="num muted">100</td></tr>
+                <tr><td>2018</td><td class="num">53.18</td><td class="num muted">104</td><td class="num group-start">21.01</td><td class="num muted">100</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <nav class="cluster school-grade__links" aria-label="Свързани страници">
+          <a class="chip" href="../../10/?school&#x3D;2902601">Виж в графиката</a>
+          <a class="chip" href="../../10/sofia/">Класация в града</a>
+          <a class="chip" href="../../10/2026/">Национална класация 2026</a>
+          <a class="chip" href="../../10/">Към НВО 10 клас</a>
+        </nav>
+        <div class="school-related">
+          <span class="school-related__label">Близки по успех в София</span>
+          <div class="cluster">
+            <a class="chip" href="../2219095/">95 СУ</a>
+            <a class="chip" href="../2220029/">29 СУ</a>
+            <a class="chip" href="../2221093/">93 СУ</a>
+            <a class="chip" href="../2214101/">101 СУ</a>
+            <a class="chip" href="../2206003/">3 СУ</a>
+            <a class="chip" href="../2224121/">121 СУ</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="card school-grade" id="grade-12" aria-labelledby="grade-12-title">
+      <div class="card__head">
+        <div>
+          <h2 class="card__title" id="grade-12-title">ДЗИ 12 клас</h2>
+          <p class="muted text-sm">ПГ по полиграфия и фотография (София)</p>
+        </div>
+        <a class="btn btn--sm btn--soft" href="../../12/?school=2902601"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></svg> Сравни с други училища</a>
+      </div>
+      <div class="card__body school-grade__body">
+        <div class="kpis">
+          <div class="kpi"><div class="kpi__label">Последна година</div><div class="kpi__value">2026</div></div>
+          <div class="kpi"><div class="kpi__label">Национален ранг</div><div class="kpi__value">137 <small>/ 801</small></div></div>
+          <div class="kpi"><div class="kpi__label">В града</div><div class="kpi__value">51 <small>/ 156</small></div></div>
+          <div class="kpi"><div class="kpi__label">Медианен ранг (3 г.)</div><div class="kpi__value">112 <small>/ 819</small></div></div>
+        </div>
+        <div class="school-grade__grid">
+          <figure class="chart-frame">
+            <figcaption class="chart-title">Резултати по години</figcaption>
+            <div class="chart" id="chart-12"><div class="skeleton chart-skeleton"></div></div>
+          </figure>
+          <div class="table-wrap">
+            <table class="data-table data-table--compact">
+              <thead><tr><th>Година</th><th class="num">БЕЛ</th><th class="num">уч.</th><th class="num group-start">ДЗИ-2</th><th class="num">уч.</th></tr></thead>
+              <tbody>
+                <tr><td>2026</td><td class="num">4.69</td><td class="num muted">135</td><td class="num group-start">5.27</td><td class="num muted">135</td></tr>
+                <tr><td>2025</td><td class="num">4.63</td><td class="num muted">103</td><td class="num group-start">5.24</td><td class="num muted">103</td></tr>
+                <tr><td>2024</td><td class="num">4.65</td><td class="num muted">107</td><td class="num group-start">5.39</td><td class="num muted">105</td></tr>
+                <tr><td>2023</td><td class="num">4.44</td><td class="num muted">101</td><td class="num group-start">5.30</td><td class="num muted">101</td></tr>
+                <tr><td>2022</td><td class="num">4.37</td><td class="num muted">103</td><td class="num group-start">4.90</td><td class="num muted">103</td></tr>
+                <tr><td>2021</td><td class="num">4.57</td><td class="num muted">135</td><td class="num group-start">3.14</td><td class="num muted">1</td></tr>
+                <tr><td>2020</td><td class="num">4.36</td><td class="num muted">108</td><td class="num group-start"></td><td class="num muted"></td></tr>
+                <tr><td>2019</td><td class="num">4.57</td><td class="num muted">111</td><td class="num group-start">4.33</td><td class="num muted">2</td></tr>
+                <tr><td>2018</td><td class="num">4.77</td><td class="num muted">126</td><td class="num group-start"></td><td class="num muted"></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <nav class="cluster school-grade__links" aria-label="Свързани страници">
+          <a class="chip" href="../../12/?school&#x3D;2902601">Виж в графиката</a>
+          <a class="chip" href="../../12/sofia/">Класация в града</a>
+          <a class="chip" href="../../12/2026/">Национална класация 2026</a>
+          <a class="chip" href="../../12/">Към ДЗИ 12 клас</a>
+        </nav>
+        <div class="school-related">
+          <span class="school-related__label">Близки по успех в София</span>
+          <div class="cluster">
+            <a class="chip" href="../2211564/">Българско школо</a>
+            <a class="chip" href="../2222007/">7 СУ</a>
+            <a class="chip" href="../2902501/">Гимназия за приложни изкуства</a>
+            <a class="chip" href="../2902401/">У-ще за изящни изкуства</a>
+            <a class="chip" href="../2202002/">2 СУ</a>
+            <a class="chip" href="../2219166/">СпУ В. Левски</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container container--wide site-footer__grid">
+      <div class="site-footer__about">
+        <a class="brand" href="../../">
+          <span class="brand__mark"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/></svg></span>
+          <span>НВО <span class="brand__and">и</span> ДЗИ</span>
+        </a>
+        <p>Резултатите от НВО и ДЗИ за всички училища в България — графики, класации и статистики по отворените данни на МОН.</p>
+      </div>
+      <nav aria-label="Изпити">
+        <h2>Изпити</h2>
+        <ul>
+          <li><a href="../../4/">НВО след 4 клас</a></li>
+          <li><a href="../../7/">НВО след 7 клас</a></li>
+          <li><a href="../../10/">НВО след 10 клас</a></li>
+          <li><a href="../../12/">ДЗИ след 12 клас</a></li>
+          <li><a href="../../7/balove/">Балове след 7 клас</a></li>
+          <li><a href="../../stats/">Обобщена статистика</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Данни">
+        <h2>Данни</h2>
+        <ul>
+          <li><a href="../../api/v1/">JSON API</a></li>
+          <li><a href="../../embed/">Вграждане на графики</a></li>
+          <li><a href="https://www.kaggle.com/datasets/johnddavidson/bulgarian-school-exam-results-20182025" target="_blank" rel="noopener noreferrer">Kaggle: данни</a> · <a href="https://www.kaggle.com/code/johnddavidson/initial-exploratory-analysis-2018-2026" target="_blank" rel="noopener noreferrer">анализ</a></li>
+          <li>
+            <span>data.egov.bg:</span>
+            <span class="site-footer__inline">
+              <a href="https://data.egov.bg/data/view/5613e75f-2b1b-4244-9f54-b27580a91dfb" target="_blank" rel="noopener noreferrer" title="Отворени данни – НВО 4 клас">4</a>
+              <a href="https://data.egov.bg/data/view/b56288b6-25aa-4049-9aa6-de2cd4cdabf8" target="_blank" rel="noopener noreferrer" title="Отворени данни – НВО 7 клас">7</a>
+              <a href="https://data.egov.bg/data/view/2f801b2f-d4cb-4ddb-a23d-3e372339c80f" target="_blank" rel="noopener noreferrer" title="Отворени данни – НВО 10 клас">10</a>
+              <a href="https://data.egov.bg/data/view/066b4b04-d81d-444e-a61c-8ca0516079e4" target="_blank" rel="noopener noreferrer" title="Отворени данни – ДЗИ 12 клас">12</a>
+            </span>
+          </li>
+        </ul>
+      </nav>
+      <nav aria-label="Ресурси">
+        <h2>Ресурси</h2>
+        <ul>
+          <li><a href="../../blog/">Блог</a></li>
+          <li><a href="https://e-xplore.education" target="_blank" rel="noopener noreferrer">e-xplore.education</a></li>
+          <li><a href="https://danybon.com" target="_blank" rel="noopener noreferrer">Данибон</a></li>
+          <li><a href="https://dideva.alle.bg" target="_blank" rel="noopener noreferrer">Дидева</a></li>
+          <li><a href="https://sabev03.eu" target="_blank" rel="noopener noreferrer">Прием в 1 клас</a></li>
+          <li><a href="https://izberi-gymnazia.info" target="_blank" rel="noopener noreferrer">Избери гимназия</a></li>
+        </ul>
+      </nav>
+      <div>
+        <h2>Проектът</h2>
+        <ul>
+          <li><a href="../../za-proekta/">За проекта и методология</a></li>
+          <li><a href="https://www.facebook.com/groups/3423312924552271" target="_blank" rel="noopener noreferrer">Facebook група</a></li>
+          <li><a href="https://linkedin.com/in/ivandavidov" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+          <li>
+            <span>Подкрепи проекта:</span>
+            <div class="support">
+              <a class="btn btn--sm btn--pill" href="https://revolut.me/ivanppek" target="_blank" rel="noopener noreferrer"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg> Revolut</a>
+              <button type="button" class="btn btn--sm btn--pill copy-btn" data-copy="bc1q6fzgg277t8fex00flafx4mw7u54lvh0c9g3qaf" data-tip="Адресът е копиран" aria-label="Копирай BTC адреса">BTC <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+              <button type="button" class="btn btn--sm btn--pill copy-btn" data-copy="0x4ad101C3c9abf9899bD31845731ba7394E2Be4C8" data-tip="Адресът е копиран" aria-label="Копирай ETH адреса" title="davidov.eth">ETH <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="container container--wide site-footer__bottom">
+      <p class="joke" data-joke></p>
+      <p>&copy; Иван Давидов – НВО и ДЗИ · Данни: МОН и РУО</p>
+    </div>
   </footer>
+
+
   <script type="application/json" id="school-data">{"code":"2902601","fullName":"ПГ по полиграфия и фотография","shortName":"ПГ по полигр. и фотогр.","isPrivate":false,"website":"http://npgpf.com","city":{"slug":"sofia","name":"София"},"yearsRange":[2018,2019,2020,2021,2022,2023,2024,2025,2026],"grades":{"10":{"belScore":[53.18,53.18,53.18,53.18,49.47,56.89,58.0,50.18,54.81],"matScore":[21.01,21.01,21.01,21.01,26.11,24.01,24.08,27.0,20.46],"belStudents":[104,104,104,104,108,104,124,103,105],"matStudents":[100,100,100,100,108,104,125,104,105],"yearsRange":[2018,2019,2020,2021,2022,2023,2024,2025,2026],"latestYear":2026,"nationalRank":260,"nationalTotal":818,"cityRank":83,"cityTotal":160,"medianRank":270,"medianAdjustedRank":265,"medianTotal":830,"medianEndYear":2026},"12":{"belScore":[4.771,4.57,4.36,4.57,4.37,4.44,4.65,4.63,4.69],"matScore":[null,4.33,null,3.14,4.9,5.3,5.39,5.24,5.27],"belStudents":[126,111,108,135,103,101,107,103,135],"matStudents":[null,2,null,1,103,101,105,103,135],"yearsRange":[2018,2019,2020,2021,2022,2023,2024,2025,2026],"latestYear":2026,"nationalRank":137,"nationalTotal":801,"cityRank":51,"cityTotal":156,"medianRank":112,"medianAdjustedRank":111,"medianTotal":819,"medianEndYear":2026}}}</script>
-  <script src="../../js/highcharts.js" defer></script>
-  <script src="../../js/config-global.js" defer></script>
-  <script src="../../js/logic-school.js" defer></script>
 </body>
 </html>

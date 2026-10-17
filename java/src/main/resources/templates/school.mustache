@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8">
+  <title>{{title}}</title>
+  <meta name="description" content="{{description}}">
+  <meta name="author" content="Иван Давидов">
+{{{head}}}
+  <link rel="canonical" href="{{canonical}}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{canonical}}">
+  <meta property="og:title" content="{{title}}">
+  <meta property="og:description" content="{{description}}">
+  <meta property="og:image" content="{{siteUrl}}images/social-preview.png">
+  <meta property="og:locale" content="bg_BG">
+  <meta property="og:site_name" content="НВО и ДЗИ – Иван Давидов">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{title}}">
+  <meta name="twitter:description" content="{{description}}">
+  <meta name="twitter:image" content="{{siteUrl}}images/social-preview.png">
+  <script type="application/ld+json">{{{jsonLd}}}</script>
+  <script type="application/ld+json">{{{crumbsLd}}}</script>
+  <script src="../../js/highcharts.js" defer></script>
+  <script type="module" src="../../js/pages/school.js"></script>
+</head>
+<body>
+{{{header}}}
+
+  <main id="main" class="container page school-page">
+    <nav class="breadcrumbs" aria-label="Път">
+      <ol>
+        <li><a href="../../">Начало</a></li>
+{{#citySlug}}
+        <li><a href="../../{{primaryGrade}}/{{citySlug}}/">{{cityName}}</a></li>
+{{/citySlug}}
+        <li><span aria-current="page">{{fullName}}</span></li>
+      </ol>
+    </nav>
+
+    <header class="card school-hero">
+      <div class="school-hero__main">
+        <span class="school-hero__icon">{{#icon}}school{{/icon}}</span>
+        <div class="school-hero__text">
+          <h1 class="school-hero__title">{{fullName}}</h1>
+          <div class="cluster school-hero__meta">
+            <span class="badge{{#isPrivate}} badge--accent{{/isPrivate}}">{{typeLabel}}</span>
+{{#cityName}}
+            <span class="school-hero__fact">{{#icon}}pin{{/icon}} {{cityName}}</span>
+{{/cityName}}
+            <span class="school-hero__fact">Код {{code}}</span>
+{{#gradeNav}}
+            <span class="badge badge--primary">{{label}}</span>
+{{/gradeNav}}
+          </div>
+        </div>
+      </div>
+      <div class="cluster school-hero__actions">
+{{#website}}
+        <a class="btn" href="{{website}}" target="_blank" rel="noopener noreferrer">{{#icon}}globe{{/icon}} Уебсайт</a>
+{{/website}}
+        <button type="button" class="btn btn--primary" id="school-pdf">{{#icon}}download{{/icon}} Изтегли PDF</button>
+      </div>
+    </header>
+
+{{#multiGrade}}
+    <nav class="school-nav" aria-label="Класове">
+      <div class="seg seg--pill">
+{{#gradeNav}}
+        <a href="#grade-{{grade}}">{{label}}</a>
+{{/gradeNav}}
+      </div>
+    </nav>
+{{/multiGrade}}
+
+{{#sections}}
+    <section class="card school-grade" id="grade-{{grade}}" aria-labelledby="grade-{{grade}}-title">
+      <div class="card__head">
+        <div>
+          <h2 class="card__title" id="grade-{{grade}}-title">{{heading}}</h2>
+          <p class="muted text-sm">{{fullName}}{{#cityName}} ({{cityName}}){{/cityName}}</p>
+        </div>
+        <a class="btn btn--sm btn--soft" href="../../{{grade}}/?school={{schoolCode}}">{{#icon}}chart{{/icon}} Сравни с други училища</a>
+      </div>
+      <div class="card__body school-grade__body">
+        <div class="kpis">
+{{#kpis}}
+          <div class="kpi"><div class="kpi__label">{{label}}</div><div class="kpi__value">{{value}}{{#total}} <small>/ {{total}}</small>{{/total}}</div></div>
+{{/kpis}}
+        </div>
+        <div class="school-grade__grid">
+          <figure class="chart-frame">
+            <figcaption class="chart-title">Резултати по години</figcaption>
+            <div class="chart" id="chart-{{grade}}"><div class="skeleton chart-skeleton"></div></div>
+          </figure>
+          <div class="table-wrap">
+            <table class="data-table data-table--compact">
+              <thead><tr><th>Година</th><th class="num">{{belLabel}}</th><th class="num">уч.</th><th class="num group-start">{{matLabel}}</th><th class="num">уч.</th></tr></thead>
+              <tbody>
+{{#rows}}
+                <tr><td>{{year}}</td><td class="num">{{bel}}</td><td class="num muted">{{bu}}</td><td class="num group-start">{{mat}}</td><td class="num muted">{{mu}}</td></tr>
+{{/rows}}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <nav class="cluster school-grade__links" aria-label="Свързани страници">
+{{#links}}
+          <a class="chip" href="{{href}}">{{label}}</a>
+{{/links}}
+        </nav>
+{{#hasNeighbors}}
+        <div class="school-related">
+          <span class="school-related__label">Близки по успех{{#cityName}} в {{cityName}}{{/cityName}}</span>
+          <div class="cluster">
+{{#neighbors}}
+            <a class="chip" href="../{{neighborCode}}/">{{neighborName}}</a>
+{{/neighbors}}
+          </div>
+        </div>
+{{/hasNeighbors}}
+      </div>
+    </section>
+{{/sections}}
+  </main>
+
+{{{footer}}}
+
+  <script type="application/json" id="school-data">{{{inlined}}}</script>
+</body>
+</html>

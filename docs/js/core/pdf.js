@@ -429,3 +429,109 @@ export async function rankingPdf(model, city, rows, filter) {
   });
   doc.save(cfg.exportPrefix + '-ranking-' + city.slug + '.pdf');
 }
+
+/* ---------------- PDF профил на училище (страницата /school/{код}/) ---------------- */
+
+function gradeHeading(grade) {
+  return String(grade) === '12' ? 'ДЗИ 12 клас' : 'НВО ' + grade + ' клас';
+}
+
+/** Един PDF за всички класове на училището — като стария logic-school.js. */
+export async function schoolProfilePdf(data, gradeMeta, seriesForGrade) {
+  const ns = await ensurePdfLibs();
+  const doc = await newDoc(ns, 'portrait');
+  const pageW = doc.internal.pageSize.getWidth();
+  const pageH = doc.internal.pageSize.getHeight();
+  const margin = 40;
+
+  doc.setFontSize(16);
+  doc.text(String(data.fullName || ''), margin, 50, { maxWidth: pageW - 2 * margin });
+  let sub = data.isPrivate ? 'Частно' : 'Държавно';
+  if (data.city && data.city.name) {
+    sub += ' · ' + data.city.name;
+  }
+  doc.setFontSize(10);
+  doc.setTextColor(100);
+  doc.text(sub, margin, 68);
+  doc.setTextColor(0);
+
+  const hidden = document.createElement('div');
+  hidden.style.cssText = 'position:absolute;left:-9999px;top:0;width:520px;height:260px;';
+  document.body.appendChild(hidden);
+  let y = 90;
+  try {
+    const keys = ['4', '7', '10', '12'].filter((k) => data.grades && data.grades[k]);
+    for (const grade of keys) {
+      const g = data.grades[grade];
+      const meta = gradeMeta[grade];
+      if (y > pageH - 230) {
+        doc.addPage();
+        y = 50;
+      }
+      doc.setFontSize(13);
+      doc.text(gradeHeading(grade), margin, y);
+      y += 14;
+      const parts = [];
+      if (g.latestYear != null) { parts.push('Последна година: ' + g.latestYear); }
+      if (g.nationalRank != null && g.nationalTotal != null) { parts.push('Национален ранг: ' + g.nationalRank + ' / ' + g.nationalTotal); }
+      if (g.cityRank != null && g.cityTotal != null) { parts.push('В града: ' + g.cityRank + ' / ' + g.cityTotal); }
+      if (g.medianRank != null && g.medianTotal != null) { parts.push('Медианен ранг: ' + g.medianRank + ' / ' + g.medianTotal); }
+      doc.setFontSize(8.5);
+      doc.setTextColor(100);
+      doc.text(parts.join('   ·   '), margin, y);
+      doc.setTextColor(0);
+      y += 8;
+
+      const s = seriesForGrade(grade, g);
+      if (s.first >= 0) {
+        const img = await renderChartToImage(hidden, {
+          chart: { type: 'line', animation: false, height: 260, width: 520, backgroundColor: '#ffffff' },
+          title: { text: gradeHeading(grade), style: { color: '#1e293b', fontSize: '13px' } },
+          credits: { enabled: false },
+          exporting: { enabled: false },
+          accessibility: { enabled: false },
+          xAxis: { categories: s.categories, min: s.first, max: s.last, startOnTick: false, endOnTick: false,
+            labels: { style: { color: '#64748b' } }, lineColor: '#e2e8f0', tickColor: '#e2e8f0' },
+          yAxis: { title: { text: null }, floor: meta.floor, ceiling: meta.ceiling, labels: { style: { color: '#64748b' } }, gridLineColor: '#e2e8f0' },
+          legend: { itemStyle: { color: '#1e293b' } },
+          plotOptions: { series: { animation: false, connectNulls: false, marker: { enabled: true, radius: 4 } } },
+          series: [
+            { name: meta.bel, data: s.bel, color: '#2f54e0' },
+            { name: meta.mat, data: s.mat, color: '#e8850c' }
+          ]
+        });
+        if (img) {
+          const imgW = pageW - 2 * margin;
+          const imgH = imgW * (260 / 520);
+          doc.addImage(img, 'PNG', margin, y, imgW, imgH);
+          y += imgH + 8;
+        }
+      }
+      const years = g.yearsRange || data.yearsRange || [];
+      const rows = [];
+      for (let i = years.length - 1; i >= 0; i--) {
+        const b = g.belScore[i];
+        const m = g.matScore[i];
+        if (b == null && m == null) {
+          continue;
+        }
+        const bu = g.belStudents ? g.belStudents[i] : null;
+        const mu = g.matStudents ? g.matStudents[i] : null;
+        rows.push([String(years[i]), b == null ? '' : b.toFixed(2), bu == null ? '' : String(bu), m == null ? '' : m.toFixed(2), mu == null ? '' : String(mu)]);
+      }
+      doc.autoTable({
+        head: [['Година', meta.bel, 'уч.', meta.mat, 'уч.']],
+        body: rows,
+        startY: y,
+        margin: { left: margin, right: margin },
+        theme: 'grid',
+        styles: { font: FONT_NAME, fontSize: 9, cellPadding: 3, halign: 'center' },
+        headStyles: { font: FONT_NAME, fillColor: [47, 84, 224], textColor: 255 }
+      });
+      y = doc.lastAutoTable.finalY + 26;
+    }
+  } finally {
+    hidden.remove();
+  }
+  doc.save('nvo-dzi-' + (data.code || 'school') + '.pdf');
+}

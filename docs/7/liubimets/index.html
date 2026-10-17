@@ -6,9 +6,28 @@
   <meta name="description" content="Класация на училищата в Любимец по БЕЛ и МАТ за НВО след 7 клас, 2026 г.">
   <meta name="author" content="Иван Давидов">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="../../css/normalize.css">
-  <link rel="stylesheet" href="../../css/custom.css">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com; font-src 'self'; frame-src 'self'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f5f7fb" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a0e16" media="(prefers-color-scheme: dark)">
   <link rel="icon" type="image/png" href="../../images/favicon-7.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../images/favicon-7.png">
+  <link rel="preload" href="../../fonts/inter/inter-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../css/site.css">
+  <script src="../../js/theme.js"></script>
+  <script type="module" src="../../js/site.js"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {'analytics_storage': 'denied', 'ad_storage': 'denied', 'wait_for_update': 500});
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-V0P6LBF76F"></script>
+  <script>
+    gtag('js', new Date());
+    gtag('config', 'G-V0P6LBF76F', {'anonymize_ip': true});
+  </script>
+
   <link rel="canonical" href="https://ivandavidov.github.io/nvo/7/liubimets/">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://ivandavidov.github.io/nvo/7/liubimets/">
@@ -21,69 +40,207 @@
   <meta name="twitter:title" content="Любимец – НВО 7 клас 2026 | Иван Давидов">
   <meta name="twitter:description" content="Класация на училищата в Любимец по БЕЛ и МАТ за НВО след 7 клас, 2026 г.">
   <meta name="twitter:image" content="https://ivandavidov.github.io/nvo/images/social-preview.png">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google-analytics.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com; font-src 'self'">
-  <meta name="referrer" content="strict-origin-when-cross-origin">
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('consent', 'default', {
-      'analytics_storage': 'denied',
-      'ad_storage': 'denied',
-      'wait_for_update': 500
-    });
-  </script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-V0P6LBF76F"></script>
-  <script>
-    gtag('js', new Date());
-    gtag('config', 'G-V0P6LBF76F', {'anonymize_ip': true});
-  </script>
-  <script src="../../js/theme.js"></script>
+  <script type="module" src="../../js/pages/landing.js"></script>
 </head>
-<body>
+<body data-grade="7">
+  <a class="skip-link" href="#main">Към съдържанието</a>
   <header class="site-header">
-    <div class="header-inner">
-      <a class="site-brand" href="../../" aria-label="Начало">
-        <svg class="site-logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-        <span class="site-name">НВО и ДЗИ</span>
+    <div class="container container--wide site-header__inner">
+      <a class="brand" href="../../" aria-label="НВО и ДЗИ – начало">
+        <span class="brand__mark"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/></svg></span>
+        <span>НВО <span class="brand__and">и</span> ДЗИ</span>
       </a>
-      <nav class="grade-tabs">
-        <a href="../../4/" class="grade-tab">4 клас</a>
-        <a href="../../7/" class="grade-tab active">7 клас</a>
-        <a href="../../10/" class="grade-tab">10 клас</a>
-        <a href="../../12/" class="grade-tab">12 клас</a>
-        <a href="../../blog/" class="grade-tab">Блог</a>
+      <nav class="site-nav" aria-label="Основна навигация">
+        <div class="exam-switch">
+          <a href="../../4/" title="НВО след 4 клас">4<span class="exam-switch__suffix"> клас</span></a>
+          <a href="../../7/" title="НВО след 7 клас" aria-current="page">7<span class="exam-switch__suffix"> клас</span></a>
+          <a href="../../10/" title="НВО след 10 клас">10<span class="exam-switch__suffix"> клас</span></a>
+          <a href="../../12/" title="ДЗИ след 12 клас">12<span class="exam-switch__suffix"> клас</span></a>
+        </div>
+        <a class="site-nav__link" href="../../7/balove/" title="Минимални и максимални балове за прием след 7 клас">Балове</a>
+        <a class="site-nav__link" href="../../stats/">Статистика</a>
+        <a class="site-nav__link" href="../../blog/">Блог</a>
       </nav>
-      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Смяна на тема">
-        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-      </button>
-    </div>
-  </header>
-<main>
-<div class="container">
-<h1>Любимец – НВО 7 клас</h1>
-<h2>Класация 2026 г.</h2>
-<p>Подредбата е по средна стойност на БЕЛ и МАТ, изчислена като (БЕЛ + МАТ) / 2. Включени са само училища с налични резултати и по двата предмета.</p>
-<p><a href="../../7/">&#8592; Към основната страница за 7 клас</a></p>
-<table>
-<thead><tr><th>#</th><th>Училище</th><th>БЕЛ</th><th>МАТ</th><th>Общо</th></tr></thead>
-<tbody>
-<tr><td>1</td><td><a href="../../school/2606005/">СУ Желязко Терпешев</a></td><td>35.40</td><td>23.95</td><td>29.67</td></tr>
-</tbody>
-</table>
-</div>
-</main>
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-content">
-        <p class="footer-minimal">&copy; Иван Давидов – НВО и ДЗИ</p>
-        <nav class="footer-links">
-          <a href="../../">Начало</a>
-          <a href="../../blog/">Блог</a>
-          <a href="../../stats/">Статистика</a>
-        </nav>
+      <div class="site-header__actions">
+        <button type="button" class="search-trigger" data-search-open aria-label="Търсене на училище или град">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <span class="search-trigger__label">Търси училище или град…</span>
+          <kbd class="kbd">/</kbd>
+        </button>
+        <button type="button" class="icon-btn theme-toggle" onclick="toggleTheme()" aria-label="Светла или тъмна тема" title="Светла или тъмна тема">
+          <span class="icon-moon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
+          <span class="icon-sun"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg></span>
+        </button>
+        <button type="button" class="icon-btn" data-menu-toggle aria-expanded="false" aria-controls="site-menu" aria-label="Още" title="Още">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
       </div>
     </div>
+    <div class="container container--wide">
+      <nav id="site-menu" class="menu-panel" aria-label="Още" hidden>
+        <div>
+          <h2>Данни</h2>
+          <ul>
+            <li><a href="../../api/v1/"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg> JSON API</a></li>
+            <li><a href="../../embed/"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m12 2 10 5-10 5L2 7l10-5z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg> Вграждане на графики</a></li>
+            <li><a class="ext" href="https://www.kaggle.com/datasets/johnddavidson/bulgarian-school-exam-results-20182025" target="_blank" rel="noopener noreferrer"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"/></svg> Kaggle: данни</a></li>
+            <li><a class="ext" href="https://www.kaggle.com/code/johnddavidson/initial-exploratory-analysis-2018-2026" target="_blank" rel="noopener noreferrer"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></svg> Kaggle: анализ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Отворени данни (МОН)</h2>
+          <ul>
+            <li><a class="ext" href="https://data.egov.bg/data/view/5613e75f-2b1b-4244-9f54-b27580a91dfb" target="_blank" rel="noopener noreferrer">НВО 4 клас</a></li>
+            <li><a class="ext" href="https://data.egov.bg/data/view/b56288b6-25aa-4049-9aa6-de2cd4cdabf8" target="_blank" rel="noopener noreferrer">НВО 7 клас</a></li>
+            <li><a class="ext" href="https://data.egov.bg/data/view/2f801b2f-d4cb-4ddb-a23d-3e372339c80f" target="_blank" rel="noopener noreferrer">НВО 10 клас</a></li>
+            <li><a class="ext" href="https://data.egov.bg/data/view/066b4b04-d81d-444e-a61c-8ca0516079e4" target="_blank" rel="noopener noreferrer">ДЗИ 12 клас</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Полезни връзки</h2>
+          <ul>
+            <li><a class="ext" href="https://e-xplore.education" target="_blank" rel="noopener noreferrer">e-xplore.education</a></li>
+            <li><a class="ext" href="https://danybon.com" target="_blank" rel="noopener noreferrer">Данибон</a></li>
+            <li><a class="ext" href="https://dideva.alle.bg" target="_blank" rel="noopener noreferrer">Дидева</a></li>
+            <li><a class="ext" href="https://sabev03.eu" target="_blank" rel="noopener noreferrer">Прием в 1 клас</a></li>
+            <li><a class="ext" href="https://izberi-gymnazia.info" target="_blank" rel="noopener noreferrer">Избери гимназия</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Проектът</h2>
+          <ul>
+            <li><a href="../../za-proekta/"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg> За проекта и методология</a></li>
+            <li><a href="../../za-proekta/#podkrepa"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg> Подкрепи проекта</a></li>
+            <li><a class="ext" href="https://www.facebook.com/groups/3423312924552271" target="_blank" rel="noopener noreferrer">Facebook група</a></li>
+            <li><a class="ext" href="https://linkedin.com/in/ivandavidov" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+
+  <main id="main" class="container page landing">
+    <nav class="breadcrumbs" aria-label="Път">
+      <ol>
+        <li><a href="../../">Начало</a></li>
+        <li><a href="../">НВО след 7 клас</a></li>
+        <li><span aria-current="page">Любимец</span></li>
+      </ol>
+    </nav>
+
+    <header class="page-head">
+      <p class="page-head__eyebrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg> НВО след 7 клас · Любимец</p>
+      <h1 class="page-head__title">Любимец – НВО 7 клас</h1>
+      <h2 class="landing__subtitle">Класация 2026 г.</h2>
+      <p class="page-head__lead">Подредбата е по средна стойност на БЕЛ и МАТ, изчислена като (БЕЛ + МАТ) / 2. Включени са само училища с налични резултати и по двата предмета.</p>
+      <div class="page-head__actions cluster">
+        <a class="btn btn--primary" href="../#liubimets"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></svg> Сравни в графиката</a>
+        <a class="btn" href="../2026/"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg> Национална класация 2026</a>
+        <a class="btn" href="../balove/liubimets/"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> Балове в Любимец</a>
+      </div>
+    </header>
+
+
+    <section class="card landing__card" aria-label="Класация">
+      <div class="card__head">
+        <div class="cluster landing__filters">
+          <div class="input-icon">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+            <input class="input" type="search" data-filter placeholder="Търси училище…" aria-label="Търси в таблицата">
+          </div>
+        </div>
+        <p class="muted text-sm" data-count>1 училища</p>
+      </div>
+      <div class="table-wrap table-wrap--tall landing__table">
+        <table class="data-table" data-sortable>
+          <thead>
+            <tr>
+              <th class="num" data-type="num" aria-sort="ascending"><button type="button" class="th-sort">#<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></button></th>
+              <th data-type="text" aria-sort="none"><button type="button" class="th-sort">Училище<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></button></th>
+              <th class="num" data-type="num" aria-sort="none"><button type="button" class="th-sort">БЕЛ<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></button></th>
+              <th class="num" data-type="num" aria-sort="none"><button type="button" class="th-sort">МАТ<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></button></th>
+              <th class="num" data-type="num" aria-sort="none"><button type="button" class="th-sort">Общо<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></button></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="num muted">1</td><td><a href="../../school/2606005/">СУ Желязко Терпешев</a></td><td class="num">35.40</td><td class="num">23.95</td><td class="num"><strong>29.67</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container container--wide site-footer__grid">
+      <div class="site-footer__about">
+        <a class="brand" href="../../">
+          <span class="brand__mark"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/></svg></span>
+          <span>НВО <span class="brand__and">и</span> ДЗИ</span>
+        </a>
+        <p>Резултатите от НВО и ДЗИ за всички училища в България — графики, класации и статистики по отворените данни на МОН.</p>
+      </div>
+      <nav aria-label="Изпити">
+        <h2>Изпити</h2>
+        <ul>
+          <li><a href="../../4/">НВО след 4 клас</a></li>
+          <li><a href="../../7/">НВО след 7 клас</a></li>
+          <li><a href="../../10/">НВО след 10 клас</a></li>
+          <li><a href="../../12/">ДЗИ след 12 клас</a></li>
+          <li><a href="../../7/balove/">Балове след 7 клас</a></li>
+          <li><a href="../../stats/">Обобщена статистика</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Данни">
+        <h2>Данни</h2>
+        <ul>
+          <li><a href="../../api/v1/">JSON API</a></li>
+          <li><a href="../../embed/">Вграждане на графики</a></li>
+          <li><a href="https://www.kaggle.com/datasets/johnddavidson/bulgarian-school-exam-results-20182025" target="_blank" rel="noopener noreferrer">Kaggle: данни</a> · <a href="https://www.kaggle.com/code/johnddavidson/initial-exploratory-analysis-2018-2026" target="_blank" rel="noopener noreferrer">анализ</a></li>
+          <li>
+            <span>data.egov.bg:</span>
+            <span class="site-footer__inline">
+              <a href="https://data.egov.bg/data/view/5613e75f-2b1b-4244-9f54-b27580a91dfb" target="_blank" rel="noopener noreferrer" title="Отворени данни – НВО 4 клас">4</a>
+              <a href="https://data.egov.bg/data/view/b56288b6-25aa-4049-9aa6-de2cd4cdabf8" target="_blank" rel="noopener noreferrer" title="Отворени данни – НВО 7 клас">7</a>
+              <a href="https://data.egov.bg/data/view/2f801b2f-d4cb-4ddb-a23d-3e372339c80f" target="_blank" rel="noopener noreferrer" title="Отворени данни – НВО 10 клас">10</a>
+              <a href="https://data.egov.bg/data/view/066b4b04-d81d-444e-a61c-8ca0516079e4" target="_blank" rel="noopener noreferrer" title="Отворени данни – ДЗИ 12 клас">12</a>
+            </span>
+          </li>
+        </ul>
+      </nav>
+      <nav aria-label="Ресурси">
+        <h2>Ресурси</h2>
+        <ul>
+          <li><a href="../../blog/">Блог</a></li>
+          <li><a href="https://e-xplore.education" target="_blank" rel="noopener noreferrer">e-xplore.education</a></li>
+          <li><a href="https://danybon.com" target="_blank" rel="noopener noreferrer">Данибон</a></li>
+          <li><a href="https://dideva.alle.bg" target="_blank" rel="noopener noreferrer">Дидева</a></li>
+          <li><a href="https://sabev03.eu" target="_blank" rel="noopener noreferrer">Прием в 1 клас</a></li>
+          <li><a href="https://izberi-gymnazia.info" target="_blank" rel="noopener noreferrer">Избери гимназия</a></li>
+        </ul>
+      </nav>
+      <div>
+        <h2>Проектът</h2>
+        <ul>
+          <li><a href="../../za-proekta/">За проекта и методология</a></li>
+          <li><a href="https://www.facebook.com/groups/3423312924552271" target="_blank" rel="noopener noreferrer">Facebook група</a></li>
+          <li><a href="https://linkedin.com/in/ivandavidov" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+          <li>
+            <span>Подкрепи проекта:</span>
+            <div class="support">
+              <a class="btn btn--sm btn--pill" href="https://revolut.me/ivanppek" target="_blank" rel="noopener noreferrer"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg> Revolut</a>
+              <button type="button" class="btn btn--sm btn--pill copy-btn" data-copy="bc1q6fzgg277t8fex00flafx4mw7u54lvh0c9g3qaf" data-tip="Адресът е копиран" aria-label="Копирай BTC адреса">BTC <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+              <button type="button" class="btn btn--sm btn--pill copy-btn" data-copy="0x4ad101C3c9abf9899bD31845731ba7394E2Be4C8" data-tip="Адресът е копиран" aria-label="Копирай ETH адреса" title="davidov.eth">ETH <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="container container--wide site-footer__bottom">
+      <p class="joke" data-joke></p>
+      <p>&copy; Иван Давидов – НВО и ДЗИ · Данни: МОН и РУО</p>
+    </div>
   </footer>
+
 </body>
 </html>

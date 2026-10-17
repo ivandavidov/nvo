@@ -6,9 +6,28 @@
   <meta name="description" content="Класация на училищата в София по БЕЛ и ДЗИ-2 за ДЗИ след 12 клас, 2026 г.">
   <meta name="author" content="Иван Давидов">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="../../css/normalize.css">
-  <link rel="stylesheet" href="../../css/custom.css">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com; font-src 'self'; frame-src 'self'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f5f7fb" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a0e16" media="(prefers-color-scheme: dark)">
   <link rel="icon" type="image/png" href="../../images/favicon-12.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../images/favicon-12.png">
+  <link rel="preload" href="../../fonts/inter/inter-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../css/site.css">
+  <script src="../../js/theme.js"></script>
+  <script type="module" src="../../js/site.js"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {'analytics_storage': 'denied', 'ad_storage': 'denied', 'wait_for_update': 500});
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-V0P6LBF76F"></script>
+  <script>
+    gtag('js', new Date());
+    gtag('config', 'G-V0P6LBF76F', {'anonymize_ip': true});
+  </script>
+
   <link rel="canonical" href="https://ivandavidov.github.io/nvo/12/sofia/">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://ivandavidov.github.io/nvo/12/sofia/">
@@ -21,224 +40,361 @@
   <meta name="twitter:title" content="София – ДЗИ 12 клас 2026 | Иван Давидов">
   <meta name="twitter:description" content="Класация на училищата в София по БЕЛ и ДЗИ-2 за ДЗИ след 12 клас, 2026 г.">
   <meta name="twitter:image" content="https://ivandavidov.github.io/nvo/images/social-preview.png">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google-analytics.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com; font-src 'self'">
-  <meta name="referrer" content="strict-origin-when-cross-origin">
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('consent', 'default', {
-      'analytics_storage': 'denied',
-      'ad_storage': 'denied',
-      'wait_for_update': 500
-    });
-  </script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-V0P6LBF76F"></script>
-  <script>
-    gtag('js', new Date());
-    gtag('config', 'G-V0P6LBF76F', {'anonymize_ip': true});
-  </script>
-  <script src="../../js/theme.js"></script>
+  <script type="module" src="../../js/pages/landing.js"></script>
 </head>
-<body>
+<body data-grade="12">
+  <a class="skip-link" href="#main">Към съдържанието</a>
   <header class="site-header">
-    <div class="header-inner">
-      <a class="site-brand" href="../../" aria-label="Начало">
-        <svg class="site-logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-        <span class="site-name">НВО и ДЗИ</span>
+    <div class="container container--wide site-header__inner">
+      <a class="brand" href="../../" aria-label="НВО и ДЗИ – начало">
+        <span class="brand__mark"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/></svg></span>
+        <span>НВО <span class="brand__and">и</span> ДЗИ</span>
       </a>
-      <nav class="grade-tabs">
-        <a href="../../4/" class="grade-tab">4 клас</a>
-        <a href="../../7/" class="grade-tab">7 клас</a>
-        <a href="../../10/" class="grade-tab">10 клас</a>
-        <a href="../../12/" class="grade-tab active">12 клас</a>
-        <a href="../../blog/" class="grade-tab">Блог</a>
+      <nav class="site-nav" aria-label="Основна навигация">
+        <div class="exam-switch">
+          <a href="../../4/" title="НВО след 4 клас">4<span class="exam-switch__suffix"> клас</span></a>
+          <a href="../../7/" title="НВО след 7 клас">7<span class="exam-switch__suffix"> клас</span></a>
+          <a href="../../10/" title="НВО след 10 клас">10<span class="exam-switch__suffix"> клас</span></a>
+          <a href="../../12/" title="ДЗИ след 12 клас" aria-current="page">12<span class="exam-switch__suffix"> клас</span></a>
+        </div>
+        <a class="site-nav__link" href="../../7/balove/" title="Минимални и максимални балове за прием след 7 клас">Балове</a>
+        <a class="site-nav__link" href="../../stats/">Статистика</a>
+        <a class="site-nav__link" href="../../blog/">Блог</a>
       </nav>
-      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Смяна на тема">
-        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-      </button>
-    </div>
-  </header>
-<main>
-<div class="container">
-<h1>София – ДЗИ 12 клас</h1>
-<h2>Класация 2026 г.</h2>
-<p>Подредбата е по средна стойност на БЕЛ и ДЗИ-2, изчислена като (БЕЛ + ДЗИ-2) / 2. Включени са само училища с налични резултати и по двата предмета.</p>
-<p><a href="../../12/">&#8592; Към основната страница за 12 клас</a></p>
-<table>
-<thead><tr><th>#</th><th>Училище</th><th>БЕЛ</th><th>ДЗИ-2</th><th>Общо</th></tr></thead>
-<tbody>
-<tr><td>1</td><td><a href="../../school/2204091/">91 немска ЕГ</a></td><td>5.78</td><td>5.89</td><td>5.84</td></tr>
-<tr><td>2</td><td><a href="../../school/2216306/">СМГ Паисий Хилендарски</a></td><td>5.75</td><td>5.78</td><td>5.76</td></tr>
-<tr><td>3</td><td><a href="../../school/2221563/">Първа Частна Математическа Гимназия</a></td><td>5.67</td><td>5.69</td><td>5.68</td></tr>
-<tr><td>4</td><td><a href="../../school/2213507/">Американски колеж</a></td><td>5.64</td><td>5.68</td><td>5.66</td></tr>
-<tr><td>5</td><td><a href="../../school/2216164/">164 ГПИЕ Мигел де Сервантес</a></td><td>5.67</td><td>5.59</td><td>5.63</td></tr>
-<tr><td>6</td><td><a href="../../school/2204549/">ЧСУ с немски език Веда</a></td><td>5.18</td><td>5.94</td><td>5.56</td></tr>
-<tr><td>7</td><td><a href="../../school/2202536/">ЧСЕУ Британика</a></td><td>5.48</td><td>5.59</td><td>5.54</td></tr>
-<tr><td>8</td><td><a href="../../school/2224022/">22 СЕУ Георги С. Раковски</a></td><td>5.45</td><td>5.58</td><td>5.52</td></tr>
-<tr><td>9</td><td><a href="../../school/2209529/">ЧЕСУ Дорис Тенеди</a></td><td>5.29</td><td>5.72</td><td>5.51</td></tr>
-<tr><td>10</td><td><a href="../../school/2213503/">ЧПГ Меридиан 22</a></td><td>5.55</td><td>5.44</td><td>5.50</td></tr>
-<tr><td>11</td><td><a href="../../school/2216301/">Първа английска ЕГ</a></td><td>5.50</td><td>5.47</td><td>5.48</td></tr>
-<tr><td>12</td><td><a href="../../school/2222009/">9 Френска ЕГ Алфонс дьо Ламартин</a></td><td>5.51</td><td>5.45</td><td>5.48</td></tr>
-<tr><td>13</td><td><a href="../../school/2211304/">НПМГ Акад. Любомир Чакалов</a></td><td>5.54</td><td>5.42</td><td>5.48</td></tr>
-<tr><td>14</td><td><a href="../../school/2206302/">Втора английска ЕГ</a></td><td>5.45</td><td>5.49</td><td>5.47</td></tr>
-<tr><td>15</td><td><a href="../../school/2224073/">73 СУ Владислав Граматик</a></td><td>5.63</td><td>5.30</td><td>5.47</td></tr>
-<tr><td>16</td><td><a href="../../school/2224433/">Търговско-банкова гимназия</a></td><td>5.17</td><td>5.76</td><td>5.47</td></tr>
-<tr><td>17</td><td><a href="../../school/2202704/">ЧСУ Евлоги и Христо Георгиеви</a></td><td>5.01</td><td>5.91</td><td>5.46</td></tr>
-<tr><td>18</td><td><a href="../../school/2204018/">18 СУ Уилям Гладстон</a></td><td>5.31</td><td>5.61</td><td>5.46</td></tr>
-<tr><td>19</td><td><a href="../../school/2222133/">133 СУ Александър Сергеевич Пушкин</a></td><td>5.46</td><td>5.45</td><td>5.45</td></tr>
-<tr><td>20</td><td><a href="../../school/2902702/">Национална гимназия за древни езици и култури</a></td><td>5.72</td><td>5.16</td><td>5.44</td></tr>
-<tr><td>21</td><td><a href="../../school/2221031/">31 СУ Иван Вазов</a></td><td>5.40</td><td>5.46</td><td>5.43</td></tr>
-<tr><td>22</td><td><a href="../../school/2205520/">ЧЕГ Проф. Иван Апостолов</a></td><td>5.29</td><td>5.51</td><td>5.40</td></tr>
-<tr><td>23</td><td><a href="../../school/2202574/">ЧСУ Свети Георги</a></td><td>4.94</td><td>5.70</td><td>5.32</td></tr>
-<tr><td>24</td><td><a href="../../school/2204032/">32 СУ Св. Климент Охридски</a></td><td>5.37</td><td>5.25</td><td>5.31</td></tr>
-<tr><td>25</td><td><a href="../../school/2303852/">ЧПГ Челопеч</a></td><td>5.32</td><td>5.20</td><td>5.26</td></tr>
-<tr><td>26</td><td><a href="../../school/2224432/">ПГ по дизайн Елисавета Вазова</a></td><td>4.96</td><td>5.56</td><td>5.26</td></tr>
-<tr><td>27</td><td><a href="../../school/2216001/">1 СУ Пенчо Славейков</a></td><td>5.16</td><td>5.35</td><td>5.25</td></tr>
-<tr><td>28</td><td><a href="../../school/2222127/">127 СУ Иван Николаевич Денкоглу</a></td><td>5.06</td><td>5.44</td><td>5.25</td></tr>
-<tr><td>29</td><td><a href="../../school/2205119/">119 СУ Акад. Михаил Арнаудов</a></td><td>5.25</td><td>5.25</td><td>5.25</td></tr>
-<tr><td>30</td><td><a href="../../school/2213350/">ТУЕС към Технически Университет</a></td><td>5.25</td><td>5.23</td><td>5.24</td></tr>
-<tr><td>31</td><td><a href="../../school/2209051/">51 СУ Елисавета Багряна</a></td><td>5.14</td><td>5.31</td><td>5.22</td></tr>
-<tr><td>32</td><td><a href="../../school/2221157/">157 СУ Сесар Вайехо</a></td><td>4.86</td><td>5.56</td><td>5.21</td></tr>
-<tr><td>33</td><td><a href="../../school/2204134/">134 СУ Димчо Дебелянов</a></td><td>5.23</td><td>5.17</td><td>5.20</td></tr>
-<tr><td>34</td><td><a href="../../school/2224545/">ЧПГ по банково дело търговия и финанси</a></td><td>4.44</td><td>5.94</td><td>5.19</td></tr>
-<tr><td>35</td><td><a href="../../school/2211517/">ЧПГ Банкер</a></td><td>4.62</td><td>5.76</td><td>5.19</td></tr>
-<tr><td>36</td><td><a href="../../school/2204030/">30 СУ Братя Миладинови</a></td><td>5.05</td><td>5.32</td><td>5.19</td></tr>
-<tr><td>37</td><td><a href="../../school/2205105/">105 СУ Атанас Далчев</a></td><td>5.00</td><td>5.34</td><td>5.17</td></tr>
-<tr><td>38</td><td><a href="../../school/2211035/">35 СЕУ Добри Войников</a></td><td>5.45</td><td>4.85</td><td>5.15</td></tr>
-<tr><td>39</td><td><a href="../../school/2222012/">12 СУ Цар Иван Асен II</a></td><td>5.03</td><td>5.26</td><td>5.15</td></tr>
-<tr><td>40</td><td><a href="../../school/2221138/">138 СУ Проф. Васил Златарски</a></td><td>4.89</td><td>5.40</td><td>5.14</td></tr>
-<tr><td>41</td><td><a href="../../school/2211420/">Финансово-стопанска гимназия</a></td><td>4.99</td><td>5.28</td><td>5.13</td></tr>
-<tr><td>42</td><td><a href="../../school/2205407/">ПГ по електроника Джон Атанасов</a></td><td>4.97</td><td>5.29</td><td>5.13</td></tr>
-<tr><td>43</td><td><a href="../../school/2223547/">ЧЕГ Проф. д-р В. Златарски</a></td><td>4.91</td><td>5.31</td><td>5.11</td></tr>
-<tr><td>44</td><td><a href="../../school/2216532/">ЧСУ Увекинд</a></td><td>4.86</td><td>5.35</td><td>5.11</td></tr>
-<tr><td>45</td><td><a href="../../school/2213600/">ЧСУ с чуждоезиков профил Абрахам Линкълн</a></td><td>4.87</td><td>5.31</td><td>5.09</td></tr>
-<tr><td>46</td><td><a href="../../school/2902701/">НУКК (Италиански лицей)</a></td><td>5.16</td><td>4.97</td><td>5.06</td></tr>
-<tr><td>47</td><td><a href="../../school/2220308/">ПГ за изобразителни изкуства</a></td><td>4.74</td><td>5.37</td><td>5.06</td></tr>
-<tr><td>48</td><td><a href="../../school/2211564/">ЧСОУ Българско школо</a></td><td>4.88</td><td>5.21</td><td>5.05</td></tr>
-<tr><td>49</td><td><a href="../../school/2222007/">7 СУ Св. Седмочисленици</a></td><td>5.01</td><td>5.00</td><td>5.01</td></tr>
-<tr><td>50</td><td><a href="../../school/2902501/">Гимназия за приложни изкуства Св. Лука</a></td><td>4.93</td><td>5.07</td><td>5.00</td></tr>
-<tr><td>51</td><td><a href="../../school/2902601/">ПГ по полиграфия и фотография</a></td><td>4.69</td><td>5.27</td><td>4.98</td></tr>
-<tr><td>52</td><td><a href="../../school/2902401/">Училище за изящни изкуства</a></td><td>4.96</td><td>4.99</td><td>4.98</td></tr>
-<tr><td>53</td><td><a href="../../school/2202002/">2 СУ Акад. Емилиян Станев</a></td><td>4.91</td><td>5.02</td><td>4.96</td></tr>
-<tr><td>54</td><td><a href="../../school/2219166/">166 спортно у-ще Васил Левски</a></td><td>4.23</td><td>5.66</td><td>4.95</td></tr>
-<tr><td>55</td><td><a href="../../school/2211021/">21 СУ Христо Ботев</a></td><td>4.79</td><td>5.09</td><td>4.94</td></tr>
-<tr><td>56</td><td><a href="../../school/2209019/">19 СУ Елин Пелин</a></td><td>4.94</td><td>4.92</td><td>4.93</td></tr>
-<tr><td>57</td><td><a href="../../school/2221590/">ЧПГ Образователни технологии</a></td><td>4.69</td><td>5.14</td><td>4.92</td></tr>
-<tr><td>58</td><td><a href="../../school/2221023/">23 СУ Фредерик Жолио-Кюри</a></td><td>4.81</td><td>5.02</td><td>4.91</td></tr>
-<tr><td>59</td><td><a href="../../school/2202535/">ЧСУ Рьорих</a></td><td>4.67</td><td>5.09</td><td>4.88</td></tr>
-<tr><td>60</td><td><a href="../../school/2213125/">125 СУИЧЕ Боян Пенев</a></td><td>4.85</td><td>4.90</td><td>4.87</td></tr>
-<tr><td>61</td><td><a href="../../school/2211419/">Гимназия по строителство, архитектура и геодезия</a></td><td>5.00</td><td>4.73</td><td>4.87</td></tr>
-<tr><td>62</td><td><a href="../../school/2902101/">Национално музикално училище</a></td><td>4.84</td><td>4.86</td><td>4.85</td></tr>
-<tr><td>63</td><td><a href="../../school/2216423/">Софийска ПГ по туризъм</a></td><td>4.39</td><td>5.27</td><td>4.83</td></tr>
-<tr><td>64</td><td><a href="../../school/2212303/">33 ЕГ Света София</a></td><td>4.69</td><td>4.94</td><td>4.81</td></tr>
-<tr><td>65</td><td><a href="../../school/2206003/">3 СУ Марин Дринов</a></td><td>4.38</td><td>5.22</td><td>4.80</td></tr>
-<tr><td>66</td><td><a href="../../school/2204402/">ПГ по прецизна техника и оптика</a></td><td>4.70</td><td>4.85</td><td>4.78</td></tr>
-<tr><td>67</td><td><a href="../../school/2223431/">ПГ по телекомуникации</a></td><td>4.55</td><td>4.94</td><td>4.75</td></tr>
-<tr><td>68</td><td><a href="../../school/2209036/">36 СУ Максим Горки</a></td><td>4.59</td><td>4.87</td><td>4.73</td></tr>
-<tr><td>69</td><td><a href="../../school/2211417/">ПГ по облекло</a></td><td>4.26</td><td>5.19</td><td>4.73</td></tr>
-<tr><td>70</td><td><a href="../../school/2200039/">ЧГ по прир. науки и предпр. Асен Йорданов</a></td><td>4.24</td><td>5.15</td><td>4.69</td></tr>
-<tr><td>71</td><td><a href="../../school/2208526/">ЧСУ Орфей</a></td><td>4.86</td><td>4.53</td><td>4.69</td></tr>
-<tr><td>72</td><td><a href="../../school/2202620/">ЧСУ Проф. Николай Райнов</a></td><td>4.32</td><td>4.99</td><td>4.65</td></tr>
-<tr><td>73</td><td><a href="../../school/2204403/">ПГ по текстилни и кожени изделия</a></td><td>3.92</td><td>5.33</td><td>4.63</td></tr>
-<tr><td>74</td><td><a href="../../school/2203720/">ЧСУ Дружба</a></td><td>4.57</td><td>4.67</td><td>4.62</td></tr>
-<tr><td>75</td><td><a href="../../school/2206410/">ПГ по високи технологии Ал. Попов</a></td><td>4.16</td><td>5.08</td><td>4.62</td></tr>
-<tr><td>76</td><td><a href="../../school/2208539/">ЧПГ Булпрогрес</a></td><td>3.60</td><td>5.62</td><td>4.61</td></tr>
-<tr><td>77</td><td><a href="../../school/2213081/">81 СУ Виктор Юго</a></td><td>4.51</td><td>4.71</td><td>4.61</td></tr>
-<tr><td>78</td><td><a href="../../school/2216533/">Първа частна английска гимназия</a></td><td>4.50</td><td>4.71</td><td>4.61</td></tr>
-<tr><td>79</td><td><a href="../../school/2208135/">135 СУ Ян Амос Коменски</a></td><td>4.03</td><td>5.13</td><td>4.58</td></tr>
-<tr><td>80</td><td><a href="../../school/2224544/">ЧСУ Артис</a></td><td>4.49</td><td>4.61</td><td>4.55</td></tr>
-<tr><td>81</td><td><a href="../../school/2221093/">93 СУ Ал. Теодоров - Балан</a></td><td>4.71</td><td>4.38</td><td>4.55</td></tr>
-<tr><td>82</td><td><a href="../../school/2213131/">131 СУ Климент Аркад. Тимирязев</a></td><td>4.37</td><td>4.69</td><td>4.53</td></tr>
-<tr><td>83</td><td><a href="../../school/2223055/">55 СУ Петко Каравелов</a></td><td>4.45</td><td>4.60</td><td>4.52</td></tr>
-<tr><td>84</td><td><a href="../../school/2200013/">ЧПГ по дигитални науки СофтУни Будител</a></td><td>4.55</td><td>4.49</td><td>4.52</td></tr>
-<tr><td>85</td><td><a href="../../school/2212096/">96 СУ Лев Николаевич Толстой</a></td><td>4.50</td><td>4.53</td><td>4.51</td></tr>
-<tr><td>86</td><td><a href="../../school/2214054/">54 СУ Св. Иван Рилски</a></td><td>4.60</td><td>4.42</td><td>4.51</td></tr>
-<tr><td>87</td><td><a href="../../school/2219044/">44 СУ Неофит Бозвели</a></td><td>4.82</td><td>4.20</td><td>4.51</td></tr>
-<tr><td>88</td><td><a href="../../school/2204511/">ЧПГ с чуждоезиково обучение Езиков свят</a></td><td>4.22</td><td>4.76</td><td>4.49</td></tr>
-<tr><td>89</td><td><a href="../../school/2224047/">47 СУ Христо Г. Данов</a></td><td>4.53</td><td>4.45</td><td>4.49</td></tr>
-<tr><td>90</td><td><a href="../../school/2204311/">Румънска гимназия Михай Еминеску</a></td><td>4.39</td><td>4.57</td><td>4.48</td></tr>
-<tr><td>91</td><td><a href="../../school/2213128/">128 СУ Алберт Айнщайн</a></td><td>4.50</td><td>4.43</td><td>4.47</td></tr>
-<tr><td>92</td><td><a href="../../school/2209305/">203 Профилирана ЕГ Свети Методий</a></td><td>4.31</td><td>4.56</td><td>4.43</td></tr>
-<tr><td>93</td><td><a href="../../school/2213307/">Спортно у-ще ген. Владимир Стойчев</a></td><td>3.93</td><td>4.94</td><td>4.43</td></tr>
-<tr><td>94</td><td><a href="../../school/2212097/">97 СУ Братя Миладинови</a></td><td>4.24</td><td>4.61</td><td>4.42</td></tr>
-<tr><td>95</td><td><a href="../../school/2217424/">ПГ по електротехника и автоматика</a></td><td>4.06</td><td>4.78</td><td>4.42</td></tr>
-<tr><td>96</td><td><a href="../../school/2213118/">118 СУ Акад. Людмил Стоянов</a></td><td>4.46</td><td>4.38</td><td>4.42</td></tr>
-<tr><td>97</td><td><a href="../../school/2213039/">39 СУ Петър Динеков</a></td><td>4.49</td><td>4.33</td><td>4.41</td></tr>
-<tr><td>98</td><td><a href="../../school/2212137/">137 СУ Ангел Кънчев</a></td><td>4.46</td><td>4.28</td><td>4.37</td></tr>
-<tr><td>99</td><td><a href="../../school/2220029/">29 СУ Кузман Шапкарев</a></td><td>4.31</td><td>4.42</td><td>4.36</td></tr>
-<tr><td>100</td><td><a href="../../school/2207108/">108 СУ Никола Беловеждов</a></td><td>4.16</td><td>4.54</td><td>4.35</td></tr>
-<tr><td>101</td><td><a href="../../school/2213144/">144 СУ Народни будители</a></td><td>4.12</td><td>4.53</td><td>4.33</td></tr>
-<tr><td>102</td><td><a href="../../school/2902301/">Училище за танцово изкуство</a></td><td>4.21</td><td>4.41</td><td>4.31</td></tr>
-<tr><td>103</td><td><a href="../../school/2203140/">140 СУ Иван Богоров</a></td><td>3.53</td><td>5.08</td><td>4.30</td></tr>
-<tr><td>104</td><td><a href="../../school/2212056/">56 СУ Проф. Константин Иречек</a></td><td>4.21</td><td>4.37</td><td>4.29</td></tr>
-<tr><td>105</td><td><a href="../../school/2202534/">ЧПСУ Свети Наум</a></td><td>4.22</td><td>4.33</td><td>4.27</td></tr>
-<tr><td>106</td><td><a href="../../school/2201078/">78 СУ Христо Смирненски</a></td><td>4.12</td><td>4.43</td><td>4.27</td></tr>
-<tr><td>107</td><td><a href="../../school/2217088/">88 СУ Димитър Попниколов</a></td><td>4.28</td><td>4.22</td><td>4.25</td></tr>
-<tr><td>108</td><td><a href="../../school/2220014/">14 СУ Проф. Д-р Асен Златаров</a></td><td>4.23</td><td>4.27</td><td>4.25</td></tr>
-<tr><td>109</td><td><a href="../../school/2213010/">10 СУ Теодор Траянов</a></td><td>3.96</td><td>4.53</td><td>4.24</td></tr>
-<tr><td>110</td><td><a href="../../school/2212553/">ЧСУ Петко Рачов Славейков</a></td><td>4.46</td><td>4.00</td><td>4.23</td></tr>
-<tr><td>111</td><td><a href="../../school/2212040/">40 СУ Луи Пастьор</a></td><td>4.60</td><td>3.85</td><td>4.23</td></tr>
-<tr><td>112</td><td><a href="../../school/2205408/">Софийска ПГ Княгиня Евдокия</a></td><td>3.90</td><td>4.54</td><td>4.22</td></tr>
-<tr><td>113</td><td><a href="../../school/2224121/">121 СУ Георги Измирлиев</a></td><td>4.17</td><td>4.23</td><td>4.20</td></tr>
-<tr><td>114</td><td><a href="../../school/2214101/">101 СУ Бачо Киро</a></td><td>4.03</td><td>4.37</td><td>4.20</td></tr>
-<tr><td>115</td><td><a href="../../school/2201400/">ПГ по туризъм А. Константинов</a></td><td>3.15</td><td>5.09</td><td>4.12</td></tr>
-<tr><td>116</td><td><a href="../../school/2218192/">192 СУ Христо Ботев</a></td><td>4.04</td><td>4.14</td><td>4.09</td></tr>
-<tr><td>117</td><td><a href="../../school/2219095/">95 СУ Проф. Иван Шишманов</a></td><td>4.11</td><td>3.96</td><td>4.04</td></tr>
-<tr><td>118</td><td><a href="../../school/2208413/">Софийска гимназия по хлебни/сладкарски технологии</a></td><td>3.31</td><td>4.75</td><td>4.03</td></tr>
-<tr><td>119</td><td><a href="../../school/2212090/">90 СУ Ген. Хосе де Сан Мартин</a></td><td>4.15</td><td>3.87</td><td>4.01</td></tr>
-<tr><td>120</td><td><a href="../../school/2215170/">170 СУ Васил Левски</a></td><td>3.61</td><td>4.37</td><td>3.99</td></tr>
-<tr><td>121</td><td><a href="../../school/2210117/">117 СУ Св. Св. Кирил и Методий</a></td><td>3.84</td><td>4.10</td><td>3.97</td></tr>
-<tr><td>122</td><td><a href="../../school/2214153/">153 спортно у-ще Неофит Рилски</a></td><td>3.40</td><td>4.49</td><td>3.95</td></tr>
-<tr><td>123</td><td><a href="../../school/2206409/">ПГ по транспорт и енергетика</a></td><td>3.67</td><td>4.17</td><td>3.92</td></tr>
-<tr><td>124</td><td><a href="../../school/2221430/">ПГ по транспорт Макгахан</a></td><td>3.51</td><td>4.24</td><td>3.87</td></tr>
-<tr><td>125</td><td><a href="../../school/2202401/">ПГ по екология и биотехнологии</a></td><td>4.07</td><td>3.60</td><td>3.84</td></tr>
-<tr><td>126</td><td><a href="../../school/2211557/">Софийска духовна семинария</a></td><td>4.00</td><td>3.65</td><td>3.83</td></tr>
-<tr><td>127</td><td><a href="../../school/2208057/">57 спортно у-ще Св. Наум Охридски</a></td><td>3.50</td><td>4.15</td><td>3.83</td></tr>
-<tr><td>128</td><td><a href="../../school/2218071/">71 СУ Пейо Яворов</a></td><td>3.71</td><td>3.94</td><td>3.82</td></tr>
-<tr><td>129</td><td><a href="../../school/2217151/">Национално СУ София</a></td><td>3.94</td><td>3.70</td><td>3.82</td></tr>
-<tr><td>130</td><td><a href="../../school/2217149/">149 СУ Иван Хаджийски</a></td><td>3.99</td><td>3.64</td><td>3.82</td></tr>
-<tr><td>131</td><td><a href="../../school/2216309/">IV сменно-вечерна гимназия</a></td><td>3.88</td><td>3.71</td><td>3.80</td></tr>
-<tr><td>132</td><td><a href="../../school/2203074/">74 СУ Гоце Делчев</a></td><td>3.92</td><td>3.62</td><td>3.77</td></tr>
-<tr><td>133</td><td><a href="../../school/2207068/">68 СУ Акад. Никола Обрешков</a></td><td>3.80</td><td>3.70</td><td>3.75</td></tr>
-<tr><td>134</td><td><a href="../../school/2208028/">28 СУ Алеко Константинов</a></td><td>3.77</td><td>3.71</td><td>3.74</td></tr>
-<tr><td>135</td><td><a href="../../school/2210085/">85 СУ Отец Паисий</a></td><td>3.48</td><td>3.95</td><td>3.71</td></tr>
-<tr><td>136</td><td><a href="../../school/2202026/">26 СУ Йордан Йовков</a></td><td>3.53</td><td>3.86</td><td>3.69</td></tr>
-<tr><td>137</td><td><a href="../../school/2209132/">132 СУ Ваня Войнова</a></td><td>3.78</td><td>3.55</td><td>3.66</td></tr>
-<tr><td>138</td><td><a href="../../school/2207069/">69 СУ Димитър Маринов</a></td><td>3.67</td><td>3.66</td><td>3.66</td></tr>
-<tr><td>139</td><td><a href="../../school/2217426/">ПГ по селско стопанство</a></td><td>3.66</td><td>3.65</td><td>3.66</td></tr>
-<tr><td>140</td><td><a href="../../school/2217066/">66 СУ Филип Станиславов</a></td><td>3.32</td><td>3.97</td><td>3.65</td></tr>
-<tr><td>141</td><td><a href="../../school/2202612/">Специално училище за ученици с увреден слух</a></td><td>3.33</td><td>3.94</td><td>3.64</td></tr>
-<tr><td>142</td><td><a href="../../school/2212027/">27 СУ Акад. Георги Караславов</a></td><td>3.56</td><td>3.65</td><td>3.61</td></tr>
-<tr><td>143</td><td><a href="../../school/2207412/">ПГ по транспорт</a></td><td>3.50</td><td>3.68</td><td>3.59</td></tr>
-<tr><td>144</td><td><a href="../../school/2212079/">79 СУ Индира Ганди</a></td><td>3.69</td><td>3.36</td><td>3.52</td></tr>
-<tr><td>145</td><td><a href="../../school/2216422/">ПГ по механоелектротехника</a></td><td>3.11</td><td>3.92</td><td>3.51</td></tr>
-<tr><td>146</td><td><a href="../../school/2214015/">15 СУ Адам Мицкевич</a></td><td>3.70</td><td>3.32</td><td>3.51</td></tr>
-<tr><td>147</td><td><a href="../../school/2206411/">ПГ по хранително-вкусови технологии</a></td><td>3.17</td><td>3.72</td><td>3.45</td></tr>
-<tr><td>148</td><td><a href="../../school/2204310/">5 вечерно СУ Пеньо Пенев</a></td><td>3.36</td><td>3.45</td><td>3.41</td></tr>
-<tr><td>149</td><td><a href="../../school/2204405/">ПГ по подемна, строителна и транспортна техника</a></td><td>2.83</td><td>3.80</td><td>3.32</td></tr>
-<tr><td>150</td><td><a href="../../school/2212037/">37 СУ Райна Княгиня</a></td><td>2.90</td><td>3.59</td><td>3.24</td></tr>
-<tr><td>151</td><td><a href="../../school/2208123/">123 СУ Стефан Стамболов</a></td><td>2.73</td><td>3.68</td><td>3.21</td></tr>
-<tr><td>152</td><td><a href="../../school/2219024/">24 СУ Пейо К. Яворов</a></td><td>2.39</td><td>3.38</td><td>2.88</td></tr>
-<tr><td>153</td><td><a href="../../school/2219130/">130 СУ Стефан Караджа</a></td><td>2.66</td><td>2.46</td><td>2.56</td></tr>
-<tr><td>154</td><td><a href="../../school/2221094/">94 СУ Д. Страшимиров</a></td><td>2.43</td><td>2.60</td><td>2.51</td></tr>
-<tr><td>155</td><td><a href="../../school/2206113/">113 СУ Сава Филаретов</a></td><td>2.10</td><td>2.00</td><td>2.05</td></tr>
-<tr><td>156</td><td><a href="../../school/2208017/">17 СУ Дамян Груев</a></td><td>2.00</td><td>2.00</td><td>2.00</td></tr>
-</tbody>
-</table>
-</div>
-</main>
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-content">
-        <p class="footer-minimal">&copy; Иван Давидов – НВО и ДЗИ</p>
-        <nav class="footer-links">
-          <a href="../../">Начало</a>
-          <a href="../../blog/">Блог</a>
-          <a href="../../stats/">Статистика</a>
-        </nav>
+      <div class="site-header__actions">
+        <button type="button" class="search-trigger" data-search-open aria-label="Търсене на училище или град">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <span class="search-trigger__label">Търси училище или град…</span>
+          <kbd class="kbd">/</kbd>
+        </button>
+        <button type="button" class="icon-btn theme-toggle" onclick="toggleTheme()" aria-label="Светла или тъмна тема" title="Светла или тъмна тема">
+          <span class="icon-moon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
+          <span class="icon-sun"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg></span>
+        </button>
+        <button type="button" class="icon-btn" data-menu-toggle aria-expanded="false" aria-controls="site-menu" aria-label="Още" title="Още">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
       </div>
     </div>
+    <div class="container container--wide">
+      <nav id="site-menu" class="menu-panel" aria-label="Още" hidden>
+        <div>
+          <h2>Данни</h2>
+          <ul>
+            <li><a href="../../api/v1/"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg> JSON API</a></li>
+            <li><a href="../../embed/"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m12 2 10 5-10 5L2 7l10-5z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg> Вграждане на графики</a></li>
+            <li><a class="ext" href="https://www.kaggle.com/datasets/johnddavidson/bulgarian-school-exam-results-20182025" target="_blank" rel="noopener noreferrer"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"/></svg> Kaggle: данни</a></li>
+            <li><a class="ext" href="https://www.kaggle.com/code/johnddavidson/initial-exploratory-analysis-2018-2026" target="_blank" rel="noopener noreferrer"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></svg> Kaggle: анализ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Отворени данни (МОН)</h2>
+          <ul>
+            <li><a class="ext" href="https://data.egov.bg/data/view/5613e75f-2b1b-4244-9f54-b27580a91dfb" target="_blank" rel="noopener noreferrer">НВО 4 клас</a></li>
+            <li><a class="ext" href="https://data.egov.bg/data/view/b56288b6-25aa-4049-9aa6-de2cd4cdabf8" target="_blank" rel="noopener noreferrer">НВО 7 клас</a></li>
+            <li><a class="ext" href="https://data.egov.bg/data/view/2f801b2f-d4cb-4ddb-a23d-3e372339c80f" target="_blank" rel="noopener noreferrer">НВО 10 клас</a></li>
+            <li><a class="ext" href="https://data.egov.bg/data/view/066b4b04-d81d-444e-a61c-8ca0516079e4" target="_blank" rel="noopener noreferrer">ДЗИ 12 клас</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Полезни връзки</h2>
+          <ul>
+            <li><a class="ext" href="https://e-xplore.education" target="_blank" rel="noopener noreferrer">e-xplore.education</a></li>
+            <li><a class="ext" href="https://danybon.com" target="_blank" rel="noopener noreferrer">Данибон</a></li>
+            <li><a class="ext" href="https://dideva.alle.bg" target="_blank" rel="noopener noreferrer">Дидева</a></li>
+            <li><a class="ext" href="https://sabev03.eu" target="_blank" rel="noopener noreferrer">Прием в 1 клас</a></li>
+            <li><a class="ext" href="https://izberi-gymnazia.info" target="_blank" rel="noopener noreferrer">Избери гимназия</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Проектът</h2>
+          <ul>
+            <li><a href="../../za-proekta/"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg> За проекта и методология</a></li>
+            <li><a href="../../za-proekta/#podkrepa"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg> Подкрепи проекта</a></li>
+            <li><a class="ext" href="https://www.facebook.com/groups/3423312924552271" target="_blank" rel="noopener noreferrer">Facebook група</a></li>
+            <li><a class="ext" href="https://linkedin.com/in/ivandavidov" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+
+  <main id="main" class="container page landing">
+    <nav class="breadcrumbs" aria-label="Път">
+      <ol>
+        <li><a href="../../">Начало</a></li>
+        <li><a href="../">ДЗИ след 12 клас</a></li>
+        <li><span aria-current="page">София</span></li>
+      </ol>
+    </nav>
+
+    <header class="page-head">
+      <p class="page-head__eyebrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg> ДЗИ след 12 клас · София</p>
+      <h1 class="page-head__title">София – ДЗИ 12 клас</h1>
+      <h2 class="landing__subtitle">Класация 2026 г.</h2>
+      <p class="page-head__lead">Подредбата е по средна стойност на БЕЛ и ДЗИ-2, изчислена като (БЕЛ + ДЗИ-2) / 2. Включени са само училища с налични резултати и по двата предмета.</p>
+      <div class="page-head__actions cluster">
+        <a class="btn btn--primary" href="../#sofia"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></svg> Сравни в графиката</a>
+        <a class="btn" href="../2026/"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg> Национална класация 2026</a>
+      </div>
+    </header>
+
+
+    <section class="card landing__card" aria-label="Класация">
+      <div class="card__head">
+        <div class="cluster landing__filters">
+          <div class="input-icon">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+            <input class="input" type="search" data-filter placeholder="Търси училище…" aria-label="Търси в таблицата">
+          </div>
+        </div>
+        <p class="muted text-sm" data-count>156 училища</p>
+      </div>
+      <div class="table-wrap table-wrap--tall landing__table">
+        <table class="data-table" data-sortable>
+          <thead>
+            <tr>
+              <th class="num" data-type="num" aria-sort="ascending"><button type="button" class="th-sort">#<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></button></th>
+              <th data-type="text" aria-sort="none"><button type="button" class="th-sort">Училище<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></button></th>
+              <th class="num" data-type="num" aria-sort="none"><button type="button" class="th-sort">БЕЛ<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></button></th>
+              <th class="num" data-type="num" aria-sort="none"><button type="button" class="th-sort">ДЗИ-2<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></button></th>
+              <th class="num" data-type="num" aria-sort="none"><button type="button" class="th-sort">Общо<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></button></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="num muted">1</td><td><a href="../../school/2204091/">91 немска ЕГ</a></td><td class="num">5.78</td><td class="num">5.89</td><td class="num"><strong>5.84</strong></td></tr>
+            <tr><td class="num muted">2</td><td><a href="../../school/2216306/">СМГ Паисий Хилендарски</a></td><td class="num">5.75</td><td class="num">5.78</td><td class="num"><strong>5.76</strong></td></tr>
+            <tr><td class="num muted">3</td><td><a href="../../school/2221563/">Първа Частна Математическа Гимназия</a></td><td class="num">5.67</td><td class="num">5.69</td><td class="num"><strong>5.68</strong></td></tr>
+            <tr><td class="num muted">4</td><td><a href="../../school/2213507/">Американски колеж</a></td><td class="num">5.64</td><td class="num">5.68</td><td class="num"><strong>5.66</strong></td></tr>
+            <tr><td class="num muted">5</td><td><a href="../../school/2216164/">164 ГПИЕ Мигел де Сервантес</a></td><td class="num">5.67</td><td class="num">5.59</td><td class="num"><strong>5.63</strong></td></tr>
+            <tr><td class="num muted">6</td><td><a href="../../school/2204549/">ЧСУ с немски език Веда</a></td><td class="num">5.18</td><td class="num">5.94</td><td class="num"><strong>5.56</strong></td></tr>
+            <tr><td class="num muted">7</td><td><a href="../../school/2202536/">ЧСЕУ Британика</a></td><td class="num">5.48</td><td class="num">5.59</td><td class="num"><strong>5.54</strong></td></tr>
+            <tr><td class="num muted">8</td><td><a href="../../school/2224022/">22 СЕУ Георги С. Раковски</a></td><td class="num">5.45</td><td class="num">5.58</td><td class="num"><strong>5.52</strong></td></tr>
+            <tr><td class="num muted">9</td><td><a href="../../school/2209529/">ЧЕСУ Дорис Тенеди</a></td><td class="num">5.29</td><td class="num">5.72</td><td class="num"><strong>5.51</strong></td></tr>
+            <tr><td class="num muted">10</td><td><a href="../../school/2213503/">ЧПГ Меридиан 22</a></td><td class="num">5.55</td><td class="num">5.44</td><td class="num"><strong>5.50</strong></td></tr>
+            <tr><td class="num muted">11</td><td><a href="../../school/2216301/">Първа английска ЕГ</a></td><td class="num">5.50</td><td class="num">5.47</td><td class="num"><strong>5.48</strong></td></tr>
+            <tr><td class="num muted">12</td><td><a href="../../school/2222009/">9 Френска ЕГ Алфонс дьо Ламартин</a></td><td class="num">5.51</td><td class="num">5.45</td><td class="num"><strong>5.48</strong></td></tr>
+            <tr><td class="num muted">13</td><td><a href="../../school/2211304/">НПМГ Акад. Любомир Чакалов</a></td><td class="num">5.54</td><td class="num">5.42</td><td class="num"><strong>5.48</strong></td></tr>
+            <tr><td class="num muted">14</td><td><a href="../../school/2206302/">Втора английска ЕГ</a></td><td class="num">5.45</td><td class="num">5.49</td><td class="num"><strong>5.47</strong></td></tr>
+            <tr><td class="num muted">15</td><td><a href="../../school/2224073/">73 СУ Владислав Граматик</a></td><td class="num">5.63</td><td class="num">5.30</td><td class="num"><strong>5.47</strong></td></tr>
+            <tr><td class="num muted">16</td><td><a href="../../school/2224433/">Търговско-банкова гимназия</a></td><td class="num">5.17</td><td class="num">5.76</td><td class="num"><strong>5.47</strong></td></tr>
+            <tr><td class="num muted">17</td><td><a href="../../school/2202704/">ЧСУ Евлоги и Христо Георгиеви</a></td><td class="num">5.01</td><td class="num">5.91</td><td class="num"><strong>5.46</strong></td></tr>
+            <tr><td class="num muted">18</td><td><a href="../../school/2204018/">18 СУ Уилям Гладстон</a></td><td class="num">5.31</td><td class="num">5.61</td><td class="num"><strong>5.46</strong></td></tr>
+            <tr><td class="num muted">19</td><td><a href="../../school/2222133/">133 СУ Александър Сергеевич Пушкин</a></td><td class="num">5.46</td><td class="num">5.45</td><td class="num"><strong>5.45</strong></td></tr>
+            <tr><td class="num muted">20</td><td><a href="../../school/2902702/">Национална гимназия за древни езици и култури</a></td><td class="num">5.72</td><td class="num">5.16</td><td class="num"><strong>5.44</strong></td></tr>
+            <tr><td class="num muted">21</td><td><a href="../../school/2221031/">31 СУ Иван Вазов</a></td><td class="num">5.40</td><td class="num">5.46</td><td class="num"><strong>5.43</strong></td></tr>
+            <tr><td class="num muted">22</td><td><a href="../../school/2205520/">ЧЕГ Проф. Иван Апостолов</a></td><td class="num">5.29</td><td class="num">5.51</td><td class="num"><strong>5.40</strong></td></tr>
+            <tr><td class="num muted">23</td><td><a href="../../school/2202574/">ЧСУ Свети Георги</a></td><td class="num">4.94</td><td class="num">5.70</td><td class="num"><strong>5.32</strong></td></tr>
+            <tr><td class="num muted">24</td><td><a href="../../school/2204032/">32 СУ Св. Климент Охридски</a></td><td class="num">5.37</td><td class="num">5.25</td><td class="num"><strong>5.31</strong></td></tr>
+            <tr><td class="num muted">25</td><td><a href="../../school/2303852/">ЧПГ Челопеч</a></td><td class="num">5.32</td><td class="num">5.20</td><td class="num"><strong>5.26</strong></td></tr>
+            <tr><td class="num muted">26</td><td><a href="../../school/2224432/">ПГ по дизайн Елисавета Вазова</a></td><td class="num">4.96</td><td class="num">5.56</td><td class="num"><strong>5.26</strong></td></tr>
+            <tr><td class="num muted">27</td><td><a href="../../school/2216001/">1 СУ Пенчо Славейков</a></td><td class="num">5.16</td><td class="num">5.35</td><td class="num"><strong>5.25</strong></td></tr>
+            <tr><td class="num muted">28</td><td><a href="../../school/2222127/">127 СУ Иван Николаевич Денкоглу</a></td><td class="num">5.06</td><td class="num">5.44</td><td class="num"><strong>5.25</strong></td></tr>
+            <tr><td class="num muted">29</td><td><a href="../../school/2205119/">119 СУ Акад. Михаил Арнаудов</a></td><td class="num">5.25</td><td class="num">5.25</td><td class="num"><strong>5.25</strong></td></tr>
+            <tr><td class="num muted">30</td><td><a href="../../school/2213350/">ТУЕС към Технически Университет</a></td><td class="num">5.25</td><td class="num">5.23</td><td class="num"><strong>5.24</strong></td></tr>
+            <tr><td class="num muted">31</td><td><a href="../../school/2209051/">51 СУ Елисавета Багряна</a></td><td class="num">5.14</td><td class="num">5.31</td><td class="num"><strong>5.22</strong></td></tr>
+            <tr><td class="num muted">32</td><td><a href="../../school/2221157/">157 СУ Сесар Вайехо</a></td><td class="num">4.86</td><td class="num">5.56</td><td class="num"><strong>5.21</strong></td></tr>
+            <tr><td class="num muted">33</td><td><a href="../../school/2204134/">134 СУ Димчо Дебелянов</a></td><td class="num">5.23</td><td class="num">5.17</td><td class="num"><strong>5.20</strong></td></tr>
+            <tr><td class="num muted">34</td><td><a href="../../school/2224545/">ЧПГ по банково дело търговия и финанси</a></td><td class="num">4.44</td><td class="num">5.94</td><td class="num"><strong>5.19</strong></td></tr>
+            <tr><td class="num muted">35</td><td><a href="../../school/2211517/">ЧПГ Банкер</a></td><td class="num">4.62</td><td class="num">5.76</td><td class="num"><strong>5.19</strong></td></tr>
+            <tr><td class="num muted">36</td><td><a href="../../school/2204030/">30 СУ Братя Миладинови</a></td><td class="num">5.05</td><td class="num">5.32</td><td class="num"><strong>5.19</strong></td></tr>
+            <tr><td class="num muted">37</td><td><a href="../../school/2205105/">105 СУ Атанас Далчев</a></td><td class="num">5.00</td><td class="num">5.34</td><td class="num"><strong>5.17</strong></td></tr>
+            <tr><td class="num muted">38</td><td><a href="../../school/2211035/">35 СЕУ Добри Войников</a></td><td class="num">5.45</td><td class="num">4.85</td><td class="num"><strong>5.15</strong></td></tr>
+            <tr><td class="num muted">39</td><td><a href="../../school/2222012/">12 СУ Цар Иван Асен II</a></td><td class="num">5.03</td><td class="num">5.26</td><td class="num"><strong>5.15</strong></td></tr>
+            <tr><td class="num muted">40</td><td><a href="../../school/2221138/">138 СУ Проф. Васил Златарски</a></td><td class="num">4.89</td><td class="num">5.40</td><td class="num"><strong>5.14</strong></td></tr>
+            <tr><td class="num muted">41</td><td><a href="../../school/2211420/">Финансово-стопанска гимназия</a></td><td class="num">4.99</td><td class="num">5.28</td><td class="num"><strong>5.13</strong></td></tr>
+            <tr><td class="num muted">42</td><td><a href="../../school/2205407/">ПГ по електроника Джон Атанасов</a></td><td class="num">4.97</td><td class="num">5.29</td><td class="num"><strong>5.13</strong></td></tr>
+            <tr><td class="num muted">43</td><td><a href="../../school/2223547/">ЧЕГ Проф. д-р В. Златарски</a></td><td class="num">4.91</td><td class="num">5.31</td><td class="num"><strong>5.11</strong></td></tr>
+            <tr><td class="num muted">44</td><td><a href="../../school/2216532/">ЧСУ Увекинд</a></td><td class="num">4.86</td><td class="num">5.35</td><td class="num"><strong>5.11</strong></td></tr>
+            <tr><td class="num muted">45</td><td><a href="../../school/2213600/">ЧСУ с чуждоезиков профил Абрахам Линкълн</a></td><td class="num">4.87</td><td class="num">5.31</td><td class="num"><strong>5.09</strong></td></tr>
+            <tr><td class="num muted">46</td><td><a href="../../school/2902701/">НУКК (Италиански лицей)</a></td><td class="num">5.16</td><td class="num">4.97</td><td class="num"><strong>5.06</strong></td></tr>
+            <tr><td class="num muted">47</td><td><a href="../../school/2220308/">ПГ за изобразителни изкуства</a></td><td class="num">4.74</td><td class="num">5.37</td><td class="num"><strong>5.06</strong></td></tr>
+            <tr><td class="num muted">48</td><td><a href="../../school/2211564/">ЧСОУ Българско школо</a></td><td class="num">4.88</td><td class="num">5.21</td><td class="num"><strong>5.05</strong></td></tr>
+            <tr><td class="num muted">49</td><td><a href="../../school/2222007/">7 СУ Св. Седмочисленици</a></td><td class="num">5.01</td><td class="num">5.00</td><td class="num"><strong>5.01</strong></td></tr>
+            <tr><td class="num muted">50</td><td><a href="../../school/2902501/">Гимназия за приложни изкуства Св. Лука</a></td><td class="num">4.93</td><td class="num">5.07</td><td class="num"><strong>5.00</strong></td></tr>
+            <tr><td class="num muted">51</td><td><a href="../../school/2902601/">ПГ по полиграфия и фотография</a></td><td class="num">4.69</td><td class="num">5.27</td><td class="num"><strong>4.98</strong></td></tr>
+            <tr><td class="num muted">52</td><td><a href="../../school/2902401/">Училище за изящни изкуства</a></td><td class="num">4.96</td><td class="num">4.99</td><td class="num"><strong>4.98</strong></td></tr>
+            <tr><td class="num muted">53</td><td><a href="../../school/2202002/">2 СУ Акад. Емилиян Станев</a></td><td class="num">4.91</td><td class="num">5.02</td><td class="num"><strong>4.96</strong></td></tr>
+            <tr><td class="num muted">54</td><td><a href="../../school/2219166/">166 спортно у-ще Васил Левски</a></td><td class="num">4.23</td><td class="num">5.66</td><td class="num"><strong>4.95</strong></td></tr>
+            <tr><td class="num muted">55</td><td><a href="../../school/2211021/">21 СУ Христо Ботев</a></td><td class="num">4.79</td><td class="num">5.09</td><td class="num"><strong>4.94</strong></td></tr>
+            <tr><td class="num muted">56</td><td><a href="../../school/2209019/">19 СУ Елин Пелин</a></td><td class="num">4.94</td><td class="num">4.92</td><td class="num"><strong>4.93</strong></td></tr>
+            <tr><td class="num muted">57</td><td><a href="../../school/2221590/">ЧПГ Образователни технологии</a></td><td class="num">4.69</td><td class="num">5.14</td><td class="num"><strong>4.92</strong></td></tr>
+            <tr><td class="num muted">58</td><td><a href="../../school/2221023/">23 СУ Фредерик Жолио-Кюри</a></td><td class="num">4.81</td><td class="num">5.02</td><td class="num"><strong>4.91</strong></td></tr>
+            <tr><td class="num muted">59</td><td><a href="../../school/2202535/">ЧСУ Рьорих</a></td><td class="num">4.67</td><td class="num">5.09</td><td class="num"><strong>4.88</strong></td></tr>
+            <tr><td class="num muted">60</td><td><a href="../../school/2213125/">125 СУИЧЕ Боян Пенев</a></td><td class="num">4.85</td><td class="num">4.90</td><td class="num"><strong>4.87</strong></td></tr>
+            <tr><td class="num muted">61</td><td><a href="../../school/2211419/">Гимназия по строителство, архитектура и геодезия</a></td><td class="num">5.00</td><td class="num">4.73</td><td class="num"><strong>4.87</strong></td></tr>
+            <tr><td class="num muted">62</td><td><a href="../../school/2902101/">Национално музикално училище</a></td><td class="num">4.84</td><td class="num">4.86</td><td class="num"><strong>4.85</strong></td></tr>
+            <tr><td class="num muted">63</td><td><a href="../../school/2216423/">Софийска ПГ по туризъм</a></td><td class="num">4.39</td><td class="num">5.27</td><td class="num"><strong>4.83</strong></td></tr>
+            <tr><td class="num muted">64</td><td><a href="../../school/2212303/">33 ЕГ Света София</a></td><td class="num">4.69</td><td class="num">4.94</td><td class="num"><strong>4.81</strong></td></tr>
+            <tr><td class="num muted">65</td><td><a href="../../school/2206003/">3 СУ Марин Дринов</a></td><td class="num">4.38</td><td class="num">5.22</td><td class="num"><strong>4.80</strong></td></tr>
+            <tr><td class="num muted">66</td><td><a href="../../school/2204402/">ПГ по прецизна техника и оптика</a></td><td class="num">4.70</td><td class="num">4.85</td><td class="num"><strong>4.78</strong></td></tr>
+            <tr><td class="num muted">67</td><td><a href="../../school/2223431/">ПГ по телекомуникации</a></td><td class="num">4.55</td><td class="num">4.94</td><td class="num"><strong>4.75</strong></td></tr>
+            <tr><td class="num muted">68</td><td><a href="../../school/2209036/">36 СУ Максим Горки</a></td><td class="num">4.59</td><td class="num">4.87</td><td class="num"><strong>4.73</strong></td></tr>
+            <tr><td class="num muted">69</td><td><a href="../../school/2211417/">ПГ по облекло</a></td><td class="num">4.26</td><td class="num">5.19</td><td class="num"><strong>4.73</strong></td></tr>
+            <tr><td class="num muted">70</td><td><a href="../../school/2200039/">ЧГ по прир. науки и предпр. Асен Йорданов</a></td><td class="num">4.24</td><td class="num">5.15</td><td class="num"><strong>4.69</strong></td></tr>
+            <tr><td class="num muted">71</td><td><a href="../../school/2208526/">ЧСУ Орфей</a></td><td class="num">4.86</td><td class="num">4.53</td><td class="num"><strong>4.69</strong></td></tr>
+            <tr><td class="num muted">72</td><td><a href="../../school/2202620/">ЧСУ Проф. Николай Райнов</a></td><td class="num">4.32</td><td class="num">4.99</td><td class="num"><strong>4.65</strong></td></tr>
+            <tr><td class="num muted">73</td><td><a href="../../school/2204403/">ПГ по текстилни и кожени изделия</a></td><td class="num">3.92</td><td class="num">5.33</td><td class="num"><strong>4.63</strong></td></tr>
+            <tr><td class="num muted">74</td><td><a href="../../school/2203720/">ЧСУ Дружба</a></td><td class="num">4.57</td><td class="num">4.67</td><td class="num"><strong>4.62</strong></td></tr>
+            <tr><td class="num muted">75</td><td><a href="../../school/2206410/">ПГ по високи технологии Ал. Попов</a></td><td class="num">4.16</td><td class="num">5.08</td><td class="num"><strong>4.62</strong></td></tr>
+            <tr><td class="num muted">76</td><td><a href="../../school/2208539/">ЧПГ Булпрогрес</a></td><td class="num">3.60</td><td class="num">5.62</td><td class="num"><strong>4.61</strong></td></tr>
+            <tr><td class="num muted">77</td><td><a href="../../school/2213081/">81 СУ Виктор Юго</a></td><td class="num">4.51</td><td class="num">4.71</td><td class="num"><strong>4.61</strong></td></tr>
+            <tr><td class="num muted">78</td><td><a href="../../school/2216533/">Първа частна английска гимназия</a></td><td class="num">4.50</td><td class="num">4.71</td><td class="num"><strong>4.61</strong></td></tr>
+            <tr><td class="num muted">79</td><td><a href="../../school/2208135/">135 СУ Ян Амос Коменски</a></td><td class="num">4.03</td><td class="num">5.13</td><td class="num"><strong>4.58</strong></td></tr>
+            <tr><td class="num muted">80</td><td><a href="../../school/2224544/">ЧСУ Артис</a></td><td class="num">4.49</td><td class="num">4.61</td><td class="num"><strong>4.55</strong></td></tr>
+            <tr><td class="num muted">81</td><td><a href="../../school/2221093/">93 СУ Ал. Теодоров - Балан</a></td><td class="num">4.71</td><td class="num">4.38</td><td class="num"><strong>4.55</strong></td></tr>
+            <tr><td class="num muted">82</td><td><a href="../../school/2213131/">131 СУ Климент Аркад. Тимирязев</a></td><td class="num">4.37</td><td class="num">4.69</td><td class="num"><strong>4.53</strong></td></tr>
+            <tr><td class="num muted">83</td><td><a href="../../school/2223055/">55 СУ Петко Каравелов</a></td><td class="num">4.45</td><td class="num">4.60</td><td class="num"><strong>4.52</strong></td></tr>
+            <tr><td class="num muted">84</td><td><a href="../../school/2200013/">ЧПГ по дигитални науки СофтУни Будител</a></td><td class="num">4.55</td><td class="num">4.49</td><td class="num"><strong>4.52</strong></td></tr>
+            <tr><td class="num muted">85</td><td><a href="../../school/2212096/">96 СУ Лев Николаевич Толстой</a></td><td class="num">4.50</td><td class="num">4.53</td><td class="num"><strong>4.51</strong></td></tr>
+            <tr><td class="num muted">86</td><td><a href="../../school/2214054/">54 СУ Св. Иван Рилски</a></td><td class="num">4.60</td><td class="num">4.42</td><td class="num"><strong>4.51</strong></td></tr>
+            <tr><td class="num muted">87</td><td><a href="../../school/2219044/">44 СУ Неофит Бозвели</a></td><td class="num">4.82</td><td class="num">4.20</td><td class="num"><strong>4.51</strong></td></tr>
+            <tr><td class="num muted">88</td><td><a href="../../school/2204511/">ЧПГ с чуждоезиково обучение Езиков свят</a></td><td class="num">4.22</td><td class="num">4.76</td><td class="num"><strong>4.49</strong></td></tr>
+            <tr><td class="num muted">89</td><td><a href="../../school/2224047/">47 СУ Христо Г. Данов</a></td><td class="num">4.53</td><td class="num">4.45</td><td class="num"><strong>4.49</strong></td></tr>
+            <tr><td class="num muted">90</td><td><a href="../../school/2204311/">Румънска гимназия Михай Еминеску</a></td><td class="num">4.39</td><td class="num">4.57</td><td class="num"><strong>4.48</strong></td></tr>
+            <tr><td class="num muted">91</td><td><a href="../../school/2213128/">128 СУ Алберт Айнщайн</a></td><td class="num">4.50</td><td class="num">4.43</td><td class="num"><strong>4.47</strong></td></tr>
+            <tr><td class="num muted">92</td><td><a href="../../school/2209305/">203 Профилирана ЕГ Свети Методий</a></td><td class="num">4.31</td><td class="num">4.56</td><td class="num"><strong>4.43</strong></td></tr>
+            <tr><td class="num muted">93</td><td><a href="../../school/2213307/">Спортно у-ще ген. Владимир Стойчев</a></td><td class="num">3.93</td><td class="num">4.94</td><td class="num"><strong>4.43</strong></td></tr>
+            <tr><td class="num muted">94</td><td><a href="../../school/2212097/">97 СУ Братя Миладинови</a></td><td class="num">4.24</td><td class="num">4.61</td><td class="num"><strong>4.42</strong></td></tr>
+            <tr><td class="num muted">95</td><td><a href="../../school/2217424/">ПГ по електротехника и автоматика</a></td><td class="num">4.06</td><td class="num">4.78</td><td class="num"><strong>4.42</strong></td></tr>
+            <tr><td class="num muted">96</td><td><a href="../../school/2213118/">118 СУ Акад. Людмил Стоянов</a></td><td class="num">4.46</td><td class="num">4.38</td><td class="num"><strong>4.42</strong></td></tr>
+            <tr><td class="num muted">97</td><td><a href="../../school/2213039/">39 СУ Петър Динеков</a></td><td class="num">4.49</td><td class="num">4.33</td><td class="num"><strong>4.41</strong></td></tr>
+            <tr><td class="num muted">98</td><td><a href="../../school/2212137/">137 СУ Ангел Кънчев</a></td><td class="num">4.46</td><td class="num">4.28</td><td class="num"><strong>4.37</strong></td></tr>
+            <tr><td class="num muted">99</td><td><a href="../../school/2220029/">29 СУ Кузман Шапкарев</a></td><td class="num">4.31</td><td class="num">4.42</td><td class="num"><strong>4.36</strong></td></tr>
+            <tr><td class="num muted">100</td><td><a href="../../school/2207108/">108 СУ Никола Беловеждов</a></td><td class="num">4.16</td><td class="num">4.54</td><td class="num"><strong>4.35</strong></td></tr>
+            <tr><td class="num muted">101</td><td><a href="../../school/2213144/">144 СУ Народни будители</a></td><td class="num">4.12</td><td class="num">4.53</td><td class="num"><strong>4.33</strong></td></tr>
+            <tr><td class="num muted">102</td><td><a href="../../school/2902301/">Училище за танцово изкуство</a></td><td class="num">4.21</td><td class="num">4.41</td><td class="num"><strong>4.31</strong></td></tr>
+            <tr><td class="num muted">103</td><td><a href="../../school/2203140/">140 СУ Иван Богоров</a></td><td class="num">3.53</td><td class="num">5.08</td><td class="num"><strong>4.30</strong></td></tr>
+            <tr><td class="num muted">104</td><td><a href="../../school/2212056/">56 СУ Проф. Константин Иречек</a></td><td class="num">4.21</td><td class="num">4.37</td><td class="num"><strong>4.29</strong></td></tr>
+            <tr><td class="num muted">105</td><td><a href="../../school/2202534/">ЧПСУ Свети Наум</a></td><td class="num">4.22</td><td class="num">4.33</td><td class="num"><strong>4.27</strong></td></tr>
+            <tr><td class="num muted">106</td><td><a href="../../school/2201078/">78 СУ Христо Смирненски</a></td><td class="num">4.12</td><td class="num">4.43</td><td class="num"><strong>4.27</strong></td></tr>
+            <tr><td class="num muted">107</td><td><a href="../../school/2217088/">88 СУ Димитър Попниколов</a></td><td class="num">4.28</td><td class="num">4.22</td><td class="num"><strong>4.25</strong></td></tr>
+            <tr><td class="num muted">108</td><td><a href="../../school/2220014/">14 СУ Проф. Д-р Асен Златаров</a></td><td class="num">4.23</td><td class="num">4.27</td><td class="num"><strong>4.25</strong></td></tr>
+            <tr><td class="num muted">109</td><td><a href="../../school/2213010/">10 СУ Теодор Траянов</a></td><td class="num">3.96</td><td class="num">4.53</td><td class="num"><strong>4.24</strong></td></tr>
+            <tr><td class="num muted">110</td><td><a href="../../school/2212553/">ЧСУ Петко Рачов Славейков</a></td><td class="num">4.46</td><td class="num">4.00</td><td class="num"><strong>4.23</strong></td></tr>
+            <tr><td class="num muted">111</td><td><a href="../../school/2212040/">40 СУ Луи Пастьор</a></td><td class="num">4.60</td><td class="num">3.85</td><td class="num"><strong>4.23</strong></td></tr>
+            <tr><td class="num muted">112</td><td><a href="../../school/2205408/">Софийска ПГ Княгиня Евдокия</a></td><td class="num">3.90</td><td class="num">4.54</td><td class="num"><strong>4.22</strong></td></tr>
+            <tr><td class="num muted">113</td><td><a href="../../school/2224121/">121 СУ Георги Измирлиев</a></td><td class="num">4.17</td><td class="num">4.23</td><td class="num"><strong>4.20</strong></td></tr>
+            <tr><td class="num muted">114</td><td><a href="../../school/2214101/">101 СУ Бачо Киро</a></td><td class="num">4.03</td><td class="num">4.37</td><td class="num"><strong>4.20</strong></td></tr>
+            <tr><td class="num muted">115</td><td><a href="../../school/2201400/">ПГ по туризъм А. Константинов</a></td><td class="num">3.15</td><td class="num">5.09</td><td class="num"><strong>4.12</strong></td></tr>
+            <tr><td class="num muted">116</td><td><a href="../../school/2218192/">192 СУ Христо Ботев</a></td><td class="num">4.04</td><td class="num">4.14</td><td class="num"><strong>4.09</strong></td></tr>
+            <tr><td class="num muted">117</td><td><a href="../../school/2219095/">95 СУ Проф. Иван Шишманов</a></td><td class="num">4.11</td><td class="num">3.96</td><td class="num"><strong>4.04</strong></td></tr>
+            <tr><td class="num muted">118</td><td><a href="../../school/2208413/">Софийска гимназия по хлебни/сладкарски технологии</a></td><td class="num">3.31</td><td class="num">4.75</td><td class="num"><strong>4.03</strong></td></tr>
+            <tr><td class="num muted">119</td><td><a href="../../school/2212090/">90 СУ Ген. Хосе де Сан Мартин</a></td><td class="num">4.15</td><td class="num">3.87</td><td class="num"><strong>4.01</strong></td></tr>
+            <tr><td class="num muted">120</td><td><a href="../../school/2215170/">170 СУ Васил Левски</a></td><td class="num">3.61</td><td class="num">4.37</td><td class="num"><strong>3.99</strong></td></tr>
+            <tr><td class="num muted">121</td><td><a href="../../school/2210117/">117 СУ Св. Св. Кирил и Методий</a></td><td class="num">3.84</td><td class="num">4.10</td><td class="num"><strong>3.97</strong></td></tr>
+            <tr><td class="num muted">122</td><td><a href="../../school/2214153/">153 спортно у-ще Неофит Рилски</a></td><td class="num">3.40</td><td class="num">4.49</td><td class="num"><strong>3.95</strong></td></tr>
+            <tr><td class="num muted">123</td><td><a href="../../school/2206409/">ПГ по транспорт и енергетика</a></td><td class="num">3.67</td><td class="num">4.17</td><td class="num"><strong>3.92</strong></td></tr>
+            <tr><td class="num muted">124</td><td><a href="../../school/2221430/">ПГ по транспорт Макгахан</a></td><td class="num">3.51</td><td class="num">4.24</td><td class="num"><strong>3.87</strong></td></tr>
+            <tr><td class="num muted">125</td><td><a href="../../school/2202401/">ПГ по екология и биотехнологии</a></td><td class="num">4.07</td><td class="num">3.60</td><td class="num"><strong>3.84</strong></td></tr>
+            <tr><td class="num muted">126</td><td><a href="../../school/2211557/">Софийска духовна семинария</a></td><td class="num">4.00</td><td class="num">3.65</td><td class="num"><strong>3.83</strong></td></tr>
+            <tr><td class="num muted">127</td><td><a href="../../school/2208057/">57 спортно у-ще Св. Наум Охридски</a></td><td class="num">3.50</td><td class="num">4.15</td><td class="num"><strong>3.83</strong></td></tr>
+            <tr><td class="num muted">128</td><td><a href="../../school/2218071/">71 СУ Пейо Яворов</a></td><td class="num">3.71</td><td class="num">3.94</td><td class="num"><strong>3.82</strong></td></tr>
+            <tr><td class="num muted">129</td><td><a href="../../school/2217151/">Национално СУ София</a></td><td class="num">3.94</td><td class="num">3.70</td><td class="num"><strong>3.82</strong></td></tr>
+            <tr><td class="num muted">130</td><td><a href="../../school/2217149/">149 СУ Иван Хаджийски</a></td><td class="num">3.99</td><td class="num">3.64</td><td class="num"><strong>3.82</strong></td></tr>
+            <tr><td class="num muted">131</td><td><a href="../../school/2216309/">IV сменно-вечерна гимназия</a></td><td class="num">3.88</td><td class="num">3.71</td><td class="num"><strong>3.80</strong></td></tr>
+            <tr><td class="num muted">132</td><td><a href="../../school/2203074/">74 СУ Гоце Делчев</a></td><td class="num">3.92</td><td class="num">3.62</td><td class="num"><strong>3.77</strong></td></tr>
+            <tr><td class="num muted">133</td><td><a href="../../school/2207068/">68 СУ Акад. Никола Обрешков</a></td><td class="num">3.80</td><td class="num">3.70</td><td class="num"><strong>3.75</strong></td></tr>
+            <tr><td class="num muted">134</td><td><a href="../../school/2208028/">28 СУ Алеко Константинов</a></td><td class="num">3.77</td><td class="num">3.71</td><td class="num"><strong>3.74</strong></td></tr>
+            <tr><td class="num muted">135</td><td><a href="../../school/2210085/">85 СУ Отец Паисий</a></td><td class="num">3.48</td><td class="num">3.95</td><td class="num"><strong>3.71</strong></td></tr>
+            <tr><td class="num muted">136</td><td><a href="../../school/2202026/">26 СУ Йордан Йовков</a></td><td class="num">3.53</td><td class="num">3.86</td><td class="num"><strong>3.69</strong></td></tr>
+            <tr><td class="num muted">137</td><td><a href="../../school/2209132/">132 СУ Ваня Войнова</a></td><td class="num">3.78</td><td class="num">3.55</td><td class="num"><strong>3.66</strong></td></tr>
+            <tr><td class="num muted">138</td><td><a href="../../school/2207069/">69 СУ Димитър Маринов</a></td><td class="num">3.67</td><td class="num">3.66</td><td class="num"><strong>3.66</strong></td></tr>
+            <tr><td class="num muted">139</td><td><a href="../../school/2217426/">ПГ по селско стопанство</a></td><td class="num">3.66</td><td class="num">3.65</td><td class="num"><strong>3.66</strong></td></tr>
+            <tr><td class="num muted">140</td><td><a href="../../school/2217066/">66 СУ Филип Станиславов</a></td><td class="num">3.32</td><td class="num">3.97</td><td class="num"><strong>3.65</strong></td></tr>
+            <tr><td class="num muted">141</td><td><a href="../../school/2202612/">Специално училище за ученици с увреден слух</a></td><td class="num">3.33</td><td class="num">3.94</td><td class="num"><strong>3.64</strong></td></tr>
+            <tr><td class="num muted">142</td><td><a href="../../school/2212027/">27 СУ Акад. Георги Караславов</a></td><td class="num">3.56</td><td class="num">3.65</td><td class="num"><strong>3.61</strong></td></tr>
+            <tr><td class="num muted">143</td><td><a href="../../school/2207412/">ПГ по транспорт</a></td><td class="num">3.50</td><td class="num">3.68</td><td class="num"><strong>3.59</strong></td></tr>
+            <tr><td class="num muted">144</td><td><a href="../../school/2212079/">79 СУ Индира Ганди</a></td><td class="num">3.69</td><td class="num">3.36</td><td class="num"><strong>3.52</strong></td></tr>
+            <tr><td class="num muted">145</td><td><a href="../../school/2216422/">ПГ по механоелектротехника</a></td><td class="num">3.11</td><td class="num">3.92</td><td class="num"><strong>3.51</strong></td></tr>
+            <tr><td class="num muted">146</td><td><a href="../../school/2214015/">15 СУ Адам Мицкевич</a></td><td class="num">3.70</td><td class="num">3.32</td><td class="num"><strong>3.51</strong></td></tr>
+            <tr><td class="num muted">147</td><td><a href="../../school/2206411/">ПГ по хранително-вкусови технологии</a></td><td class="num">3.17</td><td class="num">3.72</td><td class="num"><strong>3.45</strong></td></tr>
+            <tr><td class="num muted">148</td><td><a href="../../school/2204310/">5 вечерно СУ Пеньо Пенев</a></td><td class="num">3.36</td><td class="num">3.45</td><td class="num"><strong>3.41</strong></td></tr>
+            <tr><td class="num muted">149</td><td><a href="../../school/2204405/">ПГ по подемна, строителна и транспортна техника</a></td><td class="num">2.83</td><td class="num">3.80</td><td class="num"><strong>3.32</strong></td></tr>
+            <tr><td class="num muted">150</td><td><a href="../../school/2212037/">37 СУ Райна Княгиня</a></td><td class="num">2.90</td><td class="num">3.59</td><td class="num"><strong>3.24</strong></td></tr>
+            <tr><td class="num muted">151</td><td><a href="../../school/2208123/">123 СУ Стефан Стамболов</a></td><td class="num">2.73</td><td class="num">3.68</td><td class="num"><strong>3.21</strong></td></tr>
+            <tr><td class="num muted">152</td><td><a href="../../school/2219024/">24 СУ Пейо К. Яворов</a></td><td class="num">2.39</td><td class="num">3.38</td><td class="num"><strong>2.88</strong></td></tr>
+            <tr><td class="num muted">153</td><td><a href="../../school/2219130/">130 СУ Стефан Караджа</a></td><td class="num">2.66</td><td class="num">2.46</td><td class="num"><strong>2.56</strong></td></tr>
+            <tr><td class="num muted">154</td><td><a href="../../school/2221094/">94 СУ Д. Страшимиров</a></td><td class="num">2.43</td><td class="num">2.60</td><td class="num"><strong>2.51</strong></td></tr>
+            <tr><td class="num muted">155</td><td><a href="../../school/2206113/">113 СУ Сава Филаретов</a></td><td class="num">2.10</td><td class="num">2.00</td><td class="num"><strong>2.05</strong></td></tr>
+            <tr><td class="num muted">156</td><td><a href="../../school/2208017/">17 СУ Дамян Груев</a></td><td class="num">2.00</td><td class="num">2.00</td><td class="num"><strong>2.00</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container container--wide site-footer__grid">
+      <div class="site-footer__about">
+        <a class="brand" href="../../">
+          <span class="brand__mark"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/></svg></span>
+          <span>НВО <span class="brand__and">и</span> ДЗИ</span>
+        </a>
+        <p>Резултатите от НВО и ДЗИ за всички училища в България — графики, класации и статистики по отворените данни на МОН.</p>
+      </div>
+      <nav aria-label="Изпити">
+        <h2>Изпити</h2>
+        <ul>
+          <li><a href="../../4/">НВО след 4 клас</a></li>
+          <li><a href="../../7/">НВО след 7 клас</a></li>
+          <li><a href="../../10/">НВО след 10 клас</a></li>
+          <li><a href="../../12/">ДЗИ след 12 клас</a></li>
+          <li><a href="../../7/balove/">Балове след 7 клас</a></li>
+          <li><a href="../../stats/">Обобщена статистика</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Данни">
+        <h2>Данни</h2>
+        <ul>
+          <li><a href="../../api/v1/">JSON API</a></li>
+          <li><a href="../../embed/">Вграждане на графики</a></li>
+          <li><a href="https://www.kaggle.com/datasets/johnddavidson/bulgarian-school-exam-results-20182025" target="_blank" rel="noopener noreferrer">Kaggle: данни</a> · <a href="https://www.kaggle.com/code/johnddavidson/initial-exploratory-analysis-2018-2026" target="_blank" rel="noopener noreferrer">анализ</a></li>
+          <li>
+            <span>data.egov.bg:</span>
+            <span class="site-footer__inline">
+              <a href="https://data.egov.bg/data/view/5613e75f-2b1b-4244-9f54-b27580a91dfb" target="_blank" rel="noopener noreferrer" title="Отворени данни – НВО 4 клас">4</a>
+              <a href="https://data.egov.bg/data/view/b56288b6-25aa-4049-9aa6-de2cd4cdabf8" target="_blank" rel="noopener noreferrer" title="Отворени данни – НВО 7 клас">7</a>
+              <a href="https://data.egov.bg/data/view/2f801b2f-d4cb-4ddb-a23d-3e372339c80f" target="_blank" rel="noopener noreferrer" title="Отворени данни – НВО 10 клас">10</a>
+              <a href="https://data.egov.bg/data/view/066b4b04-d81d-444e-a61c-8ca0516079e4" target="_blank" rel="noopener noreferrer" title="Отворени данни – ДЗИ 12 клас">12</a>
+            </span>
+          </li>
+        </ul>
+      </nav>
+      <nav aria-label="Ресурси">
+        <h2>Ресурси</h2>
+        <ul>
+          <li><a href="../../blog/">Блог</a></li>
+          <li><a href="https://e-xplore.education" target="_blank" rel="noopener noreferrer">e-xplore.education</a></li>
+          <li><a href="https://danybon.com" target="_blank" rel="noopener noreferrer">Данибон</a></li>
+          <li><a href="https://dideva.alle.bg" target="_blank" rel="noopener noreferrer">Дидева</a></li>
+          <li><a href="https://sabev03.eu" target="_blank" rel="noopener noreferrer">Прием в 1 клас</a></li>
+          <li><a href="https://izberi-gymnazia.info" target="_blank" rel="noopener noreferrer">Избери гимназия</a></li>
+        </ul>
+      </nav>
+      <div>
+        <h2>Проектът</h2>
+        <ul>
+          <li><a href="../../za-proekta/">За проекта и методология</a></li>
+          <li><a href="https://www.facebook.com/groups/3423312924552271" target="_blank" rel="noopener noreferrer">Facebook група</a></li>
+          <li><a href="https://linkedin.com/in/ivandavidov" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+          <li>
+            <span>Подкрепи проекта:</span>
+            <div class="support">
+              <a class="btn btn--sm btn--pill" href="https://revolut.me/ivanppek" target="_blank" rel="noopener noreferrer"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg> Revolut</a>
+              <button type="button" class="btn btn--sm btn--pill copy-btn" data-copy="bc1q6fzgg277t8fex00flafx4mw7u54lvh0c9g3qaf" data-tip="Адресът е копиран" aria-label="Копирай BTC адреса">BTC <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+              <button type="button" class="btn btn--sm btn--pill copy-btn" data-copy="0x4ad101C3c9abf9899bD31845731ba7394E2Be4C8" data-tip="Адресът е копиран" aria-label="Копирай ETH адреса" title="davidov.eth">ETH <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="container container--wide site-footer__bottom">
+      <p class="joke" data-joke></p>
+      <p>&copy; Иван Давидов – НВО и ДЗИ · Данни: МОН и РУО</p>
+    </div>
   </footer>
+
 </body>
 </html>

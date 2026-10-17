@@ -6,9 +6,28 @@
   <meta name="description" content="Класация на училищата в Пловдив по БЕЛ и МАТ за НВО след 7 клас, 2026 г.">
   <meta name="author" content="Иван Давидов">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="../../css/normalize.css">
-  <link rel="stylesheet" href="../../css/custom.css">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com; font-src 'self'; frame-src 'self'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f5f7fb" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a0e16" media="(prefers-color-scheme: dark)">
   <link rel="icon" type="image/png" href="../../images/favicon-7.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../images/favicon-7.png">
+  <link rel="preload" href="../../fonts/inter/inter-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../css/site.css">
+  <script src="../../js/theme.js"></script>
+  <script type="module" src="../../js/site.js"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {'analytics_storage': 'denied', 'ad_storage': 'denied', 'wait_for_update': 500});
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-V0P6LBF76F"></script>
+  <script>
+    gtag('js', new Date());
+    gtag('config', 'G-V0P6LBF76F', {'anonymize_ip': true});
+  </script>
+
   <link rel="canonical" href="https://ivandavidov.github.io/nvo/7/plovdiv/">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://ivandavidov.github.io/nvo/7/plovdiv/">
@@ -21,117 +40,255 @@
   <meta name="twitter:title" content="Пловдив – НВО 7 клас 2026 | Иван Давидов">
   <meta name="twitter:description" content="Класация на училищата в Пловдив по БЕЛ и МАТ за НВО след 7 клас, 2026 г.">
   <meta name="twitter:image" content="https://ivandavidov.github.io/nvo/images/social-preview.png">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google-analytics.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com; font-src 'self'">
-  <meta name="referrer" content="strict-origin-when-cross-origin">
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('consent', 'default', {
-      'analytics_storage': 'denied',
-      'ad_storage': 'denied',
-      'wait_for_update': 500
-    });
-  </script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-V0P6LBF76F"></script>
-  <script>
-    gtag('js', new Date());
-    gtag('config', 'G-V0P6LBF76F', {'anonymize_ip': true});
-  </script>
-  <script src="../../js/theme.js"></script>
+  <script type="module" src="../../js/pages/landing.js"></script>
 </head>
-<body>
+<body data-grade="7">
+  <a class="skip-link" href="#main">Към съдържанието</a>
   <header class="site-header">
-    <div class="header-inner">
-      <a class="site-brand" href="../../" aria-label="Начало">
-        <svg class="site-logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-        <span class="site-name">НВО и ДЗИ</span>
+    <div class="container container--wide site-header__inner">
+      <a class="brand" href="../../" aria-label="НВО и ДЗИ – начало">
+        <span class="brand__mark"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/></svg></span>
+        <span>НВО <span class="brand__and">и</span> ДЗИ</span>
       </a>
-      <nav class="grade-tabs">
-        <a href="../../4/" class="grade-tab">4 клас</a>
-        <a href="../../7/" class="grade-tab active">7 клас</a>
-        <a href="../../10/" class="grade-tab">10 клас</a>
-        <a href="../../12/" class="grade-tab">12 клас</a>
-        <a href="../../blog/" class="grade-tab">Блог</a>
+      <nav class="site-nav" aria-label="Основна навигация">
+        <div class="exam-switch">
+          <a href="../../4/" title="НВО след 4 клас">4<span class="exam-switch__suffix"> клас</span></a>
+          <a href="../../7/" title="НВО след 7 клас" aria-current="page">7<span class="exam-switch__suffix"> клас</span></a>
+          <a href="../../10/" title="НВО след 10 клас">10<span class="exam-switch__suffix"> клас</span></a>
+          <a href="../../12/" title="ДЗИ след 12 клас">12<span class="exam-switch__suffix"> клас</span></a>
+        </div>
+        <a class="site-nav__link" href="../../7/balove/" title="Минимални и максимални балове за прием след 7 клас">Балове</a>
+        <a class="site-nav__link" href="../../stats/">Статистика</a>
+        <a class="site-nav__link" href="../../blog/">Блог</a>
       </nav>
-      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Смяна на тема">
-        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-      </button>
-    </div>
-  </header>
-<main>
-<div class="container">
-<h1>Пловдив – НВО 7 клас</h1>
-<h2>Класация 2026 г.</h2>
-<p>Подредбата е по средна стойност на БЕЛ и МАТ, изчислена като (БЕЛ + МАТ) / 2. Включени са само училища с налични резултати и по двата предмета.</p>
-<p><a href="../../7/">&#8592; Към основната страница за 7 клас</a></p>
-<table>
-<thead><tr><th>#</th><th>Училище</th><th>БЕЛ</th><th>МАТ</th><th>Общо</th></tr></thead>
-<tbody>
-<tr><td>1</td><td><a href="../../school/1690346/">МГ Акад. Кирил Попов</a></td><td>91.79</td><td>93.34</td><td>92.57</td></tr>
-<tr><td>2</td><td><a href="../../school/1690156/">СУ Патриарх Евтимий</a></td><td>79.68</td><td>71.00</td><td>75.34</td></tr>
-<tr><td>3</td><td><a href="../../school/1690445/">ОУ Райна Княгиня</a></td><td>76.15</td><td>60.99</td><td>68.57</td></tr>
-<tr><td>4</td><td><a href="../../school/1690645/">СУ Черноризец Храбър</a></td><td>74.70</td><td>58.08</td><td>66.39</td></tr>
-<tr><td>5</td><td><a href="../../school/1690152/">ОУ Княз Александър I</a></td><td>73.81</td><td>57.42</td><td>65.62</td></tr>
-<tr><td>6</td><td><a href="../../school/1600018/">ЧОУ Слънчев лъч</a></td><td>72.23</td><td>58.85</td><td>65.54</td></tr>
-<tr><td>7</td><td><a href="../../school/1690148/">ОУ Екзарх Антим I</a></td><td>72.20</td><td>57.09</td><td>64.65</td></tr>
-<tr><td>8</td><td><a href="../../school/1690547/">ОУ Яне Сандански</a></td><td>68.72</td><td>55.28</td><td>62.00</td></tr>
-<tr><td>9</td><td><a href="../../school/1690143/">ОУ Тютюнджян</a></td><td>69.15</td><td>54.33</td><td>61.74</td></tr>
-<tr><td>10</td><td><a href="../../school/1690147/">ОУ Душо Хаджидеков</a></td><td>70.36</td><td>52.85</td><td>61.61</td></tr>
-<tr><td>11</td><td><a href="../../school/1690142/">ОУ Алеко Константинов</a></td><td>67.64</td><td>54.27</td><td>60.96</td></tr>
-<tr><td>12</td><td><a href="../../school/1690149/">ОУ Кочо Честеменски</a></td><td>69.90</td><td>51.89</td><td>60.90</td></tr>
-<tr><td>13</td><td><a href="../../school/2902102/">НУМТИ Добрин Петков</a></td><td>70.07</td><td>50.24</td><td>60.16</td></tr>
-<tr><td>14</td><td><a href="../../school/1690342/">ОУ Драган Манчов</a></td><td>66.52</td><td>51.94</td><td>59.23</td></tr>
-<tr><td>15</td><td><a href="../../school/1690341/">ОУ Васил Петлешков</a></td><td>69.12</td><td>47.03</td><td>58.08</td></tr>
-<tr><td>16</td><td><a href="../../school/1690446/">СУ Никола Вапцаров</a></td><td>66.41</td><td>46.80</td><td>56.61</td></tr>
-<tr><td>17</td><td><a href="../../school/1690907/">ЧОУ Класик</a></td><td>60.17</td><td>52.45</td><td>56.31</td></tr>
-<tr><td>18</td><td><a href="../../school/1690244/">ОУ Васил Левски</a></td><td>67.03</td><td>45.33</td><td>56.18</td></tr>
-<tr><td>19</td><td><a href="../../school/1690344/">ОУ Тодор Каблешков</a></td><td>66.10</td><td>45.45</td><td>55.78</td></tr>
-<tr><td>20</td><td><a href="../../school/1690544/">ОУ Димитър Талев</a></td><td>63.88</td><td>46.15</td><td>55.02</td></tr>
-<tr><td>21</td><td><a href="../../school/1690343/">ОУ Елин Пелин</a></td><td>61.89</td><td>47.17</td><td>54.53</td></tr>
-<tr><td>22</td><td><a href="../../school/1690146/">OУ Петър Берон</a></td><td>64.77</td><td>42.15</td><td>53.46</td></tr>
-<tr><td>23</td><td><a href="../../school/1690550/">СУ Св. К. Кирил Философ</a></td><td>63.30</td><td>43.39</td><td>53.35</td></tr>
-<tr><td>24</td><td><a href="../../school/1690447/">СУ Пейо Яворов</a></td><td>63.28</td><td>42.43</td><td>52.86</td></tr>
-<tr><td>25</td><td><a href="../../school/1690644/">СУ Софроний Врачански</a></td><td>65.55</td><td>39.38</td><td>52.47</td></tr>
-<tr><td>26</td><td><a href="../../school/1690154/">СУ Паисий Хилендарски</a></td><td>62.15</td><td>42.10</td><td>52.13</td></tr>
-<tr><td>27</td><td><a href="../../school/1690643/">СУ Свети Седмочисленици</a></td><td>63.95</td><td>39.73</td><td>51.84</td></tr>
-<tr><td>28</td><td><a href="../../school/1690448/">СУ Христо Груев Данов</a></td><td>60.75</td><td>41.53</td><td>51.14</td></tr>
-<tr><td>29</td><td><a href="../../school/1690546/">ОУ Стоян Михайловски</a></td><td>60.91</td><td>40.47</td><td>50.69</td></tr>
-<tr><td>30</td><td><a href="../../school/1690901/">ЧСУ Дружба</a></td><td>62.93</td><td>36.72</td><td>49.83</td></tr>
-<tr><td>31</td><td><a href="../../school/1690150/">СУ Любен Каравелов</a></td><td>60.55</td><td>36.92</td><td>48.74</td></tr>
-<tr><td>32</td><td><a href="../../school/1690442/">ОУ Димитър Димов</a></td><td>57.79</td><td>38.31</td><td>48.05</td></tr>
-<tr><td>33</td><td><a href="../../school/1690545/">ОУ Захари Стоянов</a></td><td>56.61</td><td>38.16</td><td>47.39</td></tr>
-<tr><td>34</td><td><a href="../../school/1690642/">СУ Димитър Матевски</a></td><td>59.85</td><td>34.90</td><td>47.38</td></tr>
-<tr><td>35</td><td><a href="../../school/1690542/">СУ Братя Миладинови</a></td><td>54.18</td><td>36.07</td><td>45.13</td></tr>
-<tr><td>36</td><td><a href="../../school/1690157/">СУ Цар Симеон Велики</a></td><td>58.54</td><td>29.62</td><td>44.08</td></tr>
-<tr><td>37</td><td><a href="../../school/1690912/">ЧОУ Бъдеще</a></td><td>54.70</td><td>32.23</td><td>43.47</td></tr>
-<tr><td>38</td><td><a href="../../school/1690549/">СУ Константин Величков</a></td><td>48.30</td><td>26.69</td><td>37.50</td></tr>
-<tr><td>39</td><td><a href="../../school/1690155/">СУ Климент Охридски</a></td><td>50.48</td><td>24.38</td><td>37.43</td></tr>
-<tr><td>40</td><td><a href="../../school/1690345/">СУ Кирил и Методий</a></td><td>45.67</td><td>28.99</td><td>37.33</td></tr>
-<tr><td>41</td><td><a href="../../school/1690347/">Спортно у-ще Васил Левски</a></td><td>45.47</td><td>23.51</td><td>34.49</td></tr>
-<tr><td>42</td><td><a href="../../school/1600017/">ЧСБУ Талантите</a></td><td>42.38</td><td>26.56</td><td>34.47</td></tr>
-<tr><td>43</td><td><a href="../../school/1690248/">СУ Симон Боливар</a></td><td>21.83</td><td>8.83</td><td>15.33</td></tr>
-<tr><td>44</td><td><a href="../../school/1690144/">ОУ Гео Милев</a></td><td>12.23</td><td>12.62</td><td>12.43</td></tr>
-<tr><td>45</td><td><a href="../../school/1690443/">ОбУ Йордан Йовков</a></td><td>12.88</td><td>8.81</td><td>10.85</td></tr>
-<tr><td>46</td><td><a href="../../school/1690245/">ОУ Димчо Дебелянов</a></td><td>9.29</td><td>9.04</td><td>9.17</td></tr>
-<tr><td>47</td><td><a href="../../school/1690444/">ОУ Панайот Волов</a></td><td>7.34</td><td>8.81</td><td>8.08</td></tr>
-<tr><td>48</td><td><a href="../../school/1690247/">СУ Найден Геров</a></td><td>7.66</td><td>8.35</td><td>8.00</td></tr>
-<tr><td>49</td><td><a href="../../school/1690246/">ОбУ Пенчо Славейков</a></td><td>6.76</td><td>8.08</td><td>7.42</td></tr>
-</tbody>
-</table>
-</div>
-</main>
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-content">
-        <p class="footer-minimal">&copy; Иван Давидов – НВО и ДЗИ</p>
-        <nav class="footer-links">
-          <a href="../../">Начало</a>
-          <a href="../../blog/">Блог</a>
-          <a href="../../stats/">Статистика</a>
-        </nav>
+      <div class="site-header__actions">
+        <button type="button" class="search-trigger" data-search-open aria-label="Търсене на училище или град">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <span class="search-trigger__label">Търси училище или град…</span>
+          <kbd class="kbd">/</kbd>
+        </button>
+        <button type="button" class="icon-btn theme-toggle" onclick="toggleTheme()" aria-label="Светла или тъмна тема" title="Светла или тъмна тема">
+          <span class="icon-moon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
+          <span class="icon-sun"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg></span>
+        </button>
+        <button type="button" class="icon-btn" data-menu-toggle aria-expanded="false" aria-controls="site-menu" aria-label="Още" title="Още">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
       </div>
     </div>
+    <div class="container container--wide">
+      <nav id="site-menu" class="menu-panel" aria-label="Още" hidden>
+        <div>
+          <h2>Данни</h2>
+          <ul>
+            <li><a href="../../api/v1/"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg> JSON API</a></li>
+            <li><a href="../../embed/"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m12 2 10 5-10 5L2 7l10-5z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg> Вграждане на графики</a></li>
+            <li><a class="ext" href="https://www.kaggle.com/datasets/johnddavidson/bulgarian-school-exam-results-20182025" target="_blank" rel="noopener noreferrer"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"/></svg> Kaggle: данни</a></li>
+            <li><a class="ext" href="https://www.kaggle.com/code/johnddavidson/initial-exploratory-analysis-2018-2026" target="_blank" rel="noopener noreferrer"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></svg> Kaggle: анализ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Отворени данни (МОН)</h2>
+          <ul>
+            <li><a class="ext" href="https://data.egov.bg/data/view/5613e75f-2b1b-4244-9f54-b27580a91dfb" target="_blank" rel="noopener noreferrer">НВО 4 клас</a></li>
+            <li><a class="ext" href="https://data.egov.bg/data/view/b56288b6-25aa-4049-9aa6-de2cd4cdabf8" target="_blank" rel="noopener noreferrer">НВО 7 клас</a></li>
+            <li><a class="ext" href="https://data.egov.bg/data/view/2f801b2f-d4cb-4ddb-a23d-3e372339c80f" target="_blank" rel="noopener noreferrer">НВО 10 клас</a></li>
+            <li><a class="ext" href="https://data.egov.bg/data/view/066b4b04-d81d-444e-a61c-8ca0516079e4" target="_blank" rel="noopener noreferrer">ДЗИ 12 клас</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Полезни връзки</h2>
+          <ul>
+            <li><a class="ext" href="https://e-xplore.education" target="_blank" rel="noopener noreferrer">e-xplore.education</a></li>
+            <li><a class="ext" href="https://danybon.com" target="_blank" rel="noopener noreferrer">Данибон</a></li>
+            <li><a class="ext" href="https://dideva.alle.bg" target="_blank" rel="noopener noreferrer">Дидева</a></li>
+            <li><a class="ext" href="https://sabev03.eu" target="_blank" rel="noopener noreferrer">Прием в 1 клас</a></li>
+            <li><a class="ext" href="https://izberi-gymnazia.info" target="_blank" rel="noopener noreferrer">Избери гимназия</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Проектът</h2>
+          <ul>
+            <li><a href="../../za-proekta/"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg> За проекта и методология</a></li>
+            <li><a href="../../za-proekta/#podkrepa"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg> Подкрепи проекта</a></li>
+            <li><a class="ext" href="https://www.facebook.com/groups/3423312924552271" target="_blank" rel="noopener noreferrer">Facebook група</a></li>
+            <li><a class="ext" href="https://linkedin.com/in/ivandavidov" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+
+  <main id="main" class="container page landing">
+    <nav class="breadcrumbs" aria-label="Път">
+      <ol>
+        <li><a href="../../">Начало</a></li>
+        <li><a href="../">НВО след 7 клас</a></li>
+        <li><span aria-current="page">Пловдив</span></li>
+      </ol>
+    </nav>
+
+    <header class="page-head">
+      <p class="page-head__eyebrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg> НВО след 7 клас · Пловдив</p>
+      <h1 class="page-head__title">Пловдив – НВО 7 клас</h1>
+      <h2 class="landing__subtitle">Класация 2026 г.</h2>
+      <p class="page-head__lead">Подредбата е по средна стойност на БЕЛ и МАТ, изчислена като (БЕЛ + МАТ) / 2. Включени са само училища с налични резултати и по двата предмета.</p>
+      <div class="page-head__actions cluster">
+        <a class="btn btn--primary" href="../#plovdiv"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></svg> Сравни в графиката</a>
+        <a class="btn" href="../2026/"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg> Национална класация 2026</a>
+        <a class="btn" href="../balove/plovdiv/"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> Балове в Пловдив</a>
+      </div>
+    </header>
+
+
+    <section class="card landing__card" aria-label="Класация">
+      <div class="card__head">
+        <div class="cluster landing__filters">
+          <div class="input-icon">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+            <input class="input" type="search" data-filter placeholder="Търси училище…" aria-label="Търси в таблицата">
+          </div>
+        </div>
+        <p class="muted text-sm" data-count>49 училища</p>
+      </div>
+      <div class="table-wrap table-wrap--tall landing__table">
+        <table class="data-table" data-sortable>
+          <thead>
+            <tr>
+              <th class="num" data-type="num" aria-sort="ascending"><button type="button" class="th-sort">#<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></button></th>
+              <th data-type="text" aria-sort="none"><button type="button" class="th-sort">Училище<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></button></th>
+              <th class="num" data-type="num" aria-sort="none"><button type="button" class="th-sort">БЕЛ<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></button></th>
+              <th class="num" data-type="num" aria-sort="none"><button type="button" class="th-sort">МАТ<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></button></th>
+              <th class="num" data-type="num" aria-sort="none"><button type="button" class="th-sort">Общо<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></button></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="num muted">1</td><td><a href="../../school/1690346/">МГ Акад. Кирил Попов</a></td><td class="num">91.79</td><td class="num">93.34</td><td class="num"><strong>92.57</strong></td></tr>
+            <tr><td class="num muted">2</td><td><a href="../../school/1690156/">СУ Патриарх Евтимий</a></td><td class="num">79.68</td><td class="num">71.00</td><td class="num"><strong>75.34</strong></td></tr>
+            <tr><td class="num muted">3</td><td><a href="../../school/1690445/">ОУ Райна Княгиня</a></td><td class="num">76.15</td><td class="num">60.99</td><td class="num"><strong>68.57</strong></td></tr>
+            <tr><td class="num muted">4</td><td><a href="../../school/1690645/">СУ Черноризец Храбър</a></td><td class="num">74.70</td><td class="num">58.08</td><td class="num"><strong>66.39</strong></td></tr>
+            <tr><td class="num muted">5</td><td><a href="../../school/1690152/">ОУ Княз Александър I</a></td><td class="num">73.81</td><td class="num">57.42</td><td class="num"><strong>65.62</strong></td></tr>
+            <tr><td class="num muted">6</td><td><a href="../../school/1600018/">ЧОУ Слънчев лъч</a></td><td class="num">72.23</td><td class="num">58.85</td><td class="num"><strong>65.54</strong></td></tr>
+            <tr><td class="num muted">7</td><td><a href="../../school/1690148/">ОУ Екзарх Антим I</a></td><td class="num">72.20</td><td class="num">57.09</td><td class="num"><strong>64.65</strong></td></tr>
+            <tr><td class="num muted">8</td><td><a href="../../school/1690547/">ОУ Яне Сандански</a></td><td class="num">68.72</td><td class="num">55.28</td><td class="num"><strong>62.00</strong></td></tr>
+            <tr><td class="num muted">9</td><td><a href="../../school/1690143/">ОУ Тютюнджян</a></td><td class="num">69.15</td><td class="num">54.33</td><td class="num"><strong>61.74</strong></td></tr>
+            <tr><td class="num muted">10</td><td><a href="../../school/1690147/">ОУ Душо Хаджидеков</a></td><td class="num">70.36</td><td class="num">52.85</td><td class="num"><strong>61.61</strong></td></tr>
+            <tr><td class="num muted">11</td><td><a href="../../school/1690142/">ОУ Алеко Константинов</a></td><td class="num">67.64</td><td class="num">54.27</td><td class="num"><strong>60.96</strong></td></tr>
+            <tr><td class="num muted">12</td><td><a href="../../school/1690149/">ОУ Кочо Честеменски</a></td><td class="num">69.90</td><td class="num">51.89</td><td class="num"><strong>60.90</strong></td></tr>
+            <tr><td class="num muted">13</td><td><a href="../../school/2902102/">НУМТИ Добрин Петков</a></td><td class="num">70.07</td><td class="num">50.24</td><td class="num"><strong>60.16</strong></td></tr>
+            <tr><td class="num muted">14</td><td><a href="../../school/1690342/">ОУ Драган Манчов</a></td><td class="num">66.52</td><td class="num">51.94</td><td class="num"><strong>59.23</strong></td></tr>
+            <tr><td class="num muted">15</td><td><a href="../../school/1690341/">ОУ Васил Петлешков</a></td><td class="num">69.12</td><td class="num">47.03</td><td class="num"><strong>58.08</strong></td></tr>
+            <tr><td class="num muted">16</td><td><a href="../../school/1690446/">СУ Никола Вапцаров</a></td><td class="num">66.41</td><td class="num">46.80</td><td class="num"><strong>56.61</strong></td></tr>
+            <tr><td class="num muted">17</td><td><a href="../../school/1690907/">ЧОУ Класик</a></td><td class="num">60.17</td><td class="num">52.45</td><td class="num"><strong>56.31</strong></td></tr>
+            <tr><td class="num muted">18</td><td><a href="../../school/1690244/">ОУ Васил Левски</a></td><td class="num">67.03</td><td class="num">45.33</td><td class="num"><strong>56.18</strong></td></tr>
+            <tr><td class="num muted">19</td><td><a href="../../school/1690344/">ОУ Тодор Каблешков</a></td><td class="num">66.10</td><td class="num">45.45</td><td class="num"><strong>55.78</strong></td></tr>
+            <tr><td class="num muted">20</td><td><a href="../../school/1690544/">ОУ Димитър Талев</a></td><td class="num">63.88</td><td class="num">46.15</td><td class="num"><strong>55.02</strong></td></tr>
+            <tr><td class="num muted">21</td><td><a href="../../school/1690343/">ОУ Елин Пелин</a></td><td class="num">61.89</td><td class="num">47.17</td><td class="num"><strong>54.53</strong></td></tr>
+            <tr><td class="num muted">22</td><td><a href="../../school/1690146/">OУ Петър Берон</a></td><td class="num">64.77</td><td class="num">42.15</td><td class="num"><strong>53.46</strong></td></tr>
+            <tr><td class="num muted">23</td><td><a href="../../school/1690550/">СУ Св. К. Кирил Философ</a></td><td class="num">63.30</td><td class="num">43.39</td><td class="num"><strong>53.35</strong></td></tr>
+            <tr><td class="num muted">24</td><td><a href="../../school/1690447/">СУ Пейо Яворов</a></td><td class="num">63.28</td><td class="num">42.43</td><td class="num"><strong>52.86</strong></td></tr>
+            <tr><td class="num muted">25</td><td><a href="../../school/1690644/">СУ Софроний Врачански</a></td><td class="num">65.55</td><td class="num">39.38</td><td class="num"><strong>52.47</strong></td></tr>
+            <tr><td class="num muted">26</td><td><a href="../../school/1690154/">СУ Паисий Хилендарски</a></td><td class="num">62.15</td><td class="num">42.10</td><td class="num"><strong>52.13</strong></td></tr>
+            <tr><td class="num muted">27</td><td><a href="../../school/1690643/">СУ Свети Седмочисленици</a></td><td class="num">63.95</td><td class="num">39.73</td><td class="num"><strong>51.84</strong></td></tr>
+            <tr><td class="num muted">28</td><td><a href="../../school/1690448/">СУ Христо Груев Данов</a></td><td class="num">60.75</td><td class="num">41.53</td><td class="num"><strong>51.14</strong></td></tr>
+            <tr><td class="num muted">29</td><td><a href="../../school/1690546/">ОУ Стоян Михайловски</a></td><td class="num">60.91</td><td class="num">40.47</td><td class="num"><strong>50.69</strong></td></tr>
+            <tr><td class="num muted">30</td><td><a href="../../school/1690901/">ЧСУ Дружба</a></td><td class="num">62.93</td><td class="num">36.72</td><td class="num"><strong>49.83</strong></td></tr>
+            <tr><td class="num muted">31</td><td><a href="../../school/1690150/">СУ Любен Каравелов</a></td><td class="num">60.55</td><td class="num">36.92</td><td class="num"><strong>48.74</strong></td></tr>
+            <tr><td class="num muted">32</td><td><a href="../../school/1690442/">ОУ Димитър Димов</a></td><td class="num">57.79</td><td class="num">38.31</td><td class="num"><strong>48.05</strong></td></tr>
+            <tr><td class="num muted">33</td><td><a href="../../school/1690545/">ОУ Захари Стоянов</a></td><td class="num">56.61</td><td class="num">38.16</td><td class="num"><strong>47.39</strong></td></tr>
+            <tr><td class="num muted">34</td><td><a href="../../school/1690642/">СУ Димитър Матевски</a></td><td class="num">59.85</td><td class="num">34.90</td><td class="num"><strong>47.38</strong></td></tr>
+            <tr><td class="num muted">35</td><td><a href="../../school/1690542/">СУ Братя Миладинови</a></td><td class="num">54.18</td><td class="num">36.07</td><td class="num"><strong>45.13</strong></td></tr>
+            <tr><td class="num muted">36</td><td><a href="../../school/1690157/">СУ Цар Симеон Велики</a></td><td class="num">58.54</td><td class="num">29.62</td><td class="num"><strong>44.08</strong></td></tr>
+            <tr><td class="num muted">37</td><td><a href="../../school/1690912/">ЧОУ Бъдеще</a></td><td class="num">54.70</td><td class="num">32.23</td><td class="num"><strong>43.47</strong></td></tr>
+            <tr><td class="num muted">38</td><td><a href="../../school/1690549/">СУ Константин Величков</a></td><td class="num">48.30</td><td class="num">26.69</td><td class="num"><strong>37.50</strong></td></tr>
+            <tr><td class="num muted">39</td><td><a href="../../school/1690155/">СУ Климент Охридски</a></td><td class="num">50.48</td><td class="num">24.38</td><td class="num"><strong>37.43</strong></td></tr>
+            <tr><td class="num muted">40</td><td><a href="../../school/1690345/">СУ Кирил и Методий</a></td><td class="num">45.67</td><td class="num">28.99</td><td class="num"><strong>37.33</strong></td></tr>
+            <tr><td class="num muted">41</td><td><a href="../../school/1690347/">Спортно у-ще Васил Левски</a></td><td class="num">45.47</td><td class="num">23.51</td><td class="num"><strong>34.49</strong></td></tr>
+            <tr><td class="num muted">42</td><td><a href="../../school/1600017/">ЧСБУ Талантите</a></td><td class="num">42.38</td><td class="num">26.56</td><td class="num"><strong>34.47</strong></td></tr>
+            <tr><td class="num muted">43</td><td><a href="../../school/1690248/">СУ Симон Боливар</a></td><td class="num">21.83</td><td class="num">8.83</td><td class="num"><strong>15.33</strong></td></tr>
+            <tr><td class="num muted">44</td><td><a href="../../school/1690144/">ОУ Гео Милев</a></td><td class="num">12.23</td><td class="num">12.62</td><td class="num"><strong>12.43</strong></td></tr>
+            <tr><td class="num muted">45</td><td><a href="../../school/1690443/">ОбУ Йордан Йовков</a></td><td class="num">12.88</td><td class="num">8.81</td><td class="num"><strong>10.85</strong></td></tr>
+            <tr><td class="num muted">46</td><td><a href="../../school/1690245/">ОУ Димчо Дебелянов</a></td><td class="num">9.29</td><td class="num">9.04</td><td class="num"><strong>9.17</strong></td></tr>
+            <tr><td class="num muted">47</td><td><a href="../../school/1690444/">ОУ Панайот Волов</a></td><td class="num">7.34</td><td class="num">8.81</td><td class="num"><strong>8.08</strong></td></tr>
+            <tr><td class="num muted">48</td><td><a href="../../school/1690247/">СУ Найден Геров</a></td><td class="num">7.66</td><td class="num">8.35</td><td class="num"><strong>8.00</strong></td></tr>
+            <tr><td class="num muted">49</td><td><a href="../../school/1690246/">ОбУ Пенчо Славейков</a></td><td class="num">6.76</td><td class="num">8.08</td><td class="num"><strong>7.42</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container container--wide site-footer__grid">
+      <div class="site-footer__about">
+        <a class="brand" href="../../">
+          <span class="brand__mark"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/></svg></span>
+          <span>НВО <span class="brand__and">и</span> ДЗИ</span>
+        </a>
+        <p>Резултатите от НВО и ДЗИ за всички училища в България — графики, класации и статистики по отворените данни на МОН.</p>
+      </div>
+      <nav aria-label="Изпити">
+        <h2>Изпити</h2>
+        <ul>
+          <li><a href="../../4/">НВО след 4 клас</a></li>
+          <li><a href="../../7/">НВО след 7 клас</a></li>
+          <li><a href="../../10/">НВО след 10 клас</a></li>
+          <li><a href="../../12/">ДЗИ след 12 клас</a></li>
+          <li><a href="../../7/balove/">Балове след 7 клас</a></li>
+          <li><a href="../../stats/">Обобщена статистика</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Данни">
+        <h2>Данни</h2>
+        <ul>
+          <li><a href="../../api/v1/">JSON API</a></li>
+          <li><a href="../../embed/">Вграждане на графики</a></li>
+          <li><a href="https://www.kaggle.com/datasets/johnddavidson/bulgarian-school-exam-results-20182025" target="_blank" rel="noopener noreferrer">Kaggle: данни</a> · <a href="https://www.kaggle.com/code/johnddavidson/initial-exploratory-analysis-2018-2026" target="_blank" rel="noopener noreferrer">анализ</a></li>
+          <li>
+            <span>data.egov.bg:</span>
+            <span class="site-footer__inline">
+              <a href="https://data.egov.bg/data/view/5613e75f-2b1b-4244-9f54-b27580a91dfb" target="_blank" rel="noopener noreferrer" title="Отворени данни – НВО 4 клас">4</a>
+              <a href="https://data.egov.bg/data/view/b56288b6-25aa-4049-9aa6-de2cd4cdabf8" target="_blank" rel="noopener noreferrer" title="Отворени данни – НВО 7 клас">7</a>
+              <a href="https://data.egov.bg/data/view/2f801b2f-d4cb-4ddb-a23d-3e372339c80f" target="_blank" rel="noopener noreferrer" title="Отворени данни – НВО 10 клас">10</a>
+              <a href="https://data.egov.bg/data/view/066b4b04-d81d-444e-a61c-8ca0516079e4" target="_blank" rel="noopener noreferrer" title="Отворени данни – ДЗИ 12 клас">12</a>
+            </span>
+          </li>
+        </ul>
+      </nav>
+      <nav aria-label="Ресурси">
+        <h2>Ресурси</h2>
+        <ul>
+          <li><a href="../../blog/">Блог</a></li>
+          <li><a href="https://e-xplore.education" target="_blank" rel="noopener noreferrer">e-xplore.education</a></li>
+          <li><a href="https://danybon.com" target="_blank" rel="noopener noreferrer">Данибон</a></li>
+          <li><a href="https://dideva.alle.bg" target="_blank" rel="noopener noreferrer">Дидева</a></li>
+          <li><a href="https://sabev03.eu" target="_blank" rel="noopener noreferrer">Прием в 1 клас</a></li>
+          <li><a href="https://izberi-gymnazia.info" target="_blank" rel="noopener noreferrer">Избери гимназия</a></li>
+        </ul>
+      </nav>
+      <div>
+        <h2>Проектът</h2>
+        <ul>
+          <li><a href="../../za-proekta/">За проекта и методология</a></li>
+          <li><a href="https://www.facebook.com/groups/3423312924552271" target="_blank" rel="noopener noreferrer">Facebook група</a></li>
+          <li><a href="https://linkedin.com/in/ivandavidov" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+          <li>
+            <span>Подкрепи проекта:</span>
+            <div class="support">
+              <a class="btn btn--sm btn--pill" href="https://revolut.me/ivanppek" target="_blank" rel="noopener noreferrer"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg> Revolut</a>
+              <button type="button" class="btn btn--sm btn--pill copy-btn" data-copy="bc1q6fzgg277t8fex00flafx4mw7u54lvh0c9g3qaf" data-tip="Адресът е копиран" aria-label="Копирай BTC адреса">BTC <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+              <button type="button" class="btn btn--sm btn--pill copy-btn" data-copy="0x4ad101C3c9abf9899bD31845731ba7394E2Be4C8" data-tip="Адресът е копиран" aria-label="Копирай ETH адреса" title="davidov.eth">ETH <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="container container--wide site-footer__bottom">
+      <p class="joke" data-joke></p>
+      <p>&copy; Иван Давидов – НВО и ДЗИ · Данни: МОН и РУО</p>
+    </div>
   </footer>
+
 </body>
 </html>
