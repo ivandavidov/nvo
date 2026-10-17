@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8">
+  <title>{{title}} – Вградени графики | Иван Давидов</title>
+  <meta name="author" content="Иван Давидов">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; font-src 'self'">
+  <link rel="icon" type="image/png" href="../images/favicon-{{grade}}.png">
+  <link rel="stylesheet" href="../css/site.css">
+  <script src="../js/theme.js"></script>
+  <script src="../js/highcharts.js" defer></script>
+  <script type="module" src="../js/pages/embed.js"></script>
+</head>
+<body data-grade="{{grade}}" class="embed">
+  <main class="embed__charts" id="charts">
+    <figure class="embed__frame" data-subject="b">
+      <figcaption class="chart-title">{{chartBTitle}}</figcaption>
+      <div class="chart" id="chart-b"></div>
+    </figure>
+    <figure class="embed__frame" data-subject="m">
+      <figcaption class="chart-title">{{chartMTitle}}</figcaption>
+      <div class="chart" id="chart-m"></div>
+    </figure>
+  </main>
+  <footer class="embed__footer" id="embed-footer">
+    <a href="{{siteUrl}}{{grade}}/" target="_blank" rel="noopener noreferrer">НВО и ДЗИ – Иван Давидов</a>
+  </footer>
+</body>
+</html>

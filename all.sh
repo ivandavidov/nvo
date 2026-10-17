@@ -28,6 +28,8 @@ java -cp nvo-v2.jar nvo.api.JsonGenerator 10
 java -cp nvo-v2.jar nvo.api.JsonGenerator 12
 # Per-school pages read the schools/{code}.json produced by the 'schools' step above.
 java -cp nvo-v2.jar nvo.api.JsonGenerator school-pages
+# Grade pages (/4/, /7/, /10/, /12/ + embed.html) from data/grade-*.json and the city/year pages above.
+java -cp nvo-v2.jar nvo.site.GradePageGenerator
 # Site-internal search index (reads api/v1/schools-index.json + cities.json) and the shared
 # header/footer/head blocks in hand-written pages (between <!-- nv:* --> markers).
 java -cp nvo-v2.jar nvo.site.SearchIndexGenerator

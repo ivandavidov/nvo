@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8">
+  <title>{{title}} – класации, графики и статистики | Иван Давидов</title>
+  <meta name="description" content="Класации, графики и статистики за {{title}} в България от Иван Давидов. Сравнете градове, училища и успехи по {{subjectsLong}} за последните години.">
+  <meta name="author" content="Иван Давидов">
+{{{head}}}
+  <link rel="canonical" href="{{siteUrl}}{{grade}}/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{siteUrl}}{{grade}}/">
+  <meta property="og:title" content="{{title}} – класации, графики и статистики | Иван Давидов">
+  <meta property="og:description" content="Класации, графики и статистики за {{title}} от Иван Давидов. Сравнете училищата по {{subjectsLong}}.">
+  <meta property="og:image" content="{{siteUrl}}images/social-preview.png">
+  <meta property="og:locale" content="bg_BG">
+  <meta property="og:site_name" content="НВО и ДЗИ – Иван Давидов">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{title}} – класации, графики и статистики | Иван Давидов">
+  <meta name="twitter:description" content="Класации, графики и статистики за {{title}} от Иван Давидов. Сравнете училищата по {{subjectsLong}}.">
+  <meta name="twitter:image" content="{{siteUrl}}images/social-preview.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "name": "НВО и ДЗИ – Иван Давидов",
+        "url": "{{siteUrl}}",
+        "author": { "@id": "#author" },
+        "inLanguage": "bg"
+      },
+      {
+        "@type": "Person",
+        "@id": "#author",
+        "name": "Иван Давидов",
+        "url": "https://www.linkedin.com/in/ivandavidov"
+      },
+      {
+        "@type": "Dataset",
+        "name": "Резултати от {{title}} в България",
+        "description": "Класации, графики и статистики за резултатите от {{examLong}} след {{grade}} клас по {{subjectsLong}} за всички училища в България.",
+        "url": "{{siteUrl}}{{grade}}/",
+        "creator": { "@id": "#author" },
+        "provider": { "@id": "#author" },
+        "license": "https://opensource.org/licenses/MIT",
+        "inLanguage": "bg",
+        "spatialCoverage": "България",
+        "temporalCoverage": "{{coverageFrom}}/{{latestYear}}",
+        "distribution": {
+          "@type": "DataDownload",
+          "encodingFormat": "application/json",
+          "contentUrl": "{{siteUrl}}api/v1/{{grade}}/data.json"
+        }
+      }
+    ]
+  }
+  </script>
+  <script src="../js/highcharts.js" defer></script>
+  <script type="module" src="../js/pages/grade.js"></script>
+</head>
+<body data-grade="{{grade}}">
+{{{header}}}
+
+  <main id="main" class="grade-page">
+    <div class="container container--wide" id="history-slot"></div>
+
+    <section class="container container--wide grade-hero">
+      <div class="grade-hero__text">
+        <p class="page-head__eyebrow">{{examLong}} · {{coverageFrom}}–{{latestYear}}</p>
+        <h1 class="page-head__title">{{title}}</h1>
+        <p class="page-head__lead">Сравни училищата по резултатите от {{subjectsLong}}, разгледай класацията на всеки град и средните резултати по години.</p>
+      </div>
+      <div class="grade-hero__side">
+        <label class="field" for="year-select">
+          <span class="field__label">{{#icon}}history{{/icon}} Данни към година</span>
+          <select class="select" id="year-select">
+            <option value="">{{latestYear}} — актуални данни</option>
+{{#historyYears}}
+            <option value="{{.}}">{{.}} — исторически изглед</option>
+{{/historyYears}}
+          </select>
+        </label>
+      </div>
+      <nav class="grade-hero__links" aria-label="Бързи връзки">
+        <a class="chip" href="{{latestYear}}/" data-national>{{#icon}}trophy{{/icon}} Национална класация <span data-national-year>{{latestYear}}</span></a>
+{{#hasBalove}}
+        <a class="chip" href="balove/">{{#icon}}target{{/icon}} Балове по паралелки</a>
+{{/hasBalove}}
+        <a class="chip" href="../stats/?grade={{grade}}">{{#icon}}pie{{/icon}} Статистика</a>
+        <button class="chip" type="button" data-action="csv-all">{{#icon}}download{{/icon}} CSV — всички градове</button>
+        <a class="chip" href="../api/v1/{{grade}}/data.json">{{#icon}}code{{/icon}} JSON</a>
+        <details class="year-links">
+          <summary class="chip">{{#icon}}calendar{{/icon}} Класации по години</summary>
+          <div class="year-links__panel">
+{{#rankingYears}}
+            <a href="{{.}}/">{{.}}</a>
+{{/rankingYears}}
+          </div>
+        </details>
+      </nav>
+    </section>
+
+    <section class="container container--wide section" id="compare" aria-labelledby="compare-title">
+      <div class="card compare">
+        <div class="card__head">
+          <div>
+            <h2 class="card__title" id="compare-title">Сравнение на училища</h2>
+            <p class="muted text-sm">Резултати по години — {{subjectB}} и {{subjectM}} ({{scale}})</p>
+          </div>
+          <div class="cluster compare__actions">
+            <button class="btn btn--sm btn--ghost" type="button" data-action="share" title="Копирай връзка към този избор">{{#icon}}link{{/icon}}<span class="btn__label">Сподели</span></button>
+            <button class="btn btn--sm btn--ghost" type="button" data-action="embed" title="Код за вграждане на графиката">{{#icon}}code{{/icon}}<span class="btn__label">Вгради</span></button>
+            <button class="btn btn--sm btn--ghost" type="button" data-action="clear" title="Махни всички училища от графиката">{{#icon}}trash{{/icon}}<span class="btn__label">Изчисти</span></button>
+          </div>
+        </div>
+        <div class="card__body">
+          <div class="compare__picker">
+            <div class="combo compare__add">
+              <div class="input-icon">
+                {{#icon}}plus{{/icon}}
+                <input class="input" id="school-add" type="text" placeholder="Добави училище — име или град…" aria-label="Добави училище в графиката">
+              </div>
+            </div>
+            <ul class="compare__chips" id="selected-chips" role="list" aria-label="Избрани училища"></ul>
+          </div>
+          <div class="seg compare__subject" id="subject-seg" role="group" aria-label="Предмет">
+            <button type="button" data-subject="b" aria-pressed="true">{{subjectB}}</button>
+            <button type="button" data-subject="m" aria-pressed="false">{{subjectM}}</button>
+          </div>
+          <div class="compare__charts" id="charts" data-show="b">
+            <figure class="chart-frame" data-subject="b">
+              <figcaption class="chart-title">{{subjectBLong}}</figcaption>
+              <div class="chart" id="chart-b"><div class="skeleton chart-skeleton"></div></div>
+            </figure>
+            <figure class="chart-frame" data-subject="m">
+              <figcaption class="chart-title">{{subjectMLong}}</figcaption>
+              <div class="chart" id="chart-m"><div class="skeleton chart-skeleton"></div></div>
+            </figure>
+          </div>
+          <div class="empty" id="compare-empty" hidden>
+            <div class="empty__icon">{{#icon}}chart{{/icon}}</div>
+            <p class="empty__title">Изберете поне едно училище</p>
+            <p>Добавете училище от полето по-горе или от класацията на града по-долу.</p>
+            <button class="btn btn--soft" type="button" data-action="suggest">{{#icon}}plus{{/icon}} Добави водещите училища в града</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container container--wide section" id="cities-section" aria-labelledby="cities-title">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title" id="cities-title">Класации по градове</h2>
+          <p class="section-lead">Избери град, за да видиш класацията на училищата и средните резултати по години.</p>
+        </div>
+        <div class="input-icon city-filter">
+          {{#icon}}search{{/icon}}
+          <input class="input" id="city-filter" type="search" placeholder="Намери град…" aria-label="Намери град">
+        </div>
+      </div>
+      <nav class="city-switch" id="city-switch" aria-label="Градове">
+        <div class="city-switch__group">
+          <span class="city-switch__label">Областни градове</span>
+          <div class="cluster">
+{{#tier1}}
+            <a class="chip city-chip city-chip--big" href="{{slug}}/" data-city="{{slug}}" title="{{name}}">{{label}}</a>
+{{/tier1}}
+{{#tier2}}
+            <a class="chip city-chip" href="{{slug}}/" data-city="{{slug}}" title="{{name}}">{{label}}</a>
+{{/tier2}}
+          </div>
+        </div>
+        <details class="city-switch__more" id="other-cities">
+          <summary>Други градове <span class="badge">{{tier3Count}}</span></summary>
+          <div class="city-switch__group">
+            <div class="cluster">
+{{#tier3}}
+              <a class="chip city-chip" href="{{slug}}/" data-city="{{slug}}" title="{{name}}">{{label}}</a>
+{{/tier3}}
+            </div>
+          </div>
+        </details>
+      </nav>
+      <div class="card city-panel" id="city-panel" aria-live="polite">
+        <div class="card__body"><div class="skeleton" style="height:320px"></div></div>
+      </div>
+      <noscript>
+        <p class="banner banner--info mt-4">За графиките и интерактивните класации е нужен JavaScript. Класациите по градове са достъпни и като отделни страници — избери град по-горе.</p>
+      </noscript>
+    </section>
+  </main>
+
+{{{footer}}}
+
+  <div class="tray" id="tray" hidden>
+    <span data-count></span>
+    <button class="btn btn--sm btn--primary" type="button" data-action="to-chart">{{#icon}}chevron-up{{/icon}} Виж</button>
+  </div>
+</body>
+</html>

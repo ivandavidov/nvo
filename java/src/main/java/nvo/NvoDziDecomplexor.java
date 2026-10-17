@@ -1,12 +1,17 @@
 package nvo;
 
+import com.google.gson.GsonBuilder;
+
 import java.io.File;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +31,10 @@ public class NvoDziDecomplexor {
     private static int numYears = 0;
 
     private static String grade = null;
+
+    /** Същите данни като schools-{grade}.js, но като JSON за новия фронтенд (docs/data/grade-{grade}.json). */
+    private final List<Object> jsonSchools = new ArrayList<>();
+    private final Map<String, Object> jsonCities = new LinkedHashMap<>();
 
     public static void main(String... args) throws Exception {
         if(args.length == 0) {
@@ -177,9 +186,11 @@ public class NvoDziDecomplexor {
         Files.writeString(of, header + "\n\n", StandardOpenOption.TRUNCATE_EXISTING);
         Files.writeString(of, "let si = [];\nlet s = [];\n\n", StandardOpenOption.APPEND);
 
+        jsonSchools.add(null); // индексите започват от 1, както в schools-{grade}.js
         for(Cities.City city : Cities.ORDERED) {
             printSchoolsByType(schools, city);
         }
+        writeJson(mode);
 
 //        printSchoolsByNVOResult(schools);
 
@@ -313,6 +324,17 @@ public class NvoDziDecomplexor {
                     .replace("__city_ruo__", "" + hasRuo);
         }
 
+        Map<String, Object> jsonCity = new LinkedHashMap<>();
+        jsonCity.put("n", List.of(index, index + nationalSchoolsSet.size() - 1));
+        jsonCity.put("p", privateSchoolsSet.isEmpty() ? null
+                : List.of(index + nationalSchoolsSet.size(), index + nationalSchoolsSet.size() + privateSchoolsSet.size() - 1));
+        jsonCity.put("l", cityMeta.shortName());
+        jsonCity.put("h", cityMeta.hrefName());
+        jsonCity.put("o", cityMeta.orderPosition());
+        jsonCity.put("i", cityMeta.i());
+        jsonCity.put("r", hasRuo);
+        jsonCities.put(city, jsonCity);
+
         StringBuilder sb = new StringBuilder();
         if(!COMPRESSED) {
             sb.append("// ").append(city).append(" - индексация").append("\n");
@@ -324,6 +346,7 @@ public class NvoDziDecomplexor {
 
         //int index = start;
         for (School school : nationalSchoolsSet) {
+            addJsonSchool(school);
             String line = getLine(templateSchool, index, school);
             sb.append(line);
             ++index;
@@ -334,6 +357,7 @@ public class NvoDziDecomplexor {
         }
 
         for (School school : privateSchoolsSet) {
+            addJsonSchool(school);
             String line = getLine(templateSchool, index, school);
             sb.append(line);
             ++index;
@@ -346,6 +370,40 @@ public class NvoDziDecomplexor {
             System.out.print(sb.toString());
             Files.writeString(of, sb.toString(), StandardOpenOption.APPEND);
         }
+    }
+
+    private void writeJson(String mode) throws Exception {
+        Map<String, Object> root = new LinkedHashMap<>();
+        root.put("grade", Integer.parseInt(mode));
+        root.put("firstYear", 2018);
+        root.put("si", jsonCities);
+        root.put("s", jsonSchools);
+        Path target = Path.of(ProjectConfig.DOCS_DIR, "data", "grade-" + mode + ".json");
+        Files.createDirectories(target.getParent());
+        Files.writeString(target, new GsonBuilder().serializeNulls().disableHtmlEscaping().create().toJson(root), StandardCharsets.UTF_8);
+    }
+
+    private void addJsonSchool(School school) {
+        List<Double> b = new ArrayList<>();
+        List<Double> m = new ArrayList<>();
+        List<Integer> bu = new ArrayList<>();
+        List<Integer> mu = new ArrayList<>();
+        for(int i = 0; i < numYears; i++) {
+            b.add(school.getBelScore().get(i) > 0 ? school.getBelScore().get(i) : null);
+            m.add(school.getMatScore().get(i) > 0 ? school.getMatScore().get(i) : null);
+            bu.add(school.getBelStudents().get(i) > 0 ? school.getBelStudents().get(i) : null);
+            mu.add(school.getMatStudents().get(i) > 0 ? school.getMatStudents().get(i) : null);
+        }
+        Map<String, Object> o = new LinkedHashMap<>();
+        o.put("l", school.getLabel());
+        o.put("n", school.getName());
+        o.put("b", b);
+        o.put("m", m);
+        o.put("bu", bu);
+        o.put("mu", mu);
+        o.put("w", school.getWebsite());
+        o.put("c", school.getCode());
+        jsonSchools.add(o);
     }
 
     private String getLine(String templateSchool, int index, School school) {
