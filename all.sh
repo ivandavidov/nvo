@@ -15,6 +15,8 @@ for ruo_city in plovdiv asenovgrad karlovo sopot purvomai rakovski hisaria stanb
 done
 java -cp nvo-v2.jar nvo.RuoIndexPage
 java -jar nvo-v2.jar normalize
+# Кодовете на училищата: грешка при код, който не е 6–7 цифри (напр. изгубени нули); информация за смени на код от МОН.
+java -cp nvo-v2.jar nvo.CodeCheck
 java -jar nvo-v2.jar 4
 java -jar nvo-v2.jar 7
 java -jar nvo-v2.jar 10

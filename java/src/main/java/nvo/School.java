@@ -16,7 +16,6 @@ import java.util.Map;
 @ToString
 public class School implements Comparable<School> {
     public static final Map<String, String[]> schoolCodes = prepareSchoolCodes();
-    public static final Map<String, String> fixedCodes = prepareFixedCodes();
 
     public static final String NU_ALEKO_KONSTANTINOV_SHORT = "НУ А. Константинов";
     public static final String NU_ALEKO_KONSTANTINOV_LONG = "НУ Алеко Константинов";
@@ -394,33 +393,6 @@ public class School implements Comparable<School> {
             return 1;
         }
         return first.compareTo(second);
-    }
-
-    private static Map<String, String> prepareFixedCodes() {
-        Map<String, String> fixedCodes = new HashMap<>();
-
-        fixedCodes.put("40001", "400010");
-        fixedCodes.put("40002", "400020");
-        fixedCodes.put("40003", "400030");
-        fixedCodes.put("40004", "400040");
-        fixedCodes.put("20021", "200210");
-        fixedCodes.put("20023", "200230");
-        fixedCodes.put("20024", "200240");
-        fixedCodes.put("10004", "100040");
-        fixedCodes.put("10007", "100070");
-        fixedCodes.put("10011", "100110");
-        fixedCodes.put("1002", "100200");
-        fixedCodes.put("10125", "101250");
-        fixedCodes.put("10129", "101290");
-        fixedCodes.put("10158", "101580");
-        fixedCodes.put("1017", "101700");
-        fixedCodes.put("60307", "603070");
-        fixedCodes.put("60806", "608060");
-        fixedCodes.put("80001", "800010");
-        fixedCodes.put("10188", "101880");
-        fixedCodes.put("10206", "102060");
-
-        return fixedCodes;
     }
 
     private static Map<String, String[]> prepareSchoolCodes() {

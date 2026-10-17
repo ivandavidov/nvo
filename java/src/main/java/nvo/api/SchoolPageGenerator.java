@@ -10,8 +10,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeSet;
 import java.util.stream.Stream;
 
 import static nvo.api.GeneratorUtils.cleanDirectory;
@@ -24,7 +26,7 @@ import static nvo.api.JsonGenerator.SITE_BASE_URL;
  * <p>
  * The pages are built from the {@code schools/{code}.json} documents produced by
  * {@link SchoolsGenerator}; the same JSON is inlined into each page so the client
- * ({@code logic-school.js}) can hydrate the charts without an extra request. Must run after
+ * ({@code js/pages/school.js}) can hydrate the charts without an extra request. Must run after
  * the {@code schools} step and before the sitemap step.
  */
 public class SchoolPageGenerator {
@@ -32,8 +34,24 @@ public class SchoolPageGenerator {
     private static final String[] GRADE_KEYS = {"4", "7", "10", "12"};
     private static final int NEIGHBORS = 6;
 
+    /**
+     * Стари адреси на профили, публикувани преди поправката на кодовете от НВО 7 клас 2018 г.
+     * (NvoDziNormalizer.canonicalCode): тогава резултатите за 2018 г. на тези училища бяха
+     * отделни „фантомни“ профили. Пазим адресите като пренасочвания към верния профил.
+     */
+    private static final Map<String, String> LEGACY_REDIRECTS = Map.of(
+            "10002", "100020",   // II ОУ „Димитър Благоев“, Благоевград
+            "80006", "800060",   // ОУ „Антим“, Балчик
+            "80008", "800080",   // ОУ „Йордан Йовков“, Каварна
+            "10331", "103310",   // СУ „Никола Вапцаров“, Петрич
+            "10709", "107090");  // СУ „Кирил и Методий“, Якоруда
+
     private final Gson gson = new Gson();
     private final Map<String, JsonArray> rankingCache = new HashMap<>();
+    /** Училища със същото име в същия град (напр. смяна на кода от МОН): код → другите от групата. */
+    private final Map<String, List<JsonObject>> sameNameByCode = new HashMap<>();
+    /** Годините с резултати по код (за различимите заглавия). */
+    private final Map<String, String> yearSpanByCode = new HashMap<>();
 
     private record GradeMeta(String examPrefix, String heading, String belLabel, String matLabel) {}
 
@@ -61,16 +79,111 @@ public class SchoolPageGenerator {
                     .forEach(files::add);
         }
 
-        int count = 0;
+        List<JsonObject> docs = new ArrayList<>();
         for (Path file : files) {
-            JsonObject doc = gson.fromJson(Files.readString(file), JsonObject.class);
+            docs.add(gson.fromJson(Files.readString(file), JsonObject.class));
+        }
+        indexSameNames(docs);
+
+        int count = 0;
+        for (JsonObject doc : docs) {
             String code = doc.get("code").getAsString();
             Path dir = outBase.resolve(code);
             Files.createDirectories(dir);
             Files.writeString(dir.resolve("index.html"), buildHtml(doc));
             count++;
         }
-        System.out.println("Generated " + count + " school pages under " + outBase);
+        int redirects = writeLegacyRedirects(outBase);
+        System.out.println("Generated " + count + " school pages and " + redirects + " redirects under " + outBase);
+    }
+
+    /** Групира училищата с еднакво име в един град и пресмята годините им с резултати. */
+    private void indexSameNames(List<JsonObject> docs) {
+        Map<String, List<JsonObject>> groups = new LinkedHashMap<>();
+        for (JsonObject doc : docs) {
+            String code = doc.get("code").getAsString();
+            yearSpanByCode.put(code, yearSpan(doc));
+            String city = cityName(doc);
+            if (city != null) {
+                groups.computeIfAbsent(doc.get("fullName").getAsString() + "|" + city, k -> new ArrayList<>()).add(doc);
+            }
+        }
+        for (List<JsonObject> group : groups.values()) {
+            if (group.size() < 2) {
+                continue;
+            }
+            for (JsonObject doc : group) {
+                List<JsonObject> others = new ArrayList<>(group);
+                others.remove(doc);
+                sameNameByCode.put(doc.get("code").getAsString(), others);
+            }
+        }
+    }
+
+    /** „2018–2020“ — първата и последната година с резултат по който и да е клас. */
+    private static String yearSpan(JsonObject doc) {
+        TreeSet<Integer> years = new TreeSet<>();
+        JsonObject grades = doc.getAsJsonObject("grades");
+        for (String grade : GRADE_KEYS) {
+            if (!grades.has(grade)) {
+                continue;
+            }
+            JsonObject g = grades.getAsJsonObject(grade);
+            JsonArray range = g.getAsJsonArray("yearsRange");
+            JsonArray bel = g.getAsJsonArray("belScore");
+            JsonArray mat = g.getAsJsonArray("matScore");
+            for (int i = 0; range != null && i < range.size(); i++) {
+                boolean has = (bel != null && i < bel.size() && !bel.get(i).isJsonNull())
+                        || (mat != null && i < mat.size() && !mat.get(i).isJsonNull());
+                if (has) {
+                    years.add(range.get(i).getAsInt());
+                }
+            }
+        }
+        if (years.isEmpty()) {
+            return "";
+        }
+        return years.first().equals(years.last()) ? String.valueOf(years.first()) : years.first() + "–" + years.last();
+    }
+
+    private static String cityName(JsonObject doc) {
+        return doc.has("city") && doc.get("city").isJsonObject() ? str(doc.getAsJsonObject("city"), "name") : null;
+    }
+
+    /** Пренасочващи страници за старите адреси (LEGACY_REDIRECTS) — само ако верният профил съществува. */
+    private int writeLegacyRedirects(Path outBase) throws Exception {
+        int n = 0;
+        for (Map.Entry<String, String> e : LEGACY_REDIRECTS.entrySet()) {
+            if (!Files.exists(outBase.resolve(e.getValue()).resolve("index.html")) || Files.exists(outBase.resolve(e.getKey()))) {
+                continue;
+            }
+            String target = "../" + e.getValue() + "/";
+            String html = """
+                    <!DOCTYPE html>
+                    <html lang="bg">
+                    <head>
+                      <meta charset="utf-8">
+                      <meta http-equiv="refresh" content="0; url=%1$s">
+                      <meta name="viewport" content="width=device-width, initial-scale=1">
+                      <meta name="robots" content="noindex">
+                      <title>Пренасочване към профила на училището</title>
+                      <link rel="canonical" href="%2$sschool/%3$s/">
+                      <link rel="stylesheet" href="../../css/site.css">
+                      <script src="../../js/theme.js"></script>
+                    </head>
+                    <body>
+                      <main class="container page">
+                        <p class="empty">Профилът е преместен — <a href="%1$s">към профила на училището</a>…</p>
+                      </main>
+                    </body>
+                    </html>
+                    """.formatted(target, SITE_BASE_URL, e.getValue());
+            Path dir = outBase.resolve(e.getKey());
+            Files.createDirectories(dir);
+            Files.writeString(dir.resolve("index.html"), html);
+            n++;
+        }
+        return n;
     }
 
     private String buildHtml(JsonObject doc) {
@@ -97,10 +210,19 @@ public class SchoolPageGenerator {
         ctx.put("footer", SiteLayout.footer(page));
         ctx.put("siteUrl", SITE_BASE_URL);
         // Градът в заглавието: много училища имат еднакви имена в различни градове (напр. „ОУ Кирил и Методий“).
-        String titleCity = cityName != null && !fullName.contains(cityName) ? " (" + cityName + ")" : "";
+        // Еднакво име в същия град (МОН е сменил кода) — заглавието се различава и по годините с резултати.
+        List<JsonObject> sameName = sameNameByCode.getOrDefault(code, List.of());
+        String span = yearSpanByCode.getOrDefault(code, "");
+        boolean spanUnique = sameName.stream().noneMatch(o -> span.equals(yearSpanByCode.get(o.get("code").getAsString())));
+        String titleCity;
+        if (!sameName.isEmpty() && cityName != null) {
+            titleCity = " (" + cityName + (span.isEmpty() ? "" : ", " + span) + (spanUnique ? "" : ", код " + code) + ")";
+        } else {
+            titleCity = cityName != null && !fullName.contains(cityName) ? " (" + cityName + ")" : "";
+        }
         ctx.put("title", fullName + titleCity + " – резултати от НВО и ДЗИ | Иван Давидов");
         ctx.put("description", "Резултати, класации и графики за " + fullName
-                + (cityName != null ? " (" + cityName + ")" : "")
+                + (!sameName.isEmpty() ? titleCity : cityName != null ? " (" + cityName + ")" : "")
                 + " по БЕЛ и математика за НВО и ДЗИ за последните години.");
         ctx.put("canonical", canonical);
         ctx.put("jsonLd", jsonLd(fullName, canonical, website, cityName));
@@ -113,6 +235,18 @@ public class SchoolPageGenerator {
         ctx.put("citySlug", citySlug);
         ctx.put("primaryGrade", primaryGrade);
         ctx.put("website", website);
+        List<Map<String, Object>> sameNameLinks = new ArrayList<>();
+        for (JsonObject other : sameName) {
+            String otherCode = other.get("code").getAsString();
+            Map<String, Object> link = new HashMap<>();
+            link.put("href", "../" + otherCode + "/");
+            link.put("name", other.get("fullName").getAsString());
+            link.put("code", otherCode);
+            link.put("years", yearSpanByCode.getOrDefault(otherCode, ""));
+            sameNameLinks.add(link);
+        }
+        ctx.put("sameName", sameNameLinks);
+        ctx.put("ownYears", span);
 
         List<Map<String, Object>> gradeNav = new ArrayList<>();
         List<Map<String, Object>> sections = new ArrayList<>();

@@ -66,7 +66,7 @@ public class SitemapGenerator {
             try (var stream = Files.list(schoolDir)) {
                 stream.filter(Files::isDirectory)
                         .forEach(subDir -> {
-                            if (Files.exists(subDir.resolve("index.html"))) {
+                            if (Files.exists(subDir.resolve("index.html")) && !isRedirect(subDir.resolve("index.html"))) {
                                 urls.add(ProjectConfig.SITE_BASE_URL + "school/"
                                         + subDir.getFileName() + "/");
                             }
@@ -114,5 +114,14 @@ public class SitemapGenerator {
         }
 
         return ProjectConfig.SITE_BASE_URL + normalized;
+    }
+
+    /** Пренасочващите страници (стари адреси на профили) не влизат в sitemap-а. */
+    private static boolean isRedirect(Path page) {
+        try {
+            return Files.readString(page).contains("http-equiv=\"refresh\"");
+        } catch (java.io.IOException e) {
+            return false;
+        }
     }
 }

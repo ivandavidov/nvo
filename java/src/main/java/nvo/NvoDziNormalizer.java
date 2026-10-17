@@ -16,6 +16,8 @@ import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class NvoDziNormalizer {
     private static final String BASE_DIR_MON = ProjectConfig.DATA_MON_DIR;
@@ -121,6 +123,26 @@ public class NvoDziNormalizer {
         return lines;
     }
 
+    /** Код във вида „800-08“ — втората група е загубила нулите накрая (вж. canonicalCode). */
+    private static final Pattern TRUNCATED_CODE = Pattern.compile("(\\d{3})-(\\d{1,2})");
+
+    /**
+     * Кодът на училището без интервалите и тиретата от файловете на МОН.
+     *
+     * Във файла за НВО 7 клас 2018 г. част от кодовете са записани като „800-08“ или „100-2“:
+     * кодът е бил десетично число (800.080), което е загубило нулите накрая. Верният код е
+     * 800080 — втората група се допълва с нули до 3 цифри. Пълните кодове („1-000-340“,
+     * „800-082“, „1 000 550“) остават както са, само без разделителите.
+     */
+    static String canonicalCode(String raw) {
+        String code = raw.replaceAll(" ", "");
+        Matcher m = TRUNCATED_CODE.matcher(code);
+        if (m.matches()) {
+            return m.group(1) + (m.group(2) + "00").substring(0, 3);
+        }
+        return code.replace("-", "");
+    }
+
     private List<String[]> parseCity(List<String[]> lines, String city, String cityPrefix, int cityPos,
                                      int codePos, int namePos,
                                      int belPos, int matPos, int belNumPos, int matNumPos,
@@ -181,7 +203,7 @@ public class NvoDziNormalizer {
             String[] school = new String[7];
 
             school[0] = city;
-            school[1] = line[codePos].replaceAll(" ", "").replaceAll("-", "");
+            school[1] = canonicalCode(line[codePos]);
             school[2] = line[namePos].replaceAll("\"", "").replaceAll("\\s+", " ");
             school[3] = line[belPos].replace(',', '.');
 

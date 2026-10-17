@@ -47,6 +47,7 @@ cd java
 ./mvnw clean package
 cd target
 java -jar nvo-v2.jar normalize
+java -cp nvo-v2.jar nvo.CodeCheck   # school-code check (fails on a code that is not 6–7 digits)
 java -jar nvo-v2.jar 4      # → docs/data/grade-4.json (also 7, 10, 12)
 ```
 
@@ -249,7 +250,8 @@ The page posts `{ type: 'nvo-embed-resize', height }` to the parent. Documentati
 java/src/main/java/nvo/
   ProjectConfig.java      shared project paths, site URL, and grade metadata
   NvoDziDecomplexor.java  main entry point (-jar), normalizes CSV + writes docs/data/grade-{grade}.json
-  NvoDziNormalizer.java   CSV reformatting (handles varying delimiters, column orders per year/grade)
+  NvoDziNormalizer.java   CSV reformatting (handles varying delimiters, column orders per year/grade); canonicalCode() fixes school codes
+  CodeCheck.java          after `normalize` (all.sh): error on a school code that is not 6–7 digits; info on MON code changes
   RuoNormalizer.java      XLSX → normalized CSV for RUO Sofia min/max scores (Sofia only)
   RuoDecomplexor.java     normalized RUO CSV → docs/js/ruo-{city}.js (generic, any city slug)
   RuoPage.java            balove city page docs/7/balove/{city}/ (template balove-city.mustache)
@@ -347,6 +349,8 @@ let ruoSchools = {
 4. Highcharts and jsPDF are vendored; avoid unnecessary upgrades unless requested.
 5. Keep the public URL contract: `?i{g}=`, `?s=`, `?school=`, `?year=`, `#city` on grade pages; `?grade=` on stats; `?school&profile&gender` on balove pages; embed parameters; `/?…` → `/7/…`. The public JSON API must stay backward compatible.
 6. New UI goes into `site.css` layers using the tokens; avoid inline colours.
+7. School codes: `NvoDziNormalizer.canonicalCode()` is the only place that cleans codes from the MON files. The NVO 7 2018 file writes some codes as `800-08` (a decimal that lost its trailing zeros) — they are padded back (`800080`). `CodeCheck` (in `all.sh`) stops the build on any code that is not 6–7 digits, so a new format shows up before it creates phantom school pages. Old phantom profile URLs are kept as redirects (`SchoolPageGenerator.LEGACY_REDIRECTS`, excluded from the sitemap).
+8. Same school name in the same city under different codes (MON changed the code, e.g. ОУ „Иван Вазов“, Кюстендил: 1000340 → 1000005) — the profiles get the year range in the title/description and link to each other. Merge such codes only after confirming in the MON register.
 
 ### Stats page
 `docs/stats/index.html` is hand-written (31 sections in 6 chapters, sticky contents) and `docs/stats/logic.js` is an ES module that loads `../data/grade-{g}.json` and `js/core/config.js`. Section titles/notes keep their ids (`title-bel-mat`, `note-bel-mat`, …) because `logic.js` adjusts the wording for ДЗИ. City filters are inserted into each section's `.stat-tools`. No `unsafe-eval` is needed any more.

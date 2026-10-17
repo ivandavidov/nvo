@@ -147,7 +147,7 @@ public class GradeDataGenerator {
                     continue;
                 }
 
-                String code = School.fixedCodes.getOrDefault(record.getCode(), record.getCode());
+                String code = record.getCode();
 
                 Map<String, SchoolData> schools = citySchools.computeIfAbsent(
                         record.getCity(), k -> new HashMap<>());

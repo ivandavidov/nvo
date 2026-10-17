@@ -118,10 +118,7 @@ public class NvoDziDecomplexor {
                     continue;
                 }
                 Map<String, School> schools = cities.computeIfAbsent(record.getCity(), k -> new HashMap<>());
-                String schoolCode = School.fixedCodes.get(record.getCode());
-                if(schoolCode == null) {
-                    schoolCode = record.getCode();
-                }
+                String schoolCode = record.getCode();
                 School school = schools.get(schoolCode);
                 if(school == null) {
                     school = new School();

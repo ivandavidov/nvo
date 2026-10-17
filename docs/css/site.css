@@ -1905,6 +1905,8 @@
   .school-hero__meta { margin-top: var(--sp-3); gap: var(--sp-2) var(--sp-3); font-size: var(--fs-md); }
   .school-hero__fact { display: inline-flex; align-items: center; gap: var(--sp-1); color: var(--text-3); }
   .school-hero__fact svg { width: 15px; height: 15px; }
+  .school-hero__note { display: flex; gap: var(--sp-2); align-items: flex-start; margin-top: var(--sp-3); max-width: var(--measure); color: var(--text-3); font-size: var(--fs-sm); }
+  .school-hero__note svg { flex-shrink: 0; width: 15px; height: 15px; margin-top: 2px; }
   .school-nav {
     position: sticky;
     top: var(--header-h);

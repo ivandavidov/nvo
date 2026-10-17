@@ -52,6 +52,9 @@
             <span class="badge badge--primary">{{label}}</span>
 {{/gradeNav}}
           </div>
+{{#sameName}}
+          <p class="school-hero__note">{{#icon}}info{{/icon}} <span>Със същото име в {{cityName}} има и <a href="{{href}}">профил с код {{code}}</a>{{#years}} (резултати {{years}}){{/years}} — вероятно същото училище след смяна на кода от МОН. Тук са резултатите за {{ownYears}}.</span></p>
+{{/sameName}}
         </div>
       </div>
       <div class="cluster school-hero__actions">
