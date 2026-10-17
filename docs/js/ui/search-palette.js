@@ -1,6 +1,7 @@
 // Глобалното търсене (Ctrl/⌘K или „/“): страници, градове и училища.
 // Индексът data/search-index.json се зарежда при първото отваряне.
 import { icon } from './icons.js';
+import { showModal } from './dom.js';
 import { siteUrl } from '../site.js';
 
 const MAX_SCHOOLS = 12;
@@ -278,6 +279,10 @@ function build() {
         e.preventDefault();
         window.location.href = items[active];
       }
+    } else if (e.key === 'Escape') {
+      // В поле type=search първото Esc само изчиства текста — затваряме веднага, както казва подсказката.
+      e.preventDefault();
+      dialog.close();
     }
   });
   resultsEl.addEventListener('mousemove', (e) => {
@@ -305,7 +310,7 @@ export function openPalette(query) {
   }
   input.value = query || '';
   if (!dialog.open) {
-    dialog.showModal();
+    showModal(dialog);
   }
   input.focus();
   const len = input.value.length;

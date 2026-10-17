@@ -3,12 +3,12 @@
 import { NAV_FIRST_YEAR } from '../core/config.js';
 import {
   fetchGradeData, buildModel, renderableCities, cityRanking, cityInactiveSchools, sortRanking,
-  defaultSortDir, firstEmptyRow, rankFor, formatRankValue, topGroups, cityAverages, cityCsv, allCsv,
+  defaultSortDir, firstEmptyRow, rankFor, topGroups, cityAverages, cityCsv, allCsv,
   chartSeries, findCityForSchool
 } from '../core/model.js';
 import { initialSelection, writeSelection, shareUrl, readYearParam, readCityHash } from '../core/url-state.js';
 import { icon } from '../ui/icons.js';
-import { esc, normalize, download, fmt } from '../ui/dom.js';
+import { esc, normalize, download, fmt, showModal } from '../ui/dom.js';
 import { createCombobox } from '../ui/combobox.js';
 import { buildSchoolIndex, searchSchools } from '../ui/school-search.js';
 import { embedCode } from '../core/embed.js';
@@ -45,6 +45,7 @@ const el = {
   empty: document.getElementById('compare-empty'),
   subjectSeg: document.getElementById('subject-seg'),
   panel: document.getElementById('city-panel'),
+  status: document.getElementById('city-status'),
   switcher: document.getElementById('city-switch'),
   cityFilter: document.getElementById('city-filter'),
   other: document.getElementById('other-cities'),
@@ -266,9 +267,17 @@ function cityBySlug(slug) {
   return state.bySlug[slug] || null;
 }
 
-function selectCity(city, { scroll = false, keepTab = false, explicit = true } = {}) {
+function selectCity(city, { scroll = false, keepTab = false, explicit = true, push = false } = {}) {
   if (!city) {
     return;
+  }
+  if (push && state.city && state.city.slug !== city.slug) {
+    // Нов запис в историята — „Назад“ връща предишния град, както при старите котви #град.
+    try {
+      window.history.pushState(null, '', window.location.pathname + window.location.search + '#' + city.slug);
+    } catch (e) {
+      // Safari ограничава pushState до 100 пъти за 10 s — адресът изостава, но страницата работи.
+    }
   }
   if (explicit) {
     state.cityChosen = true;
@@ -314,7 +323,7 @@ function setupCitySwitcher() {
     const city = cityBySlug(a.dataset.city);
     if (city) {
       e.preventDefault();
-      selectCity(city);
+      selectCity(city, { push: true });
     }
   });
   if (el.cityFilter) {
@@ -344,7 +353,7 @@ function setupCitySwitcher() {
         const first = el.switcher.querySelector('[data-city]:not([hidden])');
         if (first) {
           e.preventDefault();
-          selectCity(cityBySlug(first.dataset.city));
+          selectCity(cityBySlug(first.dataset.city), { push: true });
         }
       }
     });
@@ -401,6 +410,27 @@ function renderTab() {
   if (state.tab === 'ranking') {
     syncTableSelection();
   }
+  announce();
+}
+
+const SORT_LABELS = { name: 'име', type: 'тип', rank: 'ранг' };
+
+/** Кратко съобщение за екранните четци след смяна на град, таб, филтър или подредба. */
+function announce() {
+  if (!el.status) {
+    return;
+  }
+  const { cfg, latestYear } = state.model;
+  const name = state.city.name;
+  if (state.tab === 'averages') {
+    el.status.textContent = 'Средни резултати за ' + name + (state.avgMode === 'students' ? ', по ученици' : ', по училища');
+    return;
+  }
+  const n = el.panel.querySelectorAll('.data-table.ranking tbody:first-of-type tr').length;
+  const col = state.sortCol;
+  const label = SORT_LABELS[col] || ((col[2] === 'b' ? cfg.subjectB : cfg.subjectM) + ' ' + (latestYear - Number(col[1])));
+  el.status.textContent = name + ': ' + n + (state.filter === 'Ч' ? ' частни' : state.filter === 'Д' ? ' държавни' : '')
+    + ' училища, подредени по ' + label + (state.sortDir === 'asc' ? ', възходящо' : ', низходящо');
 }
 
 function groupChips(range, prefix) {
@@ -449,11 +479,11 @@ function rankingHtml() {
   years.forEach((y) => {
     head += '<th colspan="2" class="center group-start">' + y + '</th>';
   });
-  head += '<th rowspan="2" class="center"><span class="sr-only">Доклад</span>' + icon('file') + '</th></tr><tr>';
+  head += '<th class="center group-start col-report">Доклад</th></tr><tr>';
   years.forEach((y, k) => {
-    head += sortTh('y' + k + 'b', esc(cfg.subjectB), 'num group-start') + sortTh('y' + k + 'm', esc(cfg.subjectM), 'num');
+    head += sortTh('y' + k + 'b', esc(cfg.subjectB), 'yv group-start') + sortTh('y' + k + 'm', esc(cfg.subjectM), 'yv');
   });
-  head += '</tr></thead>';
+  head += '<th class="center group-start col-report" title="PDF доклад за училището">PDF</th></tr></thead>';
 
   const divider = firstEmptyRow(rows, state.sortCol);
   const rowHtml = (r, pos, isInactive) => {
@@ -468,14 +498,14 @@ function rankingHtml() {
       + '<td class="nowrap"><span class="badge' + (r.type === 'Ч' ? ' badge--accent' : '') + '" title="' + (r.type === 'Ч' ? 'Частно' : 'Държавно') + '">' + r.type + '</span>'
       + (isInactive ? '' : ' <span class="muted">' + r.typeNo + '</span>') + '</td>'
       + '<td class="col-rank">' + (rank === null || rank === undefined ? '<span class="muted">—</span>'
-        : '<span class="rank" title="Среден резултат = ' + r.avg.toFixed(2) + '"><span class="rank__val">' + esc(formatRankValue(rank)) + '</span><span class="rank__bar" style="--v:' + rank + '"></span></span>') + '</td>';
+        : '<span class="rank" title="Среден резултат = ' + r.avg.toFixed(2) + '"><span class="rank__val">' + rank.toFixed(2) + '</span><span class="rank__bar" style="--v:' + rank + '"></span></span>') + '</td>';
     r.years.forEach((y) => {
-      cells += '<td class="num group-start"' + (y.b ? ' title="' + esc(cfg.subjectB + ' ' + y.year + ': ' + fmt(y.b) + ' · ' + y.bu + ' ученици') + '"' : '') + '>'
-        + (y.b ? fmt(y.b) + '<span class="sub">/' + y.bu + '</span>' : '') + '</td>'
-        + '<td class="num"' + (y.m ? ' title="' + esc(cfg.subjectM + ' ' + y.year + ': ' + fmt(y.m) + ' · ' + y.mu + ' ученици') + '"' : '') + '>'
-        + (y.m ? fmt(y.m) + '<span class="sub">/' + y.mu + '</span>' : '') + '</td>';
+      cells += '<td class="yv group-start"' + (y.b ? ' title="' + esc(cfg.subjectB + ' ' + y.year + ': ' + fmt(y.b) + ' · ' + y.bu + ' ученици') + '"' : '') + '>'
+        + (y.b ? '<span class="v">' + fmt(y.b) + '</span><span class="sub">/' + y.bu + '</span>' : '') + '</td>'
+        + '<td class="yv"' + (y.m ? ' title="' + esc(cfg.subjectM + ' ' + y.year + ': ' + fmt(y.m) + ' · ' + y.mu + ' ученици') + '"' : '') + '>'
+        + (y.m ? '<span class="v">' + fmt(y.m) + '</span><span class="sub">/' + y.mu + '</span>' : '') + '</td>';
     });
-    cells += '<td class="center"><button type="button" class="icon-btn icon-btn--sm" data-report="' + r.i + '" title="' + esc('PDF доклад за ' + o.n) + '" aria-label="PDF доклад">' + icon('file') + '</button></td>';
+    cells += '<td class="center group-start col-report"><button type="button" class="icon-btn icon-btn--sm" data-report="' + r.i + '" title="' + esc('PDF доклад за ' + o.n) + '" aria-label="PDF доклад">' + icon('file') + '</button></td>';
     const divide = !isInactive && divider >= 0 && pos - 1 === divider;
     return '<tr data-row="' + r.i + '"' + (divide ? ' class="divider-top"' : '') + '>' + cells + '</tr>';
   };
@@ -655,7 +685,7 @@ el.panel.addEventListener('change', (e) => {
 
 /* ------------------------------------------------------------------ действия горе */
 
-function openEmbedDialog() {
+function openEmbedDialog(opener) {
   let dlg = document.getElementById('embed-dialog');
   if (!dlg) {
     dlg = document.createElement('dialog');
@@ -700,7 +730,7 @@ function openEmbedDialog() {
     dlg._update = update;
   }
   dlg._update();
-  dlg.showModal();
+  showModal(dlg, opener);
 }
 
 document.addEventListener('click', async (e) => {
@@ -725,7 +755,7 @@ document.addEventListener('click', async (e) => {
       toast('Връзката е копирана');
     }
   } else if (name === 'embed') {
-    openEmbedDialog();
+    openEmbedDialog(action);
   } else if (name === 'csv-all') {
     const csv = allCsv(state.model);
     download(csv.filename, csv.content);

@@ -75,8 +75,8 @@
     --border-strong: #c9d1dd;
     --text: #0d1424;
     --text-2: #3a465c;
-    --text-3: #5f6b82;
-    --text-4: #8d98ab;
+    --text-3: #4d586d;
+    --text-4: #5c687d;
 
     /* Акценти */
     --primary: #2f54e0;
@@ -89,7 +89,7 @@
     --accent-soft: #fff3e2;
     --on-accent: #ffffff;
 
-    --success: #13854a;
+    --success: #0f7a43;
     --success-soft: #e5f6ec;
     --warning: #b45309;
     --warning-soft: #fff4e0;
@@ -181,8 +181,8 @@
     --border-strong: #34405a;
     --text: #e7ebf3;
     --text-2: #b4bdcd;
-    --text-3: #8e99ad;
-    --text-4: #6a768c;
+    --text-3: #a3adbf;
+    --text-4: #8590a5;
 
     --primary: #7d9cff;
     --primary-hover: #9db4ff;
@@ -231,6 +231,9 @@
    base
    ========================================================================== */
 @layer base {
+  /* Инлайн код (адреси, параметри) се пренася на тесен екран, вместо да разпъва страницата. */
+  :not(pre) > code { overflow-wrap: anywhere; }
+
   html {
     font-size: 100%;
     scroll-behavior: smooth;
@@ -1051,24 +1054,28 @@
     border-bottom: 1px solid var(--border);
     white-space: nowrap;
   }
-  .data-table thead th {
+  /* Закрепваме цялото thead като един блок: при два реда заглавия (години + БЕЛ/МАТ)
+     вторият ред не може да се размести спрямо първия. */
+  .data-table thead {
     position: sticky;
     top: 0;
     z-index: 2;
+  }
+  .data-table thead th {
+    vertical-align: bottom;
     background: var(--surface-2);
     color: var(--text-3);
     font-size: var(--fs-xs);
     font-weight: 650;
     letter-spacing: 0.02em;
   }
-  .data-table thead tr:nth-child(2) th { top: var(--thead-row-h, 33px); }
-  .data-table tbody tr { transition: background var(--dur-fast) var(--ease); }
   .data-table tbody tr:hover { background: var(--surface-2); }
   .data-table tbody tr:last-child td { border-bottom: 0; }
   .data-table .num { text-align: right; }
   .data-table .center { text-align: center; }
   .data-table .muted { color: var(--text-3); }
-  .data-table .sub { color: var(--text-4); font-size: var(--fs-xs); margin-left: 2px; }
+  /* Броят ученици до стойността: фиксирана ширина, за да са числата подравнени по точката. */
+  .data-table .sub { display: inline-block; min-width: 4ch; margin-left: 2px; color: var(--text-4); font-size: var(--fs-xs); text-align: left; }
   .data-table .group-start { border-left: 1px solid var(--border); }
   .data-table td.wrap { white-space: normal; min-width: 14rem; }
   .data-table tr.is-selected td { background: color-mix(in srgb, var(--primary-soft) 70%, transparent); }
@@ -1101,6 +1108,9 @@
   [aria-sort="ascending"] .th-sort svg, [aria-sort="descending"] .th-sort svg { opacity: 1; }
   [aria-sort="ascending"] .th-sort svg { transform: rotate(180deg); }
   .num .th-sort { flex-direction: row-reverse; }
+  /* При row-reverse иконата е първа и няма базова линия — подравняваме бутона по долния ръб,
+     за да са надписите на един ред с тези в съседните клетки. */
+  .th-sort { vertical-align: bottom; }
 
   /* Клетка „Ранг“: число + лента */
   .rank {
@@ -1126,7 +1136,7 @@
     border-radius: inherit;
     background: color-mix(in oklab, var(--rank-hi) calc(var(--v, 0) * 1%), var(--rank-lo));
   }
-  .rank__val { min-width: 5ch; text-align: right; font-weight: 650; font-variant-numeric: tabular-nums; }
+  .rank__val { min-width: 6ch; text-align: right; font-weight: 650; font-variant-numeric: tabular-nums; }
 
   /* --- Табове --- */
   .tabs {
@@ -1607,7 +1617,7 @@
   .city-panel__head { align-items: flex-start; }
   .city-panel__title { font-size: var(--fs-2xl); }
   .city-panel__tabs { padding-inline: clamp(var(--sp-2), 2vw, var(--sp-4)); }
-  .city-panel__body { padding: clamp(var(--sp-4), 3vw, var(--sp-6)); }
+  .city-panel__body { padding: clamp(var(--sp-4), 1.25vw, var(--sp-6)); }
   .city-panel .btn { --btn-h: 34px; }
 
   .ranking__toolbar {
@@ -1648,11 +1658,18 @@
   }
   .ranking thead .col-pos, .ranking thead .col-name { z-index: 3; background: var(--surface-2); }
   .ranking tbody tr:hover .col-pos, .ranking tbody tr:hover .col-name { background: var(--surface-2); }
+  /* Значката „Д“ има фон като hover-а — на посочения ред я потъмняваме, за да не изчезне. */
+  .data-table tbody tr:hover .badge:not(.badge--accent) { background: var(--surface-3); }
   .ranking tr.is-selected td,
   .ranking tr.is-selected .col-pos,
   .ranking tr.is-selected .col-name { background: color-mix(in srgb, var(--primary-soft) 80%, var(--surface)); }
   .ranking thead tr:first-child th[rowspan] { vertical-align: bottom; }
-  .ranking .col-rank { min-width: 140px; }
+  .ranking .col-rank { min-width: 128px; }
+  /* Колоните по години: центрирани; стойността и броят ученици са с фиксирана ширина,
+     така че блокът е еднакъв на всеки ред и точките остават подравнени. */
+  .ranking .yv { padding-inline: 0.4rem; text-align: center; }
+  .ranking .yv .v { display: inline-block; min-width: 6ch; text-align: right; }
+  .ranking .col-report { padding-inline: 0.5rem; }
   .ranking td { padding-block: 0.4rem; }
   .compare__chips .chip__label { max-width: 320px; }
   .school-cell { display: flex; align-items: center; gap: var(--sp-2); }
@@ -1733,6 +1750,7 @@
   .embed__frame { margin: 0 0 var(--sp-2); }
   .embed__frame .chart { min-height: 0; }
   .embed__footer { padding: var(--sp-1) 0 var(--sp-2); text-align: center; font-size: var(--fs-sm); }
+  .embed__error { padding: var(--sp-8) var(--sp-4); color: var(--text-3); text-align: center; }
   .embed__footer a { color: var(--text-3); }
   .embed__footer a:hover { color: var(--primary); }
 }
@@ -1972,6 +1990,8 @@
   .stats-page .data-table td.pos { color: var(--success); font-weight: 650; }
   .stats-page .data-table td.neg { color: var(--danger); font-weight: 650; }
   .stats-page .data-table td:nth-child(2) { white-space: normal; min-width: 180px; }
+  /* Колоните след „Училище“ са числа — вдясно, за да са подравнени по точката. */
+  .stats-page .data-table th:nth-child(n+3), .stats-page .data-table td:nth-child(n+3) { text-align: right; }
   .stats-loading { margin-top: var(--sp-2); }
   @media (max-width: 1000px) {
     .stats-layout { grid-template-columns: 1fr; gap: var(--sp-4); }
@@ -1993,7 +2013,8 @@
     .stats-chapter { scroll-margin-top: calc(var(--header-h) + 56px); }
   }
   @media (max-width: 700px) {
-    .stats-page .two-col { grid-template-columns: 1fr; }
+    /* minmax(0, …): широката таблица се скролира в рамката си, вместо да разпъва колоната. */
+    .stats-page .two-col { grid-template-columns: minmax(0, 1fr); }
     .stat-tools, .stat-tools .section-city-filter, .stat-tools .select { width: 100%; }
     .stat-chart { min-height: 340px; }
   }

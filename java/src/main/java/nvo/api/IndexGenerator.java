@@ -170,7 +170,7 @@ public class IndexGenerator {
                     </header>
                     <div class="api-base">Base URL: <code>%s</code></div>
 
-                    <h4 style="margin-bottom:0.75rem">Общи</h4>
+                    <h2 style="margin-bottom:0.75rem">Общи</h2>
                 """.formatted(apiBaseDisplay));
 
         // Index endpoint
@@ -192,7 +192,7 @@ public class IndexGenerator {
                         </table>"""));
 
         // Schools endpoints
-        sb.append("      <h4 style=\"margin-top:1.5rem\">Справочник</h4>\n");
+        sb.append("      <h2 style=\"margin-top:1.5rem\">Справочник</h2>\n");
 
         sb.append(endpointCard(
                 "/schools.json",
@@ -295,7 +295,7 @@ public class IndexGenerator {
 
         // Per-grade endpoints
         sb.append("    <div class=\"grade-endpoints\">\n");
-        sb.append("      <h4>По клас</h4>\n");
+        sb.append("      <h2>По клас</h2>\n");
 
         for (String[] g : GRADES) {
             String grade = g[0];
@@ -329,7 +329,7 @@ public class IndexGenerator {
                             </table>"""));
         }
 
-        sb.append("      <h4>По град</h4>\n");
+        sb.append("      <h2>По град</h2>\n");
 
         sb.append(endpointCardNoLink(
                 "/{grade}/{city}/data.json",
@@ -405,7 +405,7 @@ public class IndexGenerator {
 
         // Rankings section
         sb.append("    <div class=\"grade-endpoints\">\n");
-        sb.append("      <h4>Класации</h4>\n");
+        sb.append("      <h2>Класации</h2>\n");
 
         sb.append(endpointCardNoLink(
                 "/rankings/median/{grade}/{year}.json",

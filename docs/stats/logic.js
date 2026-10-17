@@ -1,6 +1,7 @@
 // Обобщена статистика (/stats/) — ES модул. Данните идват от data/grade-{g}.json,
 // настройките по клас — от js/core/config.js (същите като на страниците по клас).
 import { gradeConfig } from '../js/core/config.js';
+import { labelChart } from '../js/ui/chart-theme.js';
 
 const TABLE_ROWS        = 15;
 const STABLE_MIN_SCORES = 4;
@@ -1070,6 +1071,7 @@ function chart(id, config) {
   config.xAxis = Object.assign({}, axisDefaults, config.xAxis || {});
   config.legend = Object.assign({ itemStyle: { fontSize: '12px', fontWeight: '600', color: tc.text }, itemHoverStyle: { color: tc.text } }, config.legend || {});
   _charts[id] = Highcharts.chart(id, config);
+  labelChart(_charts[id]);
 }
 
 function renderParticipation(data) {
@@ -1116,7 +1118,7 @@ function renderYearOverYear(data) {
   chart('chart-yoy', {
     chart: { type: 'column', height: 360 },
     xAxis: { categories: years },
-    yAxis: { title: { text: 'Промяна' }, plotLines: [{ value: 0, color: '#666', width: 1, zIndex: 3 }] },
+    yAxis: { title: { text: 'Промяна' }, plotLines: [{ value: 0, color: _themeColors().muted, width: 1, zIndex: 3 }] },
     tooltip: { valueDecimals: 2, shared: true },
     plotOptions: { column: { grouping: true } },
     series: [
@@ -1250,14 +1252,14 @@ function renderBelMatGap(data) {
   let h1 = '<thead><tr><th>#</th><th>Училище</th><th>' + bLabel + '</th><th>' + mLabel + '</th><th>Δ</th></tr></thead><tbody>';
   belLeads.forEach((r, i) => {
     h1 += '<tr><td>' + (i + 1) + '</td><td>' + r.name +
-      '</td><td>' + r.b + '</td><td>' + r.m + '</td><td class="pos">+' + r.gap.toFixed(2) + '</td></tr>';
+      '</td><td>' + f2(r.b) + '</td><td>' + f2(r.m) + '</td><td class="pos">+' + r.gap.toFixed(2) + '</td></tr>';
   });
   document.getElementById('tbl-bel-leads').innerHTML = h1 + '</tbody>';
 
   let h2 = '<thead><tr><th>#</th><th>Училище</th><th>' + mLabel + '</th><th>' + bLabel + '</th><th>Δ</th></tr></thead><tbody>';
   matLeads.forEach((r, i) => {
     h2 += '<tr><td>' + (i + 1) + '</td><td>' + r.name +
-      '</td><td>' + r.m + '</td><td>' + r.b + '</td><td class="pos">+' + (-r.gap).toFixed(2) + '</td></tr>';
+      '</td><td>' + f2(r.m) + '</td><td>' + f2(r.b) + '</td><td class="pos">+' + (-r.gap).toFixed(2) + '</td></tr>';
   });
   document.getElementById('tbl-mat-leads').innerHTML = h2 + '</tbody>';
 }
@@ -1279,7 +1281,7 @@ function renderQuadrantScatter(data) {
           rotation: 0,
           align: 'center',
           y: 14,
-          style: { color: '#666', fontSize: '0.9em', textOutline: 'none' }
+          style: { color: _themeColors().muted, fontSize: '0.9em', textOutline: 'none' }
         } }]
     },
     yAxis: {
@@ -1475,7 +1477,7 @@ function topTable(rows, data) {
   let html = '<thead><tr><th>#</th><th>Училище</th><th>' + bLabel + '</th><th>' + mLabel + '</th><th>Средна</th></tr></thead><tbody>';
   rows.forEach((r, i) => {
     html += '<tr><td>' + (i + 1) + '</td><td>' + r.name +
-      '</td><td>' + r.b + '</td><td>' + r.m + '</td><td>' + r.avg + '</td></tr>';
+      '</td><td>' + f2(r.b) + '</td><td>' + f2(r.m) + '</td><td>' + f2(r.avg) + '</td></tr>';
   });
   document.getElementById('tbl-top').innerHTML = html + '</tbody>';
 }
@@ -1486,7 +1488,7 @@ function largeSchoolsTable(rows, data) {
   let html = '<thead><tr><th>#</th><th>Училище</th><th>' + bLabel + '</th><th>' + mLabel + '</th><th>Средна</th><th>Ученици</th></tr></thead><tbody>';
   rows.forEach((r, i) => {
     html += '<tr><td>' + (i + 1) + '</td><td>' + r.name +
-      '</td><td>' + r.b + '</td><td>' + r.m + '</td><td>' + r.avg + '</td><td>' + r.size + '</td></tr>';
+      '</td><td>' + f2(r.b) + '</td><td>' + f2(r.m) + '</td><td>' + f2(r.avg) + '</td><td>' + r.size + '</td></tr>';
   });
   document.getElementById('tbl-large-schools').innerHTML = html + '</tbody>';
 }
@@ -1497,8 +1499,8 @@ function trendTable(id, rows) {
     const sign = r.change > 0 ? '+' : '';
     const cls  = r.change > 0 ? 'pos' : r.change < 0 ? 'neg' : '';
     html += '<tr><td>' + (i + 1) + '</td><td>' + r.name +
-      '</td><td>' + r.first + '</td><td>' + r.last +
-      '</td><td class="' + cls + '">' + sign + r.change + '</td></tr>';
+      '</td><td>' + f2(r.first) + '</td><td>' + f2(r.last) +
+      '</td><td class="' + cls + '">' + sign + f2(r.change) + '</td></tr>';
   });
   document.getElementById(id).innerHTML = html + '</tbody>';
 }
@@ -1507,8 +1509,8 @@ function consistentTable(rows) {
   let html = '<thead><tr><th>#</th><th>Училище</th><th>Начало</th><th>Край</th><th>Δ</th><th>Год.</th></tr></thead><tbody>';
   rows.forEach((r, i) => {
     html += '<tr><td>' + (i + 1) + '</td><td>' + r.name +
-      '</td><td>' + r.first + '</td><td>' + r.last +
-      '</td><td class="pos">+' + r.change + '</td><td>' + r.count + '</td></tr>';
+      '</td><td>' + f2(r.first) + '</td><td>' + f2(r.last) +
+      '</td><td class="pos">+' + f2(r.change) + '</td><td>' + r.count + '</td></tr>';
   });
   document.getElementById('tbl-consistent').innerHTML = html + '</tbody>';
 }
@@ -1517,7 +1519,7 @@ function stableTable(rows) {
   let html = '<thead><tr><th>#</th><th>Училище</th><th>Средна</th><th>σ</th></tr></thead><tbody>';
   rows.forEach((r, i) => {
     html += '<tr><td>' + (i + 1) + '</td><td>' + r.name +
-      '</td><td>' + r.avg + '</td><td>' + r.std + '</td></tr>';
+      '</td><td>' + f2(r.avg) + '</td><td>' + f2(r.std) + '</td></tr>';
   });
   document.getElementById('tbl-stable').innerHTML = html + '</tbody>';
 }
@@ -1572,9 +1574,9 @@ function quadrantMigrationTable(data) {
     const total = row.reduce((a, b) => a + b, 0);
     html += '<tr><td><strong>От: ' + quadrantNames[i] + '</strong></td>';
     row.forEach((v, j) => {
-      const pct = total > 0 ? +(v / total * 100).toFixed(1) : 0;
+      const pct = total > 0 ? (v / total * 100).toFixed(1) : '0.0';
       const cls = i === j ? ' class="pos"' : '';
-      html += '<td' + cls + '>' + v + ' <span style="color:#666">(' + pct + '%)</span></td>';
+      html += '<td' + cls + '>' + v + ' <span style="color:var(--text-3)">(' + pct + '%)</span></td>';
     });
     html += '<td><strong>' + total + '</strong></td></tr>';
   });
@@ -1597,6 +1599,11 @@ function persistentDecilesTables(data) {
       '</td><td>' + r.count + '</td><td>' + r.seen + '</td><td>' + r.ratio.toFixed(1) + '%</td></tr>';
   });
   document.getElementById('tbl-persistent-bottom').innerHTML = h2 + '</tbody>';
+}
+
+/** Число с 2 знака след точката за таблиците (63.80, не 63.8 — колоните остават подравнени). */
+function f2(v) {
+  return typeof v === 'number' ? v.toFixed(2) : v;
 }
 
 function compositeScoreTable(data) {

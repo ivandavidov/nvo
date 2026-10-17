@@ -111,7 +111,22 @@ export function lineOptions({ height = 380, min, max, categories = [] } = {}) {
 export function createChart(container, options) {
   const H = window.Highcharts;
   configureOnce(H);
-  return H.chart(container, options);
+  const chart = H.chart(container, options);
+  labelChart(chart);
+  return chart;
+}
+
+/** Име за екранните четци на SVG-то на графиката — по заглавието на картата/секцията. */
+export function labelChart(chart) {
+  const box = chart.renderTo;
+  const scope = box.closest('figure, .chart-card, .stat-section, .card, section');
+  const heading = scope && scope.querySelector('figcaption, .chart-title, .chart-frame__title, h2, h3');
+  const title = (heading && heading.textContent.trim()) || (chart.options.title && chart.options.title.text) || '';
+  const svg = box.querySelector('svg');
+  if (svg) {
+    svg.setAttribute('role', 'img');
+    svg.setAttribute('aria-label', 'Графика' + (title ? ': ' + title : ''));
+  }
 }
 
 /** Извиква fn при смяна на темата (за прерисуване на графиките). */

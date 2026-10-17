@@ -67,7 +67,7 @@ document.querySelectorAll('[data-gen]').forEach((seg) => {
     seg.querySelectorAll('[data-v]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
     const key = seg.dataset.gen;
     if (key === 'grade') {
-      loadGrade(Number(b.dataset.v));
+      loadGrade(Number(b.dataset.v)).catch(loadFailed);
     } else {
       state[key] = b.dataset.v;
       update();
@@ -97,7 +97,10 @@ el.copy.addEventListener('click', async () => {
 
 window.addEventListener('message', (e) => {
   if (e.source === el.preview.contentWindow && e.data && e.data.type === 'nvo-embed-resize') {
-    el.preview.style.height = Math.max(300, e.data.height) + 'px';
+    // Докладваната височина е на съдържанието; добавяме рамката на iframe-а (border-box),
+    // иначе всяко оразмеряване го смалява с няколко пиксела.
+    const frame = el.preview.offsetHeight - el.preview.clientHeight;
+    el.preview.style.height = Math.max(300, e.data.height + frame) + 'px';
   }
 });
 
@@ -119,4 +122,9 @@ createCombobox({
   }
 });
 
-loadGrade(7).catch((err) => console.error(err));
+function loadFailed(err) {
+  console.error(err);
+  el.code.textContent = 'Данните не можаха да се заредят. Опитай да презаредиш страницата.';
+}
+
+loadGrade(7).catch(loadFailed);

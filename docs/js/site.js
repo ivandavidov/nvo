@@ -173,7 +173,33 @@ export function toast(message) {
   setTimeout(() => t.remove(), 2400);
 }
 
+/**
+ * Графиките, създадени извън общия модул (вградените в статиите на блога), получават име
+ * за екранните четци — по заглавието на картата им. Общият модул го прави сам (labelChart).
+ */
+function labelCharts() {
+  document.querySelectorAll('svg.highcharts-root:not([aria-label]), svg.highcharts-root[aria-label=""]').forEach((svg) => {
+    const scope = svg.closest('figure, .chart-card, .card, section');
+    const heading = scope && scope.querySelector('figcaption, .chart-title, h2, h3');
+    svg.setAttribute('role', 'img');
+    svg.setAttribute('aria-label', 'Графика' + (heading ? ': ' + heading.textContent.trim() : ''));
+  });
+}
+
 initMenu();
 initSearch();
 initCopyButtons();
 initJoke();
+if (document.querySelector('.article')) {
+  // Статиите рисуват графиките си сами (и ги прерисуват при смяна на темата) — именуваме всяка нова.
+  let pending = false;
+  new MutationObserver(() => {
+    if (!pending) {
+      pending = true;
+      requestAnimationFrame(() => {
+        pending = false;
+        labelCharts();
+      });
+    }
+  }).observe(document.body, { childList: true, subtree: true });
+}

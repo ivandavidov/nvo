@@ -35,11 +35,14 @@ function readSelection() {
 }
 
 function chartHeight() {
-  const footer = document.getElementById('embed-footer');
-  const titles = document.querySelectorAll('.embed__frame:not([hidden]) .chart-title');
-  let used = footer ? footer.offsetHeight : 30;
-  titles.forEach((t) => { used += t.offsetHeight + 8; });
-  const available = window.innerHeight - used - 16;
+  // Графиките запълват точно височината на iframe-а: мерим всичко останало (заглавия, отстъпи,
+  // футър) като разликата между цялото съдържание и сегашните графики. Така докладваната височина
+  // (nvo-embed-resize) е равна на тази на iframe-а и сайт, който го оразмерява автоматично,
+  // не влиза в безкраен цикъл на растеж.
+  const boxes = [...document.querySelectorAll('.embed__frame:not([hidden]) .chart')];
+  const chartsNow = boxes.reduce((sum, c) => sum + c.offsetHeight, 0);
+  const overhead = document.body.scrollHeight - chartsNow;
+  const available = window.innerHeight - overhead;
   return only ? Math.max(available, 250) : Math.max(Math.floor(available / 2), 200);
 }
 
@@ -105,4 +108,11 @@ async function init() {
   onThemeChange(render);
 }
 
-init().catch((err) => console.error(err));
+init().catch((err) => {
+  console.error(err);
+  const box = document.getElementById('charts');
+  if (box) {
+    box.innerHTML = '<p class="embed__error">Данните не можаха да се заредят. Опитай да презаредиш страницата.</p>';
+  }
+  postHeight();
+});

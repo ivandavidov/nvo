@@ -67,6 +67,15 @@ export function initialSelection(model) {
 }
 
 /** Записва избора в адреса (replaceState) и в бисквитката — като стария handleURL. */
+/** history.replaceState, който не чупи страницата, ако браузърът го ограничи (Safari: 100 пъти за 10 s). */
+function replaceUrl(url) {
+  try {
+    window.history.replaceState(null, '', url);
+  } catch (e) {
+    // адресът ще се обнови при следващата промяна
+  }
+}
+
 export function writeSelection(model, indices, cityHash) {
   const { cfg, timeTravelYear } = model;
   const url = new URL(window.location.href);
@@ -76,12 +85,12 @@ export function writeSelection(model, indices, cityHash) {
   if (indices.length === 0) {
     document.cookie = cfg.cookieName + '=;path=/;max-age=-1';
     const query = yearQuery ? '?' + yearQuery : '';
-    window.history.replaceState(null, '', base + query + (anchor ? '#' + anchor : ''));
+    replaceUrl(base + query + (anchor ? '#' + anchor : ''));
   } else {
     const list = indices.join(',');
     document.cookie = cfg.cookieName + '=' + list + ';path=/;max-age=' + COOKIE_MAX_AGE_SECONDS;
     const query = (yearQuery ? yearQuery + '&' : '') + cfg.cookieName + '=' + list;
-    window.history.replaceState(null, '', base + '?' + query + (anchor ? '#' + anchor : ''));
+    replaceUrl(base + '?' + query + (anchor ? '#' + anchor : ''));
   }
 }
 

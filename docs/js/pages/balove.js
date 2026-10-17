@@ -46,8 +46,9 @@ const el = {
   search: document.getElementById('overview-search')
 };
 
+/** Бал с два знака след точката — еднаква ширина, за да са колоните подравнени (490.50, не 490.5). */
 function fmt(v) {
-  return v !== null && v !== undefined && v !== 0 ? v : '—';
+  return v !== null && v !== undefined && v !== 0 ? Number(v).toFixed(2) : '—';
 }
 
 function visibleData(d) {
@@ -71,7 +72,11 @@ function writeUrl() {
     }
   }
   const query = url.searchParams.toString();
-  history.replaceState(null, '', url.pathname + (query ? '?' + query : '') + url.hash);
+  try {
+    history.replaceState(null, '', url.pathname + (query ? '?' + query : '') + url.hash);
+  } catch (e) {
+    // Safari ограничава replaceState — адресът ще се обнови при следващата промяна.
+  }
 }
 
 function readUrl() {
@@ -354,7 +359,7 @@ function renderOverview() {
       + '<td class="col-profile"><span class="clip" title="' + esc(r.profile) + '">' + esc(r.profile) + '</span></td>';
     for (let yi = latestYi; yi >= overviewFirstYi; yi--) {
       const v = r.yearMins[yi];
-      html += '<td class="num">' + (v !== null ? v : '—') + '</td>';
+      html += '<td class="num">' + fmt(v) + '</td>';
     }
     return html + '<td class="center">' + (TREND[r.trend] || '') + '</td></tr>';
   }).join('') || '<tr><td colspan="' + (4 + latestYi - overviewFirstYi + 1) + '" class="muted">Няма паралелки за „' + esc(state.filter) + '“.</td></tr>';
@@ -410,6 +415,16 @@ function setupSchoolCombobox() {
 }
 
 function init() {
+  if (!years.length) {
+    // js/ruo-{град}.js не се е заредил (мрежа, блокиране) — казваме го, вместо празна страница.
+    const head = document.querySelector('#main .page-head');
+    const html = '<div class="banner" role="alert">' + icon('info')
+      + '<span>Данните за баловете не можаха да се заредят. Опитай да презаредиш страницата.</span></div>';
+    if (head) {
+      head.insertAdjacentHTML('afterend', html);
+    }
+    return;
+  }
   overviewRows = buildOverviewRows();
   renderOverviewHeader();
   renderOverview();
