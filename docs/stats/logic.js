@@ -1,6 +1,6 @@
 // Обобщена статистика (/stats/) — ES модул. Данните идват от data/grade-{g}.json,
 // настройките по клас — от js/core/config.js (същите като на страниците по клас).
-import { gradeConfig } from '../js/core/config.js';
+import { gradeConfig, displayRange } from '../js/core/config.js';
 import { labelChart } from '../js/ui/chart-theme.js';
 
 const TABLE_ROWS        = 15;
@@ -22,8 +22,6 @@ let _citySelects = {};
 let _activeGrade = 7;
 
 // ─── Зареждане на данни ───────────────────────────────────────────────────────
-//
-// Fix-ът за 2018 г. (само 7 клас) се прилага веднъж при зареждане.
 
 async function loadGrade(grade) {
   if (_cache[grade]) return _cache[grade];
@@ -35,34 +33,16 @@ async function loadGrade(grade) {
   const data = {
     s: raw.s.map(o => (o ? { l: o.l, n: o.n, w: o.w, c: o.c, b: o.b.slice(), m: o.m.slice(), bu: o.bu.slice(), mu: o.mu.slice() } : o)),
     si: raw.si,
+    grade: cfg.grade,
     firstYear: cfg.firstYear,
-    numYears: cfg.numYears,
     chartBTitle: cfg.chartBTitle,
     chartMTitle: cfg.chartMTitle,
     chartFloor: cfg.chartFloor,
-    chartCeiling: cfg.chartCeiling,
-    fix2018: cfg.fix2018
+    chartCeiling: cfg.chartCeiling
   };
 
-  // 2018: резултатите са по 65-точкова скала → нормализиране към 0-100
-  // (идентична логика с fixForYear2018() в основния logic.js)
-  if (data.fix2018) {
-    const i2018 = 2018 - data.firstYear;
-    if (i2018 >= 0) {
-      data.s.forEach(sch => {
-        if (!sch) return;
-        if (sch.b[i2018] != null) {
-          sch.b[i2018] = Math.floor(sch.b[i2018] * 10000 / 65 + Number.EPSILON) / 100;
-        }
-        if (sch.m[i2018] != null) {
-          sch.m[i2018] = Math.floor(sch.m[i2018] * 10000 / 65 + Number.EPSILON) / 100;
-        }
-      });
-    }
-  }
-
-  // Визуализира се прозорец от последните `numYears` години,
-  // броено назад от последната налична година с данни.
+  // Визуализира се прозорецът на сайта (displayRange: от DISPLAY_FROM, до MAX_YEARS
+  // години), броено назад от последната налична година с данни.
   applyConfiguredYearWindow(data);
 
   // Изгражда map: индекс на училище → град
@@ -91,8 +71,7 @@ function applyConfiguredYearWindow(data) {
   }
   if (last < 0) return;
 
-  const span = Math.max(1, data.numYears || 1);
-  const start = Math.max(0, last - span + 1);
+  const start = displayRange(data.grade, data.firstYear + last).from - data.firstYear;
   const end = last + 1;
   const newNumYears = end - start;
 

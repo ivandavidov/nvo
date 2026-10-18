@@ -1,6 +1,7 @@
 package nvo.api;
 
 import nvo.Cities;
+import nvo.ProjectConfig;
 import nvo.School;
 import nvo.site.SiteLayout;
 
@@ -72,18 +73,31 @@ public class LandingPageGenerator {
         }
         List<RankedSchool> allSchools = new ArrayList<>(seenSchools.values());
 
+        // Страници има от DISPLAY_FROM нататък (без таван — архивът по години остава);
+        // по-ранните години са само в експорта, а старите им адреси пренасочват към класа.
+        int displayFrom = ProjectConfig.DISPLAY_FROM.get(grade);
+
         // Годините, за които ще има страница (за навигацията между тях).
         availableYears = new ArrayList<>();
-        for (int yearIndex = numYearsForGrade(grade) - 1; yearIndex >= 0; yearIndex--) {
+        for (int yearIndex = numYearsForGrade(grade) - 1; yearIndex >= displayFrom - FIRST_YEAR; yearIndex--) {
             final int yi = yearIndex;
             if (allSchools.stream().anyMatch(rs -> rs.sd().belScore[yi] != null && rs.sd().matScore[yi] != null)) {
                 availableYears.add(FIRST_YEAR + yearIndex);
             }
         }
 
+        int redirects = 0;
         for (int yearIndex = 0; yearIndex < numYearsForGrade(grade); yearIndex++) {
             int year = FIRST_YEAR + yearIndex;
             final int yi = yearIndex;
+
+            if (year < displayFrom) {
+                GeneratorUtils.writeRedirectPage(Path.of(DOCS_BASE, grade, String.valueOf(year)), "../",
+                        SITE_BASE_URL + grade + "/", "../../", "Пренасочване към " + gradeLabel,
+                        "Сайтът показва класациите от " + displayFrom + " г. нататък", "към " + gradeLabel);
+                redirects++;
+                continue;
+            }
 
             List<RankedSchool> yearSchools = allSchools.stream()
                     .filter(rs -> rs.sd().belScore[yi] != null && rs.sd().matScore[yi] != null)
@@ -100,7 +114,7 @@ public class LandingPageGenerator {
             Files.writeString(yearDir.resolve("index.html"), html);
             yearPageCount++;
         }
-        System.out.println("Generated " + yearPageCount + " year pages for grade " + grade);
+        System.out.println("Generated " + yearPageCount + " year pages and " + redirects + " redirects for grade " + grade);
     }
 
     // ---- Helpers ----

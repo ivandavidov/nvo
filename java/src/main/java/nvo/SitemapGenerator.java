@@ -29,7 +29,7 @@ public class SitemapGenerator {
         urls.add(ProjectConfig.SITE_BASE_URL + "embed/");
         urls.add(ProjectConfig.SITE_BASE_URL + "blog/");
 
-        // Scan docs/{grade}/ for city and year subdirectories with index.html
+        // Scan docs/{grade}/ for city and year subdirectories with index.html (без пренасочващите страници)
         for (String[] gradeDef : ProjectConfig.GRADES) {
             String grade = gradeDef[0];
             Path gradeDir = Path.of(ProjectConfig.DOCS_DIR, grade);
@@ -39,7 +39,7 @@ public class SitemapGenerator {
                 stream.filter(Files::isDirectory)
                         .forEach(subDir -> {
                             Path indexFile = subDir.resolve("index.html");
-                            if (Files.exists(indexFile)) {
+                            if (Files.exists(indexFile) && !isExcluded(indexFile)) {
                                 String dirName = subDir.getFileName().toString();
                                 urls.add(ProjectConfig.SITE_BASE_URL + grade + "/" + dirName + "/");
                             }
@@ -66,7 +66,7 @@ public class SitemapGenerator {
             try (var stream = Files.list(schoolDir)) {
                 stream.filter(Files::isDirectory)
                         .forEach(subDir -> {
-                            if (Files.exists(subDir.resolve("index.html")) && !isRedirect(subDir.resolve("index.html"))) {
+                            if (Files.exists(subDir.resolve("index.html")) && !isExcluded(subDir.resolve("index.html"))) {
                                 urls.add(ProjectConfig.SITE_BASE_URL + "school/"
                                         + subDir.getFileName() + "/");
                             }
@@ -117,9 +117,11 @@ public class SitemapGenerator {
     }
 
     /** Пренасочващите страници (стари адреси на профили) не влизат в sitemap-а. */
-    private static boolean isRedirect(Path page) {
+    /** Пренасочващите страници и тези с noindex (напр. профил само със стари резултати). */
+    private static boolean isExcluded(Path page) {
         try {
-            return Files.readString(page).contains("http-equiv=\"refresh\"");
+            String html = Files.readString(page);
+            return html.contains("http-equiv=\"refresh\"") || html.contains("<meta name=\"robots\" content=\"noindex\">");
         } catch (java.io.IOException e) {
             return false;
         }

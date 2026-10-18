@@ -48,6 +48,10 @@ public final class HomePageGenerator {
             exams.add(exam(docs, grade));
         }
         ctx.put("exams", exams);
+        // „2019–2026“ над заглавието — от най-ранната показвана до най-късната година.
+        int from = exams.stream().mapToInt(x -> (int) x.get("displayFrom")).min().orElse(FIRST_YEAR);
+        int to = exams.stream().mapToInt(x -> (int) x.get("latestYear")).max().orElse(FIRST_YEAR);
+        ctx.put("yearsLabel", from + "–" + to);
 
         List<Map<String, Object>> posts = BlogIndexGenerator.readPosts(docs);
         ctx.put("posts", posts.subList(0, Math.min(3, posts.size())));
@@ -85,11 +89,6 @@ public final class HomePageGenerator {
                 JsonObject o = el.getAsJsonObject();
                 Double b = value(o.getAsJsonArray("b"), y);
                 Double m = value(o.getAsJsonArray("m"), y);
-                if ("7".equals(grade) && FIRST_YEAR + y == 2018) {
-                    // 2018 г. е по 65-точкова скала (същата корекция като fix2018 на сайта).
-                    b = b == null ? null : Math.floor(b * 10000 / 65 + Math.ulp(1.0)) / 100;
-                    m = m == null ? null : Math.floor(m * 10000 / 65 + Math.ulp(1.0)) / 100;
-                }
                 if (b != null && b > 0) {
                     sumB += b;
                     nB++;
@@ -106,7 +105,9 @@ public final class HomePageGenerator {
             avgM[y] = nM > 0 ? sumM / nM : 0;
         }
         int latestYear = FIRST_YEAR + years - 1;
-        int from = GradeData.coverageFrom(grade) - FIRST_YEAR;
+        // Годините, които сайтът показва (ProjectConfig.displayFrom) — 2018 г. е само в експорта.
+        int displayFrom = ProjectConfig.displayFrom(grade, latestYear);
+        int from = displayFrom - FIRST_YEAR;
 
         Map<String, Object> e = new HashMap<>();
         e.put("grade", grade);
@@ -120,7 +121,8 @@ public final class HomePageGenerator {
         e.put("avgM", String.format(Locale.ROOT, "%.2f", avgM[years - 1]));
         e.put("scale", dzi ? "средна оценка" : "средно от 100 т.");
         e.put("spark", sparkline(avgB, avgM, from, years - 1));
-        e.put("range", GradeData.coverageFrom(grade) + "–" + latestYear);
+        e.put("range", displayFrom + "–" + latestYear);
+        e.put("displayFrom", displayFrom);
         return e;
     }
 

@@ -3,11 +3,29 @@
 
 export const GRADES = [4, 7, 10, 12];
 
-/** Колко последни години показват графиките (прозорецът по подразбиране). */
-export const NUM_YEARS_BY_GRADE = { 4: 8, 7: 8, 10: 6, 12: 8 };
+/**
+ * От коя година сайтът показва данни (графики, таблици, доклади). По-ранните години
+ * са само в експорта (CSV, API): НВО 7 клас за 2018 г. е по 65-точкова скала,
+ * а НВО 10 клас за 2018–2020 г. са копия.
+ */
+export const DISPLAY_FROM = { 4: 2019, 7: 2019, 10: 2021, 12: 2019 };
 
-/** Най-ранната година за исторически изглед (?year=). */
-export const NAV_FIRST_YEAR = 2020;
+/** Най-много толкова последни години в графиките и таблиците. */
+export const MAX_YEARS = 8;
+
+/** Години в исторически изглед (?year=). */
+export const HISTORY_YEARS = 3;
+
+/** Годините за показване до lastYear: {from, to} (историческият изглед е по-къс). */
+export function displayRange(grade, lastYear, historical = false) {
+  const span = historical ? HISTORY_YEARS : MAX_YEARS;
+  return { from: Math.max(DISPLAY_FROM[grade], lastYear - span + 1), to: lastYear };
+}
+
+/** Най-ранната година за исторически изглед — такава, че има пълни HISTORY_YEARS години. */
+export function navFirstYear(grade) {
+  return DISPLAY_FROM[grade] + HISTORY_YEARS - 1;
+}
 
 export const COOKIE_MAX_AGE_SECONDS = 60 * 60 * 24 * 365;
 
@@ -24,11 +42,10 @@ export const TOP_GROUPS = {
 };
 
 const DEFAULTS = {
-  firstYear: 2018,
+  firstYear: 2018, // началото на масивите в data/grade-{g}.json
   rankBase: 0,
   rankRangeTop: 25,
   rankRangeBottom: 50,
-  fix2018: false,
   tableTitleName: 'Класация на училищата',
   chartFloor: 0,
   chartCeiling: 100,
@@ -56,7 +73,6 @@ const OVERRIDES = {
     refSchoolIndex: 39
   },
   7: {
-    fix2018: true,
     tableTitleType: 'НВО след 7 клас',
     cookieName: 'i7',
     exportPrefix: 'nvo-7',
@@ -104,7 +120,6 @@ export function gradeConfig(grade) {
   }
   const cfg = Object.assign({}, DEFAULTS, OVERRIDES[g]);
   cfg.grade = g;
-  cfg.numYears = NUM_YEARS_BY_GRADE[g];
   cfg.disabledEntries = cfg.disabledEntries.slice();
   cfg.exportPrefixBel = cfg.exportPrefixBel || cfg.exportPrefix + '-bel';
   cfg.exportPrefixMat = cfg.exportPrefixMat || cfg.exportPrefix + '-mat';

@@ -1,6 +1,5 @@
 // Страница по клас (/4/, /7/, /10/, /12/): сравнение на училища в графики,
 // класации по градове и средни резултати. Данните и изчисленията са в core/model.js.
-import { NAV_FIRST_YEAR } from '../core/config.js';
 import {
   fetchGradeData, buildModel, renderableCities, cityRanking, cityInactiveSchools, sortRanking,
   defaultSortDir, firstEmptyRow, rankFor, topGroups, cityAverages, cityCsv, allCsv,

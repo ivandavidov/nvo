@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import nvo.ProjectConfig;
 import nvo.site.SiteLayout;
 
 import java.nio.file.Files;
@@ -121,7 +122,7 @@ public class SchoolPageGenerator {
         }
     }
 
-    /** „2018–2020“ — първата и последната година с резултат по който и да е клас. */
+    /** „2019–2021“ — първата и последната показвана година (displayFrom) с резултат по който и да е клас. */
     private static String yearSpan(JsonObject doc) {
         TreeSet<Integer> years = new TreeSet<>();
         JsonObject grades = doc.getAsJsonObject("grades");
@@ -133,7 +134,11 @@ public class SchoolPageGenerator {
             JsonArray range = g.getAsJsonArray("yearsRange");
             JsonArray bel = g.getAsJsonArray("belScore");
             JsonArray mat = g.getAsJsonArray("matScore");
+            int from = range == null || range.isEmpty() ? 0 : ProjectConfig.displayFrom(grade, range.get(range.size() - 1).getAsInt());
             for (int i = 0; range != null && i < range.size(); i++) {
+                if (range.get(i).getAsInt() < from) {
+                    continue;
+                }
                 boolean has = (bel != null && i < bel.size() && !bel.get(i).isJsonNull())
                         || (mat != null && i < mat.size() && !mat.get(i).isJsonNull());
                 if (has) {
@@ -158,30 +163,9 @@ public class SchoolPageGenerator {
             if (!Files.exists(outBase.resolve(e.getValue()).resolve("index.html")) || Files.exists(outBase.resolve(e.getKey()))) {
                 continue;
             }
-            String target = "../" + e.getValue() + "/";
-            String html = """
-                    <!DOCTYPE html>
-                    <html lang="bg">
-                    <head>
-                      <meta charset="utf-8">
-                      <meta http-equiv="refresh" content="0; url=%1$s">
-                      <meta name="viewport" content="width=device-width, initial-scale=1">
-                      <meta name="robots" content="noindex">
-                      <title>Пренасочване към профила на училището</title>
-                      <link rel="canonical" href="%2$sschool/%3$s/">
-                      <link rel="stylesheet" href="../../css/site.css">
-                      <script src="../../js/theme.js"></script>
-                    </head>
-                    <body>
-                      <main class="container page">
-                        <p class="empty">Профилът е преместен — <a href="%1$s">към профила на училището</a>…</p>
-                      </main>
-                    </body>
-                    </html>
-                    """.formatted(target, SITE_BASE_URL, e.getValue());
-            Path dir = outBase.resolve(e.getKey());
-            Files.createDirectories(dir);
-            Files.writeString(dir.resolve("index.html"), html);
+            GeneratorUtils.writeRedirectPage(outBase.resolve(e.getKey()), "../" + e.getValue() + "/",
+                    SITE_BASE_URL + "school/" + e.getValue() + "/", "../../",
+                    "Пренасочване към профила на училището", "Профилът е преместен", "към профила на училището");
             n++;
         }
         return n;
@@ -251,19 +235,28 @@ public class SchoolPageGenerator {
 
         List<Map<String, Object>> gradeNav = new ArrayList<>();
         List<Map<String, Object>> sections = new ArrayList<>();
+        List<String> displayed = GeneratorUtils.displayedGrades(doc);
         for (String grade : GRADE_KEYS) {
-            if (!grades.has(grade)) {
-                continue;
+            if (!displayed.contains(grade)) {
+                continue; // няма резултат в показваните години
             }
+            Map<String, Object> section = gradeSection(grade, grades.getAsJsonObject(grade), years, doc);
             Map<String, Object> nav = new HashMap<>();
             nav.put("grade", grade);
             nav.put("label", grade + " клас");
             gradeNav.add(nav);
-            sections.add(gradeSection(grade, grades.getAsJsonObject(grade), years, doc));
+            sections.add(section);
         }
         ctx.put("gradeNav", gradeNav);
         ctx.put("multiGrade", gradeNav.size() > 1);
         ctx.put("sections", sections);
+        // Само стари резултати (преди показваните години): кратка страница с бележка, noindex,
+        // извън sitemap-а и търсенето; данните остават в API-то.
+        if (sections.isEmpty()) {
+            ctx.put("noData", true);
+            ctx.put("noDataFrom", java.util.Arrays.stream(GRADE_KEYS).filter(grades::has)
+                    .mapToInt(g -> ProjectConfig.DISPLAY_FROM.get(g)).min().orElse(0));
+        }
         // Същият документ като в API-то — за графиките и PDF (js/pages/school.js).
         ctx.put("inlined", gson.toJson(doc).replace("</", "<\\/"));
         return SiteLayout.render("school", ctx);
@@ -310,13 +303,14 @@ public class SchoolPageGenerator {
         }
         section.put("kpis", kpis);
 
-        // Table (latest year first), only rows with any data
+        // Table (latest year first), only rows with any data, only the displayed years (displayFrom)
         List<Map<String, Object>> rows = new ArrayList<>();
         JsonArray bel = g.getAsJsonArray("belScore");
         JsonArray mat = g.getAsJsonArray("matScore");
         JsonArray belU = g.getAsJsonArray("belStudents");
         JsonArray matU = g.getAsJsonArray("matStudents");
-        for (int i = years.size() - 1; i >= 0; i--) {
+        int from = years.isEmpty() ? 0 : ProjectConfig.displayFrom(grade, years.get(years.size() - 1).getAsInt());
+        for (int i = years.size() - 1; i >= 0 && years.get(i).getAsInt() >= from; i--) {
             boolean hasBel = !bel.get(i).isJsonNull();
             boolean hasMat = !mat.get(i).isJsonNull();
             if (!hasBel && !hasMat) {

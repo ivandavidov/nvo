@@ -293,8 +293,9 @@ java/src/main/resources/templates/   Mustache templates (partials/ + one per gen
 
 ## Configuration Model
 
-- `docs/js/core/config.js` holds the per-grade settings (`gradeConfig(grade)`): first year, chart window (`NUM_YEARS_BY_GRADE`: 8 for 4/7/12, 6 for 10), rank parameters, chart titles, base/reference schools for the default selection, `fix2018` (7th grade 2018 scale), CSV headers, cookie name (`i{grade}`), export prefixes, subject labels. Used by the grade pages, embeds, school pages and the stats page.
-- The latest year is taken from the data (`grade-{g}.json` array length), both in JS (`model.dataLatestYear`) and in the Java generators (`GradeData.latestYear`). The first real year per grade (`10` starts in 2021) is `GradeData.COVERAGE_FROM`.
+- `docs/js/core/config.js` holds the per-grade settings (`gradeConfig(grade)`): first year of the data arrays, rank parameters, chart titles, base/reference schools for the default selection, CSV headers, cookie name (`i{grade}`), export prefixes, subject labels. Used by the grade pages, embeds, school pages and the stats page.
+- Displayed years (rule 9): `DISPLAY_FROM` (4/7/12: 2019, 10: 2021), `MAX_YEARS` = 8 and `HISTORY_YEARS` = 3 with `displayRange()` / `navFirstYear()` in `config.js`; the Java twin is `ProjectConfig.DISPLAY_FROM` / `displayFrom()` / `navFirstYear()`. Keep both in sync.
+- The latest year is taken from the data (`grade-{g}.json` array length), both in JS (`model.dataLatestYear`) and in the Java generators (`GradeData.latestYear`). The first real year per grade in the dataset (`10` starts in 2021) is `GradeData.COVERAGE_FROM` (only for the JSON-LD `temporalCoverage`).
 
 ## Generated Data Contract
 
@@ -351,6 +352,7 @@ let ruoSchools = {
 6. New UI goes into `site.css` layers using the tokens; avoid inline colours.
 7. School codes: `NvoDziNormalizer.canonicalCode()` is the only place that cleans codes from the MON files. The NVO 7 2018 file writes some codes as `800-08` (a decimal that lost its trailing zeros) — they are padded back (`800080`). `CodeCheck` (in `all.sh`) stops the build on any code that is not 6–7 digits, so a new format shows up before it creates phantom school pages. Old phantom profile URLs are kept as redirects (`SchoolPageGenerator.LEGACY_REDIRECTS`, excluded from the sitemap).
 8. Same school name in the same city under different codes (MON changed the code) — the profiles get the year range in the title/description and link to each other. Once the code change is confirmed in the MON register, add it to `NvoDziNormalizer.CODE_ALIASES` (old → current code) and the old profile URL to `SchoolPageGenerator.LEGACY_REDIRECTS`; the history is then merged under the current code (done for ОУ „Иван Вазов“, Кюстендил: 1000340 → 1000005).
+9. Displayed years: charts, tables and PDF reports show only the window `max(DISPLAY_FROM, latest − 7)…latest` (historical `?year=Y`: the last 3 years, selectable from `DISPLAY_FROM + 2`). Earlier years stay only in the exports — CSV (`model.exportData`), JSON API, Kaggle, `data/grade-{g}.json` — as raw MON values (NVO 7 2018 is on a 65-point scale; there is no rescaling anywhere). Year pages start at `DISPLAY_FROM`; older year URLs are redirect stubs (`GeneratorUtils.writeRedirectPage`, excluded from the sitemap). The window slides by itself when a new year is added.
 
 ### Stats page
 `docs/stats/index.html` is hand-written (31 sections in 6 chapters, sticky contents) and `docs/stats/logic.js` is an ES module that loads `../data/grade-{g}.json` and `js/core/config.js`. Section titles/notes keep their ids (`title-bel-mat`, `note-bel-mat`, …) because `logic.js` adjusts the wording for ДЗИ. City filters are inserted into each section's `.stat-tools`. No `unsafe-eval` is needed any more.

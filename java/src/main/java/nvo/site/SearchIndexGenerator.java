@@ -6,6 +6,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import nvo.ProjectConfig;
+import nvo.api.GeneratorUtils;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -71,9 +72,17 @@ public final class SearchIndexGenerator {
             if (slug == null) {
                 throw new IllegalStateException("Unknown city in schools-index.json: " + cityName);
             }
+            // Само класовете с резултат в показваните години (като секциите в профила);
+            // училище само със стари резултати не излиза в търсенето.
+            String code = s.get("code").getAsString();
+            JsonObject doc = JsonParser.parseString(Files.readString(
+                    docs.resolve("api/v1/schools/" + code + ".json"), StandardCharsets.UTF_8)).getAsJsonObject();
             List<Integer> grades = new ArrayList<>();
-            for (JsonElement g : s.getAsJsonArray("grades")) {
-                grades.add(g.getAsInt());
+            for (String g : GeneratorUtils.displayedGrades(doc)) {
+                grades.add(Integer.parseInt(g));
+            }
+            if (grades.isEmpty()) {
+                continue;
             }
             schoolRows.add(List.of(
                     s.get("code").getAsString(),

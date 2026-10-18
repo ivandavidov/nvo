@@ -167,6 +167,7 @@ public class IndexGenerator {
         sb.append(LAST_YEAR);
         sb.append("""
                 ). Без ключ и без ограничения — статични файлове, които се обновяват заедно със сайта.</p>
+                      <p class="muted text-sm">Резултатите са в оригиналния вид от МОН, от 2018 г. НВО след 7 клас за 2018 г. е по 65-точкова скала (сайтът показва данните от 2019 г. насам).</p>
                     </header>
                     <div class="api-base">Base URL: <code>%s</code></div>
 

@@ -1,7 +1,7 @@
 // Модел на данните за един клас: зареждане на data/grade-{g}.json, нормализация
-// (2018 г., липсващи години, исторически изглед) и всички изчисления за
+// (прозорецът с години, липсващи години, исторически изглед) и всички изчисления за
 // класациите, средните, групите „Топ N“, CSV и графиките.
-import { gradeConfig, NAV_FIRST_YEAR, TOP_GROUPS } from './config.js';
+import { gradeConfig, displayRange, navFirstYear, TOP_GROUPS } from './config.js';
 
 const cache = {};
 
@@ -47,70 +47,63 @@ export function buildModel(grade, raw, opts = {}) {
   const s = copySchools(raw.s);
   const si = copyCities(raw.si);
   const base = cfg.baseSchoolIndex;
-  const firstYear = cfg.firstYear;
-  const dataLatestYear = firstYear + s[base].b.length - 1;
-  let numYears = cfg.numYears;
+  const dataFirstYear = cfg.firstYear;
+  const dataYears = s[base].b.length;
+  const dataLatestYear = dataFirstYear + dataYears - 1;
+  let lastYear = dataLatestYear;
   let timeTravelYear = null;
 
   // calculateTimeTravel
   if (opts.year !== undefined && opts.year !== null && opts.year !== '') {
     const parsed = Number.parseInt(opts.year, 10);
     if (Number.isInteger(parsed)) {
-      const minYear = Math.max(NAV_FIRST_YEAR, firstYear);
+      const minYear = navFirstYear(cfg.grade);
       const maxYear = dataLatestYear - 1;
       if (maxYear >= minYear) {
-        const target = Math.min(Math.max(parsed, minYear), maxYear);
-        timeTravelYear = target;
-        const remove = dataLatestYear - target;
-        for (let k = 0; k < remove; k++) {
-          for (let j = 0; j < s.length; j++) {
-            if (!s[j]) {
-              continue;
-            }
-            s[j].b.pop();
-            s[j].m.pop();
-            s[j].bu.pop();
-            s[j].mu.pop();
-          }
-        }
-        numYears = 3;
+        timeTravelYear = Math.min(Math.max(parsed, minYear), maxYear);
+        lastYear = timeTravelYear;
       }
     }
   }
 
-  // fixForYear2018 (7 клас: точките от 2018 са по друга скала)
-  if (cfg.fix2018) {
-    const i = 2018 - firstYear;
-    if (i >= 0) {
-      s.forEach((o) => {
-        if (!o) {
-          return;
-        }
-        if (o.b[i] !== null) {
-          o.b[i] = Math.floor(o.b[i] * 10000 / 65 + Number.EPSILON) / 100;
-        }
-        if (o.m[i] !== null) {
-          o.m[i] = Math.floor(o.m[i] * 10000 / 65 + Number.EPSILON) / 100;
-        }
-      });
-    }
-  }
-
   // fixForMissingYears
-  const totalYears = s[base].b.length;
   s.forEach((o) => {
     if (!o) {
       return;
     }
-    for (let i = o.b.length; i < totalYears; i++) {
+    for (let i = o.b.length; i < dataYears; i++) {
       o.b.push(null);
       o.m.push(null);
     }
-    for (let i = o.bu.length; i < totalYears; i++) {
+    for (let i = o.bu.length; i < dataYears; i++) {
       o.bu.push(0);
       o.mu.push(0);
     }
   });
+
+  // Експортът (CSV) е със суровите данни от началото на масивите до lastYear.
+  const exportEnd = lastYear - dataFirstYear + 1;
+  const exportData = {
+    firstYear: dataFirstYear,
+    years: exportEnd,
+    s: s.map((o) => (o ? { b: o.b.slice(0, exportEnd), m: o.m.slice(0, exportEnd), bu: o.bu.slice(0, exportEnd), mu: o.mu.slice(0, exportEnd) } : o))
+  };
+
+  // Всичко останало вижда само прозореца DISPLAY_FROM…lastYear (до MAX_YEARS години);
+  // графиките и „Средни резултати“ в исторически изглед — последните HISTORY_YEARS.
+  const firstYear = displayRange(cfg.grade, lastYear).from;
+  const start = firstYear - dataFirstYear;
+  s.forEach((o) => {
+    if (!o) {
+      return;
+    }
+    o.b = o.b.slice(start, exportEnd);
+    o.m = o.m.slice(start, exportEnd);
+    o.bu = o.bu.slice(start, exportEnd);
+    o.mu = o.mu.slice(start, exportEnd);
+  });
+  const totalYears = exportEnd - start;
+  const numYears = timeTravelYear ? lastYear - displayRange(cfg.grade, lastYear, true).from + 1 : totalYears;
 
   // disableEntries
   (cfg.disabledEntries || []).forEach((idx) => {
@@ -135,7 +128,8 @@ export function buildModel(grade, raw, opts = {}) {
     latestYear: firstYear + totalYears - 1,
     dataLatestYear,
     numYears,
-    timeTravelYear
+    timeTravelYear,
+    exportData
   };
 }
 
@@ -549,10 +543,12 @@ export function cityAverages(model, cityName, mode) {
 
 /* ---------------- CSV ---------------- */
 
+// CSV-ът е експорт: всички години от началото на данните, без прозореца на сайта.
 export function csvHeader(model) {
-  const { cfg, firstYear, totalYears } = model;
+  const { cfg } = model;
+  const { firstYear, years } = model.exportData;
   let header = 'Град,Училище,Тип';
-  for (let j = firstYear; j < firstYear + totalYears; j++) {
+  for (let j = firstYear; j < firstYear + years; j++) {
     header += ',' + cfg.csvHeaderBel + ' ' + (j - 2000) + ',' + cfg.csvHeaderMat + ' ' + (j - 2000);
     header += ',' + cfg.csvHeaderBel + '-УЧ. ' + (j - 2000) + ',' + cfg.csvHeaderMat + '-УЧ. ' + (j - 2000);
   }
@@ -560,19 +556,20 @@ export function csvHeader(model) {
 }
 
 function csvRows(model, cityName, range, type) {
-  const { s, firstYear, totalYears } = model;
+  const { s } = model;
+  const { years, s: raw } = model.exportData;
   let data = '';
   for (let i = range[0]; i <= range[1]; i++) {
     if (!s[i]) {
       continue;
     }
+    const o = raw[i];
     let row = cityName + ',"' + s[i].n + '",' + type;
-    for (let j = firstYear; j < firstYear + totalYears; j++) {
-      const y = j - firstYear;
-      row += ',' + (s[i].b[y] ? s[i].b[y] : '');
-      row += ',' + (s[i].m[y] ? s[i].m[y] : '');
-      row += ',' + (s[i].bu[y] ? s[i].bu[y] : '');
-      row += ',' + (s[i].mu[y] ? s[i].mu[y] : '');
+    for (let y = 0; y < years; y++) {
+      row += ',' + (o.b[y] ? o.b[y] : '');
+      row += ',' + (o.m[y] ? o.m[y] : '');
+      row += ',' + (o.bu[y] ? o.bu[y] : '');
+      row += ',' + (o.mu[y] ? o.mu[y] : '');
     }
     data += row + '\r\n';
   }

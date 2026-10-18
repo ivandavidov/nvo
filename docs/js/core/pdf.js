@@ -1,6 +1,7 @@
 // PDF доклад за училище, PDF на класацията на град и PDF профил на училище.
 // jsPDF, AutoTable и Highcharts exporting се зареждат
 // едва при първото генериране (по-лека страница).
+import { displayRange } from './config.js';
 import { findCityForSchool, nationalAverages, formatRankValue, rankFor } from './model.js';
 
 const FONT_FILE = 'NotoSans-Regular.ttf';
@@ -460,7 +461,8 @@ export async function schoolProfilePdf(data, gradeMeta, seriesForGrade) {
   document.body.appendChild(hidden);
   let y = 90;
   try {
-    const keys = ['4', '7', '10', '12'].filter((k) => data.grades && data.grades[k]);
+    // Само класовете с резултат в показваните години (като секциите на страницата).
+    const keys = ['4', '7', '10', '12'].filter((k) => data.grades && data.grades[k] && seriesForGrade(k, data.grades[k]).first >= 0);
     for (const grade of keys) {
       const g = data.grades[grade];
       const meta = gradeMeta[grade];
@@ -508,8 +510,9 @@ export async function schoolProfilePdf(data, gradeMeta, seriesForGrade) {
         }
       }
       const years = g.yearsRange || data.yearsRange || [];
+      const from = years.length ? displayRange(grade, years[years.length - 1]).from : 0;
       const rows = [];
-      for (let i = years.length - 1; i >= 0; i--) {
+      for (let i = years.length - 1; i >= 0 && years[i] >= from; i--) {
         const b = g.belScore[i];
         const m = g.matScore[i];
         if (b == null && m == null) {

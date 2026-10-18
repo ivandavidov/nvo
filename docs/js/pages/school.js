@@ -1,6 +1,6 @@
 // Страница на училище (/school/{код}/): графиките по клас и PDF профилът.
 // Данните са вградени в страницата (#school-data) — същият документ като в API-то.
-import { NUM_YEARS_BY_GRADE } from '../core/config.js';
+import { displayRange } from '../core/config.js';
 import { whenHighcharts, lineOptions, createChart, token, onThemeChange } from '../ui/chart-theme.js';
 import { toast } from '../site.js';
 
@@ -16,12 +16,13 @@ const data = dataEl ? JSON.parse(dataEl.textContent) : null;
 const charts = [];
 
 /**
- * Прозорецът от последните numYears години; празните години в началото и края се
- * изрязват чрез xAxis.min/max (данните остават подравнени с прозореца).
+ * Прозорецът на сайта (displayRange) до последната година на класа; празните години
+ * в началото и края се изрязват чрез xAxis.min/max (данните остават подравнени с прозореца).
  */
 export function seriesForGrade(grade, g) {
   const years = (g && g.yearsRange) || data.yearsRange || [];
-  const start = Math.max(0, years.length - (NUM_YEARS_BY_GRADE[grade] || 8));
+  const from = years.length ? displayRange(grade, years[years.length - 1]).from : 0;
+  const start = Math.max(0, years.findIndex((y) => y >= from));
   const out = { categories: [], bel: [], mat: [], belU: [], matU: [], first: -1, last: -1 };
   for (let j = start; j < years.length; j++) {
     const k = out.categories.length;

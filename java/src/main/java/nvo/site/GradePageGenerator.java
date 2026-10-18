@@ -28,7 +28,6 @@ import java.util.Map;
  */
 public final class GradePageGenerator {
 
-    private static final int NAV_FIRST_YEAR = 2020;
 
     private GradePageGenerator() {
     }
@@ -61,16 +60,17 @@ public final class GradePageGenerator {
         ctx.put("subjectMLong", dzi ? "Втори зрелостен изпит" : "Математика");
         ctx.put("scale", dzi ? "оценки от 2 до 6" : "точки от 0 до 100");
         ctx.put("latestYear", latest);
-        ctx.put("coverageFrom", GradeData.coverageFrom(grade));
+        ctx.put("coverageFrom", GradeData.coverageFrom(grade)); // JSON-LD: годините в набора данни (CSV/API)
+        ctx.put("displayFrom", ProjectConfig.displayFrom(grade, latest)); // годините, които страницата показва
         ctx.put("hasBalove", Files.isDirectory(docs.resolve(grade).resolve(ProjectConfig.RUO_DIR_NAME)));
 
         List<Integer> history = new ArrayList<>();
-        for (int y = latest - 1; y >= NAV_FIRST_YEAR; y--) {
+        for (int y = latest - 1; y >= ProjectConfig.navFirstYear(grade); y--) {
             history.add(y);
         }
         ctx.put("historyYears", history);
         List<Integer> rankingYears = new ArrayList<>();
-        for (int y = latest; y >= 2018; y--) {
+        for (int y = latest; y >= ProjectConfig.DISPLAY_FROM.get(grade); y--) {
             if (Files.exists(docs.resolve(grade).resolve(String.valueOf(y)).resolve("index.html"))) {
                 rankingYears.add(y);
             }

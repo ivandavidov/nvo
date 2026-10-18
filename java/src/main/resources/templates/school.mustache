@@ -5,6 +5,9 @@
   <title>{{title}}</title>
   <meta name="description" content="{{description}}">
   <meta name="author" content="Иван Давидов">
+{{#noData}}
+  <meta name="robots" content="noindex">
+{{/noData}}
 {{{head}}}
   <link rel="canonical" href="{{canonical}}">
   <meta property="og:type" content="website">
@@ -53,15 +56,20 @@
 {{/gradeNav}}
           </div>
 {{#sameName}}
-          <p class="school-hero__note">{{#icon}}info{{/icon}} <span>Със същото име в {{cityName}} има и <a href="{{href}}">профил с код {{code}}</a>{{#years}} (резултати {{years}}){{/years}} — вероятно същото училище след смяна на кода от МОН. Тук са резултатите за {{ownYears}}.</span></p>
+          <p class="school-hero__note">{{#icon}}info{{/icon}} <span>Със същото име в {{cityName}} има и <a href="{{href}}">профил с код {{code}}</a>{{#years}} (резултати {{years}}){{/years}} — вероятно същото училище след смяна на кода от МОН.{{#ownYears}} Тук са резултатите за {{ownYears}}.{{/ownYears}}</span></p>
 {{/sameName}}
+{{#noData}}
+          <p class="school-hero__note">{{#icon}}info{{/icon}} <span>Няма резултати от {{noDataFrom}} г. насам — сайтът показва само последните години. По-старите резултати на училището са в <a href="../../api/v1/schools/{{code}}.json">JSON API</a>.</span></p>
+{{/noData}}
         </div>
       </div>
       <div class="cluster school-hero__actions">
 {{#website}}
         <a class="btn" href="{{website}}" target="_blank" rel="noopener noreferrer">{{#icon}}globe{{/icon}} Уебсайт</a>
 {{/website}}
+{{^noData}}
         <button type="button" class="btn btn--primary" id="school-pdf">{{#icon}}download{{/icon}} Изтегли PDF</button>
+{{/noData}}
       </div>
     </header>
 
