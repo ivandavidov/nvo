@@ -5,7 +5,9 @@ import { showModal } from './dom.js';
 import { searchKey, toCyrillic, expandAbbreviations } from './search-text.js';
 import { siteUrl } from '../site.js';
 
-const MAX_SCHOOLS = 12;
+// Много училища носят едно и също име („Христо Ботев“ — 70+), затова показваме много резултати
+// в скролиращ се списък, а при повече казваме колко са и как да се стесни търсенето.
+const MAX_SCHOOLS = 100;
 const MAX_CITIES = 6;
 const GRADE_ORDER = [7, 12, 4, 10];
 const GRADE_NAMES = { 4: 'НВО 4 клас', 7: 'НВО 7 клас', 10: 'НВО 10 клас', 12: 'ДЗИ 12 клас' };
@@ -145,7 +147,7 @@ function search(index, raw) {
     .filter((c) => keys.every((t) => c._k.includes(t)))
     .sort((a, b) => nameTier(a._k, kq) - nameTier(b._k, kq) || a.rank - b.rank)
     .slice(0, MAX_CITIES);
-  const schools = index.schools
+  const matched = index.schools
     .filter((s) => keys.every((t) => s._h.includes(t)))
     .sort((a, b) => {
       const ra = Math.min(nameTier(a._kf, kq), nameTier(a._ks, kq));
@@ -159,9 +161,8 @@ function search(index, raw) {
         return ao - bo;
       }
       return a.fullName.localeCompare(b.fullName, 'bg');
-    })
-    .slice(0, MAX_SCHOOLS);
-  return { pages, cities, schools, terms };
+    });
+  return { pages, cities, schools: matched.slice(0, MAX_SCHOOLS), schoolsTotal: matched.length, terms };
 }
 
 function render(result, loading) {
@@ -198,7 +199,7 @@ function render(result, loading) {
     });
   }
   if (result.schools.length) {
-    html.push('<div class="combo__group">Училища</div>');
+    html.push('<div class="combo__group">Училища · ' + result.schoolsTotal + '</div>');
     result.schools.forEach((s) => {
       const i = push(siteUrl('school/' + s.code + '/'));
       const links = s.grades.slice().sort((a, b) => a - b)
@@ -209,6 +210,10 @@ function render(result, loading) {
         + '<span class="palette__item-sub">' + esc((s.city ? s.city.name : '') + (s.isPrivate ? ' · частно' : ' · държавно')) + '</span></span></a>'
         + '<span class="palette__links">' + links.join('') + '</span></div>');
     });
+  }
+  if (result.schoolsTotal > result.schools.length) {
+    html.push('<div class="combo__empty">Показани са първите ' + result.schools.length + ' от ' + result.schoolsTotal
+      + '. Добави града или още една дума, за да стесниш търсенето — напр. „Ботев Пловдив“.</div>');
   }
   if (!items.length) {
     html.push('<div class="combo__empty">' + (loading ? 'Зареждане…' : 'Няма резултати за „' + esc(lastQuery) + '“') + '</div>');

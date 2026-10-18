@@ -59,6 +59,9 @@ export function createCombobox({ input, host, search, onSelect, emptyText = 'ÐÑ
     items = [];
     const html = [];
     groups.forEach((g) => {
+      if (g.note) {
+        html.push('<div class="combo__empty">' + esc(g.note) + '</div>');
+      }
       if (!g.items.length) {
         return;
       }
