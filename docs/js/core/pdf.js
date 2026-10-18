@@ -398,7 +398,7 @@ export const PDF_MARGIN = PAGE_MARGIN_PT;
 /** Колоните на класацията (същите заглавия като в таблицата на сайта). */
 export function rankingHeaders(model) {
   const { cfg, firstYear, totalYears } = model;
-  const headers = ['№', 'Училище', 'Тип / №', 'Ранг'];
+  const headers = ['№', 'Училище', 'Ранг', 'Тип / №'];
   for (let k = 0; k < 3; k++) {
     const yy = firstYear - 2001 + totalYears - k;
     headers.push(yy + ' ' + cfg.csvHeaderB + ' / уч.');
@@ -411,7 +411,7 @@ export function rankingHeaders(model) {
 export function rankingCells(model, row, position, filter) {
   const { s } = model;
   const o = s[row.i];
-  const cells = [String(position), o.l, row.type + ' / ' + row.typeNo, formatRankValue(rankFor(row, filter))];
+  const cells = [String(position), o.l, formatRankValue(rankFor(row, filter)), row.type + ' / ' + row.typeNo];
   row.years.forEach((y) => {
     cells.push(y.b ? y.b + ' / ' + y.bu : '');
     cells.push(y.m ? y.m + ' / ' + y.mu : '');

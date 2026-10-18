@@ -69,7 +69,8 @@ public final class GradePageGenerator {
             history.add(y);
         }
         ctx.put("historyYears", history);
-        // Експортът за всички градове — отделно меню вдясно (CSV и JSON: всички години; PDF: класациите).
+        // Експортът за всички градове — същият бутон като над таблиците, след връзките, с разделител
+        // (CSV и JSON: всички години; PDF: класациите).
         String prefix = dzi ? "dzi-12" : "nvo-" + grade;
         ctx.put("exportMenu", ExportMenu.html("Всички градове", List.of(
                 ExportMenu.Item.action("csv", "Таблица за Excel · всички години", "csv-all"),

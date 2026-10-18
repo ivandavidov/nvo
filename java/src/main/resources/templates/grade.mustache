@@ -80,23 +80,23 @@
 {{/historyYears}}
           </select>
         </label>
-        {{{exportMenu}}}
       </div>
-      <nav class="grade-hero__links" aria-label="Бързи връзки">
-        <a class="chip" href="{{latestYear}}/" data-national>{{#icon}}trophy{{/icon}} <span class="chip__long">Национална класация</span><span class="chip__short">Класация</span> <span data-national-year>{{latestYear}}</span></a>
+      <div class="grade-hero__links">
+        <a class="chip" href="{{latestYear}}/" data-national>{{#icon}}trophy{{/icon}} <span><span class="chip__long">Национална класация</span><span class="chip__short">Класация</span> <span data-national-year>{{latestYear}}</span></span></a>
 {{#hasBalove}}
-        <a class="chip" href="balove/">{{#icon}}target{{/icon}} Балове<span class="chip__long"> по паралелки</span></a>
+        <a class="chip" href="balove/">{{#icon}}target{{/icon}} <span>Балове<span class="chip__long"> по паралелки</span></span></a>
 {{/hasBalove}}
         <a class="chip" href="../stats/?grade={{grade}}">{{#icon}}pie{{/icon}} Статистика</a>
         <details class="year-links" data-popover>
-          <summary class="chip">{{#icon}}calendar{{/icon}} <span class="chip__long">Класации по години</span><span class="chip__short">По години</span></summary>
+          <summary class="chip">{{#icon}}calendar{{/icon}} <span class="chip__long">Класации по години</span><span class="chip__short">По години</span><span class="menu-button__caret">{{#icon}}chevron-down{{/icon}}</span></summary>
           <div class="year-links__panel">
 {{#rankingYears}}
             <a href="{{.}}/">{{.}}</a>
 {{/rankingYears}}
           </div>
         </details>
-      </nav>
+        {{{exportMenu}}}
+      </div>
     </section>
 
     <section class="container container--wide section" id="compare" aria-labelledby="compare-title">

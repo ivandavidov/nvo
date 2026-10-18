@@ -776,7 +776,7 @@
   .menu-button[open] > summary { border-color: var(--primary); color: var(--primary); background: var(--primary-soft); }
   .menu-button__caret { display: inline-grid; place-items: center; margin-left: -2px; color: var(--text-3); transition: transform var(--dur-fast) var(--ease); }
   .menu-button__caret svg { width: 14px; height: 14px; }
-  .menu-button[open] .menu-button__caret { transform: rotate(180deg); color: var(--primary); }
+  details[open] > summary .menu-button__caret { transform: rotate(180deg); color: var(--primary); }
   .menu-button__short { display: none; }
   .menu-button__panel {
     position: absolute;
@@ -1159,12 +1159,11 @@
     top: 0;
     z-index: 2;
   }
-  .data-table thead td { background: var(--surface-2); border-bottom: 1px solid var(--border); }
   .data-table thead th {
     vertical-align: bottom;
     background: var(--surface-2);
     color: var(--text-3);
-    font-size: var(--fs-xs);
+    font-size: var(--fs-sm);
     font-weight: 650;
     letter-spacing: 0.02em;
   }
@@ -1571,40 +1570,64 @@
     gap: var(--sp-5) var(--sp-8);
     padding-top: var(--sp-8);
   }
-  .grade-hero__side { display: flex; flex-direction: column; align-items: flex-end; gap: var(--sp-3); }
-  .grade-hero__side .field { min-width: 240px; align-self: stretch; }
+  .grade-hero__side .field { min-width: 240px; }
   .grade-hero__side .field__label { display: inline-flex; align-items: center; gap: var(--sp-1); }
   .grade-hero__side .field__label svg { width: 14px; height: 14px; }
+  /* Редът под заглавието: бързите връзки, а след тях „Изтегли данните“. */
   .grade-hero__links {
     grid-column: 1 / -1;
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
     gap: var(--sp-2);
   }
+  /* „Изтегли данните“ — същият бутон като над таблиците, отделен от връзките с разделител
+     (действие с данните, а не връзка към друга страница). */
+  .grade-hero__export { margin-left: var(--sp-2); padding-left: var(--sp-4); border-left: 1px solid var(--border); }
   @media (max-width: 760px) {
     .grade-hero { grid-template-columns: 1fr; align-items: start; }
     .grade-hero__side .field { min-width: 0; }
   }
-  /* Кратките надписи на бутоните са само за телефон. */
+  /* Кратките надписи на бутоните са за по-тесните екрани. */
   .chip__short { display: none; }
+  /* Таблет и малък лаптоп: кратки надписи („Класация 2026“, „По години“, „Изтегли“) —
+     връзките и „Изтегли“ остават на един ред. */
+  @media (max-width: 1099px) {
+    .grade-hero__links .chip__long, .grade-hero__links .menu-button__long { display: none; }
+    .grade-hero__links .chip__short, .grade-hero__links .menu-button__short { display: inline; }
+  }
   /* Телефон: компактно въведение — графиката да се вижда още на първия екран. */
   @media (max-width: 640px) {
     .grade-hero { gap: var(--sp-3); padding-top: var(--sp-5); }
     .grade-hero .page-head__lead { display: none; }
     .grade-hero .page-head__eyebrow { margin-bottom: var(--sp-1); }
-    /* Годината и „Изтегли“ на един ред, ако се събират; иначе „Изтегли“ минава под тях, вдясно. */
-    .grade-hero__side { flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: flex-end; }
-    .grade-hero__side .field { display: flex; align-items: center; gap: var(--sp-3); flex: 1 1 270px; min-width: 0; }
+    .grade-hero__side .field { display: flex; align-items: center; gap: var(--sp-3); }
     .grade-hero__side .field__label { flex-shrink: 0; margin: 0; }
     .grade-hero__side .select { flex: 1; min-width: 0; }
-    .grade-hero__links { gap: 6px; }
     .grade-hero .chip__long { display: none; }
     .grade-hero .chip__short { display: inline; }
     .grade-page #compare { margin-top: var(--sp-6); }
-    /* Панелът с годините — закотвен за целия блок с бутони (бутонът може да е в края на реда). */
-    .grade-hero__links { position: relative; }
-    .grade-hero__links .year-links { position: static; }
     .grade-page .compare__lead { display: none; }
+  }
+  /* Телефон и таблет до 767 px: връзките и „Изтегли“ — две равни колони с еднакви бутони
+     (без назъбени редове и самотни бутони). При нечетен брой първият — националната
+     класация — е на цял ред. Панелът с годините е закотвен за целия блок, под него. */
+  @media (max-width: 767px) {
+    .grade-hero__links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); position: relative; }
+    .grade-hero__links > :first-child:nth-last-child(odd) { grid-column: 1 / -1; }
+    .grade-hero__links .chip { width: 100%; height: 40px; justify-content: center; font-size: var(--fs-md); }
+    .grade-hero__links .btn { --btn-h: 40px; width: 100%; font-size: var(--fs-md); }
+    .grade-hero__export { margin-left: 0; padding-left: 0; border-left: 0; }
+    .grade-hero__links > :first-child:nth-last-child(odd) .chip__long { display: inline; }
+    .grade-hero__links > :first-child:nth-last-child(odd) .chip__short { display: none; }
+    .grade-hero__links .year-links { position: static; }
+  }
+  /* Най-тесните екрани: надписът „Година“ остава само за екранните четци (иконата се вижда),
+     за да не се отрязва изборът „2026 — актуални данни“. */
+  @media (max-width: 359px) {
+    .grade-hero__side .field__label .chip__short {
+      position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+    }
   }
 
   .year-links { position: relative; }
@@ -1644,6 +1667,7 @@
   .compare__actions .btn { --btn-h: 34px; }
   .compare__picker { display: flex; flex-wrap: wrap; align-items: flex-start; gap: var(--sp-3); }
   .compare__add { flex: 0 1 380px; min-width: min(100%, 260px); }
+  .compare__add .input { text-overflow: ellipsis; }
   .compare__add .combo__list { min-width: min(560px, calc(100vw - 2rem)); }
   .compare__chips {
     flex: 1 1 320px;
@@ -1756,38 +1780,45 @@
   .city-panel__head { align-items: flex-start; }
   /* Експортът — отделно меню в края на бутоните, с разделител. */
   .city-panel__export { margin-left: var(--sp-1); padding-left: var(--sp-3); border-left: 1px solid var(--border); }
-  @media (max-width: 560px) { .city-panel__export { margin-left: 0; padding-left: 0; border-left: 0; } }
+  /* Телефон: бутоните — две равни колони под заглавието, както в началото на страницата;
+     при нечетен брой първият (класацията на отделна страница) е на цял ред. */
+  @media (max-width: 640px) {
+    .city-panel__actions { flex-basis: 100%; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-2); }
+    .city-panel__actions > :first-child:nth-last-child(odd) { grid-column: 1 / -1; }
+    .city-panel .city-panel__actions .btn { --btn-h: 40px; width: 100%; justify-content: center; }
+    .city-panel__export { margin-left: 0; padding-left: 0; border-left: 0; }
+  }
   .city-panel__title { font-size: var(--fs-2xl); }
-  .city-panel__tabs { padding-inline: clamp(var(--sp-2), 2vw, var(--sp-4)); }
+  /* Ред с табовете: табовете вляво, превключвателят на изгледа на текущия таб вдясно
+     („Всички / Държавни / Частни“ или „По училища / По ученици“). Таблицата започва веднага под него. */
+  .city-panel__bar {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: var(--sp-4);
+    padding-inline: clamp(var(--sp-2), 2vw, var(--sp-4));
+    border-bottom: 1px solid var(--border);
+  }
+  .city-panel__bar .city-panel__tabs { border-bottom: 0; }
+  .city-panel__view { display: flex; align-items: center; }
+  .city-panel__view:empty { display: none; }
+  .averages__note { margin: 0 0 var(--sp-3); }
+  @media (max-width: 640px) {
+    .city-panel__bar { display: block; padding-inline: 0; border-bottom: 0; }
+    .city-panel__bar .city-panel__tabs { padding-inline: var(--sp-2); border-bottom: 1px solid var(--border); }
+    /* Двата таба — по половин ширина, с кратки надписи („Класация“), без скрол встрани. */
+    .city-panel__tabs > [role="tab"] { flex: 1 1 0; text-align: center; }
+    .tabs__long { display: none; }
+    .city-panel__view { padding: var(--sp-3) var(--sp-3) 0; }
+    .city-panel__view .seg { display: flex; width: 100%; }
+    .city-panel__view .seg > button { flex: 1; justify-content: center; }
+  }
   .city-panel__body { padding: clamp(var(--sp-4), 1.25vw, var(--sp-6)); }
   .city-panel .btn { --btn-h: 34px; }
 
-  .ranking__toolbar {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--sp-3) var(--sp-6);
-    margin-bottom: var(--sp-4);
-  }
-  /* „Всички / Държавни / Частни“ — в заглавието над „№ + Училище“ (закрепено като колоните);
-     на телефон — над таблицата, на цял ред (ranking__filter-top). */
-  .ranking .ranking__filter-cell {
-    position: sticky;
-    left: 0;
-    z-index: 3;
-    vertical-align: middle;
-    padding-block: 0.45rem;
-    box-shadow: inset -1px 0 0 var(--border);
-  }
-  .seg--compact > button { height: 26px; padding: 0 0.6rem; }
-  .ranking__filter-top { display: none; margin-bottom: var(--sp-3); }
-  .ranking__filter-top--always { display: inline-flex; }
-  /* Легенда за „⊕“ в заглавието „Училище“ — същият вид като бутона, но не е бутон. */
-  .ranking .th-name { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 2px var(--sp-3); }
-  .th-legend { display: inline-flex; align-items: center; gap: 6px; color: var(--text-4); font-weight: 500; letter-spacing: 0; white-space: nowrap; }
-  .th-legend .add-toggle { width: 18px; height: 18px; pointer-events: none; --ci-size: 11px; }
-  .th-legend__short { display: none; }
+  /* Уточнението в заглавието („26“ в „БЕЛ 26“) — по-леко от предмета. */
+  .th-qual { color: var(--text-4); font-weight: 500; }
+  [aria-sort="ascending"] .th-qual, [aria-sort="descending"] .th-qual { color: inherit; }
   .ranking__foot {
     display: flex;
     flex-wrap: wrap;
@@ -1810,7 +1841,7 @@
     position: sticky;
     left: 48px;
     z-index: 1;
-    min-width: 230px;
+    min-width: 216px;
     background: var(--surface);
     box-shadow: inset -1px 0 0 var(--border);
   }
@@ -1821,7 +1852,10 @@
   .ranking tr.is-selected td,
   .ranking tr.is-selected .col-pos,
   .ranking tr.is-selected .col-name { background: color-mix(in srgb, var(--primary-soft) 80%, var(--surface)); }
-  .ranking .col-rank { min-width: 128px; }
+  /* Колоните са по-тесни от другите таблици (0.6rem), за да се събират всички години и при
+     „ДЗИ-2 26“ (12 клас) на 1280 px без хоризонтален скрол. */
+  .ranking th, .ranking td { padding-inline: 0.6rem; }
+  .ranking .rank { grid-template-columns: 6ch 44px; min-width: 0; }
   /* Колоните по години: центрирани; стойността и броят ученици са с фиксирана ширина,
      така че блокът е еднакъв на всеки ред и точките остават подравнени. */
   .ranking .yv { padding-inline: 0.4rem; text-align: center; }
@@ -1882,7 +1916,7 @@
 
   .code-box { height: auto; padding: var(--sp-3); font-family: var(--font-mono); font-size: var(--fs-sm); resize: vertical; }
 
-  /* --- Мобилна лента „Към графиката“ --- */
+  /* --- Лента „N училища в графиката · Виж“ — когато графиката е над видимата част --- */
   .tray {
     position: fixed;
     left: 50%;
@@ -1903,10 +1937,6 @@
     animation: toast-in var(--dur) var(--ease);
   }
   .tray .btn { border-radius: var(--radius-full); }
-  /* Лентата е само за телефон — на по-широк екран графиката е близо и лентата би закривала таблицата. */
-  @media (min-width: 768px) {
-    .tray { display: none; }
-  }
   /* Телефон: „Сподели · Вгради · Изчисти“ на свой ред под заглавието, с видими надписи
      (само иконите — верига, </>, кошче — не са достатъчно ясни). */
   @media (max-width: 560px) {
@@ -1916,6 +1946,10 @@
   @media (max-width: 419px) {
     .compare__actions { gap: 0; margin-left: -0.4rem; }
     .compare__actions .btn { padding-inline: 0.4rem; gap: 0.3rem; }
+  }
+  /* 320 px: „Сподели · Вгради · Изчисти“ — само с надписи, за да са на един ред. */
+  @media (max-width: 359px) {
+    .compare__actions .btn svg { display: none; }
   }
 }
 
@@ -1966,14 +2000,23 @@
 @layer pages {
   @media (max-width: 640px) {
     .city-panel__body { padding: var(--sp-3); }
+    /* Закрепени са № и името; рангът (само числото) е до тях и се вижда без скрол,
+       а следващата колона се подава — знак, че таблицата продължава надясно. */
     .ranking .col-pos { width: 34px; min-width: 34px; padding-inline: 0.35rem; }
-    .ranking .col-name { left: 34px; width: 168px; min-width: 150px; max-width: 168px; }
+    .ranking .col-name { left: 34px; width: 180px; min-width: 180px; max-width: 180px; }
     .ranking .web-link { display: none; }
-    .ranking__filter-cell .seg { display: none; }
-    .ranking__filter-top { display: flex; width: 100%; }
-    .ranking__filter-top > button { flex: 1; justify-content: center; }
-    .th-legend__long { display: none; }
-    .th-legend__short { display: inline; }
+    .ranking .rank { grid-template-columns: auto; }
+    .ranking .rank__bar { display: none; }
+  }
+  /* „Средни резултати“: по-тесни клетки на телефон — петте колони се събират без скрол. */
+  @media (max-width: 640px) {
+    .averages th, .averages td { padding-inline: 0.5rem; }
+  }
+  @media (max-width: 359px) {
+    .ranking .col-name { width: 140px; min-width: 140px; max-width: 140px; }
+    .ranking .col-rank { padding-inline: 0.5rem; }
+    .averages th, .averages td { padding-inline: 0.35rem; }
+    .averages .data-table { font-size: var(--fs-sm); }
   }
 }
 
