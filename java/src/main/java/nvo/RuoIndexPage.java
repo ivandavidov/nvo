@@ -1,5 +1,10 @@
 package nvo;
 
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -35,6 +40,64 @@ public class RuoIndexPage {
         Path out = Path.of(OUTPUT_BASE, "index.html");
         Files.writeString(out, buildHtml(cities));
         System.out.println("Written: " + out + " (" + cities.size() + " cities)");
+        writeApi(cities);
+    }
+
+    // ── API: api/v1/balove/index.json и data.json ───────────────────────────
+
+    /**
+     * index.json — градовете (години, брой училища и паралелки, адрес на файла);
+     * data.json — всички градове в един файл (документите от RuoDecomplexor поред).
+     * Маха JSON-ите на градове без публикувана страница.
+     */
+    private void writeApi(List<Cities.City> cities) throws IOException {
+        Path dir = Path.of(RuoDecomplexor.API_DIR);
+        Set<String> keep = new java.util.HashSet<>(List.of("index.json", "data.json"));
+        cities.forEach(c -> keep.add(c.hrefName() + ".json"));
+        try (Stream<Path> stream = Files.list(dir)) {
+            for (Path f : stream.toList()) {
+                if (!keep.contains(f.getFileName().toString())) {
+                    Files.delete(f);
+                }
+            }
+        }
+
+        java.util.TreeSet<Integer> allYears = new java.util.TreeSet<>();
+        JsonArray index = new JsonArray();
+        JsonArray docs = new JsonArray();
+        for (Cities.City c : cities) {
+            JsonObject doc = JsonParser.parseString(Files.readString(dir.resolve(c.hrefName() + ".json"))).getAsJsonObject();
+            docs.add(doc);
+            JsonArray years = doc.getAsJsonArray("years");
+            years.forEach(y -> allYears.add(y.getAsInt()));
+            int profiles = 0;
+            for (var school : doc.getAsJsonArray("schools")) {
+                profiles += school.getAsJsonObject().getAsJsonArray("profiles").size();
+            }
+            JsonObject item = new JsonObject();
+            item.addProperty("slug", c.hrefName());
+            item.addProperty("name", c.fullName());
+            item.add("years", years);
+            item.addProperty("schools", doc.getAsJsonArray("schools").size());
+            item.addProperty("profiles", profiles);
+            item.addProperty("url", c.hrefName() + ".json");
+            index.add(item);
+        }
+        JsonArray yearsArr = new JsonArray();
+        allYears.forEach(yearsArr::add);
+
+        var gson = new GsonBuilder().serializeNulls().create();
+        JsonObject indexRoot = new JsonObject();
+        indexRoot.add("years", yearsArr);
+        indexRoot.addProperty("dataUrl", "data.json");
+        indexRoot.add("cities", index);
+        Files.writeString(dir.resolve("index.json"), gson.toJson(indexRoot) + "\n");
+
+        JsonObject dataRoot = new JsonObject();
+        dataRoot.add("years", yearsArr);
+        dataRoot.add("cities", docs);
+        Files.writeString(dir.resolve("data.json"), gson.toJson(dataRoot) + "\n");
+        System.out.println("Written: " + dir + "/index.json, data.json (" + cities.size() + " cities)");
     }
 
     /**
@@ -76,6 +139,12 @@ public class RuoIndexPage {
                 + "по градове. Изберете град, за да видите таблици и графики по класирания.");
         ctx.put("canonical", ProjectConfig.SITE_BASE_URL + "7/" + ProjectConfig.RUO_DIR_NAME + "/");
         ctx.put("cityCount", cities.size());
+        ctx.put("exportMenu", nvo.site.ExportMenu.html("Всички градове", List.of(
+                nvo.site.ExportMenu.Item.action("csv", "Таблица за Excel · всички години", "balove-csv-all"),
+                nvo.site.ExportMenu.Item.link("json", "Данните от API-то · всички години",
+                        "../../api/v1/balove/data.json", "balove-7-all.json"),
+                nvo.site.ExportMenu.Item.action("pdf", "Баловете на всички градове · за печат", "balove-pdf-all")),
+                "PDF-ът за всички градове е голям (над 300 страници) — подготвя се няколко секунди.", "page-head__export"));
 
         List<java.util.Map<String, Object>> tiers = new java.util.ArrayList<>();
         List<Cities.City> regional = cities.stream().filter(c -> c.orderPosition() <= 2).toList();

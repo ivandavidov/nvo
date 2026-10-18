@@ -69,6 +69,13 @@ public final class GradePageGenerator {
             history.add(y);
         }
         ctx.put("historyYears", history);
+        // Експортът за всички градове — отделно меню вдясно (CSV и JSON: всички години; PDF: класациите).
+        String prefix = dzi ? "dzi-12" : "nvo-" + grade;
+        ctx.put("exportMenu", ExportMenu.html("Всички градове", List.of(
+                ExportMenu.Item.action("csv", "Таблица за Excel · всички години", "csv-all"),
+                ExportMenu.Item.link("json", "Данните от API-то · всички години", "../api/v1/" + grade + "/data.json", prefix + "-data-all.json"),
+                ExportMenu.Item.action("pdf", "Класациите на всички градове · за печат", "pdf-all")),
+                null, "grade-hero__export"));
         List<Integer> rankingYears = new ArrayList<>();
         for (int y = latest; y >= ProjectConfig.DISPLAY_FROM.get(grade); y--) {
             if (Files.exists(docs.resolve(grade).resolve(String.valueOf(y)).resolve("index.html"))) {

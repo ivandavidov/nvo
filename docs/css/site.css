@@ -769,6 +769,79 @@
   }
   @media (max-width: 1180px) { .search-trigger .kbd { display: none; } }
 
+  /* --- Меню с бутон „Изтегли ▾“: <details data-popover> (поведението — ui/popover.js) --- */
+  .menu-button { position: relative; display: inline-block; flex-shrink: 0; }
+  .menu-button > summary { list-style: none; cursor: pointer; }
+  .menu-button > summary::-webkit-details-marker { display: none; }
+  .menu-button[open] > summary { border-color: var(--primary); color: var(--primary); background: var(--primary-soft); }
+  .menu-button__caret { display: inline-grid; place-items: center; margin-left: -2px; color: var(--text-3); transition: transform var(--dur-fast) var(--ease); }
+  .menu-button__caret svg { width: 14px; height: 14px; }
+  .menu-button[open] .menu-button__caret { transform: rotate(180deg); color: var(--primary); }
+  .menu-button__short { display: none; }
+  .menu-button__panel {
+    position: absolute;
+    z-index: 30;
+    top: calc(100% + 6px);
+    right: 0;
+    width: max-content;
+    min-width: 260px;
+    max-width: min(340px, calc(100vw - 32px));
+    display: grid;
+    gap: 2px;
+    padding: var(--sp-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--surface);
+    box-shadow: var(--shadow-lg);
+    text-align: left;
+  }
+  .menu-button--start .menu-button__panel { right: auto; left: 0; }
+  .menu-button__title {
+    margin: 0;
+    padding: var(--sp-1) var(--sp-2) var(--sp-2);
+    font-size: var(--fs-xs);
+    font-weight: 650;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-4);
+  }
+  .menu-button__item {
+    display: grid;
+    grid-template-columns: 18px minmax(0, 1fr);
+    align-items: start;
+    column-gap: var(--sp-3);
+    width: 100%;
+    padding: 0.5rem 0.6rem;
+    border: 0;
+    border-radius: var(--radius-sm);
+    background: none;
+    color: var(--text);
+    font: inherit;
+    line-height: 1.3;
+    text-align: left;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .menu-button__item:hover, .menu-button__item:focus-visible { background: var(--primary-soft); color: var(--text); text-decoration: none; }
+  .menu-button__item svg { width: 18px; height: 18px; margin-top: 1px; color: var(--text-3); }
+  .menu-button__item:hover svg, .menu-button__item:focus-visible svg { color: var(--primary); }
+  .menu-button__item strong { font-size: var(--fs-md); font-weight: 650; }
+  .menu-button__hint { display: block; font-size: var(--fs-sm); color: var(--text-3); }
+  .menu-button__note {
+    margin: var(--sp-1) 0 0;
+    padding: var(--sp-2) var(--sp-2) var(--sp-1);
+    border-top: 1px solid var(--border);
+    font-size: var(--fs-xs);
+    color: var(--text-4);
+  }
+  @media (max-width: 560px) {
+    .menu-button__long { display: none; }
+    .menu-button__short { display: inline; }
+  }
+
+  /* Експортът в реда с бутоните на заглавието — изтласкан вдясно. */
+  .page-head__export { margin-left: auto; }
+
   /* --- Chips --- */
   .chip {
     display: inline-flex;
@@ -1497,7 +1570,8 @@
     gap: var(--sp-5) var(--sp-8);
     padding-top: var(--sp-8);
   }
-  .grade-hero__side .field { min-width: 240px; }
+  .grade-hero__side { display: flex; flex-direction: column; align-items: flex-end; gap: var(--sp-3); }
+  .grade-hero__side .field { min-width: 240px; align-self: stretch; }
   .grade-hero__side .field__label { display: inline-flex; align-items: center; gap: var(--sp-1); }
   .grade-hero__side .field__label svg { width: 14px; height: 14px; }
   .grade-hero__links {
@@ -1517,14 +1591,14 @@
     .grade-hero { gap: var(--sp-3); padding-top: var(--sp-5); }
     .grade-hero .page-head__lead { display: none; }
     .grade-hero .page-head__eyebrow { margin-bottom: var(--sp-1); }
-    .grade-hero__side .field { display: flex; align-items: center; gap: var(--sp-3); }
+    /* Годината и „Изтегли“ на един ред, ако се събират; иначе „Изтегли“ минава под тях, вдясно. */
+    .grade-hero__side { flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: flex-end; }
+    .grade-hero__side .field { display: flex; align-items: center; gap: var(--sp-3); flex: 1 1 270px; min-width: 0; }
     .grade-hero__side .field__label { flex-shrink: 0; margin: 0; }
     .grade-hero__side .select { flex: 1; min-width: 0; }
     .grade-hero__links { gap: 6px; }
     .grade-hero .chip__long { display: none; }
     .grade-hero .chip__short { display: inline; }
-    /* JSON е за разработчици — на телефон е достъпен от API документацията (менюто „Още“). */
-    .grade-hero__links .chip--desktop { display: none; }
     .grade-page #compare { margin-top: var(--sp-6); }
     /* Панелът с годините — закотвен за целия блок с бутони (бутонът може да е в края на реда). */
     .grade-hero__links { position: relative; }
@@ -1679,6 +1753,9 @@
   .city-switch__more[open] > summary::after { transform: rotate(-135deg) translateY(-1px); }
 
   .city-panel__head { align-items: flex-start; }
+  /* Експортът — отделно меню в края на бутоните, с разделител. */
+  .city-panel__export { margin-left: var(--sp-1); padding-left: var(--sp-3); border-left: 1px solid var(--border); }
+  @media (max-width: 560px) { .city-panel__export { margin-left: 0; padding-left: 0; border-left: 0; } }
   .city-panel__title { font-size: var(--fs-2xl); }
   .city-panel__tabs { padding-inline: clamp(var(--sp-2), 2vw, var(--sp-4)); }
   .city-panel__body { padding: clamp(var(--sp-4), 1.25vw, var(--sp-6)); }

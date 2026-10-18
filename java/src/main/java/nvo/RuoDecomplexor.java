@@ -1,5 +1,9 @@
 package nvo;
 
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonNull;
+import com.google.gson.JsonObject;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 
@@ -19,6 +23,8 @@ public class RuoDecomplexor {
 
     private static final String NORMALIZED_DIR = ProjectConfig.DATA_NORMALIZED_DIR;
     private static final String OUTPUT_DIR = ProjectConfig.DOCS_JS_DIR;
+    /** Публичното API на баловете: api/v1/balove/{град}.json (index.json и data.json — RuoIndexPage). */
+    public static final String API_DIR = ProjectConfig.DOCS_API_V1_DIR + "balove/";
 
     public static void main(String... args) throws Exception {
         if (args.length == 0) {
@@ -54,6 +60,7 @@ public class RuoDecomplexor {
         sortedCodes.sort((a, b) -> schoolNames.get(a).compareToIgnoreCase(schoolNames.get(b)));
 
         writeJs(city, years, sortedCodes, schoolNames, profileNames, scores);
+        writeJson(city, years, sortedCodes, schoolNames, profileNames, scores);
     }
 
     // ── Data loading ─────────────────────────────────────────────────────────
@@ -234,6 +241,109 @@ public class RuoDecomplexor {
 
             sb.append("}};\n");
         }
+    }
+
+    // ── JSON (API) ───────────────────────────────────────────────────────────
+
+    /**
+     * api/v1/balove/{град}.json — същите данни като ruo-{град}.js, с изрични дупки:
+     * coverage.{година} = кои класирания имат данни в града и има ли разбивка по пол;
+     * null за класиране = няма данни (попълнено по-рано или непубликувано — виж coverage);
+     * полът е null, когато липсва; година без данни за паралелката не се записва.
+     */
+    private void writeJson(String city, List<Integer> years,
+                           List<String> sortedCodes,
+                           Map<String, String> schoolNames,
+                           Map<String, Map<String, String>> profileNames,
+                           Map<String, Map<String, List<List<double[]>>>> scores) throws IOException {
+        Cities.City c = Cities.ORDERED.stream().filter(x -> x.hrefName().equals(city)).findFirst().orElse(null);
+        JsonObject root = new JsonObject();
+        JsonObject cityObj = new JsonObject();
+        cityObj.addProperty("slug", city);
+        cityObj.addProperty("name", c != null ? c.fullName() : city);
+        root.add("city", cityObj);
+        JsonArray yearsArr = new JsonArray();
+        years.forEach(yearsArr::add);
+        root.add("years", yearsArr);
+
+        boolean[][] hasRanking = new boolean[years.size()][4];
+        boolean[] hasGender = new boolean[years.size()];
+        JsonArray schools = new JsonArray();
+        for (String schoolCode : sortedCodes) {
+            JsonObject school = new JsonObject();
+            school.addProperty("code", schoolCode);
+            school.addProperty("name", resolveLabel(schoolCode, schoolNames.get(schoolCode)));
+            school.addProperty("fullName", resolveFullName(schoolCode, schoolNames.get(schoolCode)));
+            school.addProperty("isPrivate", isPrivate(schoolCode));
+            JsonArray profiles = new JsonArray();
+            for (Map.Entry<String, String> profile : profileNames.get(schoolCode).entrySet()) {
+                List<List<double[]>> data = scores.get(schoolCode).get(profile.getKey());
+                JsonObject byYear = new JsonObject();
+                for (int yi = 0; yi < years.size(); yi++) {
+                    JsonArray rankings = new JsonArray();
+                    boolean any = false;
+                    for (int ki = 0; ki < 4; ki++) {
+                        double[] k = data.get(yi).get(ki);
+                        if (k == null || isAllZero(k)) {
+                            rankings.add(JsonNull.INSTANCE);
+                            continue;
+                        }
+                        any = true;
+                        hasRanking[yi][ki] = true;
+                        if (k[1] != 0 || k[2] != 0 || k[4] != 0 || k[5] != 0) {
+                            hasGender[yi] = true;
+                        }
+                        JsonObject e = new JsonObject();
+                        e.add("min", score(k[0]));
+                        e.add("max", score(k[3]));
+                        e.add("minMale", score(k[1]));
+                        e.add("minFemale", score(k[2]));
+                        e.add("maxMale", score(k[4]));
+                        e.add("maxFemale", score(k[5]));
+                        rankings.add(e);
+                    }
+                    if (any) {
+                        byYear.add(String.valueOf(years.get(yi)), rankings);
+                    }
+                }
+                JsonObject p = new JsonObject();
+                p.addProperty("code", profile.getKey());
+                p.addProperty("name", profile.getValue());
+                p.add("years", byYear);
+                profiles.add(p);
+            }
+            school.add("profiles", profiles);
+            schools.add(school);
+        }
+
+        JsonObject coverage = new JsonObject();
+        for (int yi = 0; yi < years.size(); yi++) {
+            JsonObject y = new JsonObject();
+            JsonArray rankings = new JsonArray();
+            for (int ki = 0; ki < 4; ki++) {
+                if (hasRanking[yi][ki]) {
+                    rankings.add(ki + 1);
+                }
+            }
+            y.add("rankings", rankings);
+            y.addProperty("gender", hasGender[yi]);
+            coverage.add(String.valueOf(years.get(yi)), y);
+        }
+        root.add("coverage", coverage);
+        root.add("schools", schools);
+
+        Path out = Path.of(API_DIR, city + ".json");
+        Files.createDirectories(out.getParent());
+        Files.writeString(out, new GsonBuilder().serializeNulls().create().toJson(root) + "\n");
+        System.out.println("Written: " + out);
+    }
+
+    /** Бал като число (без „.0“); 0 (липсва, напр. при пола) → null. */
+    private static com.google.gson.JsonElement score(double v) {
+        if (v == 0.0) {
+            return JsonNull.INSTANCE;
+        }
+        return v == Math.rint(v) ? new com.google.gson.JsonPrimitive((long) v) : new com.google.gson.JsonPrimitive(v);
     }
 
     // ── Profile merging ───────────────────────────────────────────────────────

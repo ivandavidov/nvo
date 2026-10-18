@@ -490,3 +490,11 @@ function init() {
 }
 
 init();
+
+// Менюто „Изтегли ▾“ (CSV, PDF; JSON е линк) — модулът се зарежда при първото изтегляне.
+document.addEventListener('click', (e) => {
+  const item = e.target.closest('[data-action^="balove-"]');
+  if (item) {
+    import('../core/balove-export.js').then((m) => m.runBaloveExport(item, document.body.dataset.city));
+  }
+});

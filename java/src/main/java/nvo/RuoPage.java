@@ -61,6 +61,13 @@ public class RuoPage {
         ctx.put("canonical", ProjectConfig.SITE_BASE_URL + "7/" + ProjectConfig.RUO_DIR_NAME + "/" + hrefName + "/");
         ctx.put("cityName", cityName);
         ctx.put("citySlug", hrefName);
+        // Експортът — меню „Изтегли ▾“ вдясно (CSV и PDF се правят от api/v1/balove/{град}.json).
+        ctx.put("exportMenu", nvo.site.ExportMenu.html("Данни за " + cityName, java.util.List.of(
+                nvo.site.ExportMenu.Item.action("csv", "Таблица за Excel · всички години", "balove-csv"),
+                nvo.site.ExportMenu.Item.link("json", "Данните от API-то · всички години",
+                        "../../../api/v1/balove/" + hrefName + ".json", "balove-7-" + hrefName + ".json"),
+                nvo.site.ExportMenu.Item.action("pdf", "Баловете за печат", "balove-pdf")),
+                null, "page-head__export"));
         ctx.put("hasNvo", Files.exists(Path.of(ProjectConfig.DOCS_DIR, "7", hrefName, "index.html")));
         return nvo.site.SiteLayout.render("balove-city", ctx);
     }

@@ -34,6 +34,7 @@ public class IndexGenerator {
         root.addProperty("schoolsIndexUrl", "schools-index.json");
         root.addProperty("citiesUrl", "cities.json");
         root.addProperty("rankingsPath", "rankings/");
+        root.addProperty("baloveUrl", "balove/index.json");
 
         Gson gson = new GsonBuilder().create();
         Files.writeString(outputDir.resolve("index.json"), gson.toJson(root) + "\n");
@@ -476,6 +477,47 @@ public class IndexGenerator {
                           <tr><td>schools[].score</td><td class="type">number</td><td>Общ резултат (БЕЛ + МАТ)/2</td></tr>
                         </table>"""));
 
+        sb.append("    </div>\n");
+
+        // Balove (min/max admission scores after 7th grade) — written by RuoDecomplexor / RuoIndexPage
+        sb.append("    <div class=\"grade-endpoints\">\n");
+        sb.append("      <h2>Балове след 7 клас</h2>\n");
+        sb.append("      <p class=\"muted text-sm\">Минимален и максимален бал на приетите по паралелки и класирания (РУО). "
+                + "В данните има дупки: за някои градове липсват години или класирания, а разбивката по пол често я няма — "
+                + "<code>coverage</code> казва какво има за всяка година.</p>\n");
+        sb.append(endpointCard("/balove/index.json", "balove/index.json", "Градовете с балове",
+                """
+                        <p class="section-label">Отговор</p>
+                        <table class="schema-table">
+                          <tr><th>Поле</th><th>Тип</th><th>Описание</th></tr>
+                          <tr><td>years</td><td class="type">array</td><td>Всички години с данни (по всички градове)</td></tr>
+                          <tr><td>dataUrl</td><td class="type">string</td><td>Всички градове в един файл</td></tr>
+                          <tr><td>cities[]</td><td class="type">array</td><td>slug, name, years (годините с данни за града), schools, profiles, url</td></tr>
+                        </table>"""));
+        sb.append(endpointCardNoLink("/balove/{city}.json", "Баловете за един град",
+                """
+                        <p>Пример: <a class="try-link" href="balove/sofia.json">balove/sofia.json</a></p>
+                        <p class="section-label">Отговор</p>
+                        <table class="schema-table">
+                          <tr><th>Поле</th><th>Тип</th><th>Описание</th></tr>
+                          <tr><td>city</td><td class="type">object</td><td>slug и name</td></tr>
+                          <tr><td>years</td><td class="type">array</td><td>Годините с данни за града (година, която я няма, е без данни)</td></tr>
+                          <tr><td>coverage.{year}.rankings</td><td class="type">array</td><td>Класиранията (1–4) с данни в града за годината</td></tr>
+                          <tr><td>coverage.{year}.gender</td><td class="type">boolean</td><td>Има ли разбивка по пол за годината</td></tr>
+                          <tr><td>schools[]</td><td class="type">array</td><td>code, name, fullName, isPrivate, profiles[]</td></tr>
+                          <tr><td>schools[].profiles[]</td><td class="type">array</td><td>code, name и years — обект по година</td></tr>
+                          <tr><td>profiles[].years.{year}</td><td class="type">array</td><td>4 елемента (1-во…4-то класиране): обект или null — няма данни (паралелката е попълнена по-рано или класирането не е публикувано; виж coverage). Година без данни за паралелката липсва.</td></tr>
+                          <tr><td>…{year}[k].min / max</td><td class="type">number</td><td>Минимален / максимален бал</td></tr>
+                          <tr><td>…{year}[k].minMale / minFemale / maxMale / maxFemale</td><td class="type">number|null</td><td>По пол; null — няма разбивка</td></tr>
+                        </table>"""));
+        sb.append(endpointCard("/balove/data.json", "balove/data.json", "Всички градове в един файл",
+                """
+                        <p class="section-label">Отговор</p>
+                        <table class="schema-table">
+                          <tr><th>Поле</th><th>Тип</th><th>Описание</th></tr>
+                          <tr><td>years</td><td class="type">array</td><td>Всички години с данни</td></tr>
+                          <tr><td>cities[]</td><td class="type">array</td><td>Документите на градовете (същите като /balove/{city}.json)</td></tr>
+                        </table>"""));
         sb.append("    </div>\n");
 
         // Footer and script

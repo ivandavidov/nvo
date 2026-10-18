@@ -11,6 +11,7 @@ import { esc, download, fmt, showModal } from '../ui/dom.js';
 import { searchKey } from '../ui/search-text.js';
 import { createCombobox } from '../ui/combobox.js';
 import { buildSchoolIndex, searchSchools } from '../ui/school-search.js';
+import { exportMenuHtml, menuButtonOf } from '../ui/export-menu.js';
 import { embedCode } from '../core/embed.js';
 import { whenHighcharts, lineOptions, createChart, seriesColor, onThemeChange, PALETTE_SIZE } from '../ui/chart-theme.js';
 import { copyText, toast, siteUrl } from '../site.js';
@@ -397,14 +398,22 @@ function renderCityPanel() {
   if (city.hasBalove) {
     actions.push('<a class="btn btn--sm" href="balove/' + esc(city.slug) + '/" title="Минимални и максимални балове по паралелки – ' + esc(city.name) + '">' + icon('target') + ' Балове</a>');
   }
-  actions.push('<button class="btn btn--sm" type="button" data-action="city-csv">' + icon('download') + ' CSV</button>');
-  actions.push('<button class="btn btn--sm" type="button" data-action="city-pdf">' + icon('file') + ' PDF</button>');
+  // Експортът е отделно меню вдясно: CSV и JSON — данните (всички години), PDF — класацията, както се вижда.
+  const exportMenu = exportMenuHtml({
+    title: 'Данни за ' + city.name,
+    cls: 'city-panel__export',
+    items: [
+      { kind: 'csv', hint: 'Таблица за Excel · всички години', action: 'city-csv' },
+      { kind: 'json', hint: 'Данните от API-то · всички години', href: siteUrl('api/v1/' + model.grade + '/' + city.slug + '/data.json'), download: model.cfg.exportPrefix + '-data-' + city.slug + '.json' },
+      { kind: 'pdf', hint: 'Класацията за печат', action: 'city-pdf' }
+    ]
+  });
 
   el.panel.innerHTML = '<div class="card__head city-panel__head">'
     + '<div><h3 class="city-panel__title">' + esc(city.name) + '</h3>'
     + '<p class="muted text-sm">' + total + ' училища с резултати за ' + latest
     + (city.hasPrivate ? ' · ' + pu + ' държавни, ' + pr + ' частни' : '') + '</p></div>'
-    + '<div class="cluster">' + actions.join('') + '</div></div>'
+    + '<div class="cluster city-panel__actions">' + actions.join('') + exportMenu + '</div></div>'
     + '<div class="tabs city-panel__tabs" role="tablist">'
     + '<button role="tab" type="button" data-tab="ranking" aria-selected="' + (state.tab === 'ranking') + '">' + esc(model.cfg.tableTitleName) + '</button>'
     + '<button role="tab" type="button" data-tab="averages" aria-selected="' + (state.tab === 'averages') + '">Средни резултати</button>'
@@ -685,7 +694,7 @@ el.panel.addEventListener('click', (e) => {
     const csv = cityCsv(state.model, state.city);
     download(csv.filename, csv.content);
   } else if (action && action.dataset.action === 'city-pdf') {
-    runBusy(action, () => import('../core/pdf.js').then((m) => m.rankingPdf(state.model, state.city, currentRows(), state.filter)),
+    runBusy(menuButtonOf(action), () => import('../core/pdf.js').then((m) => m.rankingPdf(state.model, state.city, currentRows(), state.filter)),
       'Грешка при генериране на PDF. Опитай отново.');
   }
 });
@@ -773,6 +782,10 @@ document.addEventListener('click', async (e) => {
   } else if (name === 'csv-all') {
     const csv = allCsv(state.model);
     download(csv.filename, csv.content);
+  } else if (name === 'pdf-all') {
+    toast('Подготвя се PDF с класациите на всички градове…');
+    runBusy(menuButtonOf(action), () => import('../core/pdf.js').then((m) => m.allRankingsPdf(state.model)),
+      'Грешка при генериране на PDF. Опитай отново.');
   } else if (name === 'to-chart') {
     el.compare.scrollIntoView({ block: 'start' });
   } else if (name === 'suggest') {

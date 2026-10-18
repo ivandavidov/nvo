@@ -2,7 +2,7 @@
 // jsPDF, AutoTable и Highcharts exporting се зареждат
 // едва при първото генериране (по-лека страница).
 import { displayRange } from './config.js';
-import { findCityForSchool, nationalAverages, formatRankValue, rankFor } from './model.js';
+import { findCityForSchool, nationalAverages, formatRankValue, rankFor, renderableCities, cityRanking, sortRanking } from './model.js';
 
 const FONT_FILE = 'NotoSans-Regular.ttf';
 const FONT_NAME = 'NotoSans';
@@ -70,8 +70,8 @@ function fontBase64() {
   return fontPromise;
 }
 
-async function newDoc(ns, orientation) {
-  const doc = new ns.jsPDF({ orientation, unit: 'pt', format: 'a4' });
+export async function newDoc(ns, orientation) {
+  const doc = new ns.jsPDF({ orientation, unit: 'pt', format: 'a4', compress: true });
   doc.addFileToVFS(FONT_FILE, await fontBase64());
   doc.addFont(FONT_FILE, FONT_NAME, 'normal');
   doc.setFont(FONT_NAME, 'normal');
@@ -372,6 +372,14 @@ export async function schoolReportPdf(model, index) {
     hidden.remove();
   }
 
+  addPageFooters(doc, margin);
+  const safe = (str) => str.replace(/[^a-zA-Z0-9Ѐ-ӿ]/g, '-').replace(/-+/g, '-');
+  doc.save(cfg.exportPrefix + '-report-' + safe(cityName) + '-' + safe(school.l) + '.pdf');
+}
+
+/** Адресът на сайта и „стр. / общо“ в долния край на всяка страница. */
+export function addPageFooters(doc, margin = PAGE_MARGIN_PT) {
+  const pageW = doc.internal.pageSize.getWidth();
   const pages = doc.internal.getNumberOfPages();
   for (let p = 1; p <= pages; p++) {
     doc.setPage(p);
@@ -381,9 +389,11 @@ export async function schoolReportPdf(model, index) {
     doc.text(p + ' / ' + pages, pageW - margin, doc.internal.pageSize.getHeight() - 15, { align: 'right' });
     doc.setTextColor(0);
   }
-  const safe = (str) => str.replace(/[^a-zA-Z0-9Ѐ-ӿ]/g, '-').replace(/-+/g, '-');
-  doc.save(cfg.exportPrefix + '-report-' + safe(cityName) + '-' + safe(school.l) + '.pdf');
 }
+
+/** Шрифтът и отстъпите на таблиците в PDF-ите (за модула на баловете). */
+export const PDF_FONT = FONT_NAME;
+export const PDF_MARGIN = PAGE_MARGIN_PT;
 
 /** Колоните на класацията (същите заглавия като в таблицата на сайта). */
 export function rankingHeaders(model) {
@@ -409,14 +419,9 @@ export function rankingCells(model, row, position, filter) {
   return cells;
 }
 
-/** PDF на класацията на град — видимите редове в текущата подредба и филтър. */
-export async function rankingPdf(model, city, rows, filter) {
-  const ns = await ensurePdfLibs();
+/** Заглавието и таблицата на класацията на един град, от текущата страница на doc. */
+function addRankingTable(doc, model, city, rows, filter) {
   const { cfg } = model;
-  if (!rows.length) {
-    return;
-  }
-  const doc = await newDoc(ns, 'landscape');
   doc.setFontSize(12);
   doc.text(cfg.tableTitleName + ' - ' + city.name + ' - ' + cfg.tableTitleType, PAGE_MARGIN_PT, TITLE_Y_PT);
   doc.autoTable({
@@ -428,7 +433,43 @@ export async function rankingPdf(model, city, rows, filter) {
     styles: { font: FONT_NAME, fontSize: 8, cellPadding: 3, overflow: 'linebreak' },
     headStyles: { font: FONT_NAME, fillColor: [230, 230, 230], textColor: 20 }
   });
-  doc.save(cfg.exportPrefix + '-ranking-' + city.slug + '.pdf');
+}
+
+/** PDF на класацията на град — видимите редове в текущата подредба и филтър. */
+export async function rankingPdf(model, city, rows, filter) {
+  const ns = await ensurePdfLibs();
+  if (!rows.length) {
+    return;
+  }
+  const doc = await newDoc(ns, 'landscape');
+  addRankingTable(doc, model, city, rows, filter);
+  doc.save(model.cfg.exportPrefix + '-ranking-' + city.slug + '.pdf');
+}
+
+/**
+ * PDF с класациите на всички градове: раздел (от нова страница, с отметка в съдържанието)
+ * на град в реда на чиповете, всеки като PDF-а за един град в изгледа по подразбиране.
+ */
+export async function allRankingsPdf(model) {
+  const ns = await ensurePdfLibs();
+  const doc = await newDoc(ns, 'landscape');
+  let first = true;
+  for (const city of renderableCities(model)) {
+    // като таблицата на сайта по подразбиране (колона „Ранг“ низходящо, филтър „Всички“)
+    const rows = sortRanking(model, cityRanking(model, city), 'rank', 'desc', null);
+    if (!rows.length) {
+      continue;
+    }
+    if (!first) {
+      doc.addPage();
+    }
+    first = false;
+    doc.outline.add(null, city.name, { pageNumber: doc.internal.getNumberOfPages() });
+    addRankingTable(doc, model, city, rows, null);
+    await new Promise((r) => setTimeout(r, 0)); // страницата да не замръзва
+  }
+  addPageFooters(doc);
+  doc.save(model.cfg.exportPrefix + '-ranking-all.pdf');
 }
 
 /* ---------------- PDF профил на училище (страницата /school/{код}/) ---------------- */
