@@ -544,6 +544,9 @@ function rankingHtml() {
     + '<p>Училищата без резултат за последната година не участват в класацията. До всяка стойност е броят на учениците.</p>'
     + '</div></details></div>';
 
+  if (rows.length) {
+    toolbar.push('<p class="ranking__hint muted text-sm"><span class="add-toggle ci" aria-hidden="true"></span>до името добавя училището в графиката</p>');
+  }
   return (toolbar.length ? '<div class="ranking__toolbar">' + toolbar.join('') + '</div>' : '')
     + (rows.length ? '<div class="table-wrap table-wrap--tall"><table class="data-table ranking">' + head + body + '</table></div>'
       : '<div class="empty"><p class="empty__title">Няма училища с резултати</p></div>')
