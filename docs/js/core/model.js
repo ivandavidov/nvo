@@ -1,7 +1,7 @@
 // Модел на данните за един клас: зареждане на data/grade-{g}.json, нормализация
 // (прозорецът с години, липсващи години, исторически изглед) и всички изчисления за
-// класациите, средните, групите „Топ N“, CSV и графиките.
-import { gradeConfig, displayRange, navFirstYear, TOP_GROUPS } from './config.js';
+// класациите, средните, CSV и графиките.
+import { gradeConfig, displayRange, navFirstYear } from './config.js';
 
 const cache = {};
 
@@ -460,58 +460,6 @@ export function rankFor(row, filter) {
     return row.rankPr;
   }
   return row.rankAll;
-}
-
-/* ---------------- Групи „Топ N“ ---------------- */
-
-export function topCounts(range) {
-  let top = 0;
-  let second = 0;
-  const count = range[1] - range[0];
-  if (count >= TOP_GROUPS.thresholdSmall) { top = TOP_GROUPS.topSmall; }
-  if (count >= TOP_GROUPS.thresholdMedium) { top = TOP_GROUPS.topMedium; }
-  if (count >= TOP_GROUPS.thresholdLarge) { top = TOP_GROUPS.topLarge; }
-  if (count >= TOP_GROUPS.thresholdXLarge) { second = TOP_GROUPS.second; }
-  return { top, second };
-}
-
-/**
- * Училищата, които бутоните „Топ N“ / „Топ N+1–M“ избират за дадена група
- * (държавни или частни) — същият алгоритъм като стария generateSchoolButtons.
- * @returns {{label: string, indices: number[]}[]}
- */
-export function topGroups(model, range) {
-  const { s } = model;
-  if (!range) {
-    return [];
-  }
-  const { top, second } = topCounts(range);
-  const schools = [];
-  for (let j = range[0]; j <= range[1]; j++) {
-    if (s[j]) {
-      schools.push(j);
-    }
-  }
-  schools.sort((i1, i2) => ((s[i1].mb + s[i1].mm) / 2 < (s[i2].mb + s[i2].mm) / 2 ? 1 : -1));
-  const pick = (start, count) => {
-    const picked = [];
-    for (let k = start; k < schools.length && picked.length < count; k++) {
-      const o = s[schools[k]];
-      if (!o || o.b[o.b.length - 1] === null) {
-        continue;
-      }
-      picked.push(schools[k]);
-    }
-    return picked;
-  };
-  const groups = [];
-  if (top > 0) {
-    groups.push({ label: 'Топ ' + top, indices: pick(0, top) });
-  }
-  if (second > 0) {
-    groups.push({ label: 'Топ ' + (top + 1) + '–' + (top + second), indices: pick(top, second) });
-  }
-  return groups;
 }
 
 /* ---------------- Средни за града (таблицата) ---------------- */

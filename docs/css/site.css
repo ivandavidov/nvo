@@ -1159,6 +1159,7 @@
     top: 0;
     z-index: 2;
   }
+  .data-table thead td { background: var(--surface-2); border-bottom: 1px solid var(--border); }
   .data-table thead th {
     vertical-align: bottom;
     background: var(--surface-2);
@@ -1769,11 +1770,24 @@
     gap: var(--sp-3) var(--sp-6);
     margin-bottom: var(--sp-4);
   }
-  .ranking__groups { gap: var(--sp-2); }
-  /* Легенда: какво прави „+“ до името (същият вид като бутона, но не е бутон). */
-  .ranking__hint { display: flex; flex-basis: 100%; align-items: center; gap: var(--sp-2); margin: 0; }
-  .ranking__hint .add-toggle { width: 20px; height: 20px; pointer-events: none; --ci-size: 12px; }
-  .ranking__groups .chip { height: 30px; }
+  /* „Всички / Държавни / Частни“ — в заглавието над „№ + Училище“ (закрепено като колоните);
+     на телефон — над таблицата, на цял ред (ranking__filter-top). */
+  .ranking .ranking__filter-cell {
+    position: sticky;
+    left: 0;
+    z-index: 3;
+    vertical-align: middle;
+    padding-block: 0.45rem;
+    box-shadow: inset -1px 0 0 var(--border);
+  }
+  .seg--compact > button { height: 26px; padding: 0 0.6rem; }
+  .ranking__filter-top { display: none; margin-bottom: var(--sp-3); }
+  .ranking__filter-top--always { display: inline-flex; }
+  /* Легенда за „⊕“ в заглавието „Училище“ — същият вид като бутона, но не е бутон. */
+  .ranking .th-name { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 2px var(--sp-3); }
+  .th-legend { display: inline-flex; align-items: center; gap: 6px; color: var(--text-4); font-weight: 500; letter-spacing: 0; white-space: nowrap; }
+  .th-legend .add-toggle { width: 18px; height: 18px; pointer-events: none; --ci-size: 11px; }
+  .th-legend__short { display: none; }
   .ranking__foot {
     display: flex;
     flex-wrap: wrap;
@@ -1807,7 +1821,6 @@
   .ranking tr.is-selected td,
   .ranking tr.is-selected .col-pos,
   .ranking tr.is-selected .col-name { background: color-mix(in srgb, var(--primary-soft) 80%, var(--surface)); }
-  .ranking thead tr:first-child th[rowspan] { vertical-align: bottom; }
   .ranking .col-rank { min-width: 128px; }
   /* Колоните по години: центрирани; стойността и броят ученици са с фиксирана ширина,
      така че блокът е еднакъв на всеки ред и точките остават подравнени. */
@@ -1956,7 +1969,11 @@
     .ranking .col-pos { width: 34px; min-width: 34px; padding-inline: 0.35rem; }
     .ranking .col-name { left: 34px; width: 168px; min-width: 150px; max-width: 168px; }
     .ranking .web-link { display: none; }
-    .ranking__groups > .muted.text-sm { flex-basis: 100%; }
+    .ranking__filter-cell .seg { display: none; }
+    .ranking__filter-top { display: flex; width: 100%; }
+    .ranking__filter-top > button { flex: 1; justify-content: center; }
+    .th-legend__long { display: none; }
+    .th-legend__short { display: inline; }
   }
 }
 

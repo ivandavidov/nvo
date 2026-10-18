@@ -193,7 +193,7 @@ docs/
     theme.js                 light/dark (sync, no FOUC); toggleTheme(); fires `nvo:themechange`
     site.js                  every page: "Още" menu, global search (Ctrl/⌘K, "/"), copy buttons, joke, toast()
     core/config.js           per-grade configuration (the old config-*.js values)
-    core/model.js            data model + all calculations (medians, city averages, rankings, sorting, Top-N, CSV, chart series)
+    core/model.js            data model + all calculations (medians, city averages, rankings, sorting, CSV, chart series)
     core/url-state.js        ?i{g}= / ?s= / ?school= / ?year= / #city + the i{g} cookie
     core/pdf.js              school report, ranking PDF, school profile PDF (jsPDF loaded on demand)
     core/embed.js            embed URL / iframe code
@@ -226,7 +226,7 @@ All page scripts are native ES modules (`<script type="module">`), no bundler. H
 ### Grade pages (explorer)
 `js/pages/grade.js` + `docs/data/grade-{g}.json`:
 - Comparison card: "Добави училище" combobox (all schools of the grade incl. those without latest-year data), colour chips (click = hide/show series, × = remove), БЕЛ/МАТ charts side by side (switch on narrow screens), Сподели (copy link / native share), Вгради (iframe code dialog), Изчисти.
-- Cities: chips by tier (областни; "Други градове" collapsible) + filter; `#city` selects a city. City panel: ranking table (Всички/Държавни/Частни, sortable columns, rank bar, 3 years БЕЛ/МАТ + students, per-row chart toggle and PDF report, "Покажи и училищата без резултат"), Top-N quick add groups, Средни резултати (по училища / по ученици), the „Изтегли ▾“ export menu (CSV, JSON from the API, ranking PDF), links to the city page and balove.
+- Cities: chips by tier (областни; "Други градове" collapsible) + filter; `#city` selects a city. City panel: ranking table (Всички/Държавни/Частни in the table header over №+Училище — above the table on phones; the ⊕ legend in the Училище header; sortable columns, rank bar, 3 years БЕЛ/МАТ + students, per-row chart toggle and PDF report, "Покажи и училищата без резултат"), Средни резултати (по училища / по ученици), the „Изтегли ▾“ export menu (CSV, JSON from the API, ranking PDF), links to the city page and balove.
 - Year selector → `?year=` historical view (banner, 3-year window). `?school=code` deep link scrolls to the chart. The selection is written to `?i{g}=` and the `i{g}` cookie as before; `?s=codes` is also accepted.
 
 ### Embed pages
@@ -371,7 +371,7 @@ Then open `http://localhost:8090/`.
 There is no automated test suite. Verify in the browser (`python3 -m http.server 8090 -d docs`):
 - every page type in light and dark mode, at phone (375px), tablet and desktop widths; no console errors or CSP violations
 - header: exam switch, "Още" menu, search palette (`/`, Ctrl/⌘K) finds schools, cities and pages; footer links and copy buttons
-- grade pages: add/remove schools (combobox, table toggles, Top-N groups), chips show/hide series, tooltip with students, БЕЛ/МАТ switch on mobile, share link, embed dialog, year selector / `?year=` banner, `?school=code` deep link, `#city`, city filter, ranking sort/filter, inactive schools toggle, averages (schools / students), CSV (city + all), ranking PDF, school report PDF
+- grade pages: add/remove schools (combobox, table toggles, „Добави водещите училища“ = top 5 of the city ranking), chips show/hide series, tooltip with students, БЕЛ/МАТ switch on mobile, share link, embed dialog, year selector / `?year=` banner, `?school=code` deep link, `#city`, city filter, ranking sort/filter, inactive schools toggle, averages (schools / students), CSV (city + all), ranking PDF, school report PDF
 - legacy links: `/7/?i7=…#city`, `/?i7=…` (redirect), old `i7` cookie, `/12/embed.html?i12=…&chart=m&theme=dark`, `/7/balove/sofia/?school=…&profile=0…&gender=true`
 - school pages: charts per grade, KPIs, grade nav, links, "близки по успех", PDF; city/year pages: sort, search, city filter
 - balove hub (search) and city pages (school picker, profile, gender, charts, overview search/sort/row click)

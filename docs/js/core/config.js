@@ -29,18 +29,6 @@ export function navFirstYear(grade) {
 
 export const COOKIE_MAX_AGE_SECONDS = 60 * 60 * 24 * 365;
 
-/** Групите „Топ N“ според броя на училищата в града (старите SCHOOL_THRESHOLD_*). */
-export const TOP_GROUPS = {
-  thresholdSmall: 4,
-  thresholdMedium: 9,
-  thresholdLarge: 19,
-  thresholdXLarge: 29,
-  topSmall: 3,
-  topMedium: 5,
-  topLarge: 10,
-  second: 10
-};
-
 const DEFAULTS = {
   firstYear: 2018, // началото на масивите в data/grade-{g}.json
   rankBase: 0,

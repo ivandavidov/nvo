@@ -2,7 +2,7 @@
 // класации по градове и средни резултати. Данните и изчисленията са в core/model.js.
 import {
   fetchGradeData, buildModel, renderableCities, cityRanking, cityInactiveSchools, sortRanking,
-  defaultSortDir, firstEmptyRow, rankFor, topGroups, cityAverages, cityCsv, allCsv,
+  defaultSortDir, firstEmptyRow, rankFor, cityAverages, cityCsv, allCsv,
   chartSeries, findCityForSchool
 } from '../core/model.js';
 import { initialSelection, writeSelection, shareUrl, readYearParam, readCityHash } from '../core/url-state.js';
@@ -17,6 +17,8 @@ import { whenHighcharts, lineOptions, createChart, seriesColor, onThemeChange, P
 import { copyText, toast, siteUrl } from '../site.js';
 
 const grade = Number(document.body.dataset.grade);
+/** „Добави водещите училища в града“ (празната графика) — колко от върха на класацията. */
+const SUGGEST_COUNT = 5;
 
 const state = {
   model: null,
@@ -453,15 +455,6 @@ function announce() {
     + ' училища, подредени по ' + label + (state.sortDir === 'asc' ? ', възходящо' : ', низходящо');
 }
 
-function groupChips(range, prefix) {
-  return topGroups(state.model, range).map((g, k) => {
-    const on = g.indices.length > 0 && g.indices.every(isSelected);
-    return '<button type="button" class="chip" data-group="' + prefix + k + '" aria-pressed="' + on + '"'
-      + ' title="' + (on ? 'Махни от графиката' : 'Добави в графиката') + '">'
-      + icon(on ? 'check' : 'plus') + esc(g.label) + '</button>';
-  }).join('');
-}
-
 function rankingHtml() {
   const { model } = state;
   const city = state.city;
@@ -470,36 +463,38 @@ function rankingHtml() {
   const inactive = cityInactiveSchools(model, city);
   const years = rows.length ? rows[0].years.map((y) => y.year) : [model.latestYear, model.latestYear - 1, model.latestYear - 2];
 
-  const toolbar = [];
-  if (city.hasPrivate) {
-    toolbar.push('<div class="seg" role="group" aria-label="Вид училища">'
+  // „Всички / Държавни / Частни“ е в заглавието на таблицата, над „№ + Училище“ (градовете
+  // без частни училища имат празна клетка — нищо не се измества). На телефон закрепените
+  // колони са тесни и филтърът е над таблицата; CSS показва единия от двата.
+  const filterSeg = (cls) => (city.hasPrivate
+    ? '<div class="seg ' + cls + '" role="group" aria-label="Вид училища">'
       + [[null, 'Всички'], ['Д', 'Държавни'], ['Ч', 'Частни']].map(([f, label]) =>
         '<button type="button" data-filter="' + (f || '') + '" aria-pressed="' + (state.filter === f) + '">' + label + '</button>').join('')
-      + '</div>');
-  }
-  const pubGroups = groupChips(city.pu, 'pu');
-  const prGroups = groupChips(city.pr, 'pr');
-  if (pubGroups || prGroups) {
-    toolbar.push('<div class="cluster ranking__groups"><span class="muted text-sm">Добави в графиката:</span>'
-      + (pubGroups ? (city.hasPrivate ? '<span class="text-xs muted">държавни</span>' : '') + pubGroups : '')
-      + (prGroups ? '<span class="text-xs muted">частни</span>' + prGroups : '')
-      + '</div>');
-  }
+      + '</div>'
+    : '');
 
   const sortTh = (col, label, cls, extra) => {
     const sorted = state.sortCol === col;
     return '<th' + (cls ? ' class="' + cls + '"' : '') + ' aria-sort="' + (sorted ? (state.sortDir === 'asc' ? 'ascending' : 'descending') : 'none') + '"' + (extra || '') + '>'
       + '<button type="button" class="th-sort" data-sort="' + col + '">' + label + icon('sort') + '</button></th>';
   };
+  // Легендата за ⊕ — в заглавието „Училище“, точно над бутоните (те имат собствен aria-label).
+  const legend = '<span class="th-legend" aria-hidden="true"><span class="add-toggle ci"></span>'
+    + '<span class="th-legend__long">добавя в графиката</span><span class="th-legend__short">в графиката</span></span>';
+  const nameSorted = state.sortCol === 'name';
   let head = '<thead><tr>'
-    + '<th rowspan="2" class="num col-pos">№</th>'
-    + sortTh('name', 'Училище', 'col-name', ' rowspan="2"')
-    + sortTh('type', 'Тип / №', '', ' rowspan="2"')
-    + sortTh('rank', 'Ранг', 'col-rank', ' rowspan="2" title="Средният резултат за последните 3 години като процент от този на първото училище"');
+    // Клетките над „№ + Училище“ и „Тип / № + Ранг“ не са заглавия (филтър или празно) — td.
+    + '<td colspan="2" class="ranking__filter-cell">' + filterSeg('seg--compact') + '</td>'
+    + '<td colspan="2"></td>';
   years.forEach((y) => {
     head += '<th colspan="2" class="center group-start">' + y + '</th>';
   });
-  head += '<th class="center group-start col-report">Доклад</th></tr><tr>';
+  head += '<th class="center group-start col-report">Доклад</th></tr><tr>'
+    + '<th class="num col-pos">№</th>'
+    + '<th class="col-name" aria-sort="' + (nameSorted ? (state.sortDir === 'asc' ? 'ascending' : 'descending') : 'none') + '">'
+    + '<div class="th-name"><button type="button" class="th-sort" data-sort="name">Училище' + icon('sort') + '</button>' + legend + '</div></th>'
+    + sortTh('type', 'Тип / №', '')
+    + sortTh('rank', 'Ранг', 'col-rank', ' title="Средният резултат за последните 3 години като процент от този на първото училище"');
   years.forEach((y, k) => {
     head += sortTh('y' + k + 'b', esc(cfg.subjectB), 'yv group-start') + sortTh('y' + k + 'm', esc(cfg.subjectM), 'yv');
   });
@@ -552,10 +547,8 @@ function rankingHtml() {
     + '<p>Училищата без резултат за последната година не участват в класацията. До всяка стойност е броят на учениците.</p>'
     + '</div></details></div>';
 
-  if (rows.length) {
-    toolbar.push('<p class="ranking__hint muted text-sm"><span class="add-toggle ci" aria-hidden="true"></span>до името добавя училището в графиката</p>');
-  }
-  return (toolbar.length ? '<div class="ranking__toolbar">' + toolbar.join('') + '</div>' : '')
+  // Без редове няма таблица (и заглавие) — тогава филтърът е над празното съобщение на всички ширини.
+  return filterSeg('ranking__filter-top' + (rows.length ? '' : ' ranking__filter-top--always'))
     + (rows.length ? '<div class="table-wrap table-wrap--tall"><table class="data-table ranking">' + head + body + '</table></div>'
       : '<div class="empty"><p class="empty__title">Няма училища с резултати</p></div>')
     + notes;
@@ -598,19 +591,6 @@ function syncTableSelection() {
       tr.classList.toggle('is-selected', on);
     }
   });
-  el.panel.querySelectorAll('[data-group]').forEach((b) => {
-    const indices = groupIndices(b.dataset.group);
-    const on = indices.length > 0 && indices.every(isSelected);
-    b.setAttribute('aria-pressed', String(on));
-    b.title = on ? 'Махни от графиката' : 'Добави в графиката';
-    b.innerHTML = icon(on ? 'check' : 'plus') + esc(b.textContent);
-  });
-}
-
-function groupIndices(key) {
-  const range = key.startsWith('pu') ? state.city.pu : state.city.pr;
-  const g = topGroups(state.model, range)[Number(key.slice(2))];
-  return g ? g.indices : [];
 }
 
 function currentRows() {
@@ -647,12 +627,6 @@ el.panel.addEventListener('click', (e) => {
   const add = t.closest('[data-add]');
   if (add) {
     toggleSelected(Number(add.dataset.add));
-    return;
-  }
-  const group = t.closest('[data-group]');
-  if (group) {
-    const indices = groupIndices(group.dataset.group);
-    setSelected(indices, !indices.every(isSelected));
     return;
   }
   const filter = t.closest('[data-filter]');
@@ -789,11 +763,9 @@ document.addEventListener('click', async (e) => {
   } else if (name === 'to-chart') {
     el.compare.scrollIntoView({ block: 'start' });
   } else if (name === 'suggest') {
+    // Водещите училища в града — първите в класацията (както в таблицата).
     const city = state.city || state.cities[0];
-    const g = topGroups(state.model, city.pu)[0];
-    if (g) {
-      setSelected(g.indices, true);
-    }
+    setSelected(cityRanking(state.model, city).slice(0, SUGGEST_COUNT).map((r) => r.i), true);
   }
 });
 
