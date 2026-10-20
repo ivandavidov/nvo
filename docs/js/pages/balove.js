@@ -186,7 +186,7 @@ function renderDetailTable(d) {
     ? '<th class="num">Мин</th><th class="num">Мин М</th><th class="num">Мин Ж</th><th class="num">Макс</th><th class="num">Макс М</th><th class="num">Макс Ж</th>'
     : '<th class="num group-start">Мин</th><th class="num">Макс</th>';
   const yis = showGender ? [latestYi] : pageYears.map((y, i) => i).reverse();
-  let thead = '<thead><tr><th rowspan="2">Класиране</th>';
+  let thead = '<thead><tr><th rowspan="2" class="col-klass">Класиране</th>';
   yis.forEach((yi) => {
     thead += '<th colspan="' + cols + '" class="center group-start">' + pageYears[yi] + '</th>';
   });
@@ -195,7 +195,7 @@ function renderDetailTable(d) {
   thead += '</tr></thead>';
   let tbody = '<tbody>';
   KLASS_NAMES.forEach((kname, ki) => {
-    tbody += '<tr><td>' + kname + '</td>';
+    tbody += '<tr><td class="col-klass">' + kname + '</td>';
     yis.forEach((yi) => {
       const k = d[yi] ? d[yi][ki] : null;
       if (showGender) {

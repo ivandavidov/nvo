@@ -91,6 +91,9 @@
     --primary-soft-2: #d9e3ff;
     --primary-rgb: 47 84 224;
     --on-primary: #ffffff;
+    /* Фонът на маркиран ред в таблица — плътен, за да не „прелива“ под закрепените
+       колони при хоризонтален скрол (--primary-soft е полупрозрачен в тъмна тема). */
+    --row-selected: #e6ecff;
     --accent: #e8850c;
     --accent-soft: #fff3e2;
     --on-accent: #ffffff;
@@ -196,6 +199,7 @@
     --primary-soft-2: rgb(125 156 255 / 0.24);
     --primary-rgb: 125 156 255;
     --on-primary: #0a1024;
+    --row-selected: #1d2740;
     --accent: #f5a54a;
     --accent-soft: rgb(245 165 74 / 0.14);
     --on-accent: #1d1003;
@@ -1176,7 +1180,9 @@
   .data-table .sub { display: inline-block; min-width: 4ch; margin-left: 2px; color: var(--text-4); font-size: var(--fs-xs); text-align: left; }
   .data-table .group-start { border-left: 1px solid var(--border); }
   .data-table td.wrap { white-space: normal; min-width: 14rem; }
-  .data-table tr.is-selected td { background: color-mix(in srgb, var(--primary-soft) 70%, transparent); }
+  /* Маркиран ред: плътен фон — закрепените колони (position: sticky) не трябва да
+     пропускат съдържанието, което се плъзга под тях при хоризонтален скрол. */
+  .data-table tr.is-selected td { background: var(--row-selected); }
   .data-table tr.divider-top td { border-top: 2px solid var(--border-strong); }
   .data-table--sticky-first th:first-child, .data-table--sticky-first td:first-child {
     position: sticky;
@@ -1849,9 +1855,11 @@
   .ranking tbody tr:hover .col-pos, .ranking tbody tr:hover .col-name { background: var(--surface-2); }
   /* Значката „Д“ има фон като hover-а — на посочения ред я потъмняваме, за да не изчезне. */
   .data-table tbody tr:hover .badge:not(.badge--accent) { background: var(--surface-3); }
+  /* Плътна боя (не transparent): закрепените № и име не бива да „преливат“ върху
+     колоните, които се плъзгат под тях. */
   .ranking tr.is-selected td,
   .ranking tr.is-selected .col-pos,
-  .ranking tr.is-selected .col-name { background: color-mix(in srgb, var(--primary-soft) 80%, var(--surface)); }
+  .ranking tr.is-selected .col-name { background: var(--row-selected); }
   /* Колоните са по-тесни от другите таблици (0.6rem), за да се събират всички години и при
      „ДЗИ-2 26“ (12 клас) на 1280 px без хоризонтален скрол. */
   .ranking th, .ranking td { padding-inline: 0.6rem; }
@@ -2112,6 +2120,10 @@
   .balove-filters .combo__list { max-height: min(460px, 60vh); }
   .balove-detail__school { font-size: var(--fs-lg); margin-bottom: var(--sp-3); }
   .balove-detail__table { width: auto; min-width: 100%; }
+  /* „Класиране“ остава закрепено вляво, докато годините се скролват настрани. */
+  .balove-detail__table .col-klass { position: sticky; left: 0; z-index: 1; background: var(--surface); box-shadow: inset -1px 0 0 var(--border); }
+  .balove-detail__table thead .col-klass { z-index: 3; background: var(--surface-2); }
+  .balove-detail__table tbody tr:hover .col-klass { background: var(--surface-2); }
   .balove-charts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-4); margin-top: var(--sp-4); }
   .balove-charts .chart { min-height: 290px; }
   @media (max-width: 900px) { .balove-charts { grid-template-columns: 1fr; } }
