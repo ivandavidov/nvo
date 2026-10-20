@@ -341,7 +341,7 @@ function renderOverviewHeader() {
   for (let yi = latestYi; yi >= overviewFirstYi; yi--) {
     html += th('year-' + yi, 'Мин. ' + pageYears[yi], 'num col-score');
   }
-  el.thead.innerHTML = html + '<th class="center col-trend">Тренд</th></tr>';
+  el.thead.innerHTML = html + '<th class="center col-trend group-start">Тренд</th></tr>';
 }
 
 const TREND = {
@@ -362,7 +362,7 @@ function renderOverview() {
       const v = r.yearMins[yi];
       html += '<td class="num">' + fmt(v) + '</td>';
     }
-    return html + '<td class="center">' + (TREND[r.trend] || '') + '</td></tr>';
+    return html + '<td class="center group-start">' + (TREND[r.trend] || '') + '</td></tr>';
   }).join('') || '<tr><td colspan="' + (4 + latestYi - overviewFirstYi + 1) + '" class="muted">Няма паралелки за „' + esc(state.filter) + '“.</td></tr>';
 }
 

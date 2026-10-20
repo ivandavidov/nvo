@@ -1137,6 +1137,7 @@
     position: relative;
     overflow: auto;
     max-width: 100%;
+    overscroll-behavior: contain;
     border: 1px solid var(--border);
     border-radius: var(--radius-md);
     background: var(--surface);
@@ -2132,27 +2133,33 @@
   .balove-overview__table { table-layout: fixed; min-width: 760px; }
   .balove-overview__table .col-num { width: 3.2rem; }
   .balove-overview__table .col-school { width: 13rem; }
-  .balove-overview__table .col-score { width: 6.5rem; }
+  .balove-overview__table .col-score { width: 7rem; }
   .balove-overview__table .col-trend { width: 4.5rem; }
   .balove-overview__table td { overflow: hidden; }
   .balove-overview__table .clip { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .balove-overview__table tbody tr[data-code] { cursor: pointer; }
+  /* Закрепени са номерът и паралелката: „Училище“ и годините се превъртат под тях. */
   .balove-overview__table .col-num,
-  .balove-overview__table .col-school { position: sticky; z-index: 1; background: var(--surface); }
+  .balove-overview__table .col-profile { position: sticky; z-index: 1; background: var(--surface); }
   .balove-overview__table .col-num { left: 0; }
-  .balove-overview__table .col-school { left: 3.2rem; box-shadow: inset -1px 0 0 var(--border); }
+  .balove-overview__table .col-profile { left: 3.2rem; box-shadow: inset -1px 0 0 var(--border); }
   .balove-overview__table thead .col-num,
-  .balove-overview__table thead .col-school { z-index: 3; background: var(--surface-2); }
+  .balove-overview__table thead .col-profile { z-index: 3; background: var(--surface-2); }
   .balove-overview__table tbody tr:hover .col-num,
-  .balove-overview__table tbody tr:hover .col-school { background: var(--surface-2); }
+  .balove-overview__table tbody tr:hover .col-profile { background: var(--surface-2); }
   .balove-overview__table tbody tr[data-code]:focus-visible { outline: 2px solid var(--primary); outline-offset: -2px; }
+  /* Скриваме само вертикалната лента (Chromium/Safari), защото остава видима след като
+     излезеш с мишката от таблицата; хоризонталната се запазва — тя показва, че годините
+     продължават надясно. Във Firefox лентите са overlay и не се задържат. */
+  .balove-overview .table-wrap::-webkit-scrollbar:vertical { width: 0; height: 0; }
+  .balove-overview .table-wrap::-webkit-scrollbar:horizontal { height: 10px; }
   .trend { font-weight: 800; font-size: var(--fs-base); }
   .trend--up { color: var(--primary); }
   .trend--down { color: var(--accent); }
   .trend--same { color: var(--text-4); }
   @media (max-width: 700px) {
     .balove-overview__table .col-school { width: 8.5rem; }
-    .balove-overview__table .col-score { width: 5.25rem; }
+    .balove-overview__table .col-score { width: 7.5rem; }
   }
 
   .balove-hub__search { width: min(320px, 100%); }
