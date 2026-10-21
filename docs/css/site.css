@@ -1137,7 +1137,8 @@
     position: relative;
     overflow: auto;
     max-width: 100%;
-    overscroll-behavior: contain;
+    overscroll-behavior-x: contain;
+    overscroll-behavior-y: auto;
     border: 1px solid var(--border);
     border-radius: var(--radius-md);
     background: var(--surface);
@@ -1672,12 +1673,13 @@
   /* --- Сравнение --- */
   .compare .card__body { display: grid; gap: var(--sp-4); }
   .compare__actions .btn { --btn-h: 34px; }
-  .compare__picker { display: flex; flex-wrap: wrap; align-items: flex-start; gap: var(--sp-3); }
+  .compare__picker { display: flex; flex-wrap: wrap; align-items: flex-start; gap: var(--sp-3); min-width: 0; }
   .compare__add { flex: 0 1 380px; min-width: min(100%, 260px); }
   .compare__add .input { text-overflow: ellipsis; }
   .compare__add .combo__list { min-width: min(560px, calc(100vw - 2rem)); }
   .compare__chips {
     flex: 1 1 320px;
+    min-width: 0 !important;
     display: flex;
     flex-wrap: wrap;
     gap: var(--sp-2);
@@ -1685,6 +1687,8 @@
     padding: 4px 0 0;
     list-style: none;
   }
+  .compare__chips .chip { max-width: 100%; min-width: 0 !important; overflow: hidden; }
+  .compare__chips .chip__label { min-width: 0; }
   .compare__chips .chip { padding-right: 0.55rem; height: 32px; }
   .chip__toggle {
     display: inline-flex;
@@ -1871,7 +1875,7 @@
   .ranking .yv .v { display: inline-block; min-width: 6ch; text-align: right; }
   .ranking .col-report { padding-inline: 0.5rem; }
   .ranking td { padding-block: 0.4rem; }
-  .compare__chips .chip__label { max-width: 320px; }
+  .compare__chips .chip__label { max-width: min(320px, 100%); }
   .school-cell { display: flex; align-items: center; gap: var(--sp-2); }
   .school-cell > a:first-of-type { font-weight: 600; }
   /* „Училище“ поема свободното място; когато то не стига, дългите имена се отрязват с „…“

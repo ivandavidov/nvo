@@ -120,9 +120,34 @@ function selectionChanged() {
 
 /* ------------------------------------------------------------------ чипове */
 
+/** Позиция на училище в каноничната класация на града му (по ранг, низходящо).
+ *  Използва се за подреждане на чиповете над графиката спрямо реда в таблицата. */
+function chipCityOrder(i) {
+  const city = state.cityOf[i];
+  if (!city) {
+    return { cityOrder: Number.MAX_SAFE_INTEGER, pos: Number.MAX_SAFE_INTEGER };
+  }
+  const cityOrder = state.cities.findIndex((c) => c.slug === city.slug);
+  const rows = cityRanking(state.model, city);
+  const pos = rows.findIndex((r) => r.i === i);
+  return { cityOrder: cityOrder < 0 ? Number.MAX_SAFE_INTEGER : cityOrder,
+           pos: pos < 0 ? Number.MAX_SAFE_INTEGER : pos };
+}
+
 function renderChips() {
   const multiCity = new Set(state.selection.map((i) => state.cityOf[i] && state.cityOf[i].name)).size > 1;
-  el.chips.innerHTML = state.selection.map((i) => {
+  const ordered = state.selection.slice().sort((a, b) => {
+    const ca = chipCityOrder(a);
+    const cb = chipCityOrder(b);
+    if (ca.cityOrder !== cb.cityOrder) {
+      return ca.cityOrder - cb.cityOrder;
+    }
+    if (ca.pos !== cb.pos) {
+      return ca.pos - cb.pos;
+    }
+    return a - b;
+  });
+  el.chips.innerHTML = ordered.map((i) => {
     const o = school(i);
     const c = state.cityOf[i];
     const hidden = state.hidden.has(i);
@@ -480,6 +505,7 @@ function rankingHtml() {
   const cfg = model.cfg;
   const rows = sortRanking(model, cityRanking(model, city), state.sortCol, state.sortDir, state.filter);
   const inactive = cityInactiveSchools(model, city);
+  const inactiveFiltered = inactive.filter((r) => !state.filter || r.type === state.filter);
   const years = rows.length ? rows[0].years.map((y) => y.year) : [model.latestYear, model.latestYear - 1, model.latestYear - 2];
 
   const sortTh = (col, label, cls, title) => {
@@ -530,10 +556,9 @@ function rankingHtml() {
   };
 
   let body = '<tbody>' + rows.map((r, k) => rowHtml(r, k + 1, false)).join('') + '</tbody>';
-  if (state.showInactive && inactive.length) {
+  if (state.showInactive && inactiveFiltered.length) {
     const lastYears = years;
-    const inactiveRows = inactive
-      .filter((r) => !state.filter || r.type === state.filter)
+    const inactiveRows = inactiveFiltered
       .map((r) => {
         const o = model.s[r.i];
         const t = o.b.length;
@@ -544,7 +569,7 @@ function rankingHtml() {
   }
 
   const notes = '<div class="ranking__foot">'
-    + (inactive.length ? '<label class="switch"><input type="checkbox" data-action="toggle-inactive"' + (state.showInactive ? ' checked' : '') + '> Покажи и училищата без резултат за ' + model.latestYear + ' (' + inactive.length + ')</label>' : '<span></span>')
+    + (inactiveFiltered.length ? '<label class="switch"><input type="checkbox" data-action="toggle-inactive"' + (state.showInactive ? ' checked' : '') + '> Покажи и училищата без резултат за ' + model.latestYear + ' (' + inactiveFiltered.length + ')</label>' : '<span></span>')
     + '<details class="disclosure disclosure--plain"><summary>Как се изчислява рангът?</summary><div class="disclosure__body prose">'
     + '<p>Училищата са подредени по общия среден успех по ' + esc(cfg.subjectB) + ' и ' + esc(cfg.subjectM) + ' за последните три години. '
     + 'Рангът е този среден успех като процент от успеха на първото училище в града (при филтър „Държавни“ или „Частни“ — от първото в групата).</p>'
@@ -683,8 +708,20 @@ el.panel.addEventListener('click', (e) => {
 
 el.panel.addEventListener('change', (e) => {
   if (e.target.matches('[data-action="toggle-inactive"]')) {
+    const wrap = el.panel.querySelector('.table-wrap--tall');
+    const prevScroll = wrap ? wrap.scrollTop : 0;
     state.showInactive = e.target.checked;
     renderTab();
+    const newWrap = el.panel.querySelector('.table-wrap--tall');
+    if (newWrap) {
+      if (state.showInactive) {
+        // Показваме неактивните училища в дъното — превъртаме таблицата там.
+        newWrap.scrollTop = newWrap.scrollHeight;
+      } else {
+        // При скриване не местим таблицата — възстановяваме предишната позиция.
+        newWrap.scrollTop = Math.min(prevScroll, newWrap.scrollHeight);
+      }
+    }
   }
 });
 
