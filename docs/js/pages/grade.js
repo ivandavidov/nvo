@@ -542,7 +542,7 @@ function rankingHtml() {
   years.forEach((y, k) => {
     head += yearTh(k, 'b', y, true) + yearTh(k, 'm', y, false);
   });
-  head += '<th class="center group-start col-report" title="PDF доклад за училището">Доклад</th></tr></thead>';
+  head += '<th class="center group-start col-report" title="PDF доклад за училището">PDF</th></tr></thead>';
 
   const divider = firstEmptyRow(rows, state.sortCol);
   const rowHtml = (r, pos, isInactive) => {
