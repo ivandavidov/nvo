@@ -2144,19 +2144,46 @@
   @media (max-width: 900px) { .balove-charts { grid-template-columns: 1fr; } }
   .balove-overview { margin-top: var(--sp-8); }
   .balove-overview__search { width: min(340px, 100%); }
+  .balove-overview .table-wrap { container-type: inline-size; }
   .balove-overview__table { table-layout: fixed; min-width: 760px; }
-  .balove-overview__table .col-num { width: 3.2rem; }
+  .balove-overview__table .col-num { width: 2.75rem; padding-inline: 0.4rem 0.5rem; }
   .balove-overview__table .col-school { width: 13rem; }
-  .balove-overview__table .col-score { width: 7rem; }
+  .balove-overview__table .col-score { width: 6rem; }
   .balove-overview__table .col-trend { width: 4.5rem; }
   .balove-overview__table td { overflow: hidden; }
+  /* Редовете може да са на няколко реда текст — числата стоят до първия ред, не по средата. */
+  .balove-overview__table tbody td { vertical-align: top; }
   .balove-overview__table .clip { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  /* Името на паралелката се пренася, не се реже: различават се по края („- НЕ (РИЧЕ)“). */
+  .balove-overview__table .col-profile .clip { white-space: normal; }
+  /* Дълги думи („Електрообзавеждане“) не се побират в тясната колона: пренасяме с тире, където
+     браузърът има речник за български, иначе — на произволно място, вместо да излизат от клетката. */
+  .balove-overview__table .col-profile .clip,
+  .ov-school, .ov-profile { overflow-wrap: anywhere; hyphens: auto; }
   .balove-overview__table tbody tr[data-code] { cursor: pointer; }
   /* Закрепени са номерът и паралелката: „Училище“ и годините се превъртат под тях. */
   .balove-overview__table .col-num,
   .balove-overview__table .col-profile { position: sticky; z-index: 1; background: var(--surface); }
   .balove-overview__table .col-num { left: 0; }
-  .balove-overview__table .col-profile { left: 3.2rem; box-shadow: inset -1px 0 0 var(--border); }
+  .balove-overview__table .col-profile { left: 2.75rem; box-shadow: inset -1px 0 0 var(--border); }
+  /* Компактен изглед (под 1024 px, balove.js): училище и паралелка са една колона с два реда.
+     На тесен екран колоната е точно колкото № + тя + последната година да се виждат без скрол
+     настрани (най-малко 9rem); щом всички колони се събират — поема цялото свободно място. */
+  .balove-overview__table--compact { width: 100%; min-width: 0; }
+  .balove-overview__table--compact th.col-profile { width: max(9rem, calc(100cqw - 2.75rem - 6rem)); }
+  @container (min-width: 40rem) {
+    .balove-overview__table--compact th.col-profile { width: auto; }
+  }
+  .balove-overview__table--compact td.col-profile { white-space: normal; }
+  .ov-school { display: block; color: var(--text); font-size: var(--fs-sm); font-weight: 650; }
+  .ov-profile { display: block; margin-top: 2px; color: var(--text-2); line-height: 1.35; }
+  .ov-sorts { display: grid; justify-items: start; gap: 2px; }
+  /* Два бутона в една клетка: активен е само този, по който е подредено. */
+  .balove-overview__table th[aria-sort] .ov-sorts .th-sort:not(.is-sorted) { color: inherit; }
+  .balove-overview__table th[aria-sort] .ov-sorts .th-sort:not(.is-sorted) svg { opacity: 0.35; transform: none; }
+  .balove-overview__table .ov-sorts .th-sort.is-sorted { color: var(--primary); }
+  .balove-overview__table .ov-sorts .th-sort.is-sorted svg { opacity: 1; transform: none; }
+  .balove-overview__table .ov-sorts .th-sort.is-asc svg { transform: rotate(180deg); }
   .balove-overview__table thead .col-num,
   .balove-overview__table thead .col-profile { z-index: 3; background: var(--surface-2); }
   .balove-overview__table tbody tr:hover .col-num,
@@ -2171,10 +2198,6 @@
   .trend--up { color: var(--primary); }
   .trend--down { color: var(--accent); }
   .trend--same { color: var(--text-4); }
-  @media (max-width: 700px) {
-    .balove-overview__table .col-school { width: 8.5rem; }
-    .balove-overview__table .col-score { width: 7.5rem; }
-  }
 
   .balove-hub__search { width: min(320px, 100%); }
   .balove-hub__tier { margin-top: var(--sp-8); }

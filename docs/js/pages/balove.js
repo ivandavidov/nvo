@@ -12,6 +12,9 @@ const YEARS_TO_SHOW = 4;
 const OVERVIEW_YEARS_TO_SHOW = 3;
 const KLASIRANE_CHARTS = 3;
 const KLASS_NAMES = ['1-во', '2-ро', '3-то', '4-то'];
+// Под тази ширина (телефон в двата режима, таблет) „Училище“ и „Паралелка“ са една колона с два
+// реда: иначе името на паралелката остава с 90–140 px и се вижда само „Математическ…“.
+const OVERVIEW_COMPACT = window.matchMedia('(max-width: 1023px)');
 
 /* global ruoYears, ruoSchools */
 const years = typeof ruoYears !== 'undefined' ? ruoYears : [];
@@ -332,14 +335,28 @@ function sortRows(rows) {
 }
 
 function renderOverviewHeader() {
-  const th = (col, label, cls) => {
-    const on = state.sortCol === col;
-    return '<th class="' + cls + '" aria-sort="' + (on ? (state.sortDir === 1 ? 'ascending' : 'descending') : 'none') + '">'
-      + '<button type="button" class="th-sort" data-col="' + col + '">' + label + icon('sort') + '</button></th>';
-  };
-  let html = '<tr><th class="num col-num">#</th>' + th('school', 'Училище', 'col-school') + th('profile', 'Паралелка', 'col-profile');
+  const dir = (col) => (state.sortCol === col ? (state.sortDir === 1 ? 'ascending' : 'descending') : 'none');
+  const sortBtn = (col, label, own) => '<button type="button" class="th-sort'
+    + (own && state.sortCol === col ? ' is-sorted' + (state.sortDir === 1 ? ' is-asc' : '') : '')
+    + '" data-col="' + col + '">' + label + icon('sort') + '</button>';
+  const th = (col, label, cls, title) => '<th class="' + cls + '" aria-sort="' + dir(col) + '"' + (title ? ' title="' + title + '"' : '') + '>'
+    + sortBtn(col, label, false) + '</th>';
+  let html = '<tr><th class="num col-num">#</th>';
+  if (OVERVIEW_COMPACT.matches) {
+    // Една колона, два бутона един под друг — като двата реда в клетката (училище, паралелка);
+    // всеки подрежда по своята стойност и сам показва, че е активен.
+    const on = state.sortCol === 'school' ? 'school' : state.sortCol === 'profile' ? 'profile' : '';
+    html += '<th class="col-profile" aria-sort="' + (on ? dir(on) : 'none') + '"><span class="ov-sorts">'
+      + sortBtn('school', 'Училище', true) + sortBtn('profile', 'Паралелка', true) + '</span></th>';
+  } else {
+    html += th('school', 'Училище', 'col-school') + th('profile', 'Паралелка', 'col-profile');
+  }
+  // „Мин. 26“ — годината с две цифри, както „БЕЛ 26“ в класацията; пълната е за екранните четци и в подсказката.
   for (let yi = latestYi; yi >= overviewFirstYi; yi--) {
-    html += th('year-' + yi, 'Мин. ' + pageYears[yi], 'num col-score');
+    const y = String(pageYears[yi]);
+    // Надписът е в един span: .num .th-sort е row-reverse и иначе „26“ би излязло пред „Мин.“.
+    html += th('year-' + yi, '<span>Мин. <span class="th-qual"><span class="sr-only">' + y.slice(0, 2) + '</span>' + y.slice(-2) + '</span></span>',
+      'num col-score', 'Минимален бал ' + y);
   }
   el.thead.innerHTML = html + '<th class="center col-trend group-start">Тренд</th></tr>';
 }
@@ -351,19 +368,24 @@ const TREND = {
 };
 
 function renderOverview() {
+  const compact = OVERVIEW_COMPACT.matches;
+  el.thead.parentElement.classList.toggle('balove-overview__table--compact', compact);
   const terms = searchKey(state.filter).split(' ').filter(Boolean);
   const rows = sortRows(terms.length ? overviewRows.filter((r) => terms.every((t) => r.hay.includes(t))) : overviewRows);
   el.tbody.innerHTML = rows.map((r, i) => {
     let html = '<tr tabindex="0" data-code="' + esc(r.code) + '" data-pcode="' + esc(r.pcode) + '">'
       + '<td class="num muted col-num">' + (i + 1) + '</td>'
-      + '<td class="col-school"><span class="clip" title="' + esc(r.schoolFull) + '">' + esc(r.school) + '</span></td>'
-      + '<td class="col-profile"><span class="clip" title="' + esc(r.profile) + '">' + esc(r.profile) + '</span></td>';
+      + (compact
+        ? '<td class="col-profile"><span class="ov-school" title="' + esc(r.schoolFull) + '">' + esc(r.school) + '</span>'
+          + '<span class="ov-profile">' + esc(r.profile) + '</span></td>'
+        : '<td class="col-school"><span class="clip" title="' + esc(r.schoolFull) + '">' + esc(r.school) + '</span></td>'
+          + '<td class="col-profile"><span class="clip" title="' + esc(r.profile) + '">' + esc(r.profile) + '</span></td>');
     for (let yi = latestYi; yi >= overviewFirstYi; yi--) {
       const v = r.yearMins[yi];
       html += '<td class="num">' + fmt(v) + '</td>';
     }
     return html + '<td class="center group-start">' + (TREND[r.trend] || '') + '</td></tr>';
-  }).join('') || '<tr><td colspan="' + (4 + latestYi - overviewFirstYi + 1) + '" class="muted">Няма паралелки за „' + esc(state.filter) + '“.</td></tr>';
+  }).join('') || '<tr><td colspan="' + ((compact ? 3 : 4) + latestYi - overviewFirstYi + 1) + '" class="muted">Няма паралелки за „' + esc(state.filter) + '“.</td></tr>';
 }
 
 /* ---------------- Старт ---------------- */
@@ -444,6 +466,11 @@ function init() {
   });
   el.search.addEventListener('input', () => {
     state.filter = el.search.value;
+    renderOverview();
+  });
+  // Завъртане на телефона или смяна на ширината — другият изглед, със същото подреждане и търсене.
+  OVERVIEW_COMPACT.addEventListener('change', () => {
+    renderOverviewHeader();
     renderOverview();
   });
   const openRow = (tr) => {
