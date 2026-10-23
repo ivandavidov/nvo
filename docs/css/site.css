@@ -1940,16 +1940,22 @@
   .code-box { height: auto; padding: var(--sp-3); font-family: var(--font-mono); font-size: var(--fs-sm); resize: vertical; }
 
   /* --- Лента „N училища в графиката · Виж“ — когато графиката е над видимата част --- */
+  /* Лентата е в страницата винаги и се показва само с прозрачност (.is-visible от grade.js):
+     в Safari на iPhone закрепен елемент, който се появи от display: none или с анимация на
+     transform по време на скрол, понякога се рисува на грешно място и се движи със съдържанието.
+     Центрирането е без transform (margin-inline: auto), за да не се бие с нищо. */
   .tray {
     position: fixed;
-    left: 50%;
+    left: 0;
+    right: 0;
     bottom: max(var(--sp-4), env(safe-area-inset-bottom));
     z-index: 90;
     display: flex;
     align-items: center;
     gap: var(--sp-3);
+    width: fit-content;
+    margin-inline: auto;
     padding: 6px 6px 6px var(--sp-4);
-    transform: translateX(-50%);
     border: 1px solid var(--border);
     border-radius: var(--radius-full);
     background: var(--surface);
@@ -1957,7 +1963,16 @@
     font-size: var(--fs-md);
     font-weight: 600;
     white-space: nowrap;
-    animation: toast-in var(--dur) var(--ease);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity var(--dur) var(--ease), visibility 0s linear var(--dur);
+  }
+  .tray.is-visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity var(--dur) var(--ease), visibility 0s;
   }
   .tray .btn { border-radius: var(--radius-full); }
   /* Телефон: „Сподели · Вгради · Изчисти“ на свой ред под заглавието, с видими надписи

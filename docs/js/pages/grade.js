@@ -874,7 +874,7 @@ function updateTray() {
     return;
   }
   const n = state.selection.length;
-  el.tray.hidden = n === 0 || compareVisible;
+  el.tray.classList.toggle('is-visible', n > 0 && !compareVisible);
   const count = el.tray.querySelector('[data-count]');
   if (count) {
     count.textContent = (n === 1 ? '1 училище' : n + ' училища') + ' в графиката';
@@ -885,6 +885,8 @@ function setupTray() {
   if (!el.tray || !('IntersectionObserver' in window)) {
     return;
   }
+  // По-стар HTML от кеша още има hidden — видимостта вече е само чрез .is-visible.
+  el.tray.hidden = false;
   // Лентата се показва, след като графиката е останала над видимата част.
   new IntersectionObserver((entries) => {
     const e = entries[0];
