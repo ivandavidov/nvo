@@ -1,8 +1,9 @@
 // Общото поведение на всяка страница: меню „Още“, падащите менюта, глобално търсене,
-// копиране на адреси за дарения и вицът във футъра.
+// копиране на адреси за дарения, плаващото заглавие на таблиците на телефон и вицът във футъра.
 // ES модул — пътищата до останалите модули и до данните са спрямо този файл.
 
 import { initPopovers } from './ui/popover.js';
+import { initStickyHeads } from './ui/sticky-head.js';
 
 export const SITE_ROOT = new URL('../', import.meta.url);
 
@@ -190,6 +191,7 @@ function labelCharts() {
 
 initMenu();
 initPopovers();
+initStickyHeads();
 initSearch();
 initCopyButtons();
 initJoke();

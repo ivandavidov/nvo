@@ -12,6 +12,7 @@ import { searchKey } from '../ui/search-text.js';
 import { createCombobox } from '../ui/combobox.js';
 import { buildSchoolIndex, searchSchools } from '../ui/school-search.js';
 import { exportMenuHtml, menuButtonOf } from '../ui/export-menu.js';
+import { stickyTopOffset } from '../ui/sticky-head.js';
 import { embedCode } from '../core/embed.js';
 import { whenHighcharts, lineOptions, createChart, seriesColor, onThemeChange, PALETTE_SIZE } from '../ui/chart-theme.js';
 import { copyText, toast, siteUrl } from '../site.js';
@@ -120,25 +121,38 @@ function selectionChanged() {
 
 /* ------------------------------------------------------------------ чипове */
 
-/** Позиция на училище в каноничната класация на града му (по ранг, низходящо).
- *  Използва се за подреждане на чиповете над графиката спрямо реда в таблицата. */
-function chipCityOrder(i) {
-  const city = state.cityOf[i];
-  if (!city) {
-    return { cityOrder: Number.MAX_SAFE_INTEGER, pos: Number.MAX_SAFE_INTEGER };
-  }
-  const cityOrder = state.cities.findIndex((c) => c.slug === city.slug);
-  const rows = cityRanking(state.model, city);
-  const pos = rows.findIndex((r) => r.i === i);
-  return { cityOrder: cityOrder < 0 ? Number.MAX_SAFE_INTEGER : cityOrder,
-           pos: pos < 0 ? Number.MAX_SAFE_INTEGER : pos };
+/** Позиция на всяко избрано училище в каноничната класация на града му (по ранг, низходящо).
+ *  Използва се за подреждане на чиповете над графиката спрямо реда в таблицата.
+ *  Класацията на всеки град се смята веднъж, а не при всяко сравнение в sort. */
+function chipCityOrders(selection) {
+  const NONE = Number.MAX_SAFE_INTEGER;
+  const rankings = new Map();
+  const orders = new Map();
+  selection.forEach((i) => {
+    const city = state.cityOf[i];
+    if (!city) {
+      orders.set(i, { cityOrder: NONE, pos: NONE });
+      return;
+    }
+    if (!rankings.has(city.slug)) {
+      rankings.set(city.slug, {
+        cityOrder: state.cities.findIndex((c) => c.slug === city.slug),
+        rows: cityRanking(state.model, city),
+      });
+    }
+    const { cityOrder, rows } = rankings.get(city.slug);
+    const pos = rows.findIndex((r) => r.i === i);
+    orders.set(i, { cityOrder: cityOrder < 0 ? NONE : cityOrder, pos: pos < 0 ? NONE : pos });
+  });
+  return orders;
 }
 
 function renderChips() {
   const multiCity = new Set(state.selection.map((i) => state.cityOf[i] && state.cityOf[i].name)).size > 1;
+  const orders = chipCityOrders(state.selection);
   const ordered = state.selection.slice().sort((a, b) => {
-    const ca = chipCityOrder(a);
-    const cb = chipCityOrder(b);
+    const ca = orders.get(a);
+    const cb = orders.get(b);
     if (ca.cityOrder !== cb.cityOrder) {
       return ca.cityOrder - cb.cityOrder;
     }
@@ -714,9 +728,16 @@ el.panel.addEventListener('change', (e) => {
     renderTab();
     const newWrap = el.panel.querySelector('.table-wrap--tall');
     if (newWrap) {
-      if (state.showInactive) {
+      if (state.showInactive && newWrap.scrollHeight > newWrap.clientHeight) {
         // Показваме неактивните училища в дъното — превъртаме таблицата там.
         newWrap.scrollTop = newWrap.scrollHeight;
+      } else if (state.showInactive) {
+        // На телефон таблицата няма собствен скрол — превъртаме страницата до първите
+        // неактивни училища, под горните ленти и плаващото заглавие на таблицата.
+        const sub = newWrap.querySelector('.ranking__subhead');
+        if (sub) {
+          window.scrollTo({ top: window.scrollY + sub.getBoundingClientRect().top - stickyTopOffset() - newWrap.querySelector('thead').offsetHeight });
+        }
       } else {
         // При скриване не местим таблицата — възстановяваме предишната позиция.
         newWrap.scrollTop = Math.min(prevScroll, newWrap.scrollHeight);

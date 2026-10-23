@@ -1144,6 +1144,16 @@
     background: var(--surface);
   }
   .table-wrap--tall { max-height: min(76vh, 900px); }
+  /* Плаващо копие на заглавния ред под горните ленти (ui/sticky-head.js) — само на телефон,
+     където таблиците нямат собствен вертикален скрол. Под лентите на страниците (school-nav 20,
+     stats-toc 15), за да се плъзга под тях в края на таблицата; над закрепените клетки (до 3). */
+  .table-float {
+    position: fixed;
+    z-index: 12;
+    overflow: hidden;
+    background: var(--surface-2);
+    box-shadow: 0 1px 0 var(--border), 0 8px 14px -10px rgb(0 0 0 / 0.35);
+  }
   .data-table {
     width: 100%;
     border-collapse: separate;
@@ -1679,7 +1689,7 @@
   .compare__add .combo__list { min-width: min(560px, calc(100vw - 2rem)); }
   .compare__chips {
     flex: 1 1 320px;
-    min-width: 0 !important;
+    min-width: 0;
     display: flex;
     flex-wrap: wrap;
     gap: var(--sp-2);
@@ -1687,7 +1697,7 @@
     padding: 4px 0 0;
     list-style: none;
   }
-  .compare__chips .chip { max-width: 100%; min-width: 0 !important; overflow: hidden; }
+  .compare__chips .chip { max-width: 100%; min-width: 0; overflow: hidden; }
   .compare__chips .chip__label { min-width: 0; }
   .compare__chips .chip { padding-right: 0.55rem; height: 32px; }
   .chip__toggle {
@@ -2378,4 +2388,19 @@
   .about__addr code { word-break: break-all; }
   .not-found { padding-block: var(--sp-16); }
   .not-found__code { font-size: var(--fs-5xl); font-weight: 800; letter-spacing: -0.04em; color: var(--primary); line-height: 1; }
+}
+
+/* ==========================================================================
+   pages — таблиците на телефон
+   ========================================================================== */
+@layer pages {
+  /* На телефон (и при докосване) таблиците нямат собствен вертикален скрол: таблица заема почти
+     целия екран и иначе пръстът „засяда“ в нея, докато не превърти всички редове. Плъзгането
+     нагоре и надолу скролва страницата, настрани — колоните; заглавният ред остава видим чрез
+     плаващото копие (.table-float). Същото условие като TOUCH_TABLES в ui/sticky-head.js. */
+  @media (max-width: 767px), (hover: none) and (pointer: coarse) {
+    .table-wrap,
+    .school-grade__grid .table-wrap,
+    .stats-page .table-wrap { max-height: none; }
+  }
 }
