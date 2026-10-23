@@ -173,8 +173,12 @@ public class RuoIndexPage {
             item.put("name", c.fullName());
             item.put("slug", c.hrefName());
             item.put("big", c.orderPosition() == 1);
-            item.put("schools", count(js, "ruoSchools[\""));
-            item.put("profiles", count(js, ", d: ["));
+            int schools = count(js, "ruoSchools[\"");
+            int profiles = count(js, ", d: [");
+            item.put("schools", schools);
+            item.put("schoolsLabel", schools == 1 ? "училище" : "училища");
+            item.put("profiles", profiles);
+            item.put("profilesLabel", profiles == 1 ? "паралелка" : "паралелки");
             item.put("years", years);
             items.add(item);
         }
