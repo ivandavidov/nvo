@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -132,6 +133,19 @@ public class NvoDziNormalizer {
     private static final Map<String, String> CODE_ALIASES = Map.of(
             "1000340", "1000005");  // ОУ „Иван Вазов“, Кюстендил — потвърдено 2026-10-18
 
+    /**
+     * Училища в село от друга област, което носи името на някой от нашите градове. Във файловете
+     * за НВО 4 клас 2018 и 2019 г. населеното място е без „с.“/„гр.“, затова без този списък
+     * училището попада в едноименния град. Проверено в регистъра на МОН (2026-10-25).
+     */
+    private static final Set<String> VILLAGE_SCHOOLS = Set.of(
+            "104004",   // СУ „Св. Паисий Хилендарски“, с. Първомай, общ. Петрич — не гр. Първомай
+            "201211",   // ОУ „Отец Паисий“, с. Съединение, общ. Сунгурларе — не гр. Съединение
+            "1203005",  // ОУ „Отец Паисий“, с. Мадан, общ. Бойчиновци — не гр. Мадан
+            "1702620",  // ОУ „Г. С. Раковски“, с. Раковски, общ. Разград — не гр. Раковски
+            "2100502",  // ОУ „Васил Левски“, с. Средец, общ. Неделино — не гр. Средец
+            "2407135"); // НУ „Братя Жекови“, с. Елхово, общ. Николаево — не гр. Елхово
+
     /** Код във вида „800-08“ — втората група е загубила нулите накрая (вж. canonicalCode). */
     private static final Pattern TRUNCATED_CODE = Pattern.compile("(\\d{3})-(\\d{1,2})");
 
@@ -173,6 +187,10 @@ public class NvoDziNormalizer {
                 ) {
                     continue;
                 }
+            }
+
+            if(VILLAGE_SCHOOLS.contains(canonicalCode(line[codePos]))) {
+                continue;
             }
 
             double calculatedMat = 0.0d;

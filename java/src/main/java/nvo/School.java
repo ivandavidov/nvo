@@ -2388,7 +2388,6 @@ public class School implements Comparable<School> {
         schoolCodes.put("2100409", new String[]{"0", OU_KIRIL_I_METODII, OU_KIRIL_I_METODII});
         schoolCodes.put("2100606", new String[]{"0", OU_VASIL_LEVSKI, OU_VASIL_LEVSKI, "https://ou-levski.com"});
         schoolCodes.put("2100701", new String[]{"0", SU_OTEC_PAISII, SU_OTEC_PAISII});
-        schoolCodes.put("1203005", new String[]{"0", OU_OTEC_PAISII, OU_OTEC_PAISII, "https://otecpaisii-madan.com"});
         schoolCodes.put("2100704", new String[]{"0", OU_NIKOLA_VAPTSAROV_SHORT, OU_NIKOLA_VAPTSAROV_LONG, "https://ou-sharenka.eu"});
         schoolCodes.put("2100901", new String[]{"0", SU_VASIL_DECHEV, SU_VASIL_DECHEV, "https://souchepelare.com"});
         schoolCodes.put("2100903", new String[]{"0", "ПГ сел. горско стоп.", "ПГ по сел. горско стоп. Н. Вапцаров", "https://pgsgst.org"});
