@@ -827,7 +827,7 @@ public class School implements Comparable<School> {
         schoolCodes.put("1690156", new String[]{"0", SU_PATRIARH_EVTIMII_SHORT, SU_PATRIARH_EVTIMII_LONG, "http://patriarcha.com"});
         schoolCodes.put("1690157", new String[]{"0", SU_TSAR_SIMEON_VELIKI_SHORT, SU_TSAR_SIMEON_VELIKI_LONG, "http://csv-plovdiv.com"});
         schoolCodes.put("1690174", new String[]{"0", "ПГ по електрот. и електрон.", "ПГ по електротехника и електроника", "http://pgee-plovdiv.com"});
-        schoolCodes.put("1690175", new String[]{"0", "Търговска гимназия", "Търговска гимназия - Пловдив", "http://ntg-plovdiv.net"});
+        schoolCodes.put("1690175", new String[]{"0", "НТГ", "Национална Търговска Гимназия", "https://ntg-plovdiv.net"});
         schoolCodes.put("1690176", new String[]{"0", "ПГ по облекло", "ПГ по облекло Ана Май", "http://pgoanamay.com"});
         schoolCodes.put("1690177", new String[]{"0", "ПГ по вътр. арх. и дърв.", "ПГ по вътрешна архитектура и дървообработване", "http://pgvad.org"});
         schoolCodes.put("1690178", new String[]{"0", "ПГ по туризъм", "ПГ по туризъм Проф д-р Асен Златаров", "http://pgt-zlatarov-plovdiv.com"});
