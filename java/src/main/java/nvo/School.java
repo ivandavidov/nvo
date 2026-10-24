@@ -1811,10 +1811,10 @@ public class School implements Comparable<School> {
     private static Map<String, String[]> prepareSchoolCodesIhtiman() {
         Map<String, String[]> schoolCodes = new HashMap<>();
 
-        schoolCodes.put("2300188", new String[]{"0", SU_HRISTO_BOTEV, SU_HRISTO_BOTEV});
-        schoolCodes.put("2304101", new String[]{"0", OU_DIMCHO_DEBELYANOV, OU_DIMCHO_DEBELYANOV});
-        schoolCodes.put("2308810", new String[]{"0", OU_KIRIL_I_METODII, OU_KIRIL_I_METODII});
-        schoolCodes.put("2300417", new String[]{"0", "ПГ Васил Левски", "ПГ Васил Левски"});
+        schoolCodes.put("2300188", new String[]{"0", SU_HRISTO_BOTEV, SU_HRISTO_BOTEV, "https://su-hristobotev-ihtiman.net"});
+        schoolCodes.put("2304101", new String[]{"0", OU_DIMCHO_DEBELYANOV, OU_DIMCHO_DEBELYANOV, "https://oudimchodebelianov.com"});
+        schoolCodes.put("2308810", new String[]{"0", OU_KIRIL_I_METODII, OU_KIRIL_I_METODII, "https://ousvsvkirilimetodiy.com"});
+        schoolCodes.put("2300417", new String[]{"0", "ПГ Васил Левски", "ПГ Васил Левски", "https://pgvasillevski.com"});
 
         return schoolCodes;
     }
@@ -1822,9 +1822,9 @@ public class School implements Comparable<School> {
     private static Map<String, String[]> prepareSchoolCodesKavarna() {
         Map<String, String[]> schoolCodes = new HashMap<>();
 
-        schoolCodes.put("800080", new String[]{"0", OU_IORDAN_IOVKOV, OU_IORDAN_IOVKOV});
-        schoolCodes.put("800082", new String[]{"0", SU_STEFAN_KARADZHA, SU_STEFAN_KARADZHA});
-        schoolCodes.put("800086", new String[]{"0", "Земеделска гимн.", "Проф. земеделска гимназия"});
+        schoolCodes.put("800080", new String[]{"0", OU_IORDAN_IOVKOV, OU_IORDAN_IOVKOV, "https://ou-kavarna.com"});
+        schoolCodes.put("800082", new String[]{"0", SU_STEFAN_KARADZHA, SU_STEFAN_KARADZHA, "https://sou-kavarna.com"});
+        schoolCodes.put("800086", new String[]{"0", "Земеделска гимн.", "Проф. земеделска гимназия", "https://pzg-kavarna.com"});
 
         return schoolCodes;
     }
@@ -1832,20 +1832,20 @@ public class School implements Comparable<School> {
     private static Map<String, String[]> prepareSchoolCodesKazanluk() {
         Map<String, String[]> schoolCodes = new HashMap<>();
 
-        schoolCodes.put("2400262", new String[]{"0", "ППМГ", "ППМГ Никола Обрешков"});
-        schoolCodes.put("2400264", new String[]{"0", "СУ Антим I", "СУ Екзарх Антим I"});
-        schoolCodes.put("2400271", new String[]{"0", OU_KULATA, OU_KULATA});
-        schoolCodes.put("2400272", new String[]{"0", OU_GEORGI_KIRKOV, OU_GEORGI_KIRKOV});
-        schoolCodes.put("2400273", new String[]{"0", OU_PAISII_HILENDARSKI_SHORT, OU_PAISII_HILENDARSKI_LONG});
-        schoolCodes.put("2400274", new String[]{"0", OU_MATI_BOLGARIYA, OU_MATI_BOLGARIYA});
-        schoolCodes.put("2400275", new String[]{"0", OU_CHUDOMIR, OU_CHUDOMIR});
-        schoolCodes.put("2400276", new String[]{"0", OU_NIKOLA_VAPTSAROV_SHORT, OU_NIKOLA_VAPTSAROV_LONG});
-        schoolCodes.put("2400277", new String[]{"0", OU_ANTON_STRASHIMIROV_SHORT, OU_ANTON_STRASHIMIROV_LONG});
-        schoolCodes.put("2902505", new String[]{"0", "НУПИД А. Узунов", "НУ по пласт. изк. и дизайн"});
-        schoolCodes.put("2400261", new String[]{"0", "ПГ П. Стайнов", "ПГ Акад. Петко Стайнов"});
-        schoolCodes.put("2400263", new String[]{"0", "ПХГ Кирил и Методий", "ПХГ Св. Св. Кирил и Методий"});
-        schoolCodes.put("2400265", new String[]{"0", "ПГ Иван Хаджиенов", "ПГ Иван Хаджиенов"});
-        schoolCodes.put("2400266", new String[]{"0", "ПГ по транспорт", "ПГ по транспорт и мениджмънт"});
+        schoolCodes.put("2400262", new String[]{"0", "ППМГ", "ППМГ Никола Обрешков", "https://ppmgkk.com"});
+        schoolCodes.put("2400264", new String[]{"0", "СУ Антим I", "СУ Екзарх Антим I", "https://antim1-kk.com"});
+        schoolCodes.put("2400271", new String[]{"0", OU_KULATA, OU_KULATA, "https://oukulata-kk.com"});
+        schoolCodes.put("2400272", new String[]{"0", OU_GEORGI_KIRKOV, OU_GEORGI_KIRKOV, "https://oukirkov.info"});
+        schoolCodes.put("2400273", new String[]{"0", OU_PAISII_HILENDARSKI_SHORT, OU_PAISII_HILENDARSKI_LONG, "https://ouhilendarski-kk.com"});
+        schoolCodes.put("2400274", new String[]{"0", OU_MATI_BOLGARIYA, OU_MATI_BOLGARIYA, "https://oumatibolgaria.eu"});
+        schoolCodes.put("2400275", new String[]{"0", OU_CHUDOMIR, OU_CHUDOMIR, "https://ouchudomir.bg"});
+        schoolCodes.put("2400276", new String[]{"0", OU_NIKOLA_VAPTSAROV_SHORT, OU_NIKOLA_VAPTSAROV_LONG, "https://ouvapcarov-kk.com"});
+        schoolCodes.put("2400277", new String[]{"0", OU_ANTON_STRASHIMIROV_SHORT, OU_ANTON_STRASHIMIROV_LONG, "https://oustrashimirov-kk.com"});
+        schoolCodes.put("2902505", new String[]{"0", "НУПИД А. Узунов", "НУ по пласт. изк. и дизайн", "https://art-school.eu"});
+        schoolCodes.put("2400261", new String[]{"0", "ПГ П. Стайнов", "ПГ Акад. Петко Стайнов", "https://pgstainov.bg"});
+        schoolCodes.put("2400263", new String[]{"0", "ПХГ Кирил и Методий", "ПХГ Св. Св. Кирил и Методий", "https://phgsvsvkirilimetodij.com"});
+        schoolCodes.put("2400265", new String[]{"0", "ПГ Иван Хаджиенов", "ПГ Иван Хаджиенов", "https://pgih.org"});
+        schoolCodes.put("2400266", new String[]{"0", "ПГ по транспорт", "ПГ по транспорт и мениджмънт", "https://pgttm.com"});
         schoolCodes.put("2400268", new String[]{"0", "ПГ по лека пром.", "ПГ по лека пром. и туризъм"});
 
         return schoolCodes;
@@ -1856,10 +1856,10 @@ public class School implements Comparable<School> {
 
         schoolCodes.put("1601301", new String[]{"0", SU_VASIL_LEVSKI, SU_VASIL_LEVSKI});
         schoolCodes.put("1601302", new String[]{"0", SU_HRISTO_PRODANOV, SU_HRISTO_PRODANOV});
-        schoolCodes.put("1601304", new String[]{"0", OU_KIRIL_I_METODII, OU_KIRIL_I_METODII});
-        schoolCodes.put("1601305", new String[]{"0", OU_RAINO_POPOVICH, OU_RAINO_POPOVICH});
-        schoolCodes.put("1601361", new String[]{"0", "ПГ по жп транспорт", "ПГ по жп транспорт"});
-        schoolCodes.put("1601364", new String[]{"0", "ПГ Евл. и Хр. Георгиеви", "ПГ Евлогий и Христо Георгиеви"});
+        schoolCodes.put("1601304", new String[]{"0", OU_KIRIL_I_METODII, OU_KIRIL_I_METODII, "https://oukm-karlovo.com"});
+        schoolCodes.put("1601305", new String[]{"0", OU_RAINO_POPOVICH, OU_RAINO_POPOVICH, "https://www.daskalo.com/ourp/"});
+        schoolCodes.put("1601361", new String[]{"0", "ПГ по жп транспорт", "ПГ по жп транспорт", "https://pgjpt-karlovo.com"});
+        schoolCodes.put("1601364", new String[]{"0", "ПГ Евл. и Хр. Георгиеви", "ПГ Евлогий и Христо Георгиеви", "https://tmtkarlovo.com"});
 
         return schoolCodes;
     }
@@ -1867,11 +1867,11 @@ public class School implements Comparable<School> {
     private static Map<String, String[]> prepareSchoolCodesKarnobat() {
         Map<String, String[]> schoolCodes = new HashMap<>();
 
-        schoolCodes.put("200404", new String[]{"0", OU_HRISTO_SMIRNENSKI_SHORT, OU_HRISTO_SMIRNENSKI_LONG});
-        schoolCodes.put("200405", new String[]{"0", OU_PETKO_SLAVEIKOV, OU_PETKO_SLAVEIKOV});
-        schoolCodes.put("200411", new String[]{"0", SU_KIRIL_I_METODII, SU_KIRIL_I_METODII});
-        schoolCodes.put("200412", new String[]{"0", SU_HRISTO_BOTEV, SU_HRISTO_BOTEV});
-        schoolCodes.put("200413", new String[]{"0", PG_SELSKO_STOPANSTVO_SHORT, PG_SELSKO_STOPANSTVO_LONG});
+        schoolCodes.put("200404", new String[]{"0", OU_HRISTO_SMIRNENSKI_SHORT, OU_HRISTO_SMIRNENSKI_LONG, "https://ou-smirnenski-karnobat.eu"});
+        schoolCodes.put("200405", new String[]{"0", OU_PETKO_SLAVEIKOV, OU_PETKO_SLAVEIKOV, "https://ouslaveikov-karnobat.com"});
+        schoolCodes.put("200411", new String[]{"0", SU_KIRIL_I_METODII, SU_KIRIL_I_METODII, "https://kirilimetodikt.com"});
+        schoolCodes.put("200412", new String[]{"0", SU_HRISTO_BOTEV, SU_HRISTO_BOTEV, "https://hristobotev.info"});
+        schoolCodes.put("200413", new String[]{"0", PG_SELSKO_STOPANSTVO_SHORT, PG_SELSKO_STOPANSTVO_LONG, "https://www.pgsslp-karnobat.com"});
 
         return schoolCodes;
     }
@@ -1879,10 +1879,10 @@ public class School implements Comparable<School> {
     private static Map<String, String[]> prepareSchoolCodesKozlodui() {
         Map<String, String[]> schoolCodes = new HashMap<>();
 
-        schoolCodes.put("601071", new String[]{"0", NU_VASIL_LEVSKI, NU_VASIL_LEVSKI});
-        schoolCodes.put("603076", new String[]{"0", SU_HRISTO_BOTEV, SU_HRISTO_BOTEV});
-        schoolCodes.put("603077", new String[]{"0", SU_KIRIL_I_METODII, SU_KIRIL_I_METODII});
-        schoolCodes.put("603078", new String[]{"0", "ПГ по ядрена енерг.", "ПГ по ядрена енерг."});
+        schoolCodes.put("601071", new String[]{"0", NU_VASIL_LEVSKI, NU_VASIL_LEVSKI, "https://nuvasillevski.com"});
+        schoolCodes.put("603076", new String[]{"0", SU_HRISTO_BOTEV, SU_HRISTO_BOTEV, "https://su-hrbotev.com"});
+        schoolCodes.put("603077", new String[]{"0", SU_KIRIL_I_METODII, SU_KIRIL_I_METODII, "https://kim-kozloduy.com"});
+        schoolCodes.put("603078", new String[]{"0", "ПГ по ядрена енерг.", "ПГ по ядрена енерг.", "https://pgqe.weebly.com"});
 
         return schoolCodes;
     }
@@ -1890,10 +1890,10 @@ public class School implements Comparable<School> {
     private static Map<String, String[]> prepareSchoolCodesKostinbrod() {
         Map<String, String[]> schoolCodes = new HashMap<>();
 
-        schoolCodes.put("2309638", new String[]{"0", SU_PETAR_BERON_SHORT, SU_PETAR_BERON_LONG});
-        schoolCodes.put("2309735", new String[]{"0", "ПГ по вет. мед.", "ПГ по ветеринарна медицина"});
-        schoolCodes.put("2300067", new String[]{"0", "1 ОУ", "1 ОУ Васил Левски"});
-        schoolCodes.put("2308290", new String[]{"0", "2 ОУ", "2 ОУ Васил Левски"});
+        schoolCodes.put("2309638", new String[]{"0", SU_PETAR_BERON_SHORT, SU_PETAR_BERON_LONG, "https://su-pberon-kbrod.com"});
+        schoolCodes.put("2309735", new String[]{"0", "ПГ по вет. мед.", "ПГ по ветеринарна медицина", "https://pgvmss.org"});
+        schoolCodes.put("2300067", new String[]{"0", "2 ОУ", "2 ОУ Васил Левски", "https://vlevski-kostinbrod.com"});
+        schoolCodes.put("2308290", new String[]{"0", "1 ОУ", "1 ОУ Васил Левски", "https://1ou-kostinbrod.eu"});
 
         return schoolCodes;
     }
@@ -1901,14 +1901,14 @@ public class School implements Comparable<School> {
     private static Map<String, String[]> prepareSchoolCodesLom() {
         Map<String, String[]> schoolCodes = new HashMap<>();
 
-        schoolCodes.put("1203512", new String[]{"0", "1 ОУ Н. Първанов", "1 ОУ Никола Първанов"});
-        schoolCodes.put("1209002", new String[]{"0", "2 ОУ К. Фотинов", "2 ОУ Константин Фотинов"});
-        schoolCodes.put("1209003", new String[]{"0", SU_OTEC_PAISII, SU_OTEC_PAISII});
-        schoolCodes.put("1209004", new String[]{"0", "4 ОУ Христо Ботев", "4 ОУ Христо Ботев"});
-        schoolCodes.put("1209005", new String[]{"0", SU_DIMITAR_MARINOV, SU_DIMITAR_MARINOV});
+        schoolCodes.put("1203512", new String[]{"0", "1 ОУ Н. Първанов", "1 ОУ Никола Първанов", "https://ounikolapurvanov-lom.com"});
+        schoolCodes.put("1209002", new String[]{"0", "2 ОУ К. Фотинов", "2 ОУ Константин Фотинов", "https://ou-fotinov.org"});
+        schoolCodes.put("1209003", new String[]{"0", SU_OTEC_PAISII, SU_OTEC_PAISII, "https://souop-lom.com"});
+        schoolCodes.put("1209004", new String[]{"0", "4 ОУ Христо Ботев", "4 ОУ Христо Ботев", "https://oubotev.eu"});
+        schoolCodes.put("1209005", new String[]{"0", SU_DIMITAR_MARINOV, SU_DIMITAR_MARINOV, "https://sudm-lom.bg"});
         schoolCodes.put("1202036", new String[]{"0", "ПГ по хранене", "ПГ по хранене и земеделие"});
-        schoolCodes.put("1209006", new String[]{"0", "ПГ Найден Геров", "ПГ Найден Геров"});
-        schoolCodes.put("1209012", new String[]{"0", "ПГ по произв. техн.", "ПГ по произв. технологии"});
+        schoolCodes.put("1209006", new String[]{"0", "ПГ Найден Геров", "ПГ Найден Геров", "https://info.gymnasium-lom.com"});
+        schoolCodes.put("1209012", new String[]{"0", "ПГ по произв. техн.", "ПГ по произв. технологии", "https://pgptlom.com"});
 
         return schoolCodes;
     }
@@ -1916,9 +1916,9 @@ public class School implements Comparable<School> {
     private static Map<String, String[]> prepareSchoolCodesLukovit() {
         Map<String, String[]> schoolCodes = new HashMap<>();
 
-        schoolCodes.put("1100402", new String[]{"0", SU_ALEKO_KONSTANTINOV_SHORT, SU_ALEKO_KONSTANTINOV_LONG});
-        schoolCodes.put("1100411", new String[]{"0", NU_GEORGI_VALKOV_SHORT, NU_GEORGI_VALKOV_LONG});
-        schoolCodes.put("1100410", new String[]{"0", PG_SELSKO_STOPANSTVO_SHORT, PG_SELSKO_STOPANSTVO_LONG});
+        schoolCodes.put("1100402", new String[]{"0", SU_ALEKO_KONSTANTINOV_SHORT, SU_ALEKO_KONSTANTINOV_LONG, "https://su-lukovit.com"});
+        schoolCodes.put("1100411", new String[]{"0", NU_GEORGI_VALKOV_SHORT, NU_GEORGI_VALKOV_LONG, "https://nuvalkov.com"});
+        schoolCodes.put("1100410", new String[]{"0", PG_SELSKO_STOPANSTVO_SHORT, PG_SELSKO_STOPANSTVO_LONG, "https://pgss-lukovit.eu"});
 
         return schoolCodes;
     }
@@ -1926,8 +1926,8 @@ public class School implements Comparable<School> {
     private static Map<String, String[]> prepareSchoolCodesNesebar() {
         Map<String, String[]> schoolCodes = new HashMap<>();
 
-        schoolCodes.put("200608", new String[]{"0", SU_LIUBEN_KARAVELOV_SHORT, SU_LIUBEN_KARAVELOV_LONG});
-        schoolCodes.put("200609", new String[]{"0", "ПГ по туризъм", "ПГ по туризъм"});
+        schoolCodes.put("200608", new String[]{"0", SU_LIUBEN_KARAVELOV_SHORT, SU_LIUBEN_KARAVELOV_LONG, "https://sou-nessebar.org"});
+        schoolCodes.put("200609", new String[]{"0", "ПГ по туризъм", "ПГ по туризъм", "https://pgturizam-nesebar.com"});
 
         return schoolCodes;
     }
@@ -1935,13 +1935,13 @@ public class School implements Comparable<School> {
     private static Map<String, String[]> prepareSchoolCodesNovaZagora() {
         Map<String, String[]> schoolCodes = new HashMap<>();
 
-        schoolCodes.put("2000301", new String[]{"0", NU_PAISII_HILENDARSKI_SHORT, NU_PAISII_HILENDARSKI_LONG});
-        schoolCodes.put("2000302", new String[]{"0", NU_LIUBEN_KARAVELOV_SHORT, NU_LIUBEN_KARAVELOV_LONG});
-        schoolCodes.put("2000303", new String[]{"0", OU_HRISTO_SMIRNENSKI_SHORT, OU_HRISTO_SMIRNENSKI_SHORT});
-        schoolCodes.put("2000304", new String[]{"0", SU_IVAN_VAZOV, SU_IVAN_VAZOV});
-        schoolCodes.put("2000305", new String[]{"0", SU_HRISTO_BOTEV, SU_HRISTO_BOTEV});
-        schoolCodes.put("2000306", new String[]{"0", PG_SELSKO_STOPANSTVO_SHORT, PG_SELSKO_STOPANSTVO_LONG});
-        schoolCodes.put("2000307", new String[]{"0", "ПГ по техника", "ПГ по техника и технологии"});
+        schoolCodes.put("2000301", new String[]{"0", NU_PAISII_HILENDARSKI_SHORT, NU_PAISII_HILENDARSKI_LONG, "https://pshilendarski-nz.org"});
+        schoolCodes.put("2000302", new String[]{"0", NU_LIUBEN_KARAVELOV_SHORT, NU_LIUBEN_KARAVELOV_LONG, "https://schoolkaravelov.com"});
+        schoolCodes.put("2000303", new String[]{"0", OU_HRISTO_SMIRNENSKI_SHORT, OU_HRISTO_SMIRNENSKI_SHORT, "https://ousmirnenskinz.com"});
+        schoolCodes.put("2000304", new String[]{"0", SU_IVAN_VAZOV, SU_IVAN_VAZOV, "https://ivan-vazov.com"});
+        schoolCodes.put("2000305", new String[]{"0", SU_HRISTO_BOTEV, SU_HRISTO_BOTEV, "https://souhrbotev-nz.com"});
+        schoolCodes.put("2000306", new String[]{"0", PG_SELSKO_STOPANSTVO_SHORT, PG_SELSKO_STOPANSTVO_LONG, "https://pgss-nz.com"});
+        schoolCodes.put("2000307", new String[]{"0", "ПГ по техника", "ПГ по техника и технологии", "https://pgtt-nz.com"});
 
         return schoolCodes;
     }
@@ -1949,11 +1949,11 @@ public class School implements Comparable<School> {
     private static Map<String, String[]> prepareSchoolCodesNoviPazar() {
         Map<String, String[]> schoolCodes = new HashMap<>();
 
-        schoolCodes.put("2700047", new String[]{"0", SU_VASIL_LEVSKI, SU_VASIL_LEVSKI});
-        schoolCodes.put("2700071", new String[]{"0", SU_HAN_ISPERIH, SU_HAN_ISPERIH});
-        schoolCodes.put("2700194", new String[]{"0", OU_NIKOLA_VAPTSAROV_SHORT, OU_NIKOLA_VAPTSAROV_LONG});
-        schoolCodes.put("2700220", new String[]{"0", PG_SELSKO_STOPANSTVO_SHORT, PG_SELSKO_STOPANSTVO_LONG});
-        schoolCodes.put("2700224", new String[]{"0", "ПГ по хим. техн.", "ПГ по химични технологии"});
+        schoolCodes.put("2700047", new String[]{"0", SU_VASIL_LEVSKI, SU_VASIL_LEVSKI, "https://su-vasillevski.org"});
+        schoolCodes.put("2700071", new String[]{"0", SU_HAN_ISPERIH, SU_HAN_ISPERIH, "https://su-han-isperih.com"});
+        schoolCodes.put("2700194", new String[]{"0", OU_NIKOLA_VAPTSAROV_SHORT, OU_NIKOLA_VAPTSAROV_LONG, "https://www.ounpazar.net"});
+        schoolCodes.put("2700220", new String[]{"0", PG_SELSKO_STOPANSTVO_SHORT, PG_SELSKO_STOPANSTVO_LONG, "https://pgss-novipazarbg.com"});
+        schoolCodes.put("2700224", new String[]{"0", "ПГ по хим. техн.", "ПГ по химични технологии", "https://pghtd-az.com"});
 
         return schoolCodes;
     }
@@ -1961,7 +1961,7 @@ public class School implements Comparable<School> {
     private static Map<String, String[]> prepareSchoolCodesObzor() {
         Map<String, String[]> schoolCodes = new HashMap<>();
 
-        schoolCodes.put("200601", new String[]{"0", "ОбУ Кирил и Методий", "ОбУ Кирил и Методий"});
+        schoolCodes.put("200601", new String[]{"0", "ОбУ Кирил и Методий", "ОбУ Кирил и Методий", "https://ou-obzor.org"});
 
         return schoolCodes;
     }
@@ -1969,10 +1969,10 @@ public class School implements Comparable<School> {
     private static Map<String, String[]> prepareSchoolCodesPanagiurishte() {
         Map<String, String[]> schoolCodes = new HashMap<>();
 
-        schoolCodes.put("1301731", new String[]{"0", OU_MARIN_DRINOV_SHORT, OU_MARIN_DRINOV_LONG});
-        schoolCodes.put("1301749", new String[]{"0", "ОУ 20 Април", "ОУ 20 Април"});
-        schoolCodes.put("1302623", new String[]{"0", SU_NESHO_BONCHEV, SU_NESHO_BONCHEV});
-        schoolCodes.put("1305587", new String[]{"0", "ПГ по индустр. техн.", "ПГ по индустриални техн."});
+        schoolCodes.put("1301731", new String[]{"0", OU_MARIN_DRINOV_SHORT, OU_MARIN_DRINOV_LONG, "https://oumarindrinov.com"});
+        schoolCodes.put("1301749", new String[]{"0", "ОУ 20 Април", "ОУ 20 Април", "https://ou-20april.com"});
+        schoolCodes.put("1302623", new String[]{"0", SU_NESHO_BONCHEV, SU_NESHO_BONCHEV, "https://nbnet.org"});
+        schoolCodes.put("1305587", new String[]{"0", "ПГ по индустр. техн.", "ПГ по индустриални техн.", "https://pgitmt.idwebbg.com"});
 
         return schoolCodes;
     }
@@ -2303,7 +2303,7 @@ public class School implements Comparable<School> {
     private static Map<String, String[]> prepareSchoolCodesRakitovo() {
         Map<String, String[]> schoolCodes = new HashMap<>();
 
-        schoolCodes.put("1300054", new String[]{"0", OU_NEOFIT_RILSKI, OU_NEOFIT_RILSKI});
+        schoolCodes.put("1300054", new String[]{"0", OU_NEOFIT_RILSKI, OU_NEOFIT_RILSKI, "https://nrilski-kostandovo.com"});
         schoolCodes.put("1301368", new String[]{"0", NU_VASIL_LEVSKI, NU_VASIL_LEVSKI});
         schoolCodes.put("1301375", new String[]{"0", NU_PAISII_HILENDARSKI_SHORT, NU_PAISII_HILENDARSKI_LONG});
         schoolCodes.put("1301770", new String[]{"0", SU_KLIMENT_OHRIDSKI_SHORT, SU_KLIMENT_OHRIDSKI_LONG});
@@ -2319,9 +2319,9 @@ public class School implements Comparable<School> {
     private static Map<String, String[]> prepareSchoolCodesLevski() {
         Map<String, String[]> schoolCodes = new HashMap<>();
 
-        schoolCodes.put("1500602", new String[]{"0", OU_MAKSIM_GORKI, OU_MAKSIM_GORKI});
-        schoolCodes.put("1500611", new String[]{"0", SU_KRUM_POPOV, SU_KRUM_POPOV});
-        schoolCodes.put("1500613", new String[]{"0", "ПГ по сел. стоп.", "ПГ по сел. стоп. и транспорт Н. Вапцаров"});
+        schoolCodes.put("1500602", new String[]{"0", OU_MAKSIM_GORKI, OU_MAKSIM_GORKI, "https://ou-maksim-gorki.com"});
+        schoolCodes.put("1500611", new String[]{"0", SU_KRUM_POPOV, SU_KRUM_POPOV, "https://su-krumpopov.com"});
+        schoolCodes.put("1500613", new String[]{"0", "ПГ по сел. стоп.", "ПГ по сел. стоп. и транспорт Н. Вапцаров", "https://pgsst-vapcarov.com"});
 
         return schoolCodes;
     }
@@ -2332,10 +2332,10 @@ public class School implements Comparable<School> {
         schoolCodes.put("1601303", new String[]{"0", SU_IVAN_VAZOV, SU_IVAN_VAZOV});
         schoolCodes.put("1601320", new String[]{"0", NU_NEDELYA_PETKOVA, NU_NEDELYA_PETKOVA});
         schoolCodes.put("1601363", new String[]{"0", "ПГ Генерал Владимир Заимов", "Професионална гимназия Генерал Владимир Заимов"});
-        schoolCodes.put("1601401", new String[]{"0", NU_VASIL_LEVSKI, NU_VASIL_LEVSKI});
-        schoolCodes.put("1601403", new String[]{"0", SU_PETKO_RACHOV_SLAVEIKOV_SHORT, SU_PETKO_RACHOV_SLAVEIKOV_LONG});
-        schoolCodes.put("1602401", new String[]{"0", OU_PETAR_BONEV, OU_PETAR_BONEV});
-        schoolCodes.put("1602402", new String[]{"0", "ПГ по лозарство и винарство", "Професионална гимназия по лозарство и винарство Христо Ботев"});
+        schoolCodes.put("1601401", new String[]{"0", NU_VASIL_LEVSKI, NU_VASIL_LEVSKI, "https://nuvlevski.com"});
+        schoolCodes.put("1601403", new String[]{"0", SU_PETKO_RACHOV_SLAVEIKOV_SHORT, SU_PETKO_RACHOV_SLAVEIKOV_LONG, "https://su-prslaveikov.com"});
+        schoolCodes.put("1602401", new String[]{"0", OU_PETAR_BONEV, OU_PETAR_BONEV, "https://ou-petarbonev.com"});
+        schoolCodes.put("1602402", new String[]{"0", "ПГ по лозарство и винарство", "Професионална гимназия по лозарство и винарство Христо Ботев", "https://pglv-hristobotev.com"});
         schoolCodes.put("1603301", new String[]{"0", SU_HRISTO_BOTEV, SU_HRISTO_BOTEV});
         schoolCodes.put("1603302", new String[]{"0", NU_LIUBEN_KARAVELOV_SHORT, NU_LIUBEN_KARAVELOV_LONG});
         schoolCodes.put("1603704", new String[]{"0", OU_VASIL_LEVSKI, OU_VASIL_LEVSKI});
@@ -2349,12 +2349,12 @@ public class School implements Comparable<School> {
         Map<String, String[]> schoolCodes = new HashMap<>();
 
         schoolCodes.put("1701401", new String[]{"0", "ПГ Васил Левски", "ПГ Васил Левски"});
-        schoolCodes.put("1701402", new String[]{"0", OU_VASIL_APRILOV, OU_VASIL_APRILOV});
-        schoolCodes.put("1701403", new String[]{"0", OU_HRISTO_BOTEV, OU_HRISTO_BOTEV});
-        schoolCodes.put("1701405", new String[]{"0", "ПГ по сел. стоп.", "ПГ по сел. стоп. Хан Аспарух"});
-        schoolCodes.put("1701601", new String[]{"0", SU_HRISTO_BOTEV, SU_HRISTO_BOTEV});
-        schoolCodes.put("1701602", new String[]{"0", "ПГ по профес.", "ПГ по професионално обучение"});
-        schoolCodes.put("1701604", new String[]{"0", OU_HRISTO_SMIRNENSKI_SHORT, OU_HRISTO_SMIRNENSKI_LONG});
+        schoolCodes.put("1701402", new String[]{"0", OU_VASIL_APRILOV, OU_VASIL_APRILOV, "https://www.ouvasilaprilov.bg"});
+        schoolCodes.put("1701403", new String[]{"0", OU_HRISTO_BOTEV, OU_HRISTO_BOTEV, "https://botevisperih.bg"});
+        schoolCodes.put("1701405", new String[]{"0", "ПГ по сел. стоп.", "ПГ по сел. стоп. Хан Аспарух", "https://pgpossisperih.bg"});
+        schoolCodes.put("1701601", new String[]{"0", SU_HRISTO_BOTEV, SU_HRISTO_BOTEV, "https://soukubrat.com"});
+        schoolCodes.put("1701602", new String[]{"0", "ПГ по профес.", "ПГ по професионално обучение", "https://pgkubrat.wordpress.com"});
+        schoolCodes.put("1701604", new String[]{"0", OU_HRISTO_SMIRNENSKI_SHORT, OU_HRISTO_SMIRNENSKI_LONG, "https://ouhrsmirnenski-kubrat.com"});
 
         return schoolCodes;
     }
@@ -2374,7 +2374,7 @@ public class School implements Comparable<School> {
     private static Map<String, String[]> prepareSchoolCodesKotel() {
         Map<String, String[]> schoolCodes = new HashMap<>();
 
-        schoolCodes.put("2000201", new String[]{"0", SU_GEORGI_RAKOVSKI, SU_GEORGI_RAKOVSKI});
+        schoolCodes.put("2000201", new String[]{"0", SU_GEORGI_RAKOVSKI, SU_GEORGI_RAKOVSKI, "https://su-kotel.com"});
         schoolCodes.put("2000402", new String[]{"0", SU_NEOFIT_RILSKI, SU_NEOFIT_RILSKI});
 
         return schoolCodes;
@@ -2386,14 +2386,15 @@ public class School implements Comparable<School> {
         schoolCodes.put("2100401", new String[]{"0", SU_HRISTO_BOTEV, SU_HRISTO_BOTEV});
         schoolCodes.put("2100402", new String[]{"0", "ПГ по електротехника", "ПГ по електротехника А.С. Попов"});
         schoolCodes.put("2100409", new String[]{"0", OU_KIRIL_I_METODII, OU_KIRIL_I_METODII});
-        schoolCodes.put("2100606", new String[]{"0", OU_VASIL_LEVSKI, OU_VASIL_LEVSKI});
+        schoolCodes.put("2100606", new String[]{"0", OU_VASIL_LEVSKI, OU_VASIL_LEVSKI, "https://ou-levski.com"});
         schoolCodes.put("2100701", new String[]{"0", SU_OTEC_PAISII, SU_OTEC_PAISII});
-        schoolCodes.put("2100704", new String[]{"0", OU_NIKOLA_VAPTSAROV_SHORT, OU_NIKOLA_VAPTSAROV_LONG});
+        schoolCodes.put("1203005", new String[]{"0", OU_OTEC_PAISII, OU_OTEC_PAISII, "https://otecpaisii-madan.com"});
+        schoolCodes.put("2100704", new String[]{"0", OU_NIKOLA_VAPTSAROV_SHORT, OU_NIKOLA_VAPTSAROV_LONG, "https://ou-sharenka.eu"});
         schoolCodes.put("2100901", new String[]{"0", SU_VASIL_DECHEV, SU_VASIL_DECHEV});
         schoolCodes.put("2100903", new String[]{"0", "ПГ сел. горско стоп.", "ПГ по сел. горско стоп. Н. Вапцаров"});
         schoolCodes.put("2100920", new String[]{"0", "СпУ Олимп. надежди", "Спортно у-ще Олимпийски надежди"});
         schoolCodes.put("2102145", new String[]{"0", "ПГ Васил Димитров", "ПГ Васил Димитров"});
-        schoolCodes.put("2103232", new String[]{"0", "СУ Антим I", "СУ Антим I"});
+        schoolCodes.put("2103232", new String[]{"0", "СУ Антим I", "СУ Антим I", "https://su-antim1-zlatograd.com"});
 
         return schoolCodes;
     }
@@ -2405,25 +2406,26 @@ public class School implements Comparable<School> {
         schoolCodes.put("2300105", new String[]{"0", SU_SAVO_TSENOV_SAVOV, SU_SAVO_TSENOV_SAVOV});
         schoolCodes.put("2300163", new String[]{"0", SU_ASEN_ZLATAROV_2_SHORT, SU_ASEN_ZLATAROV_2_LONG, "https://www.suzlatarovgodech.com"});
         schoolCodes.put("2300170", new String[]{"0", SU_VASIL_LEVSKI, SU_VASIL_LEVSKI, "https://su-vasillevski.com"});
-        schoolCodes.put("2300195", new String[]{"0", SU_HRISTO_YASENOV, SU_HRISTO_YASENOV});
-        schoolCodes.put("2300302", new String[]{"0", "ПГ Златица", "ПГ Златица"});
-        schoolCodes.put("2300327", new String[]{"0", "ПГ Тодор Пеев", "ПГ Тодор Пеев"});
+        schoolCodes.put("2300195", new String[]{"0", SU_HRISTO_YASENOV, SU_HRISTO_YASENOV, "https://hristo-yassenov.com"});
+        schoolCodes.put("2300302", new String[]{"0", "ПГ Златица", "ПГ Златица", "https://www.pgzlatitsa.bg"});
+        schoolCodes.put("2300327", new String[]{"0", "ПГ Тодор Пеев", "ПГ Тодор Пеев", "https://pg-etropole.eu"});
         schoolCodes.put("2300448", new String[]{"0", "ПГ по туризъм", "ПГ по туризъм Никола Димов"});
         schoolCodes.put("2300455", new String[]{"0", "ПГ по транспорт", "ПГ по транспорт Н. Вапцаров"});
         schoolCodes.put("2302504", new String[]{"0", "ПГ по механоел.", "ПГ по механоелектротехника"});
         schoolCodes.put("2303490", new String[]{"0", SU_KLIMENT_OHRIDSKI_SHORT, SU_KLIMENT_OHRIDSKI_LONG});
         schoolCodes.put("2303582", new String[]{"0", PG_HRISTO_BOTEV, PG_HRISTO_BOTEV, "https://pghristobotev.weebly.com"});
-        schoolCodes.put("2304717", new String[]{"0", "ПГ Г.С. Раковски", "ПГ Георги Сава Раковски"});
+        schoolCodes.put("2304717", new String[]{"0", "ПГ Г.С. Раковски", "ПГ Георги Сава Раковски", "https://pgrakovski.com"});
         schoolCodes.put("2306213", new String[]{"0", SU_NEOFIT_RILSKI, SU_NEOFIT_RILSKI, "https://suneofitrilski.eu"});
         schoolCodes.put("2306517", new String[]{"0", SU_KIRIL_I_METODII, SU_KIRIL_I_METODII});
         schoolCodes.put("2307576", new String[]{"0", NU_HRISTO_BOTEV, NU_HRISTO_BOTEV, "https://nu-hristobotev.org"});
         schoolCodes.put("2306477", new String[]{"0", NU_OTEC_PAISII, NU_OTEC_PAISII, "https://nu-otecpaisii.com"});
         schoolCodes.put("2308778", new String[]{"0", "ОУ Ст. Стефанов", "ОУ Стефан Стефанов", "https://ou-sstefanov.idwebbg.com"});
-        schoolCodes.put("2308785", new String[]{"0", OU_HRISTO_BOTEV, OU_HRISTO_BOTEV});
-        schoolCodes.put("2308792", new String[]{"0", SU_PAISII_HILENDARSKI_SHORT, SU_PAISII_HILENDARSKI_LONG});
+        schoolCodes.put("2308785", new String[]{"0", OU_HRISTO_BOTEV, OU_HRISTO_BOTEV, "https://etropole-botev.com"});
+        schoolCodes.put("2308792", new String[]{"0", SU_PAISII_HILENDARSKI_SHORT, SU_PAISII_HILENDARSKI_LONG, "https://su-zlatitsa.bg"});
         schoolCodes.put("2308850", new String[]{"0", NU_TODOR_VLAIKOV, NU_TODOR_VLAIKOV});
         schoolCodes.put("2308970", new String[]{"0", SU_HRISTO_TOPRAKCHIEV_SHORT, SU_HRISTO_TOPRAKCHIEV_LONG, "https://soubozhurishte.com"});
-        schoolCodes.put("2309531", new String[]{"0", OU_KIRIL_I_METODII, OU_KIRIL_I_METODII});
+        schoolCodes.put("2309531", new String[]{"0", OU_KIRIL_I_METODII, OU_KIRIL_I_METODII, "https://ou-kostenets.com"});
+        schoolCodes.put("2304763", new String[]{"0", "ОУ К. Костенечки", "ОУ Константин Костенечки", "https://ou-konstantinkostenetchki.com"});
 
         return schoolCodes;
     }
@@ -2442,11 +2444,11 @@ public class School implements Comparable<School> {
     private static Map<String, String[]> prepareSchoolCodesOmurtag() {
         Map<String, String[]> schoolCodes = new HashMap<>();
 
-        schoolCodes.put("2520001", new String[]{"0", "I НУ Хр. Смирненски", "I НУ Христо Смирненски"});
-        schoolCodes.put("2520002", new String[]{"0", "II НУ Васил Левски", "II НУ Васил Левски"});
-        schoolCodes.put("2520401", new String[]{"0", "ПГ Симеон Велчев", "ПГ Симеон Велчев"});
-        schoolCodes.put("2520501", new String[]{"0", OU_DAKI_IORDANOV_SHORT, OU_DAKI_IORDANOV_LONG});
-        schoolCodes.put("2520601", new String[]{"0", "ПГ по транспорт", "ПГ по транспорт и лека промишленост"});
+        schoolCodes.put("2520001", new String[]{"0", "I НУ Хр. Смирненски", "I НУ Христо Смирненски", "https://1nu-smirnenski.com"});
+        schoolCodes.put("2520002", new String[]{"0", "II НУ Васил Левски", "II НУ Васил Левски", "https://nu2-omurtag.eu"});
+        schoolCodes.put("2520401", new String[]{"0", "ПГ Симеон Велчев", "ПГ Симеон Велчев", "https://gimsv.com"});
+        schoolCodes.put("2520501", new String[]{"0", OU_DAKI_IORDANOV_SHORT, OU_DAKI_IORDANOV_LONG, "https://ou-omurtag.ucoz.site"});
+        schoolCodes.put("2520601", new String[]{"0", "ПГ по транспорт", "ПГ по транспорт и лека промишленост", "https://pgtlp-omurtag.org"});
 
         return schoolCodes;
     }
@@ -2457,9 +2459,9 @@ public class School implements Comparable<School> {
         schoolCodes.put("2604001", new String[]{"0", NU_OTEC_PAISII, NU_OTEC_PAISII});
         schoolCodes.put("2604003", new String[]{"0", OU_IVAN_VAZOV, OU_IVAN_VAZOV});
         schoolCodes.put("2604004", new String[]{"0", SU_KLIMENT_OHRIDSKI_SHORT, SU_KLIMENT_OHRIDSKI_LONG});
-        schoolCodes.put("2606001", new String[]{"0", NU_ZAHARI_STOYANOV, NU_ZAHARI_STOYANOV});
-        schoolCodes.put("2606002", new String[]{"0", NU_HRISTO_BOTEV, NU_HRISTO_BOTEV});
-        schoolCodes.put("2606005", new String[]{"0", SU_ZHELYAZKO_TERPESHEV, SU_ZHELYAZKO_TERPESHEV});
+        schoolCodes.put("2606001", new String[]{"0", NU_ZAHARI_STOYANOV, NU_ZAHARI_STOYANOV, "https://nu-zaharistoyanov-lubimec.com"});
+        schoolCodes.put("2606002", new String[]{"0", NU_HRISTO_BOTEV, NU_HRISTO_BOTEV, "https://nu-hristo-botev.com"});
+        schoolCodes.put("2606005", new String[]{"0", SU_ZHELYAZKO_TERPESHEV, SU_ZHELYAZKO_TERPESHEV, "https://www.su-jt.eu"});
         schoolCodes.put("2611001", new String[]{"0", NU_KIRIL_I_METODII, NU_KIRIL_I_METODII});
         schoolCodes.put("2611018", new String[]{"0", SU_PETAR_BERON_SHORT, SU_PETAR_BERON_LONG});
 
@@ -2480,10 +2482,10 @@ public class School implements Comparable<School> {
     private static Map<String, String[]> prepareSchoolCodesElhovo() {
         Map<String, String[]> schoolCodes = new HashMap<>();
 
-        schoolCodes.put("2831522", new String[]{"0", "ПГ Кл. Охридски", "ПГ Св. Климент Охридски"});
-        schoolCodes.put("2831523", new String[]{"0", OU_KIRIL_I_METODII, OU_KIRIL_I_METODII});
-        schoolCodes.put("2831524", new String[]{"0", OU_PAISII_HILENDARSKI_SHORT, OU_PAISII_HILENDARSKI_LONG});
-        schoolCodes.put("2831609", new String[]{"0", "ПГ Стефан Караджа", "ПГ Стефан Караджа"});
+        schoolCodes.put("2831522", new String[]{"0", "ПГ Кл. Охридски", "ПГ Св. Климент Охридски", "https://kliment-ohridski-elhovo.com"});
+        schoolCodes.put("2831523", new String[]{"0", OU_KIRIL_I_METODII, OU_KIRIL_I_METODII, "https://kim-elhovo.com"});
+        schoolCodes.put("2831524", new String[]{"0", OU_PAISII_HILENDARSKI_SHORT, OU_PAISII_HILENDARSKI_LONG, "https://ph-elhovo.com"});
+        schoolCodes.put("2831609", new String[]{"0", "ПГ Стефан Караджа", "ПГ Стефан Караджа", "https://pgsk-elhovo.com"});
         schoolCodes.put("2841532", new String[]{"0", SU_PEIO_YAVOROV, SU_PEIO_YAVOROV});
         schoolCodes.put("2841534", new String[]{"0", OU_KIRIL_I_METODII, OU_KIRIL_I_METODII});
 
@@ -2520,8 +2522,8 @@ public class School implements Comparable<School> {
         schoolCodes.put("601008", new String[]{"0", NU_TSANI_GINCHEV, NU_TSANI_GINCHEV, "https://www.nucaniginchev.com"});
         schoolCodes.put("601009", new String[]{"0", NU_HRISTO_SMIRNENSKI_SHORT, NU_HRISTO_SMIRNENSKI_LONG, "https://hristosmirnenskibsl.wordpress.com"});
         schoolCodes.put("601015", new String[]{"0", OU_KLIMENT_OHRIDSKI_SHORT, OU_KLIMENT_OHRIDSKI_LONG, "https://klohridskibsl.com"});
-        schoolCodes.put("601110", new String[]{"0", NU_KIRIL_I_METODII, NU_KIRIL_I_METODII});
-        schoolCodes.put("601111", new String[]{"0", NU_PETAR_BERON_SHORT, NU_PETAR_BERON_LONG});
+        schoolCodes.put("601110", new String[]{"0", NU_KIRIL_I_METODII, NU_KIRIL_I_METODII, "https://nu-kirilimetodii.com"});
+        schoolCodes.put("601111", new String[]{"0", NU_PETAR_BERON_SHORT, NU_PETAR_BERON_LONG, "https://nu-beron67.com"});
         schoolCodes.put("603024", new String[]{"0", SU_VASIL_LEVSKI, SU_VASIL_LEVSKI, "https://su-bsl.com"});
         schoolCodes.put("603026", new String[]{"0", "ПГ агротехническа", "ПГ агротехническа Н. Вапцаров", "https://pag-bsl.eu"});
 
@@ -2578,7 +2580,7 @@ public class School implements Comparable<School> {
 
         schoolCodes.put("300301", new String[]{"0", NU_ILARION_MAKARIOPOLSKI_SHORT, NU_ILARION_MAKARIOPOLSKI_LONG, "https://nu-elena.eu"});
         schoolCodes.put("300305", new String[]{"0", SU_IVAN_NIKOLOV_MOMCHILOV_SHORT, SU_IVAN_NIKOLOV_MOMCHILOV_LONG, "https://www.momchilov.bg"});
-        schoolCodes.put("300602", new String[]{"0", OU_KLIMENT_OHRIDSKI_SHORT, OU_KLIMENT_OHRIDSKI_LONG});
+        schoolCodes.put("300602", new String[]{"0", OU_KLIMENT_OHRIDSKI_SHORT, OU_KLIMENT_OHRIDSKI_LONG, "https://www.oupavlikeni.com"});
 
         return schoolCodes;
     }
@@ -2586,8 +2588,8 @@ public class School implements Comparable<School> {
     private static Map<String, String[]> prepareSchoolCodesKrumovgrad() {
         Map<String, String[]> schoolCodes = new HashMap<>();
 
-        schoolCodes.put("909501", new String[]{"0", SU_VASIL_LEVSKI, SU_VASIL_LEVSKI});
-        schoolCodes.put("909503", new String[]{"0", "ПГ по транспорт", "ПГ по транспорт Хр. Смирненски"});
+        schoolCodes.put("909501", new String[]{"0", SU_VASIL_LEVSKI, SU_VASIL_LEVSKI, "https://suvlevski-krumovgrad.com"});
+        schoolCodes.put("909503", new String[]{"0", "ПГ по транспорт", "ПГ по транспорт Хр. Смирненски", "https://pg-transport.net"});
 
         return schoolCodes;
     }
@@ -2595,8 +2597,8 @@ public class School implements Comparable<School> {
     private static Map<String, String[]> prepareSchoolCodesLyaskovets() {
         Map<String, String[]> schoolCodes = new HashMap<>();
 
-        schoolCodes.put("300501", new String[]{"0", NU_TSANI_GINCHEV, NU_TSANI_GINCHEV});
-        schoolCodes.put("300507", new String[]{"0", SU_MAKSIM_RAIKOVICH, SU_MAKSIM_RAIKOVICH});
+        schoolCodes.put("300501", new String[]{"0", NU_TSANI_GINCHEV, NU_TSANI_GINCHEV, "https://www.nucginchev.com"});
+        schoolCodes.put("300507", new String[]{"0", SU_MAKSIM_RAIKOVICH, SU_MAKSIM_RAIKOVICH, "https://su-mrlc.com"});
 
         return schoolCodes;
     }
@@ -2604,11 +2606,11 @@ public class School implements Comparable<School> {
     private static Map<String, String[]> prepareSchoolCodesMezdra() {
         Map<String, String[]> schoolCodes = new HashMap<>();
 
-        schoolCodes.put("602092", new String[]{"0", OU_KIRIL_I_METODII, OU_KIRIL_I_METODII});
-        schoolCodes.put("602093", new String[]{"0", OU_HRISTO_BOTEV, OU_HRISTO_BOTEV});
-        schoolCodes.put("603098", new String[]{"0", SU_IVAN_VAZOV, SU_IVAN_VAZOV});
-        schoolCodes.put("603100", new String[]{"0", "ПГ Ал. Константинов", "ПГ Алеко Константинов"});
-        schoolCodes.put("603101", new String[]{"0", "ПГ Васил Левски", "ПГ Васил Левски"});
+        schoolCodes.put("602092", new String[]{"0", OU_KIRIL_I_METODII, OU_KIRIL_I_METODII, "https://oukm-mz.com"});
+        schoolCodes.put("602093", new String[]{"0", OU_HRISTO_BOTEV, OU_HRISTO_BOTEV, "https://ouhristobotev-mezdra.com"});
+        schoolCodes.put("603098", new String[]{"0", SU_IVAN_VAZOV, SU_IVAN_VAZOV, "https://vazov-school.com"});
+        schoolCodes.put("603100", new String[]{"0", "ПГ Ал. Константинов", "ПГ Алеко Константинов", "https://www.pgalekokonstantinov.com"});
+        schoolCodes.put("603101", new String[]{"0", "ПГ Васил Левски", "ПГ Васил Левски", "https://pgvlevski-mezdra.com"});
 
         return schoolCodes;
     }
@@ -2616,10 +2618,10 @@ public class School implements Comparable<School> {
     private static Map<String, String[]> prepareSchoolCodesMomchilgrad() {
         Map<String, String[]> schoolCodes = new HashMap<>();
 
-        schoolCodes.put("909601", new String[]{"0", SU_NIKOLA_VAPTSAROV, SU_NIKOLA_VAPTSAROV});
-        schoolCodes.put("909608", new String[]{"0", SU_PETAR_BERON_SHORT, SU_PETAR_BERON_LONG});
-        schoolCodes.put("909603", new String[]{"0", "ПГ по туризъм", "ПГ по туризъм Кирил и Методий"});
-        schoolCodes.put("909613", new String[]{"0", "Духовно училище", "Духовно училище"});
+        schoolCodes.put("909601", new String[]{"0", SU_NIKOLA_VAPTSAROV, SU_NIKOLA_VAPTSAROV, "https://sou-vapcarov-mg.com"});
+        schoolCodes.put("909608", new String[]{"0", OU_PETAR_BERON, "ОУ Д-р Петър Берон", "https://ou-beron.org"});
+        schoolCodes.put("909603", new String[]{"0", "ПГ по туризъм", "ПГ по туризъм Кирил и Методий", "https://pgthvpm.com"});
+        schoolCodes.put("909613", new String[]{"0", "Духовно училище", "Духовно училище", "https://du-momchilgrad.com"});
 
         return schoolCodes;
     }
@@ -2627,7 +2629,7 @@ public class School implements Comparable<School> {
     private static Map<String, String[]> prepareSchoolCodesOryahovo() {
         Map<String, String[]> schoolCodes = new HashMap<>();
 
-        schoolCodes.put("603116", new String[]{"0", SU_HRISTO_BOTEV, SU_HRISTO_BOTEV});
+        schoolCodes.put("603116", new String[]{"0", SU_HRISTO_BOTEV, SU_HRISTO_BOTEV, "https://su-oryahovo.idwebbg.com"});
 
         return schoolCodes;
     }
@@ -2635,8 +2637,8 @@ public class School implements Comparable<School> {
     private static Map<String, String[]> prepareSchoolCodesPavlikeni() {
         Map<String, String[]> schoolCodes = new HashMap<>();
 
-        schoolCodes.put("300618", new String[]{"0", SU_BACHO_KIRO, SU_BACHO_KIRO});
-        schoolCodes.put("300619", new String[]{"0", "ПГ по аграрни техн.", "ПГ по аграрни технологии Ц. Церковски"});
+        schoolCodes.put("300618", new String[]{"0", SU_BACHO_KIRO, SU_BACHO_KIRO, "https://supavlikeni.com"});
+        schoolCodes.put("300619", new String[]{"0", "ПГ по аграрни техн.", "ПГ по аграрни технологии Ц. Церковски", "https://pgat.bg"});
 
         return schoolCodes;
     }
@@ -2727,12 +2729,12 @@ public class School implements Comparable<School> {
     private static Map<String, String[]> prepareSchoolCodesKneza() {
         Map<String, String[]> schoolCodes = new HashMap<>();
 
-        schoolCodes.put("1501101", new String[]{"0", NU_KNEZHITSA, NU_KNEZHITSA});
+        schoolCodes.put("1501101", new String[]{"0", NU_KNEZHITSA, NU_KNEZHITSA, "https://nuknezhitsa.weebly.com"});
         schoolCodes.put("1501102", new String[]{"0", OU_VASIL_LEVSKI, OU_VASIL_LEVSKI});
-        schoolCodes.put("1501103", new String[]{"0", OU_OTEC_PAISII, OU_OTEC_PAISII});
+        schoolCodes.put("1501103", new String[]{"0", OU_OTEC_PAISII, OU_OTEC_PAISII, "https://www.daskalo.com/oupaisii/"});
         schoolCodes.put("1501108", new String[]{"0", SU_NEOFIT_RILSKI, SU_NEOFIT_RILSKI});
-        schoolCodes.put("1501109", new String[]{"0", "ПГ по земеделие", "ПГ по земеделие Стефан Цанов"});
-        schoolCodes.put("1501110", new String[]{"0", "ПГ по механоел.", "ПГ по механоел. Хр. Смирненски"});
+        schoolCodes.put("1501109", new String[]{"0", "ПГ по земеделие", "ПГ по земеделие Стефан Цанов", "https://pgzemedelie.weebly.com"});
+        schoolCodes.put("1501110", new String[]{"0", "ПГ по механоел.", "ПГ по механоел. Хр. Смирненски", "https://pgmet-knezha.bg"});
 
         return schoolCodes;
     }
@@ -2740,8 +2742,8 @@ public class School implements Comparable<School> {
     private static Map<String, String[]> prepareSchoolCodesKuklen() {
         Map<String, String[]> schoolCodes = new HashMap<>();
 
-        schoolCodes.put("1601101", new String[]{"0", SU_OTEC_PAISII, SU_OTEC_PAISII});
-        schoolCodes.put("1601102", new String[]{"0", PG_SELSKO_STOPANSTVO_SHORT, PG_SELSKO_STOPANSTVO_LONG});
+        schoolCodes.put("1601101", new String[]{"0", SU_OTEC_PAISII, SU_OTEC_PAISII, "https://otecpaisii-kuklen.eu"});
+        schoolCodes.put("1601102", new String[]{"0", PG_SELSKO_STOPANSTVO_SHORT, PG_SELSKO_STOPANSTVO_LONG, "https://pgss-kuklen.com"});
 
         return schoolCodes;
     }
