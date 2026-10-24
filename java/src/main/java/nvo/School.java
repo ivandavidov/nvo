@@ -1579,25 +1579,25 @@ public class School implements Comparable<School> {
     private static Map<String, String[]> prepareSchoolCodesHaskovo() {
         Map<String, String[]> schoolCodes = new HashMap<>();
 
-        schoolCodes.put("2601025", new String[]{"0", SU_VASIL_LEVSKI, SU_VASIL_LEVSKI, "http://soulevski-hs.com"});
-        schoolCodes.put("2601026", new String[]{"0", SU_PAISII_HILENDARSKI_SHORT, SU_PAISII_HILENDARSKI_LONG, "http://sou-paisiy.com"});
-        schoolCodes.put("2601027", new String[]{"0", "СпУ Ст. Караджа", "Спортно у-ще Стефан Караджа", "http://sportno-haskovo.com"});
-        schoolCodes.put("2601028", new String[]{"0", "ЕГ", "ЕГ Проф. д-р Асен Златаров", "http://eghaskovo.org"});
-        schoolCodes.put("2601029", new String[]{"0", "ПМГ", "ПМГ Акад. Боян Петканчин", "http://pmg-haskovo.org"});
-        schoolCodes.put("2601031", new String[]{"0", "Финансово-стопанска", "Финансово-стопанска гимназия Атанас Буров", "http://fsghs.org"});
-        schoolCodes.put("2601032", new String[]{"0", "ПГ по туризъм", "ПГ по туризъм Александър Паскалев", "http://pgthas.com"});
-        schoolCodes.put("2601034", new String[]{"0", "ПГ по дървообр.", "ПГ по дървообработване и строителство", "http://pgds.org"});
-        schoolCodes.put("2601035", new String[]{"0", "ПГ по лека пром.", "ПГ по лека промишленост Райна Княгиня", "http://pglp.bg"});
-        schoolCodes.put("2601036", new String[]{"0", "ПГ по механоел.", "ПГ по механоелектротехника", "http://pgmethaskovo.com"});
-        schoolCodes.put("2601904", new String[]{"0", "ПГ по транспорт", "ПГ по транспорт и аграрни технологии", "http://pgtathaskovo.com"});
-        schoolCodes.put("2601004", new String[]{"0", OU_LIUBEN_KARAVELOV_SHORT, OU_LIUBEN_KARAVELOV_LONG, "http://karavelov-hs.com"});
-        schoolCodes.put("2601005", new String[]{"0", OU_KIRIL_I_METODII, OU_KIRIL_I_METODII, "http://kim-haskovo.com"});
-        schoolCodes.put("2601006", new String[]{"0", OU_SHANDOR_PETOFI, OU_SHANDOR_PETOFI, "http://ou-shandor.com"});
-        schoolCodes.put("2601008", new String[]{"0", OU_KLIMENT_OHRIDSKI_SHORT, OU_KLIMENT_OHRIDSKI_LONG, "http://kliment-hs.com"});
-        schoolCodes.put("2601009", new String[]{"0", OU_NIKOLA_VAPTSAROV_SHORT, OU_NIKOLA_VAPTSAROV_LONG, "http://ou-vaptsarov.com"});
-        schoolCodes.put("2601010", new String[]{"0", OU_IVAN_RILSKI_SHORT, OU_IVAN_RILSKI_LONG, "http://ivanrilski.com"});
-        schoolCodes.put("2601011", new String[]{"0", OU_HRISTO_SMIRNENSKI_SHORT, OU_HRISTO_SMIRNENSKI_LONG, "http://ousmirnenski.com"});
-        schoolCodes.put("2601001", new String[]{"0", NU_GEORGI_SAVA_RAKOVSKI, NU_GEORGI_SAVA_RAKOVSKI, "http://rakovski-hs.com"});
+        schoolCodes.put("2601025", new String[]{"0", SU_VASIL_LEVSKI, SU_VASIL_LEVSKI, "https://soulevski-hs.com"});
+        schoolCodes.put("2601026", new String[]{"0", SU_PAISII_HILENDARSKI_SHORT, SU_PAISII_HILENDARSKI_LONG, "https://sou-paisiy.com"});
+        schoolCodes.put("2601027", new String[]{"0", "СпУ Ст. Караджа", "Спортно у-ще Стефан Караджа", "https://sportno-haskovo.com"});
+        schoolCodes.put("2601028", new String[]{"0", "ЕГ", "ЕГ Проф. д-р Асен Златаров", "https://eghaskovo.org"});
+        schoolCodes.put("2601029", new String[]{"0", "ПМГ", "ПМГ Акад. Боян Петканчин", "https://pmg-haskovo.org"});
+        schoolCodes.put("2601031", new String[]{"0", "Финансово-стопанска", "Финансово-стопанска гимназия Атанас Буров", "https://fsghs.org"});
+        schoolCodes.put("2601032", new String[]{"0", "ПГ по туризъм", "ПГ по туризъм Александър Паскалев", "https://pgthas.com"});
+        schoolCodes.put("2601034", new String[]{"0", "ПГ по дървообр.", "ПГ по дървообработване и строителство", "https://pgds.org"});
+        schoolCodes.put("2601035", new String[]{"0", "ПГ по лека пром.", "ПГ по лека промишленост Райна Княгиня", "https://pglp.bg"});
+        schoolCodes.put("2601036", new String[]{"0", "ПГ по механоел.", "ПГ по механоелектротехника", "https://pgmethaskovo.com"});
+        schoolCodes.put("2601904", new String[]{"0", "ПГ по транспорт", "ПГ по транспорт и аграрни технологии", "https://pgtathaskovo.com"});
+        schoolCodes.put("2601004", new String[]{"0", OU_LIUBEN_KARAVELOV_SHORT, OU_LIUBEN_KARAVELOV_LONG, "https://karavelov-hs.com"});
+        schoolCodes.put("2601005", new String[]{"0", OU_KIRIL_I_METODII, OU_KIRIL_I_METODII, "https://kim-haskovo.com"});
+        schoolCodes.put("2601006", new String[]{"0", OU_SHANDOR_PETOFI, OU_SHANDOR_PETOFI, "https://ou-shandor.com"});
+        schoolCodes.put("2601008", new String[]{"0", OU_KLIMENT_OHRIDSKI_SHORT, OU_KLIMENT_OHRIDSKI_LONG, "https://kliment-hs.com"});
+        schoolCodes.put("2601009", new String[]{"0", OU_NIKOLA_VAPTSAROV_SHORT, OU_NIKOLA_VAPTSAROV_LONG, "https://ou-vaptsarov.com"});
+        schoolCodes.put("2601010", new String[]{"0", OU_IVAN_RILSKI_SHORT, OU_IVAN_RILSKI_LONG, "https://ivanrilski.com"});
+        schoolCodes.put("2601011", new String[]{"0", OU_HRISTO_SMIRNENSKI_SHORT, OU_HRISTO_SMIRNENSKI_LONG, "https://ousmirnenski.com"});
+        schoolCodes.put("2601001", new String[]{"0", NU_GEORGI_SAVA_RAKOVSKI, NU_GEORGI_SAVA_RAKOVSKI, "https://rakovski-hs.com"});
 
         return schoolCodes;
     }
@@ -1631,26 +1631,26 @@ public class School implements Comparable<School> {
     private static Map<String, String[]> prepareSchoolCodesIambol() {
         Map<String, String[]> schoolCodes = new HashMap<>();
 
-        schoolCodes.put("2811510", new String[]{"0", SU_KLIMENT_OHRIDSKI_SHORT, SU_KLIMENT_OHRIDSKI_LONG, "http://souko-yambol.eu"});
-        schoolCodes.put("2811515", new String[]{"0", "ПГ Васил Левски", "ПГ Васил Левски", "http://gvlevski.com"});
-        schoolCodes.put("2811516", new String[]{"0", "ПМГ", "ПМГ Атанас Радев", "http://mgyambol.com"});
-        schoolCodes.put("2811517", new String[]{"0", "ЕГ В. Карагьозов", "ЕГ Васил Карагьозов", "http://newsite.eg-yambol.org"});
-        schoolCodes.put("2811518", new String[]{"0", "СпУ Кубертен", "Спортно у-ще Пиер дьо Кубертен", "http://cubertene.com"});
-        schoolCodes.put("2811601", new String[]{"0", "Техническа гимназия", "Професионална техническа гимназия Иван Райнов", "http://ptg-yambol.bg"});
-        schoolCodes.put("2811602", new String[]{"0", "ПГ по икономика", "ПГ по икономика Георги Стойков Раковски", "http://pgi-rakovski.com"});
-        schoolCodes.put("2811603", new String[]{"0", "ПГ по туризъм", "ПГ по туризъм Алеко Константинов", "http://pghtt-yambol.net"});
-        schoolCodes.put("2811604", new String[]{"0", "ПГ по земеделие", "ПГ по земеделие Христо Ботев", "http://pgz-yambol.com"});
-        schoolCodes.put("2811607", new String[]{"0", "Гимназия по строит.", "Гимназия по строителство и архитектура", "http://pgsa-yambol.org"});
-        schoolCodes.put("2811608", new String[]{"0", "ПГ по подемна техн.", "ПГ по подемна, строителна и транспортна техника", "http://pgpstt-yambol.com"});
-        schoolCodes.put("2811613", new String[]{"0", "ПГ по лека пром.", "ПГ по лека пром., екология и хим. технологии", "http://pglpeht-yambol.com"});
-        schoolCodes.put("2811506", new String[]{"0", OU_IORDAN_IOVKOV, OU_IORDAN_IOVKOV, "http://iiovkov.com"});
-        schoolCodes.put("2811507", new String[]{"0", OU_NIKOLAI_PETRINI, OU_NIKOLAI_PETRINI, "http://ou-petrini.com"});
-        schoolCodes.put("2811509", new String[]{"0", OU_LIUBEN_KARAVELOV_SHORT, OU_LIUBEN_KARAVELOV_LONG, "http://karavelov-school.com"});
-        schoolCodes.put("2811512", new String[]{"0", OU_PETKO_SLAVEIKOV, OU_PETKO_SLAVEIKOV, "http://school-slaveykov.org"});
-        schoolCodes.put("2811513", new String[]{"0", OU_HRISTO_SMIRNENSKI_SHORT, OU_HRISTO_SMIRNENSKI_LONG, "http://hrsmirnenski.com"});
-        schoolCodes.put("2811514", new String[]{"0", "ОбУ Петър Берон", "ОбУ Д-р Петър Берон", "http://ouberon-yambol.com"});
-        schoolCodes.put("2811501", new String[]{"0", NU_PETAR_NOIKOV_SHORT, NU_PETAR_NOIKOV_LONG, "http://daskalo.com/prnoykov/"});
-        schoolCodes.put("2811504", new String[]{"0", NU_KIRIL_I_METODII, NU_KIRIL_I_METODII, "http://nu-kim.org"});
+        schoolCodes.put("2811510", new String[]{"0", SU_KLIMENT_OHRIDSKI_SHORT, SU_KLIMENT_OHRIDSKI_LONG, "https://souko-yambol.eu"});
+        schoolCodes.put("2811515", new String[]{"0", "ПГ Васил Левски", "ПГ Васил Левски", "https://gvlevski.com"});
+        schoolCodes.put("2811516", new String[]{"0", "ПМГ", "ПМГ Атанас Радев", "https://pmgyambol.bg"});
+        schoolCodes.put("2811517", new String[]{"0", "ЕГ В. Карагьозов", "ЕГ Васил Карагьозов", "https://eg-yambol.org"});
+        schoolCodes.put("2811518", new String[]{"0", "СпУ Кубертен", "Спортно у-ще Пиер дьо Кубертен", "https://cubertene.com"});
+        schoolCodes.put("2811601", new String[]{"0", "Техническа гимназия", "Професионална техническа гимназия Иван Райнов", "https://ptg-yambol.bg"});
+        schoolCodes.put("2811602", new String[]{"0", "ПГ по икономика", "ПГ по икономика Георги Стойков Раковски", "https://pgi-rakovski.com"});
+        schoolCodes.put("2811603", new String[]{"0", "ПГ по туризъм", "ПГ по туризъм Алеко Константинов", "https://pghtt-yambol.net"});
+        schoolCodes.put("2811604", new String[]{"0", "ПГ по земеделие", "ПГ по земеделие Христо Ботев", "https://pgz-yambol.com"});
+        schoolCodes.put("2811607", new String[]{"0", "Гимназия по строит.", "Гимназия по строителство и архитектура", "https://pgsa-yambol.org"});
+        schoolCodes.put("2811608", new String[]{"0", "ПГ по подемна техн.", "ПГ по подемна, строителна и транспортна техника", "https://pgpstt-yambol.com"});
+        schoolCodes.put("2811613", new String[]{"0", "ПГ по техн.", "ПГ по технологии Леонардо да Винчи", "https://pgt-davinci.com"});
+        schoolCodes.put("2811506", new String[]{"0", OU_IORDAN_IOVKOV, OU_IORDAN_IOVKOV, "https://iiovkov.com"});
+        schoolCodes.put("2811507", new String[]{"0", OU_NIKOLAI_PETRINI, OU_NIKOLAI_PETRINI, "https://oupetrini.com"});
+        schoolCodes.put("2811509", new String[]{"0", OU_LIUBEN_KARAVELOV_SHORT, OU_LIUBEN_KARAVELOV_LONG, "https://karavelov-school.com"});
+        schoolCodes.put("2811512", new String[]{"0", OU_PETKO_SLAVEIKOV, OU_PETKO_SLAVEIKOV, "https://school-slaveykov.org"});
+        schoolCodes.put("2811513", new String[]{"0", OU_HRISTO_SMIRNENSKI_SHORT, OU_HRISTO_SMIRNENSKI_LONG, "https://hrsmirnenski.com"});
+        schoolCodes.put("2811514", new String[]{"0", "ОбУ Петър Берон", "ОбУ Д-р Петър Берон", "https://ouberon-yambol.com"});
+        schoolCodes.put("2811501", new String[]{"0", NU_PETAR_NOIKOV_SHORT, NU_PETAR_NOIKOV_LONG, "https://www.daskalo.com/prnoykov/"});
+        schoolCodes.put("2811504", new String[]{"0", OU_KIRIL_I_METODII, OU_KIRIL_I_METODII, "https://ou-kim.org"});
 
         return schoolCodes;
     }
