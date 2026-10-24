@@ -16,28 +16,37 @@ export function readCityHash() {
   return decodeURIComponent(window.location.hash.replace(/^#/, ''));
 }
 
-/** Началният избор: ?school= → ?s=кодове → ?i{g}= → бисквитка → базовите училища на класа. */
-export function initialSelection(model) {
-  const { cfg, s } = model;
+/**
+ * Училищата, зададени в линка с код (?school= или ?s=), или null. Те определят и
+ * града на таблицата, за разлика от ?i{g}= — него страницата сама пише в адреса.
+ */
+export function linkedSchools(model) {
   const url = new URL(window.location.href);
-  let ids = null;
   const code = url.searchParams.get('school');
   if (code) {
     const idx = findSchoolIndexByCode(model, code);
     if (idx >= 0) {
-      ids = [String(idx)];
+      return [String(idx)];
     }
   }
-  if (!ids && url.searchParams.get('s')) {
+  if (url.searchParams.get('s')) {
     // Стабилни кодове на училища (ползват се от вграждането): ?s=2216306,2211304
     const fromCodes = url.searchParams.get('s').split(',')
       .map((c) => findSchoolIndexByCode(model, c.trim()))
       .filter((i) => i >= 0)
       .map(String);
     if (fromCodes.length) {
-      ids = fromCodes;
+      return fromCodes;
     }
   }
+  return null;
+}
+
+/** Началният избор: ?school= → ?s=кодове → ?i{g}= → бисквитка → базовите училища на класа. */
+export function initialSelection(model) {
+  const { cfg, s } = model;
+  const url = new URL(window.location.href);
+  let ids = linkedSchools(model);
   if (!ids) {
     const param = url.searchParams.get(cfg.cookieName);
     if (param) {

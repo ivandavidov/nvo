@@ -20,7 +20,7 @@
   <meta name="twitter:image" content="{{siteUrl}}images/social-preview.png">
   <script type="module" src="../../js/pages/landing.js"></script>
 </head>
-<body data-grade="{{grade}}">
+<body data-grade="{{grade}}"{{#isCity}} data-city="{{citySlug}}"{{/isCity}}>
 {{{header}}}
 
   <main id="main" class="container page landing">

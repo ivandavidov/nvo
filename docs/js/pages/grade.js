@@ -5,7 +5,8 @@ import {
   defaultSortDir, firstEmptyRow, rankFor, cityAverages, cityCsv, allCsv,
   chartSeries, findCityForSchool
 } from '../core/model.js';
-import { initialSelection, writeSelection, shareUrl, readYearParam, readCityHash } from '../core/url-state.js';
+import { initialSelection, linkedSchools, writeSelection, shareUrl, readYearParam, readCityHash } from '../core/url-state.js';
+import { readRememberedCity, rememberCity } from '../core/city-memory.js';
 import { icon } from '../ui/icons.js';
 import { esc, download, fmt, showModal } from '../ui/dom.js';
 import { searchKey } from '../ui/search-text.js';
@@ -306,7 +307,8 @@ function setupAddCombobox() {
 /* ------------------------------------------------------------------ градове */
 
 function cityBySlug(slug) {
-  return state.bySlug[slug] || null;
+  // Само собствени ключове: #constructor или запомнен „toString“ не са град.
+  return Object.prototype.hasOwnProperty.call(state.bySlug, slug) ? state.bySlug[slug] : null;
 }
 
 function selectCity(city, { scroll = false, keepTab = false, explicit = true, push = false } = {}) {
@@ -323,6 +325,7 @@ function selectCity(city, { scroll = false, keepTab = false, explicit = true, pu
   }
   if (explicit) {
     state.cityChosen = true;
+    rememberCity(city.slug);
   }
   const changed = !state.city || state.city.slug !== city.slug;
   state.city = city;
@@ -924,12 +927,24 @@ async function init() {
   setupTray();
   renderChips();
 
+  // Градът на таблицата: #град → градът на училище от линка (?school=, ?s=) →
+  // последно избраният град (общ за 4/7/10/12) → градът на първото училище в
+  // графиката (бисквитката, както преди запомнянето) → първият град (София).
+  // Град без училища за този клас/година не е в state.cities и се прескача.
+  // Градът от линка се пази в адреса (#град) и се запомня: ?school= изчезва от
+  // адреса след зареждането и иначе презареждането би показало друг град.
+  const cityOfFirst = () => {
+    const found = state.selection.length ? findCityForSchool(model, state.selection[0]) : null;
+    return found ? state.cities.find((c) => c.name === found.cityName) || null : null;
+  };
   const hashCity = cityBySlug(readCityHash());
-  const firstSelected = state.selection.length ? findCityForSchool(model, state.selection[0]) : null;
+  const linkedCity = linkedSchools(model) ? cityOfFirst() : null;
   const city = hashCity
-    || (firstSelected && state.cities.find((c) => c.name === firstSelected.cityName))
+    || linkedCity
+    || cityBySlug(readRememberedCity())
+    || cityOfFirst()
     || state.cities[0];
-  selectCity(city, { scroll: !!hashCity, explicit: !!hashCity });
+  selectCity(city, { scroll: !!hashCity, explicit: !!(hashCity || linkedCity) });
 
   renderCharts();
   whenHighcharts().then(() => {

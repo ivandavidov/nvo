@@ -195,6 +195,7 @@ docs/
     core/config.js           per-grade configuration (the old config-*.js values)
     core/model.js            data model + all calculations (medians, city averages, rankings, sorting, CSV, chart series)
     core/url-state.js        ?i{g}= / ?s= / ?school= / ?year= / #city + the i{g} cookie
+    core/city-memory.js      last chosen city (localStorage nvo-city), shared by grade, city-ranking and balove pages
     core/pdf.js              school report, ranking PDF, school profile PDF (jsPDF loaded on demand)
     core/embed.js            embed URL / iframe code
     core/jokes.js            footer jokes
@@ -237,7 +238,7 @@ All page scripts are native ES modules (`<script type="module">`), no bundler. H
 `js/pages/grade.js` + `docs/data/grade-{g}.json`:
 - Comparison card: "Добави училище" combobox (all schools of the grade incl. those without latest-year data), colour chips (click = hide/show series, × = remove), БЕЛ/МАТ charts side by side (switch on narrow screens), Сподели (copy link / native share), Вгради (iframe code dialog), Изчисти.
 - Cities: chips by tier (областни; "Други градове" collapsible) + filter; `#city` selects a city. City panel: ranking table (Всички/Държавни/Частни at the right of the tab bar — a full-width row on phones; one header row; columns № · Училище · Ранг · Тип / № · БЕЛ/МАТ for 3 years + students · Доклад, the same order in the ranking PDF; sortable columns, rank bar (number only on phones), per-row ⊕ chart toggle and PDF report, "Покажи и училищата без резултат"), Средни резултати (по училища / по ученици), the „Изтегли ▾“ export menu (CSV, JSON from the API, ranking PDF), links to the city page and balove.
-- Year selector → `?year=` historical view (banner, 3-year window). `?school=code` deep link scrolls to the chart. When schools are selected and the chart is above the viewport, the floating „N училища в графиката · Виж“ bar (`#tray`) scrolls back to it — on every screen width. The selection is written to `?i{g}=` and the `i{g}` cookie as before; `?s=codes` is also accepted.
+- Year selector → `?year=` historical view (banner, 3-year window). `?school=code` deep link scrolls to the chart. When schools are selected and the chart is above the viewport, the floating „N училища в графиката · Виж“ bar (`#tray`) scrolls back to it — on every screen width. The selection is written to `?i{g}=` and the `i{g}` cookie as before; `?s=codes` is also accepted. The city table is chosen as `#city` → city of a `?school=`/`?s=` school (written to `#city`) → last chosen city (`localStorage nvo-city`, one value for 4/7/10/12; also set by `/{grade}/{city}/` and `/7/balove/{city}/`) → city of the first chart school (cookie) → София. A remembered city with no schools for that grade/year is skipped without being forgotten.
 
 ### Embed pages
 `docs/{4,7,10,12}/embed.html` (generated, `js/pages/embed.js`). URL parameters:

@@ -1,6 +1,10 @@
 // Страници по град и година (/{клас}/{град}/, /{клас}/{година}/): сортиране по
 // колона, търсене и (за годишната класация) филтър по град. Таблицата е статична HTML.
 import { searchKey, expandAbbreviations } from '../ui/search-text.js';
+import { rememberCity } from '../core/city-memory.js';
+
+// Страница по град → този град се показва и на страниците 4/7/10/12 (годишната е без data-city).
+rememberCity(document.body.dataset.city);
 
 const table = document.querySelector('table[data-sortable]');
 const filter = document.querySelector('[data-filter]');

@@ -7,6 +7,7 @@ import { esc } from '../ui/dom.js';
 import { searchKey, expandAbbreviations } from '../ui/search-text.js';
 import { createCombobox } from '../ui/combobox.js';
 import { whenHighcharts, lineOptions, createChart, token, onThemeChange } from '../ui/chart-theme.js';
+import { rememberCity } from '../core/city-memory.js';
 
 const YEARS_TO_SHOW = 4;
 const OVERVIEW_YEARS_TO_SHOW = 3;
@@ -438,6 +439,8 @@ function setupSchoolCombobox() {
 }
 
 function init() {
+  // Баловете на град → този град се показва и на страниците 4/7/10/12.
+  rememberCity(document.body.dataset.city);
   if (!years.length) {
     // js/ruo-{град}.js не се е заредил (мрежа, блокиране) — казваме го, вместо празна страница.
     const head = document.querySelector('#main .page-head');
