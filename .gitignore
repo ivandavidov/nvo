@@ -1,66 +1,33 @@
+# OS / editor / tool files
+.DS_Store
 .~*
-*.class
-**/.idea/**
+.idea/
 *.iml
-java/target/**
-**/.DS_Store
-.vscode/**
-.claude/**
-java/.classpath
-java/.factorypath
-java/.project
-java/.settings/
-kaggle/data/
-fb-cover/
-video/
+/.vscode/
+/.claude/
+
+# Java build output and IDE metadata
+*.class
+/java/target/
+/java/.classpath
+/java/.factorypath
+/java/.project
+/java/.settings/
 
 # Maven wrapper's local download dir — lands here when ./mvnw runs with $HOME
 # pointing outside the user's real home (e.g. a sandboxed shell)
 .m2/
 
-# one-off RUO Plovdiv PDF parsing scripts (working dir, not committed)
-tmp-ruo-plovdiv/
-tmp-ruo-varna/
-tmp-ruo-burgas/
-tmp-ruo-ruse/
-tmp-ruo-stara-zagora/
-tmp-ruo-pleven/
-tmp-ruo-sliven/
-tmp-ruo-dobrich/
-tmp-ruo-shumen/
-tmp-ruo-pernik/
-tmp-ruo-haskovo/
-tmp-ruo-blagoevgrad/
-tmp-ruo-iambol/
-tmp-ruo-veliko-turnovo/
-tmp-ruo-pazardjik/
-tmp-ruo-vraca/
-tmp-ruo-gabrovo/
-tmp-ruo-kurdzhali/
-tmp-ruo-montana/
-tmp-ruo-vidin/
-tmp-ruo-kiustendil/
-tmp-ruo-targovishte/
-tmp-ruo-lovech/
-tmp-ruo-razgrad/
-tmp-ruo-silistra/
-tmp-ruo-smolian/
-tmp-ruo-sofia-oblast/
-tmp-ruo-2026/
+# Local data and working dirs (not committed)
+/kaggle/data/
+/fb-cover/
+/video/
+
+# one-off RUO PDF/XLSX parsing scripts, one working dir per region (tmp-ruo-plovdiv/, tmp-ruo-2026/, …)
+/tmp-ruo-*/
 
 # one-off RUO responses/attachments dump (not part of the build)
-tmp-all-ruo/
+/tmp-all-ruo/
 
-# one-off RUO school-name → code fuzzy-matching script (working dir, not committed)
-scratch_mapping_v2/
-
-# HyperFrames video projects (video/<name>/) — heavy/generated files (sources stay tracked)
-video/*/capture*/
-video/*/renders/
-video/*/node_modules/
-video/*/.hyperframes/
-video/*/.media/
-video/*/shots/
-video/*/.thumbnails/
-video/*/.waveform-cache/
-video/*/.render/
+# one-off RUO school-name → code fuzzy-matching script
+/scratch_mapping_v2/
