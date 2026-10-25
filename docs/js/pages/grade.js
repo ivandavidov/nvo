@@ -655,10 +655,11 @@ function rankingHtml() {
 }
 
 /**
- * "Средни резултати": четири малки таблици - за всеки предмет по училища и по ученици, без
- * превключвател. Всяка е Година · Общо (при два и повече вида) · по колона за всеки показан вид.
- * Колко таблици са в ред (4, 2 или 1) зависи от ширината и от броя колони (data-n, site.css),
- * така че таблиците не се разтягат празни; на телефон видовете в заглавието са буквите от чиповете.
+ * "Средни резултати": две подсекции - "По училища" и "По ученици" (заглавие и едно обяснение),
+ * във всяка по таблица за предмет: Година · Общо (при два и повече вида) · по колона за всеки
+ * показан вид. Колко таблици и подсекции са в ред зависи от ширината и от броя колони (data-n,
+ * site.css), така че таблиците не се разтягат празни; когато таблицата е тясна, видовете в
+ * заглавието са буквите от чиповете.
  */
 function averagesHtml() {
   const { model } = state;
@@ -679,18 +680,21 @@ function averagesHtml() {
   };
   const cell = (v, k) => '<td class="' + cls(k) + '">'
     + (v === null || v === undefined ? '<span class="muted">-</span>' : (Math.round(v * 100) / 100).toFixed(2)) + '</td>';
-  const head = '<thead><tr><th>Година</th>' + columns.map(colHead).join('') + '</tr></thead>';
-  const table = (mode, subject, title, modeLabel) => '<div class="averages__subject">'
-    + '<h4 class="averages__title">' + esc(title) + ' <span class="averages__mode">' + modeLabel + '</span></h4>'
+  const head = '<thead><tr><th><span class="avg-year">Година</span><span class="avg-year avg-year--short">Год.</span></th>'
+    + columns.map(colHead).join('') + '</tr></thead>';
+  // Името на предмета е на един ред (с "…" при нужда) - съседните таблици започват на една височина.
+  const table = (mode, subject, title) => '<div class="averages__subject">'
+    + '<h5 class="averages__title" title="' + esc(title) + '">' + esc(title) + '</h5>'
     + '<div class="table-wrap averages"><table class="data-table">' + head + '<tbody>'
     + byMode[mode].rows.map((r) => '<tr><td>' + r.year + '</td>' + r[subject].map(cell).join('') + '</tr>').join('')
     + '</tbody></table></div></div>';
-  const what = shownTypes() ? ' Показани са ' + joinTypes(types) + ' училища.' : '';
-  return '<p class="averages__note muted text-sm"><strong>По училища</strong> - средно аритметично от резултатите на училищата; '
-    + '<strong>по ученици</strong> - претеглено с броя на учениците.' + what + '</p>'
-    + '<div class="averages__box"><div class="averages__grid" data-n="' + columns.length + '">'
-    + table('schools', 'b', cfg.subjectBLong, 'по училища') + table('schools', 'm', cfg.subjectMLong, 'по училища')
-    + table('students', 'b', cfg.subjectBLong, 'по ученици') + table('students', 'm', cfg.subjectMLong, 'по ученици')
+  const section = (mode, title, hint) => '<section class="averages__mode" aria-label="' + title + '">'
+    + '<div class="averages__head"><div class="averages__head-row"><h4 class="averages__heading">' + title + '</h4>'
+    + '<p class="averages__hint">' + hint + '</p></div></div>'
+    + '<div class="averages__pairbox"><div class="averages__pair">' + table(mode, 'b', cfg.subjectBLong) + table(mode, 'm', cfg.subjectMLong) + '</div></div></section>';
+  return '<div class="averages__box"><div class="averages__modes" data-n="' + columns.length + '">'
+    + section('schools', 'По училища', 'Средно аритметично от резултатите на училищата')
+    + section('students', 'По ученици', 'Претеглено с броя на учениците')
     + '</div></div>';
 }
 

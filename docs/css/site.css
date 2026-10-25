@@ -1962,7 +1962,6 @@
     padding: calc(var(--stacked) * var(--sp-3)) calc(var(--stacked) * var(--sp-4)) 0;
   }
   .city-panel__view:empty { display: none; }
-  .averages__note { margin: 0 0 var(--sp-4); }
   @container (max-width: 1099px) {
     .city-panel__bar[data-types="4"] .city-panel__barrow { --stacked: 1; display: block; padding-inline: 0; border-bottom: 0; }
   }
@@ -2081,21 +2080,59 @@
     position: static !important;
   }
   .ranking__inactive td { color: var(--text-3); }
-  /* "Средни резултати": четири таблици (предмет × по училища / по ученици). В ред са 4, 2 или 1 -
-     според ширината на панела и броя колони (data-n = Общо + показаните видове), така че всяка
-     таблица е близо до естествената си ширина: без празни полета в таблиците и около тях.
-     Стойностите са центрирани - колоните са равномерно разпределени, колкото и да са. */
+  /* "Средни резултати": две подсекции - "По училища" и "По ученици" (заглавие и обяснение), във
+     всяка по таблица за предмет. Таблиците в подсекция са една до друга или една под друга, а
+     подсекциите - една до друга, когато се събират (тогава 4 таблици в ред) - според ширината и
+     броя колони (data-n = Общо + показаните видове), така че всяка таблица е близо до естествената
+     си ширина: без празни полета в таблиците и около тях. Стойностите са центрирани. */
   .averages__box { container-type: inline-size; }
-  .averages__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--sp-5) var(--sp-5); }
-  @container (min-width: 250px) { .averages__grid[data-n="1"] { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  @container (min-width: 620px) { .averages__grid[data-n="1"] { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
-  @container (min-width: 540px) { .averages__grid[data-n="3"] { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  @container (min-width: 1100px) { .averages__grid[data-n="3"] { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
-  @container (min-width: 660px) { .averages__grid[data-n="4"] { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  @container (min-width: 1360px) { .averages__grid[data-n="4"] { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
-  @container (min-width: 780px) { .averages__grid[data-n="5"] { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  .averages__title { margin: 0 0 var(--sp-2); font-size: var(--fs-md); font-weight: 650; }
-  .averages__mode { color: var(--text-4); font-weight: 500; }
+  .averages__modes { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--sp-6) var(--sp-6); }
+  @container (min-width: 620px) { .averages__modes[data-n="1"] { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @container (min-width: 1100px) { .averages__modes[data-n="3"] { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @container (min-width: 1360px) { .averages__modes[data-n="4"] { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  /* Подсекциите една до друга: заглавията им са в общ ред на решетката (subgrid), така че
+     таблиците започват на една височина, дори обясненията да са на различен брой редове.
+     (Подсекцията не е container - containment изключва subgrid; container е .averages__pairbox.) */
+  .averages__mode {
+    min-width: 0;
+    display: grid;
+    grid-row: span 2;
+    grid-template-rows: subgrid;
+    row-gap: var(--sp-3);
+  }
+  .averages__pairbox { container-type: inline-size; min-width: 0; }
+  .averages__pair { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--sp-4) var(--sp-5); }
+  @container (min-width: 250px) { .averages__modes[data-n="1"] .averages__pair { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @container (min-width: 540px) { .averages__modes[data-n="3"] .averages__pair { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @container (min-width: 660px) { .averages__modes[data-n="4"] .averages__pair { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @container (min-width: 780px) { .averages__modes[data-n="5"] .averages__pair { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  /* Заглавието и обяснението на един ред с разделител (както името на града и броя); ако не се
+     съберат, обяснението е отдолу, без разделител. */
+  .averages__head { min-width: 0; overflow-x: clip; }
+  .averages__head-row {
+    --sep: var(--sp-3);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    row-gap: 2px;
+    margin-left: calc(-1 * var(--sep) - 1px);
+  }
+  .averages__head-row > * {
+    margin: 0 var(--sep) 0 0;
+    padding-left: var(--sep);
+    border-left: 1px solid var(--border-strong);
+  }
+  .averages__heading { font-size: var(--fs-lg); font-weight: 650; }
+  .averages__hint { font-size: var(--fs-sm); color: var(--text-3); }
+  .averages__title {
+    margin: 0 0 var(--sp-2);
+    font-size: var(--fs-sm);
+    font-weight: 650;
+    color: var(--text-2);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
   .averages .data-table th, .averages .data-table td { text-align: center; }
   /* Равни колони - числата стоят на равни разстояния, независимо от дължината на заглавията. */
   @media (min-width: 641px) {
@@ -2105,21 +2142,27 @@
      таблици една до друга на таблет) - цветните букви от чиповете "Покажи само" над нея. */
   .averages__subject { container-type: inline-size; min-width: 0; }
   .avg-type .type-badge { display: none; }
+  /* "Година" → "Год." в много тесни таблици (шест колони на 320 px). */
+  .avg-year--short { display: none; }
+  @container (max-width: 279px) {
+    .avg-year { display: none; }
+    .avg-year--short { display: inline; }
+  }
   @container (max-width: 529px) {
-    .averages__grid[data-n="5"] .avg-type__name { display: none; }
-    .averages__grid[data-n="5"] .avg-type .type-badge { display: inline-grid; }
+    .averages__modes[data-n="5"] .avg-type__name { display: none; }
+    .averages__modes[data-n="5"] .avg-type .type-badge { display: inline-grid; }
   }
   @container (max-width: 444px) {
-    .averages__grid[data-n="4"] .avg-type__name { display: none; }
-    .averages__grid[data-n="4"] .avg-type .type-badge { display: inline-grid; }
+    .averages__modes[data-n="4"] .avg-type__name { display: none; }
+    .averages__modes[data-n="4"] .avg-type .type-badge { display: inline-grid; }
   }
   @container (max-width: 359px) {
-    .averages__grid[data-n="3"] .avg-type__name { display: none; }
-    .averages__grid[data-n="3"] .avg-type .type-badge { display: inline-grid; }
+    .averages__modes[data-n="3"] .avg-type__name { display: none; }
+    .averages__modes[data-n="3"] .avg-type .type-badge { display: inline-grid; }
   }
   @container (max-width: 189px) {
-    .averages__grid[data-n="1"] .avg-type__name { display: none; }
-    .averages__grid[data-n="1"] .avg-type .type-badge { display: inline-grid; }
+    .averages__modes[data-n="1"] .avg-type__name { display: none; }
+    .averages__modes[data-n="1"] .avg-type .type-badge { display: inline-grid; }
   }
 
   .code-box { height: auto; padding: var(--sp-3); font-family: var(--font-mono); font-size: var(--fs-sm); resize: vertical; }

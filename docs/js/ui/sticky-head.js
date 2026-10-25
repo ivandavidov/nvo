@@ -81,6 +81,17 @@ function build(table, thead) {
     document.body.appendChild(float);
   }
   const head = thead.cloneNode(true);
+  // Копието е извън таблицата: правилата по предшественици и container queries (напр. буквите
+  // вместо имената на видовете в тесните таблици на "Средни резултати") не важат за него -
+  // пренасяме изчислените видимост и подравняване от истинското заглавие.
+  const from = thead.querySelectorAll('*');
+  head.querySelectorAll('*').forEach((n, k) => {
+    const cs = getComputedStyle(from[k]);
+    n.style.display = cs.display;
+    if (n.matches('th, td')) {
+      n.style.textAlign = cs.textAlign;
+    }
+  });
   head.querySelectorAll('[id]').forEach((n) => n.removeAttribute('id'));
   head.querySelectorAll(CONTROLS).forEach((n) => n.setAttribute('tabindex', '-1'));
   // Ширините се копират клетка по клетка, за да съвпадат колоните с тези на таблицата.
