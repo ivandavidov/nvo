@@ -1820,7 +1820,6 @@ public class School implements Comparable<School> {
         schoolCodes.put("1000052", new String[]{"0", PG_HRISTO_BOTEV, PG_HRISTO_BOTEV, "https://hrbotev.com"});
         schoolCodes.put("1002136", new String[]{"0", "ПГ С. Корольов", "ПГ Акад. Сергей П. Корольов", "https://pgkoroljov.weebly.com"});
         schoolCodes.put("1002137", new String[]{"0", "ПГ по хран.-вк. техн.", "ПГ по хранително-вкусови технологии", "https://pghvht.eu"});
-        schoolCodes.put("1002450", new String[]{"0", "ПГ", "Професионална гимназия"});
 
         return schoolCodes;
     }

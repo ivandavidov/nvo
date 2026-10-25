@@ -47,7 +47,8 @@ public class SchoolPageGenerator {
             "80008", "800080",   // ОУ "Йордан Йовков", Каварна
             "10331", "103310",   // СУ "Никола Вапцаров", Петрич
             "10709", "107090",   // СУ "Кирил и Методий", Якоруда
-            "1000340", "1000005"); // ОУ "Иван Вазов", Кюстендил - обединен под актуалния код (NvoDziNormalizer.CODE_ALIASES)
+            "1000340", "1000005",  // ОУ "Иван Вазов", Кюстендил - обединен под актуалния код (NvoDziNormalizer.CODE_ALIASES)
+            "1002450", "1002451"); // ПГ, Бобов дол - ДЗИ 2019 с грешен код, обединен под актуалния (NvoDziNormalizer.CODE_ALIASES)
 
     private final Gson gson = new Gson();
     private final Map<String, JsonArray> rankingCache = new HashMap<>();
