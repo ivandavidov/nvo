@@ -2417,14 +2417,11 @@ public class School implements Comparable<School> {
         schoolCodes.put("2306213", new String[]{"0", SU_NEOFIT_RILSKI, SU_NEOFIT_RILSKI, "https://suneofitrilski.eu"});
         schoolCodes.put("2306517", new String[]{"0", SU_KIRIL_I_METODII, SU_KIRIL_I_METODII, "https://suslivnitsa.bg"});
         schoolCodes.put("2307576", new String[]{"0", NU_HRISTO_BOTEV, NU_HRISTO_BOTEV, "https://nu-hristobotev.org"});
-        schoolCodes.put("2306477", new String[]{"0", NU_OTEC_PAISII, NU_OTEC_PAISII, "https://nu-otecpaisii.com"});
-        schoolCodes.put("2308778", new String[]{"0", "ОУ Ст. Стефанов", "ОУ Стефан Стефанов", "https://ou-sstefanov.idwebbg.com"});
         schoolCodes.put("2308785", new String[]{"0", OU_HRISTO_BOTEV, OU_HRISTO_BOTEV, "https://etropole-botev.com"});
         schoolCodes.put("2308792", new String[]{"0", SU_PAISII_HILENDARSKI_SHORT, SU_PAISII_HILENDARSKI_LONG, "https://su-zlatitsa.bg"});
         schoolCodes.put("2308850", new String[]{"0", NU_TODOR_VLAIKOV, NU_TODOR_VLAIKOV, "https://nuvlaikov.com"});
         schoolCodes.put("2308970", new String[]{"0", SU_HRISTO_TOPRAKCHIEV_SHORT, SU_HRISTO_TOPRAKCHIEV_LONG, "https://soubozhurishte.com"});
         schoolCodes.put("2309531", new String[]{"0", OU_KIRIL_I_METODII, OU_KIRIL_I_METODII, "https://ou-kostenets.com"});
-        schoolCodes.put("2304763", new String[]{"0", "ОУ К. Костенечки", "ОУ Константин Костенечки", "https://ou-konstantinkostenetchki.com"});
 
         return schoolCodes;
     }
