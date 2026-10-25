@@ -1997,7 +1997,7 @@ public class School implements Comparable<School> {
 
         schoolCodes.put("1300034", new String[]{"0", OU_PETKO_SLAVEIKOV, OU_PETKO_SLAVEIKOV, "https://ou-slaveikov-peshtera.eu"});
         schoolCodes.put("1301329", new String[]{"0", NU_MIHAIL_KAROLIDI, NU_MIHAIL_KAROLIDI, "https://numihailkarolidi.bg"});
-        schoolCodes.put("1301343", new String[]{"0", NU_MIHAIL_KUMANOV, NU_MIHAIL_KUMANOV});
+        schoolCodes.put("1301343", new String[]{"0", NU_MIHAIL_KUMANOV, NU_MIHAIL_KUMANOV, "https://numihailkumanov.idwebbg.com"});
         schoolCodes.put("1301763", new String[]{"0", OU_PATRIARH_EVTIMII_SHORT, OU_PATRIARH_EVTIMII_LONG, "https://pe-pestera.eu"});
         schoolCodes.put("1302630", new String[]{"0", SU_KLIMENT_OHRIDSKI_SHORT, SU_KLIMENT_OHRIDSKI_LONG, "https://ohridski.eu"});
         schoolCodes.put("1304357", new String[]{"0", "ОбУ Л. Каравелов", "ОбУ Любен Каравелов", "https://karavelov.org"});
@@ -2021,8 +2021,8 @@ public class School implements Comparable<School> {
 
         schoolCodes.put("2540101", new String[]{"0", OU_NIKOLA_VAPTSAROV_SHORT, OU_NIKOLA_VAPTSAROV_LONG, "https://ouvapcarov-popovo.info"});
         schoolCodes.put("2540102", new String[]{"0", OU_KLIMENT_OHRIDSKI_SHORT, OU_KLIMENT_OHRIDSKI_LONG, "https://www.kliment-popovo.com"});
-        schoolCodes.put("2540103", new String[]{"0", OU_LIUBEN_KARAVELOV_SHORT, OU_LIUBEN_KARAVELOV_LONG});
-        schoolCodes.put("2540401", new String[]{"0", PG_HRISTO_BOTEV, PG_HRISTO_BOTEV});
+        schoolCodes.put("2540103", new String[]{"0", OU_LIUBEN_KARAVELOV_SHORT, OU_LIUBEN_KARAVELOV_LONG, "https://karavelov-popovo.com"});
+        schoolCodes.put("2540401", new String[]{"0", PG_HRISTO_BOTEV, PG_HRISTO_BOTEV, "https://gimn-popovo.com/wordpress/"});
         schoolCodes.put("2540601", new String[]{"0", "ПГ по техника", "ПГ по техника", "https://www.pgtlp-popovo.info"});
         schoolCodes.put("2540602", new String[]{"0", PG_SELSKO_STOPANSTVO_SHORT, PG_SELSKO_STOPANSTVO_LONG, "https://pgss-popovo.com"});
 
@@ -2032,7 +2032,7 @@ public class School implements Comparable<School> {
     private static Map<String, String[]> prepareSchoolCodesPravets() {
         Map<String, String[]> schoolCodes = new HashMap<>();
 
-        schoolCodes.put("2309862", new String[]{"0", OU_VASIL_LEVSKI, OU_VASIL_LEVSKI});
+        schoolCodes.put("2309862", new String[]{"0", OU_VASIL_LEVSKI, OU_VASIL_LEVSKI, "https://ouvasillevski.jimdofree.com"});
         schoolCodes.put("2304770", new String[]{"0", "ГПЧЕ А. Константинов", "ГПЧЕ Алеко Константинов", "https://pgpche-pravets.com"});
         schoolCodes.put("2309991", new String[]{"0", "НПГ по КТС", "НПГ по КТС", "https://uktc-bg.com"});
 
@@ -2069,7 +2069,7 @@ public class School implements Comparable<School> {
         schoolCodes.put("2401052", new String[]{"0", SU_GEO_MILEV, SU_GEO_MILEV, "https://sou-radnevo.idwebbg.com"});
         schoolCodes.put("2401054", new String[]{"0", "1 ОУ", "1 ОУ Св. Климент Охридски", "https://ou1-radnevo.com"});
         schoolCodes.put("2401055", new String[]{"0", "2 ОУ", "2 ОУ Св. Паисий Хилендарски", "https://ou2radnevo.bg"});
-        schoolCodes.put("2401053", new String[]{"0", "ПГ Иван Рилски", "ПГ Св. Иван Рилски"});
+        schoolCodes.put("2401053", new String[]{"0", "ПГ Иван Рилски", "ПГ Св. Иван Рилски", "https://pg-radnevo.com"});
 
         return schoolCodes;
     }
@@ -2310,7 +2310,7 @@ public class School implements Comparable<School> {
         schoolCodes.put("1301788", new String[]{"0", SU_HRISTO_BOTEV, SU_HRISTO_BOTEV, "https://hrbotev-sp.org"});
         schoolCodes.put("1302662", new String[]{"0", SU_KIRIL_I_METODII, SU_KIRIL_I_METODII, "https://soustrelcha.net"});
         schoolCodes.put("1302722", new String[]{"0", "ВУ-интернат", "Възпитателно училище-интернат Ангел Узунов"});
-        schoolCodes.put("1302993", new String[]{"0", "ПГ по мех. на земеделието", "Професионална гимназия по механизация на земеделското стопанство"});
+        schoolCodes.put("1302993", new String[]{"0", "ПГ по мех. на земеделието", "Професионална гимназия по механизация на земеделското стопанство", "https://pgmzs.bg"});
         schoolCodes.put("1303889", new String[]{"0", SU_HRISTO_SMIRNENSKI_SHORT, SU_HRISTO_SMIRNENSKI_LONG, "https://su-smirnenski.net"});
 
         return schoolCodes;
