@@ -16,7 +16,7 @@
   <meta property="og:description" content="{{description}}">
   <meta property="og:image" content="{{siteUrl}}images/social-preview.png">
   <meta property="og:locale" content="bg_BG">
-  <meta property="og:site_name" content="НВО и ДЗИ – Иван Давидов">
+  <meta property="og:site_name" content="НВО и ДЗИ - Иван Давидов">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{{title}}">
   <meta name="twitter:description" content="{{description}}">
@@ -45,8 +45,14 @@
         <span class="school-hero__icon">{{#icon}}school{{/icon}}</span>
         <div class="school-hero__text">
           <h1 class="school-hero__title">{{fullName}}</h1>
+{{#officialName}}
+          <p class="school-hero__official">{{officialName}}</p>
+{{/officialName}}
           <div class="cluster school-hero__meta">
             <span class="badge{{#isPrivate}} badge--accent{{/isPrivate}}">{{typeLabel}}</span>
+{{#closedLabel}}
+            <span class="badge badge--closed">{{closedLabel}}</span>
+{{/closedLabel}}
 {{#cityName}}
             <span class="school-hero__fact">{{#icon}}pin{{/icon}} {{cityName}}</span>
 {{/cityName}}
@@ -55,11 +61,14 @@
             <span class="badge badge--primary">{{label}}</span>
 {{/gradeNav}}
           </div>
+{{#closedNote}}
+          <p class="school-hero__note">{{#icon}}info{{/icon}} <span>{{closedNote}} Резултатите са от годините, в които е работило.</span></p>
+{{/closedNote}}
 {{#sameName}}
-          <p class="school-hero__note">{{#icon}}info{{/icon}} <span>Със същото име в {{cityName}} има и <a href="{{href}}">профил с код {{code}}</a>{{#years}} (резултати {{years}}){{/years}} — вероятно същото училище след смяна на кода от МОН.{{#ownYears}} Тук са резултатите за {{ownYears}}.{{/ownYears}}</span></p>
+          <p class="school-hero__note">{{#icon}}info{{/icon}} <span>Със същото име в {{cityName}} има и <a href="{{href}}">профил с код {{code}}</a>{{#years}} (резултати {{years}}){{/years}} - вероятно същото училище след смяна на кода от МОН.{{#ownYears}} Тук са резултатите за {{ownYears}}.{{/ownYears}}</span></p>
 {{/sameName}}
 {{#noData}}
-          <p class="school-hero__note">{{#icon}}info{{/icon}} <span>Няма резултати от {{noDataFrom}} г. насам — сайтът показва само последните години. По-старите резултати на училището са в <a href="../../api/v1/schools/{{code}}.json">JSON API</a>.</span></p>
+          <p class="school-hero__note">{{#icon}}info{{/icon}} <span>Няма резултати от {{noDataFrom}} г. насам - сайтът показва само последните години. По-старите резултати на училището са в <a href="../../api/v1/schools/{{code}}.json">JSON API</a>.</span></p>
 {{/noData}}
         </div>
       </div>
@@ -114,7 +123,7 @@
             </table>
           </div>
         </div>
-        <nav class="cluster school-grade__links" aria-label="Свързани страници – {{heading}}">
+        <nav class="cluster school-grade__links" aria-label="Свързани страници - {{heading}}">
 {{#links}}
           <a class="chip" href="{{href}}">{{label}}</a>
 {{/links}}

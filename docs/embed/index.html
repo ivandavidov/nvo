@@ -2,8 +2,8 @@
 <html lang="bg">
 <head>
   <meta charset="utf-8">
-  <title>Вграждане на графики – НВО и ДЗИ | Иван Давидов</title>
-  <meta name="description" content="Вградете интерактивни графики с резултатите от НВО и ДЗИ на своя сайт чрез iframe — генератор на код, параметри и примери.">
+  <title>Вграждане на графики - НВО и ДЗИ | Иван Давидов</title>
+  <meta name="description" content="Вградете интерактивни графики с резултатите от НВО и ДЗИ на своя сайт чрез iframe - генератор на код, параметри и примери.">
   <meta name="author" content="Иван Давидов">
   <!-- nv:head -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -37,7 +37,7 @@
   <a class="skip-link" href="#main">Към съдържанието</a>
   <header class="site-header">
     <div class="container container--wide site-header__inner">
-      <a class="brand" href="../" aria-label="НВО и ДЗИ – начало">
+      <a class="brand" href="../" aria-label="НВО и ДЗИ - начало">
         <span class="brand__mark"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/></svg></span>
         <span>НВО <span class="brand__and">и</span> ДЗИ</span>
       </a>
@@ -94,7 +94,6 @@
             <li><a class="ext" href="https://danybon.com" target="_blank" rel="noopener noreferrer">Данибон</a></li>
             <li><a class="ext" href="https://dideva.alle.bg" target="_blank" rel="noopener noreferrer">Дидева</a></li>
             <li><a class="ext" href="https://sabev03.eu" target="_blank" rel="noopener noreferrer">Прием в 1 клас</a></li>
-            <li><a class="ext" href="https://izberi-gymnazia.info" target="_blank" rel="noopener noreferrer">Избери гимназия</a></li>
           </ul>
         </div>
         <div>
@@ -119,7 +118,7 @@
     <header class="page-head">
       <p class="page-head__eyebrow">Данни и инструменти</p>
       <h1 class="page-head__title">Вграждане на графики</h1>
-      <p class="page-head__lead">Покажете интерактивните графики с резултатите на избрани училища на своя сайт — с един <code>iframe</code>, който се обновява сам с новите данни.</p>
+      <p class="page-head__lead">Покажете интерактивните графики с резултатите на избрани училища на своя сайт - с един <code>iframe</code>, който се обновява сам с новите данни.</p>
     </header>
 
     <section class="section" aria-labelledby="gen-title">
@@ -127,7 +126,7 @@
         <div class="card__head">
           <div>
             <h2 class="card__title" id="gen-title">Генератор на код</h2>
-            <p class="muted text-sm">Изберете клас и училища — кодът и прегледът се обновяват веднага.</p>
+            <p class="muted text-sm">Изберете клас и училища - кодът и прегледът се обновяват веднага.</p>
           </div>
         </div>
         <div class="card__body embed-gen__grid">
@@ -146,7 +145,7 @@
               <div class="combo">
                 <div class="input-icon">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
-                  <input class="input" id="gen-add" type="text" placeholder="Добави училище — име или град…" aria-label="Добави училище">
+                  <input class="input" id="gen-add" type="text" placeholder="Добави училище - име или град…" aria-label="Добави училище">
                 </div>
               </div>
               <ul class="compare__chips" id="gen-chips" role="list" aria-label="Избрани училища"></ul>
@@ -198,11 +197,11 @@
         <table class="data-table docs-table">
           <thead><tr><th>Параметър</th><th>Описание</th><th>Пример</th></tr></thead>
           <tbody>
-            <tr><td><code>s</code></td><td class="wrap">Кодове на училищата, разделени със запетая. Кодът е числото в адреса на профила на училището (<code>/school/2216306/</code>). Препоръчителен вариант — кодовете не се променят при обновяване на данните.</td><td><code>s=2216306,2211304</code></td></tr>
+            <tr><td><code>s</code></td><td class="wrap">Кодове на училищата, разделени със запетая. Кодът е числото в адреса на профила на училището (<code>/school/2216306/</code>). Препоръчителен вариант - кодовете не се променят при обновяване на данните.</td><td><code>s=2216306,2211304</code></td></tr>
             <tr><td><code>i4</code> / <code>i7</code> / <code>i10</code> / <code>i12</code></td><td class="wrap">Индекси на училищата от адреса на страницата по клас (старият начин; продължава да работи). Индексите могат да се изместят, когато се добавят нови училища.</td><td><code>i7=178,179,181</code></td></tr>
             <tr><td><code>chart</code></td><td class="wrap">Само една графика: <code>b</code> (Български език) или <code>m</code> (Математика / Втора матура). Без параметър се показват двете.</td><td><code>chart=b</code></td></tr>
             <tr><td><code>theme</code></td><td class="wrap">Фиксирана тема: <code>light</code> или <code>dark</code>. Без параметър следва настройката на браузъра.</td><td><code>theme=dark</code></td></tr>
-            <tr><td><code>year</code></td><td class="wrap">Исторически изглед — данни до посочената година включително (от 2020 нататък).</td><td><code>year=2023</code></td></tr>
+            <tr><td><code>year</code></td><td class="wrap">Исторически изглед - данни до посочената година включително (от 2020 нататък).</td><td><code>year=2023</code></td></tr>
           </tbody>
         </table>
       </div>
@@ -210,7 +209,7 @@
       <div class="grid-auto mt-6" style="--grid-min: 280px">
         <div class="card card--pad stack stack--sm">
           <h3>Височина</h3>
-          <p class="muted">За двете графики — около <strong>1100&nbsp;px</strong>, за една — около <strong>600&nbsp;px</strong>. Графиките запълват височината на рамката.</p>
+          <p class="muted">За двете графики - около <strong>1100&nbsp;px</strong>, за една - около <strong>600&nbsp;px</strong>. Графиките запълват височината на рамката.</p>
         </div>
         <div class="card card--pad stack stack--sm">
           <h3>Автоматична височина</h3>
@@ -218,13 +217,14 @@
         </div>
         <div class="card card--pad stack stack--sm">
           <h3>Най-лесно</h3>
-          <p class="muted">Изберете училищата на <a href="../7/">страницата на класа</a> и натиснете „Вгради“ — кодът е готов за копиране.</p>
+          <p class="muted">Изберете училищата на <a href="../7/">страницата на класа</a> и натиснете "Вгради" - кодът е готов за копиране.</p>
         </div>
       </div>
 
       <pre class="code-block mt-6"><code>&lt;iframe src="https://ivandavidov.github.io/nvo/7/embed.html?s=2216306,2211304"
   width="100%" height="1100" frameborder="0" scrolling="no"
-  style="border:none;max-width:100%" loading="lazy" title="НВО 7 клас – графики"&gt;&lt;/iframe&gt;
+  style="border:none;max-width:100%" loading="lazy" title="НВО 7 клас - графики"&gt;&lt;/iframe&gt;
+&lt;p style="margin:4px 0 0;font-size:13px"&gt;Източник: &lt;a href="https://ivandavidov.github.io/nvo/7/"&gt;НВО 7 клас - резултати и класации на училищата&lt;/a&gt;&lt;/p&gt;
 
 &lt;script&gt;
   window.addEventListener('message', function (e) {
@@ -244,7 +244,7 @@
           <span class="brand__mark"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/></svg></span>
           <span>НВО <span class="brand__and">и</span> ДЗИ</span>
         </a>
-        <p>Резултатите от НВО и ДЗИ за всички училища в България — графики, класации и статистики по отворените данни на МОН.</p>
+        <p>Резултатите от НВО и ДЗИ за всички училища в България - графики, класации и статистики по отворените данни на МОН.</p>
       </div>
       <nav aria-label="Изпити">
         <h2>Изпити</h2>
@@ -266,10 +266,10 @@
           <li>
             <span>data.egov.bg:</span>
             <span class="site-footer__inline">
-              <a href="https://data.egov.bg/data/view/5613e75f-2b1b-4244-9f54-b27580a91dfb" target="_blank" rel="noopener noreferrer" title="Отворени данни – НВО 4 клас">4</a>
-              <a href="https://data.egov.bg/data/view/b56288b6-25aa-4049-9aa6-de2cd4cdabf8" target="_blank" rel="noopener noreferrer" title="Отворени данни – НВО 7 клас">7</a>
-              <a href="https://data.egov.bg/data/view/2f801b2f-d4cb-4ddb-a23d-3e372339c80f" target="_blank" rel="noopener noreferrer" title="Отворени данни – НВО 10 клас">10</a>
-              <a href="https://data.egov.bg/data/view/066b4b04-d81d-444e-a61c-8ca0516079e4" target="_blank" rel="noopener noreferrer" title="Отворени данни – ДЗИ 12 клас">12</a>
+              <a href="https://data.egov.bg/data/view/5613e75f-2b1b-4244-9f54-b27580a91dfb" target="_blank" rel="noopener noreferrer" title="Отворени данни - НВО 4 клас">4</a>
+              <a href="https://data.egov.bg/data/view/b56288b6-25aa-4049-9aa6-de2cd4cdabf8" target="_blank" rel="noopener noreferrer" title="Отворени данни - НВО 7 клас">7</a>
+              <a href="https://data.egov.bg/data/view/2f801b2f-d4cb-4ddb-a23d-3e372339c80f" target="_blank" rel="noopener noreferrer" title="Отворени данни - НВО 10 клас">10</a>
+              <a href="https://data.egov.bg/data/view/066b4b04-d81d-444e-a61c-8ca0516079e4" target="_blank" rel="noopener noreferrer" title="Отворени данни - ДЗИ 12 клас">12</a>
             </span>
           </li>
         </ul>
@@ -282,7 +282,6 @@
           <li><a href="https://danybon.com" target="_blank" rel="noopener noreferrer">Данибон</a></li>
           <li><a href="https://dideva.alle.bg" target="_blank" rel="noopener noreferrer">Дидева</a></li>
           <li><a href="https://sabev03.eu" target="_blank" rel="noopener noreferrer">Прием в 1 клас</a></li>
-          <li><a href="https://izberi-gymnazia.info" target="_blank" rel="noopener noreferrer">Избери гимназия</a></li>
         </ul>
       </nav>
       <div>
@@ -304,7 +303,7 @@
     </div>
     <div class="container container--wide site-footer__bottom">
       <p class="joke" data-joke></p>
-      <p>&copy; Иван Давидов – НВО и ДЗИ · Данни: МОН и РУО</p>
+      <p>&copy; Иван Давидов - НВО и ДЗИ · Данни: МОН и РУО</p>
     </div>
   </footer>
   <!-- /nv:footer -->

@@ -23,7 +23,7 @@ public class RuoDecomplexor {
 
     private static final String NORMALIZED_DIR = ProjectConfig.DATA_NORMALIZED_DIR;
     private static final String OUTPUT_DIR = ProjectConfig.DOCS_JS_DIR;
-    /** Публичното API на баловете: api/v1/balove/{град}.json (index.json и data.json — RuoIndexPage). */
+    /** Публичното API на баловете: api/v1/balove/{град}.json (index.json и data.json - RuoIndexPage). */
     public static final String API_DIR = ProjectConfig.DOCS_API_V1_DIR + "balove/";
 
     public static void main(String... args) throws Exception {
@@ -95,7 +95,7 @@ public class RuoDecomplexor {
                 String schoolCode  = row[2];
                 String schoolName  = row[3];
                 String profileCode = canonicalProfileCode(row[4]);
-                String profileName = row[5];
+                String profileName = plainText(row[5]);
                 int klasirane      = Integer.parseInt(row[1]) - 1; // 0-based index
 
                 double[] entry = {
@@ -113,7 +113,7 @@ public class RuoDecomplexor {
                 if (yearSlots.get(klasirane) != null) {
                     System.out.println("  WARNING: duplicate entry for school " + schoolCode
                             + " profile " + profileCode + " year " + year
-                            + " klasirane " + (klasirane + 1) + " — keeping the last row");
+                            + " klasirane " + (klasirane + 1) + " - keeping the last row");
                 }
                 yearSlots.set(klasirane, entry);
             }
@@ -163,18 +163,18 @@ public class RuoDecomplexor {
 
     private void appendHeader(StringBuilder sb, String city) {
         String cityLabel = Character.toUpperCase(city.charAt(0)) + city.substring(1);
-        sb.append("// Данни за минимален и максимален бал по паралелки след 7 клас — РУО ").append(cityLabel).append("\n");
+        sb.append("// Данни за минимален и максимален бал по паралелки след 7 клас - РУО ").append(cityLabel).append("\n");
         sb.append("// Генериран от RuoDecomplexor. НЕ редактирай ръчно.\n");
         sb.append("//\n");
-        sb.append("// ruoYears — масив от години с данни\n");
+        sb.append("// ruoYears - масив от години с данни\n");
         sb.append("//\n");
-        sb.append("// ruoSchools — обект с ключ = код на училище\n");
-        sb.append("//   n        — кратко наименование (от School.schoolCodes; при липса — от CSV)\n");
-        sb.append("//   f        — пълно наименование (от School.schoolCodes; при липса — от CSV)\n");
-        sb.append("//   c        — true ако е частно училище\n");
-        sb.append("//   p        — паралелки, обект с ключ = код на паралелка\n");
-        sb.append("//     n  — наименование на паралелката\n");
-        sb.append("//     d  — данни: масив по позиция на година (съвпада с ruoYears)\n");
+        sb.append("// ruoSchools - обект с ключ = код на училище\n");
+        sb.append("//   n        - кратко наименование (от School.schoolCodes; при липса - от CSV)\n");
+        sb.append("//   f        - пълно наименование (от School.schoolCodes; при липса - от CSV)\n");
+        sb.append("//   c        - true ако е частно училище\n");
+        sb.append("//   p        - паралелки, обект с ключ = код на паралелка\n");
+        sb.append("//     n  - наименование на паралелката\n");
+        sb.append("//     d  - данни: масив по позиция на година (съвпада с ruoYears)\n");
         sb.append("//            всяка година: масив от 4 класирания (по позиция, 0 = 1-во)\n");
         sb.append("//            всяко класиране: [мин_общо, мин_м, мин_ж, макс_общо, макс_м, макс_ж]\n");
         sb.append("//                             или null (паралелката е попълнена в предходно класиране)\n");
@@ -246,9 +246,9 @@ public class RuoDecomplexor {
     // ── JSON (API) ───────────────────────────────────────────────────────────
 
     /**
-     * api/v1/balove/{град}.json — същите данни като ruo-{град}.js, с изрични дупки:
+     * api/v1/balove/{град}.json - същите данни като ruo-{град}.js, с изрични дупки:
      * coverage.{година} = кои класирания имат данни в града и има ли разбивка по пол;
-     * null за класиране = няма данни (попълнено по-рано или непубликувано — виж coverage);
+     * null за класиране = няма данни (попълнено по-рано или непубликувано - виж coverage);
      * полът е null, когато липсва; година без данни за паралелката не се записва.
      */
     private void writeJson(String city, List<Integer> years,
@@ -338,7 +338,7 @@ public class RuoDecomplexor {
         System.out.println("Written: " + out);
     }
 
-    /** Бал като число (без „.0“); 0 (липсва, напр. при пола) → null. */
+    /** Бал като число (без ".0"); 0 (липсва, напр. при пола) → null. */
     private static com.google.gson.JsonElement score(double v) {
         if (v == 0.0) {
             return JsonNull.INSTANCE;
@@ -414,7 +414,7 @@ public class RuoDecomplexor {
                     if (code.equals(newestCode)) continue;
                     System.out.println("  Overlap resolved: school " + schoolCode
                             + " profile \"" + group.getKey()
-                            + "\" — keeping code " + newestCode
+                            + "\" - keeping code " + newestCode
                             + ", discarding code " + code);
                     mergeInto(newestData, schoolScores.get(code));
                     profiles.remove(code);
@@ -499,5 +499,17 @@ public class RuoDecomplexor {
 
     private String escapeJs(String s) {
         return s.replace("\\", "\\\\").replace("\"", "\\\"");
+    }
+
+    /**
+     * Имената на паралелките - само с късо тире и прави кавички (както навсякъде на сайта);
+     * кавички около цялото име ("Електронна търговия") се махат.
+     */
+    static String plainText(String name) {
+        String s = name.replaceAll("[\u201E\u201C\u201D\u00AB\u00BB]", "\"").replaceAll("[\u2013\u2014\u2212]", "-").trim();
+        if (s.length() > 1 && s.startsWith("\"") && s.endsWith("\"") && s.indexOf('"', 1) == s.length() - 1) {
+            s = s.substring(1, s.length() - 1).trim();
+        }
+        return s;
     }
 }

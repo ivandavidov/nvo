@@ -22,7 +22,7 @@ import java.util.stream.Stream;
  * година, брой училища, национална средна и мини тренд), балове, последните статии
  * и данните. Цифрите се смятат тук от data/grade-{g}.json, така че страницата е
  * статична (SEO, без JS). Старите линкове с параметри (/?i7=…, /#sofia) се
- * пренасочват към /7/ — както досега.
+ * пренасочват към /7/ - както досега.
  *
  * Usage: java -cp nvo-v2.jar nvo.site.HomePageGenerator
  */
@@ -48,10 +48,11 @@ public final class HomePageGenerator {
             exams.add(exam(docs, grade));
         }
         ctx.put("exams", exams);
-        // „2019–2026“ над заглавието — от най-ранната показвана до най-късната година.
+        // "2019-2026" над заглавието - от най-ранната показвана до най-късната година.
         int from = exams.stream().mapToInt(x -> (int) x.get("displayFrom")).min().orElse(FIRST_YEAR);
         int to = exams.stream().mapToInt(x -> (int) x.get("latestYear")).max().orElse(FIRST_YEAR);
-        ctx.put("yearsLabel", from + "–" + to);
+        ctx.put("yearsLabel", from + "-" + to);
+        ctx.put("latestYear", to);
 
         List<Map<String, Object>> posts = BlogIndexGenerator.readPosts(docs);
         ctx.put("posts", posts.subList(0, Math.min(3, posts.size())));
@@ -73,7 +74,7 @@ public final class HomePageGenerator {
                 years = Math.max(years, el.getAsJsonObject().getAsJsonArray("b").size());
             }
         }
-        // Средно по училища за всяка година — като nationalAverages() в js/core/model.js.
+        // Средно по училища за всяка година - като nationalAverages() в js/core/model.js.
         double[] avgB = new double[years];
         double[] avgM = new double[years];
         java.util.Set<String> latestCodes = new java.util.HashSet<>();
@@ -105,7 +106,7 @@ public final class HomePageGenerator {
             avgM[y] = nM > 0 ? sumM / nM : 0;
         }
         int latestYear = FIRST_YEAR + years - 1;
-        // Годините, които сайтът показва (ProjectConfig.displayFrom) — 2018 г. е само в експорта.
+        // Годините, които сайтът показва (ProjectConfig.displayFrom) - 2018 г. е само в експорта.
         int displayFrom = ProjectConfig.displayFrom(grade, latestYear);
         int from = displayFrom - FIRST_YEAR;
 
@@ -114,14 +115,14 @@ public final class HomePageGenerator {
         e.put("exam", dzi ? "ДЗИ" : "НВО");
         e.put("title", (dzi ? "ДЗИ след " : "НВО след ") + grade + " клас");
         e.put("latestYear", latestYear);
-        // Уникални кодове — като в националната класация (училище в два града се брои веднъж).
+        // Уникални кодове - като в националната класация (училище в два града се брои веднъж).
         e.put("schools", latestCodes.size());
         e.put("subjectM", dzi ? "ДЗИ-2" : "МАТ");
         e.put("avgB", String.format(Locale.ROOT, "%.2f", avgB[years - 1]));
         e.put("avgM", String.format(Locale.ROOT, "%.2f", avgM[years - 1]));
         e.put("scale", dzi ? "средна оценка" : "средно от 100 т.");
         e.put("spark", sparkline(avgB, avgM, from, years - 1));
-        e.put("range", displayFrom + "–" + latestYear);
+        e.put("range", displayFrom + "-" + latestYear);
         e.put("displayFrom", displayFrom);
         return e;
     }

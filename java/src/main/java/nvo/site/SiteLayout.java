@@ -19,7 +19,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * Общият layout на сайта: &lt;head&gt; блок, хедър и футър, рендерирани от
  * Mustache шаблоните в resources/templates/. Ползват го всички генератори и
- * LayoutSync (за ръчно писаните страници) — така навигацията има един източник.
+ * LayoutSync (за ръчно писаните страници) - така навигацията има един източник.
  */
 public final class SiteLayout {
 

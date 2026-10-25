@@ -19,9 +19,9 @@ import java.util.Map;
 
 /**
  * Индекс за глобалното търсене на сайта: docs/data/search-index.json.
- * Вътрешен за сайта (не е част от публичния API) и компактен — масиви вместо обекти:
+ * Вътрешен за сайта (не е част от публичния API) и компактен - масиви вместо обекти:
  * <pre>
- * { "schools": [[code, shortName, fullName, citySlug, isPrivate(0|1), [grades]]...],
+ * { "schools": [[code, shortName, fullName, citySlug, isPrivate(0|1), [grades], officialName]...],
  *   "cities":  [[slug, name, orderPosition, [grades with a landing page], hasBalove(0|1)]...] }
  * </pre>
  * Чете вече генерираните api/v1/schools-index.json и api/v1/cities.json, затова се пуска след тях.
@@ -90,7 +90,9 @@ public final class SearchIndexGenerator {
                     s.get("fullName").getAsString(),
                     slug,
                     s.get("isPrivate").getAsBoolean() ? 1 : 0,
-                    grades));
+                    grades,
+                    // официалното име (data/school-names.json) - търси се и по него ("учебен" -> НУКК)
+                    doc.has("officialName") && !doc.get("officialName").isJsonNull() ? doc.get("officialName").getAsString() : ""));
         }
 
         Map<String, Object> out = new HashMap<>();

@@ -71,7 +71,7 @@ public class IndexGenerator {
                   <meta property="og:description" content="Публично JSON API с резултати от НВО и ДЗИ (от 2018 г.) от Иван Давидов.">
                   <meta property="og:image" content="%s">
                   <meta property="og:locale" content="bg_BG">
-                  <meta property="og:site_name" content="НВО и ДЗИ – Иван Давидов">
+                  <meta property="og:site_name" content="НВО и ДЗИ - Иван Давидов">
                   <meta name="twitter:card" content="summary_large_image">
                   <meta name="twitter:title" content="НВО и ДЗИ API v1 | Иван Давидов">
                   <meta name="twitter:description" content="Публично JSON API с резултати от НВО и ДЗИ (от 2018 г.) от Иван Давидов.">
@@ -83,7 +83,7 @@ public class IndexGenerator {
                     "@graph": [
                       {
                         "@type": "WebSite",
-                        "name": "НВО и ДЗИ – Иван Давидов",
+                        "name": "НВО и ДЗИ - Иван Давидов",
                         "url": "%s",
                         "author": { "@id": "#author" },
                         "inLanguage": "bg"
@@ -155,7 +155,7 @@ public class IndexGenerator {
                     <header class="page-head">
                       <p class="page-head__eyebrow">Отворени данни · v1</p>
                       <h1 class="page-head__title">НВО &amp; ДЗИ API</h1>
-                      <p class="page-head__lead">Публично JSON API с резултати от НВО и ДЗИ (2018&ndash;""".formatted(
+                      <p class="page-head__lead">Публично JSON API с резултати от НВО и ДЗИ (2018-""".formatted(
                 apiBaseUrl,
                 apiBaseUrl,
                 socialPreviewUrl,
@@ -167,7 +167,7 @@ public class IndexGenerator {
                 nvo.site.SiteLayout.header(page())));
         sb.append(LAST_YEAR);
         sb.append("""
-                ). Без ключ и без ограничения — статични файлове, които се обновяват заедно със сайта.</p>
+                ). Без ключ и без ограничения - статични файлове, които се обновяват заедно със сайта.</p>
                       <p class="muted text-sm">Резултатите са в оригиналния вид от МОН, от 2018 г. НВО след 7 клас за 2018 г. е по 65-точкова скала (сайтът показва данните от 2019 г. насам).</p>
                     </header>
                     <div class="api-base">Base URL: <code>%s</code></div>
@@ -207,6 +207,9 @@ public class IndexGenerator {
                           <tr><td>schools</td><td class="type">object</td><td>Училища с данни (ключ = код)</td></tr>
                           <tr><td>schools.*.shortName</td><td class="type">string</td><td>Кратко име</td></tr>
                           <tr><td>schools.*.fullName</td><td class="type">string</td><td>Пълно име на училището</td></tr>
+                          <tr><td>schools.*.monName</td><td class="type">string|null</td><td>Името точно както е в данните на МОН</td></tr>
+                          <tr><td>schools.*.registerStatus</td><td class="type">string|null</td><td>Статус в регистъра на МОН: действаща, закрита, преобразувана (закрита), отписана, заличена</td></tr>
+                          <tr><td>schools.*.officialName</td><td class="type">string|null</td><td>Официалното име, изчистено (без кавички, с правилни главни букви и препинание)</td></tr>
                           <tr><td>schools.*.website</td><td class="type">string|null</td><td>Уебсайт (null ако няма)</td></tr>
                           <tr><td>schools.*.isPrivate</td><td class="type">boolean</td><td>Частно училище</td></tr>
                           <tr><td>schools.*.city</td><td class="type">string|null</td><td>Slug на града</td></tr>
@@ -248,6 +251,9 @@ public class IndexGenerator {
                           <tr><td>code</td><td class="type">string</td><td>Код на училището</td></tr>
                           <tr><td>shortName</td><td class="type">string</td><td>Кратко име</td></tr>
                           <tr><td>fullName</td><td class="type">string</td><td>Пълно име на училището</td></tr>
+                          <tr><td>monName</td><td class="type">string|null</td><td>Името точно както е в данните на МОН</td></tr>
+                          <tr><td>registerStatus</td><td class="type">string|null</td><td>Статус в регистъра на МОН: действаща, закрита, преобразувана (закрита), отписана, заличена</td></tr>
+                          <tr><td>officialName</td><td class="type">string|null</td><td>Официалното име, изчистено (без кавички, с правилни главни букви и препинание)</td></tr>
                           <tr><td>website</td><td class="type">string|null</td><td>Уебсайт (null ако няма)</td></tr>
                           <tr><td>isPrivate</td><td class="type">boolean</td><td>Частно училище</td></tr>
                           <tr><td>city</td><td class="type">object|null</td><td>Град: {slug, name}</td></tr>
@@ -282,7 +288,7 @@ public class IndexGenerator {
                         <div class="try-it">
                           <label>Град:</label>
                           <select id="lookup-city" onchange="updateCityLookupLink()">
-                            <option value="">—</option>
+                            <option value="">-</option>
                           </select>
                           <div><a class="try-link" id="city-lookup-link" style="display:none"></a></div>
                         </div>
@@ -302,12 +308,12 @@ public class IndexGenerator {
         for (String[] g : GRADES) {
             String grade = g[0];
             String label = g[1];
-            String scaleRange = g[2] + "&ndash;" + g[3];
+            String scaleRange = g[2] + "-" + g[3];
 
             sb.append(endpointCard(
                     "/" + grade + "/data.json",
                     grade + "/data.json",
-                    label + " &mdash; всички градове и училища",
+                    label + " - всички градове и училища",
                     """
                             <p class="section-label">Отговор</p>
                             <table class="schema-table">
@@ -340,11 +346,11 @@ public class IndexGenerator {
                         <div class="try-it">
                           <label>Клас:</label>
                           <select id="city-grade" onchange="updateCityDropdown()">
-                            <option value="">—</option>
+                            <option value="">-</option>
                           </select>
                           <label>Град:</label>
                           <select id="city-city" onchange="updateCityLink()">
-                            <option value="">—</option>
+                            <option value="">-</option>
                           </select>
                           <div><a class="try-link" id="city-link" style="display:none"></a></div>
                         </div>
@@ -373,15 +379,15 @@ public class IndexGenerator {
                         <div class="try-it">
                           <label>Клас:</label>
                           <select id="school-grade" onchange="updateSchoolCityDropdown()">
-                            <option value="">—</option>
+                            <option value="">-</option>
                           </select>
                           <label>Град:</label>
                           <select id="school-city" onchange="updateSchoolCodeDropdown()">
-                            <option value="">—</option>
+                            <option value="">-</option>
                           </select>
                           <label>Училище:</label>
                           <select id="school-code" onchange="updateSchoolLink()">
-                            <option value="">—</option>
+                            <option value="">-</option>
                           </select>
                           <div><a class="try-link" id="school-link" style="display:none"></a></div>
                         </div>
@@ -416,11 +422,11 @@ public class IndexGenerator {
                         <div class="try-it">
                           <label>Клас:</label>
                           <select id="rank-med-grade" onchange="updateRankMedLink()">
-                            <option value="">—</option>
+                            <option value="">-</option>
                           </select>
                           <label>Крайна година:</label>
                           <select id="rank-med-year" onchange="updateRankMedLink()">
-                            <option value="">—</option>
+                            <option value="">-</option>
                           </select>
                           <div><a class="try-link" id="rank-med-link" style="display:none"></a></div>
                         </div>
@@ -451,11 +457,11 @@ public class IndexGenerator {
                         <div class="try-it">
                           <label>Клас:</label>
                           <select id="rank-year-grade" onchange="updateRankYearLink()">
-                            <option value="">—</option>
+                            <option value="">-</option>
                           </select>
                           <label>Година:</label>
                           <select id="rank-year-year" onchange="updateRankYearLink()">
-                            <option value="">—</option>
+                            <option value="">-</option>
                           </select>
                           <div><a class="try-link" id="rank-year-link" style="display:none"></a></div>
                         </div>
@@ -479,11 +485,11 @@ public class IndexGenerator {
 
         sb.append("    </div>\n");
 
-        // Balove (min/max admission scores after 7th grade) — written by RuoDecomplexor / RuoIndexPage
+        // Balove (min/max admission scores after 7th grade) - written by RuoDecomplexor / RuoIndexPage
         sb.append("    <div class=\"grade-endpoints\">\n");
         sb.append("      <h2>Балове след 7 клас</h2>\n");
         sb.append("      <p class=\"muted text-sm\">Минимален и максимален бал на приетите по паралелки и класирания (РУО). "
-                + "В данните има дупки: за някои градове липсват години или класирания, а разбивката по пол често я няма — "
+                + "В данните има дупки: за някои градове липсват години или класирания, а разбивката по пол често я няма - "
                 + "<code>coverage</code> казва какво има за всяка година.</p>\n");
         sb.append(endpointCard("/balove/index.json", "balove/index.json", "Градовете с балове",
                 """
@@ -502,13 +508,13 @@ public class IndexGenerator {
                           <tr><th>Поле</th><th>Тип</th><th>Описание</th></tr>
                           <tr><td>city</td><td class="type">object</td><td>slug и name</td></tr>
                           <tr><td>years</td><td class="type">array</td><td>Годините с данни за града (година, която я няма, е без данни)</td></tr>
-                          <tr><td>coverage.{year}.rankings</td><td class="type">array</td><td>Класиранията (1–4) с данни в града за годината</td></tr>
+                          <tr><td>coverage.{year}.rankings</td><td class="type">array</td><td>Класиранията (1-4) с данни в града за годината</td></tr>
                           <tr><td>coverage.{year}.gender</td><td class="type">boolean</td><td>Има ли разбивка по пол за годината</td></tr>
                           <tr><td>schools[]</td><td class="type">array</td><td>code, name, fullName, isPrivate, profiles[]</td></tr>
-                          <tr><td>schools[].profiles[]</td><td class="type">array</td><td>code, name и years — обект по година</td></tr>
-                          <tr><td>profiles[].years.{year}</td><td class="type">array</td><td>4 елемента (1-во…4-то класиране): обект или null — няма данни (паралелката е попълнена по-рано или класирането не е публикувано; виж coverage). Година без данни за паралелката липсва.</td></tr>
+                          <tr><td>schools[].profiles[]</td><td class="type">array</td><td>code, name и years - обект по година</td></tr>
+                          <tr><td>profiles[].years.{year}</td><td class="type">array</td><td>4 елемента (1-во…4-то класиране): обект или null - няма данни (паралелката е попълнена по-рано или класирането не е публикувано; виж coverage). Година без данни за паралелката липсва.</td></tr>
                           <tr><td>…{year}[k].min / max</td><td class="type">number</td><td>Минимален / максимален бал</td></tr>
-                          <tr><td>…{year}[k].minMale / minFemale / maxMale / maxFemale</td><td class="type">number|null</td><td>По пол; null — няма разбивка</td></tr>
+                          <tr><td>…{year}[k].minMale / minFemale / maxMale / maxFemale</td><td class="type">number|null</td><td>По пол; null - няма разбивка</td></tr>
                         </table>"""));
         sb.append(endpointCard("/balove/data.json", "balove/data.json", "Всички градове в един файл",
                 """
@@ -575,7 +581,7 @@ public class IndexGenerator {
                     }
 
                     function resetSelect(sel, placeholder) {
-                      sel.innerHTML = '<option value="">— ' + placeholder + ' —</option>';
+                      sel.innerHTML = '<option value="">- ' + placeholder + ' -</option>';
                     }
 
                     function addSeparator(sel) {

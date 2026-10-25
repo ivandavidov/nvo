@@ -13,7 +13,12 @@
   <meta property="og:description" content="{{description}}">
   <meta property="og:image" content="{{siteUrl}}images/social-preview.png">
   <meta property="og:locale" content="bg_BG">
-  <meta property="og:site_name" content="НВО и ДЗИ – Иван Давидов">
+  <meta property="og:site_name" content="НВО и ДЗИ - Иван Давидов">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{title}}">
+  <meta name="twitter:description" content="{{description}}">
+  <meta name="twitter:image" content="{{siteUrl}}images/social-preview.png">
+  <script type="application/ld+json">{{{jsonLd}}}</script>
   <script src="../../../js/highcharts.js" defer></script>
   <script src="../../../js/ruo-{{citySlug}}.js" defer></script>
   <script type="module" src="../../../js/pages/balove.js"></script>
@@ -33,11 +38,11 @@
 
     <header class="page-head">
       <p class="page-head__eyebrow">{{#icon}}target{{/icon}} Прием след 7 клас · {{cityName}}</p>
-      <h1 class="page-head__title">Минимални и максимални балове по паралелки след 7 клас – {{cityName}}</h1>
-      <p class="page-head__lead">Баловете на приетите ученици по паралелки и класирания за последните години — избери паралелка за подробности или разгледай водещите паралелки в града.</p>
+      <h1 class="page-head__title">Минимални и максимални балове по паралелки след 7 клас - {{cityName}}</h1>
+      <p class="page-head__lead">Баловете на приетите ученици по паралелки и класирания за последните години - избери паралелка за подробности или разгледай водещите паралелки в града.</p>
       <div class="page-head__actions cluster">
 {{#hasNvo}}
-        <a class="btn" href="../../#{{citySlug}}">{{#icon}}trophy{{/icon}} НВО 7 клас – {{cityName}}</a>
+        <a class="btn" href="../../#{{citySlug}}">{{#icon}}trophy{{/icon}} НВО 7 клас - {{cityName}}</a>
 {{/hasNvo}}
         <a class="btn" href="../">{{#icon}}pin{{/icon}} Всички градове</a>
         <a class="btn btn--ghost" href="../../../blog/kak-da-chetem-balovete/">{{#icon}}news{{/icon}} Как да четем баловете</a>
@@ -66,7 +71,7 @@
           <label class="field balove-filters__profile" for="profile-select">
             <span class="field__label">Паралелка</span>
             <select class="select" id="profile-select" disabled>
-              <option value="">— Избери паралелка —</option>
+              <option value="">- Избери паралелка -</option>
             </select>
           </label>
           <label class="switch balove-filters__gender">
@@ -76,7 +81,7 @@
         <details class="disclosure disclosure--plain">
           <summary>Как работи тази секция?</summary>
           <div class="disclosure__body prose">
-            <p>Тази секция показва минималните и максималните балове по класирания за избрано училище и паралелка през последните години. Ако избереш „Всички паралелки“, таблицата и графиките обобщават всички паралелки в училището и помагат да видиш картината за цялото училище.</p>
+            <p>Тази секция показва минималните и максималните балове по класирания за избрано училище и паралелка през последните години. Ако избереш "Всички паралелки", таблицата и графиките обобщават всички паралелки в училището и помагат да видиш картината за цялото училище.</p>
             <ul>
               <li>Избери училище и паралелка, за да видиш конкретните данни.</li>
               <li>Отметката за пол добавя по-подробна разбивка за последната година.</li>
@@ -121,7 +126,7 @@
             <p>Тук са събрани паралелките с най-висок минимален бал на 1-во класиране за последните години. Това е най-бързият начин да сравниш водещите профили и да преминеш към детайлите само с един клик.</p>
             <ul>
               <li>Полето за търсене филтрира по училище и паралелка.</li>
-              <li>Клик върху заглавията „Училище“, „Паралелка“ и „Мин.“ сортира във възходящ или низходящ ред.</li>
+              <li>Клик върху заглавията "Училище", "Паралелка" и "Мин." сортира във възходящ или низходящ ред.</li>
               <li>Клик върху ред отваря детайлите за избраната паралелка по-горе.</li>
             </ul>
           </div>

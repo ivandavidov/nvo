@@ -1,4 +1,4 @@
-// Състоянието на страница по клас в адреса — същият договор като преди:
+// Състоянието на страница по клас в адреса - същият договор като преди:
 //   ?i{g}=индекси (избраните училища), ?school=код (deep link), ?year=година
 //   (исторически изглед), #град; изборът се помни и в бисквитка i{g}.
 import { COOKIE_MAX_AGE_SECONDS } from './config.js';
@@ -18,7 +18,7 @@ export function readCityHash() {
 
 /**
  * Училищата, зададени в линка с код (?school= или ?s=), или null. Те определят и
- * града на таблицата, за разлика от ?i{g}= — него страницата сама пише в адреса.
+ * града на таблицата, за разлика от ?i{g}= - него страницата сама пише в адреса.
  */
 export function linkedSchools(model) {
   const url = new URL(window.location.href);
@@ -74,11 +74,11 @@ export function initialSelection(model) {
     return out;
   };
   const out = valid(ids || defaults);
-  // Невалиден ?i{g}= или бисквитка (напр. i7=abc) — както при невалиден ?s=: изборът по подразбиране.
+  // Невалиден ?i{g}= или бисквитка (напр. i7=abc) - както при невалиден ?s=: изборът по подразбиране.
   return out.length ? out : valid(defaults);
 }
 
-/** Записва избора в адреса (replaceState) и в бисквитката — като стария handleURL. */
+/** Записва избора в адреса (replaceState) и в бисквитката - като стария handleURL. */
 /** history.replaceState, който не чупи страницата, ако браузърът го ограничи (Safari: 100 пъти за 10 s). */
 function replaceUrl(url) {
   try {

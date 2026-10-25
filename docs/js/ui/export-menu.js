@@ -1,5 +1,5 @@
-// Менюто „Изтегли ▾“ (CSV · JSON · PDF) — същата разметка като nvo.site.ExportMenu в Java.
-// Поведението (затваряне, стрелки) е в ui/popover.js; действията — в страницата (data-action).
+// Менюто "Изтегли ▾" (CSV · JSON · PDF) - същата разметка като nvo.site.ExportMenu в Java.
+// Поведението (затваряне, стрелки) е в ui/popover.js; действията - в страницата (data-action).
 import { icon } from './icons.js';
 import { esc } from './dom.js';
 
@@ -28,7 +28,7 @@ export function exportMenuHtml(o) {
   return h + '</div></details>';
 }
 
-/** Бутонът (summary) на менюто, в което е елементът — за индикацията „работи…“. */
+/** Бутонът (summary) на менюто, в което е елементът - за индикацията "работи…". */
 export function menuButtonOf(el) {
   const d = el && el.closest('details.menu-button');
   return d ? d.querySelector('summary') : el;

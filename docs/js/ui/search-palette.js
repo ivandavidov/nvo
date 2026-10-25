@@ -1,11 +1,11 @@
-// Глобалното търсене (Ctrl/⌘K или „/“): страници, градове и училища.
+// Глобалното търсене (Ctrl/⌘K или "/"): страници, градове и училища.
 // Индексът data/search-index.json се зарежда при първото отваряне.
 import { icon } from './icons.js';
 import { showModal } from './dom.js';
 import { searchKey, toCyrillic, expandAbbreviations } from './search-text.js';
 import { siteUrl } from '../site.js';
 
-// Много училища носят едно и също име („Христо Ботев“ — 70+), затова показваме много резултати
+// Много училища носят едно и също име ("Христо Ботев" - 70+), затова показваме много резултати
 // в скролиращ се списък, а при повече казваме колко са и как да се стесни търсенето.
 const MAX_SCHOOLS = 100;
 const MAX_CITIES = 6;
@@ -88,14 +88,15 @@ function loadIndex() {
         }));
         const bySlug = {};
         cities.forEach((c) => { bySlug[c.slug] = c; });
-        const schools = data.schools.map(([code, shortName, fullName, citySlug, isPrivate, grades]) => {
+        const schools = data.schools.map(([code, shortName, fullName, citySlug, isPrivate, grades, officialName]) => {
           const city = bySlug[citySlug];
           const s = {
             code, shortName, fullName, city, isPrivate: !!isPrivate, grades,
             _kf: searchKey(fullName), _ks: searchKey(shortName)
           };
-          // Името, градът, кодът и разписаните съкращения (МГ → математическа гимназия …).
-          s._h = [s._kf, s._ks, city ? city._k : '', code, searchKey(expandAbbreviations(fullName + ' ' + shortName))].join(' ');
+          // Името, градът, кодът, разписаните съкращения (МГ → математическа гимназия …) и официалното име от МОН.
+          s._h = [s._kf, s._ks, city ? city._k : '', code, searchKey(expandAbbreviations(fullName + ' ' + shortName)),
+            searchKey(String(officialName || '').replace(/"/g, ' '))].join(' ');
           return s;
         });
         return { cities, schools };
@@ -133,7 +134,7 @@ function cityHref(city) {
 
 function search(index, raw) {
   const q = normalize(raw);
-  // Сравняваме по общ ключ (латиница = кирилица); за оцветяването — заявката на кирилица.
+  // Сравняваме по общ ключ (латиница = кирилица); за оцветяването - заявката на кирилица.
   const kq = searchKey(raw);
   const keys = kq.split(' ').filter(Boolean);
   const terms = normalize(toCyrillic(raw)).split(' ').filter(Boolean);
@@ -187,9 +188,9 @@ function render(result, loading) {
     result.cities.forEach((c) => {
       const i = push(cityHref(c));
       const links = c.grades.slice().sort((a, b) => a - b)
-        .map((g) => '<a class="badge" href="' + esc(siteUrl(g + '/#' + c.slug)) + '" title="' + esc(GRADE_NAMES[g] + ' – ' + c.name) + '">' + g + '</a>');
+        .map((g) => '<a class="badge" href="' + esc(siteUrl(g + '/#' + c.slug)) + '" title="' + esc(GRADE_NAMES[g] + ' - ' + c.name) + '">' + g + '</a>');
       if (c.balove) {
-        links.push('<a class="badge badge--accent" href="' + esc(siteUrl('7/balove/' + c.slug + '/')) + '" title="Балове – ' + esc(c.name) + '">Балове</a>');
+        links.push('<a class="badge badge--accent" href="' + esc(siteUrl('7/balove/' + c.slug + '/')) + '" title="Балове - ' + esc(c.name) + '">Балове</a>');
       }
       html.push('<div class="palette__row"><a class="palette__item" data-i="' + i + '" href="' + esc(items[i]) + '">'
         + '<span class="palette__item-icon">' + icon('pin') + '</span>'
@@ -203,7 +204,7 @@ function render(result, loading) {
     result.schools.forEach((s) => {
       const i = push(siteUrl('school/' + s.code + '/'));
       const links = s.grades.slice().sort((a, b) => a - b)
-        .map((g) => '<a class="badge" href="' + esc(siteUrl(g + '/?school=' + s.code)) + '" title="' + esc('Сравни в графиката – ' + GRADE_NAMES[g]) + '">' + g + '</a>');
+        .map((g) => '<a class="badge" href="' + esc(siteUrl(g + '/?school=' + s.code)) + '" title="' + esc('Сравни в графиката - ' + GRADE_NAMES[g]) + '">' + g + '</a>');
       html.push('<div class="palette__row"><a class="palette__item" data-i="' + i + '" href="' + esc(items[i]) + '">'
         + '<span class="palette__item-icon">' + icon('school') + '</span>'
         + '<span class="palette__item-main"><span class="palette__item-title">' + highlight(s.fullName, result.terms) + '</span>'
@@ -213,10 +214,10 @@ function render(result, loading) {
   }
   if (result.schoolsTotal > result.schools.length) {
     html.push('<div class="combo__empty">Показани са първите ' + result.schools.length + ' от ' + result.schoolsTotal
-      + '. Добави града или още една дума, за да стесниш търсенето — напр. „Ботев Пловдив“.</div>');
+      + '. Добави града или още една дума, за да стесниш търсенето - напр. "Ботев Пловдив".</div>');
   }
   if (!items.length) {
-    html.push('<div class="combo__empty">' + (loading ? 'Зареждане…' : 'Няма резултати за „' + esc(lastQuery) + '“') + '</div>');
+    html.push('<div class="combo__empty">' + (loading ? 'Зареждане…' : 'Няма резултати за "' + esc(lastQuery) + '"') + '</div>');
   } else if (loading) {
     html.push('<div class="combo__empty">Зареждане на училищата…</div>');
   } else if (normalize(lastQuery).length < 2) {
@@ -290,7 +291,7 @@ function build() {
         window.location.href = items[active];
       }
     } else if (e.key === 'Escape') {
-      // В поле type=search първото Esc само изчиства текста — затваряме веднага, както казва подсказката.
+      // В поле type=search първото Esc само изчиства текста - затваряме веднага, както казва подсказката.
       e.preventDefault();
       dialog.close();
     }

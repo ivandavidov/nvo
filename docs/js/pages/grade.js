@@ -19,7 +19,7 @@ import { whenHighcharts, lineOptions, createChart, seriesColor, onThemeChange, P
 import { copyText, toast, siteUrl } from '../site.js';
 
 const grade = Number(document.body.dataset.grade);
-/** „Добави водещите училища в града“ (празната графика) — колко от върха на класацията. */
+/** "Добави водещите училища в града" (празната графика) - колко от върха на класацията. */
 const SUGGEST_COUNT = 5;
 
 const state = {
@@ -168,7 +168,7 @@ function renderChips() {
     const hidden = state.hidden.has(i);
     const label = o.n + (multiCity && c ? ' · ' + c.label : '');
     return '<li class="chip' + (hidden ? ' chip--muted' : '') + '" data-i="' + i + '">'
-      + '<button type="button" class="chip__toggle" aria-pressed="' + (!hidden) + '" title="' + esc(o.n + (c ? ', ' + c.name : '') + ' — покажи/скрий в графиката') + '">'
+      + '<button type="button" class="chip__toggle" aria-pressed="' + (!hidden) + '" title="' + esc(o.n + (c ? ', ' + c.name : '') + ' - покажи/скрий в графиката') + '">'
       + '<span class="dot" style="--dot:var(--chart-' + state.slots.get(i) + ')"></span>'
       + '<span class="chip__label">' + esc(label) + '</span></button>'
       + '<button type="button" class="chip__x" aria-label="Премахни ' + esc(o.n) + '">' + icon('x') + '</button></li>';
@@ -307,7 +307,7 @@ function setupAddCombobox() {
 /* ------------------------------------------------------------------ градове */
 
 function cityBySlug(slug) {
-  // Само собствени ключове: #constructor или запомнен „toString“ не са град.
+  // Само собствени ключове: #constructor или запомнен "toString" не са град.
   return Object.prototype.hasOwnProperty.call(state.bySlug, slug) ? state.bySlug[slug] : null;
 }
 
@@ -316,11 +316,11 @@ function selectCity(city, { scroll = false, keepTab = false, explicit = true, pu
     return;
   }
   if (push && state.city && state.city.slug !== city.slug) {
-    // Нов запис в историята — „Назад“ връща предишния град, както при старите котви #град.
+    // Нов запис в историята - "Назад" връща предишния град, както при старите котви #град.
     try {
       window.history.pushState(null, '', window.location.pathname + window.location.search + '#' + city.slug);
     } catch (e) {
-      // Safari ограничава pushState до 100 пъти за 10 s — адресът изостава, но страницата работи.
+      // Safari ограничава pushState до 100 пъти за 10 s - адресът изостава, но страницата работи.
     }
   }
   if (explicit) {
@@ -356,7 +356,7 @@ function selectCity(city, { scroll = false, keepTab = false, explicit = true, pu
   }
 }
 
-/** На телефон областните градове са хоризонтален ред — превъртаме го до избрания град (без вертикален скрол). */
+/** На телефон областните градове са хоризонтален ред - превъртаме го до избрания град (без вертикален скрол). */
 function revealChip(chip) {
   const row = chip.parentElement;
   if (!row || row.scrollWidth <= row.clientWidth) {
@@ -431,7 +431,7 @@ function cityStats(city) {
   return { rows, total: rows.length, pu, pr: rows.length - pu };
 }
 
-/** „Класация на училищата“ → на телефон само „Класация“ (двата таба да се събират на 320 px). */
+/** "Класация на училищата" → на телефон само "Класация" (двата таба да се събират на 320 px). */
 function tabLabel(name) {
   const k = name.indexOf(' ');
   return k < 0 ? esc(name) : esc(name.slice(0, k)) + '<span class="tabs__long">' + esc(name.slice(k)) + '</span>';
@@ -446,9 +446,9 @@ function renderCityPanel() {
     '<a class="btn btn--sm" href="' + esc(city.slug) + '/" title="Класацията на училищата в ' + esc(city.name) + ' за ' + model.dataLatestYear + ' на отделна страница">' + icon('external') + ' Класация ' + model.dataLatestYear + '</a>'
   ];
   if (city.hasBalove) {
-    actions.push('<a class="btn btn--sm" href="balove/' + esc(city.slug) + '/" title="Минимални и максимални балове по паралелки – ' + esc(city.name) + '">' + icon('target') + ' Балове</a>');
+    actions.push('<a class="btn btn--sm" href="balove/' + esc(city.slug) + '/" title="Минимални и максимални балове по паралелки - ' + esc(city.name) + '">' + icon('target') + ' Балове</a>');
   }
-  // Експортът е отделно меню вдясно: CSV и JSON — данните (всички години), PDF — класацията, както се вижда.
+  // Експортът е отделно меню вдясно: CSV и JSON - данните (всички години), PDF - класацията, както се вижда.
   const exportMenu = exportMenuHtml({
     title: 'Данни за ' + city.name,
     cls: 'city-panel__export',
@@ -505,7 +505,7 @@ function announce() {
     + ' училища, подредени по ' + label + (state.sortDir === 'asc' ? ', възходящо' : ', низходящо');
 }
 
-/** „Всички / Държавни / Частни“ — само за градове с частни училища. */
+/** "Всички / Държавни / Частни" - само за градове с частни училища. */
 function rankingView() {
   if (!state.city.hasPrivate) {
     return '';
@@ -531,9 +531,9 @@ function rankingHtml() {
       + (title ? ' title="' + esc(title) + '"' : '') + '>'
       + '<button type="button" class="th-sort" data-sort="' + col + '">' + label + icon('sort') + '</button></th>';
   };
-  // Заглавието е един ред: всяка колона има свой надпис („БЕЛ 26“ — предметът и годината с две цифри;
-  // „20“ е само за екранните четци, пълната година е и в подсказката),
-  // без групиращи клетки над тях. Ранг е веднага след името — основната стойност се вижда и на
+  // Заглавието е един ред: всяка колона има свой надпис ("БЕЛ 26" - предметът и годината с две цифри;
+  // "20" е само за екранните четци, пълната година е и в подсказката),
+  // без групиращи клетки над тях. Ранг е веднага след името - основната стойност се вижда и на
   // телефон без хоризонтален скрол. Разделителите отделят групите: ранг | тип | години | доклад.
   const yearTh = (k, subj, y, first) => sortTh('y' + k + subj, esc(subj === 'b' ? cfg.subjectB : cfg.subjectM) + ' <span class="th-qual"><span class="sr-only">' + String(y).slice(0, 2) + '</span>' + String(y).slice(-2) + '</span>',
     'yv' + (first ? ' group-start' : ''), (subj === 'b' ? cfg.subjectBLong : cfg.subjectMLong) + ' ' + y);
@@ -551,13 +551,13 @@ function rankingHtml() {
   const rowHtml = (r, pos, isInactive) => {
     const o = model.s[r.i];
     const rank = isInactive ? null : rankFor(r, state.filter);
-    let cells = '<td class="center col-pos muted">' + (isInactive ? '—' : pos) + '</td>'
+    let cells = '<td class="center col-pos muted">' + (isInactive ? '-' : pos) + '</td>'
       + '<td class="col-name"><div class="school-cell">'
       + '<button type="button" class="add-toggle ci" data-add="' + r.i + '" aria-pressed="false" aria-label="Покажи ' + esc(o.n) + ' в графиката"></button>'
       + (o.c ? '<a href="../school/' + esc(o.c) + '/" title="' + esc('Профил на ' + o.n) + '">' + esc(o.l) + '</a>' : '<span title="' + esc(o.n) + '">' + esc(o.l) + '</span>')
       + (o.w ? '<a class="web-link ci" href="' + esc(o.w) + '" target="_blank" rel="noopener noreferrer" title="' + esc('Уебсайт на ' + o.n) + '" aria-label="Уебсайт"></a>' : '')
       + '</div></td>'
-      + '<td class="center col-rank">' + (rank === null || rank === undefined ? '<span class="muted">—</span>'
+      + '<td class="center col-rank">' + (rank === null || rank === undefined ? '<span class="muted">-</span>'
         : '<span class="rank" title="Среден резултат = ' + r.avg.toFixed(2) + '">' + rank.toFixed(2) + '<span class="rank__bar" style="--v:' + rank + '"></span></span>') + '</td>'
       + '<td class="center nowrap col-type group-start"><span class="badge' + (r.type === 'Ч' ? ' badge--accent' : '') + '" title="' + (r.type === 'Ч' ? 'Частно' : 'Държавно') + '">' + r.type + '</span>'
       + (isInactive ? '' : ' <span class="muted">' + r.typeNo + '</span>') + '</td>';
@@ -582,14 +582,14 @@ function rankingHtml() {
         r.years = lastYears.map((year, k) => ({ year, b: o.b[t - k - 1], bu: o.bu[t - k - 1], m: o.m[t - k - 1], mu: o.mu[t - k - 1] }));
         return rowHtml(r, 0, true);
       }).join('');
-    body += '<tbody class="ranking__inactive"><tr class="ranking__subhead"><td colspan="' + (5 + years.length * 2) + '">Без резултат за ' + model.latestYear + ' — не участват в класацията</td></tr>' + inactiveRows + '</tbody>';
+    body += '<tbody class="ranking__inactive"><tr class="ranking__subhead"><td colspan="' + (5 + years.length * 2) + '">Без резултат за ' + model.latestYear + ' - не участват в класацията</td></tr>' + inactiveRows + '</tbody>';
   }
 
   const notes = '<div class="ranking__foot">'
     + (inactiveFiltered.length ? '<label class="switch"><input type="checkbox" data-action="toggle-inactive"' + (state.showInactive ? ' checked' : '') + '> Покажи и училищата без резултат за ' + model.latestYear + ' (' + inactiveFiltered.length + ')</label>' : '<span></span>')
     + '<details class="disclosure disclosure--plain"><summary>Как се изчислява рангът?</summary><div class="disclosure__body prose">'
     + '<p>Училищата са подредени по общия среден успех по ' + esc(cfg.subjectB) + ' и ' + esc(cfg.subjectM) + ' за последните три години. '
-    + 'Рангът е този среден успех като процент от успеха на първото училище в града (при филтър „Държавни“ или „Частни“ — от първото в групата).</p>'
+    + 'Рангът е този среден успех като процент от успеха на първото училище в града (при филтър "Държавни" или "Частни" - от първото в групата).</p>'
     + '<p>Училищата без резултат за последната година не участват в класацията. До всяка стойност е броят на учениците.</p>'
     + '</div></details></div>';
 
@@ -602,7 +602,7 @@ function averagesHtml() {
   const { model } = state;
   const cfg = model.cfg;
   const avg = cityAverages(model, state.city.name, state.avgMode);
-  // С частни училища колоните са групирани („Държавни“ / „Частни“ над БЕЛ и МАТ): така
+  // С частни училища колоните са групирани ("Държавни" / "Частни" над БЕЛ и МАТ): така
   // таблицата е тясна и всичките четири стойности се виждат на телефон без скрол встрани.
   let head = '<thead>';
   if (avg.hasPrivate) {
@@ -615,11 +615,11 @@ function averagesHtml() {
     + (avg.hasPrivate ? '<td class="num group-start">' + r.prB + '</td><td class="num">' + r.prM + '</td>' : '') + '</tr>').join('') + '</tbody>';
   return '<p class="averages__note muted text-sm">' + (state.avgMode === 'schools'
       ? 'Средно аритметично от резултатите на училищата в града.'
-      : 'Претеглено с броя на учениците — средният резултат на всички ученици в града.') + '</p>'
+      : 'Претеглено с броя на учениците - средният резултат на всички ученици в града.') + '</p>'
     + '<div class="table-wrap averages"><table class="data-table">' + head + body + '</table></div>';
 }
 
-/** „По училища / По ученици“ за „Средни резултати“. */
+/** "По училища / По ученици" за "Средни резултати". */
 function averagesView() {
   return '<div class="seg" role="group" aria-label="Начин на изчисляване">'
     + '<button type="button" data-avg="schools" aria-pressed="' + (state.avgMode === 'schools') + '">По училища</button>'
@@ -732,17 +732,17 @@ el.panel.addEventListener('change', (e) => {
     const newWrap = el.panel.querySelector('.table-wrap--tall');
     if (newWrap) {
       if (state.showInactive && newWrap.scrollHeight > newWrap.clientHeight) {
-        // Показваме неактивните училища в дъното — превъртаме таблицата там.
+        // Показваме неактивните училища в дъното - превъртаме таблицата там.
         newWrap.scrollTop = newWrap.scrollHeight;
       } else if (state.showInactive) {
-        // На телефон таблицата няма собствен скрол — превъртаме страницата до първите
+        // На телефон таблицата няма собствен скрол - превъртаме страницата до първите
         // неактивни училища, под горните ленти и плаващото заглавие на таблицата.
         const sub = newWrap.querySelector('.ranking__subhead');
         if (sub) {
           window.scrollTo({ top: window.scrollY + sub.getBoundingClientRect().top - stickyTopOffset() - newWrap.querySelector('thead').offsetHeight });
         }
       } else {
-        // При скриване не местим таблицата — възстановяваме предишната позиция.
+        // При скриване не местим таблицата - възстановяваме предишната позиция.
         newWrap.scrollTop = Math.min(prevScroll, newWrap.scrollHeight);
       }
     }
@@ -814,7 +814,7 @@ document.addEventListener('click', async (e) => {
         await navigator.share({ title: document.title, url });
         return;
       } catch (err) {
-        // потребителят е отказал — копираме
+        // потребителят е отказал - копираме
       }
     }
     if (await copyText(url)) {
@@ -832,7 +832,7 @@ document.addEventListener('click', async (e) => {
   } else if (name === 'to-chart') {
     el.compare.scrollIntoView({ block: 'start' });
   } else if (name === 'suggest') {
-    // Водещите училища в града — първите в класацията (както в таблицата).
+    // Водещите училища в града - първите в класацията (както в таблицата).
     const city = state.city || state.cities[0];
     setSelected(cityRanking(state.model, city).slice(0, SUGGEST_COUNT).map((r) => r.i), true);
   }
@@ -858,7 +858,7 @@ function setupYear() {
     const exit = new URL(window.location.href);
     exit.searchParams.delete('year');
     el.history.innerHTML = '<div class="banner history-banner" role="status">' + icon('history')
-      + '<span><strong>Исторически изглед</strong> — всички данни и графики по-долу са към ' + model.timeTravelYear + ' г.</span>'
+      + '<span><strong>Исторически изглед</strong> - всички данни и графики по-долу са към ' + model.timeTravelYear + ' г.</span>'
       + '<a class="banner__action" href="' + esc(exit.pathname + exit.search + exit.hash) + '">Покажи актуалните данни →</a></div>';
   }
   const national = document.querySelector('[data-national]');
@@ -888,7 +888,7 @@ function setupTray() {
   if (!el.tray || !('IntersectionObserver' in window)) {
     return;
   }
-  // По-стар HTML от кеша още има hidden — видимостта вече е само чрез .is-visible.
+  // По-стар HTML от кеша още има hidden - видимостта вече е само чрез .is-visible.
   el.tray.hidden = false;
   // Лентата се показва, след като графиката е останала над видимата част.
   new IntersectionObserver((entries) => {
@@ -951,7 +951,7 @@ async function init() {
     state.hcReady = true;
     renderCharts();
     if (deepLinkSchool && !hashCity) {
-      // След като графиките са с реалната си височина, за да не „отскочи“ превъртането.
+      // След като графиките са с реалната си височина, за да не "отскочи" превъртането.
       setTimeout(() => el.compare.scrollIntoView({ block: 'start', behavior: 'instant' }), 60);
     }
   }).catch((err) => console.error(err));

@@ -1,5 +1,5 @@
 // Страница на училище (/school/{код}/): графиките по клас и PDF профилът.
-// Данните са вградени в страницата (#school-data) — същият документ като в API-то.
+// Данните са вградени в страницата (#school-data) - същият документ като в API-то.
 import { displayRange } from '../core/config.js';
 import { whenHighcharts, lineOptions, createChart, token, onThemeChange } from '../ui/chart-theme.js';
 import { toast } from '../site.js';

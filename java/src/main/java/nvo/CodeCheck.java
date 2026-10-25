@@ -21,10 +21,10 @@ import java.util.stream.Stream;
  * Проверка на кодовете на училищата в data/normalized/ (пуска се от all.sh веднага след нормализирането).
  *
  * <ul>
- *   <li>ГРЕШКА (спира all.sh): код, който не е 6–7 цифри. Така се хващат изгубени цифри като
- *       „80008“ вместо „800080“ (вж. {@link NvoDziNormalizer#canonicalCode}) или нов формат в
+ *   <li>ГРЕШКА (спира all.sh): код, който не е 6-7 цифри. Така се хващат изгубени цифри като
+ *       "80008" вместо "800080" (вж. {@link NvoDziNormalizer#canonicalCode}) или нов формат в
  *       данните на МОН, преди да станат фантомни профили.</li>
- *   <li>ИНФОРМАЦИЯ: едно и също училище (име + град) с различни кодове в непресичащи се години —
+ *   <li>ИНФОРМАЦИЯ: едно и също училище (име + град) с различни кодове в непресичащи се години -
  *       МОН е сменил кода. Профилите им се различават по години и са свързани помежду си
  *       (SchoolPageGenerator).</li>
  * </ul>
@@ -35,7 +35,7 @@ public final class CodeCheck {
 
     private static final Pattern FILE = Pattern.compile("(nvo-\\d+|dzi)-(\\d{4})(?:-[a-z]+)?-normalized\\.csv");
     private static final Pattern CODE = Pattern.compile("\\d{6,7}");
-    /** Години, които са копия на съседна година (вж. NvoDziNormalizer) — не се броят за диапазона. */
+    /** Години, които са копия на съседна година (вж. NvoDziNormalizer) - не се броят за диапазона. */
     private static final Set<String> PLACEHOLDER = Set.of("nvo-4-2020", "nvo-10-2018", "nvo-10-2019", "nvo-10-2020");
 
     private CodeCheck() {
@@ -69,7 +69,7 @@ public final class CodeCheck {
                     String city = row[0];
                     String code = row[1];
                     if (!CODE.matcher(code).matches()) {
-                        errors.add(file.getFileName() + ": код „" + code + "“ (" + city + ", " + row[2] + ") не е 6–7 цифри");
+                        errors.add(file.getFileName() + ": код \"" + code + "\" (" + city + ", " + row[2] + ") не е 6-7 цифри");
                         continue;
                     }
                     if (placeholder) {
@@ -101,10 +101,10 @@ public final class CodeCheck {
                     }
                 }
                 if (disjoint) {
-                    StringBuilder sb = new StringBuilder("CodeCheck INFO " + exam.getKey() + ": „" + school.getKey().replace("|", "“, ") + " —");
+                    StringBuilder sb = new StringBuilder("CodeCheck INFO " + exam.getKey() + ": \"" + school.getKey().replace("|", "\", ") + " -");
                     for (Map.Entry<String, Set<Integer>> c : sorted) {
                         TreeSet<Integer> y = (TreeSet<Integer>) c.getValue();
-                        sb.append(' ').append(c.getKey()).append(" (").append(y.first()).append('–').append(y.last()).append(')');
+                        sb.append(' ').append(c.getKey()).append(" (").append(y.first()).append('-').append(y.last()).append(')');
                     }
                     System.out.println(sb);
                     info++;

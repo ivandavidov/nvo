@@ -1,4 +1,4 @@
-// Експорт на баловете (CSV, PDF) от документите в api/v1/balove/ — един код за един град
+// Експорт на баловете (CSV, PDF) от документите в api/v1/balove/ - един код за един град
 // ({град}.json) и за всички (data.json), затова CSV, JSON и PDF са винаги от едни и същи данни.
 // Дупките: година без данни за града я няма в doc.years; coverage.{год}.rankings казва кои
 // класирания имат данни; null за класиране = няма данни; полът е null, когато липсва.
@@ -62,18 +62,18 @@ export function baloveCsv(docs) {
   return lines.join('\r\n') + '\r\n';
 }
 
-const num = (v) => (v === null || v === undefined ? '—' : v.toFixed(2));
+const num = (v) => (v === null || v === undefined ? '-' : v.toFixed(2));
 
 /**
- * Раздел за един град: заглавие, таблицата „Налични данни“ (годините от общия прозорец —
+ * Раздел за един град: заглавие, таблицата "Налични данни" (годините от общия прозорец -
  * и тези без данни за града) и таблицата паралелка × година × класиране.
  */
 function addCity(doc, cityDoc, allYears) {
   const shown = (allYears && allYears.length ? allYears : cityDoc.years).slice(-MAX_YEARS);
   const years = cityDoc.years.filter((y) => shown.includes(y));
-  const span = shown.length > 1 ? shown[0] + '–' + shown[shown.length - 1] : String(shown[0]);
+  const span = shown.length > 1 ? shown[0] + '-' + shown[shown.length - 1] : String(shown[0]);
   doc.setFontSize(14);
-  doc.text('Балове след 7 клас – ' + cityDoc.city.name, PDF_MARGIN, 34);
+  doc.text('Балове след 7 клас - ' + cityDoc.city.name, PDF_MARGIN, 34);
   doc.setFontSize(8.5);
   doc.setTextColor(100);
   doc.text('Минимален и максимален бал на приетите по паралелки и класирания · ' + span
@@ -86,7 +86,7 @@ function addCity(doc, cityDoc, allYears) {
     body: shown.map((y) => {
       const c = cityDoc.coverage[y];
       return c
-        ? [String(y), ...[1, 2, 3, 4].map((k) => (c.rankings.includes(k) ? 'да' : '—')), c.gender ? 'да' : 'не']
+        ? [String(y), ...[1, 2, 3, 4].map((k) => (c.rankings.includes(k) ? 'да' : '-')), c.gender ? 'да' : 'не']
         : [String(y), { content: 'няма данни за годината', colSpan: 5, styles: { textColor: 120 } }];
     }),
     startY: 60,
@@ -112,7 +112,7 @@ function addCity(doc, cityDoc, allYears) {
         if (!ranks) {
           return;
         }
-        rows.push([first ? p.name : '', String(y), ...ranks.flatMap((e) => (e ? [num(e.min), num(e.max)] : ['—', '—']))]);
+        rows.push([first ? p.name : '', String(y), ...ranks.flatMap((e) => (e ? [num(e.min), num(e.max)] : ['-', '-']))]);
         first = false;
       });
     });
@@ -154,7 +154,7 @@ export async function balovePdf(docs, filename, allYears) {
 }
 
 /**
- * Действие от менюто „Изтегли ▾“ на страниците за балове: balove-csv | balove-pdf (градът
+ * Действие от менюто "Изтегли ▾" на страниците за балове: balove-csv | balove-pdf (градът
  * е slug) и balove-csv-all | balove-pdf-all (хъбът). JSON е статичен файл (линк с download).
  */
 export async function runBaloveExport(item, slug) {
@@ -165,7 +165,7 @@ export async function runBaloveExport(item, slug) {
   btn.setAttribute('aria-busy', 'true');
   try {
     if (action.startsWith('balove-pdf')) {
-      toast(all ? 'Подготвя се PDF за всички градове — до минута…' : 'Подготвя се PDF…');
+      toast(all ? 'Подготвя се PDF за всички градове - до минута…' : 'Подготвя се PDF…');
     }
     const [index, data] = await Promise.all([fetchBaloveIndex(), all ? fetchBaloveAll() : fetchBaloveCity(slug)]);
     const docs = all ? data.cities : [data];

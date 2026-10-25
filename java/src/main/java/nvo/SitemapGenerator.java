@@ -3,6 +3,10 @@ package nvo;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.stream.Stream;
@@ -15,6 +19,7 @@ public class SitemapGenerator {
 
     public void generate() throws Exception {
         String today = LocalDate.now().toString();
+        Map<String, String> lastmod = gitLastModified(today);
         Set<String> urls = new TreeSet<>();
 
         // Static pages
@@ -94,7 +99,8 @@ public class SitemapGenerator {
         for (String url : urls) {
             sb.append("  <url>\n");
             sb.append("    <loc>").append(url).append("</loc>\n");
-            sb.append("    <lastmod>").append(today).append("</lastmod>\n");
+            String page = "docs/" + url.substring(ProjectConfig.SITE_BASE_URL.length()) + "index.html";
+            sb.append("    <lastmod>").append(lastmod.getOrDefault(page, today)).append("</lastmod>\n");
             sb.append("  </url>\n");
         }
         sb.append("</urlset>\n");
@@ -102,6 +108,56 @@ public class SitemapGenerator {
         Path sitemapPath = Path.of(ProjectConfig.DOCS_DIR, "sitemap.xml");
         Files.writeString(sitemapPath, sb.toString());
         System.out.println("Generated sitemap: " + sitemapPath + " (" + urls.size() + " URLs)");
+    }
+
+    /**
+     * Реалната дата на промяна на всяка страница (път от корена на repo-то → yyyy-MM-dd): датата на
+     * последния commit, който я е променил. Генераторите пренаписват всички страници при всеки build,
+     * но непроменената страница излиза байт по байт същата, затова git знае кога наистина се е
+     * променила. Променените и новите (още не commit-нати) страници получават днешна дата - също и
+     * всички, ако git не е наличен. Без това всички адреси имаха датата на build-а и Google спира
+     * да вярва на lastmod.
+     */
+    private static Map<String, String> gitLastModified(String today) {
+        Map<String, String> dates = new HashMap<>();
+        try {
+            String date = null;
+            for (String line : git("log", "--format=%x00%cs", "--name-only", "--", "docs")) {
+                if (line.startsWith("\0")) {
+                    date = line.substring(1);
+                } else if (!line.isBlank() && date != null) {
+                    dates.putIfAbsent(line, date);
+                }
+            }
+            Set<String> changed = new HashSet<>();
+            for (String line : git("status", "--porcelain", "--untracked-files=all", "--", "docs")) {
+                if (line.length() > 3) {
+                    String path = line.substring(3);
+                    int arrow = path.indexOf(" -> ");
+                    changed.add(arrow >= 0 ? path.substring(arrow + 4) : path);
+                }
+            }
+            changed.forEach(path -> dates.put(path, today));
+        } catch (Exception e) {
+            System.err.println("Sitemap: git is not available, lastmod = today (" + e.getMessage() + ")");
+            return Map.of();
+        }
+        return dates;
+    }
+
+    private static List<String> git(String... args) throws Exception {
+        List<String> command = new java.util.ArrayList<>(List.of("git", "-C", ProjectConfig.BASE_DIR, "-c", "core.quotepath=off"));
+        command.addAll(List.of(args));
+        Process process = new ProcessBuilder(command).redirectError(ProcessBuilder.Redirect.DISCARD).start();
+        List<String> lines;
+        try (var reader = new java.io.BufferedReader(new java.io.InputStreamReader(
+                process.getInputStream(), java.nio.charset.StandardCharsets.UTF_8))) {
+            lines = reader.lines().toList();
+        }
+        if (process.waitFor() != 0) {
+            throw new IllegalStateException("git " + String.join(" ", args) + " failed");
+        }
+        return lines;
     }
 
     private String pathToUrl(Path indexPath) {

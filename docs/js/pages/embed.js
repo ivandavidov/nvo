@@ -1,4 +1,4 @@
-// Вградими графики (/{клас}/embed.html) — за iframe на други сайтове.
+// Вградими графики (/{клас}/embed.html) - за iframe на други сайтове.
 // Параметри: s=кодове (стабилни) или i{клас}=индекси, chart=b|m, theme=dark|light
 // (обработва се от theme.js), year=година. Височината се съобщава на родителя
 // с postMessage({ type: 'nvo-embed-resize', height }).

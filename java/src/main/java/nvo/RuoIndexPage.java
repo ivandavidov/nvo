@@ -13,7 +13,7 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 /**
- * Generates the balove hub page docs/7/balove/index.html — a directory of every
+ * Generates the balove hub page docs/7/balove/index.html - a directory of every
  * city that has a published min/max scores page. The hub decouples balove
  * discoverability from the NVO-7 ranking sections: cities that have RUO data but
  * no exam-taking schools (e.g. Куклен) are reachable here even though they get no
@@ -46,8 +46,8 @@ public class RuoIndexPage {
     // ── API: api/v1/balove/index.json и data.json ───────────────────────────
 
     /**
-     * index.json — градовете (години, брой училища и паралелки, адрес на файла);
-     * data.json — всички градове в един файл (документите от RuoDecomplexor поред).
+     * index.json - градовете (години, брой училища и паралелки, адрес на файла);
+     * data.json - всички градове в един файл (документите от RuoDecomplexor поред).
      * Маха JSON-ите на градове без публикувана страница.
      */
     private void writeApi(List<Cities.City> cities) throws IOException {
@@ -122,8 +122,8 @@ public class RuoIndexPage {
     // ── HTML ──────────────────────────────────────────────────────────────
 
     /**
-     * Градовете са групирани като на страниците по клас: „Областни градове“ (четирите
-     * големи, после областните центрове) и „Други градове“. Всяка карта показва броя
+     * Градовете са групирани като на страниците по клас: "Областни градове" (четирите
+     * големи, после областните центрове) и "Други градове". Всяка карта показва броя
      * училища и паралелки и годините с данни (прочетени от docs/js/ruo-{град}.js).
      */
     private String buildHtml(List<Cities.City> cities) throws IOException {
@@ -134,7 +134,13 @@ public class RuoIndexPage {
         ctx.put("header", nvo.site.SiteLayout.header(page));
         ctx.put("footer", nvo.site.SiteLayout.footer(page));
         ctx.put("siteUrl", ProjectConfig.SITE_BASE_URL);
-        ctx.put("title", "Минимални и максимални балове по паралелки след 7 клас – по градове | Иван Давидов");
+        int latestYear = 0;
+        for (Cities.City c : cities) {
+            JsonArray years = JsonParser.parseString(Files.readString(Path.of(RuoDecomplexor.API_DIR, c.hrefName() + ".json")))
+                    .getAsJsonObject().getAsJsonArray("years");
+            latestYear = Math.max(latestYear, years.get(years.size() - 1).getAsInt());
+        }
+        ctx.put("title", "Балове след 7 клас - " + latestYear + " - минимални и максимални по паралелки и градове | Иван Давидов");
         ctx.put("description", "Минимални и максимални балове по паралелки за прием след 7 клас, "
                 + "по градове. Изберете град, за да видите таблици и графики по класирания.");
         ctx.put("canonical", ProjectConfig.SITE_BASE_URL + "7/" + ProjectConfig.RUO_DIR_NAME + "/");
@@ -144,7 +150,7 @@ public class RuoIndexPage {
                 nvo.site.ExportMenu.Item.link("json", "Данните от API-то · всички години",
                         "../../api/v1/balove/data.json", "balove-7-all.json"),
                 nvo.site.ExportMenu.Item.action("pdf", "Баловете на всички градове · за печат", "balove-pdf-all")),
-                "PDF-ът за всички градове е голям (над 300 страници) — подготвя се няколко секунди.", "page-head__export"));
+                "PDF-ът за всички градове е голям (над 300 страници) - подготвя се няколко секунди.", "page-head__export"));
 
         List<java.util.Map<String, Object>> tiers = new java.util.ArrayList<>();
         List<Cities.City> regional = cities.stream().filter(c -> c.orderPosition() <= 2).toList();
@@ -167,7 +173,7 @@ public class RuoIndexPage {
             String years = "";
             if (ym.find()) {
                 String[] parts = ym.group(1).split(",");
-                years = parts.length == 1 ? parts[0].trim() : parts[0].trim() + "–" + parts[parts.length - 1].trim();
+                years = parts.length == 1 ? parts[0].trim() : parts[0].trim() + "-" + parts[parts.length - 1].trim();
             }
             java.util.Map<String, Object> item = new java.util.HashMap<>();
             item.put("name", c.fullName());

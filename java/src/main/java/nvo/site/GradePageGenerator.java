@@ -52,6 +52,9 @@ public final class GradePageGenerator {
         ctx.put("siteUrl", ProjectConfig.SITE_BASE_URL);
         ctx.put("grade", grade);
         ctx.put("title", (dzi ? "ДЗИ" : "НВО") + " след " + grade + " клас");
+        // <title>: годината и "резултати / класация на училищата" - така търсят хората.
+        ctx.put("pageTitle", (dzi ? "Матури (ДЗИ)" : "НВО " + grade + " клас") + " - " + latest
+                + " - резултати и класация на училищата");
         ctx.put("examLong", dzi ? "Държавни зрелостни изпити" : "Национално външно оценяване");
         ctx.put("subjectsLong", dzi ? "БЕЛ и втори зрелостен изпит" : "БЕЛ и математика");
         ctx.put("subjectB", "БЕЛ");
@@ -69,7 +72,7 @@ public final class GradePageGenerator {
             history.add(y);
         }
         ctx.put("historyYears", history);
-        // Експортът за всички градове — същият бутон като над таблиците, след връзките, с разделител
+        // Експортът за всички градове - същият бутон като над таблиците, след връзките, с разделител
         // (CSV и JSON: всички години; PDF: класациите).
         String prefix = dzi ? "dzi-12" : "nvo-" + grade;
         ctx.put("exportMenu", ExportMenu.html("Всички градове", List.of(
@@ -100,14 +103,14 @@ public final class GradePageGenerator {
         embed.put("grade", grade);
         embed.put("title", ctx.get("title"));
         embed.put("siteUrl", ProjectConfig.SITE_BASE_URL);
-        embed.put("chartBTitle", grade + " клас – " + (dzi ? "ДЗИ" : "НВО") + " – Български език");
-        embed.put("chartMTitle", grade + " клас – " + (dzi ? "ДЗИ – Втора матура" : "НВО – Математика"));
+        embed.put("chartBTitle", grade + " клас - " + (dzi ? "ДЗИ" : "НВО") + " - Български език");
+        embed.put("chartMTitle", grade + " клас - " + (dzi ? "ДЗИ - Втора матура" : "НВО - Математика"));
         Files.writeString(docs.resolve(grade).resolve("embed.html"), SiteLayout.render("embed", embed), StandardCharsets.UTF_8);
         System.out.println("GradePageGenerator: " + target + " (" + cities.size() + " cities)");
     }
 
     /**
-     * Градовете с поне едно училище с резултат и по двата предмета за последната година —
+     * Градовете с поне едно училище с резултат и по двата предмета за последната година -
      * същото правило като renderableCities() в js/core/model.js.
      */
     private static List<Map<String, Object>> renderableCities(Path docs, String grade) throws IOException {

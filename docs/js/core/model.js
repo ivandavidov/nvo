@@ -90,7 +90,7 @@ export function buildModel(grade, raw, opts = {}) {
   };
 
   // Всичко останало вижда само прозореца DISPLAY_FROM…lastYear (до MAX_YEARS години);
-  // графиките и „Средни резултати“ в исторически изглед — последните HISTORY_YEARS.
+  // графиките и "Средни резултати" в исторически изглед - последните HISTORY_YEARS.
   const firstYear = displayRange(cfg.grade, lastYear).from;
   const start = firstYear - dataFirstYear;
   s.forEach((o) => {
@@ -236,7 +236,7 @@ export function computeCityMediansByAttendees(s, si, totalYears) {
   });
 }
 
-/** Средна за страната (по училища) за всяка година — за PDF доклада. */
+/** Средна за страната (по училища) за всяка година - за PDF доклада. */
 export function nationalAverages(model) {
   const { s, totalYears } = model;
   const natB = [];
@@ -465,7 +465,7 @@ export function rankFor(row, filter) {
 /* ---------------- Средни за града (таблицата) ---------------- */
 
 /**
- * Редовете за „Средни резултати“ (от последната година назад, numYears реда).
+ * Редовете за "Средни резултати" (от последната година назад, numYears реда).
  * mode: 'schools' (по училища) | 'students' (по ученици)
  */
 export function cityAverages(model, cityName, mode) {
@@ -474,7 +474,7 @@ export function cityAverages(model, cityName, mode) {
   const keys = mode === 'students'
     ? ['mnba', 'mnma', 'mpba', 'mpma']
     : ['mnbs', 'mnms', 'mpbs', 'mpms'];
-  // Старият код решава „има ли частни“ по mpbs и за двата изгледа.
+  // Старият код решава "има ли частни" по mpbs и за двата изгледа.
   const hasPrivate = !!c.mpbs;
   const round = (v) => (Math.round(v * 100) / 100).toFixed(2);
   const rows = [];
@@ -616,7 +616,7 @@ function compareNames(model, r1, r2) {
 }
 
 /**
- * Филтрира (null | 'Д' | 'Ч') и сортира редовете на класацията — 1:1 със стария
+ * Филтрира (null | 'Д' | 'Ч') и сортира редовете на класацията - 1:1 със стария
  * compareRowsByColumn: празните годишни клетки са винаги най-отдолу, равенствата
  * се решават по ранг и име.
  */

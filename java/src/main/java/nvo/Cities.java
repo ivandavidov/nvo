@@ -161,6 +161,12 @@ public final class Cities {
         return new City(fullName, shortName, hrefName, orderPosition, NEXT_INDEX++);
     }
 
+    /** "в София", но "във Варна" - пред "в" и "ф" предлогът е "във". */
+    public static String inCity(String cityName) {
+        char first = Character.toLowerCase(cityName.charAt(0));
+        return (first == 'в' || first == 'ф' ? "във " : "в ") + cityName;
+    }
+
     private Cities() {
     }
 }

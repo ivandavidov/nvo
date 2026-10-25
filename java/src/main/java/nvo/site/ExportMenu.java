@@ -3,8 +3,8 @@ package nvo.site;
 import java.util.List;
 
 /**
- * Менюто „Изтегли ▾“ (CSV · JSON · PDF) — същата разметка като exportMenuHtml() в
- * docs/js/ui/export-menu.js. Поведението е в docs/js/ui/popover.js, действията —
+ * Менюто "Изтегли ▾" (CSV · JSON · PDF) - същата разметка като exportMenuHtml() в
+ * docs/js/ui/export-menu.js. Поведението е в docs/js/ui/popover.js, действията -
  * в JS на страницата (data-action).
  */
 public final class ExportMenu {

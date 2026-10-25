@@ -13,7 +13,7 @@ import java.util.Map;
 /** Общи сведения за данните на един клас, нужни на генераторите на страници. */
 final class GradeData {
 
-    /** От коя година са реалните данни в набора (CSV/API) — за JSON-LD. Показваните години: ProjectConfig.displayFrom. */
+    /** От коя година са реалните данни в набора (CSV/API) - за JSON-LD. Показваните години: ProjectConfig.displayFrom. */
     private static final Map<String, Integer> COVERAGE_FROM = Map.of("4", 2018, "7", 2018, "10", 2021, "12", 2018);
 
     private GradeData() {

@@ -1,4 +1,4 @@
-// Малки помощници за DOM — без зависимости.
+// Малки помощници за DOM - без зависимости.
 
 export function esc(value) {
   return String(value === null || value === undefined ? '' : value)
@@ -38,7 +38,7 @@ export function fmt(value, digits = 2) {
 
 /**
  * Отваря модален <dialog> и връща фокуса на елемента, който го е отворил, при затваряне.
- * Chrome го прави сам, Safari — не (фокусът пада на <body>; там и кликът не фокусира бутона,
+ * Chrome го прави сам, Safari - не (фокусът пада на <body>; там и кликът не фокусира бутона,
  * затова бутонът се подава изрично).
  */
 export function showModal(dialog, opener = document.activeElement) {

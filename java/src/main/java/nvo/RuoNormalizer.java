@@ -93,7 +93,7 @@ public class RuoNormalizer {
 
     private void normalize2026() throws Exception {
         // Klasirane 1, 3 and 4: 11-column layout with a leading № column (code at col 1,
-        // scores at 5). Klasirane 2: different layout — NO № column (code at col 0,
+        // scores at 5). Klasirane 2: different layout - NO № column (code at col 0,
         // scores at 4), still with the min/max gender split.
         List<String[]> rows = new ArrayList<>(normalizeKlasirane(2026, 1, 5));
         rows.addAll(normalizeKlasirane(2026, 2, 0, 4));
@@ -174,14 +174,14 @@ public class RuoNormalizer {
         return v > 0 && v == Math.floor(v);
     }
 
-    /** Reads a numeric cell as a plain integer string — used for school codes. */
+    /** Reads a numeric cell as a plain integer string - used for school codes. */
     private String readNumericCellAsId(Cell cell) {
         if (cell == null || cell.getCellType() != CellType.NUMERIC) return null;
         return String.valueOf((long) cell.getNumericCellValue());
     }
 
     /**
-     * Reads a cell that can be either NUMERIC or STRING — used for profile codes.
+     * Reads a cell that can be either NUMERIC or STRING - used for profile codes.
      * String type preserves leading zeros (e.g. "0814"); numeric type is cast to long.
      */
     private String readIdCell(Cell cell) {

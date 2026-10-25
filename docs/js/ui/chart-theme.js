@@ -116,7 +116,7 @@ export function createChart(container, options) {
   return chart;
 }
 
-/** Име за екранните четци на SVG-то на графиката — по заглавието на картата/секцията. */
+/** Име за екранните четци на SVG-то на графиката - по заглавието на картата/секцията. */
 export function labelChart(chart) {
   const box = chart.renderTo;
   const scope = box.closest('figure, .chart-card, .stat-section, .card, section');

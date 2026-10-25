@@ -48,7 +48,7 @@ async function loadGrade(grade) {
   state.index = buildSchoolIndex(state.model, renderableCities(state.model));
   state.selection = [state.model.cfg.baseSchoolIndex, state.model.cfg.refSchoolIndex].filter((i) => state.model.s[i]);
   const latest = state.model.dataLatestYear;
-  let options = '<option value="">' + latest + ' — актуални данни</option>';
+  let options = '<option value="">' + latest + ' - актуални данни</option>';
   for (let y = latest - 1; y >= navFirstYear(state.grade); y--) {
     options += '<option value="' + y + '">' + y + '</option>';
   }

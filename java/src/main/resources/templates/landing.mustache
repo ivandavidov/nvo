@@ -13,11 +13,12 @@
   <meta property="og:description" content="{{description}}">
   <meta property="og:image" content="{{siteUrl}}images/social-preview.png">
   <meta property="og:locale" content="bg_BG">
-  <meta property="og:site_name" content="НВО и ДЗИ – Иван Давидов">
+  <meta property="og:site_name" content="НВО и ДЗИ - Иван Давидов">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{{title}}">
   <meta name="twitter:description" content="{{description}}">
   <meta name="twitter:image" content="{{siteUrl}}images/social-preview.png">
+  <script type="application/ld+json">{{{jsonLd}}}</script>
   <script type="module" src="../../js/pages/landing.js"></script>
 </head>
 <body data-grade="{{grade}}"{{#isCity}} data-city="{{citySlug}}"{{/isCity}}>
@@ -42,7 +43,7 @@
         <a class="btn btn--primary" href="../#{{citySlug}}">{{#icon}}chart{{/icon}} Сравни в графиката</a>
         <a class="btn" href="../{{year}}/">{{#icon}}trophy{{/icon}} Национална класация {{year}}</a>
 {{#hasBalove}}
-        <a class="btn" href="../balove/{{citySlug}}/">{{#icon}}target{{/icon}} Балове в {{cityName}}</a>
+        <a class="btn" href="../balove/{{citySlug}}/">{{#icon}}target{{/icon}} Балове {{inCity}}</a>
 {{/hasBalove}}
 {{/isCity}}
 {{#isYear}}

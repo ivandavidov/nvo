@@ -2,11 +2,11 @@
 <html lang="bg">
 <head>
   <meta charset="utf-8">
-  <title>НВО и ДЗИ – резултати, класации и графики за всички училища | Иван Давидов</title>
+  <title>НВО и ДЗИ - {{latestYear}} - резултати, класации и графики за всички училища | Иван Давидов</title>
   <meta name="description" content="Резултатите от НВО след 4, 7 и 10 клас и ДЗИ след 12 клас за всяко училище в България: графики, класации по градове, балове за прием и статистики по отворените данни на МОН.">
   <meta name="author" content="Иван Давидов">
   <script>
-    // Старите споделени линкове (/?i7=…, /#sofia) водят към страницата за 7 клас — както досега.
+    // Старите споделени линкове (/?i7=…, /#sofia) водят към страницата за 7 клас - както досега.
     if (window.location.search || (window.location.hash && window.location.hash !== '#main')) {
       window.location.replace('./7/' + window.location.search + window.location.hash);
     }
@@ -15,20 +15,21 @@
   <link rel="canonical" href="{{siteUrl}}">
   <meta property="og:type" content="website">
   <meta property="og:url" content="{{siteUrl}}">
-  <meta property="og:title" content="НВО и ДЗИ – резултати, класации и графики за всички училища">
+  <meta property="og:title" content="НВО и ДЗИ - {{latestYear}} - резултати, класации и графики за всички училища">
   <meta property="og:description" content="Графики, класации по градове, балове за прием и статистики за НВО и ДЗИ по отворените данни на МОН.">
   <meta property="og:image" content="{{siteUrl}}images/social-preview.png">
   <meta property="og:locale" content="bg_BG">
-  <meta property="og:site_name" content="НВО и ДЗИ – Иван Давидов">
+  <meta property="og:site_name" content="НВО и ДЗИ - Иван Давидов">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="НВО и ДЗИ – резултати, класации и графики за всички училища">
+  <meta name="twitter:title" content="НВО и ДЗИ - {{latestYear}} - резултати, класации и графики за всички училища">
   <meta name="twitter:description" content="Графики, класации по градове, балове за прием и статистики за НВО и ДЗИ по отворените данни на МОН.">
   <meta name="twitter:image" content="{{siteUrl}}images/social-preview.png">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "НВО и ДЗИ – Иван Давидов",
+    "name": "НВО и ДЗИ - Иван Давидов",
+    "alternateName": "НВО и ДЗИ",
     "url": "{{siteUrl}}",
     "inLanguage": "bg",
     "author": { "@type": "Person", "name": "Иван Давидов", "url": "https://www.linkedin.com/in/ivandavidov" }
@@ -47,7 +48,7 @@
         <div class="home-search">
           <div class="input-icon">
             {{#icon}}search{{/icon}}
-            <input class="input home-search__input" type="search" data-search-input placeholder="Търси училище или град — напр. „СМГ“ или „Пловдив“" aria-label="Търси училище или град">
+            <input class="input home-search__input" type="search" data-search-input placeholder="Търси училище или град - напр. &quot;СМГ&quot; или &quot;Пловдив&quot;" aria-label="Търси училище или град">
           </div>
           <span class="home-search__hint muted text-sm">или натисни <kbd class="kbd">/</kbd> навсякъде в сайта</span>
         </div>
@@ -95,7 +96,7 @@
         <span class="home-balove__icon">{{#icon}}target{{/icon}}</span>
         <span class="home-balove__text">
           <span class="home-balove__title">Балове за прием след 7 клас</span>
-          <span class="muted">Минимални и максимални балове по паралелки и класирания — {{balove.cities}} града, {{balove.profiles}} паралелки.</span>
+          <span class="muted">Минимални и максимални балове по паралелки и класирания - {{balove.cities}} града, {{balove.profiles}} паралелки.</span>
         </span>
         <span class="btn btn--primary home-balove__cta">Към баловете {{#icon}}arrow-right{{/icon}}</span>
       </a>
@@ -127,7 +128,7 @@
       <div class="section-head">
         <div>
           <h2 class="section-title" id="tools-title">Данни и инструменти</h2>
-          <p class="section-lead">Всичко е отворено — ползвайте данните свободно.</p>
+          <p class="section-lead">Всичко е отворено - ползвайте данните свободно.</p>
         </div>
       </div>
       <div class="grid-auto home-tools" style="--grid-min: 220px">

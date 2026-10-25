@@ -1,5 +1,8 @@
 package nvo.api;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import nvo.Cities;
 import nvo.ProjectConfig;
 import nvo.School;
@@ -73,7 +76,7 @@ public class LandingPageGenerator {
         }
         List<RankedSchool> allSchools = new ArrayList<>(seenSchools.values());
 
-        // Страници има от DISPLAY_FROM нататък (без таван — архивът по години остава);
+        // Страници има от DISPLAY_FROM нататък (без таван - архивът по години остава);
         // по-ранните години са само в експорта, а старите им адреси пренасочват към класа.
         int displayFrom = ProjectConfig.DISPLAY_FROM.get(grade);
 
@@ -146,6 +149,54 @@ public class LandingPageGenerator {
         return grade.equals("12") ? "ДЗИ" : "НВО";
     }
 
+    /** "НВО 7 клас - 2026" / "Матури (ДЗИ) - 2026" - изпитът така, както го търсят, годината - между тирета. */
+    private String examLabel(String grade, int year) {
+        return (grade.equals("12") ? "Матури (ДЗИ)" : "НВО " + grade + " клас") + " - " + year;
+    }
+
+    /** JSON-LD: пътят (като breadcrumbs на страницата) + първите 10 училища от класацията. */
+    private String rankingLd(String grade, String crumb, String canonical, String heading,
+                             List<Map<String, Object>> rows) {
+        JsonArray crumbs = new JsonArray();
+        crumbs.add(listItem(1, "Начало", "item", SITE_BASE_URL));
+        crumbs.add(listItem(2, gradeExamPrefix(grade) + " след " + grade + " клас", "item", SITE_BASE_URL + grade + "/"));
+        crumbs.add(listItem(3, crumb, "item", canonical));
+        JsonObject breadcrumbs = new JsonObject();
+        breadcrumbs.addProperty("@type", "BreadcrumbList");
+        breadcrumbs.add("itemListElement", crumbs);
+
+        JsonArray items = new JsonArray();
+        for (Map<String, Object> row : rows.subList(0, Math.min(10, rows.size()))) {
+            items.add(listItem((int) row.get("rank"), (String) row.get("name"), "url",
+                    SITE_BASE_URL + "school/" + row.get("code") + "/"));
+        }
+        JsonObject list = new JsonObject();
+        list.addProperty("@type", "ItemList");
+        list.addProperty("name", heading);
+        list.addProperty("url", canonical);
+        list.addProperty("numberOfItems", rows.size());
+        list.addProperty("itemListOrder", "https://schema.org/ItemListOrderDescending");
+        list.add("itemListElement", items);
+
+        JsonArray graph = new JsonArray();
+        graph.add(breadcrumbs);
+        graph.add(list);
+        JsonObject root = new JsonObject();
+        root.addProperty("@context", "https://schema.org");
+        root.add("@graph", graph);
+        return new Gson().toJson(root);
+    }
+
+    /** ListItem; в BreadcrumbList адресът е "item", в ItemList - "url". */
+    private static JsonObject listItem(int position, String name, String urlKey, String url) {
+        JsonObject item = new JsonObject();
+        item.addProperty("@type", "ListItem");
+        item.addProperty("position", position);
+        item.addProperty("name", name);
+        item.addProperty(urlKey, url);
+        return item;
+    }
+
     private String methodologyText(String belLabel, String matLabel) {
         return "Подредбата е по средна стойност на " + belLabel + " и " + matLabel
                 + ", изчислена като (" + belLabel + " + " + matLabel + ") / 2."
@@ -157,10 +208,13 @@ public class LandingPageGenerator {
                                      int year, int yearIndex) {
         String examPrefix = gradeExamPrefix(grade);
         Map<String, Object> ctx = pageContext(grade);
-        ctx.put("title", cityName + " – " + examPrefix + " " + grade + " клас " + year + " | Иван Давидов");
-        ctx.put("description", "Класация на училищата в " + cityName + " по " + belLabel + " и " + matLabel
+        String heading = examLabel(grade, year) + " - класация на училищата " + Cities.inCity(cityName);
+        String canonical = SITE_BASE_URL + grade + "/" + citySlug + "/";
+        ctx.put("title", heading + " | Иван Давидов");
+        ctx.put("description", "Класация на училищата " + Cities.inCity(cityName) + " по " + belLabel + " и " + matLabel
                 + " за " + examPrefix + " след " + grade + " клас, " + year + " г.");
-        ctx.put("canonical", SITE_BASE_URL + grade + "/" + citySlug + "/");
+        ctx.put("canonical", canonical);
+        ctx.put("inCity", Cities.inCity(cityName));
         ctx.put("isCity", true);
         ctx.put("cityName", cityName);
         ctx.put("citySlug", citySlug);
@@ -168,14 +222,16 @@ public class LandingPageGenerator {
         ctx.put("hasBalove", Files.isDirectory(Path.of(DOCS_BASE, grade, nvo.ProjectConfig.RUO_DIR_NAME, citySlug)));
         ctx.put("crumb", cityName);
         ctx.put("eyebrow", examPrefix + " след " + grade + " клас · " + cityName);
-        ctx.put("h1", cityName + " – " + examPrefix + " " + grade + " клас");
+        ctx.put("h1", cityName + " - " + examPrefix + " " + grade + " клас");
         ctx.put("h2", "Класация " + year + " г.");
         ctx.put("methodology", methodologyText(belLabel, matLabel));
         ctx.put("belLabel", belLabel);
         ctx.put("matLabel", matLabel);
         ctx.put("showCity", false);
-        ctx.put("rows", rankingRows(ranked, yearIndex, false, null));
+        List<Map<String, Object>> rows = rankingRows(ranked, yearIndex, false, null);
+        ctx.put("rows", rows);
         ctx.put("count", ranked.size());
+        ctx.put("jsonLd", rankingLd(grade, cityName, canonical, heading, rows));
         return SiteLayout.render("landing", ctx);
     }
 
@@ -184,22 +240,26 @@ public class LandingPageGenerator {
                                      Map<String, String> slugToCity) {
         String examPrefix = gradeExamPrefix(grade);
         Map<String, Object> ctx = pageContext(grade);
-        ctx.put("title", examPrefix + " " + grade + " клас " + year + " – национална класация | Иван Давидов");
+        String heading = examLabel(grade, year) + " - национална класация на училищата";
+        String canonical = SITE_BASE_URL + grade + "/" + year + "/";
+        ctx.put("title", heading + " | Иван Давидов");
         ctx.put("description", "Национална класация на училищата по " + belLabel + " и " + matLabel
                 + " за " + examPrefix + " след " + grade + " клас, " + year + " г.");
-        ctx.put("canonical", SITE_BASE_URL + grade + "/" + year + "/");
+        ctx.put("canonical", canonical);
         ctx.put("isYear", true);
         ctx.put("year", year);
         ctx.put("crumb", "Класация " + year);
         ctx.put("eyebrow", examPrefix + " след " + grade + " клас · " + year);
-        ctx.put("h1", examPrefix + " " + grade + " клас – " + year + " г.");
+        ctx.put("h1", examPrefix + " " + grade + " клас - " + year + " г.");
         ctx.put("h2", "Национална класация");
         ctx.put("methodology", methodologyText(belLabel, matLabel));
         ctx.put("belLabel", belLabel);
         ctx.put("matLabel", matLabel);
         ctx.put("showCity", true);
-        ctx.put("rows", rankingRows(ranked, yearIndex, true, slugToCity));
+        List<Map<String, Object>> rows = rankingRows(ranked, yearIndex, true, slugToCity);
+        ctx.put("rows", rows);
         ctx.put("count", ranked.size());
+        ctx.put("jsonLd", rankingLd(grade, "Класация " + year, canonical, heading, rows));
         List<Map<String, Object>> years = new ArrayList<>();
         for (int y : availableYears) {
             Map<String, Object> item = new LinkedHashMap<>();

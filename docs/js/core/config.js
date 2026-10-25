@@ -6,7 +6,7 @@ export const GRADES = [4, 7, 10, 12];
 /**
  * От коя година сайтът показва данни (графики, таблици, доклади). По-ранните години
  * са само в експорта (CSV, API): НВО 7 клас за 2018 г. е по 65-точкова скала,
- * а НВО 10 клас за 2018–2020 г. са копия.
+ * а НВО 10 клас за 2018-2020 г. са копия.
  */
 export const DISPLAY_FROM = { 4: 2019, 7: 2019, 10: 2021, 12: 2019 };
 
@@ -22,7 +22,7 @@ export function displayRange(grade, lastYear, historical = false) {
   return { from: Math.max(DISPLAY_FROM[grade], lastYear - span + 1), to: lastYear };
 }
 
-/** Най-ранната година за исторически изглед — такава, че има пълни HISTORY_YEARS години. */
+/** Най-ранната година за исторически изглед - такава, че има пълни HISTORY_YEARS години. */
 export function navFirstYear(grade) {
   return DISPLAY_FROM[grade] + HISTORY_YEARS - 1;
 }

@@ -2,20 +2,20 @@
 <html lang="bg">
 <head>
   <meta charset="utf-8">
-  <title>{{title}} – класации, графики и статистики | Иван Давидов</title>
-  <meta name="description" content="Класации, графики и статистики за {{title}} в България от Иван Давидов. Сравнете градове, училища и успехи по {{subjectsLong}} за последните години.">
+  <title>{{pageTitle}} | Иван Давидов</title>
+  <meta name="description" content="Резултатите от {{title}} за {{latestYear}} г. за всички училища в България: класации по градове, графики и статистики по {{subjectsLong}} за последните години.">
   <meta name="author" content="Иван Давидов">
 {{{head}}}
   <link rel="canonical" href="{{siteUrl}}{{grade}}/">
   <meta property="og:type" content="website">
   <meta property="og:url" content="{{siteUrl}}{{grade}}/">
-  <meta property="og:title" content="{{title}} – класации, графики и статистики | Иван Давидов">
+  <meta property="og:title" content="{{pageTitle}}">
   <meta property="og:description" content="Класации, графики и статистики за {{title}} от Иван Давидов. Сравнете училищата по {{subjectsLong}}.">
   <meta property="og:image" content="{{siteUrl}}images/social-preview.png">
   <meta property="og:locale" content="bg_BG">
-  <meta property="og:site_name" content="НВО и ДЗИ – Иван Давидов">
+  <meta property="og:site_name" content="НВО и ДЗИ - Иван Давидов">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="{{title}} – класации, графики и статистики | Иван Давидов">
+  <meta name="twitter:title" content="{{pageTitle}}">
   <meta name="twitter:description" content="Класации, графики и статистики за {{title}} от Иван Давидов. Сравнете училищата по {{subjectsLong}}.">
   <meta name="twitter:image" content="{{siteUrl}}images/social-preview.png">
   <script type="application/ld+json">
@@ -24,7 +24,7 @@
     "@graph": [
       {
         "@type": "WebSite",
-        "name": "НВО и ДЗИ – Иван Давидов",
+        "name": "НВО и ДЗИ - Иван Давидов",
         "url": "{{siteUrl}}",
         "author": { "@id": "#author" },
         "inLanguage": "bg"
@@ -66,7 +66,7 @@
 
     <section class="container container--wide grade-hero">
       <div class="grade-hero__text">
-        <p class="page-head__eyebrow">{{examLong}} · {{displayFrom}}–{{latestYear}}</p>
+        <p class="page-head__eyebrow">{{examLong}} · {{displayFrom}}-{{latestYear}}</p>
         <h1 class="page-head__title">{{title}}</h1>
         <p class="page-head__lead">Сравни училищата по резултатите от {{subjectsLong}}, разгледай класацията на всеки град и средните резултати по години.</p>
       </div>
@@ -74,9 +74,9 @@
         <label class="field" for="year-select">
           <span class="field__label">{{#icon}}history{{/icon}} <span class="chip__long">Данни към година</span><span class="chip__short">Година</span></span>
           <select class="select" id="year-select">
-            <option value="">{{latestYear}} — актуални данни</option>
+            <option value="">{{latestYear}} - актуални данни</option>
 {{#historyYears}}
-            <option value="{{.}}">{{.}} — исторически изглед</option>
+            <option value="{{.}}">{{.}} - исторически изглед</option>
 {{/historyYears}}
           </select>
         </label>
@@ -104,7 +104,7 @@
         <div class="card__head">
           <div>
             <h2 class="card__title" id="compare-title">Сравнение на училища</h2>
-            <p class="muted text-sm compare__lead">Резултати по години — {{subjectB}} и {{subjectM}} ({{scale}})</p>
+            <p class="muted text-sm compare__lead">Резултати по години - {{subjectB}} и {{subjectM}} ({{scale}})</p>
           </div>
           <div class="cluster compare__actions">
             <button class="btn btn--sm btn--ghost" type="button" data-action="share" title="Копирай връзка към този избор">{{#icon}}link{{/icon}}<span class="btn__label">Сподели</span></button>
@@ -117,7 +117,7 @@
             <div class="combo compare__add">
               <div class="input-icon">
                 {{#icon}}plus{{/icon}}
-                <input class="input" id="school-add" type="text" placeholder="Добави училище — име или град…" aria-label="Добави училище в графиката">
+                <input class="input" id="school-add" type="text" placeholder="Добави училище - име или град…" aria-label="Добави училище в графиката">
               </div>
             </div>
             <ul class="compare__chips" id="selected-chips" role="list" aria-label="Избрани училища"></ul>
@@ -185,7 +185,7 @@
         <div class="card__body"><div class="skeleton" style="height:320px"></div></div>
       </div>
       <noscript>
-        <p class="banner banner--info mt-4">За графиките и интерактивните класации е нужен JavaScript. Класациите по градове са достъпни и като отделни страници — избери град по-горе.</p>
+        <p class="banner banner--info mt-4">За графиките и интерактивните класации е нужен JavaScript. Класациите по градове са достъпни и като отделни страници - избери град по-горе.</p>
       </noscript>
     </section>
   </main>

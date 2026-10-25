@@ -56,7 +56,7 @@ if (table) {
     btn.addEventListener('click', () => {
       const current = th.getAttribute('aria-sort');
       const isNum = th.dataset.type === 'num';
-      // Числата (без №) започват низходящо, текстът — възходящо.
+      // Числата (без №) започват низходящо, текстът - възходящо.
       const first = isNum && col > 0 ? 'descending' : 'ascending';
       const dir = current === 'none' ? first : (current === 'ascending' ? 'descending' : 'ascending');
       ths.forEach((x) => x.setAttribute('aria-sort', x === th ? dir : 'none'));

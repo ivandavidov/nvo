@@ -1,6 +1,6 @@
-// Общото поведение на всяка страница: меню „Още“, падащите менюта, глобално търсене,
+// Общото поведение на всяка страница: меню "Още", падащите менюта, глобално търсене,
 // копиране на адреси за дарения, плаващото заглавие на таблиците на телефон и вицът във футъра.
-// ES модул — пътищата до останалите модули и до данните са спрямо този файл.
+// ES модул - пътищата до останалите модули и до данните са спрямо този файл.
 
 import { initPopovers } from './ui/popover.js';
 import { initStickyHeads } from './ui/sticky-head.js';
@@ -79,8 +79,8 @@ function initSearch() {
     btn.addEventListener('pointerenter', warm, { once: true });
     btn.addEventListener('focus', warm, { once: true });
   });
-  // Самият модул е малък — зареждаме го, щом браузърът е свободен, за да не губим
-  // първите натиснати букви след „/“.
+  // Самият модул е малък - зареждаме го, щом браузърът е свободен, за да не губим
+  // първите натиснати букви след "/".
   const idle = window.requestIdleCallback || ((fn) => setTimeout(fn, 1500));
   idle(() => loadPalette());
   document.addEventListener('keydown', (e) => {
@@ -151,10 +151,10 @@ function initJoke() {
   }
   import('./core/jokes.js').then(({ randomJoke }) => {
     const j = randomJoke();
-    el.textContent = '„' + j.q + '“ ';
+    el.textContent = '"' + j.q + '" ';
     const author = document.createElement('span');
     author.className = 'joke__author';
-    author.textContent = '— ' + j.a;
+    author.textContent = '- ' + j.a;
     el.appendChild(author);
   });
 }
@@ -178,7 +178,7 @@ export function toast(message) {
 
 /**
  * Графиките, създадени извън общия модул (вградените в статиите на блога), получават име
- * за екранните четци — по заглавието на картата им. Общият модул го прави сам (labelChart).
+ * за екранните четци - по заглавието на картата им. Общият модул го прави сам (labelChart).
  */
 function labelCharts() {
   document.querySelectorAll('svg.highcharts-root:not([aria-label]), svg.highcharts-root[aria-label=""]').forEach((svg) => {
@@ -196,7 +196,7 @@ initSearch();
 initCopyButtons();
 initJoke();
 if (document.querySelector('.article')) {
-  // Статиите рисуват графиките си сами (и ги прерисуват при смяна на темата) — именуваме всяка нова.
+  // Статиите рисуват графиките си сами (и ги прерисуват при смяна на темата) - именуваме всяка нова.
   let pending = false;
   new MutationObserver(() => {
     if (!pending) {

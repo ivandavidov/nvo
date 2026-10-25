@@ -1,4 +1,4 @@
-// Търсене на училище в модела на един клас (за полетата „Добави училище“).
+// Търсене на училище в модела на един клас (за полетата "Добави училище").
 import { normalize } from './dom.js';
 import { searchKey, expandAbbreviations } from './search-text.js';
 

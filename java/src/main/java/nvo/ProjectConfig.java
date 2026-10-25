@@ -29,7 +29,7 @@ public final class ProjectConfig {
     /**
      * От коя година сайтът показва данни (графики, таблици, страници по години). По-ранните
      * години са само в експорта (CSV, API, Kaggle): НВО 7 клас за 2018 г. е по 65-точкова скала,
-     * а НВО 10 клас за 2018–2020 г. са копия. Същото като DISPLAY_FROM в docs/js/core/config.js.
+     * а НВО 10 клас за 2018-2020 г. са копия. Същото като DISPLAY_FROM в docs/js/core/config.js.
      */
     public static final Map<String, Integer> DISPLAY_FROM = Map.of("4", 2019, "7", 2019, "10", 2021, "12", 2019);
 
@@ -44,7 +44,7 @@ public final class ProjectConfig {
         return Math.max(DISPLAY_FROM.get(grade), latestYear - MAX_YEARS + 1);
     }
 
-    /** Най-ранната година за исторически изглед — с пълни HISTORY_YEARS години (navFirstYear в config.js). */
+    /** Най-ранната година за исторически изглед - с пълни HISTORY_YEARS години (navFirstYear в config.js). */
     public static int navFirstYear(String grade) {
         return DISPLAY_FROM.get(grade) + HISTORY_YEARS - 1;
     }

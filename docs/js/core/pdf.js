@@ -377,7 +377,7 @@ export async function schoolReportPdf(model, index) {
   doc.save(cfg.exportPrefix + '-report-' + safe(cityName) + '-' + safe(school.l) + '.pdf');
 }
 
-/** Адресът на сайта и „стр. / общо“ в долния край на всяка страница. */
+/** Адресът на сайта и "стр. / общо" в долния край на всяка страница. */
 export function addPageFooters(doc, margin = PAGE_MARGIN_PT) {
   const pageW = doc.internal.pageSize.getWidth();
   const pages = doc.internal.getNumberOfPages();
@@ -435,7 +435,7 @@ function addRankingTable(doc, model, city, rows, filter) {
   });
 }
 
-/** PDF на класацията на град — видимите редове в текущата подредба и филтър. */
+/** PDF на класацията на град - видимите редове в текущата подредба и филтър. */
 export async function rankingPdf(model, city, rows, filter) {
   const ns = await ensurePdfLibs();
   if (!rows.length) {
@@ -455,7 +455,7 @@ export async function allRankingsPdf(model) {
   const doc = await newDoc(ns, 'landscape');
   let first = true;
   for (const city of renderableCities(model)) {
-    // като таблицата на сайта по подразбиране (колона „Ранг“ низходящо, филтър „Всички“)
+    // като таблицата на сайта по подразбиране (колона "Ранг" низходящо, филтър "Всички")
     const rows = sortRanking(model, cityRanking(model, city), 'rank', 'desc', null);
     if (!rows.length) {
       continue;

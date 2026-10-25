@@ -1,5 +1,5 @@
-// Обобщена статистика (/stats/) — ES модул. Данните идват от data/grade-{g}.json,
-// настройките по клас — от js/core/config.js (същите като на страниците по клас).
+// Обобщена статистика (/stats/) - ES модул. Данните идват от data/grade-{g}.json,
+// настройките по клас - от js/core/config.js (същите като на страниците по клас).
 import { gradeConfig, displayRange } from '../js/core/config.js';
 import { labelChart } from '../js/ui/chart-theme.js';
 
@@ -93,7 +93,7 @@ function eachSchool(s, fn) {
   s.forEach((sch, idx) => { if (sch) fn(sch, idx); });
 }
 
-// Кратко ime + "(град)" — автоматично работи с всяко ново училище
+// Кратко ime + "(град)" - автоматично работи с всяко ново училище
 function schoolLabel(sch, idx, cityMap) {
   const city = cityMap[idx];
   return sch.l + (city ? ' (' + city + ')' : '');
@@ -567,7 +567,7 @@ function computeDistribution(data) {
   const keys = Object.keys(counts).map(Number).sort((a, b) => a - b);
   const fmt = bucket < 1 ? 1 : 0;
   return {
-    categories: keys.map(k => k.toFixed(fmt) + '–' + (k + bucket).toFixed(fmt)),
+    categories: keys.map(k => k.toFixed(fmt) + '-' + (k + bucket).toFixed(fmt)),
     values: keys.map(k => counts[k])
   };
 }
@@ -575,15 +575,15 @@ function computeDistribution(data) {
 // Разпределение на размерите на училищата (брой ученици)
 function computeSizeDistribution(data) {
   const BUCKETS = [
-    { label: '1–9',   min: 1,   max: 9   },
-    { label: '10–19', min: 10,  max: 19  },
-    { label: '20–29', min: 20,  max: 29  },
-    { label: '30–49', min: 30,  max: 49  },
-    { label: '50–74', min: 50,  max: 74  },
-    { label: '75–99', min: 75,  max: 99  },
-    { label: '100–149', min: 100, max: 149 },
-    { label: '150–199', min: 150, max: 199 },
-    { label: '200–299', min: 200, max: 299 },
+    { label: '1-9',   min: 1,   max: 9   },
+    { label: '10-19', min: 10,  max: 19  },
+    { label: '20-29', min: 20,  max: 29  },
+    { label: '30-49', min: 30,  max: 49  },
+    { label: '50-74', min: 50,  max: 74  },
+    { label: '75-99', min: 75,  max: 99  },
+    { label: '100-149', min: 100, max: 149 },
+    { label: '150-199', min: 150, max: 199 },
+    { label: '200-299', min: 200, max: 299 },
     { label: '300+',  min: 300, max: Infinity }
   ];
   const acc = {};
@@ -1507,7 +1507,7 @@ function deltaBenchmarkTables(data) {
   const { over, under } = computeDeltaFromBenchmarks(data);
   let h1 = '<thead><tr><th>#</th><th>Училище</th><th>Средна</th><th>Δ нац.</th><th>Δ град</th></tr></thead><tbody>';
   over.forEach((r, i) => {
-    const dCity = r.deltaCity == null ? '—' : (r.deltaCity > 0 ? '+' : '') + r.deltaCity.toFixed(2);
+    const dCity = r.deltaCity == null ? '-' : (r.deltaCity > 0 ? '+' : '') + r.deltaCity.toFixed(2);
     const dNat = (r.deltaNational > 0 ? '+' : '') + r.deltaNational.toFixed(2);
     const cls = r.deltaNational >= 0 ? 'pos' : 'neg';
     h1 += '<tr><td>' + (i + 1) + '</td><td>' + r.name +
@@ -1518,7 +1518,7 @@ function deltaBenchmarkTables(data) {
 
   let h2 = '<thead><tr><th>#</th><th>Училище</th><th>Средна</th><th>Δ нац.</th><th>Δ град</th></tr></thead><tbody>';
   under.forEach((r, i) => {
-    const dCity = r.deltaCity == null ? '—' : (r.deltaCity > 0 ? '+' : '') + r.deltaCity.toFixed(2);
+    const dCity = r.deltaCity == null ? '-' : (r.deltaCity > 0 ? '+' : '') + r.deltaCity.toFixed(2);
     const dNat = (r.deltaNational > 0 ? '+' : '') + r.deltaNational.toFixed(2);
     const cls = r.deltaNational >= 0 ? 'pos' : 'neg';
     h2 += '<tr><td>' + (i + 1) + '</td><td>' + r.name +
@@ -1580,7 +1580,7 @@ function persistentDecilesTables(data) {
   document.getElementById('tbl-persistent-bottom').innerHTML = h2 + '</tbody>';
 }
 
-/** Число с 2 знака след точката за таблиците (63.80, не 63.8 — колоните остават подравнени). */
+/** Число с 2 знака след точката за таблиците (63.80, не 63.8 - колоните остават подравнени). */
 function f2(v) {
   return typeof v === 'number' ? v.toFixed(2) : v;
 }

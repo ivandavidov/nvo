@@ -1,5 +1,5 @@
-// Падащите менюта <details data-popover> („Изтегли ▾“, „Класации по години“): отварят се
-// от <summary> (работят и без JS); тук — затваряне при клик навън, Esc и избор,
+// Падащите менюта <details data-popover> ("Изтегли ▾", "Класации по години"): отварят се
+// от <summary> (работят и без JS); тук - затваряне при клик навън, Esc и избор,
 // стрелки ↑/↓ между елементите и панел, който не излиза извън екрана.
 
 const ITEMS = 'a[href], button:not([disabled])';
@@ -46,7 +46,7 @@ function fit(details) {
 }
 
 export function initPopovers() {
-  // toggle не изплува — слушаме във фазата на прихващане.
+  // toggle не изплува - слушаме във фазата на прихващане.
   document.addEventListener('toggle', (e) => {
     const d = e.target;
     if (!(d instanceof HTMLDetailsElement) || !d.matches('[data-popover]') || !d.open) {
@@ -65,7 +65,7 @@ export function initPopovers() {
       if (!d.contains(e.target)) {
         close(d, false);
       } else if (e.target.closest(ITEMS) && panelOf(d).contains(e.target)) {
-        // изборът е направен — действието се обработва от страницата
+        // изборът е направен - действието се обработва от страницата
         setTimeout(() => close(d, false), 0);
       }
     });

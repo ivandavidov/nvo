@@ -26,11 +26,11 @@ import static nvo.api.JsonGenerator.*;
 /**
  * Generates the per-school API surface, keyed by the canonical school code:
  * <ul>
- *   <li>{@code schools/{code}.json} — full cross-grade document (identity, city,
+ *   <li>{@code schools/{code}.json} - full cross-grade document (identity, city,
  *       per-grade score/student time series and ranks);</li>
- *   <li>{@code schools.json} — bulk identity lookup (now data-driven, with the grades a
+ *   <li>{@code schools.json} - bulk identity lookup (now data-driven, with the grades a
  *       school participates in);</li>
- *   <li>{@code schools-index.json} — compact array for the client-side school search box.</li>
+ *   <li>{@code schools-index.json} - compact array for the client-side school search box.</li>
  * </ul>
  * The school universe is the union of codes that actually appear in the normalized data across
  * all grades (so every listed school has real data and a future {@code /school/{code}/} page).
@@ -80,6 +80,11 @@ public class SchoolsGenerator {
         JsonObject bulkSchools = new JsonObject();
         JsonArray indexArr = new JsonArray();
 
+        // Официалните имена (data/school-names.json) - кодовете без запис се изброяват, за да се добавят.
+        Map<String, OfficialNames.Names> officialNames = OfficialNames.load();
+        Map<String, String> registerStatus = OfficialNames.loadRegisterStatus();
+        List<String> withoutOfficialName = new ArrayList<>();
+
         for (String code : codes) {
             // Identity comes from the first grade the school appears in (same across grades).
             RankedSchool identity = null;
@@ -119,6 +124,12 @@ public class SchoolsGenerator {
             individual.addProperty("code", code);
             individual.addProperty("fullName", identity.fullName());
             individual.addProperty("shortName", identity.shortName());
+            OfficialNames.Names names = officialNames.get(code);
+            if (names == null) {
+                withoutOfficialName.add(code);
+            }
+            addNames(individual, names);
+            addStatus(individual, registerStatus.get(code));
             individual.addProperty("isPrivate", identity.isPrivate());
             if (website != null) {
                 individual.addProperty("website", website);
@@ -136,6 +147,8 @@ public class SchoolsGenerator {
             JsonObject bulk = new JsonObject();
             bulk.addProperty("shortName", identity.shortName());
             bulk.addProperty("fullName", identity.fullName());
+            addNames(bulk, names);
+            addStatus(bulk, registerStatus.get(code));
             if (website != null) {
                 bulk.addProperty("website", website);
             } else {
@@ -172,6 +185,10 @@ public class SchoolsGenerator {
         indexRoot.add("schools", indexArr);
         Files.writeString(Path.of(OUTPUT_BASE, "schools-index.json"), collapseArrays(gson.toJson(indexRoot)) + "\n");
 
+        if (!withoutOfficialName.isEmpty()) {
+            System.out.println("SchoolsGenerator: " + withoutOfficialName.size()
+                    + " school(s) without an entry in data/school-names.json: " + String.join(", ", withoutOfficialName));
+        }
         System.out.println("Generated: schools.json, schools-index.json, schools/{code}.json ("
                 + codes.size() + " schools)");
     }
@@ -283,6 +300,29 @@ public class SchoolsGenerator {
             return Long.parseLong(code);
         } catch (NumberFormatException e) {
             return Long.MAX_VALUE;
+        }
+    }
+
+    /** Статусът в регистъра на МОН ("действаща", "закрита", "преобразувана (закрита)", "отписана", "заличена") или null. */
+    private static void addStatus(JsonObject target, String status) {
+        if (status != null) {
+            target.addProperty("registerStatus", status);
+        } else {
+            target.add("registerStatus", JsonNull.INSTANCE);
+        }
+    }
+
+    /** monName / officialName от data/school-names.json (null, ако училището няма запис). */
+    private static void addNames(JsonObject target, OfficialNames.Names names) {
+        if (names != null && names.monName() != null) {
+            target.addProperty("monName", names.monName());
+        } else {
+            target.add("monName", JsonNull.INSTANCE);
+        }
+        if (names != null && names.officialName() != null) {
+            target.addProperty("officialName", names.officialName());
+        } else {
+            target.add("officialName", JsonNull.INSTANCE);
         }
     }
 }

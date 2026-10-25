@@ -91,7 +91,7 @@ public final class BlogIndexGenerator {
         Map<String, Object> root = new LinkedHashMap<>();
         root.put("@context", "https://schema.org");
         root.put("@type", "Blog");
-        root.put("name", "Блог – НВО и ДЗИ");
+        root.put("name", "Блог - НВО и ДЗИ");
         root.put("description", "Анализи и наблюдения върху НВО и ДЗИ в България, стъпили върху отворените данни.");
         root.put("url", ProjectConfig.SITE_BASE_URL + "blog/");
         root.put("inLanguage", "bg");

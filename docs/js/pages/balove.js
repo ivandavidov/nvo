@@ -13,8 +13,8 @@ const YEARS_TO_SHOW = 4;
 const OVERVIEW_YEARS_TO_SHOW = 3;
 const KLASIRANE_CHARTS = 3;
 const KLASS_NAMES = ['1-во', '2-ро', '3-то', '4-то'];
-// Под тази ширина (телефон в двата режима, таблет) „Училище“ и „Паралелка“ са една колона с два
-// реда: иначе името на паралелката остава с 90–140 px и се вижда само „Математическ…“.
+// Под тази ширина (телефон в двата режима, таблет) "Училище" и "Паралелка" са една колона с два
+// реда: иначе името на паралелката остава с 90-140 px и се вижда само "Математическ…".
 const OVERVIEW_COMPACT = window.matchMedia('(max-width: 1023px)');
 
 /* global ruoYears, ruoSchools */
@@ -51,9 +51,9 @@ const el = {
   search: document.getElementById('overview-search')
 };
 
-/** Бал с два знака след точката — еднаква ширина, за да са колоните подравнени (490.50, не 490.5). */
+/** Бал с два знака след точката - еднаква ширина, за да са колоните подравнени (490.50, не 490.5). */
 function fmt(v) {
-  return v !== null && v !== undefined && v !== 0 ? Number(v).toFixed(2) : '—';
+  return v !== null && v !== undefined && v !== 0 ? Number(v).toFixed(2) : '-';
 }
 
 function visibleData(d) {
@@ -80,7 +80,7 @@ function writeUrl() {
   try {
     history.replaceState(null, '', url.pathname + (query ? '?' + query : '') + url.hash);
   } catch (e) {
-    // Safari ограничава replaceState — адресът ще се обнови при следващата промяна.
+    // Safari ограничава replaceState - адресът ще се обнови при следващата промяна.
   }
 }
 
@@ -148,7 +148,7 @@ function currentData() {
 
 function populateProfiles() {
   if (!state.school) {
-    el.profile.innerHTML = '<option value="">— Избери паралелка —</option>';
+    el.profile.innerHTML = '<option value="">- Избери паралелка -</option>';
     el.profile.disabled = true;
     return;
   }
@@ -204,11 +204,11 @@ function renderDetailTable(d) {
       const k = d[yi] ? d[yi][ki] : null;
       if (showGender) {
         for (let si = 0; si < 6; si++) {
-          tbody += '<td class="num' + (si === 0 ? ' group-start' : '') + '">' + (k ? fmt(k[si]) : '—') + '</td>';
+          tbody += '<td class="num' + (si === 0 ? ' group-start' : '') + '">' + (k ? fmt(k[si]) : '-') + '</td>';
         }
       } else {
-        tbody += '<td class="num group-start">' + (k ? fmt(k[0]) : '—') + '</td>';
-        tbody += '<td class="num">' + (k ? fmt(k[3]) : '—') + '</td>';
+        tbody += '<td class="num group-start">' + (k ? fmt(k[0]) : '-') + '</td>';
+        tbody += '<td class="num">' + (k ? fmt(k[3]) : '-') + '</td>';
       }
     });
     tbody += '</tr>';
@@ -244,7 +244,7 @@ function renderCharts(d, label) {
     minTrend.push(k1 ? k1[0] : null);
     maxTrend.push(k1 ? k1[3] : null);
   });
-  const trend = chartBase(label + ' — 1-во класиране, тренд по години', pageYears.map(String), 'line');
+  const trend = chartBase(label + ' - 1-во класиране, тренд по години', pageYears.map(String), 'line');
   trend.series = [
     { name: 'Мин. бал', data: minTrend, color: minColor },
     { name: 'Макс. бал', data: maxTrend, color: maxColor, dashStyle: 'ShortDash' }
@@ -344,7 +344,7 @@ function renderOverviewHeader() {
     + sortBtn(col, label, false) + '</th>';
   let html = '<tr><th class="num col-num">#</th>';
   if (OVERVIEW_COMPACT.matches) {
-    // Една колона, два бутона един под друг — като двата реда в клетката (училище, паралелка);
+    // Една колона, два бутона един под друг - като двата реда в клетката (училище, паралелка);
     // всеки подрежда по своята стойност и сам показва, че е активен.
     const on = state.sortCol === 'school' ? 'school' : state.sortCol === 'profile' ? 'profile' : '';
     html += '<th class="col-profile" aria-sort="' + (on ? dir(on) : 'none') + '"><span class="ov-sorts">'
@@ -352,10 +352,10 @@ function renderOverviewHeader() {
   } else {
     html += th('school', 'Училище', 'col-school') + th('profile', 'Паралелка', 'col-profile');
   }
-  // „Мин. 26“ — годината с две цифри, както „БЕЛ 26“ в класацията; пълната е за екранните четци и в подсказката.
+  // "Мин. 26" - годината с две цифри, както "БЕЛ 26" в класацията; пълната е за екранните четци и в подсказката.
   for (let yi = latestYi; yi >= overviewFirstYi; yi--) {
     const y = String(pageYears[yi]);
-    // Надписът е в един span: .num .th-sort е row-reverse и иначе „26“ би излязло пред „Мин.“.
+    // Надписът е в един span: .num .th-sort е row-reverse и иначе "26" би излязло пред "Мин.".
     html += th('year-' + yi, '<span>Мин. <span class="th-qual"><span class="sr-only">' + y.slice(0, 2) + '</span>' + y.slice(-2) + '</span></span>',
       'num col-score', 'Минимален бал ' + y);
   }
@@ -386,7 +386,7 @@ function renderOverview() {
       html += '<td class="num">' + fmt(v) + '</td>';
     }
     return html + '<td class="center group-start">' + (TREND[r.trend] || '') + '</td></tr>';
-  }).join('') || '<tr><td colspan="' + ((compact ? 3 : 4) + latestYi - overviewFirstYi + 1) + '" class="muted">Няма паралелки за „' + esc(state.filter) + '“.</td></tr>';
+  }).join('') || '<tr><td colspan="' + ((compact ? 3 : 4) + latestYi - overviewFirstYi + 1) + '" class="muted">Няма паралелки за "' + esc(state.filter) + '".</td></tr>';
 }
 
 /* ---------------- Старт ---------------- */
@@ -442,7 +442,7 @@ function init() {
   // Баловете на град → този град се показва и на страниците 4/7/10/12.
   rememberCity(document.body.dataset.city);
   if (!years.length) {
-    // js/ruo-{град}.js не се е заредил (мрежа, блокиране) — казваме го, вместо празна страница.
+    // js/ruo-{град}.js не се е заредил (мрежа, блокиране) - казваме го, вместо празна страница.
     const head = document.querySelector('#main .page-head');
     const html = '<div class="banner" role="alert">' + icon('info')
       + '<span>Данните за баловете не можаха да се заредят. Опитай да презаредиш страницата.</span></div>';
@@ -471,7 +471,7 @@ function init() {
     state.filter = el.search.value;
     renderOverview();
   });
-  // Завъртане на телефона или смяна на ширината — другият изглед, със същото подреждане и търсене.
+  // Завъртане на телефона или смяна на ширината - другият изглед, със същото подреждане и търсене.
   OVERVIEW_COMPACT.addEventListener('change', () => {
     renderOverviewHeader();
     renderOverview();
@@ -521,7 +521,7 @@ function init() {
 
 init();
 
-// Менюто „Изтегли ▾“ (CSV, PDF; JSON е линк) — модулът се зарежда при първото изтегляне.
+// Менюто "Изтегли ▾" (CSV, PDF; JSON е линк) - модулът се зарежда при първото изтегляне.
 document.addEventListener('click', (e) => {
   const item = e.target.closest('[data-action^="balove-"]');
   if (item) {

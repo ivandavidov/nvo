@@ -1,5 +1,5 @@
 /* ==========================================================================
-   НВО и ДЗИ — дизайн система
+   НВО и ДЗИ - дизайн система
    Един файл за целия сайт. Слоевете определят приоритета (по-късен слой печели):
    reset → tokens → base → legacy → layout → components → pages → utilities
    Цветовете идват само от токените; тъмната тема е html[data-theme="dark"]
@@ -91,7 +91,7 @@
     --primary-soft-2: #d9e3ff;
     --primary-rgb: 47 84 224;
     --on-primary: #ffffff;
-    /* Фонът на маркиран ред в таблица — плътен, за да не „прелива“ под закрепените
+    /* Фонът на маркиран ред в таблица - плътен, за да не "прелива" под закрепените
        колони при хоризонтален скрол (--primary-soft е полупрозрачен в тъмна тема). */
     --row-selected: #e6ecff;
     --accent: #e8850c;
@@ -335,7 +335,7 @@
 }
 
 /* ==========================================================================
-   legacy — имената от старата тема, за инлайн стиловете и скриптовете в
+   legacy - имената от старата тема, за инлайн стиловете и скриптовете в
    блог статиите и вграждането (четат --color-* / --chart-* с getComputedStyle)
    ========================================================================== */
 @layer legacy {
@@ -575,14 +575,14 @@
     .site-nav { gap: 0; }
     .site-nav__link { padding-inline: 0.35rem; }
   }
-  /* Под 352px „Блог“ не се побира — минава в менюто „Още“. */
+  /* Под 352px "Блог" не се побира - минава в менюто "Още". */
   .menu-narrow { display: none; }
   @media (max-width: 351px) {
     .site-nav__link--blog { display: none; }
     .menu-narrow { display: list-item; }
   }
 
-  /* --- Меню „Още“ --- */
+  /* --- Меню "Още" --- */
   .menu-panel {
     position: absolute;
     right: clamp(1rem, 4vw, 2rem);
@@ -773,7 +773,7 @@
   }
   @media (max-width: 1180px) { .search-trigger .kbd { display: none; } }
 
-  /* --- Меню с бутон „Изтегли ▾“: <details data-popover> (поведението — ui/popover.js) --- */
+  /* --- Меню с бутон "Изтегли ▾": <details data-popover> (поведението - ui/popover.js) --- */
   .menu-button { position: relative; display: inline-block; flex-shrink: 0; }
   .menu-button > summary { list-style: none; cursor: pointer; }
   .menu-button > summary::-webkit-details-marker { display: none; }
@@ -843,7 +843,7 @@
     .menu-button__short { display: inline; }
   }
 
-  /* Експортът в реда с бутоните на заглавието — изтласкан вдясно. */
+  /* Експортът в реда с бутоните на заглавието - изтласкан вдясно. */
   .page-head__export { margin-left: auto; }
 
   /* --- Chips --- */
@@ -914,6 +914,7 @@
   .badge--accent { background: var(--accent-soft); color: var(--warning); }
   [data-theme="dark"] .badge--accent { color: var(--accent); }
   .badge--success { background: var(--success-soft); color: var(--success); }
+  .badge--closed { background: var(--surface-3); color: var(--text-3); }
 
   /* --- Сегментиран контрол --- */
   .seg {
@@ -1144,7 +1145,7 @@
     background: var(--surface);
   }
   .table-wrap--tall { max-height: min(76vh, 900px); }
-  /* Плаващо копие на заглавния ред под горните ленти (ui/sticky-head.js) — само на телефон,
+  /* Плаващо копие на заглавния ред под горните ленти (ui/sticky-head.js) - само на телефон,
      където таблиците нямат собствен вертикален скрол. Под лентите на страниците (school-nav 20,
      stats-toc 15), за да се плъзга под тях в края на таблицата; над закрепените клетки (до 3). */
   .table-float {
@@ -1192,7 +1193,7 @@
   .data-table .sub { display: inline-block; min-width: 4ch; margin-left: 2px; color: var(--text-4); font-size: var(--fs-xs); text-align: left; }
   .data-table .group-start { border-left: 1px solid var(--border); }
   .data-table td.wrap { white-space: normal; min-width: 14rem; }
-  /* Маркиран ред: плътен фон — закрепените колони (position: sticky) не трябва да
+  /* Маркиран ред: плътен фон - закрепените колони (position: sticky) не трябва да
      пропускат съдържанието, което се плъзга под тях при хоризонтален скрол. */
   .data-table tr.is-selected td { background: var(--row-selected); }
   .data-table tr.divider-top td { border-top: 2px solid var(--border-strong); }
@@ -1224,11 +1225,11 @@
   [aria-sort="ascending"] .th-sort svg, [aria-sort="descending"] .th-sort svg { opacity: 1; }
   [aria-sort="ascending"] .th-sort svg { transform: rotate(180deg); }
   .num .th-sort { flex-direction: row-reverse; }
-  /* При row-reverse иконата е първа и няма базова линия — подравняваме бутона по долния ръб,
+  /* При row-reverse иконата е първа и няма базова линия - подравняваме бутона по долния ръб,
      за да са надписите на един ред с тези в съседните клетки. */
   .th-sort { vertical-align: bottom; }
 
-  /* Клетка „Ранг“: число + лента */
+  /* Клетка "Ранг": число + лента */
   .rank {
     display: inline-grid;
     grid-template-columns: 6ch minmax(40px, 1fr);
@@ -1578,7 +1579,7 @@
 }
 
 /* ==========================================================================
-   pages — страница по клас (/4/, /7/, /10/, /12/)
+   pages - страница по клас (/4/, /7/, /10/, /12/)
    ========================================================================== */
 @layer pages {
   .grade-hero {
@@ -1591,7 +1592,7 @@
   .grade-hero__side .field { min-width: 240px; }
   .grade-hero__side .field__label { display: inline-flex; align-items: center; gap: var(--sp-1); }
   .grade-hero__side .field__label svg { width: 14px; height: 14px; }
-  /* Редът под заглавието: бързите връзки, а след тях „Изтегли данните“. */
+  /* Редът под заглавието: бързите връзки, а след тях "Изтегли данните". */
   .grade-hero__links {
     grid-column: 1 / -1;
     display: flex;
@@ -1599,7 +1600,7 @@
     align-items: center;
     gap: var(--sp-2);
   }
-  /* „Изтегли данните“ — същият бутон като над таблиците, отделен от връзките с разделител
+  /* "Изтегли данните" - същият бутон като над таблиците, отделен от връзките с разделител
      (действие с данните, а не връзка към друга страница). */
   .grade-hero__export { margin-left: var(--sp-2); padding-left: var(--sp-4); border-left: 1px solid var(--border); }
   @media (max-width: 760px) {
@@ -1608,13 +1609,13 @@
   }
   /* Кратките надписи на бутоните са за по-тесните екрани. */
   .chip__short { display: none; }
-  /* Таблет и малък лаптоп: кратки надписи („Класация 2026“, „По години“, „Изтегли“) —
-     връзките и „Изтегли“ остават на един ред. */
+  /* Таблет и малък лаптоп: кратки надписи ("Класация 2026", "По години", "Изтегли") -
+     връзките и "Изтегли" остават на един ред. */
   @media (max-width: 1099px) {
     .grade-hero__links .chip__long, .grade-hero__links .menu-button__long { display: none; }
     .grade-hero__links .chip__short, .grade-hero__links .menu-button__short { display: inline; }
   }
-  /* Телефон: компактно въведение — графиката да се вижда още на първия екран. */
+  /* Телефон: компактно въведение - графиката да се вижда още на първия екран. */
   @media (max-width: 640px) {
     .grade-hero { gap: var(--sp-3); padding-top: var(--sp-5); }
     .grade-hero .page-head__lead { display: none; }
@@ -1627,9 +1628,9 @@
     .grade-page #compare { margin-top: var(--sp-6); }
     .grade-page .compare__lead { display: none; }
   }
-  /* Телефон и таблет до 767 px: връзките и „Изтегли“ — две равни колони с еднакви бутони
-     (без назъбени редове и самотни бутони). При нечетен брой първият — националната
-     класация — е на цял ред. Панелът с годините е закотвен за целия блок, под него. */
+  /* Телефон и таблет до 767 px: връзките и "Изтегли" - две равни колони с еднакви бутони
+     (без назъбени редове и самотни бутони). При нечетен брой първият - националната
+     класация - е на цял ред. Панелът с годините е закотвен за целия блок, под него. */
   @media (max-width: 767px) {
     .grade-hero__links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); position: relative; }
     .grade-hero__links > :first-child:nth-last-child(odd) { grid-column: 1 / -1; }
@@ -1640,8 +1641,8 @@
     .grade-hero__links > :first-child:nth-last-child(odd) .chip__short { display: none; }
     .grade-hero__links .year-links { position: static; }
   }
-  /* Най-тесните екрани: надписът „Година“ остава само за екранните четци (иконата се вижда),
-     за да не се отрязва изборът „2026 — актуални данни“. */
+  /* Най-тесните екрани: надписът "Година" остава само за екранните четци (иконата се вижда),
+     за да не се отрязва изборът "2026 - актуални данни". */
   @media (max-width: 359px) {
     .grade-hero__side .field__label .chip__short {
       position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
@@ -1801,9 +1802,9 @@
   .city-switch__more[open] > summary::after { transform: rotate(-135deg) translateY(-1px); }
 
   .city-panel__head { align-items: flex-start; }
-  /* Експортът — отделно меню в края на бутоните, с разделител. */
+  /* Експортът - отделно меню в края на бутоните, с разделител. */
   .city-panel__export { margin-left: var(--sp-1); padding-left: var(--sp-3); border-left: 1px solid var(--border); }
-  /* Телефон: бутоните — две равни колони под заглавието, както в началото на страницата;
+  /* Телефон: бутоните - две равни колони под заглавието, както в началото на страницата;
      при нечетен брой първият (класацията на отделна страница) е на цял ред. */
   @media (max-width: 640px) {
     .city-panel__actions { flex-basis: 100%; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-2); }
@@ -1813,7 +1814,7 @@
   }
   .city-panel__title { font-size: var(--fs-2xl); }
   /* Ред с табовете: табовете вляво, превключвателят на изгледа на текущия таб вдясно
-     („Всички / Държавни / Частни“ или „По училища / По ученици“). Таблицата започва веднага под него. */
+     ("Всички / Държавни / Частни" или "По училища / По ученици"). Таблицата започва веднага под него. */
   .city-panel__bar {
     display: flex;
     align-items: stretch;
@@ -1829,7 +1830,7 @@
   @media (max-width: 640px) {
     .city-panel__bar { display: block; padding-inline: 0; border-bottom: 0; }
     .city-panel__bar .city-panel__tabs { padding-inline: var(--sp-2); border-bottom: 1px solid var(--border); }
-    /* Двата таба — по половин ширина, с кратки надписи („Класация“), без скрол встрани. */
+    /* Двата таба - по половин ширина, с кратки надписи ("Класация"), без скрол встрани. */
     .city-panel__tabs > [role="tab"] { flex: 1 1 0; text-align: center; }
     .tabs__long { display: none; }
     .city-panel__view { padding: var(--sp-3) var(--sp-3) 0; }
@@ -1839,7 +1840,7 @@
   .city-panel__body { padding: clamp(var(--sp-4), 1.25vw, var(--sp-6)); }
   .city-panel .btn { --btn-h: 34px; }
 
-  /* Уточнението в заглавието („26“ в „БЕЛ 26“) — по-леко от предмета. */
+  /* Уточнението в заглавието ("26" в "БЕЛ 26") - по-леко от предмета. */
   .th-qual { color: var(--text-4); font-weight: 500; }
   [aria-sort="ascending"] .th-qual, [aria-sort="descending"] .th-qual { color: inherit; }
   .ranking__foot {
@@ -1870,15 +1871,15 @@
   }
   .ranking thead .col-pos, .ranking thead .col-name { z-index: 3; background: var(--surface-2); }
   .ranking tbody tr:hover .col-pos, .ranking tbody tr:hover .col-name { background: var(--surface-2); }
-  /* Значката „Д“ има фон като hover-а — на посочения ред я потъмняваме, за да не изчезне. */
+  /* Значката "Д" има фон като hover-а - на посочения ред я потъмняваме, за да не изчезне. */
   .data-table tbody tr:hover .badge:not(.badge--accent) { background: var(--surface-3); }
-  /* Плътна боя (не transparent): закрепените № и име не бива да „преливат“ върху
+  /* Плътна боя (не transparent): закрепените № и име не бива да "преливат" върху
      колоните, които се плъзгат под тях. */
   .ranking tr.is-selected td,
   .ranking tr.is-selected .col-pos,
   .ranking tr.is-selected .col-name { background: var(--row-selected); }
   /* Колоните са по-тесни от другите таблици (0.6rem), за да се събират всички години и при
-     „ДЗИ-2 26“ (12 клас) на 1280 px без хоризонтален скрол. */
+     "ДЗИ-2 26" (12 клас) на 1280 px без хоризонтален скрол. */
   .ranking th, .ranking td { padding-inline: 0.6rem; }
   .ranking .rank { grid-template-columns: 6ch 44px; min-width: 0; }
   /* Колоните по години: центрирани; стойността и броят ученици са с фиксирана ширина,
@@ -1890,8 +1891,8 @@
   .compare__chips .chip__label { max-width: min(320px, 100%); }
   .school-cell { display: flex; align-items: center; gap: var(--sp-2); }
   .school-cell > a:first-of-type { font-weight: 600; }
-  /* „Училище“ поема свободното място; когато то не стига, дългите имена се отрязват с „…“
-     (без пренасяне — пълното име е в подсказката и в профила). Иконките не се свиват. */
+  /* "Училище" поема свободното място; когато то не стига, дългите имена се отрязват с "…"
+     (без пренасяне - пълното име е в подсказката и в профила). Иконките не се свиват. */
   .ranking .col-name { width: 100%; max-width: 0; }
   .ranking .school-cell > a:first-of-type { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .ranking .school-cell > .add-toggle, .ranking .school-cell > .web-link { flex-shrink: 0; }
@@ -1941,7 +1942,7 @@
 
   .code-box { height: auto; padding: var(--sp-3); font-family: var(--font-mono); font-size: var(--fs-sm); resize: vertical; }
 
-  /* --- Лента „N училища в графиката · Виж“ — когато графиката е над видимата част --- */
+  /* --- Лента "N училища в графиката · Виж" - когато графиката е над видимата част --- */
   /* Лентата е в страницата винаги и се показва само с прозрачност (.is-visible от grade.js):
      в Safari на iPhone закрепен елемент, който се появи от display: none или с анимация на
      transform по време на скрол, понякога се рисува на грешно място и се движи със съдържанието.
@@ -1977,8 +1978,8 @@
     transition: opacity var(--dur) var(--ease), visibility 0s;
   }
   .tray .btn { border-radius: var(--radius-full); }
-  /* Телефон: „Сподели · Вгради · Изчисти“ на свой ред под заглавието, с видими надписи
-     (само иконите — верига, </>, кошче — не са достатъчно ясни). */
+  /* Телефон: "Сподели · Вгради · Изчисти" на свой ред под заглавието, с видими надписи
+     (само иконите - верига, </>, кошче - не са достатъчно ясни). */
   @media (max-width: 560px) {
     .compare .card__head { flex-wrap: wrap; row-gap: var(--sp-2); }
     .compare__actions { flex-basis: 100%; flex-wrap: wrap; gap: var(--sp-1); margin-left: -0.6rem; }
@@ -1987,14 +1988,14 @@
     .compare__actions { gap: 0; margin-left: -0.4rem; }
     .compare__actions .btn { padding-inline: 0.4rem; gap: 0.3rem; }
   }
-  /* 320 px: „Сподели · Вгради · Изчисти“ — само с надписи, за да са на един ред. */
+  /* 320 px: "Сподели · Вгради · Изчисти" - само с надписи, за да са на един ред. */
   @media (max-width: 359px) {
     .compare__actions .btn svg { display: none; }
   }
 }
 
 /* ==========================================================================
-   pages — вградими графики (/{клас}/embed.html)
+   pages - вградими графики (/{клас}/embed.html)
    ========================================================================== */
 @layer pages {
   body.embed { min-height: 0; overflow: hidden; background: var(--bg); }
@@ -2008,7 +2009,7 @@
 }
 
 /* ==========================================================================
-   pages — документация за вграждането (/embed/)
+   pages - документация за вграждането (/embed/)
    ========================================================================== */
 @layer pages {
   .embed-gen__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: var(--sp-6); }
@@ -2041,14 +2042,14 @@
   @media (max-width: 640px) {
     .city-panel__body { padding: var(--sp-3); }
     /* Закрепени са № и името; рангът (само числото) е до тях и се вижда без скрол,
-       а следващата колона се подава — знак, че таблицата продължава надясно. */
+       а следващата колона се подава - знак, че таблицата продължава надясно. */
     .ranking .col-pos { width: 34px; min-width: 34px; padding-inline: 0.35rem; }
     .ranking .col-name { left: 34px; width: 180px; min-width: 180px; max-width: 180px; }
     .ranking .web-link { display: none; }
     .ranking .rank { grid-template-columns: auto; }
     .ranking .rank__bar { display: none; }
   }
-  /* „Средни резултати“: по-тесни клетки на телефон — петте колони се събират без скрол. */
+  /* "Средни резултати": по-тесни клетки на телефон - петте колони се събират без скрол. */
   @media (max-width: 640px) {
     .averages th, .averages td { padding-inline: 0.5rem; }
   }
@@ -2061,7 +2062,7 @@
 }
 
 /* ==========================================================================
-   pages — профил на училище (/school/{код}/)
+   pages - профил на училище (/school/{код}/)
    ========================================================================== */
 @layer pages {
   .school-page .breadcrumbs { margin-bottom: var(--sp-4); }
@@ -2086,6 +2087,7 @@
   }
   .school-hero__icon svg { width: 26px; height: 26px; }
   .school-hero__title { font-size: clamp(1.5rem, 1.1rem + 1.6vw, 2.25rem); }
+  .school-hero__official { margin-top: var(--sp-1); max-width: var(--measure); color: var(--text-2); font-size: var(--fs-md); }
   .school-hero__meta { margin-top: var(--sp-3); gap: var(--sp-2) var(--sp-3); font-size: var(--fs-md); }
   .school-hero__fact { display: inline-flex; align-items: center; gap: var(--sp-1); color: var(--text-3); }
   .school-hero__fact svg { width: 15px; height: 15px; }
@@ -2133,14 +2135,14 @@
   .landing__filters { flex: 1 1 420px; }
   .landing__filters .input-icon { flex: 0 1 320px; min-width: 200px; }
   .landing__filters .select { width: auto; min-width: 200px; }
-  /* Ограничена ширина — на широк екран числата стоят до имената, а не в другия край на екрана. */
+  /* Ограничена ширина - на широк екран числата стоят до имената, а не в другия край на екрана. */
   .landing__card { max-width: 920px; }
   .landing__table { border: 0; border-radius: 0 0 var(--radius-lg) var(--radius-lg); }
   .landing__table .data-table td:nth-child(2) { white-space: normal; min-width: 220px; }
 }
 
 /* ==========================================================================
-   pages — балове (/7/balove/ и /7/balove/{град}/)
+   pages - балове (/7/balove/ и /7/balove/{град}/)
    ========================================================================== */
 @layer pages {
   .balove-page .page-head__eyebrow svg, .balove-hub .page-head__eyebrow svg { width: 15px; height: 15px; }
@@ -2152,7 +2154,7 @@
   .balove-filters .combo__list { max-height: min(460px, 60vh); }
   .balove-detail__school { font-size: var(--fs-lg); margin-bottom: var(--sp-3); }
   .balove-detail__table { width: auto; min-width: 100%; }
-  /* „Класиране“ остава закрепено вляво, докато годините се скролват настрани. */
+  /* "Класиране" остава закрепено вляво, докато годините се скролват настрани. */
   .balove-detail__table .col-klass { position: sticky; left: 0; z-index: 1; background: var(--surface); box-shadow: inset -1px 0 0 var(--border); }
   .balove-detail__table thead .col-klass { z-index: 3; background: var(--surface-2); }
   .balove-detail__table tbody tr:hover .col-klass { background: var(--surface-2); }
@@ -2168,24 +2170,24 @@
   .balove-overview__table .col-score { width: 6rem; }
   .balove-overview__table .col-trend { width: 4.5rem; }
   .balove-overview__table td { overflow: hidden; }
-  /* Редовете може да са на няколко реда текст — числата стоят до първия ред, не по средата. */
+  /* Редовете може да са на няколко реда текст - числата стоят до първия ред, не по средата. */
   .balove-overview__table tbody td { vertical-align: top; }
   .balove-overview__table .clip { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  /* Името на паралелката се пренася, не се реже: различават се по края („- НЕ (РИЧЕ)“). */
+  /* Името на паралелката се пренася, не се реже: различават се по края ("- НЕ (РИЧЕ)"). */
   .balove-overview__table .col-profile .clip { white-space: normal; }
-  /* Дълги думи („Електрообзавеждане“) не се побират в тясната колона: пренасяме с тире, където
-     браузърът има речник за български, иначе — на произволно място, вместо да излизат от клетката. */
+  /* Дълги думи ("Електрообзавеждане") не се побират в тясната колона: пренасяме с тире, където
+     браузърът има речник за български, иначе - на произволно място, вместо да излизат от клетката. */
   .balove-overview__table .col-profile .clip,
   .ov-school, .ov-profile { overflow-wrap: anywhere; hyphens: auto; }
   .balove-overview__table tbody tr[data-code] { cursor: pointer; }
-  /* Закрепени са номерът и паралелката: „Училище“ и годините се превъртат под тях. */
+  /* Закрепени са номерът и паралелката: "Училище" и годините се превъртат под тях. */
   .balove-overview__table .col-num,
   .balove-overview__table .col-profile { position: sticky; z-index: 1; background: var(--surface); }
   .balove-overview__table .col-num { left: 0; }
   .balove-overview__table .col-profile { left: 2.75rem; box-shadow: inset -1px 0 0 var(--border); }
   /* Компактен изглед (под 1024 px, balove.js): училище и паралелка са една колона с два реда.
      На тесен екран колоната е точно колкото № + тя + последната година да се виждат без скрол
-     настрани (най-малко 9rem); щом всички колони се събират — поема цялото свободно място. */
+     настрани (най-малко 9rem); щом всички колони се събират - поема цялото свободно място. */
   .balove-overview__table--compact { width: 100%; min-width: 0; }
   .balove-overview__table--compact th.col-profile { width: max(9rem, calc(100cqw - 2.75rem - 6rem)); }
   @container (min-width: 40rem) {
@@ -2207,7 +2209,7 @@
   .balove-overview__table tbody tr:hover .col-profile { background: var(--surface-2); }
   .balove-overview__table tbody tr[data-code]:focus-visible { outline: 2px solid var(--primary); outline-offset: -2px; }
   /* Скриваме само вертикалната лента (Chromium/Safari), защото остава видима след като
-     излезеш с мишката от таблицата; хоризонталната се запазва — тя показва, че годините
+     излезеш с мишката от таблицата; хоризонталната се запазва - тя показва, че годините
      продължават надясно. Във Firefox лентите са overlay и не се задържат. */
   .balove-overview .table-wrap::-webkit-scrollbar:vertical { width: 0; height: 0; }
   .balove-overview .table-wrap::-webkit-scrollbar:horizontal { height: 10px; }
@@ -2229,7 +2231,7 @@
 }
 
 /* ==========================================================================
-   pages — обобщена статистика (/stats/)
+   pages - обобщена статистика (/stats/)
    ========================================================================== */
 @layer pages {
   .stats-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: var(--sp-5) var(--sp-8); }
@@ -2292,7 +2294,7 @@
   .stats-page .data-table td.pos { color: var(--success); font-weight: 650; }
   .stats-page .data-table td.neg { color: var(--danger); font-weight: 650; }
   .stats-page .data-table td:nth-child(2) { white-space: normal; min-width: 180px; }
-  /* Колоните след „Училище“ са числа — вдясно, за да са подравнени по точката. */
+  /* Колоните след "Училище" са числа - вдясно, за да са подравнени по точката. */
   .stats-page .data-table th:nth-child(n+3), .stats-page .data-table td:nth-child(n+3) { text-align: right; }
   .stats-loading { margin-top: var(--sp-2); }
   @media (max-width: 1000px) {
@@ -2323,7 +2325,7 @@
 }
 
 /* ==========================================================================
-   pages — начална страница (/)
+   pages - начална страница (/)
    ========================================================================== */
 @layer pages {
   .home-hero {
@@ -2419,7 +2421,7 @@
 }
 
 /* ==========================================================================
-   pages — „За проекта“ и 404
+   pages - "За проекта" и 404
    ========================================================================== */
 @layer pages {
   .about__section + .about__section { margin-top: var(--sp-4); }
@@ -2431,12 +2433,12 @@
 }
 
 /* ==========================================================================
-   pages — таблиците на телефон
+   pages - таблиците на телефон
    ========================================================================== */
 @layer pages {
   /* На телефон (и при докосване) таблиците нямат собствен вертикален скрол: таблица заема почти
-     целия екран и иначе пръстът „засяда“ в нея, докато не превърти всички редове. Плъзгането
-     нагоре и надолу скролва страницата, настрани — колоните; заглавният ред остава видим чрез
+     целия екран и иначе пръстът "засяда" в нея, докато не превърти всички редове. Плъзгането
+     нагоре и надолу скролва страницата, настрани - колоните; заглавният ред остава видим чрез
      плаващото копие (.table-float). Същото условие като TOUCH_TABLES в ui/sticky-head.js. */
   @media (max-width: 767px), (hover: none) and (pointer: coarse) {
     .table-wrap,
