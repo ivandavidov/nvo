@@ -1,7 +1,8 @@
 // Обобщена статистика (/stats/) - ES модул. Данните идват от data/grade-{g}.json,
 // настройките по клас - от js/core/config.js (същите като на страниците по клас).
 import { gradeConfig, displayRange } from '../js/core/config.js';
-import { labelChart } from '../js/ui/chart-theme.js';
+import { labelChart, token } from '../js/ui/chart-theme.js';
+import { SCHOOL_TYPES } from '../js/core/school-types.js';
 
 const TABLE_ROWS        = 15;
 const STABLE_MIN_SCORES = 4;
@@ -31,7 +32,7 @@ async function loadGrade(grade) {
   if (!res.ok) throw new Error('HTTP ' + res.status);
   const raw = await res.json();
   const data = {
-    s: raw.s.map(o => (o ? { l: o.l, n: o.n, w: o.w, c: o.c, b: o.b.slice(), m: o.m.slice(), bu: o.bu.slice(), mu: o.mu.slice() } : o)),
+    s: raw.s.map(o => (o ? { l: o.l, n: o.n, w: o.w, c: o.c, t: o.t, b: o.b.slice(), m: o.m.slice(), bu: o.bu.slice(), mu: o.mu.slice() } : o)),
     si: raw.si,
     grade: cfg.grade,
     firstYear: cfg.firstYear,
@@ -48,8 +49,8 @@ async function loadGrade(grade) {
   // Изгражда map: индекс на училище → град
   data.cityMap = buildCityMap(data.si);
 
-  // Изгражда map: индекс на училище → тип ('n' публично / 'p' частно)
-  data.typeMap = buildTypeMap(data.si);
+  // Изгражда map: индекс на училище → вид ('s' държавно, 'm' общинско, 'p' частно, 'r' духовно)
+  data.typeMap = buildTypeMap(data.s, data.si);
 
   _cache[grade] = data;
   return data;
@@ -111,14 +112,15 @@ function buildCityMap(si) {
   return map;
 }
 
-// Изгражда map от индекс на училище към тип: 'n' (публично) или 'p' (частно)
-function buildTypeMap(si) {
+// Изгражда map от индекс на училище към вида му (полето t; стари данни без него -
+// частните по диапазона p, останалите - общински)
+function buildTypeMap(s, si) {
   const map = {};
   for (const city of Object.keys(si)) {
     const r = si[city];
     if (!r) continue;
-    if (r.n) { for (let i = r.n[0]; i <= r.n[1]; i++) map[i] = 'n'; }
-    if (r.p) { for (let i = r.p[0]; i <= r.p[1]; i++) map[i] = 'p'; }
+    if (r.n) { for (let i = r.n[0]; i <= r.n[1]; i++) map[i] = (s[i] && s[i].t) || 'm'; }
+    if (r.p) { for (let i = r.p[0]; i <= r.p[1]; i++) map[i] = (s[i] && s[i].t) || 'p'; }
   }
   return map;
 }
@@ -397,29 +399,32 @@ function computeInequalityTrend(data) {
   return { years, values };
 }
 
-function computePublicPrivate(data) {
+// Средният резултат (претеглен с учениците, (БЕЛ + МАТ) / 2) за всеки вид училище по години
+function computeByType(data) {
   const years = buildYears(data);
-  const pub = [], priv = [];
+  const byType = {};
+  SCHOOL_TYPES.forEach(t => { byType[t.key] = []; });
   for (let yr = 0; yr < years.length; yr++) {
-    let bSn = 0, bWn = 0, mSn = 0, mWn = 0;
-    let bSp = 0, bWp = 0, mSp = 0, mWp = 0;
+    const acc = {};
+    SCHOOL_TYPES.forEach(t => { acc[t.key] = { bS: 0, bW: 0, mS: 0, mW: 0 }; });
     eachSchool(data.s, (sch, idx) => {
-      const t = data.typeMap[idx];
+      const a = acc[data.typeMap[idx]];
+      if (!a) return;
       if (sch.b[yr] != null) {
         const w = (sch.bu && sch.bu[yr]) || 1;
-        if (t === 'n') { bSn += sch.b[yr] * w; bWn += w; }
-        else if (t === 'p') { bSp += sch.b[yr] * w; bWp += w; }
+        a.bS += sch.b[yr] * w; a.bW += w;
       }
       if (sch.m[yr] != null) {
         const w = (sch.mu && sch.mu[yr]) || 1;
-        if (t === 'n') { mSn += sch.m[yr] * w; mWn += w; }
-        else if (t === 'p') { mSp += sch.m[yr] * w; mWp += w; }
+        a.mS += sch.m[yr] * w; a.mW += w;
       }
     });
-    pub.push(bWn > 0 && mWn > 0 ? +((bSn / bWn + mSn / mWn) / 2).toFixed(2) : null);
-    priv.push(bWp > 0 && mWp > 0 ? +((bSp / bWp + mSp / mWp) / 2).toFixed(2) : null);
+    SCHOOL_TYPES.forEach(t => {
+      const a = acc[t.key];
+      byType[t.key].push(a.bW > 0 && a.mW > 0 ? +((a.bS / a.bW + a.mS / a.mW) / 2).toFixed(2) : null);
+    });
   }
-  return { years, pub, priv };
+  return { years, byType };
 }
 
 function computeCityRankings(data) {
@@ -1136,16 +1141,17 @@ function renderInequalityTrend(data) {
   });
 }
 
-function renderPublicPrivate(data) {
-  const { years, pub, priv } = computePublicPrivate(data);
-  const yb = axisBounds(pub.concat(priv), data);
-  const hasPrivate = priv.some(v => v != null);
-  const series = [{ name: 'Публични', data: pub, color: '#27ae60' }];
-  if (hasPrivate) series.push({ name: 'Частни', data: priv, color: '#e74c3c' });
+function renderByType(data) {
+  const { years, byType } = computeByType(data);
+  // Линия за всеки вид с данни в класа (духовните са само в 10. и 12. клас) - в цветовете на значките.
+  const series = SCHOOL_TYPES
+    .filter(t => byType[t.key].some(v => v != null))
+    .map(t => ({ name: t.plural, data: byType[t.key], color: token('--type-' + t.key) }));
+  const yb = axisBounds(series.flatMap(x => x.data), data);
   chart('chart-pubpriv', {
     xAxis: { categories: years },
     yAxis: { title: { text: null }, min: yb.min, max: yb.max },
-    tooltip: { valueDecimals: 2 },
+    tooltip: { valueDecimals: 2, shared: true },
     series
   });
 }
@@ -1605,7 +1611,7 @@ const SECTION_DEFS = [
   { key: 'improvement-rate', anchorId: 'chart-improvement-rate', filterable: true, render: d => renderImprovementRate(d) },
   { key: 'percentile', anchorId: 'chart-percentile-fan', filterable: true, render: d => renderPercentileFan(d) },
   { key: 'inequality', anchorId: 'chart-inequality', filterable: true, render: d => renderInequalityTrend(d) },
-  { key: 'pubpriv', anchorId: 'chart-pubpriv', filterable: true, render: d => renderPublicPrivate(d) },
+  { key: 'pubpriv', anchorId: 'chart-pubpriv', filterable: true, render: d => renderByType(d) },
   { key: 'city-rank', anchorId: 'chart-city', filterable: false, render: d => renderCityRankings(d) },
   { key: 'city-inequality-index', anchorId: 'chart-city-inequality-index', filterable: false, render: d => renderCityInequalityIndex(d) },
   { key: 'city-convergence', anchorId: 'chart-city-convergence', filterable: false, render: d => renderCityConvergence(d) },

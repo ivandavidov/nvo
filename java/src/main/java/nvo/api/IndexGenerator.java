@@ -212,6 +212,7 @@ public class IndexGenerator {
                           <tr><td>schools.*.officialName</td><td class="type">string|null</td><td>Официалното име, изчистено (без кавички, с правилни главни букви и препинание)</td></tr>
                           <tr><td>schools.*.website</td><td class="type">string|null</td><td>Уебсайт (null ако няма)</td></tr>
                           <tr><td>schools.*.isPrivate</td><td class="type">boolean</td><td>Частно училище</td></tr>
+                          <tr><td>schools.*.financing</td><td class="type">string</td><td>Вид според финансирането в регистъра на МОН: state (държавно), municipal (общинско), private (частно), religious (духовно)</td></tr>
                           <tr><td>schools.*.city</td><td class="type">string|null</td><td>Slug на града</td></tr>
                           <tr><td>schools.*.grades</td><td class="type">array</td><td>Класове, в които има данни</td></tr>
                         </table>"""));
@@ -229,6 +230,7 @@ public class IndexGenerator {
                           <tr><td>schools[].shortName</td><td class="type">string</td><td>Кратко име</td></tr>
                           <tr><td>schools[].fullName</td><td class="type">string</td><td>Пълно име</td></tr>
                           <tr><td>schools[].isPrivate</td><td class="type">boolean</td><td>Частно училище</td></tr>
+                          <tr><td>schools[].financing</td><td class="type">string</td><td>Вид според финансирането в регистъра на МОН: state (държавно), municipal (общинско), private (частно), religious (духовно)</td></tr>
                           <tr><td>schools[].city</td><td class="type">string</td><td>Име на града</td></tr>
                           <tr><td>schools[].cityOrder</td><td class="type">number</td><td>Подредба на града (както в сайта)</td></tr>
                           <tr><td>schools[].grades</td><td class="type">array</td><td>Класове с данни</td></tr>
@@ -256,6 +258,7 @@ public class IndexGenerator {
                           <tr><td>officialName</td><td class="type">string|null</td><td>Официалното име, изчистено (без кавички, с правилни главни букви и препинание)</td></tr>
                           <tr><td>website</td><td class="type">string|null</td><td>Уебсайт (null ако няма)</td></tr>
                           <tr><td>isPrivate</td><td class="type">boolean</td><td>Частно училище</td></tr>
+                          <tr><td>financing</td><td class="type">string</td><td>Вид според финансирането в регистъра на МОН: state (държавно), municipal (общинско), private (частно), religious (духовно)</td></tr>
                           <tr><td>city</td><td class="type">object|null</td><td>Град: {slug, name}</td></tr>
                           <tr><td>yearsRange</td><td class="type">array</td><td>Масив с години</td></tr>
                           <tr><td>grades</td><td class="type">object</td><td>Данни по клас (ключ = 4/7/10/12)</td></tr>
@@ -264,6 +267,8 @@ public class IndexGenerator {
                           <tr><td>grades.*.latestYear</td><td class="type">number</td><td>Последна година с данни</td></tr>
                           <tr><td>grades.*.nationalRank / nationalTotal</td><td class="type">number</td><td>Национален ранг (последна година)</td></tr>
                           <tr><td>grades.*.cityRank / cityTotal</td><td class="type">number</td><td>Ранг в града (последна година)</td></tr>
+                          <tr><td>grades.*.nationalTypeRank / nationalTypeTotal</td><td class="type">number</td><td>Национален ранг сред училищата от същия вид (financing, последна година)</td></tr>
+                          <tr><td>grades.*.cityTypeRank / cityTypeTotal</td><td class="type">number</td><td>Ранг в града сред училищата от същия вид (последна година)</td></tr>
                           <tr><td>grades.*.medianRank / medianAdjustedRank / medianTotal</td><td class="type">number</td><td>3-годишен медианен ранг</td></tr>
                         </table>"""));
 
@@ -327,6 +332,7 @@ public class IndexGenerator {
                               <tr><td>schools.*.fullName</td><td class="type">string</td><td>Пълно име на училището</td></tr>
                               <tr><td>schools.*.shortName</td><td class="type">string</td><td>Кратко име</td></tr>
                               <tr><td>schools.*.isPrivate</td><td class="type">boolean</td><td>Частно училище</td></tr>
+                              <tr><td>schools.*.financing</td><td class="type">string</td><td>Вид според финансирането в регистъра на МОН: state (държавно), municipal (общинско), private (частно), religious (духовно)</td></tr>
                               <tr><td>schools.*.belScore</td><td class="type">array</td><td>Резултати БЕЛ ("""
                             + scaleRange + ", null = няма данни)</td></tr>\n"
                             + "          <tr><td>schools.*.matScore</td><td class=\"type\">array</td><td>Резултати МАТ ("
@@ -366,6 +372,7 @@ public class IndexGenerator {
                           <tr><td>schools.*.fullName</td><td class="type">string</td><td>Пълно име на училището</td></tr>
                           <tr><td>schools.*.shortName</td><td class="type">string</td><td>Кратко име</td></tr>
                           <tr><td>schools.*.isPrivate</td><td class="type">boolean</td><td>Частно училище</td></tr>
+                          <tr><td>schools.*.financing</td><td class="type">string</td><td>Вид според финансирането в регистъра на МОН: state (държавно), municipal (общинско), private (частно), religious (духовно)</td></tr>
                           <tr><td>schools.*.belScore</td><td class="type">array</td><td>Резултати БЕЛ (null = няма данни)</td></tr>
                           <tr><td>schools.*.matScore</td><td class="type">array</td><td>Резултати МАТ (null = няма данни)</td></tr>
                           <tr><td>schools.*.belStudents</td><td class="type">array</td><td>Брой ученици БЕЛ</td></tr>
@@ -403,6 +410,7 @@ public class IndexGenerator {
                           <tr><td>schools.*.fullName</td><td class="type">string</td><td>Пълно име на училището</td></tr>
                           <tr><td>schools.*.shortName</td><td class="type">string</td><td>Кратко име</td></tr>
                           <tr><td>schools.*.isPrivate</td><td class="type">boolean</td><td>Частно училище</td></tr>
+                          <tr><td>schools.*.financing</td><td class="type">string</td><td>Вид според финансирането в регистъра на МОН: state (държавно), municipal (общинско), private (частно), religious (духовно)</td></tr>
                           <tr><td>schools.*.belScore</td><td class="type">array</td><td>Резултати БЕЛ (null = няма данни)</td></tr>
                           <tr><td>schools.*.matScore</td><td class="type">array</td><td>Резултати МАТ (null = няма данни)</td></tr>
                           <tr><td>schools.*.belStudents</td><td class="type">array</td><td>Брой ученици БЕЛ</td></tr>
@@ -445,6 +453,7 @@ public class IndexGenerator {
                           <tr><td>schools[].shortName</td><td class="type">string</td><td>Кратко име</td></tr>
                           <tr><td>schools[].fullName</td><td class="type">string</td><td>Пълно име</td></tr>
                           <tr><td>schools[].isPrivate</td><td class="type">boolean</td><td>Частно училище</td></tr>
+                          <tr><td>schools[].financing</td><td class="type">string</td><td>Вид според финансирането в регистъра на МОН: state (държавно), municipal (общинско), private (частно), religious (духовно)</td></tr>
                           <tr><td>schools[].belMedian</td><td class="type">number</td><td>Медиана БЕЛ</td></tr>
                           <tr><td>schools[].matMedian</td><td class="type">number</td><td>Медиана МАТ</td></tr>
                           <tr><td>schools[].score</td><td class="type">number</td><td>Общ резултат (БЕЛ + МАТ)/2</td></tr>
@@ -478,6 +487,7 @@ public class IndexGenerator {
                           <tr><td>schools[].shortName</td><td class="type">string</td><td>Кратко име</td></tr>
                           <tr><td>schools[].fullName</td><td class="type">string</td><td>Пълно име</td></tr>
                           <tr><td>schools[].isPrivate</td><td class="type">boolean</td><td>Частно училище</td></tr>
+                          <tr><td>schools[].financing</td><td class="type">string</td><td>Вид според финансирането в регистъра на МОН: state (държавно), municipal (общинско), private (частно), religious (духовно)</td></tr>
                           <tr><td>schools[].belScore</td><td class="type">number</td><td>Резултат БЕЛ</td></tr>
                           <tr><td>schools[].matScore</td><td class="type">number</td><td>Резултат МАТ</td></tr>
                           <tr><td>schools[].score</td><td class="type">number</td><td>Общ резултат (БЕЛ + МАТ)/2</td></tr>
@@ -510,7 +520,7 @@ public class IndexGenerator {
                           <tr><td>years</td><td class="type">array</td><td>Годините с данни за града (година, която я няма, е без данни)</td></tr>
                           <tr><td>coverage.{year}.rankings</td><td class="type">array</td><td>Класиранията (1-4) с данни в града за годината</td></tr>
                           <tr><td>coverage.{year}.gender</td><td class="type">boolean</td><td>Има ли разбивка по пол за годината</td></tr>
-                          <tr><td>schools[]</td><td class="type">array</td><td>code, name, fullName, isPrivate, profiles[]</td></tr>
+                          <tr><td>schools[]</td><td class="type">array</td><td>code, name, fullName, isPrivate, financing (null, ако кодът го няма в регистъра на МОН), profiles[]</td></tr>
                           <tr><td>schools[].profiles[]</td><td class="type">array</td><td>code, name и years - обект по година</td></tr>
                           <tr><td>profiles[].years.{year}</td><td class="type">array</td><td>4 елемента (1-во…4-то класиране): обект или null - няма данни (паралелката е попълнена по-рано или класирането не е публикувано; виж coverage). Година без данни за паралелката липсва.</td></tr>
                           <tr><td>…{year}[k].min / max</td><td class="type">number</td><td>Минимален / максимален бал</td></tr>

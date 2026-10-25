@@ -2,7 +2,8 @@
 // jsPDF, AutoTable и Highcharts exporting се зареждат
 // едва при първото генериране (по-лека страница).
 import { displayRange } from './config.js';
-import { findCityForSchool, nationalAverages, formatRankValue, rankFor, renderableCities, cityRanking, sortRanking } from './model.js';
+import { findCityForSchool, nationalAverages, formatRankValue, rankFor, renderableCities, cityRanking, sortRanking, typeAverages } from './model.js';
+import { SCHOOL_TYPES, schoolType, joinTypes, typeKeyFromApi } from './school-types.js';
 
 const FONT_FILE = 'NotoSans-Regular.ttf';
 const FONT_NAME = 'NotoSans';
@@ -97,7 +98,8 @@ function renderChartToImage(container, config) {
   });
 }
 
-function schoolRankInCity(model, index, cityName) {
+/** Мястото в града (по средното за 3 г.); с вид - само сред училищата от този вид. */
+function schoolRankInCity(model, index, cityName, type) {
   const { s, si } = model;
   const c = si[cityName];
   if (!c || !c.n) {
@@ -109,7 +111,7 @@ function schoolRankInCity(model, index, cityName) {
       return;
     }
     for (let i = range[0]; i <= range[1]; i++) {
-      if (s[i] && (s[i].mb || s[i].mm)) {
+      if (s[i] && (s[i].mb || s[i].mm) && (!type || s[i].t === type)) {
         list.push(i);
       }
     }
@@ -131,7 +133,7 @@ export async function schoolReportPdf(model, index) {
   }
   const cityInfo = findCityForSchool(model, index);
   const cityName = cityInfo ? cityInfo.cityName : '';
-  const schoolType = cityInfo ? (cityInfo.isPrivate ? 'Частно' : 'Държавно') : '';
+  const type = schoolType(cityInfo ? cityInfo.type : school.t);
   const totalYears = school.b.length;
   const doc = await newDoc(ns, 'portrait');
   const pageW = doc.internal.pageSize.getWidth();
@@ -141,13 +143,16 @@ export async function schoolReportPdf(model, index) {
   doc.setFontSize(18);
   doc.text(school.n, pageW / 2, 45, { align: 'center' });
   doc.setFontSize(12);
-  doc.text(cfg.tableTitleType + '  |  ' + cityName + '  |  ' + schoolType, pageW / 2, 70, { align: 'center' });
+  doc.text(cfg.tableTitleType + '  |  ' + cityName + '  |  ' + type.label, pageW / 2, 70, { align: 'center' });
 
   const rankInfo = schoolRankInCity(model, index, cityName);
+  const typeRankInfo = schoolRankInCity(model, index, cityName, type.key);
   const nat = nationalAverages(model);
   const city = si[cityName];
-  const cityAvgB = cityInfo && !cityInfo.isPrivate && city.mnbs ? city.mnbs : (cityInfo && cityInfo.isPrivate && city.mpbs ? city.mpbs : null);
-  const cityAvgM = cityInfo && !cityInfo.isPrivate && city.mnms ? city.mnms : (cityInfo && cityInfo.isPrivate && city.mpms ? city.mpms : null);
+  // Средната за града е на училищата от същия вид (частните - с частните, общинските - с общинските…).
+  const typeAvg = city ? typeAverages(model, { pu: city.n, pr: city.p }, [type.key], false) : null;
+  const cityAvgB = typeAvg ? typeAvg.bel : null;
+  const cityAvgM = typeAvg ? typeAvg.mat : null;
 
   const validB = school.b.filter((v) => v !== null && v !== undefined);
   const validM = school.m.filter((v) => v !== null && v !== undefined);
@@ -183,25 +188,25 @@ export async function schoolReportPdf(model, index) {
   const labelB = '(' + countB + 'г.)';
   const labelM = '(' + countM + 'г.)';
 
-  const cityAvgs = [];
-  [city && city.n, city && city.p].forEach((range) => {
-    if (!range) {
-      return;
-    }
-    for (let i = range[0]; i <= range[1]; i++) {
-      if (s[i] && (s[i].mb || s[i].mm)) {
-        cityAvgs.push((s[i].mb + s[i].mm) / 2);
-      }
-    }
-  });
-  cityAvgs.sort((a, b) => a - b);
   const schoolAvg = (school.mb + school.mm) / 2;
-  let percentile = 0;
-  if (cityAvgs.length > 1) {
-    percentile = Math.round(cityAvgs.filter((v) => v < schoolAvg).length / (cityAvgs.length - 1) * 100);
-  } else if (cityAvgs.length === 1) {
-    percentile = 100;
-  }
+  const percentileIn = (type) => {
+    const cityAvgs = [];
+    [city && city.n, city && city.p].forEach((range) => {
+      if (!range) {
+        return;
+      }
+      for (let i = range[0]; i <= range[1]; i++) {
+        if (s[i] && (s[i].mb || s[i].mm) && (!type || s[i].t === type)) {
+          cityAvgs.push((s[i].mb + s[i].mm) / 2);
+        }
+      }
+    });
+    if (cityAvgs.length > 1) {
+      return Math.round(cityAvgs.filter((v) => v < schoolAvg).length / (cityAvgs.length - 1) * 100);
+    }
+    return cityAvgs.length === 1 ? 100 : 0;
+  };
+  const percentile = percentileIn(null);
 
   const trend = (arr, start) => {
     const pts = [];
@@ -231,6 +236,9 @@ export async function schoolReportPdf(model, index) {
     [H.bel + ' най-добра ' + labelB, bestB !== null ? school.b[bestB] + ' (' + (firstYear + bestB) + ')' : '-', H.mat + ' най-добра ' + labelM, bestM !== null ? school.m[bestM] + ' (' + (firstYear + bestM) + ')' : '-'],
     [H.bel + ' най-слаба ' + labelB, worstB !== null ? school.b[worstB] + ' (' + (firstYear + worstB) + ')' : '-', H.mat + ' най-слаба ' + labelM, worstM !== null ? school.m[worstM] + ' (' + (firstYear + worstM) + ')' : '-'],
     ['Ранг в града', rankInfo.rank ? rankInfo.rank + ' / ' + rankInfo.total : '-', 'Перцентил в града', percentile + '%'],
+    // Само когато в града има и други видове - иначе повтаря горния ред.
+    ...(typeRankInfo.total !== rankInfo.total ? [['Ранг сред ' + type.definite, typeRankInfo.rank ? typeRankInfo.rank + ' / ' + typeRankInfo.total : '-',
+      'Перцентил сред ' + type.definite, percentileIn(type.key) + '%']] : []),
     ['Средно ученици ' + H.bel, validBu.length > 0 ? Math.round(avg(validBu)) : '-', 'Средно ученици ' + H.mat, validMu.length > 0 ? Math.round(avg(validMu)) : '-']
   ];
   const tableWidth = 400;
@@ -294,7 +302,7 @@ export async function schoolReportPdf(model, index) {
 
   const compY = doc.lastAutoTable.finalY + 30;
   doc.setFontSize(12);
-  doc.text('Сравнение с град и нация (последни 3 години)', pageW / 2, compY, { align: 'center' });
+  doc.text('Сравнение с ' + type.definite + ' училища в града и с нацията (последни 3 години)', pageW / 2, compY, { align: 'center' });
   const compRows = [];
   for (let k = 0; k < 3; k++) {
     const y = totalYears - 1 - k;
@@ -354,7 +362,7 @@ export async function schoolReportPdf(model, index) {
     plotOptions: { series: { animation: false, connectNulls: true } },
     series: [
       { name: school.l, data: own.slice(), color: '#2f54e0' },
-      { name: 'Средна за ' + cityName, data: cityAvg ? cityAvg.slice() : [], dashStyle: 'Dash', color: '#9ca3af' }
+      { name: 'Средна за ' + type.definite + ' в ' + cityName, data: cityAvg ? cityAvg.slice() : [], dashStyle: 'Dash', color: '#9ca3af' }
     ].concat(natAvg.length > 0 ? [{ name: 'Национална средна', data: natAvg.slice(), dashStyle: 'Dot', color: '#e8850c' }] : [])
   });
   try {
@@ -408,10 +416,10 @@ export function rankingHeaders(model) {
 }
 
 /** Текстът на клетките за един ред (както се вижда в таблицата). */
-export function rankingCells(model, row, position, filter) {
+export function rankingCells(model, row, position) {
   const { s } = model;
   const o = s[row.i];
-  const cells = [String(position), o.l, formatRankValue(rankFor(row, filter)), row.type + ' / ' + row.typeNo];
+  const cells = [String(position), o.l, formatRankValue(rankFor(row)), schoolType(row.type).letter + ' / ' + row.typeNo];
   row.years.forEach((y) => {
     cells.push(y.b ? y.b + ' / ' + y.bu : '');
     cells.push(y.m ? y.m + ' / ' + y.mu : '');
@@ -419,14 +427,20 @@ export function rankingCells(model, row, position, filter) {
   return cells;
 }
 
-/** Заглавието и таблицата на класацията на един град, от текущата страница на doc. */
-function addRankingTable(doc, model, city, rows, filter) {
+/** Заглавието (с показаните видове) и таблицата на класацията на един град, от текущата страница на doc. */
+function addRankingTable(doc, model, city, rows, types) {
   const { cfg } = model;
   doc.setFontSize(12);
-  doc.text(cfg.tableTitleName + ' - ' + city.name + ' - ' + cfg.tableTitleType, PAGE_MARGIN_PT, TITLE_Y_PT);
+  doc.text(cfg.tableTitleName + ' - ' + city.name + (types ? ' - ' + joinTypes(types) + ' училища' : '') + ' - ' + cfg.tableTitleType,
+    PAGE_MARGIN_PT, TITLE_Y_PT);
+  // Легендата на колоната "Тип / №" - вдясно на заглавието.
+  doc.setFontSize(8);
+  doc.setTextColor(100);
+  doc.text('Тип: ' + SCHOOL_TYPES.map((t) => t.letter + ' - ' + t.lower).join(', '), doc.internal.pageSize.getWidth() - PAGE_MARGIN_PT, TITLE_Y_PT, { align: 'right' });
+  doc.setTextColor(0);
   doc.autoTable({
     head: [rankingHeaders(model)],
-    body: rows.map((row, k) => rankingCells(model, row, k + 1, filter)),
+    body: rows.map((row, k) => rankingCells(model, row, k + 1)),
     startY: TABLE_START_Y_PT,
     margin: { left: PAGE_MARGIN_PT, right: PAGE_MARGIN_PT },
     theme: 'grid',
@@ -435,14 +449,14 @@ function addRankingTable(doc, model, city, rows, filter) {
   });
 }
 
-/** PDF на класацията на град - видимите редове в текущата подредба и филтър. */
-export async function rankingPdf(model, city, rows, filter) {
+/** PDF на класацията на град - видимите редове в текущата подредба и с показаните видове (null = всички). */
+export async function rankingPdf(model, city, rows, types) {
   const ns = await ensurePdfLibs();
   if (!rows.length) {
     return;
   }
   const doc = await newDoc(ns, 'landscape');
-  addRankingTable(doc, model, city, rows, filter);
+  addRankingTable(doc, model, city, rows, types);
   doc.save(model.cfg.exportPrefix + '-ranking-' + city.slug + '.pdf');
 }
 
@@ -455,7 +469,7 @@ export async function allRankingsPdf(model) {
   const doc = await newDoc(ns, 'landscape');
   let first = true;
   for (const city of renderableCities(model)) {
-    // като таблицата на сайта по подразбиране (колона "Ранг" низходящо, филтър "Всички")
+    // като таблицата на сайта по подразбиране (колона "Ранг" низходящо, всички видове)
     const rows = sortRanking(model, cityRanking(model, city), 'rank', 'desc', null);
     if (!rows.length) {
       continue;
@@ -488,7 +502,7 @@ export async function schoolProfilePdf(data, gradeMeta, seriesForGrade) {
 
   doc.setFontSize(16);
   doc.text(String(data.fullName || ''), margin, 50, { maxWidth: pageW - 2 * margin });
-  let sub = data.isPrivate ? 'Частно' : 'Държавно';
+  let sub = schoolType(typeKeyFromApi(data.financing, data.isPrivate)).label;
   if (data.city && data.city.name) {
     sub += ' · ' + data.city.name;
   }

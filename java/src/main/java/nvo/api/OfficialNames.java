@@ -3,6 +3,7 @@ package nvo.api;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import nvo.MonRegister;
 import nvo.ProjectConfig;
 
 import java.nio.file.Files;
@@ -45,18 +46,9 @@ public final class OfficialNames {
     }
 
     /** Код -> статус в регистъра на МОН (data/mon/ri-register.tsv): "действаща", "закрита", "отписана"... */
-    public static Map<String, String> loadRegisterStatus() throws Exception {
+    public static Map<String, String> loadRegisterStatus() {
         Map<String, String> status = new HashMap<>();
-        Path file = Path.of(ProjectConfig.DATA_DIR, "mon", "ri-register.tsv");
-        if (!Files.exists(file)) {
-            return status;
-        }
-        for (String line : Files.readAllLines(file)) {
-            String[] cols = line.split("\t");
-            if (cols.length >= 5 && !cols[0].equals("code")) {
-                status.put(cols[0], cols[4].trim());
-            }
-        }
+        MonRegister.entries().forEach((code, entry) -> status.put(code, entry.status()));
         return status;
     }
 

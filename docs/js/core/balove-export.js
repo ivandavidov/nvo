@@ -7,8 +7,15 @@ import { ensurePdfLibs, newDoc, addPageFooters, PDF_FONT, PDF_MARGIN } from './p
 import { siteUrl, toast } from '../site.js';
 import { download } from '../ui/dom.js';
 import { menuButtonOf } from '../ui/export-menu.js';
+import { schoolType, typeKeyFromApi } from './school-types.js';
 
 const RANKS = ['1-во', '2-ро', '3-то', '4-то'];
+
+/** Видът (financing) или null - някои кодове от РУО ги няма в регистъра на МОН. */
+const typeOf = (s) => {
+  const k = typeKeyFromApi(s.financing, s.isPrivate);
+  return k ? schoolType(k) : null;
+};
 const CSV_HEADER = ['Град', 'Код училище', 'Училище', 'Тип', 'Код паралелка', 'Паралелка', 'Година', 'Класиране',
   'Мин', 'Мин М', 'Мин Ж', 'Макс', 'Макс М', 'Макс Ж'];
 
@@ -55,7 +62,7 @@ export function baloveCsv(docs) {
       if (!e) {
         return;
       }
-      lines.push([doc.city.name, s.code, s.fullName, s.isPrivate ? 'Ч' : 'Д', p.code, p.name, y, k + 1,
+      lines.push([doc.city.name, s.code, s.fullName, typeOf(s) ? typeOf(s).letter : '', p.code, p.name, y, k + 1,
         e.min, e.minMale, e.minFemale, e.max, e.maxMale, e.maxFemale].map(csvCell).join(','));
     });
   }))));
@@ -117,7 +124,7 @@ function addCity(doc, cityDoc, allYears) {
       });
     });
     if (rows.length) {
-      body.push([{ content: s.fullName + (s.isPrivate ? ' (частно)' : ''), colSpan: 10,
+      body.push([{ content: s.fullName + (typeOf(s) ? ' (' + typeOf(s).lower + ')' : ''), colSpan: 10,
         styles: { fillColor: [238, 241, 250], textColor: 20, halign: 'left' } }]);
       body.push(...rows);
     }

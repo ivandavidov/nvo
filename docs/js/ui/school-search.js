@@ -1,12 +1,13 @@
 // Търсене на училище в модела на един клас (за полетата "Добави училище").
 import { normalize } from './dom.js';
 import { searchKey, expandAbbreviations } from './search-text.js';
+import { schoolType } from '../core/school-types.js';
 
 /** Индекс за търсене: всички училища в градовете с данни (вкл. без резултат за последната година). */
 export function buildSchoolIndex(model, cities) {
   const items = [];
   cities.forEach((c) => {
-    [[c.pu, 'Д'], [c.pr, 'Ч']].forEach(([range, type]) => {
+    [c.pu, c.pr].forEach((range) => {
       if (!range) {
         return;
       }
@@ -18,7 +19,7 @@ export function buildSchoolIndex(model, cities) {
         items.push({
           i,
           city: c,
-          type,
+          type: o.t,
           inactive: o.b[o.b.length - 1] === null,
           nl: normalize(o.l),
           kl: searchKey(o.l),
@@ -64,7 +65,7 @@ export function searchSchools(model, index, query, { isSelected = () => false, l
     byCity.get(it.city.name).items.push({
       id: it.i,
       title: model.s[it.i].n,
-      meta: (it.type === 'Ч' ? 'частно' : 'държавно') + (it.inactive ? ' · без данни за ' + latest : ''),
+      meta: schoolType(it.type).lower + (it.inactive ? ' · без данни за ' + latest : ''),
       checked: isSelected(it.i)
     });
   });

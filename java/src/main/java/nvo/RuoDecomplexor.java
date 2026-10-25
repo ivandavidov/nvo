@@ -275,6 +275,12 @@ public class RuoDecomplexor {
             school.addProperty("name", resolveLabel(schoolCode, schoolNames.get(schoolCode)));
             school.addProperty("fullName", resolveFullName(schoolCode, schoolNames.get(schoolCode)));
             school.addProperty("isPrivate", isPrivate(schoolCode));
+            SchoolType type = typeOf(schoolCode);
+            if (type != null) {
+                school.addProperty("financing", type.apiValue());
+            } else {
+                school.add("financing", JsonNull.INSTANCE);
+            }
             JsonArray profiles = new JsonArray();
             for (Map.Entry<String, String> profile : profileNames.get(schoolCode).entrySet()) {
                 List<List<double[]>> data = scores.get(schoolCode).get(profile.getKey());
@@ -481,8 +487,17 @@ public class RuoDecomplexor {
     }
 
     private boolean isPrivate(String schoolCode) {
+        SchoolType type = typeOf(schoolCode);
+        if (type != null) {
+            return type.isPrivate();
+        }
         String[] entry = School.schoolCodes.get(schoolCode);
         return entry != null && entry[0].equals("1");
+    }
+
+    /** Видът от регистъра на МОН или null - кодовете от РУО понякога ги няма там (без предупреждение и без догадка). */
+    private SchoolType typeOf(String schoolCode) {
+        return MonRegister.entries().containsKey(schoolCode) ? SchoolType.of(schoolCode) : null;
     }
 
     /** Returns the short name from School.schoolCodes if available, otherwise falls back to the CSV name. */

@@ -29,7 +29,7 @@ public class NvoDziDecomplexor {
 
     private static String grade = null;
 
-    /** Данните за фронтенда (docs/data/grade-{grade}.json): s = училищата по индекс, si = градовете с диапазоните им. */
+    /** Данните за фронтенда (docs/data/grade-{grade}.json): s = училищата по индекс (t = видът, SchoolType.key), si = градовете с диапазоните им. */
     private final List<Object> jsonSchools = new ArrayList<>();
     private final Map<String, Object> jsonCities = new LinkedHashMap<>();
 
@@ -391,6 +391,7 @@ public class NvoDziDecomplexor {
         o.put("mu", mu);
         o.put("w", school.getWebsite());
         o.put("c", school.getCode());
+        o.put("t", school.getType().key());
         jsonSchools.add(o);
     }
 

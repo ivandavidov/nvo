@@ -5,6 +5,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import nvo.ProjectConfig;
+import nvo.SchoolType;
 import nvo.site.SiteLayout;
 
 import java.nio.file.Files;
@@ -174,7 +175,7 @@ public class SchoolPageGenerator {
     private String buildHtml(JsonObject doc) {
         String code = doc.get("code").getAsString();
         String fullName = doc.get("fullName").getAsString();
-        boolean isPrivate = doc.has("isPrivate") && doc.get("isPrivate").getAsBoolean();
+        SchoolType type = schoolType(doc);
         String website = str(doc, "website");
         String cityName = null;
         String citySlug = null;
@@ -232,8 +233,8 @@ public class SchoolPageGenerator {
         ctx.put("crumbsLd", crumbsLd(fullName, canonical, cityName, citySlug, primaryGrade));
         ctx.put("code", code);
         ctx.put("fullName", fullName);
-        ctx.put("isPrivate", isPrivate);
-        ctx.put("typeLabel", isPrivate ? "Частно" : "Държавно");
+        ctx.put("typeLabel", type.label());
+        ctx.put("typeKey", type.key());
         ctx.put("cityName", cityName);
         ctx.put("citySlug", citySlug);
         ctx.put("primaryGrade", primaryGrade);
@@ -309,10 +310,23 @@ public class SchoolPageGenerator {
         if (natRank != null && natTotal != null) {
             kpis.add(kpi("Национален ранг", String.valueOf(natRank), String.valueOf(natTotal)));
         }
+        // Мястото сред училищата от същия вид (държавни, общински, частни, духовни) - до общото.
+        SchoolType type = schoolType(doc);
+        Integer natTypeRank = intOrNull(g, "nationalTypeRank");
+        Integer natTypeTotal = intOrNull(g, "nationalTypeTotal");
+        if (natTypeRank != null && natTypeTotal != null) {
+            kpis.add(kpi("Сред " + type.pluralDefinite(), String.valueOf(natTypeRank), String.valueOf(natTypeTotal), "в страната"));
+        }
         Integer cityRank = intOrNull(g, "cityRank");
         Integer cityTotal = intOrNull(g, "cityTotal");
         if (cityRank != null && cityTotal != null) {
             kpis.add(kpi("В града", String.valueOf(cityRank), String.valueOf(cityTotal)));
+        }
+        Integer cityTypeRank = intOrNull(g, "cityTypeRank");
+        Integer cityTypeTotal = intOrNull(g, "cityTypeTotal");
+        // Само ако в града има и други видове - иначе повтаря "В града".
+        if (cityTypeRank != null && cityTypeTotal != null && !cityTypeTotal.equals(cityTotal)) {
+            kpis.add(kpi("Сред " + type.pluralDefinite(), String.valueOf(cityTypeRank), String.valueOf(cityTypeTotal), "в града"));
         }
         Integer medianRank = intOrNull(g, "medianRank");
         Integer medianTotal = intOrNull(g, "medianTotal");
@@ -373,11 +387,27 @@ public class SchoolPageGenerator {
     }
 
     private static Map<String, Object> kpi(String label, String value, String total) {
+        return kpi(label, value, total, null);
+    }
+
+    private static Map<String, Object> kpi(String label, String value, String total, String hint) {
         Map<String, Object> m = new HashMap<>();
         m.put("label", label);
         m.put("value", value);
         m.put("total", total);
+        m.put("hint", hint);
         return m;
+    }
+
+    /** Видът от документа (financing); стари документи без него - по isPrivate. */
+    private static SchoolType schoolType(JsonObject doc) {
+        String financing = str(doc, "financing");
+        for (SchoolType t : SchoolType.values()) {
+            if (t.apiValue().equals(financing)) {
+                return t;
+            }
+        }
+        return doc.has("isPrivate") && doc.get("isPrivate").getAsBoolean() ? SchoolType.PRIVATE : SchoolType.of(doc.get("code").getAsString());
     }
 
     private static Map<String, Object> link(String href, String label) {

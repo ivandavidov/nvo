@@ -232,8 +232,9 @@ All page scripts are native ES modules (`<script type="module">`), no bundler. H
 - One row, one visual language: controls that sit in the same row share one component and height (e.g. the grade hero row = navigation chips, all 32px high). Never stack a control under another one where it breaks the alignment of the block. Every dropdown trigger shows a caret.
 - Phones (≤ 640px): a row of buttons that does not fit becomes a grid of two equal columns (40px high) - no ragged rows, no lone button on its own row; with an odd count the first (most important) button spans the full width. Labels get shorter (`chip__short`, `tabs__long`) instead of wrapping or scrolling sideways; tab bars split the width equally and never scroll.
 - Actions vs navigation: data actions (export) are one menu, set apart from navigation. The "Изтегли данните ▾" button looks the same everywhere (`btn btn--sm`, like above the city tables) and follows the links of its row after a vertical divider (grade hero, city panel); on phones it is a cell of the two-column grid - rule 10.
-- Tab views: the control that changes the current tab's view (Всички/Държавни/Частни, По училища/По ученици) sits at the right of the tab bar; on phones (≤ 640px) it is a full-width row under the tabs. Content starts right under the tab bar - no toolbar rows that appear or move per city.
-- Data tables: one header row when every column can carry its own short label (subject + qualifier, e.g. "БЕЛ 26" in the ranking - two-digit year, the full year for screen readers and in the tooltip - with the qualifier in `.th-qual`); a group row (`colspan`, ungrouped columns `rowspan`) only where it keeps a narrow table on a phone without sideways scrolling (Средни резултати: Държавни / Частни over БЕЛ / МАТ). No empty header cells and no legends in the header; header cells align like their data (the name column left, the others centred); vertical dividers only between column groups. The key value sits right after the name, so on phones the sticky № + name + key value are visible without sideways scrolling and the next column peeks in. The ranking table fits at 1280px for every grade (also "ДЗИ-2 26").
+- Tab views: the control that changes what the tabs show sits at the right of the tab bar - on the grade city panel that is "Покажи само" (the school types, one filter for both tabs); when the tabs and the chips do not fit in one row (tablet, phone - the limit depends on the number of types, `data-types` + container queries on `.city-panel__bar`) the chips are a row under the tabs. Content starts right under the tab bar. Do not add rows to the panel head - it is one row: the city name | the count, then links/export.
+- School types: state (Д), municipal (О), private (Ч), religious (ДУ) - one colour each (`--type-s|m|p|r` + `-soft` tokens, `.type-badge--{key}`), the same letter and colour in the chips, the "Тип / №" column, the averages headers on phones, the school page badge and the stats chart. "Покажи само" (`.type-filter` with `.chip.type-chip[aria-pressed]`; in the tab bar of the grade city panel, a row in the table head on the city/year pages): nothing selected = all types; a click adds or removes a type; only types present (and only with at least two). On phones the chips are an equal-column grid (2 types: 2 columns, 3: 3 columns, 4: 2×2), each chip two lines (name, then letter + count).
+- Data tables: one header row when every column can carry its own short label (subject + qualifier, e.g. "БЕЛ 26" in the ranking - two-digit year, the full year for screen readers and in the tooltip - with the qualifier in `.th-qual`); a group row (`colspan`, ungrouped columns `rowspan`) only where it keeps a narrow table on a phone without sideways scrolling (none at the moment). No empty header cells and no legends in the header; header cells align like their data (the name column left, the others centred); vertical dividers only between column groups. The key value sits right after the name, so on phones the sticky № + name + key value are visible without sideways scrolling and the next column peeks in. The ranking table fits at 1280px for every grade (also "ДЗИ-2 26").
 - Tables on phones and touch devices (`(max-width: 767px), (hover: none) and (pointer: coarse)` - the same query in site.css and `TOUCH_TABLES` in `ui/sticky-head.js`): `.table-wrap` has no vertical scroll of its own (`max-height: none`), so a vertical swipe over a table scrolls the page and only sideways swipes scroll the columns; the header row stays visible as a floating copy under the sticky top bars (`.site-header`, `.school-nav`, `.stats-toc`), synced sideways and pushed up at the table's end. The copy is `aria-hidden`; a tap on it clicks the same control in the real header and scrolls back to the table's top. Desktop keeps the inner scroll and the sticky `thead`.
 - Balove "Топ паралелки" table: below 1024px (`OVERVIEW_COMPACT` in `pages/balove.js`, re-rendered on change) "Училище" and "Паралелка" are one sticky column with two lines (school, then the profile) and two stacked sort buttons in the header (`.is-sorted`/`.is-asc` mark the active one); its width follows the table (container query): just enough for № + the column + the latest year on narrow screens (at least 9rem), all the free space once every column fits. Names wrap (never clipped); year headers are "Мин. 26".
 - Every UI change is checked with screenshots at 320 / 360 / 390 / 768 / 1280 / 1440 px in both themes (and keyboard + axe) before it is shown - and looked at critically as a whole screen, not only measured for overflow. Floating helpers (the "N училища в графиката · Виж" bar) are checked on every width, not only on phones.
@@ -241,7 +242,8 @@ All page scripts are native ES modules (`<script type="module">`), no bundler. H
 ### Grade pages (explorer)
 `js/pages/grade.js` + `docs/data/grade-{g}.json`:
 - Comparison card: "Добави училище" combobox (all schools of the grade incl. those without latest-year data), colour chips (click = hide/show series, × = remove), БЕЛ/МАТ charts side by side (switch on narrow screens), Сподели (copy link / native share), Вгради (iframe code dialog), Изчисти.
-- Cities: chips by tier (областни; "Други градове" collapsible) + filter; `#city` selects a city. City panel: ranking table (Всички/Държавни/Частни at the right of the tab bar - a full-width row on phones; one header row; columns № · Училище · Ранг · Тип / № · БЕЛ/МАТ for 3 years + students · Доклад, the same order in the ranking PDF; sortable columns, rank bar (number only on phones), per-row ⊕ chart toggle and PDF report, "Покажи и училищата без резултат"), Средни резултати (по училища / по ученици), the "Изтегли ▾" export menu (CSV, JSON from the API, ranking PDF), links to the city page and balove.
+- Cities: chips by tier (областни; "Други градове" collapsible) + filter; `#city` selects a city. City panel: the head - one row with the city name and the count after a vertical divider ("156 училища с резултати за 2026", "64 от 156 … · държавни и частни" when filtered, "12 общински училища …" in a single-type city; all types selected = all; on phones only "156 училища" / "64 от 156 училища", the rest is `.count__long`; when a long name does not fit, the count wraps under it and the divider of the first item on a line is clipped by `overflow-x: clip`), then links + "Изтегли ▾"; the tab bar with "Покажи само" at the right (kept when the city changes, minus the types the new city does not have); ranking table (one header row; columns № · Училище · Ранг · Тип / № · БЕЛ/МАТ for 3 years + students · Доклад, the same order in the ranking PDF; sortable columns, rank bar (number only on phones), per-row ⊕ chart toggle and PDF report, "Покажи и училищата без резултат"), Средни резултати (no view switch: four small tables - each subject по училища and по ученици - each Година · Общо (2+ types) · one column per shown type; `data-n` = number of value columns and container queries put 4, 2 or 1 tables in a row so each stays close to its natural width (no stretched empty tables); equal centred columns; type names in the header become the coloured letters when a table is too narrow for them), the "Изтегли ▾" export menu (CSV, JSON from the API, ranking PDF), links to the city page and balove.
+- Rank: (3-year average − `rankBase`) as a percentage of the same value of the first shown school - the first in the city, or the first of the selected types (`rankRows` in `model.js`). "Тип / №" = the type letter + the place among the city's schools of the same type. "Добави водещите училища" takes the top 5 of the shown types; the ranking PDF title names the shown types. CSV is data and always has all schools (column "Тип" = Д/О/Ч/ДУ).
 - Year selector → `?year=` historical view (banner, 3-year window). `?school=code` deep link scrolls to the chart. When schools are selected and the chart is above the viewport, the floating "N училища в графиката · Виж" bar (`#tray`) scrolls back to it - on every screen width. The selection is written to `?i{g}=` and the `i{g}` cookie as before; `?s=codes` is also accepted. The city table is chosen as `#city` → city of a `?school=`/`?s=` school (written to `#city`) → last chosen city (`localStorage nvo-city`, one value for 4/7/10/12; also set by `/{grade}/{city}/` and `/7/balove/{city}/`) → city of the first chart school (cookie) → София. A remembered city with no schools for that grade/year is skipped without being forgotten.
 
 ### Embed pages
@@ -273,6 +275,8 @@ java/src/main/java/nvo/
   RuoIndexPage.java       balove hub docs/7/balove/index.html (template balove-hub.mustache)
   SitemapGenerator.java   generates docs/sitemap.xml by scanning published docs pages
   School.java             domain model with school name constants, code lookups, name fixes
+  SchoolType.java         school type by financing (state / municipal / private / religious) from the MON register
+  MonRegister.java        reads data/mon/ri-register.tsv once (financing + status per code)
   Cities.java             city definitions with fullName, shortName, hrefName, orderPosition tiers (1-3)
   Record.java             simple DTO: city, code, school, belScore, matScore, belStudents, matStudents
 
@@ -323,27 +327,31 @@ java/src/main/resources/templates/   Mustache templates (partials/ + one per gen
 }
 ```
 - `s` is indexed from 1 (the index is what the legacy `?i{grade}=` parameter refers to); `b`/`m` = BEL/MAT (DZI-2) scores by year from 2018, `bu`/`mu` = participants; `null` = no data.
-- `si`: `n`/`p` = public / private index ranges, `l` label, `h` slug, `o` tier (1-3), `i` order, `r` = has a balove page for this grade.
+- `s[i].t` = school type (`SchoolType.key`): `s` state, `m` municipal, `p` private, `r` religious.
+- `si`: `n`/`p` = non-private / private index ranges (unchanged order, so the legacy `?i{g}=` indices stay stable), `l` label, `h` slug, `o` tier (1-3), `i` order, `r` = has a balove page for this grade.
 
-`docs/data/search-index.json`: `{ schools: [[code, shortName, fullName, citySlug, isPrivate(0|1), [grades], officialName]…], cities: [[slug, name, orderPosition, [grades with a page], hasBalove(0|1)]…] }`.
+`docs/data/search-index.json`: `{ schools: [[code, shortName, fullName, citySlug, isPrivate(0|1), [grades], officialName, type]…], cities: [[slug, name, orderPosition, [grades with a page], hasBalove(0|1)]…] }` (`type` = `s|m|p|r`).
+
+School types come from the MON register snapshot `data/mon/ri-register.tsv` (column `financing`: Държавно / Общинско / Частно / Духовно) through `nvo.SchoolType.of(code)` (`nvo.MonRegister` reads the file once). The register is the only source; the private flag in `School.java` is only a fallback for a code missing from the register, and the build prints such codes ("SchoolType: … refresh the register snapshot") - refresh the snapshot when new schools appear. The JS twin is `docs/js/core/school-types.js` (key, letter, labels, API value). The public API adds `financing` (`state|municipal|private|religious`) next to every `isPrivate` (which stays), `balove/{city}.json` has `financing: null` for RUO codes missing from the register, and `schools/{code}.json` → `grades.{g}` has `nationalTypeRank/nationalTypeTotal` and `cityTypeRank/cityTypeTotal` (shown on the school page as "Сред частните" etc., the city one only when the city has other types too).
 
 In `schools/{code}.json` (per-school cross-grade API document, also inlined in the school page):
 ```javascript
 {
-  code, fullName, shortName, isPrivate, website,
+  code, fullName, shortName, isPrivate, financing, website,
   city: { slug, name },
   yearsRange: [2018, /* … */],
   grades: {
     "7": {
       yearsRange, belScore: [/* … */], matScore: [/* … */], belStudents: [/* … */], matStudents: [/* … */],
       latestYear, nationalRank, nationalTotal, cityRank, cityTotal,
+      nationalTypeRank, nationalTypeTotal, cityTypeRank, cityTypeTotal,
       medianRank, medianAdjustedRank, medianTotal, medianEndYear
     }
   }
 }
 ```
 
-In `schools-index.json` (public API): `{ schools: [ { code, shortName, fullName, isPrivate, city, cityOrder, grades: [4, 7] } ] }`.
+In `schools-index.json` (public API): `{ schools: [ { code, shortName, fullName, isPrivate, financing, city, cityOrder, grades: [4, 7] } ] }`.
 
 In `ruo-{city}.js`:
 ```javascript

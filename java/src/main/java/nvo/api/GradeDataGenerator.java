@@ -7,6 +7,7 @@ import com.google.gson.JsonObject;
 import nvo.Cities;
 import nvo.Record;
 import nvo.School;
+import nvo.SchoolType;
 
 import java.io.File;
 import java.nio.file.Files;
@@ -173,7 +174,9 @@ public class GradeDataGenerator {
         JsonObject sj = new JsonObject();
         sj.addProperty("fullName", overrides != null ? overrides[2] : sd.csvName);
         sj.addProperty("shortName", overrides != null ? overrides[1] : sd.csvName);
-        sj.addProperty("isPrivate", overrides != null && "1".equals(overrides[0]));
+        SchoolType type = SchoolType.of(code);
+        sj.addProperty("isPrivate", type.isPrivate());
+        sj.addProperty("financing", type.apiValue());
         sj.add("belScore", toDoubleArray(sd.belScore));
         sj.add("matScore", toDoubleArray(sd.matScore));
         sj.add("belStudents", toIntArray(sd.belStudents));

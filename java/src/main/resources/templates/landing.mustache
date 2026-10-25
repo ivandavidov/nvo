@@ -76,6 +76,14 @@
 {{/showCity}}
         </div>
         <p class="muted text-sm" data-count>{{count}} училища</p>
+{{#hasTypes}}
+        <div class="type-filter" role="group" aria-label="Покажи само училищата от избраните видове" data-n="{{typeCount}}">
+          <span class="type-filter__label" aria-hidden="true">Покажи само</span>
+{{#types}}
+          <button type="button" class="chip type-chip" data-school-type="{{key}}" aria-pressed="false"><span class="type-badge type-badge--{{key}}" aria-hidden="true">{{letter}}</span><span class="type-chip__name">{{plural}}</span><span class="type-chip__count"><span class="sr-only">, </span><span data-type-count>{{count}}</span></span></button>
+{{/types}}
+        </div>
+{{/hasTypes}}
       </div>
       <div class="table-wrap table-wrap--tall landing__table">
         <table class="data-table" data-sortable>
@@ -86,6 +94,7 @@
 {{#showCity}}
               <th data-type="text" aria-sort="none"><button type="button" class="th-sort">Град{{#icon}}sort{{/icon}}</button></th>
 {{/showCity}}
+              <th class="center" data-type="num" data-first="ascending" aria-sort="none" title="Държавно (Д), общинско (О), частно (Ч) или духовно (ДУ) и място сред училищата от същия вид в класацията"><button type="button" class="th-sort">Тип / №{{#icon}}sort{{/icon}}</button></th>
               <th class="num" data-type="num" aria-sort="none"><button type="button" class="th-sort">{{belLabel}}{{#icon}}sort{{/icon}}</button></th>
               <th class="num" data-type="num" aria-sort="none"><button type="button" class="th-sort">{{matLabel}}{{#icon}}sort{{/icon}}</button></th>
               <th class="num" data-type="num" aria-sort="none"><button type="button" class="th-sort">Общо{{#icon}}sort{{/icon}}</button></th>
@@ -93,7 +102,7 @@
           </thead>
           <tbody>
 {{#rows}}
-            <tr><td class="num muted">{{rank}}</td><td><a href="../../school/{{code}}/">{{name}}</a></td>{{#showCity}}<td>{{city}}</td>{{/showCity}}<td class="num">{{bel}}</td><td class="num">{{mat}}</td><td class="num"><strong>{{total}}</strong></td></tr>
+            <tr data-school-type="{{typeKey}}"><td class="num muted">{{rank}}</td><td><a href="../../school/{{code}}/">{{name}}</a></td>{{#showCity}}<td>{{city}}</td>{{/showCity}}<td class="center nowrap" data-sort="{{typeSort}}"><span class="type-no"><span class="type-badge type-badge--{{typeKey}}" title="{{typeLabel}}"><span aria-hidden="true">{{typeLetter}}</span><span class="sr-only">{{typeLower}}</span></span><span class="type-no__n">{{typeNo}}</span></span></td><td class="num">{{bel}}</td><td class="num">{{mat}}</td><td class="num"><strong>{{total}}</strong></td></tr>
 {{/rows}}
           </tbody>
         </table>

@@ -7,6 +7,7 @@ import {
 } from '../core/model.js';
 import { initialSelection, linkedSchools, writeSelection, shareUrl, readYearParam, readCityHash } from '../core/url-state.js';
 import { readRememberedCity, rememberCity } from '../core/city-memory.js';
+import { schoolType, joinTypes, typeBadgeHtml } from '../core/school-types.js';
 import { icon } from '../ui/icons.js';
 import { esc, download, fmt, showModal } from '../ui/dom.js';
 import { searchKey } from '../ui/search-text.js';
@@ -33,10 +34,9 @@ const state = {
   city: null,
   cityChosen: false,   // градът е избран изрично (клик или #град) → пазим го в адреса
   tab: 'ranking',
-  filter: null,
+  types: [],           // избраните видове ('s', 'm', 'p', 'r'); празно = всички
   sortCol: 'rank',
   sortDir: 'desc',
-  avgMode: 'schools',
   showInactive: false,
   subject: 'b',
   charts: { b: null, m: null },
@@ -330,7 +330,8 @@ function selectCity(city, { scroll = false, keepTab = false, explicit = true, pu
   const changed = !state.city || state.city.slug !== city.slug;
   state.city = city;
   if (changed) {
-    state.filter = null;
+    // Изборът на вид остава при смяна на града; отпадат видовете, които новият град няма.
+    state.types = state.types.filter((t) => city.types.includes(t));
     state.sortCol = 'rank';
     state.sortDir = 'desc';
     state.showInactive = false;
@@ -424,11 +425,74 @@ function setupCitySwitcher() {
 
 /* ------------------------------------------------------------------ панел на града */
 
+/** Показаните видове: избраните, ако в града има поне два вида; null = всички. */
+function shownTypes() {
+  const city = state.city;
+  if (!city || city.types.length < 2) {
+    return null;
+  }
+  const sel = state.types.filter((t) => city.types.includes(t));
+  // Избрани всички видове в града = всички.
+  return sel.length && sel.length < city.types.length ? sel : null;
+}
+
 function cityStats(city) {
   const { model } = state;
   const rows = cityRanking(model, city);
-  const pu = rows.filter((r) => r.type === 'Д').length;
-  return { rows, total: rows.length, pu, pr: rows.length - pu };
+  const counts = {};
+  rows.forEach((r) => { counts[r.type] = (counts[r.type] || 0) + 1; });
+  return { rows, total: rows.length, counts };
+}
+
+/**
+ * Броят до името на града: "156 училища с резултати за 2026", "64 от 156 училища с резултати за
+ * 2026 · държавни и частни", "12 общински училища с резултати за 2026". На телефон опашката
+ * (.count__long) се скрива - годината е в "Класация 2026", а видовете - в чиповете.
+ */
+function countHtml(city, total) {
+  const word = (n, prefix) => n + ' ' + (prefix ? prefix + ' ' : '') + (n === 1 ? 'училище' : 'училища');
+  const tail = (extra) => '<span class="count__long"> с резултати за ' + state.model.latestYear + (extra ? ' · ' + extra : '') + '</span>';
+  const types = shownTypes();
+  if (city.types.length === 1) {
+    return word(total, total === 1 ? schoolType(city.types[0]).lower : schoolType(city.types[0]).lowerPlural) + tail();
+  }
+  if (!types) {
+    return word(total) + tail();
+  }
+  const shown = cityRanking(state.model, city).filter((r) => types.includes(r.type)).length;
+  return shown + ' от ' + word(total) + tail(joinTypes(types));
+}
+
+/**
+ * "Покажи само": по един чип за всеки вид в града (с броя училища с резултати). Нищо избрано =
+ * всички; натискане добавя или маха вида. Само за градове с поне два вида. Филтърът е общ за
+ * двата таба, затова стои вдясно в реда с табовете.
+ */
+function typeFilterHtml(city, counts) {
+  if (city.types.length < 2) {
+    return '';
+  }
+  return '<div class="type-filter city-panel__types" role="group" aria-label="Покажи само училищата от избраните видове" data-n="' + city.types.length + '">'
+    + '<span class="type-filter__label" aria-hidden="true">Покажи само</span>'
+    + city.types.map((k) => {
+      const t = schoolType(k);
+      return '<button type="button" class="chip type-chip" data-school-type="' + k + '" aria-pressed="' + state.types.includes(k) + '">'
+        + '<span class="type-badge type-badge--' + k + '" aria-hidden="true">' + t.letter + '</span>'
+        + '<span class="type-chip__name">' + t.plural + '</span>'
+        + '<span class="type-chip__count"><span class="sr-only">, </span>' + (counts[k] || 0) + '</span></button>';
+    }).join('')
+    + '</div>';
+}
+
+/** След натискане на чип: състоянието на чиповете и редът с броя (без да се прерисува главата). */
+function syncTypeFilter() {
+  el.panel.querySelectorAll('[data-school-type]').forEach((b) => {
+    b.setAttribute('aria-pressed', String(state.types.includes(b.dataset.schoolType)));
+  });
+  const line = el.panel.querySelector('.city-panel__count');
+  if (line) {
+    line.innerHTML = countHtml(state.city, cityStats(state.city).total);
+  }
 }
 
 /** "Класация на училищата" → на телефон само "Класация" (двата таба да се събират на 320 px). */
@@ -440,8 +504,7 @@ function tabLabel(name) {
 function renderCityPanel() {
   const { model } = state;
   const city = state.city;
-  const { total, pu, pr } = cityStats(city);
-  const latest = model.latestYear;
+  const { total, counts } = cityStats(city);
   const actions = [
     '<a class="btn btn--sm" href="' + esc(city.slug) + '/" title="Класацията на училищата в ' + esc(city.name) + ' за ' + model.dataLatestYear + ' на отделна страница">' + icon('external') + ' Класация ' + model.dataLatestYear + '</a>'
   ];
@@ -460,14 +523,16 @@ function renderCityPanel() {
   });
 
   el.panel.innerHTML = '<div class="card__head city-panel__head">'
-    + '<div><h3 class="city-panel__title">' + esc(city.name) + '</h3>'
-    + '<p class="muted text-sm">' + total + ' училища с резултати за ' + latest
-    + (city.hasPrivate ? ' · ' + pu + ' държавни, ' + pr + ' частни' : '') + '</p></div>'
+    // Името и броят са на един ред, с разделител; ако не се съберат, броят минава отдолу (без разделител).
+    + '<div class="city-panel__heading"><div class="city-panel__heading-row"><h3 class="city-panel__title">' + esc(city.name) + '</h3>'
+    + '<p class="city-panel__count">' + countHtml(city, total) + '</p></div></div>'
     + '<div class="cluster city-panel__actions">' + actions.join('') + exportMenu + '</div></div>'
-    + '<div class="city-panel__bar"><div class="tabs city-panel__tabs" role="tablist">'
+    + '<div class="city-panel__bar" data-types="' + (city.types.length > 1 ? city.types.length : 0) + '"><div class="city-panel__barrow">'
+    + '<div class="tabs city-panel__tabs" role="tablist">'
     + '<button role="tab" type="button" data-tab="ranking" aria-selected="' + (state.tab === 'ranking') + '">' + tabLabel(model.cfg.tableTitleName) + '</button>'
     + '<button role="tab" type="button" data-tab="averages" aria-selected="' + (state.tab === 'averages') + '">Средни резултати</button>'
-    + '</div><div class="city-panel__view"></div></div><div class="city-panel__body" role="tabpanel"></div>';
+    + '</div><div class="city-panel__view">' + typeFilterHtml(city, counts) + '</div></div></div>'
+    + '<div class="city-panel__body" role="tabpanel"></div>';
   renderTab();
 }
 
@@ -476,8 +541,6 @@ function renderTab() {
   if (!body) {
     return;
   }
-  // Превключвателят на изгледа (вид училища / начин на изчисляване) е вдясно в реда с табовете.
-  el.panel.querySelector('.city-panel__view').innerHTML = state.tab === 'averages' ? averagesView() : rankingView();
   body.innerHTML = state.tab === 'averages' ? averagesHtml() : rankingHtml();
   if (state.tab === 'ranking') {
     syncTableSelection();
@@ -494,35 +557,26 @@ function announce() {
   }
   const { cfg, latestYear } = state.model;
   const name = state.city.name;
+  const types = shownTypes();
   if (state.tab === 'averages') {
-    el.status.textContent = 'Средни резултати за ' + name + (state.avgMode === 'students' ? ', по ученици' : ', по училища');
+    el.status.textContent = 'Средни резултати за ' + name + (types ? ' (' + joinTypes(types) + ')' : '');
     return;
   }
   const n = el.panel.querySelectorAll('.data-table.ranking tbody:first-of-type tr').length;
   const col = state.sortCol;
   const label = SORT_LABELS[col] || ((col[2] === 'b' ? cfg.subjectB : cfg.subjectM) + ' ' + (latestYear - Number(col[1])));
-  el.status.textContent = name + ': ' + n + (state.filter === 'Ч' ? ' частни' : state.filter === 'Д' ? ' държавни' : '')
-    + ' училища, подредени по ' + label + (state.sortDir === 'asc' ? ', възходящо' : ', низходящо');
-}
-
-/** "Всички / Държавни / Частни" - само за градове с частни училища. */
-function rankingView() {
-  if (!state.city.hasPrivate) {
-    return '';
-  }
-  return '<div class="seg" role="group" aria-label="Вид училища">'
-    + [[null, 'Всички'], ['Д', 'Държавни'], ['Ч', 'Частни']].map(([f, label]) =>
-      '<button type="button" data-filter="' + (f || '') + '" aria-pressed="' + (state.filter === f) + '">' + label + '</button>').join('')
-    + '</div>';
+  el.status.textContent = name + ': ' + n + ' училища' + (types ? ' (' + joinTypes(types) + ')' : '')
+    + ', подредени по ' + label + (state.sortDir === 'asc' ? ', възходящо' : ', низходящо');
 }
 
 function rankingHtml() {
   const { model } = state;
   const city = state.city;
   const cfg = model.cfg;
-  const rows = sortRanking(model, cityRanking(model, city), state.sortCol, state.sortDir, state.filter);
+  const types = shownTypes();
+  const rows = sortRanking(model, cityRanking(model, city), state.sortCol, state.sortDir, types);
   const inactive = cityInactiveSchools(model, city);
-  const inactiveFiltered = inactive.filter((r) => !state.filter || r.type === state.filter);
+  const inactiveFiltered = inactive.filter((r) => !types || types.includes(r.type));
   const years = rows.length ? rows[0].years.map((y) => y.year) : [model.latestYear, model.latestYear - 1, model.latestYear - 2];
 
   const sortTh = (col, label, cls, title) => {
@@ -541,7 +595,7 @@ function rankingHtml() {
     + '<th class="center col-pos">№</th>'
     + sortTh('name', 'Училище', 'col-name')
     + sortTh('rank', 'Ранг', 'center col-rank', 'Средният резултат за последните 3 години като процент от този на първото училище')
-    + sortTh('type', 'Тип / №', 'center col-type group-start', 'Държавно (Д) или частно (Ч) и място сред училищата от същия вид');
+    + sortTh('type', 'Тип / №', 'center col-type group-start', 'Държавно (Д), общинско (О), частно (Ч) или духовно (ДУ) и място сред училищата от същия вид в града');
   years.forEach((y, k) => {
     head += yearTh(k, 'b', y, true) + yearTh(k, 'm', y, false);
   });
@@ -550,7 +604,7 @@ function rankingHtml() {
   const divider = firstEmptyRow(rows, state.sortCol);
   const rowHtml = (r, pos, isInactive) => {
     const o = model.s[r.i];
-    const rank = isInactive ? null : rankFor(r, state.filter);
+    const rank = isInactive ? null : rankFor(r);
     let cells = '<td class="center col-pos muted">' + (isInactive ? '-' : pos) + '</td>'
       + '<td class="col-name"><div class="school-cell">'
       + '<button type="button" class="add-toggle ci" data-add="' + r.i + '" aria-pressed="false" aria-label="Покажи ' + esc(o.n) + ' в графиката"></button>'
@@ -559,8 +613,9 @@ function rankingHtml() {
       + '</div></td>'
       + '<td class="center col-rank">' + (rank === null || rank === undefined ? '<span class="muted">-</span>'
         : '<span class="rank" title="Среден резултат = ' + r.avg.toFixed(2) + '">' + rank.toFixed(2) + '<span class="rank__bar" style="--v:' + rank + '"></span></span>') + '</td>'
-      + '<td class="center nowrap col-type group-start"><span class="badge' + (r.type === 'Ч' ? ' badge--accent' : '') + '" title="' + (r.type === 'Ч' ? 'Частно' : 'Държавно') + '">' + r.type + '</span>'
-      + (isInactive ? '' : ' <span class="muted">' + r.typeNo + '</span>') + '</td>';
+      // Буквата и мястото - блок с еднаква геометрия на всеки ред (значки и номера една под друга).
+      + '<td class="center nowrap col-type group-start"><span class="type-no">' + typeBadgeHtml(r.type)
+      + '<span class="type-no__n">' + (isInactive ? '' : r.typeNo) + '</span></span></td>';
     r.years.forEach((y) => {
       cells += '<td class="yv group-start"' + (y.b ? ' title="' + esc(cfg.subjectB + ' ' + y.year + ': ' + fmt(y.b) + ' · ' + y.bu + ' ученици') + '"' : '') + '>'
         + (y.b ? '<span class="v">' + fmt(y.b) + '</span><span class="sub">/' + y.bu + '</span>' : '') + '</td>'
@@ -589,7 +644,8 @@ function rankingHtml() {
     + (inactiveFiltered.length ? '<label class="switch"><input type="checkbox" data-action="toggle-inactive"' + (state.showInactive ? ' checked' : '') + '> Покажи и училищата без резултат за ' + model.latestYear + ' (' + inactiveFiltered.length + ')</label>' : '<span></span>')
     + '<details class="disclosure disclosure--plain"><summary>Как се изчислява рангът?</summary><div class="disclosure__body prose">'
     + '<p>Училищата са подредени по общия среден успех по ' + esc(cfg.subjectB) + ' и ' + esc(cfg.subjectM) + ' за последните три години. '
-    + 'Рангът е този среден успех като процент от успеха на първото училище в града (при филтър "Държавни" или "Частни" - от първото в групата).</p>'
+    + 'Рангът е този среден успех като процент от успеха на първото показано училище - на първото в града или, ако е избран вид, на първото от избраните видове.</p>'
+    + '<p>Видът е според финансирането в регистъра на МОН: държавно (Д), общинско (О), частно (Ч) или духовно (ДУ). До буквата е мястото сред училищата от същия вид в града.</p>'
     + '<p>Училищата без резултат за последната година не участват в класацията. До всяка стойност е броят на учениците.</p>'
     + '</div></details></div>';
 
@@ -598,32 +654,44 @@ function rankingHtml() {
     + notes;
 }
 
+/**
+ * "Средни резултати": четири малки таблици - за всеки предмет по училища и по ученици, без
+ * превключвател. Всяка е Година · Общо (при два и повече вида) · по колона за всеки показан вид.
+ * Колко таблици са в ред (4, 2 или 1) зависи от ширината и от броя колони (data-n, site.css),
+ * така че таблиците не се разтягат празни; на телефон видовете в заглавието са буквите от чиповете.
+ */
 function averagesHtml() {
   const { model } = state;
   const cfg = model.cfg;
-  const avg = cityAverages(model, state.city.name, state.avgMode);
-  // С частни училища колоните са групирани ("Държавни" / "Частни" над БЕЛ и МАТ): така
-  // таблицата е тясна и всичките четири стойности се виждат на телефон без скрол встрани.
-  let head = '<thead>';
-  if (avg.hasPrivate) {
-    head += '<tr><th rowspan="2">Година</th><th colspan="2" class="center group-start">Държавни</th><th colspan="2" class="center group-start">Частни</th></tr>';
-  }
-  head += '<tr>' + (avg.hasPrivate ? '' : '<th>Година</th>') + '<th class="num group-start">' + esc(cfg.csvHeaderBel) + '</th><th class="num">' + esc(cfg.csvHeaderMat) + '</th>'
-    + (avg.hasPrivate ? '<th class="num group-start">' + esc(cfg.csvHeaderBel) + '</th><th class="num">' + esc(cfg.csvHeaderMat) + '</th>' : '')
-    + '</tr></thead>';
-  const body = '<tbody>' + avg.rows.map((r) => '<tr><td>' + r.year + '</td><td class="num group-start">' + r.puB + '</td><td class="num">' + r.puM + '</td>'
-    + (avg.hasPrivate ? '<td class="num group-start">' + r.prB + '</td><td class="num">' + r.prM + '</td>' : '') + '</tr>').join('') + '</tbody>';
-  return '<p class="averages__note muted text-sm">' + (state.avgMode === 'schools'
-      ? 'Средно аритметично от резултатите на училищата в града.'
-      : 'Претеглено с броя на учениците - средният резултат на всички ученици в града.') + '</p>'
-    + '<div class="table-wrap averages"><table class="data-table">' + head + body + '</table></div>';
-}
-
-/** "По училища / По ученици" за "Средни резултати". */
-function averagesView() {
-  return '<div class="seg" role="group" aria-label="Начин на изчисляване">'
-    + '<button type="button" data-avg="schools" aria-pressed="' + (state.avgMode === 'schools') + '">По училища</button>'
-    + '<button type="button" data-avg="students" aria-pressed="' + (state.avgMode === 'students') + '">По ученици</button></div>';
+  const city = state.city;
+  const types = shownTypes() || city.types;
+  const byMode = { schools: cityAverages(model, city, 'schools', types), students: cityAverages(model, city, 'students', types) };
+  const columns = byMode.schools.columns;
+  // "Общо" е отделено с разделител от колоните по видове.
+  const cls = (k) => 'num' + (k === 1 && columns[0].key === 'all' ? ' group-start' : '');
+  const colHead = (c, k) => {
+    if (c.key === 'all') {
+      return '<th class="' + cls(k) + '" title="Всички показани училища заедно">Общо</th>';
+    }
+    const t = schoolType(c.key);
+    return '<th class="' + cls(k) + ' avg-type" title="' + t.plural + '"><span class="avg-type__name">' + t.plural + '</span>'
+      + typeBadgeHtml(c.key) + '</th>';
+  };
+  const cell = (v, k) => '<td class="' + cls(k) + '">'
+    + (v === null || v === undefined ? '<span class="muted">-</span>' : (Math.round(v * 100) / 100).toFixed(2)) + '</td>';
+  const head = '<thead><tr><th>Година</th>' + columns.map(colHead).join('') + '</tr></thead>';
+  const table = (mode, subject, title, modeLabel) => '<div class="averages__subject">'
+    + '<h4 class="averages__title">' + esc(title) + ' <span class="averages__mode">' + modeLabel + '</span></h4>'
+    + '<div class="table-wrap averages"><table class="data-table">' + head + '<tbody>'
+    + byMode[mode].rows.map((r) => '<tr><td>' + r.year + '</td>' + r[subject].map(cell).join('') + '</tr>').join('')
+    + '</tbody></table></div></div>';
+  const what = shownTypes() ? ' Показани са ' + joinTypes(types) + ' училища.' : '';
+  return '<p class="averages__note muted text-sm"><strong>По училища</strong> - средно аритметично от резултатите на училищата; '
+    + '<strong>по ученици</strong> - претеглено с броя на учениците.' + what + '</p>'
+    + '<div class="averages__box"><div class="averages__grid" data-n="' + columns.length + '">'
+    + table('schools', 'b', cfg.subjectBLong, 'по училища') + table('schools', 'm', cfg.subjectMLong, 'по училища')
+    + table('students', 'b', cfg.subjectBLong, 'по ученици') + table('students', 'm', cfg.subjectMLong, 'по ученици')
+    + '</div></div>';
 }
 
 function syncTableSelection() {
@@ -644,7 +712,7 @@ function syncTableSelection() {
 }
 
 function currentRows() {
-  return sortRanking(state.model, cityRanking(state.model, state.city), state.sortCol, state.sortDir, state.filter);
+  return sortRanking(state.model, cityRanking(state.model, state.city), state.sortCol, state.sortDir, shownTypes());
 }
 
 async function runBusy(btn, fn, errorText) {
@@ -679,9 +747,12 @@ el.panel.addEventListener('click', (e) => {
     toggleSelected(Number(add.dataset.add));
     return;
   }
-  const filter = t.closest('[data-filter]');
-  if (filter) {
-    state.filter = filter.dataset.filter || null;
+  const typeChip = t.closest('[data-school-type]');
+  if (typeChip) {
+    // Нищо избрано = всички; натискане добавя или маха вида.
+    const k = typeChip.dataset.schoolType;
+    state.types = state.types.includes(k) ? state.types.filter((x) => x !== k) : state.types.concat(k);
+    syncTypeFilter();
     renderTab();
     return;
   }
@@ -701,12 +772,6 @@ el.panel.addEventListener('click', (e) => {
     }
     return;
   }
-  const avg = t.closest('[data-avg]');
-  if (avg) {
-    state.avgMode = avg.dataset.avg;
-    renderTab();
-    return;
-  }
   const report = t.closest('[data-report]');
   if (report) {
     runBusy(report, () => import('../core/pdf.js').then((m) => m.schoolReportPdf(state.model, Number(report.dataset.report))),
@@ -718,7 +783,7 @@ el.panel.addEventListener('click', (e) => {
     const csv = cityCsv(state.model, state.city);
     download(csv.filename, csv.content);
   } else if (action && action.dataset.action === 'city-pdf') {
-    runBusy(menuButtonOf(action), () => import('../core/pdf.js').then((m) => m.rankingPdf(state.model, state.city, currentRows(), state.filter)),
+    runBusy(menuButtonOf(action), () => import('../core/pdf.js').then((m) => m.rankingPdf(state.model, state.city, currentRows(), shownTypes())),
       'Грешка при генериране на PDF. Опитай отново.');
   }
 });
@@ -832,9 +897,14 @@ document.addEventListener('click', async (e) => {
   } else if (name === 'to-chart') {
     el.compare.scrollIntoView({ block: 'start' });
   } else if (name === 'suggest') {
-    // Водещите училища в града - първите в класацията (както в таблицата).
+    // Водещите училища в града - първите в класацията от показаните видове (както в таблицата).
     const city = state.city || state.cities[0];
-    setSelected(cityRanking(state.model, city).slice(0, SUGGEST_COUNT).map((r) => r.i), true);
+    const types = city === state.city ? shownTypes() : null;
+    const top = cityRanking(state.model, city).filter((r) => !types || types.includes(r.type)).slice(0, SUGGEST_COUNT);
+    setSelected(top.map((r) => r.i), true);
+    if (types && top.length) {
+      toast('Добавени ' + top.length + ' водещи ' + joinTypes(types) + ' училища');
+    }
   }
 });
 

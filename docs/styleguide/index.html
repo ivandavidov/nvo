@@ -181,19 +181,31 @@
           <button class="btn" type="button" data-sg-dialog>Отвори диалог</button>
         </div>
         <div class="sg-row">
-          <div class="seg" role="group" aria-label="Тип училища">
-            <button type="button" aria-pressed="true">Всички</button>
-            <button type="button" aria-pressed="false">Държавни</button>
-            <button type="button" aria-pressed="false">Частни</button>
-          </div>
           <div class="seg seg--pill" role="group" aria-label="Предмет">
             <button type="button" aria-pressed="true">БЕЛ</button>
             <button type="button" aria-pressed="false">МАТ</button>
           </div>
           <label class="switch"><input type="checkbox" checked> Разбивка по пол</label>
-          <span class="badge">Държавно</span>
           <span class="badge badge--primary">7 клас</span>
-          <span class="badge badge--accent">Частно</span>
+        </div>
+        <div class="sg-row">
+          <span class="badge type-badge--s">Държавно</span>
+          <span class="badge type-badge--m">Общинско</span>
+          <span class="badge type-badge--p">Частно</span>
+          <span class="badge type-badge--r">Духовно</span>
+          <span class="type-badge type-badge--s" title="Държавно">Д</span>
+          <span class="type-badge type-badge--m" title="Общинско">О</span>
+          <span class="type-badge type-badge--p" title="Частно">Ч</span>
+          <span class="type-badge type-badge--r" title="Духовно">ДУ</span>
+        </div>
+        <div class="sg-row">
+          <div class="type-filter" role="group" aria-label="Покажи само училищата от избраните видове" data-n="4">
+            <span class="type-filter__label" aria-hidden="true">Покажи само</span>
+            <button type="button" class="chip type-chip" aria-pressed="false"><span class="type-badge type-badge--s" aria-hidden="true">Д</span><span class="type-chip__name">Държавни</span><span class="type-chip__count">35</span></button>
+            <button type="button" class="chip type-chip" aria-pressed="false"><span class="type-badge type-badge--m" aria-hidden="true">О</span><span class="type-chip__name">Общински</span><span class="type-chip__count">91</span></button>
+            <button type="button" class="chip type-chip" aria-pressed="true"><span class="type-badge type-badge--p" aria-hidden="true">Ч</span><span class="type-chip__name">Частни</span><span class="type-chip__count">29</span></button>
+            <button type="button" class="chip type-chip" aria-pressed="false"><span class="type-badge type-badge--r" aria-hidden="true">ДУ</span><span class="type-chip__name">Духовни</span><span class="type-chip__count">1</span></button>
+          </div>
         </div>
         <div class="sg-row">
           <span class="chip"><span class="dot" style="--dot:var(--chart-1)"></span><span class="chip__label">СМГ Паисий Хилендарски</span><button class="chip__x" type="button" aria-label="Премахни"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button></span>
@@ -236,10 +248,10 @@
             <th class="num group-start">2025 БЕЛ</th><th class="num">МАТ</th>
           </tr></thead>
           <tbody>
-            <tr class="is-selected"><td class="num">1</td><td><a href="#">СМГ Паисий Хилендарски</a> <span class="badge">Д</span></td><td><span class="rank"><span class="rank__val">100</span><span class="rank__bar" style="--v:100"></span></span></td><td class="num group-start">95.08<span class="sub">/158</span></td><td class="num">97.20<span class="sub">/158</span></td><td class="num group-start">92.86<span class="sub">/151</span></td><td class="num">97.80<span class="sub">/151</span></td></tr>
-            <tr><td class="num">2</td><td><a href="#">НПМГ Акад. Любомир Чакалов</a> <span class="badge">Д</span></td><td><span class="rank"><span class="rank__val">93.2</span><span class="rank__bar" style="--v:93.2"></span></span></td><td class="num group-start">91.99<span class="sub">/52</span></td><td class="num">95.29<span class="sub">/52</span></td><td class="num group-start">89.02<span class="sub">/50</span></td><td class="num">95.39<span class="sub">/50</span></td></tr>
-            <tr><td class="num">3</td><td><a href="#">ЧСУ Наука за деца</a> <span class="badge badge--accent">Ч</span></td><td><span class="rank"><span class="rank__val">62</span><span class="rank__bar" style="--v:62"></span></span></td><td class="num group-start">93.04<span class="sub">/24</span></td><td class="num">94.09<span class="sub">/24</span></td><td class="num group-start">88.41<span class="sub">/22</span></td><td class="num">85.38<span class="sub">/22</span></td></tr>
-            <tr><td class="num">4</td><td><a href="#">3 СУ Марин Дринов</a> <span class="badge">Д</span></td><td><span class="rank"><span class="rank__val">21</span><span class="rank__bar" style="--v:21"></span></span></td><td class="num group-start">57.00<span class="sub">/35</span></td><td class="num">34.59<span class="sub">/35</span></td><td class="num group-start">48.90<span class="sub">/26</span></td><td class="num">26.24<span class="sub">/26</span></td></tr>
+            <tr class="is-selected"><td class="num">1</td><td><a href="#">СМГ Паисий Хилендарски</a> <span class="type-badge type-badge--m" title="Общинско">О</span></td><td><span class="rank"><span class="rank__val">100</span><span class="rank__bar" style="--v:100"></span></span></td><td class="num group-start">95.08<span class="sub">/158</span></td><td class="num">97.20<span class="sub">/158</span></td><td class="num group-start">92.86<span class="sub">/151</span></td><td class="num">97.80<span class="sub">/151</span></td></tr>
+            <tr><td class="num">2</td><td><a href="#">НПМГ Акад. Любомир Чакалов</a> <span class="type-badge type-badge--s" title="Държавно">Д</span></td><td><span class="rank"><span class="rank__val">93.2</span><span class="rank__bar" style="--v:93.2"></span></span></td><td class="num group-start">91.99<span class="sub">/52</span></td><td class="num">95.29<span class="sub">/52</span></td><td class="num group-start">89.02<span class="sub">/50</span></td><td class="num">95.39<span class="sub">/50</span></td></tr>
+            <tr><td class="num">3</td><td><a href="#">ЧСУ Наука за деца</a> <span class="type-badge type-badge--p" title="Частно">Ч</span></td><td><span class="rank"><span class="rank__val">62</span><span class="rank__bar" style="--v:62"></span></span></td><td class="num group-start">93.04<span class="sub">/24</span></td><td class="num">94.09<span class="sub">/24</span></td><td class="num group-start">88.41<span class="sub">/22</span></td><td class="num">85.38<span class="sub">/22</span></td></tr>
+            <tr><td class="num">4</td><td><a href="#">3 СУ Марин Дринов</a> <span class="type-badge type-badge--m" title="Общинско">О</span></td><td><span class="rank"><span class="rank__val">21</span><span class="rank__bar" style="--v:21"></span></span></td><td class="num group-start">57.00<span class="sub">/35</span></td><td class="num">34.59<span class="sub">/35</span></td><td class="num group-start">48.90<span class="sub">/26</span></td><td class="num">26.24<span class="sub">/26</span></td></tr>
           </tbody>
         </table>
       </div>

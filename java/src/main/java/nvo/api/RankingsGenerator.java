@@ -7,6 +7,7 @@ import com.google.gson.JsonObject;
 
 import nvo.Cities;
 import nvo.School;
+import nvo.SchoolType;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -61,6 +62,7 @@ public class RankingsGenerator {
                 entry.addProperty("shortName", rs.shortName());
                 entry.addProperty("fullName", rs.fullName());
                 entry.addProperty("isPrivate", rs.isPrivate());
+                entry.addProperty("financing", rs.type().apiValue());
                 entry.addProperty("belScore", roundTo2(bel));
                 entry.addProperty("matScore", roundTo2(mat));
                 entry.addProperty("score", roundTo2((bel + mat) / 2.0));
@@ -142,6 +144,7 @@ public class RankingsGenerator {
                 entry.addProperty("shortName", rs.shortName());
                 entry.addProperty("fullName", rs.fullName());
                 entry.addProperty("isPrivate", rs.isPrivate());
+                entry.addProperty("financing", rs.type().apiValue());
                 entry.addProperty("belMedian", roundTo2(bel));
                 entry.addProperty("matMedian", roundTo2(mat));
                 entry.addProperty("score", roundTo2((bel + mat) / 2.0));
@@ -184,10 +187,9 @@ public class RankingsGenerator {
                 String[] overrides = School.schoolCodes.get(code);
                 String fullName = overrides != null ? overrides[2] : sd.csvName;
                 String shortName = overrides != null ? overrides[1] : sd.csvName;
-                boolean isPrivate = overrides != null && "1".equals(overrides[0]);
                 List<String> citySlugs = codeToCitySlugs.getOrDefault(code, List.of());
 
-                seenSchools.put(code, new RankedSchool(code, citySlugs, shortName, fullName, isPrivate, sd));
+                seenSchools.put(code, new RankedSchool(code, citySlugs, shortName, fullName, SchoolType.of(code), sd));
             }
         }
         return new ArrayList<>(seenSchools.values());

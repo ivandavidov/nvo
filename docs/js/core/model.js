@@ -2,6 +2,7 @@
 // (прозорецът с години, липсващи години, исторически изглед) и всички изчисления за
 // класациите, средните, CSV и графиките.
 import { gradeConfig, displayRange, navFirstYear } from './config.js';
+import { schoolType, typeOrder, sortTypes } from './school-types.js';
 
 const cache = {};
 
@@ -19,9 +20,25 @@ export function fetchGradeData(grade, dataUrl) {
 
 function copySchools(raw) {
   return raw.map((o) => (o ? {
-    l: o.l, n: o.n, w: o.w, c: o.c,
+    l: o.l, n: o.n, w: o.w, c: o.c, t: o.t,
     b: o.b.slice(), m: o.m.slice(), bu: o.bu.slice(), mu: o.mu.slice()
   } : o));
+}
+
+/** Видът (t) липсва само в стари данни: частните са в диапазона p, останалите - общински. */
+function fillTypes(s, si) {
+  Object.keys(si).forEach((name) => {
+    [[si[name].n, 'm'], [si[name].p, 'p']].forEach(([range, type]) => {
+      if (!Array.isArray(range)) {
+        return;
+      }
+      for (let i = range[0]; i <= range[1]; i++) {
+        if (s[i] && !s[i].t) {
+          s[i].t = type;
+        }
+      }
+    });
+  });
 }
 
 function copyCities(raw) {
@@ -46,6 +63,7 @@ export function buildModel(grade, raw, opts = {}) {
   const cfg = gradeConfig(grade);
   const s = copySchools(raw.s);
   const si = copyCities(raw.si);
+  fillTypes(s, si);
   const base = cfg.baseSchoolIndex;
   const dataFirstYear = cfg.firstYear;
   const dataYears = s[base].b.length;
@@ -115,8 +133,6 @@ export function buildModel(grade, raw, opts = {}) {
   });
 
   computeSchoolMedians(s);
-  computeCityMediansBySchool(s, si, totalYears);
-  computeCityMediansByAttendees(s, si, totalYears);
 
   return {
     grade: cfg.grade,
@@ -161,79 +177,35 @@ export function computeSchoolMedians(s) {
   });
 }
 
-function rangeAverages(s, range, totalYears, weighted) {
+/**
+ * Средните по БЕЛ и МАТ за всяка година на училищата от дадените видове в града -
+ * по училища (средно аритметично) или претеглени с броя на учениците. null = няма данни.
+ */
+export function typeAverages(model, city, types, weighted) {
+  const { s, totalYears } = model;
+  const indices = cityIndices(city).filter((i) => s[i] && types.includes(s[i].t));
   const bel = [];
   const mat = [];
-  for (let i = 0; i < totalYears; i++) {
+  for (let y = 0; y < totalYears; y++) {
     let sumB = 0;
     let sumM = 0;
     let divB = 0;
     let divM = 0;
-    let nullB = 0;
-    let nullM = 0;
-    for (let j = range[0]; j <= range[1]; j++) {
-      if (weighted) {
-        if (s[j].b[i]) {
-          sumB += s[j].b[i] * s[j].bu[i];
-          divB += s[j].bu[i];
-        }
-        if (s[j].m[i]) {
-          sumM += s[j].m[i] * s[j].mu[i];
-          divM += s[j].mu[i];
-        }
-      } else {
-        if (s[j].b[i]) {
-          sumB += s[j].b[i];
-        } else {
-          ++nullB;
-        }
-        if (s[j].m[i]) {
-          sumM += s[j].m[i];
-        } else {
-          ++nullM;
-        }
+    indices.forEach((i) => {
+      const o = s[i];
+      if (o.b[y]) {
+        sumB += weighted ? o.b[y] * o.bu[y] : o.b[y];
+        divB += weighted ? o.bu[y] : 1;
       }
-    }
-    if (!weighted) {
-      divB = range[1] - range[0] + 1 - nullB;
-      divM = range[1] - range[0] + 1 - nullM;
-    }
-    bel[i] = safeDivide(sumB, divB, 0);
-    mat[i] = safeDivide(sumM, divM, 0);
+      if (o.m[y]) {
+        sumM += weighted ? o.m[y] * o.mu[y] : o.m[y];
+        divM += weighted ? o.mu[y] : 1;
+      }
+    });
+    bel.push(divB ? sumB / divB : null);
+    mat.push(divM ? sumM / divM : null);
   }
   return { bel, mat };
-}
-
-/** Средни за града по училища: si[c].mnbs/mnms (държавни), mpbs/mpms (частни). */
-export function computeCityMediansBySchool(s, si, totalYears) {
-  Object.keys(si).forEach((c) => {
-    const pub = rangeAverages(s, si[c].n, totalYears, false);
-    si[c].mnbs = pub.bel;
-    si[c].mnms = pub.mat;
-    si[c].mpbs = null;
-    si[c].mpms = null;
-    if (si[c].p) {
-      const pr = rangeAverages(s, si[c].p, totalYears, false);
-      si[c].mpbs = pr.bel;
-      si[c].mpms = pr.mat;
-    }
-  });
-}
-
-/** Средни за града по ученици (претеглени): mnba/mnma, mpba/mpma. */
-export function computeCityMediansByAttendees(s, si, totalYears) {
-  Object.keys(si).forEach((c) => {
-    const pub = rangeAverages(s, si[c].n, totalYears, true);
-    si[c].mnba = pub.bel;
-    si[c].mnma = pub.mat;
-    si[c].mpba = null;
-    si[c].mpma = null;
-    if (si[c].p) {
-      const pr = rangeAverages(s, si[c].p, totalYears, true);
-      si[c].mpba = pr.bel;
-      si[c].mpma = pr.mat;
-    }
-  });
 }
 
 /** Средна за страната (по училища) за всяка година - за PDF доклада. */
@@ -272,6 +244,19 @@ function hasSchoolsWithLatestYearData(s, range) {
   return false;
 }
 
+/** Индексите на училищата в града (диапазоните n и p - в реда от данните). */
+export function cityIndices(city) {
+  const out = [];
+  [city.pu, city.pr].forEach((range) => {
+    if (range) {
+      for (let i = range[0]; i <= range[1]; i++) {
+        out.push(i);
+      }
+    }
+  });
+  return out;
+}
+
 function cityGroups(si, name) {
   const c = si[name];
   if (!c || !Array.isArray(c.n) || c.n.length < 2) {
@@ -282,7 +267,8 @@ function cityGroups(si, name) {
 
 /**
  * Градовете с поне едно училище с данни за последната година, подредени по `i`.
- * Всеки: { name, slug, label, tier (1..3), order, pu, pr, hasPrivate, hasBalove }.
+ * Всеки: { name, slug, label, tier (1..3), order, pu, pr, types, hasBalove };
+ * types = видовете училища в града (с или без резултат за последната година), в общия ред.
  */
 export function renderableCities(model) {
   const { s, si } = model;
@@ -301,6 +287,16 @@ export function renderableCities(model) {
       return;
     }
     const tier = Number.parseInt(c.o, 10);
+    const types = new Set();
+    [groups.pu, groups.pr].forEach((range) => {
+      if (range) {
+        for (let i = range[0]; i <= range[1]; i++) {
+          if (s[i]) {
+            types.add(s[i].t);
+          }
+        }
+      }
+    });
     out.push({
       name,
       slug: c.h ? String(c.h) : String(name).trim().toLowerCase().replace(/\s+/g, '-'),
@@ -309,7 +305,7 @@ export function renderableCities(model) {
       order,
       pu: groups.pu,
       pr: groups.pr,
-      hasPrivate: !!groups.pr,
+      types: sortTypes([...types]),
       hasBalove: !!c.r
     });
   });
@@ -317,20 +313,17 @@ export function renderableCities(model) {
   return out;
 }
 
-/** Градът и типът на училище по индекс. */
+/** Градът и видът на училище по индекс. */
 export function findCityForSchool(model, index) {
-  const { si } = model;
+  const { s, si } = model;
   const names = Object.keys(si);
   for (let k = 0; k < names.length; k++) {
     const groups = cityGroups(si, names[k]);
     if (!groups) {
       continue;
     }
-    if (index >= groups.pu[0] && index <= groups.pu[1]) {
-      return { cityName: names[k], isPrivate: false };
-    }
-    if (groups.pr && index >= groups.pr[0] && index <= groups.pr[1]) {
-      return { cityName: names[k], isPrivate: true };
+    if ((index >= groups.pu[0] && index <= groups.pu[1]) || (groups.pr && index >= groups.pr[0] && index <= groups.pr[1])) {
+      return { cityName: names[k], type: s[index].t };
     }
   }
   return null;
@@ -371,62 +364,54 @@ export function formatRankValue(value) {
 
 const avgSort = (s) => (o1, o2) => ((s[o1.i].mb + s[o1.i].mm) / 2 < (s[o2.i].mb + s[o2.i].mm) / 2 ? 1 : -1);
 
+/** Филтърът по вид: null = всички, иначе масив от ключове ('s', 'm', 'p', 'r'). */
+const inTypes = (types) => (r) => !types || types.includes(r.type);
+
 /**
  * Редовете на класацията за град (училищата с резултат за последната година),
- * в подредбата по подразбиране (средно за 3 г. низходящо), с ранговете за трите филтъра.
- * Ред: { i, type: 'Д'|'Ч', typeNo, rankAll, rankPu, rankPr, avg, years: [{year, b, bu, m, mu}] }
+ * в подредбата по подразбиране (средно за 3 г. низходящо), с ранга за всички видове.
+ * Ред: { i, type ('s'|'m'|'p'|'r'), typeNo (място сред същия вид), value, avg, rank, years: [{year, b, bu, m, mu}] }
  */
 export function cityRanking(model, city) {
   const { s, cfg, totalYears, firstYear } = model;
   const rows = [];
-  const add = (range, type) => {
-    if (!range) {
-      return;
+  cityIndices(city).forEach((i) => {
+    if (s[i] && s[i].b[s[i].b.length - 1] !== null) {
+      rows.push({ i, type: s[i].t });
     }
-    for (let i = range[0]; i <= range[1]; i++) {
-      if (!s[i] || s[i].b[s[i].b.length - 1] === null) {
-        continue;
-      }
-      rows.push({ i, type });
-    }
-  };
-  add(city.pu, 'Д');
-  add(city.pr, 'Ч');
+  });
   rows.sort(avgSort(s));
-  if (!rows.length) {
-    return rows;
-  }
   const rb = cfg.rankBase;
-  const value = (r) => (s[r.i].mb + s[r.i].mm - rb * 2) / 2;
-  const topAll = value(rows[0]);
-  let topPu = null;
-  let topPr = null;
-  if (city.pr) {
-    const firstPu = rows.find((r) => r.type === 'Д');
-    const firstPr = rows.find((r) => r.type === 'Ч');
-    topPu = firstPu ? value(firstPu) : null;
-    topPr = firstPr ? value(firstPr) : null;
-  }
-  let nPu = 0;
-  let nPr = 0;
-  rows.forEach((r, k) => {
-    const v = value(r);
-    r.avg = v + rb;
-    r.typeNo = r.type === 'Д' ? ++nPu : ++nPr;
-    if (k === 0) {
-      r.rankAll = 100;
-      r.rankPu = r.type === 'Д' ? 100 : null;
-      r.rankPr = r.type === 'Ч' ? 100 : null;
-    } else {
-      r.rankAll = normalizeRankValue(normalizeRankValue(safeDivide(v * 100, topAll, 0)));
-      r.rankPu = normalizeRankValue(normalizeRankValue(safeDivide(v * 100, topPu, 0)));
-      r.rankPr = topPr ? normalizeRankValue(normalizeRankValue(safeDivide(v * 100, topPr, 0))) : null;
-    }
+  const counters = {};
+  rows.forEach((r) => {
+    const o = s[r.i];
+    r.value = (o.mb + o.mm - rb * 2) / 2;
+    r.avg = r.value + rb;
+    counters[r.type] = (counters[r.type] || 0) + 1;
+    r.typeNo = counters[r.type];
     r.years = [];
     for (let j = 0; j < 3; j++) {
       const y = totalYears - j - 1;
-      const o = s[r.i];
       r.years.push({ year: firstYear + y, b: o.b[y], bu: o.bu[y], m: o.m[y], mu: o.mu[y] });
+    }
+  });
+  rankRows(rows, null);
+  return rows;
+}
+
+/**
+ * Рангът спрямо първото показано училище: средният успех (над rankBase) като процент от този
+ * на първото училище от показаните видове. Редовете извън филтъра получават null.
+ */
+export function rankRows(rows, types) {
+  const shown = inTypes(types);
+  const first = rows.find(shown);
+  const top = first ? first.value : null;
+  rows.forEach((r) => {
+    if (r === first) {
+      r.rank = 100;
+    } else {
+      r.rank = shown(r) ? normalizeRankValue(normalizeRankValue(safeDivide(r.value * 100, top, 0))) : null;
     }
   });
   return rows;
@@ -435,58 +420,34 @@ export function cityRanking(model, city) {
 /** Училищата в града без резултат за последната година (не влизат в класацията). */
 export function cityInactiveSchools(model, city) {
   const { s } = model;
-  const out = [];
-  const add = (range, type) => {
-    if (!range) {
-      return;
-    }
-    for (let i = range[0]; i <= range[1]; i++) {
-      if (s[i] && s[i].b[s[i].b.length - 1] === null) {
-        out.push({ i, type });
-      }
-    }
-  };
-  add(city.pu, 'Д');
-  add(city.pr, 'Ч');
-  return out;
+  return cityIndices(city)
+    .filter((i) => s[i] && s[i].b[s[i].b.length - 1] === null)
+    .map((i) => ({ i, type: s[i].t }));
 }
 
-/** Рангът за избрания филтър (null = всички, 'Д', 'Ч'). */
-export function rankFor(row, filter) {
-  if (filter === 'Д') {
-    return row.rankPu;
-  }
-  if (filter === 'Ч') {
-    return row.rankPr;
-  }
-  return row.rankAll;
+/** Рангът на реда (след cityRanking / sortRanking). */
+export function rankFor(row) {
+  return row.rank;
 }
 
 /* ---------------- Средни за града (таблицата) ---------------- */
 
 /**
- * Редовете за "Средни резултати" (от последната година назад, numYears реда).
+ * "Средни резултати" за показаните видове: по една колона за всеки вид и "Общо" (всички
+ * показани заедно) при два и повече вида; редовете са от последната година назад (numYears).
  * mode: 'schools' (по училища) | 'students' (по ученици)
+ * → { columns: [{ key: 'all'|'s'|'m'|'p'|'r' }], rows: [{ year, b: [число|null…], m: […] }] }
  */
-export function cityAverages(model, cityName, mode) {
-  const { si, totalYears, firstYear, numYears } = model;
-  const c = si[cityName];
-  const keys = mode === 'students'
-    ? ['mnba', 'mnma', 'mpba', 'mpma']
-    : ['mnbs', 'mnms', 'mpbs', 'mpms'];
-  // Старият код решава "има ли частни" по mpbs и за двата изгледа.
-  const hasPrivate = !!c.mpbs;
-  const round = (v) => (Math.round(v * 100) / 100).toFixed(2);
+export function cityAverages(model, city, mode, types) {
+  const { totalYears, firstYear, numYears } = model;
+  const keys = sortTypes(types);
+  const columns = (keys.length > 1 ? [{ key: 'all', types: keys }] : []).concat(keys.map((k) => ({ key: k, types: [k] })));
+  const series = columns.map((c) => typeAverages(model, city, c.types, mode === 'students'));
   const rows = [];
   for (let i = totalYears - 1; i >= totalYears - numYears; i--) {
-    const row = { year: firstYear + i, puB: round(c[keys[0]][i]), puM: round(c[keys[1]][i]) };
-    if (hasPrivate) {
-      row.prB = round(c[keys[2]][i]);
-      row.prM = round(c[keys[3]][i]);
-    }
-    rows.push(row);
+    rows.push({ year: firstYear + i, b: series.map((x) => x.bel[i]), m: series.map((x) => x.mat[i]) });
   }
-  return { hasPrivate, rows };
+  return { columns: columns.map((c) => ({ key: c.key })), rows };
 }
 
 /* ---------------- CSV ---------------- */
@@ -503,16 +464,17 @@ export function csvHeader(model) {
   return header + '\r\n';
 }
 
-function csvRows(model, cityName, range, type) {
+/** Редовете за един град (без заглавния ред); "Тип" е буквата на вида: Д, О, Ч, ДУ. */
+export function cityCsvRows(model, city) {
   const { s } = model;
   const { years, s: raw } = model.exportData;
   let data = '';
-  for (let i = range[0]; i <= range[1]; i++) {
+  for (const i of cityIndices(city)) {
     if (!s[i]) {
       continue;
     }
     const o = raw[i];
-    let row = cityName + ',"' + s[i].n + '",' + type;
+    let row = city.name + ',"' + s[i].n + '",' + schoolType(s[i].t).letter;
     for (let y = 0; y < years; y++) {
       row += ',' + (o.b[y] ? o.b[y] : '');
       row += ',' + (o.m[y] ? o.m[y] : '');
@@ -520,15 +482,6 @@ function csvRows(model, cityName, range, type) {
       row += ',' + (o.mu[y] ? o.mu[y] : '');
     }
     data += row + '\r\n';
-  }
-  return data;
-}
-
-/** Редовете за един град (без заглавния ред). */
-export function cityCsvRows(model, city) {
-  let data = csvRows(model, city.name, city.pu, 'Д');
-  if (city.pr) {
-    data += csvRows(model, city.name, city.pr, 'Ч');
   }
   return data;
 }
@@ -592,8 +545,8 @@ export function defaultSortDir(column) {
   return column === 'name' || column === 'type' ? 'asc' : 'desc';
 }
 
-function rankValue(row, filter) {
-  const v = Number.parseFloat(rankFor(row, filter));
+function rankValue(row) {
+  const v = Number.parseFloat(rankFor(row));
   return Number.isFinite(v) ? v : Number.NEGATIVE_INFINITY;
 }
 
@@ -616,30 +569,31 @@ function compareNames(model, r1, r2) {
 }
 
 /**
- * Филтрира (null | 'Д' | 'Ч') и сортира редовете на класацията - 1:1 със стария
- * compareRowsByColumn: празните годишни клетки са винаги най-отдолу, равенствата
- * се решават по ранг и име.
+ * Филтрира по вид (null = всички | масив от ключове), смята ранга спрямо първото показано
+ * училище и сортира редовете на класацията - 1:1 със стария compareRowsByColumn: празните
+ * годишни клетки са винаги най-отдолу, равенствата се решават по ранг и име.
  */
-export function sortRanking(model, rows, column, dir, filter) {
-  const visible = rows.filter((r) => !filter || r.type === filter);
+export function sortRanking(model, rows, column, dir, types) {
+  rankRows(rows, types);
+  const visible = rows.filter(inTypes(types));
   const plainName = (r1, r2) => model.s[r1.i].l.trim().localeCompare(model.s[r2.i].l.trim(), 'bg');
   visible.sort((r1, r2) => {
     let cmp = 0;
     if (column === 'name') {
       cmp = compareNames(model, r1, r2);
     } else if (column === 'type') {
-      cmp = (r1.type === 'Д' ? 0 : 1) - (r2.type === 'Д' ? 0 : 1);
+      cmp = typeOrder(r1.type) - typeOrder(r2.type);
       if (cmp === 0) {
         cmp = r1.typeNo - r2.typeNo;
       }
     } else if (column === 'rank') {
-      cmp = rankValue(r1, filter) - rankValue(r2, filter);
+      cmp = rankValue(r1) - rankValue(r2);
     } else {
       const y1 = yearValue(r1, column);
       const y2 = yearValue(r2, column);
       if (y1 === null && y2 === null) {
-        const a = rankValue(r1, filter);
-        const b = rankValue(r2, filter);
+        const a = rankValue(r1);
+        const b = rankValue(r2);
         if (a !== b) {
           return dir === 'asc' ? a - b : b - a;
         }

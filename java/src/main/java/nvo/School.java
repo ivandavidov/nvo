@@ -324,6 +324,15 @@ public class School implements Comparable<School> {
     List<Integer> matStudents = new ArrayList<>();
 
     boolean isPrivate() {
+        return getType().isPrivate();
+    }
+
+    SchoolType getType() {
+        return SchoolType.of(code);
+    }
+
+    /** Флагът "частно" от картата по-долу - само резерва за SchoolType, ако кодът го няма в регистъра на МОН. */
+    static boolean isPrivateFlag(String code) {
         return schoolCodes.containsKey(code) && schoolCodes.get(code)[0].equals("1");
     }
 

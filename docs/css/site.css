@@ -125,6 +125,18 @@
     --rank-hi: #2f54e0;
     --rank-lo: #e8850c;
 
+    /* Видове училища (Д / О / Ч / ДУ): значки, чипове, графиката в статистиката.
+       Общинските (най-честите) са неутрални, частните - с акцента, както досега; държавните
+       не са в основния син цвят, за да не се бъркат с връзките и избраните чипове. */
+    --type-s: #0b7069;
+    --type-s-soft: #e2f3f1;
+    --type-m: var(--text-2);
+    --type-m-soft: var(--surface-3);
+    --type-p: var(--warning);
+    --type-p-soft: var(--accent-soft);
+    --type-r: #7a4fd6;
+    --type-r-soft: #f1ebfd;
+
     /* Типография */
     --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", Arial, sans-serif;
     --font-mono: ui-monospace, "SFMono-Regular", "Cascadia Code", "Roboto Mono", Menlo, monospace;
@@ -228,6 +240,12 @@
 
     --rank-hi: #7d9cff;
     --rank-lo: #f5a54a;
+
+    --type-s: #3fc7b9;
+    --type-s-soft: rgb(63 199 185 / 0.14);
+    --type-p: var(--accent);
+    --type-r: #b195ff;
+    --type-r-soft: rgb(177 149 255 / 0.15);
 
     --shadow-xs: 0 1px 2px rgb(0 0 0 / 0.4);
     --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4), 0 1px 3px rgb(0 0 0 / 0.3);
@@ -915,6 +933,37 @@
   [data-theme="dark"] .badge--accent { color: var(--accent); }
   .badge--success { background: var(--success-soft); color: var(--success); }
   .badge--closed { background: var(--surface-3); color: var(--text-3); }
+
+  /* Видът на училището: буквата (Д / О / Ч / ДУ) в таблиците и чиповете; модификаторите
+     оцветяват и обикновена .badge с цялата дума (страницата на училището). */
+  .type-badge {
+    display: inline-grid;
+    place-items: center;
+    min-width: 1.45rem;
+    height: 1.3rem;
+    padding: 0 0.3rem;
+    border-radius: 6px;
+    font-size: var(--fs-xs);
+    font-weight: 700;
+    line-height: 1;
+    vertical-align: middle;
+  }
+  .type-badge--s { background: var(--type-s-soft); color: var(--type-s); }
+  .type-badge--m { background: var(--type-m-soft); color: var(--type-m); }
+  .type-badge--p { background: var(--type-p-soft); color: var(--type-p); }
+  .type-badge--r { background: var(--type-r-soft); color: var(--type-r); }
+  /* "Тип / №" в таблиците: значка с еднаква ширина (колкото "ДУ") и място с фиксирана ширина,
+     подравнено вдясно - блокът е еднакъв на всеки ред, така че буквите и номерата са в колони,
+     без назъбване, а колоната остава центрирана. */
+  .type-no {
+    display: inline-grid;
+    grid-template-columns: 1.9rem 3.5ch;
+    align-items: center;
+    column-gap: 0.45rem;
+    vertical-align: middle;
+  }
+  .type-no .type-badge { width: 100%; padding: 0; }
+  .type-no__n { color: var(--text-3); text-align: right; font-variant-numeric: tabular-nums; }
 
   /* --- Сегментиран контрол --- */
   .seg {
@@ -1801,7 +1850,29 @@
   }
   .city-switch__more[open] > summary::after { transform: rotate(-135deg) translateY(-1px); }
 
-  .city-panel__head { align-items: flex-start; }
+  .city-panel__head { align-items: center; }
+  /* Името на града и броят училища на един ред, с вертикална черта между тях. Ако не се
+     съберат (дълго име на телефон), броят минава на нов ред: всеки елемент има черта отляво,
+     а чертата на първия във всеки ред е изтеглена извън видимото (overflow-x: clip). */
+  .city-panel__heading { min-width: 0; overflow-x: clip; }
+  .city-panel__heading-row {
+    --sep: var(--sp-3);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    row-gap: 2px;
+    margin-left: calc(-1 * var(--sep) - 1px);
+  }
+  .city-panel__heading-row > * {
+    margin: 0 var(--sep) 0 0;
+    padding-left: var(--sep);
+    border-left: 1px solid var(--border-strong);
+  }
+  .city-panel__count { font-size: var(--fs-sm); color: var(--text-3); }
+  /* Телефон: кратко - "214 училища", "35 от 156 училища"; годината е в "Класация 2026", видовете - в чиповете. */
+  @media (max-width: 640px) {
+    .count__long { display: none; }
+  }
   /* Експортът - отделно меню в края на бутоните, с разделител. */
   .city-panel__export { margin-left: var(--sp-1); padding-left: var(--sp-3); border-left: 1px solid var(--border); }
   /* Телефон: бутоните - две равни колони под заглавието, както в началото на страницата;
@@ -1813,9 +1884,67 @@
     .city-panel__export { margin-left: 0; padding-left: 0; border-left: 0; }
   }
   .city-panel__title { font-size: var(--fs-2xl); }
-  /* Ред с табовете: табовете вляво, превключвателят на изгледа на текущия таб вдясно
-     ("Всички / Държавни / Частни" или "По училища / По ученици"). Таблицата започва веднага под него. */
-  .city-panel__bar {
+  /* "Покажи само": видовете училища - чипове с броя училища; нищо избрано = всички. В панела на
+     града е вдясно в реда с табовете (общ филтър за двата таба), на страниците по град и година -
+     ред в главата на таблицата. */
+  .type-filter {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--sp-2);
+  }
+  .type-filter__label {
+    margin-right: var(--sp-1);
+    font-size: var(--fs-xs);
+    font-weight: 650;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-4);
+  }
+  .card__head > .type-filter { flex-basis: 100%; container-type: inline-size; }
+  /* Когато етикетът и чиповете не се събират в един ред (таблет), етикетът е над тях -
+     чиповете остават в един ред, без самотен чип на нов ред. */
+  @container (max-width: 699px) {
+    .type-filter__label { flex-basis: 100%; margin: 0; }
+  }
+  .type-chip { padding-left: 0.4rem; }
+  .type-chip__count { color: var(--text-4); font-variant-numeric: tabular-nums; }
+  .type-chip[aria-pressed="true"] .type-chip__count { color: inherit; }
+  /* Телефон: равни колони без скрол встрани - 2 вида в един ред, 3 в три колони, 4 в 2×2.
+     Чипът е на два реда (името, под него буквата и броят), за да се събират имената и на 320 px. */
+  @media (max-width: 640px) {
+    .type-filter { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .type-filter[data-n="3"] { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .type-filter__label { grid-column: 1 / -1; margin: 0; }
+    .type-chip {
+      display: grid;
+      grid-template-columns: auto auto;
+      grid-template-areas: "name name" "badge count";
+      justify-content: center;
+      align-items: center;
+      gap: 3px 0.35rem;
+      height: auto;
+      min-height: 48px;
+      padding: 0.35rem 0.4rem;
+      border-radius: var(--radius-md);
+    }
+    .type-chip .type-badge { grid-area: badge; }
+    .type-chip__name { grid-area: name; justify-self: center; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+    .type-chip__count { grid-area: count; font-size: var(--fs-xs); }
+  }
+  /* Три вида под 360 px: малко по-дребни имена, за да не се отрязват ("Общински"). */
+  @media (max-width: 359px) {
+    .type-filter[data-n="3"] { gap: 6px; }
+    .type-filter[data-n="3"] .type-chip { padding-inline: 0.15rem; }
+    .type-filter[data-n="3"] .type-chip__name { font-size: var(--fs-xs); }
+  }
+  /* Ред с табовете: табовете вляво, вдясно "Покажи само" (видът училища - общ за двата таба).
+     Когато не се събират в един ред (таблет, телефон), чиповете са отделен ред под табовете;
+     границата зависи от броя видове (data-types). Таблицата започва веднага под реда. */
+  .city-panel__bar { container-type: inline-size; }
+  /* --stacked: 0 - един ред; 1 - чиповете под табовете (табовете с долна граница, чиповете с отстъп). */
+  .city-panel__barrow {
+    --stacked: 0;
     display: flex;
     align-items: stretch;
     justify-content: space-between;
@@ -1823,19 +1952,33 @@
     padding-inline: clamp(var(--sp-2), 2vw, var(--sp-4));
     border-bottom: 1px solid var(--border);
   }
-  .city-panel__bar .city-panel__tabs { border-bottom: 0; }
-  .city-panel__view { display: flex; align-items: center; }
+  .city-panel__bar .city-panel__tabs {
+    padding-inline: calc(var(--stacked) * var(--sp-2));
+    border-bottom: calc(var(--stacked) * 1px) solid var(--border);
+  }
+  .city-panel__view {
+    display: flex;
+    align-items: center;
+    padding: calc(var(--stacked) * var(--sp-3)) calc(var(--stacked) * var(--sp-4)) 0;
+  }
   .city-panel__view:empty { display: none; }
-  .averages__note { margin: 0 0 var(--sp-3); }
+  .averages__note { margin: 0 0 var(--sp-4); }
+  @container (max-width: 1099px) {
+    .city-panel__bar[data-types="4"] .city-panel__barrow { --stacked: 1; display: block; padding-inline: 0; border-bottom: 0; }
+  }
+  @container (max-width: 979px) {
+    .city-panel__bar[data-types="3"] .city-panel__barrow { --stacked: 1; display: block; padding-inline: 0; border-bottom: 0; }
+  }
+  @container (max-width: 849px) {
+    .city-panel__bar[data-types="2"] .city-panel__barrow { --stacked: 1; display: block; padding-inline: 0; border-bottom: 0; }
+  }
   @media (max-width: 640px) {
-    .city-panel__bar { display: block; padding-inline: 0; border-bottom: 0; }
-    .city-panel__bar .city-panel__tabs { padding-inline: var(--sp-2); border-bottom: 1px solid var(--border); }
+    .city-panel__barrow { --stacked: 1; display: block; padding-inline: 0; border-bottom: 0; }
+    .city-panel__view { padding-inline: var(--sp-3); }
+    .city-panel__view > .type-filter { flex: 1 1 auto; min-width: 0; }
     /* Двата таба - по половин ширина, с кратки надписи ("Класация"), без скрол встрани. */
     .city-panel__tabs > [role="tab"] { flex: 1 1 0; text-align: center; }
     .tabs__long { display: none; }
-    .city-panel__view { padding: var(--sp-3) var(--sp-3) 0; }
-    .city-panel__view .seg { display: flex; width: 100%; }
-    .city-panel__view .seg > button { flex: 1; justify-content: center; }
   }
   .city-panel__body { padding: clamp(var(--sp-4), 1.25vw, var(--sp-6)); }
   .city-panel .btn { --btn-h: 34px; }
@@ -1938,7 +2081,46 @@
     position: static !important;
   }
   .ranking__inactive td { color: var(--text-3); }
-  .averages { max-width: 680px; }
+  /* "Средни резултати": четири таблици (предмет × по училища / по ученици). В ред са 4, 2 или 1 -
+     според ширината на панела и броя колони (data-n = Общо + показаните видове), така че всяка
+     таблица е близо до естествената си ширина: без празни полета в таблиците и около тях.
+     Стойностите са центрирани - колоните са равномерно разпределени, колкото и да са. */
+  .averages__box { container-type: inline-size; }
+  .averages__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--sp-5) var(--sp-5); }
+  @container (min-width: 250px) { .averages__grid[data-n="1"] { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @container (min-width: 620px) { .averages__grid[data-n="1"] { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  @container (min-width: 540px) { .averages__grid[data-n="3"] { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @container (min-width: 1100px) { .averages__grid[data-n="3"] { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  @container (min-width: 660px) { .averages__grid[data-n="4"] { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @container (min-width: 1360px) { .averages__grid[data-n="4"] { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  @container (min-width: 780px) { .averages__grid[data-n="5"] { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .averages__title { margin: 0 0 var(--sp-2); font-size: var(--fs-md); font-weight: 650; }
+  .averages__mode { color: var(--text-4); font-weight: 500; }
+  .averages .data-table th, .averages .data-table td { text-align: center; }
+  /* Равни колони - числата стоят на равни разстояния, независимо от дължината на заглавията. */
+  @media (min-width: 641px) {
+    .averages .data-table { table-layout: fixed; }
+  }
+  /* Видовете в заглавието: пълните имена, а когато таблицата е тясна за тях (телефон, две
+     таблици една до друга на таблет) - цветните букви от чиповете "Покажи само" над нея. */
+  .averages__subject { container-type: inline-size; min-width: 0; }
+  .avg-type .type-badge { display: none; }
+  @container (max-width: 529px) {
+    .averages__grid[data-n="5"] .avg-type__name { display: none; }
+    .averages__grid[data-n="5"] .avg-type .type-badge { display: inline-grid; }
+  }
+  @container (max-width: 444px) {
+    .averages__grid[data-n="4"] .avg-type__name { display: none; }
+    .averages__grid[data-n="4"] .avg-type .type-badge { display: inline-grid; }
+  }
+  @container (max-width: 359px) {
+    .averages__grid[data-n="3"] .avg-type__name { display: none; }
+    .averages__grid[data-n="3"] .avg-type .type-badge { display: inline-grid; }
+  }
+  @container (max-width: 189px) {
+    .averages__grid[data-n="1"] .avg-type__name { display: none; }
+    .averages__grid[data-n="1"] .avg-type .type-badge { display: inline-grid; }
+  }
 
   .code-box { height: auto; padding: var(--sp-3); font-family: var(--font-mono); font-size: var(--fs-sm); resize: vertical; }
 
@@ -2049,7 +2231,8 @@
     .ranking .rank { grid-template-columns: auto; }
     .ranking .rank__bar { display: none; }
   }
-  /* "Средни резултати": по-тесни клетки на телефон - петте колони се събират без скрол. */
+  /* "Средни резултати": по-тесни клетки на телефон - до шест колони (Година, Общо и четирите
+     вида) се събират без скрол встрани. */
   @media (max-width: 640px) {
     .averages th, .averages td { padding-inline: 0.5rem; }
   }

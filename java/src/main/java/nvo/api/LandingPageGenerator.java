@@ -6,6 +6,7 @@ import com.google.gson.JsonObject;
 import nvo.Cities;
 import nvo.ProjectConfig;
 import nvo.School;
+import nvo.SchoolType;
 import nvo.site.SiteLayout;
 
 import java.nio.file.Files;
@@ -70,8 +71,7 @@ public class LandingPageGenerator {
                 String[] overrides = School.schoolCodes.get(e.getKey());
                 String fullName = overrides != null ? overrides[2] : sd.csvName;
                 String shortName = overrides != null ? overrides[1] : sd.csvName;
-                boolean isPrivate = overrides != null && "1".equals(overrides[0]);
-                seenSchools.put(e.getKey(), new RankedSchool(e.getKey(), List.of(city.hrefName()), shortName, fullName, isPrivate, sd));
+                seenSchools.put(e.getKey(), new RankedSchool(e.getKey(), List.of(city.hrefName()), shortName, fullName, SchoolType.of(e.getKey()), sd));
             }
         }
         List<RankedSchool> allSchools = new ArrayList<>(seenSchools.values());
@@ -130,8 +130,7 @@ public class LandingPageGenerator {
             String[] overrides = School.schoolCodes.get(e.getKey());
             String fullName = overrides != null ? overrides[2] : sd.csvName;
             String shortName = overrides != null ? overrides[1] : sd.csvName;
-            boolean isPrivate = overrides != null && "1".equals(overrides[0]);
-            ranked.add(new RankedSchool(e.getKey(), List.of(city.hrefName()), shortName, fullName, isPrivate, sd));
+            ranked.add(new RankedSchool(e.getKey(), List.of(city.hrefName()), shortName, fullName, SchoolType.of(e.getKey()), sd));
         }
         ranked.sort(Comparator.comparingDouble((RankedSchool rs) ->
                 (rs.sd().belScore[yearIndex] + rs.sd().matScore[yearIndex]) / 2.0).reversed());
@@ -231,6 +230,7 @@ public class LandingPageGenerator {
         List<Map<String, Object>> rows = rankingRows(ranked, yearIndex, false, null);
         ctx.put("rows", rows);
         ctx.put("count", ranked.size());
+        putTypes(ctx, rows);
         ctx.put("jsonLd", rankingLd(grade, cityName, canonical, heading, rows));
         return SiteLayout.render("landing", ctx);
     }
@@ -259,6 +259,7 @@ public class LandingPageGenerator {
         List<Map<String, Object>> rows = rankingRows(ranked, yearIndex, true, slugToCity);
         ctx.put("rows", rows);
         ctx.put("count", ranked.size());
+        putTypes(ctx, rows);
         ctx.put("jsonLd", rankingLd(grade, "Класация " + year, canonical, heading, rows));
         List<Map<String, Object>> years = new ArrayList<>();
         for (int y : availableYears) {
@@ -284,10 +285,31 @@ public class LandingPageGenerator {
         return ctx;
     }
 
+    /** Чиповете "Покажи само": видовете в класацията с броя училища (само при поне два вида). */
+    private void putTypes(Map<String, Object> ctx, List<Map<String, Object>> rows) {
+        List<Map<String, Object>> types = new ArrayList<>();
+        for (SchoolType t : SchoolType.values()) {
+            long count = rows.stream().filter(r -> t.key().equals(r.get("typeKey"))).count();
+            if (count > 0) {
+                Map<String, Object> item = new LinkedHashMap<>();
+                item.put("key", t.key());
+                item.put("letter", t.letter());
+                item.put("plural", t.plural());
+                item.put("count", count);
+                types.add(item);
+            }
+        }
+        ctx.put("hasTypes", types.size() > 1);
+        ctx.put("types", types);
+        ctx.put("typeCount", types.size());
+    }
+
     private List<Map<String, Object>> rankingRows(List<RankedSchool> ranked, int yearIndex, boolean showCity,
                                                   Map<String, String> slugToCity) {
         List<Map<String, Object>> rows = new ArrayList<>();
         int rank = 0;
+        // Мястото сред училищата от същия вид в тази класация ("Ч 3").
+        Map<SchoolType, Integer> typeNo = new java.util.EnumMap<>(SchoolType.class);
         for (RankedSchool rs : ranked) {
             double bel = rs.sd().belScore[yearIndex];
             double mat = rs.sd().matScore[yearIndex];
@@ -299,6 +321,15 @@ public class LandingPageGenerator {
             if (showCity && slugToCity != null) {
                 row.put("city", rs.citySlugs().isEmpty() ? "" : slugToCity.getOrDefault(rs.citySlugs().get(0), ""));
             }
+            SchoolType type = rs.type();
+            int no = typeNo.merge(type, 1, Integer::sum);
+            row.put("typeKey", type.key());
+            row.put("typeLetter", type.letter());
+            row.put("typeLabel", type.label());
+            row.put("typeLower", type.label().toLowerCase(Locale.ROOT));
+            row.put("typeNo", no);
+            // Подредба по вид (Д, О, Ч, ДУ), после по мястото сред вида.
+            row.put("typeSort", type.ordinal() * 10000 + no);
             row.put("bel", String.format(Locale.ROOT, "%.2f", bel));
             row.put("mat", String.format(Locale.ROOT, "%.2f", mat));
             row.put("total", String.format(Locale.ROOT, "%.2f", (bel + mat) / 2.0));

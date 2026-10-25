@@ -8,6 +8,7 @@ import com.google.gson.JsonObject;
 
 import nvo.Cities;
 import nvo.School;
+import nvo.SchoolType;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -131,6 +132,7 @@ public class SchoolsGenerator {
             addNames(individual, names);
             addStatus(individual, registerStatus.get(code));
             individual.addProperty("isPrivate", identity.isPrivate());
+            individual.addProperty("financing", identity.type().apiValue());
             if (website != null) {
                 individual.addProperty("website", website);
             } else {
@@ -155,6 +157,7 @@ public class SchoolsGenerator {
                 bulk.add("website", JsonNull.INSTANCE);
             }
             bulk.addProperty("isPrivate", identity.isPrivate());
+            bulk.addProperty("financing", identity.type().apiValue());
             if (cityObj != null) {
                 bulk.addProperty("city", cityObj.hrefName());
             } else {
@@ -169,6 +172,7 @@ public class SchoolsGenerator {
             idx.addProperty("shortName", identity.shortName());
             idx.addProperty("fullName", identity.fullName());
             idx.addProperty("isPrivate", identity.isPrivate());
+            idx.addProperty("financing", identity.type().apiValue());
             idx.addProperty("city", cityObj != null ? cityObj.fullName() : "");
             // Position of the city in Cities.ORDERED, so the search box can sort results
             // in the same order the cities are listed across the site.
@@ -195,7 +199,8 @@ public class SchoolsGenerator {
 
     /**
      * Builds the per-grade block: score/student time series plus latest-year national and city
-     * ranks, and the 3-year median national rank (ending at the latest year).
+     * ranks (among all schools and among the schools of the same type), and the 3-year median
+     * national rank (ending at the latest year).
      */
     private JsonObject buildGradeObject(RankedSchool rs, List<RankedSchool> all,
                                         Map<String, Map<String, SchoolData>> citySchools,
@@ -226,10 +231,21 @@ public class SchoolsGenerator {
                 gj.addProperty("nationalRank", nat[0]);
                 gj.addProperty("nationalTotal", nat[1]);
             }
-            int[] city = cityRank(rs, citySchools, cityBySlug, latestIdx);
+            int[] city = cityRank(rs, citySchools, cityBySlug, latestIdx, null);
             if (city != null) {
                 gj.addProperty("cityRank", city[0]);
                 gj.addProperty("cityTotal", city[1]);
+            }
+            List<RankedSchool> sameType = all.stream().filter(o -> o.type() == rs.type()).toList();
+            int[] natType = RankingsGenerator.nationalYearRank(sameType, latestIdx).get(rs.code());
+            if (natType != null) {
+                gj.addProperty("nationalTypeRank", natType[0]);
+                gj.addProperty("nationalTypeTotal", natType[1]);
+            }
+            int[] cityType = cityRank(rs, citySchools, cityBySlug, latestIdx, rs.type());
+            if (cityType != null) {
+                gj.addProperty("cityTypeRank", cityType[0]);
+                gj.addProperty("cityTypeTotal", cityType[1]);
             }
         } else {
             gj.add("latestYear", JsonNull.INSTANCE);
@@ -251,12 +267,13 @@ public class SchoolsGenerator {
 
     /**
      * Rank of the school within its primary city for the given year, by (BEL+MAT)/2 descending.
-     * Matches the ordering used by the per-city landing pages.
+     * Matches the ordering used by the per-city landing pages. With a type, only the schools of
+     * that type in the city are ranked.
      *
      * @return [rank (1-based), total ranked schools in the city] or {@code null}
      */
     private int[] cityRank(RankedSchool rs, Map<String, Map<String, SchoolData>> citySchools,
-                           Map<String, Cities.City> cityBySlug, int yearIndex) {
+                           Map<String, Cities.City> cityBySlug, int yearIndex, SchoolType type) {
         if (rs.citySlugs().isEmpty()) {
             return null;
         }
@@ -271,7 +288,8 @@ public class SchoolsGenerator {
         List<Map.Entry<String, SchoolData>> ranked = new ArrayList<>();
         for (Map.Entry<String, SchoolData> e : schools.entrySet()) {
             SchoolData d = e.getValue();
-            if (d.belScore[yearIndex] != null && d.matScore[yearIndex] != null) {
+            if (d.belScore[yearIndex] != null && d.matScore[yearIndex] != null
+                    && (type == null || SchoolType.of(e.getKey()) == type)) {
                 ranked.add(e);
             }
         }

@@ -49,7 +49,7 @@
           <p class="school-hero__official">{{officialName}}</p>
 {{/officialName}}
           <div class="cluster school-hero__meta">
-            <span class="badge{{#isPrivate}} badge--accent{{/isPrivate}}">{{typeLabel}}</span>
+            <span class="badge type-badge--{{typeKey}}">{{typeLabel}}</span>
 {{#closedLabel}}
             <span class="badge badge--closed">{{closedLabel}}</span>
 {{/closedLabel}}
@@ -104,7 +104,7 @@
       <div class="card__body school-grade__body">
         <div class="kpis">
 {{#kpis}}
-          <div class="kpi"><div class="kpi__label">{{label}}</div><div class="kpi__value">{{value}}{{#total}} <small>/ {{total}}</small>{{/total}}</div></div>
+          <div class="kpi"><div class="kpi__label">{{label}}</div><div class="kpi__value">{{value}}{{#total}} <small>/ {{total}}</small>{{/total}}</div>{{#hint}}<div class="kpi__hint">{{hint}}</div>{{/hint}}</div>
 {{/kpis}}
         </div>
         <div class="school-grade__grid">

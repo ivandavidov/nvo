@@ -6,6 +6,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import nvo.ProjectConfig;
+import nvo.SchoolType;
 import nvo.api.GeneratorUtils;
 
 import java.io.IOException;
@@ -21,9 +22,10 @@ import java.util.Map;
  * Индекс за глобалното търсене на сайта: docs/data/search-index.json.
  * Вътрешен за сайта (не е част от публичния API) и компактен - масиви вместо обекти:
  * <pre>
- * { "schools": [[code, shortName, fullName, citySlug, isPrivate(0|1), [grades], officialName]...],
+ * { "schools": [[code, shortName, fullName, citySlug, isPrivate(0|1), [grades], officialName, type]...],
  *   "cities":  [[slug, name, orderPosition, [grades with a landing page], hasBalove(0|1)]...] }
  * </pre>
+ * type е видът (SchoolType.key: "s" държавно, "m" общинско, "p" частно, "r" духовно).
  * Чете вече генерираните api/v1/schools-index.json и api/v1/cities.json, затова се пуска след тях.
  *
  * Usage: java -cp nvo-v2.jar nvo.site.SearchIndexGenerator
@@ -92,7 +94,8 @@ public final class SearchIndexGenerator {
                     s.get("isPrivate").getAsBoolean() ? 1 : 0,
                     grades,
                     // официалното име (data/school-names.json) - търси се и по него ("учебен" -> НУКК)
-                    doc.has("officialName") && !doc.get("officialName").isJsonNull() ? doc.get("officialName").getAsString() : ""));
+                    doc.has("officialName") && !doc.get("officialName").isJsonNull() ? doc.get("officialName").getAsString() : "",
+                    SchoolType.of(s.get("code").getAsString()).key()));
         }
 
         Map<String, Object> out = new HashMap<>();

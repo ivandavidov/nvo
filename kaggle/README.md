@@ -61,6 +61,7 @@ Master directory of all schools.
 | full_name | string | Full official name (Bulgarian) |
 | website | string | School website URL (if available) |
 | is_private | bool | True for private schools |
+| financing | string | School type by funding in the MON register: `state`, `municipal`, `private` or `religious` |
 | city | string | City slug (Latin) |
 | grades | string | Grades the school has data for, e.g. `4;7;10;12` |
 
@@ -95,7 +96,7 @@ A few grade/year slices are placeholder copies of adjacent years, kept for struc
 
 - Compare school performance trends over time
 - Analyze urban vs. rural education gaps
-- Study private vs. public school outcomes
+- Study state vs. municipal vs. private (and religious) school outcomes
 - Build predictive models for future exam results
 - Explore geographic patterns in education quality
 

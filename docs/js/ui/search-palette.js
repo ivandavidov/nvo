@@ -4,6 +4,7 @@ import { icon } from './icons.js';
 import { showModal } from './dom.js';
 import { searchKey, toCyrillic, expandAbbreviations } from './search-text.js';
 import { siteUrl } from '../site.js';
+import { schoolType } from '../core/school-types.js';
 
 // Много училища носят едно и също име ("Христо Ботев" - 70+), затова показваме много резултати
 // в скролиращ се списък, а при повече казваме колко са и как да се стесни търсенето.
@@ -88,10 +89,12 @@ function loadIndex() {
         }));
         const bySlug = {};
         cities.forEach((c) => { bySlug[c.slug] = c; });
-        const schools = data.schools.map(([code, shortName, fullName, citySlug, isPrivate, grades, officialName]) => {
+        const schools = data.schools.map(([code, shortName, fullName, citySlug, isPrivate, grades, officialName, type]) => {
           const city = bySlug[citySlug];
           const s = {
             code, shortName, fullName, city, isPrivate: !!isPrivate, grades,
+            // видът (8-ият елемент); стар индекс без него - по isPrivate
+            type: type || (isPrivate ? 'p' : null),
             _kf: searchKey(fullName), _ks: searchKey(shortName)
           };
           // Името, градът, кодът, разписаните съкращения (МГ → математическа гимназия …) и официалното име от МОН.
@@ -208,7 +211,7 @@ function render(result, loading) {
       html.push('<div class="palette__row"><a class="palette__item" data-i="' + i + '" href="' + esc(items[i]) + '">'
         + '<span class="palette__item-icon">' + icon('school') + '</span>'
         + '<span class="palette__item-main"><span class="palette__item-title">' + highlight(s.fullName, result.terms) + '</span>'
-        + '<span class="palette__item-sub">' + esc((s.city ? s.city.name : '') + (s.isPrivate ? ' · частно' : ' · държавно')) + '</span></span></a>'
+        + '<span class="palette__item-sub">' + esc((s.city ? s.city.name : '') + (s.type ? ' · ' + schoolType(s.type).lower : '')) + '</span></span></a>'
         + '<span class="palette__links">' + links.join('') + '</span></div>');
     });
   }
