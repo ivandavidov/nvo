@@ -1,5 +1,11 @@
 package nvo;
 
+import com.opencsv.CSVReader;
+import com.opencsv.CSVReaderBuilder;
+import com.opencsv.RFC4180ParserBuilder;
+
+import java.io.Reader;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Collections;
@@ -7,15 +13,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Снимката на регистъра на институциите на МОН ({@code data/mon/ri-register.tsv}: code, name, type,
- * financing, status). Чете се веднъж; липсващ файл дава празен регистър.
+ * Снимката на регистъра на институциите на МОН ({@code data/mon/ri-register.csv}: code, name, type,
+ * financing, status; всички полета в кавички, както data/normalized/*.csv) - всички институции,
+ * действащи и закрити. Чете се веднъж; липсващ файл дава празен регистър.
  */
 public final class MonRegister {
 
-    /** financing: "Държавно", "Общинско", "Частно", "Духовно"; status: "действаща", "закрита"... */
-    public record Entry(String financing, String status) {}
+    /** name - както в регистъра; financing: "Държавно", "Общинско", "Частно", "Духовно"…; status: "действаща", "закрита"… */
+    public record Entry(String name, String financing, String status) {}
 
-    private static final Path FILE = Path.of(ProjectConfig.DATA_MON_DIR, "ri-register.tsv");
+    private static final Path FILE = Path.of(ProjectConfig.DATA_MON_DIR, "ri-register.csv");
 
     private static Map<String, Entry> entries;
 
@@ -28,10 +35,13 @@ public final class MonRegister {
             Map<String, Entry> map = new HashMap<>();
             try {
                 if (Files.exists(FILE)) {
-                    for (String line : Files.readAllLines(FILE)) {
-                        String[] cols = line.split("\t");
-                        if (cols.length >= 5 && !cols[0].equals("code")) {
-                            map.put(cols[0].trim(), new Entry(cols[3].trim(), cols[4].trim()));
+                    // Имената съдържат запетаи, кавички и дори "\" - стриктен RFC 4180 парсер (без escape с "\").
+                    try (Reader in = Files.newBufferedReader(FILE, StandardCharsets.UTF_8);
+                         CSVReader csv = new CSVReaderBuilder(in).withCSVParser(new RFC4180ParserBuilder().build()).build()) {
+                        for (String[] cols : csv) {
+                            if (cols.length >= 5 && !cols[0].equals("code")) {
+                                map.put(cols[0].trim(), new Entry(cols[1].trim(), cols[3].trim(), cols[4].trim()));
+                            }
                         }
                     }
                 } else {

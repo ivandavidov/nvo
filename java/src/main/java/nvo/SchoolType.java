@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Видът на училището според финансирането в регистъра на МОН ({@code data/mon/ri-register.tsv},
+ * Видът на училището според финансирането в регистъра на МОН ({@code data/mon/ri-register.csv},
  * колона financing): държавно, общинско, частно или духовно. Регистърът е единственият източник;
  * флагът "частно" в School.java е само резерва за код, който го няма в регистъра.
  * <p>
@@ -76,7 +76,7 @@ public enum SchoolType {
         SchoolType type = entry == null ? null : fromFinancing(entry.financing());
         if (type == null) {
             type = flaggedPrivate ? PRIVATE : MUNICIPAL;
-            warnOnce(code, "SchoolType: " + code + " has no financing in data/mon/ri-register.tsv - using "
+            warnOnce(code, "SchoolType: " + code + " has no financing in data/mon/ri-register.csv - using "
                     + type.apiValue() + " (School.java); refresh the register snapshot");
         } else if (flaggedPrivate != type.isPrivate()) {
             warnOnce(code, "SchoolType: " + code + " is " + type.apiValue() + " in the MON register but "

@@ -201,7 +201,7 @@ public class RuoDecomplexor {
               .append(escapeJs(resolveLabel(schoolCode, schoolNames.get(schoolCode))))
               .append("\", f: \"")
               .append(escapeJs(resolveFullName(schoolCode, schoolNames.get(schoolCode))))
-              .append("\", c: ").append(isPrivate(schoolCode))
+              .append("\", c: ").append(isPrivate(schoolCode, schoolNames.get(schoolCode)))
               .append(", p: {\n");
 
             Map<String, String> profiles = profileNames.get(schoolCode);
@@ -274,8 +274,8 @@ public class RuoDecomplexor {
             school.addProperty("code", schoolCode);
             school.addProperty("name", resolveLabel(schoolCode, schoolNames.get(schoolCode)));
             school.addProperty("fullName", resolveFullName(schoolCode, schoolNames.get(schoolCode)));
-            school.addProperty("isPrivate", isPrivate(schoolCode));
-            SchoolType type = typeOf(schoolCode);
+            school.addProperty("isPrivate", isPrivate(schoolCode, schoolNames.get(schoolCode)));
+            SchoolType type = typeOf(schoolCode, schoolNames.get(schoolCode));
             if (type != null) {
                 school.addProperty("financing", type.apiValue());
             } else {
@@ -486,8 +486,8 @@ public class RuoDecomplexor {
         return BigDecimal.valueOf(val).stripTrailingZeros().toPlainString();
     }
 
-    private boolean isPrivate(String schoolCode) {
-        SchoolType type = typeOf(schoolCode);
+    private boolean isPrivate(String schoolCode, String ruoName) {
+        SchoolType type = typeOf(schoolCode, ruoName);
         if (type != null) {
             return type.isPrivate();
         }
@@ -495,9 +495,67 @@ public class RuoDecomplexor {
         return entry != null && entry[0].equals("1");
     }
 
-    /** Видът от регистъра на МОН или null - кодовете от РУО понякога ги няма там (без предупреждение и без догадка). */
-    private SchoolType typeOf(String schoolCode) {
-        return MonRegister.entries().containsKey(schoolCode) ? SchoolType.of(schoolCode) : null;
+    /**
+     * Видът от регистъра на МОН или null. Код на училище от сайта (School.java) се приема направо.
+     * Друг код от РУО понякога е измислен или сгрешен и в регистъра е на друга институция - приема
+     * се само ако името в регистъра съвпада с това от РУО (sameSchool), иначе null и предупреждение.
+     */
+    private SchoolType typeOf(String schoolCode, String ruoName) {
+        MonRegister.Entry entry = MonRegister.entries().get(schoolCode);
+        if (entry == null) {
+            return null;
+        }
+        if (!School.schoolCodes.containsKey(schoolCode) && !sameSchool(ruoName, entry.name())) {
+            if (warnedCodes.add(schoolCode)) {
+                System.err.println("RuoDecomplexor: code " + schoolCode + " is \"" + entry.name()
+                        + "\" in the MON register, not \"" + ruoName + "\" - no type for it");
+            }
+            return null;
+        }
+        return SchoolType.of(schoolCode);
+    }
+
+    private final java.util.Set<String> warnedCodes = new java.util.HashSet<>();
+
+    /** Съкращенията в имената от РУО, разписани като в регистъра. */
+    private static final Map<String, String> ABBREVIATIONS = Map.of(
+            "пг", "професионална гимназия",
+            "су", "средно училище",
+            "соу", "средно общообразователно училище",
+            "оу", "основно училище",
+            "ну", "начално училище",
+            "пмг", "природо математическа гимназия",
+            "мг", "математическа гимназия",
+            "ег", "езикова гимназия",
+            "спу", "спортно училище");
+
+    /**
+     * Едно и също училище: значимите думи (3+ букви, съкращенията разписани) на по-краткото име
+     * са всички и в другото - "ПГ Бяла" ~ "Професионална гимназия", "СУ Панайот Волов" ~
+     * "Средно училище "Панайот Волов"", но "ПГ по техника и технологии" ≁ "ПГ по строителство".
+     */
+    static boolean sameSchool(String a, String b) {
+        java.util.Set<String> x = words(a);
+        java.util.Set<String> y = words(b);
+        if (x.isEmpty() || y.isEmpty()) {
+            return false;
+        }
+        return x.size() <= y.size() ? y.containsAll(x) : x.containsAll(y);
+    }
+
+    private static java.util.Set<String> words(String name) {
+        java.util.Set<String> out = new java.util.LinkedHashSet<>();
+        if (name == null) {
+            return out;
+        }
+        for (String w : name.toLowerCase(java.util.Locale.ROOT).split("[^\\p{L}\\p{N}]+")) {
+            for (String part : ABBREVIATIONS.getOrDefault(w, w).split(" ")) {
+                if (part.length() >= 3 && !part.equals("със")) {
+                    out.add(part);
+                }
+            }
+        }
+        return out;
     }
 
     /** Returns the short name from School.schoolCodes if available, otherwise falls back to the CSV name. */

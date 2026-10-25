@@ -45,7 +45,7 @@ public final class OfficialNames {
         return names;
     }
 
-    /** Код -> статус в регистъра на МОН (data/mon/ri-register.tsv): "действаща", "закрита", "отписана"... */
+    /** Код -> статус в регистъра на МОН (data/mon/ri-register.csv): "действаща", "закрита", "отписана"... */
     public static Map<String, String> loadRegisterStatus() {
         Map<String, String> status = new HashMap<>();
         MonRegister.entries().forEach((code, entry) -> status.put(code, entry.status()));

@@ -49,19 +49,3 @@ ruoSchools["2606005"] = {n: "СУ Желязко Терпешев", f: "СУ Ж�
     [[30,0,0,320,0,0], [157.5,0,0,161,0,0], null, null]
   ]},
 }};
-ruoSchools["2606006"] = {n: "СУ \"Желязко Терпешев\"", f: "СУ \"Желязко Терпешев\"", c: false, p: {
-  "2412": {n: "Монтьор на транспортна техника", d: [
-    [null, null, null, null],
-    [null, null, null, null],
-    [null, null, null, null],
-    [null, null, null, null]
-  ]},
-}};
-ruoSchools["2606007"] = {n: "СУ \"Желязко Терпешев\"", f: "СУ \"Желязко Терпешев\"", c: false, p: {
-  "2406": {n: "Природни науки", d: [
-    [null, null, null, null],
-    [null, null, null, null],
-    [null, null, null, null],
-    [null, null, null, null]
-  ]},
-}};
