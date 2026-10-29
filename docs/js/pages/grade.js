@@ -778,7 +778,7 @@ el.panel.addEventListener('click', (e) => {
   }
   const report = t.closest('[data-report]');
   if (report) {
-    runBusy(report, () => import('../core/pdf.js').then((m) => m.schoolReportPdf(state.model, Number(report.dataset.report))),
+    runBusy(report, () => import('../core/brochure.js').then((m) => m.schoolBrochureByCode(state.model.s[Number(report.dataset.report)].c)),
       'Грешка при генериране на PDF доклада. Опитай отново.');
     return;
   }

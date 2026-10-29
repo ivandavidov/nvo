@@ -1,4 +1,4 @@
-// Страница на училище (/school/{код}/): графиките по клас и PDF профилът.
+// Страница на училище (/school/{код}/): графиките по клас и PDF брошурата.
 // Данните са вградени в страницата (#school-data) - същият документ като в API-то.
 import { displayRange } from '../core/config.js';
 import { whenHighcharts, lineOptions, createChart, token, onThemeChange } from '../ui/chart-theme.js';
@@ -97,8 +97,8 @@ if (pdfBtn && data) {
   pdfBtn.addEventListener('click', async () => {
     pdfBtn.classList.add('is-busy');
     try {
-      const m = await import('../core/pdf.js');
-      await m.schoolProfilePdf(data, GRADE_META, seriesForGrade);
+      const m = await import('../core/brochure.js');
+      await m.schoolBrochurePdf(data);
     } catch (err) {
       console.error(err);
       toast('Грешка при генериране на PDF. Опитай отново.');

@@ -193,7 +193,8 @@ docs/
     site.css                 the design system: tokens (light/dark), base, layout, components, page styles
     blog.css                 blog home + article styles (loaded only on blog pages and the home page)
   fonts/inter/               Inter Variable (OFL) woff2 subsets - UI font
-  fonts/NotoSans-Regular.ttf font embedded in generated PDFs
+  fonts/NotoSans-Regular.ttf font embedded in the ranking / balove PDFs
+  fonts/inter-pdf/           Inter Regular / Medium / SemiBold TTF (OFL) for the school brochure PDF - Latin + Cyrillic subset with the tabular digits baked into the cmap (jsPDF applies no OpenType features)
   js/
     theme.js                 light/dark (sync, no FOUC); toggleTheme(); fires `nvo:themechange`
     site.js                  every page: "Още" menu, global search (Ctrl/⌘K, "/"), copy buttons, joke, toast()
@@ -201,13 +202,14 @@ docs/
     core/model.js            data model + all calculations (medians, city averages, rankings, sorting, CSV, chart series)
     core/url-state.js        ?i{g}= / ?s= / ?school= / ?year= / #city + the i{g} cookie
     core/city-memory.js      last chosen city (localStorage nvo-city), shared by grade, city-ranking and balove pages
-    core/pdf.js              school report, ranking PDF, school profile PDF (jsPDF loaded on demand)
+    core/pdf.js              ranking PDF (one city / all cities) + shared PDF helpers (jsPDF loaded on demand)
+    core/brochure.js         school brochure PDF (see "School brochure PDF")
     core/embed.js            embed URL / iframe code
     core/jokes.js            footer jokes
     ui/                      icons.js (GENERATED from Icons.java), chart-theme, combobox, school-search, dom, search-palette
     pages/                   grade, embed, embed-docs, school, landing, balove, balove-hub
     ruo-{city}.js            generated RUO data (globals ruoYears / ruoSchools), one per balove city
-    highcharts.js, exporting.js, jspdf.umd.min.js, jspdf.plugin.autotable.min.js   vendored
+    highcharts.js, exporting.js, jspdf.umd.min.js, jspdf.plugin.autotable.min.js, qrcode.min.js   vendored (exporting.js is no longer loaded)
 ```
 All page scripts are native ES modules (`<script type="module">`), no bundler. Highcharts is a classic `defer` script loaded before the page module.
 
@@ -346,7 +348,8 @@ In `schools/{code}.json` (per-school cross-grade API document, also inlined in t
       yearsRange, belScore: [/* … */], matScore: [/* … */], belStudents: [/* … */], matStudents: [/* … */],
       latestYear, nationalRank, nationalTotal, cityRank, cityTotal,
       nationalTypeRank, nationalTypeTotal, cityTypeRank, cityTypeTotal,
-      medianRank, medianAdjustedRank, medianTotal, medianEndYear
+      medianRank, medianAdjustedRank, medianTotal, medianEndYear,
+      nationalRanks, nationalTotals, cityRanks, cityTotals   // per year, aligned with this grade's yearsRange; null = no rank
     }
   }
 }
@@ -379,6 +382,16 @@ let ruoSchools = {
 9. Displayed years: charts, tables and PDF reports show only the window `max(DISPLAY_FROM, latest - 7)…latest` (historical `?year=Y`: the last 3 years, selectable from `DISPLAY_FROM + 2`). Earlier years stay only in the exports - CSV (`model.exportData`), JSON API, Kaggle, `data/grade-{g}.json` - as raw MON values (NVO 7 2018 is on a 65-point scale; there is no rescaling anywhere). Year pages start at `DISPLAY_FROM`; older year URLs are redirect stubs (`GeneratorUtils.writeRedirectPage`, excluded from the sitemap). The window slides by itself when a new year is added.
 10. Exports are uniform: every grade page and balove page has one "Изтегли ▾" menu (`<details class="menu-button" data-popover>`, markup from `nvo.site.ExportMenu` / `js/ui/export-menu.js`, behaviour in `js/ui/popover.js`) for one city and one for all cities - CSV and JSON are data (all years, raw; JSON is the static API file), PDF is the report of what the site shows (displayed window). Balove CSV/PDF are built in the browser from `api/v1/balove/*.json` (`js/core/balove-export.js`); the grade all-cities PDF is `allRankingsPdf()` in `js/core/pdf.js`. Do not add separate export buttons next to navigation buttons.
 
+### School brochure PDF
+`js/core/brochure.js` (vector jsPDF + AutoTable, no Highcharts, generated in the browser - pre-generated PDFs would put ~1400 files into git on every data update). The school page button ("Изтегли PDF", `schoolBrochurePdf(data)` with the inlined document) and the "Доклад" button of the grade ranking tables (`schoolBrochureByCode(code)`, loads `api/v1/schools/{code}.json`) give the same brochure:
+- cover: name, official name (only when it differs), type / city / code / status / website chips, "Място в страната" per exam (rank, "пред X% от училищата", БЕЛ/МАТ with the difference from the national average, city and 3-year rank), "Акценти" (only strengths, by fixed rules in `highlights()`; the section is left out when there are none), contents with page links and a QR code to the school page
+- one page per exam with results in the displayed window (rule 9): KPI tiles, a summary strip (3-year average, best rank, best scores), БЕЛ/МАТ charts with the national average and the average of the same type in the city (only when the city has other schools of that type), national rank by year (inverted axis), the year table (Δ from the national average, national and city rank)
+- "Близки по успех в {град}": per exam the schools around this one in the city ranking of its latest year (all of them in small cities)
+- "Прием след 7 клас" when `api/v1/balove/index.json` lists the city and the school has profiles: min-max bars of the 1st klasirane in the latest year, then min of the 1st klasirane by year + the last klasirane (active profiles first)
+- "Как да четем данните" (definitions, years, sources, a note that exams show only part of a school's work)
+- Data: ranks by year come from the API arrays (`nationalRanks`…, the same numbers as the KPIs); the national average and the same-type city average from `data/grade-{g}.json` via `model.js` (as on the grade pages); schools missing from `grade-{g}.json` (closed) find their city by slug and are added to the city list from the API. Years that are copies of another year (`NO_EXAM`: НВО 4 клас 2020, НВО 10 клас 2018-2020) are shown as "не е провеждано" and left out of charts, differences and highlights.
+- Every exam section must stay on one page (the balove table may continue); check a change by building the brochure for all schools in the browser (`buildSchoolBrochure` returns the jsPDF document without saving; `doc.outline.root.children[i].options.pageNumber` gives the section pages) and look at the pages rendered with `pdftoppm`.
+
 ### Stats page
 `docs/stats/index.html` is hand-written (31 sections in 6 chapters, sticky contents) and `docs/stats/logic.js` is an ES module that loads `../data/grade-{g}.json` and `js/core/config.js`. Section titles/notes keep their ids (`title-bel-mat`, `note-bel-mat`, …) because `logic.js` adjusts the wording for ДЗИ. City filters are inserted into each section's `.stat-tools`. No `unsafe-eval` is needed any more.
 
@@ -395,9 +408,9 @@ Then open `http://localhost:8090/`.
 There is no automated test suite. Verify in the browser (`python3 -m http.server 8090 -d docs`):
 - every page type in light and dark mode, at phone (375px), tablet and desktop widths; no console errors or CSP violations
 - header: exam switch, "Още" menu, search palette (`/`, Ctrl/⌘K) finds schools, cities and pages; footer links and copy buttons
-- grade pages: add/remove schools (combobox, table toggles, "Добави водещите училища" = top 5 of the city ranking), chips show/hide series, tooltip with students, БЕЛ/МАТ switch on mobile, share link, embed dialog, year selector / `?year=` banner, `?school=code` deep link, `#city`, city filter, ranking sort/filter, inactive schools toggle, averages (schools / students), CSV (city + all), ranking PDF, school report PDF
+- grade pages: add/remove schools (combobox, table toggles, "Добави водещите училища" = top 5 of the city ranking), chips show/hide series, tooltip with students, БЕЛ/МАТ switch on mobile, share link, embed dialog, year selector / `?year=` banner, `?school=code` deep link, `#city`, city filter, ranking sort/filter, inactive schools toggle, averages (schools / students), CSV (city + all), ranking PDF, school brochure PDF ("Доклад")
 - legacy links: `/7/?i7=…#city`, `/?i7=…` (redirect), old `i7` cookie, `/12/embed.html?i12=…&chart=m&theme=dark`, `/7/balove/sofia/?school=…&profile=0…&gender=true`
-- school pages: charts per grade, KPIs, grade nav, links, "близки по успех", PDF; city/year pages: sort, search, city filter
+- school pages: charts per grade, KPIs, grade nav, links, "близки по успех", PDF brochure (also from "Доклад" in the grade ranking); city/year pages: sort, search, city filter
 - balove hub (search) and city pages (school picker, profile, gender, charts, overview search/sort/row click)
 - stats: grade switch, all 31 sections render, city filters, theme switch re-renders charts
 - blog home + posts (charts, copy/share), За проекта, API docs (endpoint expanders, "try it" fields), embed docs generator, 404
@@ -416,7 +429,7 @@ There is no automated test suite. Verify in the browser (`python3 -m http.server
 
 ## Static Assets
 
-- `docs/fonts/inter/` - Inter Variable woff2 subsets (+ `OFL.txt`); `docs/fonts/NotoSans-Regular.ttf` - PDF font
+- `docs/fonts/inter/` - Inter Variable woff2 subsets (+ `OFL.txt`); `docs/fonts/inter-pdf/` - Inter TTF for the school brochure (+ `OFL.txt`); `docs/fonts/NotoSans-Regular.ttf` - font of the ranking / balove PDFs
 - `docs/images/favicon.svg` - default favicon; `docs/images/favicon-{4,7,10,12}.png` - per-grade favicons (also touch icons)
 - `docs/images/social-preview.png` - OG/Twitter card image
 - `docs/googlea6ca7b7cd3a055bf.html` - Google Search Console verification (do not delete)

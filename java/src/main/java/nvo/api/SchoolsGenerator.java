@@ -54,6 +54,8 @@ public class SchoolsGenerator {
         Map<String, Map<String, Map<String, SchoolData>>> citySchoolsByGrade = new LinkedHashMap<>();
         Map<String, List<RankedSchool>> allByGrade = new LinkedHashMap<>();
         Map<String, Map<String, RankedSchool>> byCodeByGrade = new LinkedHashMap<>();
+        // The national ranking of every year once per grade (the per-year rank arrays need all of them).
+        Map<String, List<Map<String, int[]>>> nationalByYearByGrade = new LinkedHashMap<>();
 
         for (String grade : GRADE_KEYS) {
             Map<String, Map<String, SchoolData>> citySchools = gradeData.parseGrade(grade);
@@ -65,6 +67,14 @@ public class SchoolsGenerator {
                 byCode.put(rs.code(), rs);
             }
             byCodeByGrade.put(grade, byCode);
+            int years = all.stream().mapToInt(rs -> rs.sd().belScore.length).max().orElse(0);
+            List<Map<String, int[]>> nationalByYear = new ArrayList<>();
+            for (int i = 0; i < years; i++) {
+                final int yearIndex = i;
+                nationalByYear.add(RankingsGenerator.nationalYearRank(
+                        all.stream().filter(rs -> yearIndex < rs.sd().belScore.length).toList(), yearIndex));
+            }
+            nationalByYearByGrade.put(grade, nationalByYear);
         }
 
         // Union of every code that has data in any grade, sorted numerically for stable output.
@@ -116,7 +126,7 @@ public class SchoolsGenerator {
                 }
                 gradeListArr.add(Integer.parseInt(grade));
                 gradesJson.add(grade, buildGradeObject(rs, allByGrade.get(grade),
-                        citySchoolsByGrade.get(grade), cityBySlug));
+                        citySchoolsByGrade.get(grade), cityBySlug, nationalByYearByGrade.get(grade)));
                 maxGradeYears = Math.max(maxGradeYears, rs.sd().belScore.length);
             }
 
@@ -200,11 +210,13 @@ public class SchoolsGenerator {
     /**
      * Builds the per-grade block: score/student time series plus latest-year national and city
      * ranks (among all schools and among the schools of the same type), and the 3-year median
-     * national rank (ending at the latest year).
+     * national rank (ending at the latest year), and the national and city rank of every year
+     * (the history behind the latest-year ranks, used by the school brochure PDF).
      */
     private JsonObject buildGradeObject(RankedSchool rs, List<RankedSchool> all,
                                         Map<String, Map<String, SchoolData>> citySchools,
-                                        Map<String, Cities.City> cityBySlug) {
+                                        Map<String, Cities.City> cityBySlug,
+                                        List<Map<String, int[]>> nationalByYear) {
         SchoolData sd = rs.sd();
         // Per-grade arrays carry only that grade's own years (DZI reaches one year further than
         // NVO), so every index below is bounded by this grade's length, never the global maximum.
@@ -226,7 +238,7 @@ public class SchoolsGenerator {
 
         if (latestIdx >= 0) {
             gj.addProperty("latestYear", FIRST_YEAR + latestIdx);
-            int[] nat = RankingsGenerator.nationalYearRank(all, latestIdx).get(rs.code());
+            int[] nat = nationalByYear.get(latestIdx).get(rs.code());
             if (nat != null) {
                 gj.addProperty("nationalRank", nat[0]);
                 gj.addProperty("nationalTotal", nat[1]);
@@ -251,6 +263,22 @@ public class SchoolsGenerator {
             gj.add("latestYear", JsonNull.INSTANCE);
         }
 
+        // Per-year ranks aligned with yearsRange (null = no rank that year: a subject is missing).
+        JsonArray natRanks = new JsonArray();
+        JsonArray natTotals = new JsonArray();
+        JsonArray cityRanks = new JsonArray();
+        JsonArray cityTotals = new JsonArray();
+        for (int i = 0; i <= lastIdx; i++) {
+            int[] n = i < nationalByYear.size() ? nationalByYear.get(i).get(rs.code()) : null;
+            int[] c = n != null ? cityRank(rs, citySchools, cityBySlug, i, null) : null;
+            addRank(natRanks, natTotals, n);
+            addRank(cityRanks, cityTotals, c);
+        }
+        gj.add("nationalRanks", natRanks);
+        gj.add("nationalTotals", natTotals);
+        gj.add("cityRanks", cityRanks);
+        gj.add("cityTotals", cityTotals);
+
         int[] median = RankingsGenerator.nationalMedianRank(all, lastIdx).get(rs.code());
         if (median != null) {
             gj.addProperty("medianRank", median[0]);
@@ -263,6 +291,16 @@ public class SchoolsGenerator {
             gj.addProperty("medianEndYear", FIRST_YEAR + lastIdx);
         }
         return gj;
+    }
+
+    private static void addRank(JsonArray ranks, JsonArray totals, int[] rank) {
+        if (rank == null) {
+            ranks.add(JsonNull.INSTANCE);
+            totals.add(JsonNull.INSTANCE);
+        } else {
+            ranks.add(rank[0]);
+            totals.add(rank[1]);
+        }
     }
 
     /**
