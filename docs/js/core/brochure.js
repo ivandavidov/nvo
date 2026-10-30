@@ -575,6 +575,8 @@ function highlights(ctx) {
       perExam.set(h.ex, n + 1);
     }
   });
+  // Избрани по сила, показани по изпит (НВО 4 ... ДЗИ 12); приемът след 7 клас - последен.
+  picked.sort((a, b) => ctx.exams.indexOf(a.ex) - ctx.exams.indexOf(b.ex));
   const b = ctx.balove;
   if (b) {
     const mins = b.active.map((p) => p.per[b.li].min);
