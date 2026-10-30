@@ -602,10 +602,12 @@
 
   /* --- Меню "Още" --- */
   .menu-panel {
+    /* Еднакъв отстъп отляво и отдясно - колкото страничния отстъп на .container. */
+    --menu-edge: clamp(1rem, 4vw, 2rem);
     position: absolute;
-    right: clamp(1rem, 4vw, 2rem);
+    right: var(--menu-edge);
     top: calc(100% + 8px);
-    width: min(820px, calc(100vw - 2rem));
+    width: min(820px, 100% - 2 * var(--menu-edge));
     padding: var(--sp-5);
     border-radius: var(--radius-lg);
     border: 1px solid var(--border);
@@ -640,15 +642,26 @@
   }
   .menu-panel a:hover { background: var(--surface-2); color: var(--text); }
   .menu-panel a svg { width: 16px; height: 16px; color: var(--text-3); }
-  .menu-panel .ext::after { content: "↗"; color: var(--text-4); font-size: 0.85em; margin-left: auto; }
+  /* Стрелката за външна връзка е до текста (4px), не в края на колоната - там изглежда като част от съседната колона. */
+  .menu-panel .ext::after { content: "↗"; color: var(--text-3); font-size: 0.85em; margin-left: calc(var(--sp-1) - var(--sp-2)); }
   @media (max-width: 760px) {
     .menu-panel {
-      grid-template-columns: 1fr 1fr;
-      right: clamp(1rem, 4vw, 2rem);
+      /* Колоните по съдържанието: лявата (Kaggle, e-xplore.education) е по-широка, за да е всичко на един ред. */
+      grid-template-columns: auto auto;
       max-height: calc(100vh - var(--header-h) - 24px);
       overflow-y: auto;
       gap: var(--sp-4);
       padding: var(--sp-4);
+    }
+    /* Заглавията не разширяват колоната - пренасят се. */
+    .menu-panel h2 { contain: inline-size; }
+  }
+  /* Под 360px менюто е почти на цялата ширина и с по-малки отстъпи - иначе дългите редове се пренасят. */
+  @media (max-width: 359px) {
+    .menu-panel {
+      --menu-edge: var(--sp-2);
+      gap: var(--sp-3);
+      padding: var(--sp-3);
     }
   }
 
