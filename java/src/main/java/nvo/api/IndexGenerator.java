@@ -4,9 +4,11 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import nvo.ProjectConfig;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Map;
 
 import static nvo.api.JsonGenerator.*;
 
@@ -27,6 +29,17 @@ public class IndexGenerator {
             gObj.addProperty("scaleMin", Integer.parseInt(g[2]));
             gObj.addProperty("scaleMax", Integer.parseInt(g[3]));
             gObj.addProperty("dataUrl", g[0] + "/data.json");
+            // Години без изпит: в данните повтарят друга година (copyOf).
+            JsonArray noExam = new JsonArray();
+            ProjectConfig.NO_EXAM_YEARS.getOrDefault(g[0], Map.of()).entrySet().stream()
+                    .sorted(Map.Entry.comparingByKey())
+                    .forEach(e -> {
+                        JsonObject item = new JsonObject();
+                        item.addProperty("year", e.getKey());
+                        item.addProperty("copyOf", e.getValue());
+                        noExam.add(item);
+                    });
+            gObj.add("noExamYears", noExam);
             gradesArr.add(gObj);
         }
         root.add("grades", gradesArr);
@@ -168,7 +181,7 @@ public class IndexGenerator {
         sb.append(LAST_YEAR);
         sb.append("""
                 ). Без ключ и без ограничения - статични файлове, които се обновяват заедно със сайта.</p>
-                      <p class="muted text-sm">Резултатите са в оригиналния вид от МОН, от 2018 г. НВО след 7 клас за 2018 г. е по 65-точкова скала (сайтът показва данните от 2019 г. насам).</p>
+                      <p class="muted text-sm">Резултатите са в оригиналния вид от МОН, от 2018 г. НВО след 7 клас за 2018 г. е по 65-точкова скала (сайтът показва данните от 2019 г. насам). Изключение са годините без изпит: НВО след 4 клас не е провеждано през 2020 г., а НВО след 10 клас започва през 2021 г. В данните тези години повтарят 2019 г., съответно 2021 г., за да няма празна година в средните за 3 години - вижте <code>noExamYears</code> в <code>index.json</code>.</p>
                     </header>
                     <div class="api-base">Base URL: <code>%s</code></div>
 
@@ -191,6 +204,7 @@ public class IndexGenerator {
                           <tr><td>grades[].scaleMin</td><td class="type">number</td><td>Минимална стойност на скалата</td></tr>
                           <tr><td>grades[].scaleMax</td><td class="type">number</td><td>Максимална стойност на скалата</td></tr>
                           <tr><td>grades[].dataUrl</td><td class="type">string</td><td>Относителен път до пълните данни</td></tr>
+                          <tr><td>grades[].noExamYears</td><td class="type">array</td><td>Години без изпит: <code>{year, copyOf}</code> - в данните годината <code>year</code> повтаря резултатите от <code>copyOf</code></td></tr>
                         </table>"""));
 
         // Schools endpoints

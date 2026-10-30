@@ -53,6 +53,9 @@
       </div>
     </header>
 
+{{#noExam}}
+    <div class="banner" role="note">{{#icon}}info{{/icon}}<span>{{noExam}}</span><a class="banner__action" href="../{{noExamSource}}/">Класация {{noExamSource}} →</a></div>
+{{/noExam}}
 {{#isYear}}
     <nav class="cluster landing__years" aria-label="Години">
       <span class="muted text-sm">Години:</span>

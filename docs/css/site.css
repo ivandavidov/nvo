@@ -1793,6 +1793,20 @@
     .compare .chart-frame { padding: var(--sp-2) 0 0; border: 0; }
   }
 
+  /* Година без изпит в графика (markNoExamYears): вертикален надпис с фона на ивицата - линиите минават под него. */
+  .chart-no-exam {
+    display: block;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    padding: 6px 1px;
+    background: var(--surface-2);
+    color: var(--text-3);
+    font-family: var(--font-sans);
+    font-size: 11px;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
   /* Highcharts tooltip (useHTML) */
   .tt { min-width: 240px; font-family: var(--font-sans); }
   .tt__year { font-weight: 700; margin-bottom: 4px; }

@@ -120,7 +120,12 @@
               <thead><tr><th>Година</th><th class="num">{{belLabel}}</th><th class="num">уч.</th><th class="num group-start">{{matLabel}}</th><th class="num">уч.</th></tr></thead>
               <tbody>
 {{#rows}}
+{{#noExam}}
+                <tr><td>{{year}}</td><td class="muted" colspan="4" title="{{noExam}}">Няма изпит</td></tr>
+{{/noExam}}
+{{^noExam}}
                 <tr><td>{{year}}</td><td class="num">{{bel}}</td><td class="num muted">{{bu}}</td><td class="num group-start">{{mat}}</td><td class="num muted">{{mu}}</td></tr>
+{{/noExam}}
 {{/rows}}
               </tbody>
             </table>

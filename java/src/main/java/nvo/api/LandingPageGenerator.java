@@ -253,6 +253,14 @@ public class LandingPageGenerator {
         ctx.put("h1", examPrefix + " " + grade + " клас - " + year + " г.");
         ctx.put("h2", "Национална класация");
         ctx.put("methodology", methodologyText(belLabel, matLabel));
+        // Година без изпит - класацията повтаря съседна година (вж. ProjectConfig.NO_EXAM_YEARS).
+        Integer source = ProjectConfig.noExamSource(grade, year);
+        if (source != null) {
+            ctx.put("noExam", examPrefix + " след " + grade + " клас не е провеждано през " + year
+                    + " г. Тази класация повтаря резултатите от " + source + " г. - те са копирани, за да няма"
+                    + " празна година в средните стойности за 3 години.");
+            ctx.put("noExamSource", source);
+        }
         ctx.put("belLabel", belLabel);
         ctx.put("matLabel", matLabel);
         ctx.put("showCity", true);

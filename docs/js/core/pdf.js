@@ -2,6 +2,7 @@
 // jsPDF и AutoTable се зареждат едва при първото генериране (по-лека страница).
 // Брошурата за училище е в brochure.js.
 import { formatRankValue, rankFor, renderableCities, cityRanking, sortRanking } from './model.js';
+import { noExamSource } from './config.js';
 import { SCHOOL_TYPES, schoolType, joinTypes } from './school-types.js';
 
 const FONT_FILE = 'NotoSans-Regular.ttf';
@@ -98,10 +99,26 @@ export function rankingHeaders(model) {
   const headers = ['№', 'Училище', 'Ранг', 'Тип / №'];
   for (let k = 0; k < 3; k++) {
     const yy = firstYear - 2001 + totalYears - k;
-    headers.push(yy + ' ' + cfg.csvHeaderB + ' / уч.');
-    headers.push(yy + ' ' + cfg.csvHeaderM + ' / уч.');
+    const mark = noExamSource(model.grade, 2000 + yy) ? '*' : '';
+    headers.push(yy + mark + ' ' + cfg.csvHeaderB + ' / уч.');
+    headers.push(yy + mark + ' ' + cfg.csvHeaderM + ' / уч.');
   }
   return headers;
+}
+
+/** Бележка за година без изпит сред колоните (исторически изглед) - в данните повтаря съседна година. */
+function noExamNote(model) {
+  const { cfg, firstYear, totalYears } = model;
+  const notes = [];
+  for (let k = 2; k >= 0; k--) {
+    const year = firstYear - 1 + totalYears - k;
+    const source = noExamSource(model.grade, year);
+    if (source) {
+      notes.push('* ' + year + ' г.: ' + cfg.tableTitleType + ' не е провеждано - в колоните за ' + year
+        + ' са повторени резултатите от ' + source + ' г.');
+    }
+  }
+  return notes.join(' ');
 }
 
 /** Текстът на клетките за един ред (както се вижда в таблицата). */
@@ -126,11 +143,15 @@ function addRankingTable(doc, model, city, rows, types) {
   doc.setFontSize(8);
   doc.setTextColor(100);
   doc.text('Тип: ' + SCHOOL_TYPES.map((t) => t.letter + ' - ' + t.lower).join(', '), doc.internal.pageSize.getWidth() - PAGE_MARGIN_PT, TITLE_Y_PT, { align: 'right' });
+  const note = noExamNote(model);
+  if (note) {
+    doc.text(note, PAGE_MARGIN_PT, TITLE_Y_PT + 12);
+  }
   doc.setTextColor(0);
   doc.autoTable({
     head: [rankingHeaders(model)],
     body: rows.map((row, k) => rankingCells(model, row, k + 1)),
-    startY: TABLE_START_Y_PT,
+    startY: TABLE_START_Y_PT + (note ? 12 : 0),
     margin: { left: PAGE_MARGIN_PT, right: PAGE_MARGIN_PT },
     theme: 'grid',
     styles: { font: FONT_NAME, fontSize: 8, cellPadding: 3, overflow: 'linebreak' },

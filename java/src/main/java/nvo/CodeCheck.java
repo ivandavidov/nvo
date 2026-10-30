@@ -35,8 +35,6 @@ public final class CodeCheck {
 
     private static final Pattern FILE = Pattern.compile("(nvo-\\d+|dzi)-(\\d{4})(?:-[a-z]+)?-normalized\\.csv");
     private static final Pattern CODE = Pattern.compile("\\d{6,7}");
-    /** Години, които са копия на съседна година (вж. NvoDziNormalizer) - не се броят за диапазона. */
-    private static final Set<String> PLACEHOLDER = Set.of("nvo-4-2020", "nvo-10-2018", "nvo-10-2019", "nvo-10-2020");
 
     private CodeCheck() {
     }
@@ -56,7 +54,8 @@ public final class CodeCheck {
             }
             String exam = m.group(1);
             int year = Integer.parseInt(m.group(2));
-            boolean placeholder = PLACEHOLDER.contains(exam + "-" + year);
+            // Години без изпит са копия на съседна година - не се броят за диапазона.
+            boolean placeholder = ProjectConfig.isNoExamYear(exam.equals("dzi") ? "12" : exam.substring(4), year);
             try (CSVReader reader = new CSVReader(new FileReader(file.toFile()))) {
                 for (String[] row : reader.readAll()) {
                     if (row.length < 3 || row[1].equals("Код")) {

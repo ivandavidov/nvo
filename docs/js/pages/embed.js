@@ -3,7 +3,7 @@
 // (обработва се от theme.js), year=година. Височината се съобщава на родителя
 // с postMessage({ type: 'nvo-embed-resize', height }).
 import { fetchGradeData, buildModel, chartSeries, findSchoolIndexByCode } from '../core/model.js';
-import { whenHighcharts, lineOptions, createChart, seriesColor, onThemeChange } from '../ui/chart-theme.js';
+import { whenHighcharts, lineOptions, createChart, seriesColor, onThemeChange, markNoExamYears } from '../ui/chart-theme.js';
 
 const grade = Number(document.body.dataset.grade);
 const params = new URL(window.location.href).searchParams;
@@ -76,6 +76,7 @@ function render() {
         + window.Highcharts.numberFormat(this.y, 2, '.', '') + '</b>' + (students ? '<br/>Ученици: <b>' + students + '</b>' : '');
     };
     options.series = series.map((x, k) => ({ name: x.name, data: x.data, color: seriesColor(selection.indexOf(x.index) + 1), schoolIndex: x.index }));
+    markNoExamYears(options, model.grade);
     if (charts[subj]) {
       charts[subj].destroy();
     }

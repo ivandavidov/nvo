@@ -1,7 +1,7 @@
 // Страница на училище (/school/{код}/): графиките по клас и PDF брошурата.
 // Данните са вградени в страницата (#school-data) - същият документ като в API-то.
 import { displayRange } from '../core/config.js';
-import { whenHighcharts, lineOptions, createChart, token, onThemeChange } from '../ui/chart-theme.js';
+import { whenHighcharts, lineOptions, createChart, token, onThemeChange, markNoExamYears } from '../ui/chart-theme.js';
 import { toast } from '../site.js';
 
 const GRADE_META = {
@@ -83,6 +83,7 @@ function render() {
       { name: meta.bel, data: s.bel, color: token('--chart-bel', '#2f54e0') },
       { name: meta.mat, data: s.mat, color: token('--chart-mat', '#e8850c') }
     ];
+    markNoExamYears(options, grade);
     charts.push(createChart(container, options));
   });
 }

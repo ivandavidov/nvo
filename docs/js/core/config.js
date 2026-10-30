@@ -10,6 +10,23 @@ export const GRADES = [4, 7, 10, 12];
  */
 export const DISPLAY_FROM = { 4: 2019, 7: 2019, 10: 2021, 12: 2019 };
 
+/**
+ * Години без изпит: НВО 4 клас не е провеждано през 2020 г., НВО 10 клас започва през 2021 г.
+ * В данните тези години повтарят съседната (2019, съответно 2021), за да няма празна година
+ * в средните за 3 години. Графиките, таблиците и PDF-ите ги показват като "Няма изпит".
+ * Година без изпит → годината, която повтаря. Същото като NO_EXAM_YEARS в ProjectConfig.java.
+ */
+export const NO_EXAM_YEARS = { 4: { 2020: 2019 }, 10: { 2018: 2021, 2019: 2021, 2020: 2021 } };
+
+export function isNoExamYear(grade, year) {
+  return noExamSource(grade, year) !== undefined;
+}
+
+/** Годината, чиито резултати повтаря годината без изпит в данните (undefined за година с изпит). */
+export function noExamSource(grade, year) {
+  return (NO_EXAM_YEARS[grade] || {})[Number(year)];
+}
+
 /** Най-много толкова последни години в графиките и таблиците. */
 export const MAX_YEARS = 8;
 

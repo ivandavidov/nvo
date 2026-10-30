@@ -33,6 +33,25 @@ public final class ProjectConfig {
      */
     public static final Map<String, Integer> DISPLAY_FROM = Map.of("4", 2019, "7", 2019, "10", 2021, "12", 2019);
 
+    /**
+     * Години без изпит: НВО 4 клас не е провеждано през 2020 г., НВО 10 клас започва през 2021 г.
+     * В данните тези години повтарят съседната (вж. NvoDziNormalizer), за да няма празна година
+     * в средните за 3 години. Година без изпит → годината, която повтаря. Същото като
+     * NO_EXAM_YEARS в docs/js/core/config.js.
+     */
+    public static final Map<String, Map<Integer, Integer>> NO_EXAM_YEARS = Map.of(
+            "4", Map.of(2020, 2019),
+            "10", Map.of(2018, 2021, 2019, 2021, 2020, 2021));
+
+    public static boolean isNoExamYear(String grade, int year) {
+        return noExamSource(grade, year) != null;
+    }
+
+    /** Годината, чиито резултати повтаря годината без изпит в данните (null за година с изпит). */
+    public static Integer noExamSource(String grade, int year) {
+        return NO_EXAM_YEARS.getOrDefault(grade, Map.of()).get(year);
+    }
+
     /** Най-много толкова последни години в графиките и таблиците (MAX_YEARS в config.js). */
     public static final int MAX_YEARS = 8;
 

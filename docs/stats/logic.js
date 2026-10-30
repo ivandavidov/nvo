@@ -1,7 +1,7 @@
 // Обобщена статистика (/stats/) - ES модул. Данните идват от data/grade-{g}.json,
 // настройките по клас - от js/core/config.js (същите като на страниците по клас).
 import { gradeConfig, displayRange } from '../js/core/config.js';
-import { labelChart, token } from '../js/ui/chart-theme.js';
+import { labelChart, token, markNoExamYears } from '../js/ui/chart-theme.js';
 import { SCHOOL_TYPES } from '../js/core/school-types.js';
 
 const TABLE_ROWS        = 15;
@@ -1039,6 +1039,8 @@ function _themeColors() {
 
 function chart(id, config) {
   if (_charts[id]) _charts[id].destroy();
+  // Графиките по години: година без изпит (копие на съседна в данните) - "Няма изпит".
+  markNoExamYears(config, _activeGrade);
   const tc = _themeColors();
   config.chart      = Object.assign({ animation: false, height: 400, backgroundColor: 'transparent' }, config.chart || {});
   config.title      = Object.assign({ text: null }, config.title || {});

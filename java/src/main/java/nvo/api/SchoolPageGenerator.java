@@ -394,6 +394,13 @@ public class SchoolPageGenerator {
             }
             Map<String, Object> row = new HashMap<>();
             row.put("year", years.get(i).getAsInt());
+            // Година без изпит - в данните повтаря съседна година, затова числата не се показват.
+            Integer source = ProjectConfig.noExamSource(grade, years.get(i).getAsInt());
+            if (source != null) {
+                row.put("noExam", "Изпитът не е провеждан - в данните са повторени резултатите от " + source + " г.");
+                rows.add(row);
+                continue;
+            }
             row.put("bel", hasBel ? fmt(bel.get(i).getAsDouble()) : "");
             row.put("bu", cell(belU, i));
             row.put("mat", hasMat ? fmt(mat.get(i).getAsDouble()) : "");

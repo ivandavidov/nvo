@@ -195,7 +195,7 @@
       <p class="page-head__eyebrow">Отворени данни · v1</p>
       <h1 class="page-head__title">НВО &amp; ДЗИ API</h1>
       <p class="page-head__lead">Публично JSON API с резултати от НВО и ДЗИ (2018-2026). Без ключ и без ограничения - статични файлове, които се обновяват заедно със сайта.</p>
-      <p class="muted text-sm">Резултатите са в оригиналния вид от МОН, от 2018 г. НВО след 7 клас за 2018 г. е по 65-точкова скала (сайтът показва данните от 2019 г. насам).</p>
+      <p class="muted text-sm">Резултатите са в оригиналния вид от МОН, от 2018 г. НВО след 7 клас за 2018 г. е по 65-точкова скала (сайтът показва данните от 2019 г. насам). Изключение са годините без изпит: НВО след 4 клас не е провеждано през 2020 г., а НВО след 10 клас започва през 2021 г. В данните тези години повтарят 2019 г., съответно 2021 г., за да няма празна година в средните за 3 години - вижте <code>noExamYears</code> в <code>index.json</code>.</p>
     </header>
     <div class="api-base">Base URL: <code>https://ivandavidov.github.io/nvo/api/v1</code></div>
 
@@ -218,6 +218,7 @@
   <tr><td>grades[].scaleMin</td><td class="type">number</td><td>Минимална стойност на скалата</td></tr>
   <tr><td>grades[].scaleMax</td><td class="type">number</td><td>Максимална стойност на скалата</td></tr>
   <tr><td>grades[].dataUrl</td><td class="type">string</td><td>Относителен път до пълните данни</td></tr>
+  <tr><td>grades[].noExamYears</td><td class="type">array</td><td>Години без изпит: <code>{year, copyOf}</code> - в данните годината <code>year</code> повтаря резултатите от <code>copyOf</code></td></tr>
 </table>
       </div>
     </div>

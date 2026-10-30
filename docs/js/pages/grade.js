@@ -5,6 +5,7 @@ import {
   defaultSortDir, firstEmptyRow, rankFor, cityAverages, cityCsv, allCsv,
   chartSeries, findCityForSchool
 } from '../core/model.js';
+import { HISTORY_YEARS, noExamSource } from '../core/config.js';
 import { initialSelection, linkedSchools, writeSelection, shareUrl, readYearParam, readCityHash } from '../core/url-state.js';
 import { readRememberedCity, rememberCity } from '../core/city-memory.js';
 import { schoolType, joinTypes, typeBadgeHtml } from '../core/school-types.js';
@@ -16,7 +17,7 @@ import { buildSchoolIndex, searchSchools } from '../ui/school-search.js';
 import { exportMenuHtml, menuButtonOf } from '../ui/export-menu.js';
 import { stickyTopOffset } from '../ui/sticky-head.js';
 import { embedCode } from '../core/embed.js';
-import { whenHighcharts, lineOptions, createChart, seriesColor, onThemeChange, PALETTE_SIZE } from '../ui/chart-theme.js';
+import { whenHighcharts, lineOptions, createChart, seriesColor, onThemeChange, markNoExamYears, PALETTE_SIZE } from '../ui/chart-theme.js';
 import { copyText, toast, siteUrl } from '../site.js';
 
 const grade = Number(document.body.dataset.grade);
@@ -262,6 +263,7 @@ function renderCharts() {
       visible: !state.hidden.has(x.index),
       schoolIndex: x.index
     }));
+    markNoExamYears(options, model.grade);
     if (state.charts[subj]) {
       state.charts[subj].destroy();
     }
@@ -931,8 +933,17 @@ function setupYear() {
   if (model.timeTravelYear && el.history) {
     const exit = new URL(window.location.href);
     exit.searchParams.delete('year');
+    // Година без изпит в прозореца за средните (в данните повтаря съседна година).
+    let noExam = '';
+    for (let y = model.timeTravelYear - HISTORY_YEARS + 1; y <= model.timeTravelYear; y++) {
+      const source = noExamSource(model.grade, y);
+      if (source) {
+        noExam += ' Средните за ' + HISTORY_YEARS + ' години включват ' + y + ' г.: ' + model.cfg.tableTitleType
+          + ' тогава не е провеждано и в данните са повторени резултатите от ' + source + ' г.';
+      }
+    }
     el.history.innerHTML = '<div class="banner history-banner" role="status">' + icon('history')
-      + '<span><strong>Исторически изглед</strong> - всички данни и графики по-долу са към ' + model.timeTravelYear + ' г.</span>'
+      + '<span><strong>Исторически изглед</strong> - всички данни и графики по-долу са към ' + model.timeTravelYear + ' г.' + noExam + '</span>'
       + '<a class="banner__action" href="' + esc(exit.pathname + exit.search + exit.hash) + '">Покажи актуалните данни →</a></div>';
   }
   const national = document.querySelector('[data-national]');

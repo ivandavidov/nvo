@@ -3,7 +3,7 @@
 // Векторна - jsPDF + AutoTable, без Highcharts. Данни: документът на училището от API-то
 // (с ранговете по години), data/grade-{g}.json (средните за страната и за вида в града,
 // съседите в класацията на града) и баловете на РУО за града.
-import { displayRange, MAX_YEARS } from './config.js';
+import { displayRange, MAX_YEARS, isNoExamYear } from './config.js';
 import { fetchGradeData, buildModel, nationalAverages, typeAverages, findSchoolIndexByCode, findCityForSchool, cityIndices } from './model.js';
 import { schoolType, typeKeyFromApi } from './school-types.js';
 import { loadScript, fetchBase64 } from './pdf.js';
@@ -61,9 +61,6 @@ const EXAMS = {
   12: { heading: 'ДЗИ 12 клас', long: 'Държавни зрелостни изпити', bel: 'БЕЛ', mat: 'ДЗИ-2', min: 2, max: 6, steps: [0.25, 0.5, 1] }
 };
 const GRADES = ['4', '7', '10', '12'];
-// Години без изпит - в данните са копие на съседна година (НВО 4 клас 2020 не е провеждано,
-// НВО 10 клас започва през 2021). Брошурата ги показва като празни.
-const NO_EXAM = { 4: [2020], 10: [2018, 2019, 2020] };
 
 // Статусът в регистъра на МОН - като SchoolPageGenerator.
 const CLOSED = {
@@ -235,6 +232,14 @@ function lineChart(doc, box, o) {
     const t = (v - o.lo) / (o.hi - o.lo);
     return o.invert ? top + (bottom - top) * t : bottom - (bottom - top) * t;
   };
+  // Години без изпит (o.noExam - индекси): сива ивица, пунктир между съседните години и надпис
+  // "Няма изпит" - като графиките на сайта (markNoExamYears).
+  const gaps = o.noExam || [];
+  const step = n > 1 ? (right - left) / (n - 1) : right - left;
+  gaps.forEach((i) => {
+    fill(doc, C.surface);
+    doc.rect(xAt(i) - step / 2, top, step, bottom - top, 'F');
+  });
   if (o.axis) {
     for (let v = o.lo; v <= o.hi + 1e-9; v += o.axis.step) {
       const y = yAt(v);
@@ -272,6 +277,21 @@ function lineChart(doc, box, o) {
       }
     });
     flush();
+    doc.setLineDashPattern([0.1, 2.6], 0);
+    gaps.forEach((i) => {
+      if (gaps.includes(i - 1)) {
+        return;
+      }
+      let j = i;
+      while (gaps.includes(j + 1)) {
+        j++;
+      }
+      const a = s.data[i - 1];
+      const b = s.data[j + 1];
+      if (isNum(a) && isNum(b)) {
+        doc.line(xAt(i - 1), yAt(a), xAt(j + 1), yAt(b));
+      }
+    });
     doc.setLineDashPattern([], 0);
     if (s.markers) {
       s.data.forEach((v, i) => {
@@ -282,6 +302,17 @@ function lineChart(doc, box, o) {
         }
       });
     }
+  });
+  // Надписът е над линиите, с фона на ивицата - пунктирът минава под него.
+  gaps.forEach((i) => {
+    const size = 6.5;
+    font(doc, 'normal', size, C.faint);
+    const t = 'Няма изпит';
+    const w = doc.getTextWidth(t);
+    const mid = (top + bottom) / 2;
+    fill(doc, C.surface);
+    doc.rect(xAt(i) - size * 0.6, mid - w / 2 - 2, size * 1.2, w + 4, 'F');
+    doc.text(t, xAt(i) + size * 0.35, mid + w / 2, { angle: 90 });
   });
   if (o.labels) {
     const s = o.series[o.labels.series];
@@ -383,14 +414,14 @@ async function examData(data, grade, typeKey) {
     return null;
   }
   const from = displayRange(grade, years[years.length - 1]).from;
-  const noExam = NO_EXAM[grade] || [];
   const at = (arr, i) => (arr && isNum(arr[i]) ? arr[i] : null);
   let rows = [];
   years.forEach((year, i) => {
     if (year < from) {
       return;
     }
-    const skip = noExam.includes(year);
+    // Години без изпит (копие на съседна година в данните) - брошурата ги показва като празни.
+    const skip = isNoExamYear(grade, year);
     rows.push(skip ? { year, skip } : {
       year,
       bel: at(g.belScore, i), mat: at(g.matScore, i), bu: at(g.belStudents, i), mu: at(g.matStudents, i),
@@ -914,6 +945,7 @@ function drawExam(ctx, ex) {
 
   // Графики БЕЛ / МАТ: училището, средното за вида в града, средното за страната (поне 2 години).
   const years = rows.map((r) => r.year);
+  const gaps = rows.map((r, i) => (r.skip ? i : -1)).filter((i) => i >= 0);
   if (real.filter((r) => isNum(r.bel) || isNum(r.mat)).length >= 2) {
     y += 22;
     const pw = (CW - 20) / 2;
@@ -929,7 +961,7 @@ function drawExam(ctx, ex) {
       const sc = niceScale([...own, ...nat, ...cty], meta.min, meta.max, meta.steps);
       const dec = sc.step < 1 ? 2 : 0;
       lineChart(doc, { x, y: y + 8, w: pw, h: 112 }, {
-        years, lo: sc.lo, hi: sc.hi,
+        years, lo: sc.lo, hi: sc.hi, noExam: gaps,
         axis: { step: sc.step, format: (v) => v.toFixed(dec) },
         series: [
           ...(ex.hasCityAvg ? [{ data: cty, color: C.city, width: 1.2, dash: [3.5, 2.5] }] : []),
@@ -957,7 +989,7 @@ function drawExam(ctx, ex) {
     const hi = Math.max(...vals);
     const pad = Math.max((hi - lo) * 0.12, 5);
     lineChart(doc, { x: M, y: y + 8, w: CW, h: 62 }, {
-      years, lo: Math.max(1, lo - pad), hi: hi + pad, invert: true,
+      years, lo: Math.max(1, lo - pad), hi: hi + pad, invert: true, noExam: gaps,
       series: [{ data: rankData, color: C.primary, width: 1.9, markers: true }],
       labels: { series: 0, all: true, format: (v) => String(v), color: C.ink }
     });

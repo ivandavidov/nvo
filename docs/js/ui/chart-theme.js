@@ -1,6 +1,8 @@
 // Обща визия за всички Highcharts графики: цветовете идват от CSS токените,
 // така че светлата и тъмната тема се сменят без отделни настройки.
 
+import { isNoExamYear, noExamSource } from '../core/config.js';
+
 export function token(name, fallback) {
   const v = getComputedStyle(document.documentElement).getPropertyValue(name);
   return v && v.trim() ? v.trim() : fallback;
@@ -106,6 +108,104 @@ export function lineOptions({ height = 380, min, max, categories = [] } = {}) {
       }
     }
   };
+}
+
+/**
+ * Години без изпит (isNoExamYear) в графика по години: стойността там е копие на съседна година,
+ * затова точката не се рисува, съседните години се свързват с пунктир, а над годината има сива
+ * ивица "Няма изпит". При колоните само се маха колоната. Данните и средните не се променят.
+ * Връща options (променени на място).
+ */
+export function markNoExamYears(options, grade) {
+  if (!options.xAxis || !options.xAxis.categories) {
+    return options;
+  }
+  // Промени по години ("2019→2020"): промяната към година без изпит се маха, а промяната от нея
+  // всъщност е спрямо годината, която тя повтаря ("2020→2021" е "2019→2021").
+  const categories = options.xAxis.categories.map((c) => {
+    const pair = /^(\d{4})→(\d{4})$/.exec(String(c));
+    const source = pair && noExamSource(grade, pair[1]);
+    return source ? source + '→' + pair[2] : c;
+  });
+  options.xAxis.categories = categories;
+  const runs = [];
+  categories.forEach((c, k) => {
+    const pair = /^(\d{4})→(\d{4})$/.exec(String(c));
+    if (!isNoExamYear(grade, pair ? pair[2] : c)) {
+      return;
+    }
+    const last = runs[runs.length - 1];
+    if (last && last.to === k - 1) {
+      last.to = k;
+    } else {
+      runs.push({ from: k, to: k });
+    }
+  });
+  if (!runs.length) {
+    return options;
+  }
+  const inRun = (k) => runs.some((r) => k >= r.from && k <= r.to);
+  const value = (v) => (v != null && typeof v === 'object' ? v.y : v);
+  const chartType = (options.chart && options.chart.type) || 'line';
+  // Пунктирът е отделна серия - цветът ѝ трябва да е известен предварително, затова сериите без цвят
+  // получават същия цвят от палитрата, какъвто Highcharts би им дал.
+  const palette = options.colors || window.Highcharts.getOptions().colors;
+  let paletteIdx = 0;
+  const series = [];
+  (options.series || []).forEach((s, i) => {
+    const own = Object.assign({}, s, { data: (s.data || []).map((v, k) => (inRun(k) ? null : v)) });
+    if (own.color == null) {
+      own.color = palette[paletteIdx++ % palette.length];
+    }
+    if (own.id == null) {
+      own.id = 'no-exam-' + i;
+    }
+    series.push(own);
+    const type = s.type || chartType;
+    if (type !== 'line' && type !== 'spline') {
+      return;
+    }
+    runs.forEach((r) => {
+      const a = value(own.data[r.from - 1]);
+      const b = value(own.data[r.to + 1]);
+      if (!a || !b) {
+        return;
+      }
+      const link = {
+        type,
+        data: [[r.from - 1, a], [r.to + 1, b]],
+        linkedTo: own.id,
+        color: own.color,
+        dashStyle: 'ShortDot',
+        marker: { enabled: false },
+        enableMouseTracking: false,
+        showInLegend: false
+      };
+      // Само зададените - undefined би покрил стойностите от plotOptions.
+      ['yAxis', 'lineWidth', 'visible'].forEach((key) => {
+        if (s[key] !== undefined) {
+          link[key] = s[key];
+        }
+      });
+      series.push(link);
+    });
+  });
+  options.series = series;
+  const bands = runs.map((r) => ({
+    from: r.from - 0.5,
+    to: r.to + 0.5,
+    color: token('--surface-2', 'rgba(127,127,127,0.08)'),
+    // HTML надпис (стил .chart-no-exam в site.css) - стои над линиите и ги покрива.
+    label: {
+      text: '<span class="chart-no-exam">Няма изпит</span>',
+      useHTML: true,
+      align: 'center',
+      verticalAlign: 'middle',
+      textAlign: 'center'
+    }
+  }));
+  options.xAxis.plotBands = (options.xAxis.plotBands || []).concat(bands);
+  return options;
 }
 
 export function createChart(container, options) {
