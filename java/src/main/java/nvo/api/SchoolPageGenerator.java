@@ -56,6 +56,8 @@ public class SchoolPageGenerator {
     private final Map<String, List<JsonObject>> sameNameByCode = new HashMap<>();
     /** Годините с резултати по код (за различимите заглавия). */
     private final Map<String, String> yearSpanByCode = new HashMap<>();
+    /** Училищата с балове след 7 клас: код → градът на страницата с баловете (docs/7/balove/{град}/). */
+    private final Map<String, String> baloveCityByCode = new HashMap<>();
 
     private record GradeMeta(String examPrefix, String heading, String belLabel, String matLabel) {}
 
@@ -88,6 +90,7 @@ public class SchoolPageGenerator {
             docs.add(gson.fromJson(Files.readString(file), JsonObject.class));
         }
         indexSameNames(docs);
+        indexBalove();
 
         int count = 0;
         for (JsonObject doc : docs) {
@@ -99,6 +102,41 @@ public class SchoolPageGenerator {
         }
         int redirects = writeLegacyRedirects(outBase);
         System.out.println("Generated " + count + " school pages and " + redirects + " redirects under " + outBase);
+    }
+
+    /**
+     * Чете api/v1/balove/{град}.json (генерират се преди страниците на училищата) и запомня
+     * училищата с поне една паралелка - само за градовете с публикувана страница с балове.
+     */
+    private void indexBalove() throws Exception {
+        Path dir = Path.of(OUTPUT_BASE, "balove");
+        if (!Files.isDirectory(dir)) {
+            return;
+        }
+        List<Path> files = new ArrayList<>();
+        try (Stream<Path> stream = Files.list(dir)) {
+            stream.filter(p -> p.getFileName().toString().endsWith(".json"))
+                    .filter(p -> !p.getFileName().toString().equals("index.json") && !p.getFileName().toString().equals("data.json"))
+                    .sorted()
+                    .forEach(files::add);
+        }
+        for (Path file : files) {
+            JsonObject doc = gson.fromJson(Files.readString(file), JsonObject.class);
+            String slug = doc.has("city") && doc.get("city").isJsonObject() ? str(doc.getAsJsonObject("city"), "slug") : null;
+            if (slug == null || !hasBalovePage(slug) || !doc.has("schools")) {
+                continue;
+            }
+            for (JsonElement el : doc.getAsJsonArray("schools")) {
+                JsonObject school = el.getAsJsonObject();
+                if (school.has("profiles") && !school.getAsJsonArray("profiles").isEmpty()) {
+                    baloveCityByCode.putIfAbsent(school.get("code").getAsString(), slug);
+                }
+            }
+        }
+    }
+
+    private static boolean hasBalovePage(String citySlug) {
+        return Files.exists(Path.of(DOCS_BASE, "7", "balove", citySlug, "index.html"));
     }
 
     /** Групира училищата с еднакво име в един град и пресмята годините им с резултати. */
@@ -240,6 +278,11 @@ public class SchoolPageGenerator {
         ctx.put("citySlug", citySlug);
         ctx.put("primaryGrade", primaryGrade);
         ctx.put("website", website);
+        // Баловете за прием след 7 клас в училището (страницата на града с избраното училище).
+        String baloveCity = baloveCityByCode.get(code);
+        if (baloveCity != null) {
+            ctx.put("baloveHref", "../../7/balove/" + baloveCity + "/?school=" + code);
+        }
         List<Map<String, Object>> sameNameLinks = new ArrayList<>();
         for (JsonObject other : sameName) {
             String otherCode = other.get("code").getAsString();
@@ -361,15 +404,24 @@ public class SchoolPageGenerator {
 
         // Contextual links: open the school in the interactive chart, plus the city/year rankings.
         List<Map<String, Object>> links = new ArrayList<>();
-        links.add(link("../../" + grade + "/?school=" + code, "Виж в графиката"));
+        links.add(link("../../" + grade + "/?school=" + code, "Виж в графиката", "Графика"));
         // Само ако за града има страница с класация за този клас (напр. без данни за последната година няма).
         if (citySlug != null && Files.exists(Path.of(DOCS_BASE, grade, citySlug, "index.html"))) {
-            links.add(link("../../" + grade + "/" + citySlug + "/", "Класация в града"));
+            links.add(link("../../" + grade + "/" + citySlug + "/", "Класация в града", "В града"));
         }
         if (latestYear != null) {
-            links.add(link("../../" + grade + "/" + latestYear + "/", "Национална класация " + latestYear));
+            links.add(link("../../" + grade + "/" + latestYear + "/", "Национална класация " + latestYear, "В страната"));
         }
-        links.add(link("../../" + grade + "/", "Към " + meta.heading()));
+        // 7 клас: баловете на училището, ако приема след 7 клас, иначе баловете в града.
+        if (grade.equals("7")) {
+            String baloveCity = baloveCityByCode.get(code);
+            if (baloveCity != null) {
+                links.add(link("../../7/balove/" + baloveCity + "/?school=" + code, "Балове на училището", "Балове"));
+            } else if (citySlug != null && hasBalovePage(citySlug)) {
+                links.add(link("../../7/balove/" + citySlug + "/", "Балове в града", "Балове"));
+            }
+        }
+        links.add(link("../../" + grade + "/", "Към " + meta.heading(), meta.heading()));
         section.put("links", links);
 
         // Schools ranked next to this one in the same city for this grade (latest year).
@@ -409,6 +461,13 @@ public class SchoolPageGenerator {
             }
         }
         return doc.has("isPrivate") && doc.get("isPrivate").getAsBoolean() ? SchoolType.PRIVATE : SchoolType.of(doc.get("code").getAsString());
+    }
+
+    /** Връзка в секцията на клас; short - надписът на телефон (в две колони). */
+    private static Map<String, Object> link(String href, String label, String shortLabel) {
+        Map<String, Object> m = link(href, label);
+        m.put("short", shortLabel);
+        return m;
     }
 
     private static Map<String, Object> link(String href, String label) {

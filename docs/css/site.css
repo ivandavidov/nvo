@@ -2349,6 +2349,55 @@
     .school-grade .card__head .btn { width: 100%; }
     .school-grade .chart-frame { padding: var(--sp-2) 0 0; border: 0; }
   }
+  /* Телефон: връзките в секцията на клас - две равни колони с кратки надписи
+     ("Графика", "В града", "В страната", "Балове", "НВО 7 клас"); при нечетен брой
+     първата ("Виж в графиката") е на цял ред с пълния надпис. */
+  @media (max-width: 640px) {
+    .school-grade__links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-2); }
+    .school-grade__links .chip { width: 100%; height: 40px; justify-content: center; }
+    .school-grade__links > :first-child:nth-last-child(odd) { grid-column: 1 / -1; }
+    .school-grade__links .chip__long { display: none; }
+    .school-grade__links .chip__short { display: inline; }
+    .school-grade__links > :first-child:nth-last-child(odd) .chip__long { display: inline; }
+    .school-grade__links > :first-child:nth-last-child(odd) .chip__short { display: none; }
+  }
+  /* Телефон: "Близки по успех" - списък на цели редове (имената са с различна дължина и не се
+     събират в две колони); дълго име минава на втори ред, стрелката вдясно води към профила. */
+  @media (max-width: 640px) {
+    .school-related .cluster { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--sp-2); }
+    .school-related .chip {
+      justify-content: space-between;
+      width: 100%;
+      height: auto;
+      min-height: 40px;
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius-sm);
+      white-space: normal;
+    }
+    .school-related .chip::after {
+      content: "";
+      flex-shrink: 0;
+      width: 7px;
+      height: 7px;
+      margin-right: 2px;
+      border-top: 2px solid var(--text-4);
+      border-right: 2px solid var(--text-4);
+      transform: rotate(45deg);
+    }
+  }
+  /* Телефон: бутоните в картата на училището - две равни колони. При три бутона
+     "Изтегли PDF" е най-отгоре на цял ред, при един - той е на цял ред; "Балове" е кратко. */
+  @media (max-width: 640px) {
+    .school-hero__actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-2); width: 100%; }
+    .school-hero__actions .btn { --btn-h: 40px; width: 100%; justify-content: center; }
+    .school-hero__actions > :only-child,
+    .school-hero__actions > :first-child:nth-last-child(3) ~ .btn--primary { grid-column: 1 / -1; }
+    .school-hero__actions > :first-child:nth-last-child(3) ~ .btn--primary { order: -1; }
+    .school-hero__actions .chip__long { display: none; }
+    .school-hero__actions .chip__short { display: inline; }
+    .school-hero__actions > :only-child .chip__long { display: inline; }
+    .school-hero__actions > :only-child .chip__short { display: none; }
+  }
 
   /* ==========================================================================
      страници по град и година (/{клас}/{град}/, /{клас}/{година}/)

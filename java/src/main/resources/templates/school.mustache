@@ -76,6 +76,9 @@
 {{#website}}
         <a class="btn" href="{{website}}" target="_blank" rel="noopener noreferrer">{{#icon}}globe{{/icon}} Уебсайт</a>
 {{/website}}
+{{#baloveHref}}
+        <a class="btn" href="{{baloveHref}}" title="Минимални и максимални балове за прием след 7 клас по паралелки">{{#icon}}target{{/icon}} <span class="chip__long">Балове след 7 клас</span><span class="chip__short">Балове</span></a>
+{{/baloveHref}}
 {{^noData}}
         <button type="button" class="btn btn--primary" id="school-pdf">{{#icon}}download{{/icon}} Изтегли PDF</button>
 {{/noData}}
@@ -125,7 +128,7 @@
         </div>
         <nav class="cluster school-grade__links" aria-label="Свързани страници - {{heading}}">
 {{#links}}
-          <a class="chip" href="{{href}}">{{label}}</a>
+          <a class="chip" href="{{href}}" title="{{label}}"><span class="chip__long">{{label}}</span><span class="chip__short">{{short}}</span></a>
 {{/links}}
         </nav>
 {{#hasNeighbors}}
