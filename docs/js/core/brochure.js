@@ -515,7 +515,10 @@ function aheadShare(rank, total) {
   return total > 1 ? Math.round((total - rank) / (total - 1) * 100) : 100;
 }
 
-/** Факти по строги правила - само силни страни, спокоен тон, по един за изпит (без такива секцията липсва). */
+/**
+ * Факти по строги правила - само силни страни, спокоен тон, по един за изпит (без такива секцията липсва).
+ * {text, apart}: text може да е списък от варианти - първият, който се събира на един ред; apart - с празен ред преди него.
+ */
 function highlights(ctx) {
   const out = [];
   ctx.exams.forEach((ex) => {
@@ -585,10 +588,15 @@ function highlights(ctx) {
   if (b) {
     const mins = b.active.map((p) => p.per[b.li].min);
     const n = b.active.length;
-    picked.push({ text: 'Прием след 7 клас: ' + n + (n === 1 ? ' паралелка' : ' паралелки') + ' през ' + b.latestYear + ' г., минимален бал на 1-во класиране '
-      + (n === 1 ? fmt(mins[0]) : 'от ' + fmt(Math.min(...mins)) + ' до ' + fmt(Math.max(...mins))) });
+    const count = n + (n === 1 ? ' паралелка' : ' паралелки');
+    const range = n === 1 ? fmt(mins[0]) : fmt(Math.min(...mins)) + ' - ' + fmt(Math.max(...mins));
+    picked.push({ apart: true, text: [
+      'Прием след 7 клас: ' + count + ' през ' + b.latestYear + ' г., мин. бал на 1-во класиране ' + (n === 1 ? range : 'от ' + fmt(Math.min(...mins)) + ' до ' + fmt(Math.max(...mins))),
+      'Прием след 7 клас: ' + count + ' през ' + b.latestYear + ' г., мин. бал на 1-во класиране ' + range,
+      'Прием след 7 клас ' + b.latestYear + ': ' + count + ', мин. бал на 1-во класиране ' + range
+    ] });
   }
-  return picked.map((h) => h.text);
+  return picked;
 }
 
 /* ---------------- страници ---------------- */
@@ -634,7 +642,7 @@ function drawCover(ctx) {
   lines.forEach((l, k) => doc.text(l, M, y + k * size * 1.12));
   y += (lines.length - 1) * size * 1.12;
   if (data.officialName && plain(data.officialName) !== plain(data.fullName)) {
-    y = paragraph(doc, data.officialName, M, y + 18, CW, 11.5, C.text2, 1.3) - 11.5 * 1.3;
+    y = paragraph(doc, data.officialName, M, y + 25, CW, 11.5, C.text2, 1.3) - 11.5 * 1.3;
   }
 
   // Значки: вид, град, код, статус, уебсайт.
@@ -741,17 +749,21 @@ function drawCover(ctx) {
     font(doc, 'normal', 9.5, C.ink);
     const blocks = [];
     let h = 12;
-    facts.forEach((t) => {
-      const ls = doc.splitTextToSize(t, CW - 40);
-      if (y + h + ls.length * 13 + 12 <= limit) {
-        blocks.push(ls);
-        h += ls.length * 13 + 6;
+    facts.forEach((f, k) => {
+      const variants = [].concat(f.text);
+      const text = variants.find((t) => doc.getTextWidth(t) <= CW - 40) || variants[variants.length - 1];
+      const ls = doc.splitTextToSize(text, CW - 40);
+      const gap = f.apart && k > 0 ? 13 : 0;
+      if (y + h + gap + ls.length * 13 + 12 <= limit) {
+        blocks.push({ ls, gap });
+        h += gap + ls.length * 13 + 6;
       }
     });
     fill(doc, C.primarySoft);
     doc.roundedRect(M, y, CW, h + 6, 8, 8, 'F');
     let ty = y + 21;
-    blocks.forEach((ls) => {
+    blocks.forEach(({ ls, gap }) => {
+      ty += gap;
       fill(doc, C.primary);
       doc.circle(M + 18, ty - 3.2, 2, 'F');
       font(doc, 'normal', 9.5, C.ink);
@@ -1170,7 +1182,7 @@ function drawMethod(ctx) {
   }
   const from = ctx.exams.map((ex) => ex.meta.heading + ' - от ' + displayRange(ex.grade, ex.rows[ex.rows.length - 1].year).from + ' г.');
   const gap = ctx.exams.some((ex) => ex.rows.some((r) => r.skip)) ? ' НВО 4 клас не е провеждано през 2020 г.' : '';
-  items.push(['Кои години', 'Брошурата показва до ' + MAX_YEARS + ' години за всеки изпит (' + from.join(', ') + ').' + gap
+  items.push(['Кои години', 'За всеки изпит са показани последните до ' + MAX_YEARS + ' години (' + from.join(', ') + ').' + gap
     + ' По-старите години са в CSV и JSON API на сайта.']);
   items.push(['Източници', 'Резултатите от НВО и ДЗИ са от Портала за отворени данни (data.egov.bg, МОН). Баловете са от РУО. '
     + 'Видът и статусът на училището са от Регистъра на институциите на МОН.']);
@@ -1185,9 +1197,9 @@ function drawMethod(ctx) {
   // Бележка и сайтът
   y += 6;
   const note = 'Резултатите от изпитите показват само част от работата на едно училище и не измерват всичко, което то дава на учениците си. '
-    + 'Добре е брошурата да се чете заедно с други източници - разговор с училището, мнения на родители и ученици.';
+    + 'Затова профилът е добре да се допълни с други източници - разговор с училището, мнения на родители и ученици.';
   const about = SITE + ' - безплатен сайт с отворени данни: интерактивни графики, класации по градове, сравнение на училища и балове. '
-    + 'Брошурата е създадена на ' + today() + ' г.';
+    + 'Профилът е създаден на ' + today() + ' г.';
   font(doc, 'normal', 9);
   const h = (doc.splitTextToSize(note, CW - 32).length + doc.splitTextToSize(about, CW - 32).length) * 9 * 1.42 + 40;
   if (y + h < BOTTOM) {
@@ -1267,15 +1279,15 @@ export async function buildSchoolBrochure(data) {
     startSection(ctx, ex.meta.heading, 'exam');
     drawExam(ctx, ex);
   });
-  if (neighbors) {
-    doc.addPage();
-    startSection(ctx, 'Близки по успех в ' + ctx.exams.find((ex) => ex.city).cityName, 'city');
-    drawNeighbors(ctx);
-  }
   if (balove) {
     doc.addPage();
     startSection(ctx, 'Прием след 7 клас', 'balove');
     drawBalove(ctx);
+  }
+  if (neighbors) {
+    doc.addPage();
+    startSection(ctx, 'Близки по успех в ' + ctx.exams.find((ex) => ex.city).cityName, 'city');
+    drawNeighbors(ctx);
   }
   doc.addPage();
   startSection(ctx, 'Как да четем данните', 'method');
