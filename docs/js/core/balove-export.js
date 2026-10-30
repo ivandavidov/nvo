@@ -4,12 +4,16 @@
 // класирания имат данни; null за класиране = няма данни; полът е null, когато липсва.
 import { MAX_YEARS } from './config.js';
 import { ensurePdfLibs, newDoc, addPageFooters, PDF_FONT, PDF_MARGIN } from './pdf.js';
-import { siteUrl, toast } from '../site.js';
 import { download } from '../ui/dom.js';
 import { menuButtonOf } from '../ui/export-menu.js';
 import { schoolType, typeKeyFromApi } from './school-types.js';
 
 const RANKS = ['1-во', '2-ро', '3-то', '4-то'];
+
+// Без статичен import на site.js (той закача менюто и търсенето още при зареждане), за да може
+// модулът да се ползва и от страници без общата шапка; toast се зарежда при нужда.
+const SITE_ROOT = new URL('../../', import.meta.url);
+const siteUrl = (path) => new URL(path, SITE_ROOT).toString();
 
 /** Видът (financing) или null - някои кодове от РУО ги няма в регистъра на МОН. */
 const typeOf = (s) => {
@@ -165,6 +169,7 @@ export async function balovePdf(docs, filename, allYears) {
  * е slug) и balove-csv-all | balove-pdf-all (хъбът). JSON е статичен файл (линк с download).
  */
 export async function runBaloveExport(item, slug) {
+  const { toast } = await import('../site.js');
   const action = item.dataset.action;
   const all = action.endsWith('-all');
   const btn = menuButtonOf(item);

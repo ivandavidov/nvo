@@ -1,0 +1,333 @@
+/* Конзолата (docs/console/) - отделен файл, не е част от site.css (страницата е скрита).
+   Тъмна тема по подразбиране, светла с "theme light"; ANSI палитрата е в --a0..--a15. */
+
+:root {
+  color-scheme: dark;
+  --term-bg: #0a0e16;
+  --term-fg: #d6dde6;
+  --term-muted: #8b949e;
+  --term-cursor: #e6edf3;
+  --term-sel: rgba(121, 192, 255, 0.3);
+  --term-bar: #111723;
+  --term-key: #182030;
+  --term-border: #263042;
+  --term-match: rgba(227, 179, 65, 0.3);
+  --a0: #3b4252;
+  --a1: #ff7b72;
+  --a2: #7ee787;
+  --a3: #e3b341;
+  --a4: #79c0ff;
+  --a5: #d2a8ff;
+  --a6: #56d4dd;
+  --a7: #c9d1d9;
+  --a8: #8b949e;
+  --a9: #ffa198;
+  --a10: #a5f0ac;
+  --a11: #f2cc60;
+  --a12: #a5d6ff;
+  --a13: #e2c5ff;
+  --a14: #8ae6ec;
+  --a15: #f0f6fc;
+  --term-font: ui-monospace, "SFMono-Regular", "SF Mono", Menlo, Consolas, "DejaVu Sans Mono", "Liberation Mono", monospace;
+  --term-size: 14px;
+  --term-lh: 1.4;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --term-bg: #f5f7fb;
+  --term-fg: #1f2328;
+  --term-muted: #59636e;
+  --term-cursor: #1f2328;
+  --term-sel: rgba(9, 105, 218, 0.22);
+  --term-bar: #e8ecf2;
+  --term-key: #ffffff;
+  --term-border: #d0d7de;
+  --term-match: rgba(212, 167, 44, 0.32);
+  --a0: #24292f;
+  --a1: #cf222e;
+  --a2: #116329;
+  --a3: #8a5c00;
+  --a4: #0550ae;
+  --a5: #8250df;
+  --a6: #1b7c83;
+  --a7: #59636e;
+  --a8: #59636e;
+  --a9: #a40e26;
+  --a10: #1a7f37;
+  --a11: #7d4e00;
+  --a12: #0969da;
+  --a13: #6639ba;
+  --a14: #2a7c93;
+  --a15: #6e7781;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background: var(--term-bg);
+  color: var(--term-fg);
+}
+
+body {
+  overflow: hidden;
+  font: var(--term-size) / var(--term-lh) var(--term-font);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+::selection { background: var(--term-sel); }
+
+.app {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--app-h, 100dvh);
+  display: flex;
+  flex-direction: column;
+}
+
+.stage {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+}
+
+.term {
+  position: absolute;
+  inset: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 8px 12px 16px;
+  cursor: text;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--term-border) transparent;
+}
+
+.term.is-bell { box-shadow: inset 0 0 0 2px var(--a3); }
+
+.term__screen,
+.term__line,
+.pager__body {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  tab-size: 8;
+}
+
+.term__line[hidden] { display: none; }
+
+.ln { min-height: calc(var(--term-lh) * 1em); }
+
+.term__cursor {
+  background: var(--term-cursor);
+  color: var(--term-bg);
+  animation: term-blink 1.1s steps(1) infinite;
+}
+
+.term:not(:focus-within) .term__cursor {
+  background: transparent;
+  color: inherit;
+  outline: 1px solid var(--term-cursor);
+  outline-offset: -1px;
+  animation: none;
+}
+
+@keyframes term-blink {
+  50% { background: transparent; color: inherit; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .term__cursor { animation: none; }
+}
+
+/* Скритото поле, което поема клавиатурата; следва курсора, за да е там и подсказката на IME. */
+.term__capture {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2px;
+  height: 1.4em;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  resize: none;
+  overflow: hidden;
+  opacity: 0;
+  font-size: 16px;
+  color: transparent;
+  background: transparent;
+  caret-color: transparent;
+  pointer-events: none;
+}
+
+.term__probe {
+  position: absolute;
+  visibility: hidden;
+  white-space: pre;
+}
+
+.term a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--term-muted);
+  text-underline-offset: 2px;
+}
+
+.term a:hover { text-decoration-color: currentColor; }
+
+/* ANSI */
+.f0 { color: var(--a0); } .f1 { color: var(--a1); } .f2 { color: var(--a2); } .f3 { color: var(--a3); }
+.f4 { color: var(--a4); } .f5 { color: var(--a5); } .f6 { color: var(--a6); } .f7 { color: var(--a7); }
+.f8 { color: var(--a8); } .f9 { color: var(--a9); } .f10 { color: var(--a10); } .f11 { color: var(--a11); }
+.f12 { color: var(--a12); } .f13 { color: var(--a13); } .f14 { color: var(--a14); } .f15 { color: var(--a15); }
+.b0 { background: var(--a0); } .b1 { background: var(--a1); } .b2 { background: var(--a2); } .b3 { background: var(--a3); }
+.b4 { background: var(--a4); } .b5 { background: var(--a5); } .b6 { background: var(--a6); } .b7 { background: var(--a7); }
+.b8 { background: var(--a8); } .b9 { background: var(--a9); } .b10 { background: var(--a10); } .b11 { background: var(--a11); }
+.b12 { background: var(--a12); } .b13 { background: var(--a13); } .b14 { background: var(--a14); } .b15 { background: var(--a15); }
+.bfg { background: var(--term-fg); }
+.fbg { color: var(--term-bg); }
+.a-b { font-weight: 700; }
+.a-d { opacity: 0.65; }
+.a-i { font-style: italic; }
+.a-u { text-decoration: underline; }
+
+/* less и nano */
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  background: var(--term-bg);
+}
+
+.pager__body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 8px 12px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--term-border) transparent;
+}
+
+.pager__body .ln.is-match { background: var(--term-match); }
+
+.pager__status,
+.nano__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  min-height: calc(var(--term-lh) * 1em + 4px);
+  padding: 2px 12px;
+  background: var(--term-fg);
+  color: var(--term-bg);
+  white-space: pre;
+  overflow: hidden;
+}
+
+.pager__close {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 2px 6px;
+  cursor: pointer;
+}
+
+.nano__text {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  margin: 0;
+  padding: 8px 12px;
+  border: 0;
+  outline: 0;
+  resize: none;
+  font: inherit;
+  color: var(--term-fg);
+  background: var(--term-bg);
+  tab-size: 8;
+  caret-color: var(--term-cursor);
+}
+
+.nano__status {
+  min-height: calc(var(--term-lh) * 1em);
+  padding: 0 12px;
+  text-align: center;
+  color: var(--a3);
+}
+
+.nano__keys {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(10.5em, 1fr));
+  gap: 0 12px;
+  padding: 2px 12px 6px;
+}
+
+.nano__keys button {
+  font: inherit;
+  color: var(--term-fg);
+  background: none;
+  border: 0;
+  padding: 4px 0;
+  text-align: left;
+  cursor: pointer;
+}
+
+.nano__keys b {
+  font-weight: 400;
+  padding: 0 2px;
+  background: var(--term-fg);
+  color: var(--term-bg);
+}
+
+/* Лента с клавиши - само на устройства с докосване (там няма Tab, Ctrl и стрелки). */
+.keybar { display: none; }
+
+@media (hover: none) and (pointer: coarse) {
+  :root { --term-size: 13px; }
+
+  .term { padding: 6px 8px 12px; }
+
+  .nano__text { font-size: 16px; }
+
+  .keybar {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 4px;
+    padding: 6px 6px calc(6px + env(safe-area-inset-bottom));
+    background: var(--term-bar);
+    border-top: 1px solid var(--term-border);
+  }
+
+  .keybar button {
+    height: 36px;
+    min-width: 0;
+    padding: 0;
+    font: 13px var(--term-font);
+    color: var(--term-fg);
+    background: var(--term-key);
+    border: 1px solid var(--term-border);
+    border-radius: 6px;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .keybar button:active { background: var(--term-border); }
+
+  .keybar button[aria-pressed="true"] {
+    background: var(--a4);
+    border-color: var(--a4);
+    color: var(--term-bg);
+  }
+}
+
+@media (hover: none) and (pointer: coarse) and (max-width: 559px) {
+  .keybar { grid-template-columns: repeat(6, 1fr); }
+}

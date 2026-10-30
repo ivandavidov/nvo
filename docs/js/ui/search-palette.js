@@ -1,43 +1,20 @@
 // Глобалното търсене (Ctrl/⌘K или "/"): страници, градове и училища.
-// Индексът data/search-index.json се зарежда при първото отваряне.
+// Индексът и съвпадението са в search-core.js (същото търсене ползва и конзолата).
 import { icon } from './icons.js';
 import { showModal } from './dom.js';
-import { searchKey, toCyrillic, expandAbbreviations } from './search-text.js';
+import { loadIndex, indexLoaded, search, normalize } from './search-core.js';
 import { siteUrl } from '../site.js';
 import { schoolType } from '../core/school-types.js';
 
-// Много училища носят едно и също име ("Христо Ботев" - 70+), затова показваме много резултати
-// в скролиращ се списък, а при повече казваме колко са и как да се стесни търсенето.
-const MAX_SCHOOLS = 100;
-const MAX_CITIES = 6;
 const GRADE_ORDER = [7, 12, 4, 10];
 const GRADE_NAMES = { 4: 'НВО 4 клас', 7: 'НВО 7 клас', 10: 'НВО 10 клас', 12: 'ДЗИ 12 клас' };
 
-const PAGES = [
-  { title: 'Начало', href: '', icon: 'logo', terms: 'начало home' },
-  { title: 'НВО след 4 клас', sub: 'Графики и класации на училищата', href: '4/', icon: 'grad', terms: 'нво 4 клас четвърти' },
-  { title: 'НВО след 7 клас', sub: 'Графики и класации на училищата', href: '7/', icon: 'grad', terms: 'нво 7 клас седми' },
-  { title: 'НВО след 10 клас', sub: 'Графики и класации на училищата', href: '10/', icon: 'grad', terms: 'нво 10 клас десети' },
-  { title: 'ДЗИ след 12 клас', sub: 'Графики и класации на училищата', href: '12/', icon: 'grad', terms: 'дзи 12 клас матура матури дванадесети' },
-  { title: 'Балове след 7 клас', sub: 'Минимални и максимални балове по паралелки', href: '7/balove/', icon: 'target', terms: 'балове бал прием паралелки класиране' },
-  { title: 'Обобщена статистика', sub: 'Тенденции по класове и години', href: 'stats/', icon: 'pie', terms: 'статистика тенденции' },
-  { title: 'Блог', sub: 'Анализи и ръководства', href: 'blog/', icon: 'news', terms: 'блог статии анализи' },
-  { title: 'JSON API', sub: 'Отворени данни за разработчици', href: 'api/v1/', icon: 'code', terms: 'api json данни' },
-  { title: 'Вграждане на графики', sub: 'iframe за вашия сайт', href: 'embed/', icon: 'layers', terms: 'вграждане embed iframe' },
-  { title: 'За проекта и методология', sub: 'Как се изчисляват класациите, контакти, подкрепа', href: 'za-proekta/', icon: 'info', terms: 'за проекта методология контакти подкрепа дарение' }
-];
-
-let indexPromise = null;
 let dialog = null;
 let input = null;
 let resultsEl = null;
 let items = [];
 let active = -1;
 let lastQuery = '';
-
-function normalize(str) {
-  return (str || '').toString().toLowerCase().replace(/ё/g, 'е').replace(/\s+/g, ' ').trim();
-}
 
 function esc(s) {
   return String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -74,53 +51,6 @@ function highlight(text, terms) {
   return out + esc(text.slice(pos));
 }
 
-function loadIndex() {
-  if (!indexPromise) {
-    indexPromise = fetch(siteUrl('data/search-index.json'))
-      .then((r) => {
-        if (!r.ok) {
-          throw new Error('HTTP ' + r.status);
-        }
-        return r.json();
-      })
-      .then((data) => {
-        const cities = data.cities.map(([slug, name, order, grades, balove], i) => ({
-          slug, name, order, grades, balove: !!balove, rank: i, _k: searchKey(name)
-        }));
-        const bySlug = {};
-        cities.forEach((c) => { bySlug[c.slug] = c; });
-        const schools = data.schools.map(([code, shortName, fullName, citySlug, isPrivate, grades, officialName, type]) => {
-          const city = bySlug[citySlug];
-          const s = {
-            code, shortName, fullName, city, isPrivate: !!isPrivate, grades,
-            // видът (8-ият елемент); стар индекс без него - по isPrivate
-            type: type || (isPrivate ? 'p' : null),
-            _kf: searchKey(fullName), _ks: searchKey(shortName)
-          };
-          // Името, градът, кодът, разписаните съкращения (МГ → математическа гимназия …) и официалното име от МОН.
-          s._h = [s._kf, s._ks, city ? city._k : '', code, searchKey(expandAbbreviations(fullName + ' ' + shortName)),
-            searchKey(String(officialName || '').replace(/"/g, ' '))].join(' ');
-          return s;
-        });
-        return { cities, schools };
-      })
-      .catch((err) => {
-        indexPromise = null;
-        throw err;
-      });
-  }
-  return indexPromise;
-}
-
-// 0 = началото на името или на дума в него, 1 = вътре в дума, 2 = само чрез други полета.
-function nameTier(name, q) {
-  const idx = name.indexOf(q);
-  if (idx < 0) {
-    return 2;
-  }
-  return idx === 0 || name.charAt(idx - 1) === ' ' ? 0 : 1;
-}
-
 function contextGrade() {
   const g = Number.parseInt(document.body.dataset.grade || '', 10);
   return GRADE_NAMES[g] ? g : null;
@@ -133,40 +63,6 @@ function cityHref(city) {
     return siteUrl(grade + '/#' + city.slug);
   }
   return siteUrl('7/balove/' + city.slug + '/');
-}
-
-function search(index, raw) {
-  const q = normalize(raw);
-  // Сравняваме по общ ключ (латиница = кирилица); за оцветяването - заявката на кирилица.
-  const kq = searchKey(raw);
-  const keys = kq.split(' ').filter(Boolean);
-  const terms = normalize(toCyrillic(raw)).split(' ').filter(Boolean);
-  const pages = q
-    ? PAGES.filter((p) => keys.every((t) => searchKey(p.title + ' ' + (p.sub || '') + ' ' + p.terms).includes(t)))
-    : PAGES.slice(1, 8);
-  if (!index || q.length < 2) {
-    return { pages, cities: [], schools: [], terms };
-  }
-  const cities = index.cities
-    .filter((c) => keys.every((t) => c._k.includes(t)))
-    .sort((a, b) => nameTier(a._k, kq) - nameTier(b._k, kq) || a.rank - b.rank)
-    .slice(0, MAX_CITIES);
-  const matched = index.schools
-    .filter((s) => keys.every((t) => s._h.includes(t)))
-    .sort((a, b) => {
-      const ra = Math.min(nameTier(a._kf, kq), nameTier(a._ks, kq));
-      const rb = Math.min(nameTier(b._kf, kq), nameTier(b._ks, kq));
-      if (ra !== rb) {
-        return ra - rb;
-      }
-      const ao = a.city ? a.city.rank : Infinity;
-      const bo = b.city ? b.city.rank : Infinity;
-      if (ao !== bo) {
-        return ao - bo;
-      }
-      return a.fullName.localeCompare(b.fullName, 'bg');
-    });
-  return { pages, cities, schools: matched.slice(0, MAX_SCHOOLS), schoolsTotal: matched.length, terms };
 }
 
 function render(result, loading) {
@@ -257,7 +153,7 @@ function update() {
     .catch(() => {
       resultsEl.innerHTML = '<div class="combo__empty">Търсенето не можа да се зареди. Опитай отново.</div>';
     });
-  if (!indexPromise || !indexPromise._done) {
+  if (!indexLoaded()) {
     render(search(null, lastQuery), true);
   }
 }
@@ -311,11 +207,11 @@ function build() {
       dialog.close();
     }
   });
-  loadIndex().then(() => { indexPromise._done = true; }).catch(() => {});
+  loadIndex().catch(() => {});
 }
 
 export function preloadIndex() {
-  loadIndex().then(() => { indexPromise._done = true; }).catch(() => {});
+  loadIndex().catch(() => {});
 }
 
 export function openPalette(query) {
