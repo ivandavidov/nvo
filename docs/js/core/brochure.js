@@ -515,7 +515,7 @@ function aheadShare(rank, total) {
   return total > 1 ? Math.round((total - rank) / (total - 1) * 100) : 100;
 }
 
-/** До 4 факта по строги правила - само силни страни, спокоен тон (без такива секцията липсва). */
+/** Факти по строги правила - само силни страни, спокоен тон, по един за изпит (без такива секцията липсва). */
 function highlights(ctx) {
   const out = [];
   ctx.exams.forEach((ex) => {
@@ -566,16 +566,20 @@ function highlights(ctx) {
     }
   });
   out.sort((a, b) => b.score - a.score);
+  // Най-силният факт за всеки изпит, после втори (по сила), докато фактите от изпитите са до 4.
   const picked = [];
-  const perExam = new Map();
-  out.forEach((h) => {
-    const n = perExam.get(h.ex) || 0;
-    if (picked.length < 3 && n < 2) {
-      picked.push(h);
-      perExam.set(h.ex, n + 1);
+  ctx.exams.forEach((ex) => {
+    const best = out.find((h) => h.ex === ex);
+    if (best) {
+      picked.push(best);
     }
   });
-  // Избрани по сила, показани по изпит (НВО 4 ... ДЗИ 12); приемът след 7 клас - последен.
+  out.forEach((h) => {
+    if (picked.length < 4 && !picked.includes(h) && picked.filter((p) => p.ex === h.ex).length < 2) {
+      picked.push(h);
+    }
+  });
+  // Показани по изпит (НВО 4 ... ДЗИ 12), по-силният първи; приемът след 7 клас - последен.
   picked.sort((a, b) => ctx.exams.indexOf(a.ex) - ctx.exams.indexOf(b.ex));
   const b = ctx.balove;
   if (b) {
