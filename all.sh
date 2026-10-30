@@ -5,6 +5,12 @@ set -ex
 cd java
 ./mvnw clean package
 cd target
+java -jar nvo-v2.jar normalize
+# Кодовете на училищата: грешка при код, който не е 6–7 цифри (напр. изгубени нули); информация за смени на код от МОН.
+java -cp nvo-v2.jar nvo.CodeCheck
+# The per-school API documents (from the normalized data only) before the balove data, which marks
+# the schools with a profile page (ruo-{city}.js "s").
+java -cp nvo-v2.jar nvo.api.JsonGenerator schools
 # Generate balove pages first so data/grade-{grade}.json can expose city RUO availability via si[*].r.
 java -cp nvo-v2.jar nvo.RuoNormalizer all
 java -cp nvo-v2.jar nvo.RuoDecomplexor sofia
@@ -14,15 +20,11 @@ for ruo_city in plovdiv asenovgrad karlovo sopot purvomai rakovski hisaria stanb
   java -cp nvo-v2.jar nvo.RuoPage "$ruo_city"
 done
 java -cp nvo-v2.jar nvo.RuoIndexPage
-java -jar nvo-v2.jar normalize
-# Кодовете на училищата: грешка при код, който не е 6–7 цифри (напр. изгубени нули); информация за смени на код от МОН.
-java -cp nvo-v2.jar nvo.CodeCheck
 java -jar nvo-v2.jar 4
 java -jar nvo-v2.jar 7
 java -jar nvo-v2.jar 10
 java -jar nvo-v2.jar 12
 java -cp nvo-v2.jar nvo.api.JsonGenerator index
-java -cp nvo-v2.jar nvo.api.JsonGenerator schools
 java -cp nvo-v2.jar nvo.api.JsonGenerator cities
 java -cp nvo-v2.jar nvo.api.JsonGenerator 4
 java -cp nvo-v2.jar nvo.api.JsonGenerator 7

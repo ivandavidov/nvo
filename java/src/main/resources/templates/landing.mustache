@@ -40,15 +40,15 @@
       <p class="page-head__lead">{{methodology}}</p>
       <div class="page-head__actions cluster">
 {{#isCity}}
-        <a class="btn btn--primary" href="../#{{citySlug}}">{{#icon}}chart{{/icon}} Сравни в графиката</a>
-        <a class="btn" href="../{{year}}/">{{#icon}}trophy{{/icon}} Национална класация {{year}}</a>
+        <a class="btn btn--primary" href="../#{{citySlug}}">{{#icon}}chart{{/icon}} <span class="chip__long">Сравни в графиката</span><span class="chip__short">Сравни</span></a>
+        <a class="btn" href="../{{year}}/">{{#icon}}trophy{{/icon}} <span class="chip__long">Национална класация {{year}}</span><span class="chip__short">Класация<span class="page-head__year"> {{year}}</span></span></a>
 {{#hasBalove}}
-        <a class="btn" href="../balove/{{citySlug}}/">{{#icon}}target{{/icon}} Балове {{inCity}}</a>
+        <a class="btn" href="../balove/{{citySlug}}/">{{#icon}}target{{/icon}} <span class="chip__long">Балове {{inCity}}</span><span class="chip__short">Балове</span></a>
 {{/hasBalove}}
 {{/isCity}}
 {{#isYear}}
-        <a class="btn btn--primary" href="../">{{#icon}}chart{{/icon}} Сравни училищата</a>
-        <a class="btn" href="../../stats/?grade={{grade}}">{{#icon}}pie{{/icon}} Статистика за {{grade}} клас</a>
+        <a class="btn btn--primary" href="../">{{#icon}}chart{{/icon}} <span class="chip__long">Сравни училищата</span><span class="chip__short">Сравни</span></a>
+        <a class="btn" href="../../stats/?grade={{grade}}">{{#icon}}pie{{/icon}} <span class="chip__long">Статистика за {{grade}} клас</span><span class="chip__short">Статистика</span></a>
 {{/isYear}}
       </div>
     </header>

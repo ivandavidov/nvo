@@ -39,7 +39,7 @@ The games, the gamebook and the console were removed in the redesign.
 ./all.sh
 ```
 Builds the Java tool, normalizes CSV/XLSX files, writes `docs/data/grade-{4,7,10,12}.json`, generates the API (`docs/api/v1/`), the city/year ranking pages, per-school pages, the balove pages, the grade pages + embeds, the blog home and the home page, the search index, syncs the shared layout into hand-written pages and writes `docs/sitemap.xml`.
-The balove pages are generated before the grade data, because `data/grade-{grade}.json` exposes RUO availability through `si[city].r` based on the published `docs/{grade}/balove/{city}/` directories.
+The balove pages are generated before the grade data, because `data/grade-{grade}.json` exposes RUO availability through `si[city].r` based on the published `docs/{grade}/balove/{city}/` directories. Before them run `normalize`, `CodeCheck` and `JsonGenerator schools` (it needs only the normalized data), because `RuoDecomplexor` marks the schools that have a profile page by the existence of `api/v1/schools/{code}.json`.
 
 ### Java tool - NvoDziDecomplexor (main jar)
 ```bash
@@ -117,6 +117,7 @@ java -cp nvo-v2.jar nvo.RuoIndexPage                # -> docs/7/balove/index.htm
 - `RuoPage` (generic) generates `docs/7/balove/{city}/index.html`.
 - `RuoIndexPage` scans the published `docs/7/balove/*/` dirs and generates the hub `docs/7/balove/index.html`, grouping cities by `Cities.java` tier ("Областни градове" + "Други градове"). It makes every balove city discoverable even when a city has no `si[city]` entry (e.g. towns with no NVO-7 exam schools). It also writes `docs/api/v1/balove/index.json` (cities, years, counts) and `data.json` (all city documents) and deletes the JSON of cities without a published page.
 - `all.sh` runs RuoNormalizer (Sofia), then loops every balove city through `RuoDecomplexor` + `RuoPage`, then `RuoIndexPage` last.
+- The details card of a balove city page shows "Профил на училището" (link to `school/{code}/`) next to the name of the selected school when `ruoSchools[code].s` is set; on phones it is a full-width row under the name.
 
 ## Current Architecture
 
@@ -235,6 +236,7 @@ All page scripts are native ES modules (`<script type="module">`), no bundler. H
 ### UI conventions (keep layouts calm and aligned)
 - One row, one visual language: controls that sit in the same row share one component and height (e.g. the grade hero row = navigation chips, all 32px high). Never stack a control under another one where it breaks the alignment of the block. Every dropdown trigger shows a caret.
 - Phones (≤ 640px): a row of buttons that does not fit becomes a grid of two equal columns (40px high) - no ragged rows, no lone button on its own row; with an odd count the first (most important) button spans the full width. Labels get shorter (`chip__short`, `tabs__long`) instead of wrapping or scrolling sideways; tab bars split the width equally and never scroll.
+- The button row under a page title (`.page-head__actions`: balove city and hub pages, city/year ranking pages) follows the same phone rule: two equal columns of 40px buttons with short labels (`chip__long` / `chip__short`: "НВО 7 клас", "Градове", "Как да четем", "Сравни", "Класация 2026" - without the year below 360px, "Балове", "Статистика"), the first on a row of its own with its full label when the count is odd (the hub's search box too); the ghost help link and "Изтегли" look like the other buttons there. On the balove pages the short labels are used up to 1023px too, so the buttons and "Изтегли" stay on one row on tablets.
 - Actions vs navigation: data actions (export) are one menu, set apart from navigation. The "Изтегли данните ▾" button looks the same everywhere (`btn btn--sm`, like above the city tables) and follows the links of its row after a vertical divider (grade hero, city panel); on phones it is a cell of the two-column grid - rule 10.
 - Tab views: the control that changes what the tabs show sits at the right of the tab bar - on the grade city panel that is "Покажи само" (the school types, one filter for both tabs); when the tabs and the chips do not fit in one row (tablet, phone - the limit depends on the number of types, `data-types` + container queries on `.city-panel__bar`) the chips are a row under the tabs. Content starts right under the tab bar. Do not add rows to the panel head - it is one row: the city name | the count, then links/export.
 - School types: state (Д), municipal (О), private (Ч), religious (ДУ) - one colour each (`--type-s|m|p|r` + `-soft` tokens, `.type-badge--{key}`), the same letter and colour in the chips, the "Тип / №" column, the averages headers on phones, the school page badge and the stats chart. "Покажи само" (`.type-filter` with `.chip.type-chip[aria-pressed]`; in the tab bar of the grade city panel, a row in the table head on the city/year pages): nothing selected = all types; a click adds or removes a type; only types present (and only with at least two). On phones the chips are an equal-column grid (2 types: 2 columns, 3: 3 columns, 4: 2×2), each chip two lines (name, then letter + count).
@@ -363,7 +365,7 @@ In `ruo-{city}.js`:
 let ruoYears = [2023, 2024, 2025];
 let ruoSchools = {
   "schoolCode": {
-    n: "short school label", f: "full school name", c: false,
+    n: "short school label", f: "full school name", c: false, s: true,   // s: has a profile page (omitted otherwise)
     p: { "profileCode": { n: "profile name", d: [ [null, [/* 6 scores */], null, null], /* next year */ ] } }
   }
 };
@@ -412,7 +414,7 @@ There is no automated test suite. Verify in the browser (`python3 -m http.server
 - grade pages: add/remove schools (combobox, table toggles, "Добави водещите училища" = top 5 of the city ranking), chips show/hide series, tooltip with students, БЕЛ/МАТ switch on mobile, share link, embed dialog, year selector / `?year=` banner, `?school=code` deep link, `#city`, city filter, ranking sort/filter, inactive schools toggle, averages (schools / students), CSV (city + all), ranking PDF, school brochure PDF ("Доклад")
 - legacy links: `/7/?i7=…#city`, `/?i7=…` (redirect), old `i7` cookie, `/12/embed.html?i12=…&chart=m&theme=dark`, `/7/balove/sofia/?school=…&profile=0…&gender=true`
 - school pages: charts per grade, KPIs, grade nav, links, "близки по успех", PDF brochure (also from "Доклад" in the grade ranking); city/year pages: sort, search, city filter
-- balove hub (search) and city pages (school picker, profile, gender, charts, overview search/sort/row click)
+- balove hub (search) and city pages (school picker, profile, gender, charts, overview search/sort/row click, "Профил на училището" link)
 - stats: grade switch, all 31 sections render, city filters, theme switch re-renders charts
 - blog home + posts (charts, copy/share), За проекта, API docs (endpoint expanders, "try it" fields), embed docs generator, 404
 - `./all.sh` runs clean and leaves `docs/api/v1/*.json` unchanged unless the data changed

@@ -45,6 +45,7 @@ const el = {
   empty: document.getElementById('detail-empty'),
   section: document.getElementById('detail-section'),
   name: document.getElementById('detail-school-name'),
+  profileLink: document.getElementById('detail-profile'),
   table: document.getElementById('detail-table'),
   thead: document.getElementById('overview-thead'),
   tbody: document.getElementById('overview-tbody'),
@@ -178,6 +179,9 @@ function showDetail() {
     return;
   }
   el.name.textContent = schools[state.school].f;
+  // Връзка към профила на училището - само ако има такъв (s; кодовете само от РУО нямат).
+  el.profileLink.hidden = !schools[state.school].s;
+  el.profileLink.href = '../../../school/' + encodeURIComponent(state.school) + '/';
   const d = currentData();
   renderDetailTable(d);
   renderCharts(d, state.profile ? schools[state.school].p[state.profile].n : 'Всички паралелки');

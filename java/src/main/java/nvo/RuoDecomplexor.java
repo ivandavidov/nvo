@@ -172,6 +172,7 @@ public class RuoDecomplexor {
         sb.append("//   n        - кратко наименование (от School.schoolCodes; при липса - от CSV)\n");
         sb.append("//   f        - пълно наименование (от School.schoolCodes; при липса - от CSV)\n");
         sb.append("//   c        - true ако е частно училище\n");
+        sb.append("//   s        - true ако училището има профил на сайта (school/{код}/); липсва иначе\n");
         sb.append("//   p        - паралелки, обект с ключ = код на паралелка\n");
         sb.append("//     n  - наименование на паралелката\n");
         sb.append("//     d  - данни: масив по позиция на година (съвпада с ruoYears)\n");
@@ -202,6 +203,7 @@ public class RuoDecomplexor {
               .append("\", f: \"")
               .append(escapeJs(resolveFullName(schoolCode, schoolNames.get(schoolCode))))
               .append("\", c: ").append(isPrivate(schoolCode, schoolNames.get(schoolCode)))
+              .append(hasProfile(schoolCode) ? ", s: true" : "")
               .append(", p: {\n");
 
             Map<String, String> profiles = profileNames.get(schoolCode);
@@ -556,6 +558,14 @@ public class RuoDecomplexor {
             }
         }
         return out;
+    }
+
+    /**
+     * Whether the school has a profile page: its api/v1/schools/{code}.json exists (the pages are built
+     * from these documents; all.sh runs the 'schools' step before the balove pages).
+     */
+    private static boolean hasProfile(String schoolCode) {
+        return Files.exists(Path.of(ProjectConfig.DOCS_API_V1_DIR, "schools", schoolCode + ".json"));
     }
 
     /** Returns the short name from School.schoolCodes if available, otherwise falls back to the CSV name. */

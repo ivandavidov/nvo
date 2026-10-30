@@ -42,10 +42,10 @@
       <p class="page-head__lead">Баловете на приетите ученици по паралелки и класирания за последните години - избери паралелка за подробности или разгледай водещите паралелки в града.</p>
       <div class="page-head__actions cluster">
 {{#hasNvo}}
-        <a class="btn" href="../../#{{citySlug}}">{{#icon}}trophy{{/icon}} НВО 7 клас - {{cityName}}</a>
+        <a class="btn" href="../../#{{citySlug}}">{{#icon}}trophy{{/icon}} <span class="chip__long">НВО 7 клас - {{cityName}}</span><span class="chip__short">НВО 7 клас</span></a>
 {{/hasNvo}}
-        <a class="btn" href="../">{{#icon}}pin{{/icon}} Всички градове</a>
-        <a class="btn btn--ghost" href="../../../blog/kak-da-chetem-balovete/">{{#icon}}news{{/icon}} Как да четем баловете</a>
+        <a class="btn" href="../">{{#icon}}pin{{/icon}} <span class="chip__long">Всички градове</span><span class="chip__short">Градове</span></a>
+        <a class="btn btn--ghost" href="../../../blog/kak-da-chetem-balovete/">{{#icon}}news{{/icon}} <span class="chip__long">Как да четем баловете</span><span class="chip__short">Как да четем</span></a>
         {{{exportMenu}}}
       </div>
     </header>
@@ -96,7 +96,10 @@
           <p>или кликни ред в класацията на паралелките по-долу.</p>
         </div>
         <div id="detail-section" hidden>
-          <h3 class="balove-detail__school" id="detail-school-name"></h3>
+          <div class="balove-detail__head">
+            <h3 class="balove-detail__school" id="detail-school-name"></h3>
+            <a class="btn btn--sm" id="detail-profile" title="Резултати от НВО и ДЗИ, места в класациите и графики" hidden>{{#icon}}school{{/icon}} Профил на училището</a>
+          </div>
           <div class="table-wrap"><table class="data-table data-table--compact balove-detail__table" id="detail-table"></table></div>
           <div class="balove-charts">
             <figure class="chart-frame"><div class="chart" id="trend-chart"></div></figure>
