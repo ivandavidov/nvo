@@ -1,8 +1,11 @@
 // Състоянието на страница по клас в адреса - същият договор като преди:
 //   ?i{g}=индекси (избраните училища), ?school=код (deep link), ?year=година
 //   (исторически изглед), #град; изборът се помни и в бисквитка i{g}.
+//   ?avg=slug1,slug2 - градовете, чийто среден резултат е в графиката (бисквитка avg{g}).
+//   Без избор в адреса и в бисквитките - графиката по подразбиране (defaultSchools +
+//   defaultAverages в config.js).
 import { COOKIE_MAX_AGE_SECONDS } from './config.js';
-import { findSchoolIndexByCode, defaultSelection } from './model.js';
+import { findSchoolIndexByCode, defaultSelection, defaultAverages } from './model.js';
 
 export function readYearParam() {
   return new URL(window.location.href).searchParams.get('year');
@@ -42,40 +45,81 @@ export function linkedSchools(model) {
   return null;
 }
 
-/** Началният избор: ?school= → ?s=кодове → ?i{g}= → бисквитка → базовите училища на класа. */
-export function initialSelection(model) {
-  const { cfg, s } = model;
-  const url = new URL(window.location.href);
-  let ids = linkedSchools(model);
-  if (!ids) {
-    const param = url.searchParams.get(cfg.cookieName);
-    if (param) {
-      ids = param.split(',').map((i) => i.split('#')[0]).filter((i) => i !== '');
+/** Параметърът (и началото на бисквитката) за средните на градове в графиката. */
+export const AVG_PARAM = 'avg';
+
+function avgCookieName(cfg) {
+  return AVG_PARAM + cfg.grade;
+}
+
+function readCookie(name) {
+  const m = (document.cookie + ';').match(new RegExp('(?:^|;\\s*)' + name + '=([^;]*);'));
+  return m && m[1] ? m[1] : '';
+}
+
+/** Познатите градове (slug) от списък "a,b" - в реда от списъка, без повторения. */
+function validCities(list, cities) {
+  const known = new Set(cities.map((c) => c.slug));
+  const out = [];
+  String(list || '').split(',').map((x) => x.trim()).forEach((slug) => {
+    if (known.has(slug) && !out.includes(slug)) {
+      out.push(slug);
     }
-  }
-  if (!ids) {
-    const m = (document.cookie + ';').match(new RegExp('(?:^|;\\s*)' + cfg.cookieName + '=([^;]*);'));
-    if (m && m[1]) {
-      const fromCookie = m[1].split('#')[0];
-      if (fromCookie) {
-        ids = fromCookie.split(',').filter((i) => i !== '');
-      }
+  });
+  return out;
+}
+
+/**
+ * Адресът сам описва избора (училища и/или средни на градове) - тогава бисквитките не се четат.
+ * Непознат код в ?school= / ?s= не се брои (както досега - тогава изборът идва от бисквитките).
+ */
+function urlDefinesSelection(model) {
+  const p = new URL(window.location.href).searchParams;
+  return !!linkedSchools(model) || [model.cfg.cookieName, AVG_PARAM].some((k) => p.get(k));
+}
+
+/** Индексите от списък "1,2" (адрес или бисквитка) - само съществуващи училища, без повторения. */
+function validSchools(model, list) {
+  const out = [];
+  list.forEach((id) => {
+    const n = Number(id);
+    if (Number.isInteger(n) && model.s[n] && !out.includes(n)) {
+      out.push(n);
     }
+  });
+  return out;
+}
+
+function splitIds(value) {
+  return String(value || '').split(',').map((i) => i.split('#')[0].trim()).filter((i) => i !== '');
+}
+
+/**
+ * Началният избор в графиката - училищата (индекси) и средните за градове (slug), от едно място:
+ *   1. адресът, ако описва избор (?school= / ?s= с познат код, ?i{g}=, ?avg=) - само той
+ *      (линкът ?school= показва само училището, ?avg= без училища - само средните);
+ *   2. иначе запазеното в бисквитките i{g} и avg{g};
+ *   3. иначе - или ако от горното не остане нищо валидно (напр. ?i7=abc) - графиката по
+ *      подразбиране от config.js: defaultSchools + defaultAverages.
+ * cities - градовете с данни (renderableCities); непознатите градове се пропускат.
+ * → { schools: [индекси], averages: [slug] }
+ */
+export function initialChart(model, cities = []) {
+  const { cfg } = model;
+  const params = new URL(window.location.href).searchParams;
+  const picked = urlDefinesSelection(model)
+    ? {
+      schools: validSchools(model, linkedSchools(model) || splitIds(params.get(cfg.cookieName))),
+      averages: validCities(params.get(AVG_PARAM), cities)
+    }
+    : {
+      schools: validSchools(model, splitIds(readCookie(cfg.cookieName))),
+      averages: validCities(readCookie(avgCookieName(cfg)), cities)
+    };
+  if (picked.schools.length || picked.averages.length) {
+    return picked;
   }
-  const defaults = defaultSelection(model).map(String);
-  const valid = (list) => {
-    const out = [];
-    list.forEach((id) => {
-      const n = Number(id);
-      if (Number.isInteger(n) && s[n] && !out.includes(n)) {
-        out.push(n);
-      }
-    });
-    return out;
-  };
-  const out = valid(ids || defaults);
-  // Невалиден ?i{g}= или бисквитка (напр. i7=abc) - както при невалиден ?s=: изборът по подразбиране.
-  return out.length ? out : valid(defaults);
+  return { schools: defaultSelection(model), averages: defaultAverages(model, cities) };
 }
 
 /** Записва избора в адреса (replaceState) и в бисквитката - като стария handleURL. */
@@ -88,26 +132,30 @@ function replaceUrl(url) {
   }
 }
 
-export function writeSelection(model, indices, cityHash) {
+function writeCookie(name, value) {
+  document.cookie = value ? name + '=' + value + ';path=/;max-age=' + COOKIE_MAX_AGE_SECONDS : name + '=;path=/;max-age=-1';
+}
+
+/** avgCities - градовете (slug) със среден резултат в графиката. */
+export function writeSelection(model, indices, cityHash, avgCities = []) {
   const { cfg, timeTravelYear } = model;
   const url = new URL(window.location.href);
   const anchor = cityHash !== undefined ? cityHash : url.hash.replace(/^#/, '');
   const base = url.origin + url.pathname;
-  const yearQuery = timeTravelYear ? 'year=' + timeTravelYear : '';
-  if (indices.length === 0) {
-    document.cookie = cfg.cookieName + '=;path=/;max-age=-1';
-    const query = yearQuery ? '?' + yearQuery : '';
-    replaceUrl(base + query + (anchor ? '#' + anchor : ''));
-  } else {
-    const list = indices.join(',');
-    document.cookie = cfg.cookieName + '=' + list + ';path=/;max-age=' + COOKIE_MAX_AGE_SECONDS;
-    const query = (yearQuery ? yearQuery + '&' : '') + cfg.cookieName + '=' + list;
-    replaceUrl(base + '?' + query + (anchor ? '#' + anchor : ''));
-  }
+  const list = indices.join(',');
+  const avg = avgCities.join(',');
+  writeCookie(cfg.cookieName, list);
+  writeCookie(avgCookieName(cfg), avg);
+  const query = [
+    timeTravelYear ? 'year=' + timeTravelYear : '',
+    list ? cfg.cookieName + '=' + list : '',
+    avg ? AVG_PARAM + '=' + avg : ''
+  ].filter(Boolean).join('&');
+  replaceUrl(base + (query ? '?' + query : '') + (anchor ? '#' + anchor : ''));
 }
 
 /** Пълният адрес за споделяне на текущия избор. */
-export function shareUrl(model, indices, cityHash) {
+export function shareUrl(model, indices, cityHash, avgCities = []) {
   const { cfg, timeTravelYear } = model;
   const url = new URL(window.location.origin + window.location.pathname);
   if (timeTravelYear) {
@@ -115,6 +163,9 @@ export function shareUrl(model, indices, cityHash) {
   }
   if (indices.length) {
     url.searchParams.set(cfg.cookieName, indices.join(','));
+  }
+  if (avgCities.length) {
+    url.searchParams.set(AVG_PARAM, avgCities.join(','));
   }
   let href = url.toString().replace(/%2C/g, ',');
   if (cityHash) {

@@ -3,17 +3,17 @@
 import {
   fetchGradeData, buildModel, renderableCities, cityRanking, cityInactiveSchools, sortRanking,
   defaultSortDir, firstEmptyRow, rankFor, cityAverages, cityCsv, allCsv,
-  chartSeries, findCityForSchool
+  chartSeries, findCityForSchool, cityAverageName
 } from '../core/model.js';
 import { HISTORY_YEARS, noExamSource } from '../core/config.js';
-import { initialSelection, linkedSchools, writeSelection, shareUrl, readYearParam, readCityHash } from '../core/url-state.js';
+import { initialChart, linkedSchools, writeSelection, shareUrl, readYearParam, readCityHash } from '../core/url-state.js';
 import { readRememberedCity, rememberCity } from '../core/city-memory.js';
 import { schoolType, joinTypes, typeBadgeHtml } from '../core/school-types.js';
 import { icon } from '../ui/icons.js';
 import { esc, download, fmt, showModal } from '../ui/dom.js';
 import { searchKey } from '../ui/search-text.js';
 import { createCombobox } from '../ui/combobox.js';
-import { buildSchoolIndex, searchSchools } from '../ui/school-search.js';
+import { buildSchoolIndex, searchSchools, withCityAverages } from '../ui/school-search.js';
 import { exportMenuHtml, menuButtonOf } from '../ui/export-menu.js';
 import { stickyTopOffset } from '../ui/sticky-head.js';
 import { embedCode } from '../core/embed.js';
@@ -30,8 +30,9 @@ const state = {
   bySlug: {},
   cityOf: {},          // индекс → град
   selection: [],       // индексите в реда на добавяне
-  slots: new Map(),    // индекс → номер на цвета (1..10)
-  hidden: new Set(),   // скрити серии
+  avg: [],             // градовете (slug) със средния резултат в графиката, в реда на добавяне
+  slots: new Map(),    // ключ → номер на цвета (1..10); ключ = индекс на училище или "c:{slug}" за град
+  hidden: new Set(),   // скрити серии (ключове)
   city: null,
   cityChosen: false,   // градът е избран изрично (клик или #град) → пазим го в адреса
   tab: 'ranking',
@@ -67,23 +68,58 @@ function school(i) {
   return state.model.s[i];
 }
 
-function assignSlot(i) {
-  if (state.slots.has(i)) {
+/* Средното за град е серия в графиката като училищата: цвят, чип, скриване. Ключът му е "c:{slug}". */
+const AVG_PREFIX = 'c:';
+const avgKey = (slug) => AVG_PREFIX + slug;
+const isAvgKey = (key) => typeof key === 'string' && key.startsWith(AVG_PREFIX);
+
+/** Всички серии в графиката: училищата (индекси), после градовете ("c:{slug}"). */
+function allKeys() {
+  return state.selection.concat(state.avg.map(avgKey));
+}
+
+function assignSlot(key) {
+  if (state.slots.has(key)) {
     return;
   }
-  const used = new Set(state.selection.filter((x) => x !== i).map((x) => state.slots.get(x)));
+  const keys = allKeys();
+  const used = new Set(keys.filter((x) => x !== key).map((x) => state.slots.get(x)));
   let slot = 1;
   while (used.has(slot) && slot < PALETTE_SIZE) {
     slot++;
   }
   if (used.has(slot)) {
-    slot = (state.selection.length % PALETTE_SIZE) + 1;
+    slot = (keys.length % PALETTE_SIZE) + 1;
   }
-  state.slots.set(i, slot);
+  state.slots.set(key, slot);
 }
 
 function isSelected(i) {
   return state.selection.includes(i);
+}
+
+function isAvgSelected(slug) {
+  return state.avg.includes(slug);
+}
+
+function setAverage(slug, on) {
+  if (on === isAvgSelected(slug) || (on && !cityBySlug(slug))) {
+    return;
+  }
+  const key = avgKey(slug);
+  if (on) {
+    state.avg.push(slug);
+    assignSlot(key);
+  } else {
+    state.avg = state.avg.filter((x) => x !== slug);
+    state.slots.delete(key);
+    state.hidden.delete(key);
+  }
+  selectionChanged();
+}
+
+function toggleAverage(slug) {
+  setAverage(slug, !isAvgSelected(slug));
 }
 
 function setSelected(indices, on) {
@@ -114,7 +150,7 @@ function currentHash() {
 }
 
 function selectionChanged() {
-  writeSelection(state.model, state.selection, currentHash());
+  writeSelection(state.model, state.selection, currentHash(), state.avg);
   renderChips();
   renderCharts();
   syncTableSelection();
@@ -149,10 +185,27 @@ function chipCityOrders(selection) {
   return orders;
 }
 
+/** "в София", но "във Варна" - пред "в" и "ф" предлогът е "във" (като Cities.java). */
+function inCity(name) {
+  return (/^[вф]/i.test(name) ? 'във ' : 'в ') + name;
+}
+
+/** Подсказката на средното за град (чип, бутон в панела). */
+function avgHint(city) {
+  return 'Средният резултат на всички училища ' + inCity(city.name) + ', претеглен с броя на учениците';
+}
+
 function renderChips() {
-  const multiCity = new Set(state.selection.map((i) => state.cityOf[i] && state.cityOf[i].name)).size > 1;
+  const cityOfKey = (key) => (isAvgKey(key) ? cityBySlug(key.slice(AVG_PREFIX.length)) : state.cityOf[key]);
+  const keys = allKeys();
+  const multiCity = new Set(keys.map((k) => cityOfKey(k) && cityOfKey(k).name)).size > 1;
   const orders = chipCityOrders(state.selection);
-  const ordered = state.selection.slice().sort((a, b) => {
+  // Средното за град е пред училищата от същия град.
+  state.avg.forEach((slug) => {
+    const pos = state.cities.findIndex((c) => c.slug === slug);
+    orders.set(avgKey(slug), { cityOrder: pos < 0 ? Number.MAX_SAFE_INTEGER : pos, pos: -1 });
+  });
+  const ordered = keys.slice().sort((a, b) => {
     const ca = orders.get(a);
     const cb = orders.get(b);
     if (ca.cityOrder !== cb.cityOrder) {
@@ -161,42 +214,57 @@ function renderChips() {
     if (ca.pos !== cb.pos) {
       return ca.pos - cb.pos;
     }
-    return a - b;
+    return isAvgKey(a) || isAvgKey(b) ? 0 : a - b;
   });
-  el.chips.innerHTML = ordered.map((i) => {
-    const o = school(i);
-    const c = state.cityOf[i];
-    const hidden = state.hidden.has(i);
-    const label = o.n + (multiCity && c ? ' · ' + c.label : '');
-    return '<li class="chip' + (hidden ? ' chip--muted' : '') + '" data-i="' + i + '">'
-      + '<button type="button" class="chip__toggle" aria-pressed="' + (!hidden) + '" title="' + esc(o.n + (c ? ', ' + c.name : '') + ' - покажи/скрий в графиката') + '">'
-      + '<span class="dot" style="--dot:var(--chart-' + state.slots.get(i) + ')"></span>'
+  el.chips.innerHTML = ordered.map((key) => {
+    const hidden = state.hidden.has(key);
+    const c = cityOfKey(key);
+    let name;
+    let label;
+    let title;
+    if (isAvgKey(key)) {
+      name = cityAverageName(c);
+      label = name;
+      title = avgHint(c);
+    } else {
+      const o = school(key);
+      name = o.n;
+      label = o.n + (multiCity && c ? ' · ' + c.label : '');
+      title = o.n + (c ? ', ' + c.name : '');
+    }
+    return '<li class="chip' + (hidden ? ' chip--muted' : '') + '" data-key="' + esc(String(key)) + '">'
+      + '<button type="button" class="chip__toggle" aria-pressed="' + (!hidden) + '" title="' + esc(title + ' - покажи/скрий в графиката') + '">'
+      + '<span class="dot' + (isAvgKey(key) ? ' dot--avg' : '') + '" style="--dot:var(--chart-' + state.slots.get(key) + ')"></span>'
       + '<span class="chip__label">' + esc(label) + '</span></button>'
-      + '<button type="button" class="chip__x" aria-label="Премахни ' + esc(o.n) + '">' + icon('x') + '</button></li>';
+      + '<button type="button" class="chip__x" aria-label="Премахни ' + esc(name) + '">' + icon('x') + '</button></li>';
   }).join('');
-  el.chips.hidden = state.selection.length === 0;
+  el.chips.hidden = keys.length === 0;
 }
 
 el.chips.addEventListener('click', (e) => {
-  const li = e.target.closest('[data-i]');
+  const li = e.target.closest('[data-key]');
   if (!li) {
     return;
   }
-  const i = Number(li.dataset.i);
+  const key = isAvgKey(li.dataset.key) ? li.dataset.key : Number(li.dataset.key);
   if (e.target.closest('.chip__x')) {
-    setSelected([i], false);
-  } else if (e.target.closest('.chip__toggle')) {
-    if (state.hidden.has(i)) {
-      state.hidden.delete(i);
+    if (isAvgKey(key)) {
+      setAverage(key.slice(AVG_PREFIX.length), false);
     } else {
-      state.hidden.add(i);
+      setSelected([key], false);
+    }
+  } else if (e.target.closest('.chip__toggle')) {
+    if (state.hidden.has(key)) {
+      state.hidden.delete(key);
+    } else {
+      state.hidden.add(key);
     }
     renderChips();
     ['b', 'm'].forEach((subj) => {
       const chart = state.charts[subj];
-      const series = chart && chart.get(String(i));
+      const series = chart && chart.get(String(key));
       if (series) {
-        series.setVisible(!state.hidden.has(i), true);
+        series.setVisible(!state.hidden.has(key), true);
       }
     });
   }
@@ -216,12 +284,23 @@ function tooltipFormatter(subj) {
     const points = (this.points || []).slice().sort((a, b) => b.y - a.y);
     let html = '<div class="tt"><div class="tt__year">' + esc(year) + '</div>';
     points.forEach((p) => {
-      const idx = p.series.userOptions.schoolIndex;
-      const o = school(idx);
-      const counts = subj === 'b' ? o.bu : o.mu;
+      const opts = p.series.userOptions;
+      let name;
+      let counts;
+      if (opts.avgCity) {
+        // Средното за града: учениците с резултат в целия град.
+        name = opts.name;
+        counts = opts.students;
+      } else {
+        const o = school(opts.schoolIndex);
+        name = o.l;
+        counts = subj === 'b' ? o.bu : o.mu;
+      }
       const students = counts && yIdx >= 0 ? counts[yIdx] : null;
-      html += '<div class="tt__row"><span class="dot" style="background:' + p.color + '"></span>'
-        + '<span class="tt__name">' + esc(o.l) + '</span>'
+      // Highcharts чисти HTML-а на подсказката и маха CSS променливите (--dot) - цветът е с обикновено свойство:
+      // фон за точката, color за пунктира (.dot--avg рисува с currentColor).
+      html += '<div class="tt__row"><span class="dot' + (opts.avgCity ? ' dot--avg" style="color:' : '" style="background:') + p.color + '"></span>'
+        + '<span class="tt__name">' + esc(name) + '</span>'
         + '<span class="tt__val">' + window.Highcharts.numberFormat(p.y, 2, '.', '') + '</span>'
         + '<span class="tt__sub">' + (students ? students + ' уч.' : '') + '</span></div>';
     });
@@ -230,7 +309,7 @@ function tooltipFormatter(subj) {
 }
 
 function renderCharts() {
-  const empty = state.selection.length === 0;
+  const empty = allKeys().length === 0;
   el.empty.hidden = !empty;
   el.charts.hidden = empty;
   if (el.subjectSeg) {
@@ -246,8 +325,9 @@ function renderCharts() {
     return;
   }
   const { model } = state;
+  const cities = state.avg.map(cityBySlug).filter(Boolean);
   ['b', 'm'].forEach((subj) => {
-    const { categories, series } = chartSeries(model, state.selection, subj);
+    const { categories, series } = chartSeries(model, state.selection, subj, cities);
     const options = lineOptions({
       height: chartHeight(),
       min: model.cfg.chartFloor,
@@ -255,14 +335,25 @@ function renderCharts() {
       categories
     });
     options.tooltip.formatter = tooltipFormatter(subj);
-    options.series = series.map((x) => ({
-      id: String(x.index),
-      name: x.name,
-      data: x.data,
-      color: seriesColor(state.slots.get(x.index)),
-      visible: !state.hidden.has(x.index),
-      schoolIndex: x.index
-    }));
+    options.series = series.map((x) => {
+      const key = x.city ? avgKey(x.city.slug) : x.index;
+      const out = {
+        id: x.key,
+        name: x.name,
+        data: x.data,
+        color: seriesColor(state.slots.get(key)),
+        visible: !state.hidden.has(key)
+      };
+      if (x.city) {
+        // Средното за града - с пунктир, за да се различава от училищата.
+        out.dashStyle = 'Dash';
+        out.avgCity = x.city.slug;
+        out.students = x.students;
+      } else {
+        out.schoolIndex = x.index;
+      }
+      return out;
+    });
     markNoExamYears(options, model.grade);
     if (state.charts[subj]) {
       state.charts[subj].destroy();
@@ -297,10 +388,18 @@ function setupAddCombobox() {
     minChars: 2,
     hint: 'Напиши поне 2 букви от името на училището или града.',
     emptyText: 'Няма такова училище за ' + state.model.cfg.short,
-    search: (q) => searchSchools(state.model, index, q, { isSelected }),
+    // Търсене на град дава и "Средно за {град}" най-отгоре в групата му.
+    search: (q) => withCityAverages(searchSchools(state.model, index, q, { isSelected }), state.cities, q, { isAvgSelected, name: cityAverageName }),
     onSelect(item) {
-      const was = isSelected(item.id);
-      toggleSelected(item.id);
+      let was;
+      if (isAvgKey(item.id)) {
+        const slug = item.id.slice(AVG_PREFIX.length);
+        was = isAvgSelected(slug);
+        toggleAverage(slug);
+      } else {
+        was = isSelected(item.id);
+        toggleSelected(item.id);
+      }
       toast(was ? 'Премахнато от графиката' : 'Добавено в графиката');
     }
   });
@@ -352,7 +451,7 @@ function selectCity(city, { scroll = false, keepTab = false, explicit = true, pu
   if (city.tier === 3 && el.other) {
     el.other.open = true;
   }
-  writeSelection(state.model, state.selection, currentHash());
+  writeSelection(state.model, state.selection, currentHash(), state.avg);
   renderCityPanel();
   if (scroll) {
     setTimeout(() => document.getElementById('cities-section').scrollIntoView({ block: 'start', behavior: 'instant' }), 60);
@@ -526,7 +625,10 @@ function renderCityPanel() {
 
   el.panel.innerHTML = '<div class="card__head city-panel__head">'
     // Името и броят са на един ред, с разделител; ако не се съберат, броят минава отдолу (без разделител).
-    + '<div class="city-panel__heading"><div class="city-panel__heading-row"><h3 class="city-panel__title">' + esc(city.name) + '</h3>'
+    // ⊕ пред името - средният резултат за града в графиката (същият бутон като в редовете).
+    + '<div class="city-panel__heading"><div class="city-panel__heading-row"><div class="city-panel__name">'
+    + '<button type="button" class="add-toggle ci" data-add-city="' + esc(city.slug) + '" aria-pressed="false" aria-label="Средният резултат за ' + esc(city.name) + ' в графиката"></button>'
+    + '<h3 class="city-panel__title">' + esc(city.name) + '</h3></div>'
     + '<p class="city-panel__count">' + countHtml(city, total) + '</p></div></div>'
     + '<div class="cluster city-panel__actions">' + actions.join('') + exportMenu + '</div></div>'
     + '<div class="city-panel__bar" data-types="' + (city.types.length > 1 ? city.types.length : 0) + '"><div class="city-panel__barrow">'
@@ -544,9 +646,7 @@ function renderTab() {
     return;
   }
   body.innerHTML = state.tab === 'averages' ? averagesHtml() : rankingHtml();
-  if (state.tab === 'ranking') {
-    syncTableSelection();
-  }
+  syncTableSelection();
   announce();
 }
 
@@ -715,6 +815,14 @@ function syncTableSelection() {
       tr.classList.toggle('is-selected', on);
     }
   });
+  el.panel.querySelectorAll('[data-add-city]').forEach((b) => {
+    const city = cityBySlug(b.dataset.addCity);
+    const on = isAvgSelected(b.dataset.addCity);
+    b.setAttribute('aria-pressed', String(on));
+    b.style.setProperty('--dot', on ? 'var(--chart-' + state.slots.get(avgKey(b.dataset.addCity)) + ')' : '');
+    b.title = !city ? '' : on ? 'Махни средния резултат за ' + city.name + ' от графиката'
+      : 'Покажи средния резултат за ' + city.name + ' в графиката - всички училища, претеглено с броя на учениците';
+  });
 }
 
 function currentRows() {
@@ -751,6 +859,11 @@ el.panel.addEventListener('click', (e) => {
   const add = t.closest('[data-add]');
   if (add) {
     toggleSelected(Number(add.dataset.add));
+    return;
+  }
+  const addCity = t.closest('[data-add-city]');
+  if (addCity) {
+    toggleAverage(addCity.dataset.addCity);
     return;
   }
   const typeChip = t.closest('[data-school-type]');
@@ -846,7 +959,7 @@ function openEmbedDialog(opener) {
     const update = () => {
       const chart = dlg.querySelector('[data-embed="chart"] [aria-pressed="true"]').dataset.v;
       const theme = dlg.querySelector('[data-embed="theme"] [aria-pressed="true"]').dataset.v;
-      const code = embedCode(state.model, state.selection, { chart, theme, year: state.model.timeTravelYear });
+      const code = embedCode(state.model, state.selection, { chart, theme, year: state.model.timeTravelYear, avg: state.avg });
       dlg.querySelector('textarea').value = code;
       dlg.querySelector('[data-preview]').href = code.match(/src="([^"]+)"/)[1];
     };
@@ -877,9 +990,15 @@ document.addEventListener('click', async (e) => {
   }
   const name = action.dataset.action;
   if (name === 'clear') {
-    setSelected(state.selection.slice(), false);
+    if (allKeys().length) {
+      state.selection = [];
+      state.avg = [];
+      state.slots.clear();
+      state.hidden.clear();
+      selectionChanged();
+    }
   } else if (name === 'share') {
-    const url = shareUrl(state.model, state.selection, currentHash());
+    const url = shareUrl(state.model, state.selection, currentHash(), state.avg);
     if (navigator.share && window.matchMedia('(pointer: coarse)').matches) {
       try {
         await navigator.share({ title: document.title, url });
@@ -962,10 +1081,19 @@ function updateTray() {
     return;
   }
   const n = state.selection.length;
-  el.tray.classList.toggle('is-visible', n > 0 && !compareVisible);
+  const c = state.avg.length;
+  el.tray.classList.toggle('is-visible', n + c > 0 && !compareVisible);
   const count = el.tray.querySelector('[data-count]');
   if (count) {
-    count.textContent = (n === 1 ? '1 училище' : n + ' училища') + ' в графиката';
+    const parts = [];
+    if (n) {
+      parts.push(n === 1 ? '1 училище' : n + ' училища');
+    }
+    if (c) {
+      parts.push(c === 1 ? '1 град' : c + ' града');
+    }
+    // С училища и градове на тесен екран без "в графиката" - иначе "Виж" не се събира (site.css).
+    count.innerHTML = esc(parts.join(' и ')) + '<span' + (n && c ? ' class="tray__tail"' : '') + '> в графиката</span>';
   }
 }
 
@@ -1002,8 +1130,10 @@ async function init() {
     });
   });
 
-  state.selection = initialSelection(model);
-  state.selection.forEach(assignSlot);
+  const initial = initialChart(model, state.cities);
+  state.selection = initial.schools;
+  state.avg = initial.averages;
+  allKeys().forEach(assignSlot);
   document.body.classList.add('is-ready');
 
   setupYear();
@@ -1019,7 +1149,11 @@ async function init() {
   // Градът от линка се пази в адреса (#град) и се запомня: ?school= изчезва от
   // адреса след зареждането и иначе презареждането би показало друг град.
   const cityOfFirst = () => {
-    const found = state.selection.length ? findCityForSchool(model, state.selection[0]) : null;
+    if (!state.selection.length) {
+      // Само средни на градове в графиката - първият от тях.
+      return state.avg.length ? cityBySlug(state.avg[0]) : null;
+    }
+    const found = findCityForSchool(model, state.selection[0]);
     return found ? state.cities.find((c) => c.name === found.cityName) || null : null;
   };
   const hashCity = cityBySlug(readCityHash());

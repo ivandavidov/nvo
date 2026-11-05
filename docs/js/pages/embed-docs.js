@@ -1,15 +1,15 @@
-// Генераторът на код на страницата /embed/: клас, училища, графики, тема и година
-// → готов iframe код и преглед на живо.
+// Генераторът на код на страницата /embed/: клас, училища (и средни за градове), графики,
+// тема и година → готов iframe код и преглед на живо.
 import { navFirstYear } from '../core/config.js';
-import { fetchGradeData, buildModel, renderableCities, defaultSelection } from '../core/model.js';
+import { fetchGradeData, buildModel, renderableCities, defaultSelection, defaultAverages, cityAverageName } from '../core/model.js';
 import { embedCode, embedQuery } from '../core/embed.js';
 import { createCombobox } from '../ui/combobox.js';
-import { buildSchoolIndex, searchSchools } from '../ui/school-search.js';
+import { buildSchoolIndex, searchSchools, withCityAverages } from '../ui/school-search.js';
 import { icon } from '../ui/icons.js';
 import { esc } from '../ui/dom.js';
 import { copyText, toast, siteUrl } from '../site.js';
 
-const state = { grade: 7, model: null, index: [], selection: [], chart: '', theme: '', year: '' };
+const state = { grade: 7, model: null, cities: [], index: [], selection: [], avg: [], chart: '', theme: '', year: '' };
 const el = {
   chips: document.getElementById('gen-chips'),
   add: document.getElementById('gen-add'),
@@ -25,14 +25,16 @@ function selected(i) {
 }
 
 function renderChips() {
-  el.chips.innerHTML = state.selection.map((i) => '<li class="chip" data-i="' + i + '"><span class="chip__label">'
-    + esc(state.model.s[i].n) + '</span><button type="button" class="chip__x" aria-label="Премахни">' + icon('x') + '</button></li>').join('');
+  const chip = (attr, label) => '<li class="chip" ' + attr + '><span class="chip__label">' + esc(label)
+    + '</span><button type="button" class="chip__x" aria-label="Премахни">' + icon('x') + '</button></li>';
+  el.chips.innerHTML = state.selection.map((i) => chip('data-i="' + i + '"', state.model.s[i].n)).join('')
+    + state.avg.map((slug) => chip('data-avg="' + esc(slug) + '"', cityAverageName(state.cities.find((c) => c.slug === slug)))).join('');
 }
 
 function update() {
   const { model } = state;
-  const opts = { chart: state.chart, theme: state.theme, year: state.year };
-  el.code.value = state.selection.length ? embedCode(model, state.selection, opts) : '';
+  const opts = { chart: state.chart, theme: state.theme, year: state.year, avg: state.avg };
+  el.code.value = state.selection.length || state.avg.length ? embedCode(model, state.selection, opts) : '';
   const local = siteUrl(state.grade + '/embed.html?' + embedQuery(model, state.selection, opts));
   el.open.href = local;
   el.preview.style.height = (state.chart ? 600 : 1000) + 'px';
@@ -45,8 +47,10 @@ function update() {
 async function loadGrade(grade) {
   state.grade = grade;
   state.model = buildModel(grade, await fetchGradeData(grade, siteUrl('data/grade-' + grade + '.json')), {});
-  state.index = buildSchoolIndex(state.model, renderableCities(state.model));
+  state.cities = renderableCities(state.model);
+  state.index = buildSchoolIndex(state.model, state.cities);
   state.selection = defaultSelection(state.model);
+  state.avg = defaultAverages(state.model, state.cities);
   const latest = state.model.dataLatestYear;
   let options = '<option value="">' + latest + ' - актуални данни</option>';
   for (let y = latest - 1; y >= navFirstYear(state.grade); y--) {
@@ -81,9 +85,13 @@ el.year.addEventListener('change', () => {
 });
 
 el.chips.addEventListener('click', (e) => {
-  const li = e.target.closest('[data-i]');
+  const li = e.target.closest('[data-i], [data-avg]');
   if (li && e.target.closest('.chip__x')) {
-    state.selection = state.selection.filter((i) => i !== Number(li.dataset.i));
+    if (li.dataset.avg) {
+      state.avg = state.avg.filter((slug) => slug !== li.dataset.avg);
+    } else {
+      state.selection = state.selection.filter((i) => i !== Number(li.dataset.i));
+    }
     renderChips();
     update();
   }
@@ -110,9 +118,14 @@ createCombobox({
   minChars: 2,
   hint: 'Напиши поне 2 букви от името на училището или града.',
   emptyText: 'Няма такова училище',
-  search: (q) => searchSchools(state.model, state.index, q, { isSelected: selected }),
+  // Търсене на град дава и "Средно за {град}" (параметър avg=).
+  search: (q) => withCityAverages(searchSchools(state.model, state.index, q, { isSelected: selected }), state.cities, q,
+    { isAvgSelected: (slug) => state.avg.includes(slug), name: cityAverageName }),
   onSelect(item) {
-    if (selected(item.id)) {
+    if (typeof item.id === 'string' && item.id.startsWith('c:')) {
+      const slug = item.id.slice(2);
+      state.avg = state.avg.includes(slug) ? state.avg.filter((x) => x !== slug) : state.avg.concat(slug);
+    } else if (selected(item.id)) {
       state.selection = state.selection.filter((i) => i !== item.id);
     } else {
       state.selection.push(item.id);

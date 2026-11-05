@@ -64,11 +64,14 @@ const DEFAULTS = {
   subjectM: 'МАТ',
   subjectBLong: 'Български език',
   subjectMLong: 'Математика',
-  scale: 'точки'
+  scale: 'точки',
+  // Средните за градове в графиката по подразбиране (заедно с defaultSchools, когато няма избор
+  // нито в адреса, нито в бисквитките) - slug от адреса на класацията на града (/7/sofia/).
+  defaultAverages: ['sofia']
 };
 
-// baseSchoolCode / refSchoolCode - училищата в графиката по подразбиране. Задават се с код:
-// индексът в масива s се мести при всяко ново или преименувано училище преди тях.
+// defaultSchools - училищата в графиката по подразбиране. Задават се с код: индексът в масива s
+// се мести при всяко ново или преименувано училище преди тях.
 const OVERRIDES = {
   4: {
     tableTitleType: 'НВО след 4 клас',
@@ -76,8 +79,7 @@ const OVERRIDES = {
     exportPrefix: 'nvo-4',
     chartBTitle: '4 клас - НВО - Български език',
     chartMTitle: '4 клас - НВО - Математика',
-    baseSchoolCode: '2213145', // 145 ОУ
-    refSchoolCode: '2224041' // 41 ОУ
+    defaultSchools: ['2213145', '2224041'] // 145 ОУ, 41 ОУ
   },
   7: {
     tableTitleType: 'НВО след 7 клас',
@@ -85,8 +87,7 @@ const OVERRIDES = {
     exportPrefix: 'nvo-7',
     chartBTitle: '7 клас - НВО - Български език',
     chartMTitle: '7 клас - НВО - Математика',
-    baseSchoolCode: '2216306', // СМГ
-    refSchoolCode: '2224041' // 41 ОУ
+    defaultSchools: ['2216306', '2224041'] // СМГ, 41 ОУ
   },
   10: {
     tableTitleType: 'НВО след 10 клас',
@@ -94,8 +95,7 @@ const OVERRIDES = {
     exportPrefix: 'nvo-10',
     chartBTitle: '10 клас - НВО - Български език',
     chartMTitle: '10 клас - НВО - Математика',
-    baseSchoolCode: '2216301', // 1 АЕГ
-    refSchoolCode: '2212090' // 90 СУ
+    defaultSchools: ['2216301', '2212090'] // 1 АЕГ, 90 СУ
   },
   12: {
     rankBase: 2,
@@ -110,8 +110,7 @@ const OVERRIDES = {
     csvHeaderBel: 'ДЗИ-Б',
     csvHeaderMat: 'ДЗИ-2',
     csvHeaderM: '2',
-    baseSchoolCode: '2216301', // 1 АЕГ
-    refSchoolCode: '2204091', // 91 НЕГ
+    defaultSchools: ['2216301', '2204091'], // 1 АЕГ, 91 НЕГ
     exam: 'ДЗИ',
     subjectM: 'ДЗИ-2',
     subjectMLong: 'Втора матура',
@@ -128,6 +127,8 @@ export function gradeConfig(grade) {
   const cfg = Object.assign({}, DEFAULTS, OVERRIDES[g]);
   cfg.grade = g;
   cfg.disabledEntries = cfg.disabledEntries.slice();
+  cfg.defaultSchools = cfg.defaultSchools.slice();
+  cfg.defaultAverages = cfg.defaultAverages.slice();
   cfg.exportPrefixBel = cfg.exportPrefixBel || cfg.exportPrefix + '-bel';
   cfg.exportPrefixMat = cfg.exportPrefixMat || cfg.exportPrefix + '-mat';
   cfg.title = cfg.exam + ' след ' + g + ' клас';

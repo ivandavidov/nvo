@@ -75,3 +75,30 @@ export function searchSchools(model, index, query, { isSelected = () => false, l
   }
   return groups;
 }
+
+/**
+ * "Средно за {град}" в резултатите на полето "Добави училище": град, в чието име (или кратко
+ * име) думите от търсенето са начала на думи, получава опция най-отгоре в групата си (нова група
+ * преди бележката, ако от града няма намерени училища). id = "c:{slug}".
+ */
+export function withCityAverages(groups, cities, query, { isAvgSelected = () => false, name = (c) => c.name, limit = 3 } = {}) {
+  const terms = searchKey(query).split(' ').filter(Boolean);
+  if (!terms.length) {
+    return groups;
+  }
+  const matched = cities.filter((c) => {
+    const words = searchKey(c.name + ' ' + c.label).split(' ');
+    return terms.every((t) => words.some((w) => w.startsWith(t)));
+  }).slice(0, limit);
+  matched.forEach((c) => {
+    const item = { id: 'c:' + c.slug, title: name(c), meta: 'всички училища в града', checked: isAvgSelected(c.slug) };
+    const group = groups.find((g) => g.label === c.name && !g.note);
+    if (group) {
+      group.items.unshift(item);
+    } else {
+      const note = groups.findIndex((g) => g.note);
+      groups.splice(note < 0 ? groups.length : note, 0, { label: c.name, items: [item] });
+    }
+  });
+  return groups;
+}

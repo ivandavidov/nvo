@@ -341,16 +341,25 @@ export function findSchoolIndexByCode(model, code) {
   return -1;
 }
 
-/** Индексите на училищата по подразбиране (baseSchoolCode, refSchoolCode) - без липсващите. */
+/** Индексите на училищата по подразбиране (cfg.defaultSchools) - без липсващите. */
 export function defaultSelection(model) {
   const out = [];
-  [model.cfg.baseSchoolCode, model.cfg.refSchoolCode].forEach((code) => {
+  model.cfg.defaultSchools.forEach((code) => {
     const idx = findSchoolIndexByCode(model, code);
     if (idx >= 0 && !out.includes(idx)) {
       out.push(idx);
     }
   });
   return out;
+}
+
+/**
+ * Градовете (slug) със среден резултат в графиката по подразбиране (cfg.defaultAverages) -
+ * само тези с данни (cities = renderableCities; в исторически изглед градът може да липсва).
+ */
+export function defaultAverages(model, cities) {
+  const known = new Set(cities.map((c) => c.slug));
+  return model.cfg.defaultAverages.filter((slug, k, all) => known.has(slug) && all.indexOf(slug) === k);
 }
 
 /* ---------------- Класация на града ---------------- */
@@ -515,17 +524,64 @@ export function allCsv(model) {
 /* ---------------- Графиките ---------------- */
 
 /**
+ * Средният резултат за града по години (за графиката): всички училища в града, претеглено с броя
+ * на учениците - същото като "Средни резултати" → "По ученици" → "Общо". bu/mu = учениците с
+ * резултат. Градът се държи като едно голямо училище. null = няма данни за годината.
+ * → { b: [...], m: [...], bu: [...], mu: [...] } (totalYears стойности, като s[i].b)
+ */
+export function cityAverage(model, city) {
+  const { s, totalYears } = model;
+  const { bel, mat } = typeAverages(model, city, city.types, true);
+  const indices = cityIndices(city).filter((i) => s[i]);
+  const bu = [];
+  const mu = [];
+  for (let y = 0; y < totalYears; y++) {
+    let nb = 0;
+    let nm = 0;
+    indices.forEach((i) => {
+      if (s[i].b[y]) {
+        nb += s[i].bu[y] || 0;
+      }
+      if (s[i].m[y]) {
+        nm += s[i].mu[y] || 0;
+      }
+    });
+    bu.push(nb);
+    mu.push(nm);
+  }
+  return { b: bel, m: mat, bu, mu };
+}
+
+/** Името на серията със средния резултат за града. */
+export function cityAverageName(city) {
+  return 'Средно за ' + city.name;
+}
+
+/**
  * Сериите за графиката на един предмет ('b' | 'm') с прозореца numYears и
  * изрязани празни години отпред и отзад (normalizeSeries).
- * @returns {{categories: string[], series: {index, name, data}[]}}
+ * cities - градовете (от renderableCities) със средния резултат като отделна серия.
+ * key = индексът на училището (като низ) или "c:{slug}" за град; students (само при град) -
+ * учениците по години за целия масив (индекс = година - firstYear), за подсказката.
+ * @returns {{categories: string[], series: {key, index?, city?, name, data, students?}[]}}
  */
-export function chartSeries(model, indices, subject) {
+export function chartSeries(model, indices, subject, cities = []) {
   const { s, numYears, firstYear, totalYears } = model;
   const series = [];
   indices.forEach((i) => {
     if (s[i]) {
-      series.push({ index: i, name: s[i].n, data: s[i][subject].slice(s[i][subject].length - numYears) });
+      series.push({ key: String(i), index: i, name: s[i].n, data: s[i][subject].slice(s[i][subject].length - numYears) });
     }
+  });
+  cities.forEach((c) => {
+    const avg = cityAverage(model, c);
+    series.push({
+      key: 'c:' + c.slug,
+      city: c,
+      name: cityAverageName(c),
+      data: avg[subject].slice(avg[subject].length - numYears),
+      students: subject === 'b' ? avg.bu : avg.mu
+    });
   });
   series.sort((t1, t2) => (t1.data[t1.data.length - 1] < t2.data[t2.data.length - 1] ? 1 : -1));
   const hasAny = () => series.some((x) => x.data && x.data.length > 0);

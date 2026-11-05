@@ -925,6 +925,14 @@
     background: var(--dot, var(--text-4));
     flex-shrink: 0;
   }
+  /* Средното за град - пунктир, както линията му в графиката. Цветът: --dot (чипове) или color
+     (подсказката на Highcharts - тя маха CSS променливите от style). */
+  .dot--avg {
+    width: 16px;
+    height: 3px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--dot, currentColor) 0 6px, transparent 6px 10px, var(--dot, currentColor) 10px);
+  }
 
   /* --- Значки --- */
   .badge {
@@ -1812,11 +1820,13 @@
   .tt__year { font-weight: 700; margin-bottom: 4px; }
   .tt__row {
     display: grid;
-    grid-template-columns: 10px minmax(120px, 1fr) auto auto;
+    /* Името е с пълната си ширина (до 260px, после "…"), а 1fr подравнява стойностите между редовете. */
+    grid-template-columns: 16px minmax(max-content, 1fr) auto auto;
     align-items: center;
     gap: 6px 8px;
     padding: 1px 0;
   }
+  .tt__row > .dot { justify-self: center; }
   .tt__name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 260px; }
   .tt__val { font-weight: 700; font-variant-numeric: tabular-nums; }
   .tt__sub { color: var(--text-3); font-size: 11px; font-variant-numeric: tabular-nums; }
@@ -1896,6 +1906,10 @@
     border-left: 1px solid var(--border-strong);
   }
   .city-panel__count { font-size: var(--fs-sm); color: var(--text-3); }
+  /* ⊕ пред името на града - средният резултат за града в графиката (бутонът от редовете).
+     Базовата линия на реда е тази на името, за да остане броят подравнен с него. */
+  .city-panel__name { display: flex; align-items: center; gap: var(--sp-2); min-width: 0; }
+  .city-panel__name > .city-panel__title { align-self: baseline; min-width: 0; }
   /* Телефон: кратко - "214 училища", "35 от 156 училища"; годината е в "Класация 2026", видовете - в чиповете. */
   @media (max-width: 640px) {
     .count__long { display: none; }
@@ -2230,6 +2244,12 @@
     transition: opacity var(--dur) var(--ease), visibility 0s;
   }
   .tray .btn { border-radius: var(--radius-full); }
+  /* Броят никога не избутва "Виж" извън екрана: в краен случай се отрязва с "…". */
+  .tray { max-width: calc(100% - 2 * var(--sp-3)); }
+  .tray [data-count] { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+  @media (max-width: 419px) {
+    .tray__tail { display: none; }
+  }
   /* Телефон: "Сподели · Вгради · Изчисти" на свой ред под заглавието, с видими надписи
      (само иконите - верига, </>, кошче - не са достатъчно ясни). */
   @media (max-width: 560px) {

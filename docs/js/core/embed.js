@@ -1,14 +1,20 @@
 // Адрес и HTML код за вграждане на графиките (/{клас}/embed.html).
 export const PROD_BASE = 'https://ivandavidov.github.io/nvo/';
 
-/** Параметрите: предпочитаме стабилните кодове (s=), иначе индексите (i{g}=). */
-export function embedQuery(model, indices, { chart = '', theme = '', year = null } = {}) {
+/**
+ * Параметрите: предпочитаме стабилните кодове (s=), иначе индексите (i{g}=);
+ * avg = градовете (slug), чийто среден резултат е в графиката (avg=).
+ */
+export function embedQuery(model, indices, { chart = '', theme = '', year = null, avg = [] } = {}) {
   const params = new URLSearchParams();
   const codes = indices.map((i) => model.s[i] && model.s[i].c);
   if (codes.length && codes.every(Boolean)) {
     params.set('s', codes.join(','));
   } else if (indices.length) {
     params.set(model.cfg.cookieName, indices.join(','));
+  }
+  if (avg.length) {
+    params.set('avg', avg.join(','));
   }
   if (chart) {
     params.set('chart', chart);

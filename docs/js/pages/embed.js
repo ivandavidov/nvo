@@ -1,8 +1,8 @@
 // Вградими графики (/{клас}/embed.html) - за iframe на други сайтове.
-// Параметри: s=кодове (стабилни) или i{клас}=индекси, chart=b|m, theme=dark|light
-// (обработва се от theme.js), year=година. Височината се съобщава на родителя
+// Параметри: s=кодове (стабилни) или i{клас}=индекси, avg=градове (средният резултат за града),
+// chart=b|m, theme=dark|light (обработва се от theme.js), year=година. Височината се съобщава на родителя
 // с postMessage({ type: 'nvo-embed-resize', height }).
-import { fetchGradeData, buildModel, chartSeries, findSchoolIndexByCode, defaultSelection } from '../core/model.js';
+import { fetchGradeData, buildModel, chartSeries, findSchoolIndexByCode, defaultSelection, defaultAverages, renderableCities } from '../core/model.js';
 import { whenHighcharts, lineOptions, createChart, seriesColor, onThemeChange, markNoExamYears } from '../ui/chart-theme.js';
 
 const grade = Number(document.body.dataset.grade);
@@ -11,6 +11,7 @@ const only = params.get('chart') === 'b' || params.get('chart') === 'm' ? params
 const charts = { b: null, m: null };
 let model = null;
 let selection = [];
+let cities = [];      // градовете със среден резултат в графиката (avg=)
 
 function readSelection() {
   const out = [];
@@ -27,9 +28,18 @@ function readSelection() {
   if (!out.length && ids) {
     ids.split(',').filter((x) => x !== '').forEach((x) => add(Number(x)));
   }
-  if (!out.length) {
-    defaultSelection(model).forEach(add);
-  }
+  return out;
+}
+
+function readCities(all) {
+  const bySlug = new Map(all.map((c) => [c.slug, c]));
+  const out = [];
+  (params.get('avg') || '').split(',').forEach((slug) => {
+    const c = bySlug.get(slug.trim());
+    if (c && !out.includes(c)) {
+      out.push(c);
+    }
+  });
   return out;
 }
 
@@ -57,7 +67,7 @@ function render() {
     if (only && only !== subj) {
       return;
     }
-    const { categories, series } = chartSeries(model, selection, subj);
+    const { categories, series } = chartSeries(model, selection, subj, cities);
     const options = lineOptions({ height: chartHeight(), min: model.cfg.chartFloor, max: model.cfg.chartCeiling, categories });
     options.legend = {
       enabled: true,
@@ -69,12 +79,15 @@ function render() {
     options.tooltip.formatter = function() {
       const idx = this.series.userOptions.schoolIndex;
       const yIdx = Number.parseInt(this.x, 10) - model.firstYear;
-      const counts = subj === 'b' ? model.s[idx].bu : model.s[idx].mu;
+      const counts = idx === undefined ? this.series.userOptions.students : (subj === 'b' ? model.s[idx].bu : model.s[idx].mu);
       const students = counts && yIdx >= 0 ? counts[yIdx] : null;
       return '<b>' + this.series.name + '</b><br/>Година: <b>' + this.x + '</b><br/>Резултат: <b>'
         + window.Highcharts.numberFormat(this.y, 2, '.', '') + '</b>' + (students ? '<br/>Ученици: <b>' + students + '</b>' : '');
     };
-    options.series = series.map((x, k) => ({ name: x.name, data: x.data, color: seriesColor(selection.indexOf(x.index) + 1), schoolIndex: x.index }));
+    // Цветовете - по реда в адреса: първо училищата, после градовете; средното за град е с пунктир.
+    options.series = series.map((x) => (x.city
+      ? { name: x.name, data: x.data, color: seriesColor(selection.length + cities.indexOf(x.city) + 1), dashStyle: 'Dash', students: x.students }
+      : { name: x.name, data: x.data, color: seriesColor(selection.indexOf(x.index) + 1), schoolIndex: x.index }));
     markNoExamYears(options, model.grade);
     if (charts[subj]) {
       charts[subj].destroy();
@@ -90,7 +103,14 @@ async function init() {
   }
   const raw = await fetchGradeData(grade, new URL('../../data/grade-' + grade + '.json', import.meta.url).toString());
   model = buildModel(grade, raw, { year: params.get('year') });
+  const all = renderableCities(model);
+  cities = readCities(all);
   selection = readSelection();
+  if (!selection.length && !cities.length) {
+    // Без (валиден) избор - графиката по подразбиране от config.js, както на страницата по клас.
+    selection = defaultSelection(model);
+    cities = defaultAverages(model, all).map((slug) => all.find((c) => c.slug === slug));
+  }
   await whenHighcharts();
   render();
   let timer = null;
