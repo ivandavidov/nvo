@@ -22,7 +22,7 @@ import { copyText, toast, siteUrl } from '../site.js';
 
 const grade = Number(document.body.dataset.grade);
 /** "Добави водещите училища в града" (празната графика) - колко от върха на класацията. */
-const SUGGEST_COUNT = 5;
+const SUGGEST_COUNT = 3;
 
 const state = {
   model: null,
