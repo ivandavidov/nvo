@@ -67,6 +67,8 @@ const DEFAULTS = {
   scale: 'точки'
 };
 
+// baseSchoolCode / refSchoolCode - училищата в графиката по подразбиране. Задават се с код:
+// индексът в масива s се мести при всяко ново или преименувано училище преди тях.
 const OVERRIDES = {
   4: {
     tableTitleType: 'НВО след 4 клас',
@@ -74,8 +76,8 @@ const OVERRIDES = {
     exportPrefix: 'nvo-4',
     chartBTitle: '4 клас - НВО - Български език',
     chartMTitle: '4 клас - НВО - Математика',
-    baseSchoolIndex: 135,
-    refSchoolIndex: 39
+    baseSchoolCode: '2213145', // 145 ОУ
+    refSchoolCode: '2224041' // 41 ОУ
   },
   7: {
     tableTitleType: 'НВО след 7 клас',
@@ -83,8 +85,8 @@ const OVERRIDES = {
     exportPrefix: 'nvo-7',
     chartBTitle: '7 клас - НВО - Български език',
     chartMTitle: '7 клас - НВО - Математика',
-    baseSchoolIndex: 167,
-    refSchoolIndex: 39
+    baseSchoolCode: '2216306', // СМГ
+    refSchoolCode: '2224041' // 41 ОУ
   },
   10: {
     tableTitleType: 'НВО след 10 клас',
@@ -92,8 +94,8 @@ const OVERRIDES = {
     exportPrefix: 'nvo-10',
     chartBTitle: '10 клас - НВО - Български език',
     chartMTitle: '10 клас - НВО - Математика',
-    baseSchoolIndex: 1,
-    refSchoolIndex: 51
+    baseSchoolCode: '2216301', // 1 АЕГ
+    refSchoolCode: '2212090' // 90 СУ
   },
   12: {
     rankBase: 2,
@@ -108,8 +110,8 @@ const OVERRIDES = {
     csvHeaderBel: 'ДЗИ-Б',
     csvHeaderMat: 'ДЗИ-2',
     csvHeaderM: '2',
-    baseSchoolIndex: 1,
-    refSchoolIndex: 51,
+    baseSchoolCode: '2216301', // 1 АЕГ
+    refSchoolCode: '2204091', // 91 НЕГ
     exam: 'ДЗИ',
     subjectM: 'ДЗИ-2',
     subjectMLong: 'Втора матура',

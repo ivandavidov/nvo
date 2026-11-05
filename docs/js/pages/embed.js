@@ -2,7 +2,7 @@
 // Параметри: s=кодове (стабилни) или i{клас}=индекси, chart=b|m, theme=dark|light
 // (обработва се от theme.js), year=година. Височината се съобщава на родителя
 // с postMessage({ type: 'nvo-embed-resize', height }).
-import { fetchGradeData, buildModel, chartSeries, findSchoolIndexByCode } from '../core/model.js';
+import { fetchGradeData, buildModel, chartSeries, findSchoolIndexByCode, defaultSelection } from '../core/model.js';
 import { whenHighcharts, lineOptions, createChart, seriesColor, onThemeChange, markNoExamYears } from '../ui/chart-theme.js';
 
 const grade = Number(document.body.dataset.grade);
@@ -28,8 +28,7 @@ function readSelection() {
     ids.split(',').filter((x) => x !== '').forEach((x) => add(Number(x)));
   }
   if (!out.length) {
-    add(model.cfg.baseSchoolIndex);
-    add(model.cfg.refSchoolIndex);
+    defaultSelection(model).forEach(add);
   }
   return out;
 }

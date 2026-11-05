@@ -320,7 +320,7 @@ java/src/main/resources/templates/   Mustache templates (partials/ + one per gen
 
 ## Configuration Model
 
-- `docs/js/core/config.js` holds the per-grade settings (`gradeConfig(grade)`): first year of the data arrays, rank parameters, chart titles, base/reference schools for the default selection, CSV headers, cookie name (`i{grade}`), export prefixes, subject labels. Used by the grade pages, embeds, school pages and the stats page.
+- `docs/js/core/config.js` holds the per-grade settings (`gradeConfig(grade)`): first year of the data arrays, rank parameters, chart titles, base/reference schools for the default selection (by code - `baseSchoolCode` / `refSchoolCode`, resolved with `defaultSelection(model)` in `model.js`; never by index: the `s` array is sorted by city and label, so indices move whenever a school is added or renamed), CSV headers, cookie name (`i{grade}`), export prefixes, subject labels. Used by the grade pages, embeds, school pages and the stats page.
 - Displayed years (rule 9): `DISPLAY_FROM` (4/7/12: 2019, 10: 2021), `MAX_YEARS` = 8 and `HISTORY_YEARS` = 3 with `displayRange()` / `navFirstYear()` in `config.js`; the Java twin is `ProjectConfig.DISPLAY_FROM` / `displayFrom()` / `navFirstYear()`. Keep both in sync.
 - The latest year is taken from the data (`grade-{g}.json` array length), both in JS (`model.dataLatestYear`) and in the Java generators (`GradeData.latestYear`). The first real year per grade in the dataset (`10` starts in 2021) is `GradeData.COVERAGE_FROM` (only for the JSON-LD `temporalCoverage`).
 

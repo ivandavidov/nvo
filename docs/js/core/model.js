@@ -64,9 +64,8 @@ export function buildModel(grade, raw, opts = {}) {
   const s = copySchools(raw.s);
   const si = copyCities(raw.si);
   fillTypes(s, si);
-  const base = cfg.baseSchoolIndex;
   const dataFirstYear = cfg.firstYear;
-  const dataYears = s[base].b.length;
+  const dataYears = s.reduce((max, o) => (o ? Math.max(max, o.b.length) : max), 0);
   const dataLatestYear = dataFirstYear + dataYears - 1;
   let lastYear = dataLatestYear;
   let timeTravelYear = null;
@@ -340,6 +339,18 @@ export function findSchoolIndexByCode(model, code) {
     }
   }
   return -1;
+}
+
+/** Индексите на училищата по подразбиране (baseSchoolCode, refSchoolCode) - без липсващите. */
+export function defaultSelection(model) {
+  const out = [];
+  [model.cfg.baseSchoolCode, model.cfg.refSchoolCode].forEach((code) => {
+    const idx = findSchoolIndexByCode(model, code);
+    if (idx >= 0 && !out.includes(idx)) {
+      out.push(idx);
+    }
+  });
+  return out;
 }
 
 /* ---------------- Класация на града ---------------- */

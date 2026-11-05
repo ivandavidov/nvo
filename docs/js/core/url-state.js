@@ -2,7 +2,7 @@
 //   ?i{g}=индекси (избраните училища), ?school=код (deep link), ?year=година
 //   (исторически изглед), #град; изборът се помни и в бисквитка i{g}.
 import { COOKIE_MAX_AGE_SECONDS } from './config.js';
-import { findSchoolIndexByCode } from './model.js';
+import { findSchoolIndexByCode, defaultSelection } from './model.js';
 
 export function readYearParam() {
   return new URL(window.location.href).searchParams.get('year');
@@ -62,7 +62,7 @@ export function initialSelection(model) {
       }
     }
   }
-  const defaults = [String(cfg.baseSchoolIndex), String(cfg.refSchoolIndex)];
+  const defaults = defaultSelection(model).map(String);
   const valid = (list) => {
     const out = [];
     list.forEach((id) => {
