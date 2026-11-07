@@ -165,7 +165,7 @@ export async function balovePdf(docs, filename, allYears) {
 }
 
 /**
- * Действие от менюто "Изтегли ▾" на страниците за балове: balove-csv | balove-pdf (градът
+ * Действие от менюто "Изтеглете ▾" на страниците за балове: balove-csv | balove-pdf (градът
  * е slug) и balove-csv-all | balove-pdf-all (хъбът). JSON е статичен файл (линк с download).
  */
 export async function runBaloveExport(item, slug) {
@@ -189,7 +189,7 @@ export async function runBaloveExport(item, slug) {
     }
   } catch (err) {
     console.error(err);
-    toast('Грешка при изтеглянето. Опитай отново.');
+    toast('Грешка при изтеглянето. Опитайте отново.');
   } finally {
     btn.classList.remove('is-busy');
     btn.removeAttribute('aria-busy');

@@ -102,7 +102,7 @@ if (pdfBtn && data) {
       await m.schoolBrochurePdf(data);
     } catch (err) {
       console.error(err);
-      toast('Грешка при генериране на PDF. Опитай отново.');
+      toast('Грешка при генериране на PDF. Опитайте отново.');
     } finally {
       pdfBtn.classList.remove('is-busy');
     }

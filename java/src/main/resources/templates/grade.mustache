@@ -68,7 +68,7 @@
       <div class="grade-hero__text">
         <p class="page-head__eyebrow">{{examLong}} · {{displayFrom}}-{{latestYear}}</p>
         <h1 class="page-head__title">{{title}}</h1>
-        <p class="page-head__lead">Сравни училищата по резултатите от {{subjectsLong}}, разгледай класацията на всеки град и средните резултати по години.</p>
+        <p class="page-head__lead">Сравнете училищата по резултатите от {{subjectsLong}}, разгледайте класацията на всеки град и средните резултати по години.</p>
       </div>
       <div class="grade-hero__side">
         <label class="field" for="year-select">
@@ -107,9 +107,9 @@
             <p class="muted text-sm compare__lead">Резултати по години - {{subjectB}} и {{subjectM}} ({{scale}})</p>
           </div>
           <div class="cluster compare__actions">
-            <button class="btn btn--sm btn--ghost" type="button" data-action="share" title="Копирай връзка към този избор">{{#icon}}link{{/icon}}<span class="btn__label">Сподели</span></button>
-            <button class="btn btn--sm btn--ghost" type="button" data-action="embed" title="Код за вграждане на графиката">{{#icon}}layers{{/icon}}<span class="btn__label">Вгради</span></button>
-            <button class="btn btn--sm btn--ghost" type="button" data-action="clear" title="Махни всички училища от графиката">{{#icon}}trash{{/icon}}<span class="btn__label">Изчисти</span></button>
+            <button class="btn btn--sm btn--ghost" type="button" data-action="share" title="Копирайте връзка към този избор">{{#icon}}link{{/icon}}<span class="btn__label">Споделете</span></button>
+            <button class="btn btn--sm btn--ghost" type="button" data-action="embed" title="Код за вграждане на графиката">{{#icon}}layers{{/icon}}<span class="btn__label">Вградете</span></button>
+            <button class="btn btn--sm btn--ghost" type="button" data-action="clear" title="Махнете всички училища от графиката">{{#icon}}trash{{/icon}}<span class="btn__label">Изчистете</span></button>
           </div>
         </div>
         <div class="card__body">
@@ -117,7 +117,7 @@
             <div class="combo compare__add">
               <div class="input-icon">
                 {{#icon}}plus{{/icon}}
-                <input class="input" id="school-add" type="text" placeholder="Добави училище - име или град…" aria-label="Добави училище в графиката">
+                <input class="input" id="school-add" type="text" placeholder="Добавете училище - име или град…" aria-label="Добавете училище в графиката">
               </div>
             </div>
             <ul class="compare__chips" id="selected-chips" role="list" aria-label="Избрани училища"></ul>
@@ -140,7 +140,7 @@
             <div class="empty__icon">{{#icon}}chart{{/icon}}</div>
             <p class="empty__title">Изберете поне едно училище</p>
             <p>Добавете училище от полето по-горе или от класацията на града по-долу.</p>
-            <button class="btn btn--soft" type="button" data-action="suggest">{{#icon}}plus{{/icon}} Добави водещите училища в града</button>
+            <button class="btn btn--soft" type="button" data-action="suggest">{{#icon}}plus{{/icon}} Добавете водещите училища в града</button>
           </div>
         </div>
       </div>
@@ -150,11 +150,11 @@
       <div class="section-head">
         <div>
           <h2 class="section-title" id="cities-title">Класации по градове</h2>
-          <p class="section-lead">Избери град, за да видиш класацията на училищата и средните резултати по години.</p>
+          <p class="section-lead">Изберете град, за да видите класацията на училищата и средните резултати по години.</p>
         </div>
         <div class="input-icon city-filter">
           {{#icon}}search{{/icon}}
-          <input class="input" id="city-filter" type="search" placeholder="Намери град…" aria-label="Намери град">
+          <input class="input" id="city-filter" type="search" placeholder="Намерете град…" aria-label="Намерете град">
         </div>
       </div>
       <nav class="city-switch" id="city-switch" aria-label="Градове">
@@ -185,7 +185,7 @@
         <div class="card__body"><div class="skeleton" style="height:320px"></div></div>
       </div>
       <noscript>
-        <p class="banner banner--info mt-4">За графиките и интерактивните класации е нужен JavaScript. Класациите по градове са достъпни и като отделни страници - избери град по-горе.</p>
+        <p class="banner banner--info mt-4">За графиките и интерактивните класации е нужен JavaScript. Класациите по градове са достъпни и като отделни страници - изберете град по-горе.</p>
       </noscript>
     </section>
   </main>
@@ -194,7 +194,7 @@
 
   <div class="tray" id="tray">
     <span data-count></span>
-    <button class="btn btn--sm btn--primary" type="button" data-action="to-chart">{{#icon}}chevron-up{{/icon}} Виж</button>
+    <button class="btn btn--sm btn--primary" type="button" data-action="to-chart">{{#icon}}chevron-up{{/icon}} Вижте</button>
   </div>
 </body>
 </html>

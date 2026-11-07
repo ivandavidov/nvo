@@ -21,7 +21,7 @@ import { whenHighcharts, lineOptions, createChart, seriesColor, onThemeChange, m
 import { copyText, toast, siteUrl } from '../site.js';
 
 const grade = Number(document.body.dataset.grade);
-/** "Добави водещите училища в града" (празната графика) - колко от върха на класацията. */
+/** "Добавете водещите училища в града" (празната графика) - колко от върха на класацията. */
 const SUGGEST_COUNT = 3;
 
 const state = {
@@ -233,10 +233,10 @@ function renderChips() {
       title = o.n + (c ? ', ' + c.name : '');
     }
     return '<li class="chip' + (hidden ? ' chip--muted' : '') + '" data-key="' + esc(String(key)) + '">'
-      + '<button type="button" class="chip__toggle" aria-pressed="' + (!hidden) + '" title="' + esc(title + ' - покажи/скрий в графиката') + '">'
+      + '<button type="button" class="chip__toggle" aria-pressed="' + (!hidden) + '" title="' + esc(title + ' - покажете/скрийте в графиката') + '">'
       + '<span class="dot' + (isAvgKey(key) ? ' dot--avg' : '') + '" style="--dot:var(--chart-' + state.slots.get(key) + ')"></span>'
       + '<span class="chip__label">' + esc(label) + '</span></button>'
-      + '<button type="button" class="chip__x" aria-label="Премахни ' + esc(name) + '">' + icon('x') + '</button></li>';
+      + '<button type="button" class="chip__x" aria-label="Премахнете ' + esc(name) + '">' + icon('x') + '</button></li>';
   }).join('');
   el.chips.hidden = keys.length === 0;
 }
@@ -388,7 +388,7 @@ function setupAddCombobox() {
     input: el.add,
     host: el.add.closest('.combo'),
     minChars: 2,
-    hint: 'Напиши поне 2 букви от името на училището или града.',
+    hint: 'Напишете поне 2 букви от името на училището или града.',
     emptyText: 'Няма такова училище за ' + state.model.cfg.short,
     // Търсене на град дава и "Средно за {град}" най-отгоре в групата му.
     search: (q) => withCityAverages(searchSchools(state.model, index, q, { isSelected }), state.cities, q, { isAvgSelected, name: cityAverageName }),
@@ -567,7 +567,7 @@ function countHtml(city, total) {
 }
 
 /**
- * "Покажи само": по един чип за всеки вид в града (с броя училища с резултати). Нищо избрано =
+ * "Покажете само": по един чип за всеки вид в града (с броя училища с резултати). Нищо избрано =
  * всички; натискане добавя или маха вида. Само за градове с поне два вида. Филтърът е общ за
  * двата таба, затова стои вдясно в реда с табовете.
  */
@@ -575,8 +575,8 @@ function typeFilterHtml(city, counts) {
   if (city.types.length < 2) {
     return '';
   }
-  return '<div class="type-filter city-panel__types" role="group" aria-label="Покажи само училищата от избраните видове" data-n="' + city.types.length + '">'
-    + '<span class="type-filter__label" aria-hidden="true">Покажи само</span>'
+  return '<div class="type-filter city-panel__types" role="group" aria-label="Покажете само училищата от избраните видове" data-n="' + city.types.length + '">'
+    + '<span class="type-filter__label" aria-hidden="true">Покажете само</span>'
     + city.types.map((k) => {
       const t = schoolType(k);
       return '<button type="button" class="chip type-chip" data-school-type="' + k + '" aria-pressed="' + state.types.includes(k) + '">'
@@ -711,7 +711,7 @@ function rankingHtml() {
     const rank = isInactive ? null : rankFor(r);
     let cells = '<td class="center col-pos muted">' + (isInactive ? '-' : pos) + '</td>'
       + '<td class="col-name"><div class="school-cell">'
-      + '<button type="button" class="add-toggle ci" data-add="' + r.i + '" aria-pressed="false" aria-label="Покажи ' + esc(o.n) + ' в графиката"></button>'
+      + '<button type="button" class="add-toggle ci" data-add="' + r.i + '" aria-pressed="false" aria-label="Покажете ' + esc(o.n) + ' в графиката"></button>'
       + (o.c ? '<a href="../school/' + esc(o.c) + '/" title="' + esc('Профил на ' + o.n) + '">' + esc(o.l) + '</a>' : '<span title="' + esc(o.n) + '">' + esc(o.l) + '</span>')
       + (o.w ? '<a class="web-link ci" href="' + esc(o.w) + '" target="_blank" rel="noopener noreferrer" title="' + esc('Уебсайт на ' + o.n) + '" aria-label="Уебсайт"></a>' : '')
       + '</div></td>'
@@ -745,7 +745,7 @@ function rankingHtml() {
   }
 
   const notes = '<div class="ranking__foot">'
-    + (inactiveFiltered.length ? '<label class="switch"><input type="checkbox" data-action="toggle-inactive"' + (state.showInactive ? ' checked' : '') + '> Покажи и училищата без резултат за ' + model.latestYear + ' (' + inactiveFiltered.length + ')</label>' : '<span></span>')
+    + (inactiveFiltered.length ? '<label class="switch"><input type="checkbox" data-action="toggle-inactive"' + (state.showInactive ? ' checked' : '') + '> Покажете и училищата без резултат за ' + model.latestYear + ' (' + inactiveFiltered.length + ')</label>' : '<span></span>')
     + '<details class="disclosure disclosure--plain"><summary>Как се изчислява рангът?</summary><div class="disclosure__body prose">'
     + '<p>Училищата са подредени по общия среден успех по ' + esc(cfg.subjectB) + ' и ' + esc(cfg.subjectM) + ' за последните три години. '
     + 'Рангът е този среден успех като процент от успеха на първото показано училище - на първото в града или, ако е избран вид, на първото от избраните видове.</p>'
@@ -811,7 +811,7 @@ function syncTableSelection() {
     const on = isSelected(i);
     b.setAttribute('aria-pressed', String(on));
     b.style.setProperty('--dot', on ? 'var(--chart-' + state.slots.get(i) + ')' : '');
-    b.title = on ? 'Махни от графиката' : 'Покажи в графиката';
+    b.title = on ? 'Махнете от графиката' : 'Покажете в графиката';
     const tr = b.closest('tr');
     if (tr) {
       tr.classList.toggle('is-selected', on);
@@ -822,8 +822,8 @@ function syncTableSelection() {
     const on = isAvgSelected(b.dataset.addCity);
     b.setAttribute('aria-pressed', String(on));
     b.style.setProperty('--dot', on ? 'var(--chart-' + state.slots.get(avgKey(b.dataset.addCity)) + ')' : '');
-    b.title = !city ? '' : on ? 'Махни средния резултат за ' + city.name + ' от графиката'
-      : 'Покажи средния резултат за ' + city.name + ' в графиката - всички училища, претеглено с броя на учениците';
+    b.title = !city ? '' : on ? 'Махнете средния резултат за ' + city.name + ' от графиката'
+      : 'Покажете средния резултат за ' + city.name + ' в графиката - всички училища, претеглено с броя на учениците';
   });
 }
 
@@ -896,7 +896,7 @@ el.panel.addEventListener('click', (e) => {
   const report = t.closest('[data-report]');
   if (report) {
     runBusy(report, () => import('../core/brochure.js').then((m) => m.schoolBrochureByCode(state.model.s[Number(report.dataset.report)].c)),
-      'Грешка при генериране на PDF доклада. Опитай отново.');
+      'Грешка при генериране на PDF доклада. Опитайте отново.');
     return;
   }
   const action = t.closest('[data-action]');
@@ -905,7 +905,7 @@ el.panel.addEventListener('click', (e) => {
     download(csv.filename, csv.content);
   } else if (action && action.dataset.action === 'city-pdf') {
     runBusy(menuButtonOf(action), () => import('../core/pdf.js').then((m) => m.rankingPdf(state.model, state.city, currentRows(), shownTypes())),
-      'Грешка при генериране на PDF. Опитай отново.');
+      'Грешка при генериране на PDF. Опитайте отново.');
   }
 });
 
@@ -944,9 +944,9 @@ function openEmbedDialog(opener) {
     dlg.id = 'embed-dialog';
     dlg.className = 'dialog';
     dlg.innerHTML = '<div class="dialog__head"><h2 class="dialog__title">Вграждане на графиката</h2>'
-      + '<button type="button" class="icon-btn" data-close aria-label="Затвори">' + icon('x') + '</button></div>'
+      + '<button type="button" class="icon-btn" data-close aria-label="Затворете">' + icon('x') + '</button></div>'
       + '<div class="dialog__body stack">'
-      + '<p class="muted text-sm">Постави кода в HTML-а на своя сайт. Графиката показва избраните училища и се обновява с новите данни.</p>'
+      + '<p class="muted text-sm">Поставете кода в HTML-а на своя сайт. Графиката показва избраните училища и се обновява с новите данни.</p>'
       + '<div class="cluster"><span class="field__label">Графики</span><div class="seg" data-embed="chart">'
       + '<button type="button" data-v="" aria-pressed="true">Двете</button><button type="button" data-v="b" aria-pressed="false">' + esc(state.model.cfg.subjectB) + '</button>'
       + '<button type="button" data-v="m" aria-pressed="false">' + esc(state.model.cfg.subjectM) + '</button></div></div>'
@@ -956,7 +956,7 @@ function openEmbedDialog(opener) {
       + '<textarea class="input code-box" rows="5" readonly aria-label="HTML код"></textarea>'
       + '<p class="text-sm"><a href="' + siteUrl('embed/') + '">Документация за вграждането →</a></p></div>'
       + '<div class="dialog__foot"><a class="btn" data-preview target="_blank" rel="noopener">' + icon('external') + ' Преглед</a>'
-      + '<button type="button" class="btn btn--primary" data-copy-code>' + icon('copy') + ' Копирай кода</button></div>';
+      + '<button type="button" class="btn btn--primary" data-copy-code>' + icon('copy') + ' Копирайте кода</button></div>';
     document.body.appendChild(dlg);
     const update = () => {
       const chart = dlg.querySelector('[data-embed="chart"] [aria-pressed="true"]').dataset.v;
@@ -1020,7 +1020,7 @@ document.addEventListener('click', async (e) => {
   } else if (name === 'pdf-all') {
     toast('Подготвя се PDF с класациите на всички градове…');
     runBusy(menuButtonOf(action), () => import('../core/pdf.js').then((m) => m.allRankingsPdf(state.model)),
-      'Грешка при генериране на PDF. Опитай отново.');
+      'Грешка при генериране на PDF. Опитайте отново.');
   } else if (name === 'to-chart') {
     el.compare.scrollIntoView({ block: 'start' });
   } else if (name === 'suggest') {
@@ -1065,7 +1065,7 @@ function setupYear() {
     }
     el.history.innerHTML = '<div class="banner history-banner" role="status">' + icon('history')
       + '<span><strong>Исторически изглед</strong> - всички данни и графики по-долу са към ' + model.timeTravelYear + ' г.' + noExam + '</span>'
-      + '<a class="banner__action" href="' + esc(exit.pathname + exit.search + exit.hash) + '">Покажи актуалните данни →</a></div>';
+      + '<a class="banner__action" href="' + esc(exit.pathname + exit.search + exit.hash) + '">Покажете актуалните данни →</a></div>';
   }
   const national = document.querySelector('[data-national]');
   if (national && model.timeTravelYear) {
@@ -1094,7 +1094,7 @@ function updateTray() {
     if (c) {
       parts.push(c === 1 ? '1 град' : c + ' града');
     }
-    // С училища и градове на тесен екран без "в графиката" - иначе "Виж" не се събира (site.css).
+    // С училища и градове на тесен екран без "в графиката" - иначе "Вижте" не се събира (site.css).
     count.innerHTML = esc(parts.join(' и ')) + '<span' + (n && c ? ' class="tray__tail"' : '') + '> в графиката</span>';
   }
 }
@@ -1189,5 +1189,5 @@ async function init() {
 
 init().catch((err) => {
   console.error(err);
-  el.panel.innerHTML = '<div class="empty"><p class="empty__title">Данните не можаха да се заредят</p><p>Опитай да презаредиш страницата.</p></div>';
+  el.panel.innerHTML = '<div class="empty"><p class="empty__title">Данните не можаха да се заредят</p><p>Опитайте да презаредите страницата.</p></div>';
 });

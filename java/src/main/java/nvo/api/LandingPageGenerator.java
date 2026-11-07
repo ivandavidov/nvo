@@ -293,7 +293,7 @@ public class LandingPageGenerator {
         return ctx;
     }
 
-    /** Чиповете "Покажи само": видовете в класацията с броя училища (само при поне два вида). */
+    /** Чиповете "Покажете само": видовете в класацията с броя училища (само при поне два вида). */
     private void putTypes(Map<String, Object> ctx, List<Map<String, Object>> rows) {
         List<Map<String, Object>> types = new ArrayList<>();
         for (SchoolType t : SchoolType.values()) {

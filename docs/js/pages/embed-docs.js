@@ -26,7 +26,7 @@ function selected(i) {
 
 function renderChips() {
   const chip = (attr, label) => '<li class="chip" ' + attr + '><span class="chip__label">' + esc(label)
-    + '</span><button type="button" class="chip__x" aria-label="Премахни">' + icon('x') + '</button></li>';
+    + '</span><button type="button" class="chip__x" aria-label="Премахнете">' + icon('x') + '</button></li>';
   el.chips.innerHTML = state.selection.map((i) => chip('data-i="' + i + '"', state.model.s[i].n)).join('')
     + state.avg.map((slug) => chip('data-avg="' + esc(slug) + '"', cityAverageName(state.cities.find((c) => c.slug === slug)))).join('');
 }
@@ -116,7 +116,7 @@ createCombobox({
   input: el.add,
   host: el.add.closest('.combo'),
   minChars: 2,
-  hint: 'Напиши поне 2 букви от името на училището или града.',
+  hint: 'Напишете поне 2 букви от името на училището или града.',
   emptyText: 'Няма такова училище',
   // Търсене на град дава и "Средно за {град}" (параметър avg=).
   search: (q) => withCityAverages(searchSchools(state.model, state.index, q, { isSelected: selected }), state.cities, q,
@@ -137,7 +137,7 @@ createCombobox({
 
 function loadFailed(err) {
   console.error(err);
-  el.code.textContent = 'Данните не можаха да се заредят. Опитай да презаредиш страницата.';
+  el.code.textContent = 'Данните не можаха да се заредят. Опитайте да презаредите страницата.';
 }
 
 loadGrade(7).catch(loadFailed);

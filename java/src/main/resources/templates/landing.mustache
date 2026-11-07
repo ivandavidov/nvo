@@ -40,14 +40,14 @@
       <p class="page-head__lead">{{methodology}}</p>
       <div class="page-head__actions cluster">
 {{#isCity}}
-        <a class="btn btn--primary" href="../#{{citySlug}}">{{#icon}}chart{{/icon}} <span class="chip__long">Сравни в графиката</span><span class="chip__short">Сравни</span></a>
+        <a class="btn btn--primary" href="../#{{citySlug}}">{{#icon}}chart{{/icon}} <span class="chip__long">Сравнете в графиката</span><span class="chip__short">Сравнете</span></a>
         <a class="btn" href="../{{year}}/">{{#icon}}trophy{{/icon}} <span class="chip__long">Национална класация {{year}}</span><span class="chip__short">Класация<span class="page-head__year"> {{year}}</span></span></a>
 {{#hasBalove}}
         <a class="btn" href="../balove/{{citySlug}}/">{{#icon}}target{{/icon}} <span class="chip__long">Балове {{inCity}}</span><span class="chip__short">Балове</span></a>
 {{/hasBalove}}
 {{/isCity}}
 {{#isYear}}
-        <a class="btn btn--primary" href="../">{{#icon}}chart{{/icon}} <span class="chip__long">Сравни училищата</span><span class="chip__short">Сравни</span></a>
+        <a class="btn btn--primary" href="../">{{#icon}}chart{{/icon}} <span class="chip__long">Сравнете училищата</span><span class="chip__short">Сравнете</span></a>
         <a class="btn" href="../../stats/?grade={{grade}}">{{#icon}}pie{{/icon}} <span class="chip__long">Статистика за {{grade}} клас</span><span class="chip__short">Статистика</span></a>
 {{/isYear}}
       </div>
@@ -70,7 +70,7 @@
         <div class="cluster landing__filters">
           <div class="input-icon">
             {{#icon}}search{{/icon}}
-            <input class="input" type="search" data-filter placeholder="Търси училище{{#showCity}} или град{{/showCity}}…" aria-label="Търси в таблицата">
+            <input class="input" type="search" data-filter placeholder="Търсете училище{{#showCity}} или град{{/showCity}}…" aria-label="Търсете в таблицата">
           </div>
 {{#showCity}}
           <select class="select" data-city-filter aria-label="Град">
@@ -80,8 +80,8 @@
         </div>
         <p class="muted text-sm" data-count>{{count}} училища</p>
 {{#hasTypes}}
-        <div class="type-filter" role="group" aria-label="Покажи само училищата от избраните видове" data-n="{{typeCount}}">
-          <span class="type-filter__label" aria-hidden="true">Покажи само</span>
+        <div class="type-filter" role="group" aria-label="Покажете само училищата от избраните видове" data-n="{{typeCount}}">
+          <span class="type-filter__label" aria-hidden="true">Покажете само</span>
 {{#types}}
           <button type="button" class="chip type-chip" data-school-type="{{key}}" aria-pressed="false"><span class="type-badge type-badge--{{key}}" aria-hidden="true">{{letter}}</span><span class="type-chip__name">{{plural}}</span><span class="type-chip__count"><span class="sr-only">, </span><span data-type-count>{{count}}</span></span></button>
 {{/types}}

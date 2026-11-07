@@ -165,7 +165,7 @@ function currentData() {
 
 function populateProfiles() {
   if (!state.school) {
-    el.profile.innerHTML = '<option value="">- Избери паралелка -</option>';
+    el.profile.innerHTML = '<option value="">- Изберете паралелка -</option>';
     el.profile.disabled = true;
     return;
   }
@@ -497,14 +497,36 @@ function verdict(r) {
   }
   const short = Math.round((x.mins[x.lowest] - state.bal) * 100) / 100;
   return { kind: 'out', title: 'Не стига',
-    detail: 'липсват ' + short.toFixed(2) + ' т. до минимума на ' + k(x.lowest) + ' класиране' };
+    detail: lacking(short, false) + ' до минимума на ' + k(x.lowest) + ' класиране' };
 }
 
-function verdictHtml(r) {
-  const v = verdict(r);
+/** "липсват 3.50 т.", но "липсва 1.00 т." (точно една точка - единствено число). */
+function lacking(points, capital) {
+  return (capital ? 'Л' : 'л') + (points === 1 ? 'ипсва ' : 'ипсват ') + points.toFixed(2) + ' т.';
+}
+
+/**
+ * Изводът в секцията "Почти стига за 1-во класиране": колко точки липсват до минимума на 1-во
+ * и докъде стига балът иначе (по-късно класиране или никое).
+ */
+function nearVerdict(r) {
+  const x = r.reach;
+  const k = (ki) => '<span class="verdict__k">' + KLASS_NAMES[ki] + '</span>';
+  const short = Math.round((x.mins[0] - state.bal) * 100) / 100;
+  return { kind: 'near', title: lacking(short, true) + ' за ' + k(0) + ' класиране',
+    detail: 'минимумът на ' + k(0) + ' е ' + x.mins[0].toFixed(2) + ' - '
+      + (x.klass > 0 ? 'балът стига за ' + k(x.klass) : 'не стига и за по-късно') };
+}
+
+function verdictHtml(r, near) {
+  const v = near ? nearVerdict(r) : verdict(r);
   return '<span class="verdict verdict--' + v.kind + '">' + v.title + '</span>'
     + (v.detail ? '<span class="verdict__detail">' + v.detail + '</span>' : '');
 }
+
+/** Колко паралелки са в секциите "Почти стига за 1-во" и "Стига за 1-во" при подредбата по подразбиране с бал. */
+const NEAR_FIRST = 5;
+const TOP_FIRST = 5;
 
 function renderOverview() {
   const compact = OVERVIEW_COMPACT.matches;
@@ -520,27 +542,58 @@ function renderOverview() {
     rows = rows.filter((r) => r.reach && r.reach.lowest >= 0 && (!state.reachOnly || r.reach.klass >= 0));
   }
   rows = sortRows(rows);
+  // Подредбата по подразбиране с бал ("Моят бал" от 1-во класиране) е на три секции, всяка със
+  // заглавен ред и плътна черта отгоре: 1) "Почти стига за 1-во класиране" - 5-те паралелки, за които
+  // до минимума на 1-во липсват най-малко точки (и когато балът стига на по-късно класиране); 2) "Стига
+  // за 1-во класиране" - 5-те с най-висок минимум; 3) всички останали в същия ред, без повторения.
+  // При подредба по друга колона - обикновен списък.
+  let near = [];
+  let top = [];
+  if (withBal && state.sortCol === 'reach' && state.sortDir === 1) {
+    near = rows.filter((r) => r.reach.mins[0] !== null && r.reach.mins[0] > state.bal)
+      .sort((a, b) => a.reach.mins[0] - b.reach.mins[0])   // стабилно: равните - в сегашния ред
+      .slice(0, NEAR_FIRST);
+    top = rows.filter((r) => r.reach.klass === 0).slice(0, TOP_FIRST);
+    if (near.length || top.length) {
+      rows = near.concat(top, rows.filter((r) => near.indexOf(r) < 0 && top.indexOf(r) < 0));
+    }
+  }
   const firstYi = overviewFirstShownYi();
   const cols = (compact ? 2 : 3) + latestYi - firstYi + 1 + (withBal && compact ? 0 : 1);
   if (!rows.length) {
     el.tbody.innerHTML = '<tr><td colspan="' + cols + '" class="muted">'
       + (withBal && state.reachOnly
         ? 'Бал ' + state.bal.toFixed(2) + ' не стига за нито една паралелка' + (terms.length ? ' за "' + esc(state.filter) + '"' : '')
-          + ' през ' + pageYears[latestYi] + '. <button type="button" class="btn btn--sm bal__all" data-action="bal-all">Покажи всички</button>'
+          + ' през ' + pageYears[latestYi] + '. <button type="button" class="btn btn--sm bal__all" data-action="bal-all">Покажете всички</button>'
         : 'Няма паралелки за "' + esc(state.filter) + '".')
       + '</td></tr>';
     return;
   }
+  const some = (n) => (n === 1 ? 'паралелката' : n + '-те паралелки');
+  // Началото на всяка секция (индекс в rows) и заглавният ѝ ред; плътна черта - пред всяка без първата.
+  const sections = [];
+  if (near.length) {
+    sections.push({ at: 0, title: 'Почти стига за 1-во класиране - ' + some(near.length) + ', за които липсват най-малко точки' });
+  }
+  if (top.length) {
+    sections.push({ at: near.length, title: 'Стига за 1-во класиране - ' + some(top.length) + ' с най-висок минимум' });
+  }
+  if (sections.length && rows.length > near.length + top.length) {
+    sections.push({ at: near.length + top.length, title: 'Всички останали - по минимума, който балът преминава, включително на по-късно класиране' });
+  }
+  const groupRow = (s, n) => '<tr class="ov-group' + (n ? ' ov-group--sep' : '') + '"><th colspan="' + cols + '">' + s.title + '</th></tr>';
   el.tbody.innerHTML = rows.map((r, i) => {
-    let html = '<tr tabindex="0" data-code="' + esc(r.code) + '" data-pcode="' + esc(r.pcode) + '">'
+    const inNear = i < near.length;
+    let html = sections.map((s, n) => (s.at === i ? groupRow(s, n) : '')).join('')
+      + '<tr tabindex="0" data-code="' + esc(r.code) + '" data-pcode="' + esc(r.pcode) + '">'
       + '<td class="num muted col-num">' + (i + 1) + '</td>'
       + (compact
         ? '<td class="col-profile"><span class="ov-school" title="' + esc(r.schoolFull) + '">' + esc(r.school) + '</span>'
           + '<span class="ov-profile">' + esc(r.profile) + '</span>'
-          + (withBal ? '<span class="ov-verdict">' + verdictHtml(r) + '</span>' : '') + '</td>'
+          + (withBal ? '<span class="ov-verdict">' + verdictHtml(r, inNear) + '</span>' : '') + '</td>'
         : '<td class="col-school"><span class="clip" title="' + esc(r.schoolFull) + '">' + esc(r.school) + '</span></td>'
           + '<td class="col-profile"><span class="clip" title="' + esc(r.profile) + '">' + esc(r.profile) + '</span></td>'
-          + (withBal ? '<td class="col-verdict">' + verdictHtml(r) + '</td>' : ''));
+          + (withBal ? '<td class="col-verdict">' + verdictHtml(r, inNear) + '</td>' : ''));
     for (let yi = latestYi; yi >= firstYi; yi--) {
       const v = r.yearMins[yi];
       html += '<td class="num' + (withBal && !compact ? ' group-start' : '') + '">' + fmt(v) + '</td>';
@@ -587,10 +640,14 @@ function balSummaryHtml() {
     + '.';
   // Скритите редове се казват направо - иначе числото "не стига" няма с какво да се сравни в таблицата.
   if (state.reachOnly && out) {
-    line += ' Паралелките, за които не стига, са скрити - изключи "Само паралелките, за които балът стига", за да ги видиш.';
+    line += ' Паралелките, за които не стига, са скрити - изключете "Само паралелките, за които балът стига", за да ги видите.';
   }
   return '<span class="bal__summary">' + line + '</span>'
-    + '<span class="bal__note">Минималният бал е балът на последния приет на съответното класиране. Сравнението е по крайния'
+    // Смисълът на подредбата - ориентир за собствена преценка, не препоръка. Казано за подредбата по
+    // "Моят бал", за да е вярно и когато таблицата е подредена по друга колона.
+    + '<span class="bal__note">Подредбата по "Моят бал" е ориентир, а не препоръка: най-отгоре са паралелките с минимум малко'
+    + ' над и малко под вашия бал, после всички останали. Оценката и изборът къде да кандидатствате остават ваши.'
+    + ' Минималният бал е балът на последния приет на съответното класиране. Сравнението е по крайния'
     + ' резултат, а не по формулата на всяка паралелка. Балът се пази само на това устройство.</span>';
 }
 
@@ -627,7 +684,8 @@ function persistBal() {
     bal: el.balInput.value.trim(), bel: el.bel.value.trim(), mat: el.mat.value.trim(),
     formula: el.formula.value, grade1: el.grade1.value, grade2: el.grade2.value
   };
-  const empty = !v.bal && !v.bel && !v.mat && !v.grade1 && !v.grade2 && v.formula === FORMULAS[0].key;
+  const empty = !v.bal && !v.bel && !v.mat && v.formula === FORMULAS[0].key
+    && v.grade1 === DEFAULT_GRADE && v.grade2 === DEFAULT_GRADE;
   saveBal(empty ? null : v);
 }
 
@@ -663,9 +721,11 @@ function fmtPoints(v) {
   return String(Math.round(v * 100) / 100);
 }
 
-const CALC_EMPTY = 'Попълни точките от НВО и двете оценки.';
+const CALC_EMPTY = 'Попълнете точките от НВО по БЕЛ и по математика.';
+/** Оценките от свидетелството по подразбиране - отличен (6); посетителят може да ги смени. */
+const DEFAULT_GRADE = '6';
 
-/** "Изчисли бала": от точките от НВО, избраната формула и двете оценки попълва "Моят бал"
+/** "Изчислете бала": от точките от НВО, избраната формула и двете оценки попълва "Моят бал"
  * (fill = false - само сметката). */
 function readCalc(fill) {
   const bel = parseScore(el.bel.value, MAX_NVO);
@@ -699,12 +759,14 @@ function readCalc(fill) {
 
 function setupBal() {
   el.formula.innerHTML = FORMULAS.map((f) => '<option value="' + f.key + '">' + esc(f.label) + '</option>').join('');
-  const gradeOptions = '<option value="">Избери</option>'
-    // Кратко ("6 (50 т.)"), за да се събира в две колони и на 320 px; името на оценката е за екранните четци.
-    + GRADE_POINTS.map((g) => '<option value="' + g.grade + '" aria-label="' + esc(g.name) + ' ' + g.grade + ', ' + g.points + ' точки">'
+  // Кратко ("6 (50 т.)"), за да се събира в две колони и на 320 px; името на оценката е за екранните четци.
+  // Без празен избор: по подразбиране и двете са 6 - посетителят ги сменя, ако е нужно.
+  const gradeOptions = GRADE_POINTS.map((g) => '<option value="' + g.grade + '" aria-label="' + esc(g.name) + ' ' + g.grade + ', ' + g.points + ' точки">'
       + g.grade + ' (' + g.points + ' т.)</option>').join('');
   el.grade1.innerHTML = gradeOptions;
   el.grade2.innerHTML = gradeOptions;
+  el.grade1.value = DEFAULT_GRADE;
+  el.grade2.value = DEFAULT_GRADE;
 
   const saved = readSavedBal();
   if (saved) {
@@ -720,7 +782,7 @@ function setupBal() {
         sel.value = v;
       }
     });
-    if ([el.bel, el.mat, el.grade1, el.grade2].some((x) => x.value)) {
+    if (el.bel.value || el.mat.value) {
       readCalc(false);   // само сметката - балът е запазеният (може да е въведен на ръка)
     }
     readBalInput(true);
@@ -819,7 +881,7 @@ function init() {
     // js/ruo-{град}.js не се е заредил (мрежа, блокиране) - казваме го, вместо празна страница.
     const head = document.querySelector('#main .page-head');
     const html = '<div class="banner" role="alert">' + icon('info')
-      + '<span>Данните за баловете не можаха да се заредят. Опитай да презаредиш страницата.</span></div>';
+      + '<span>Данните за баловете не можаха да се заредят. Опитайте да презаредите страницата.</span></div>';
     if (head) {
       head.insertAdjacentHTML('afterend', html);
     }
@@ -905,7 +967,7 @@ function init() {
 
 init();
 
-// Менюто "Изтегли ▾" (CSV, PDF; JSON е линк) - модулът се зарежда при първото изтегляне.
+// Менюто "Изтеглете ▾" (CSV, PDF; JSON е линк) - модулът се зарежда при първото изтегляне.
 document.addEventListener('click', (e) => {
   const item = e.target.closest('[data-action^="balove-"]');
   if (item) {

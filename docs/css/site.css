@@ -2215,6 +2215,10 @@
   }
 
   .code-box { height: auto; padding: var(--sp-3); font-family: var(--font-mono); font-size: var(--fs-sm); resize: vertical; }
+  /* Като .input: на устройства с докосване 16px, иначе Safari на iPhone приближава страницата. */
+  @media (hover: none) and (pointer: coarse) {
+    .code-box { font-size: 1rem; }
+  }
 
   /* --- Лента "N училища в графиката · Виж" - когато графиката е над видимата част --- */
   /* Лентата е в страницата винаги и се показва само с прозрачност (.is-visible от grade.js):
@@ -2656,6 +2660,7 @@
   .verdict { font-weight: 650; }
   .verdict--in { color: var(--success); }
   .verdict--later { color: var(--warning); }
+  .verdict--near { color: var(--primary); }
   .verdict--out, .verdict--none { color: var(--text-3); }
   .verdict__detail { margin-top: 1px; color: var(--text-3); font-size: var(--fs-sm); line-height: 1.35; }
   .ov-verdict { display: block; margin-top: var(--sp-1); font-size: var(--fs-sm); line-height: 1.35; }
@@ -2671,6 +2676,19 @@
     .balove-overview__table--compact.balove-overview__table--bal .col-score { width: 5.5rem; padding-inline: 0.5rem; }
   }
   .balove-overview__table .bal__all { margin-left: var(--sp-2); }
+  /* Заглавните редове на секциите при подредбата по подразбиране с бал: "Почти стига за 1-во
+     класиране" (5 реда), "Стига за 1-во класиране" (5 реда), всички останали; плътна черта между тях. */
+  .balove-overview__table .ov-group th {
+    padding: var(--sp-2) 0.75rem;
+    background: var(--surface-2);
+    color: var(--text-2);
+    font-size: var(--fs-sm);
+    font-weight: 650;
+    text-align: left;
+    white-space: normal;
+  }
+  .balove-overview__table tbody tr.ov-group:hover { background: none; }
+  .balove-overview__table .ov-group--sep th { border-top: 3px solid var(--border-strong); }
   /* Над таблицата: обобщението (числата) и бележката под него. */
   .bal__summary, .bal__note { display: block; }
   .bal__summary { color: var(--text); font-size: var(--fs-md); }
@@ -2742,6 +2760,10 @@
   .stat-title { font-size: var(--fs-lg); }
   .stat-note { margin-top: var(--sp-2); color: var(--text-3); font-size: var(--fs-md); max-width: var(--measure); }
   .stat-tools .select { width: auto; min-width: 200px; height: 36px; font-size: var(--fs-sm); }
+  /* Като .select: на устройства с докосване 16px, иначе Safari на iPhone приближава страницата. */
+  @media (hover: none) and (pointer: coarse) {
+    .stat-tools .select { font-size: 1rem; }
+  }
   .stat-body { display: grid; gap: var(--sp-3); padding: var(--sp-3) clamp(var(--sp-4), 3vw, var(--sp-6)) var(--sp-5); }
   .stat-body > .stat-note, .stat-body > .stat-detail { margin: 0; }
   .stat-help .disclosure__body { padding-bottom: var(--sp-2); }

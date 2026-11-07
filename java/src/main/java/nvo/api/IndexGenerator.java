@@ -142,6 +142,8 @@ public class IndexGenerator {
                     .try-it label { font-size: var(--fs-sm); font-weight: 600; color: var(--text-2); }
                     .try-it select, .try-it input { height: 34px; max-width: 14rem; padding: 0 var(--sp-2); border: 1px solid var(--border-strong);
                       border-radius: var(--radius-xs); background: var(--surface); color: var(--text); font-size: var(--fs-sm); }
+                    /* На устройства с докосване 16px - иначе Safari на iPhone приближава страницата при фокус. */
+                    @media (hover: none) and (pointer: coarse) { .try-it select, .try-it input { font-size: 1rem; } }
                     .try-it > div { flex-basis: 100%%; }
                     .try-it .try-link { display: inline-block; margin-top: var(--sp-1); font-family: var(--font-mono); font-size: var(--fs-sm); word-break: break-all; }
                     .schema-table { width: 100%%; margin-top: var(--sp-2); border-collapse: collapse; font-size: var(--fs-sm); }
@@ -257,7 +259,7 @@ public class IndexGenerator {
                         <div class="try-it">
                           <label>Код:</label>
                           <input id="lookup-code" type="text" placeholder="напр. 2204091"
-                            style="font-size:0.8rem;padding:0.25rem 0.4rem;border:1px solid var(--border-color);border-radius:4px;background:var(--bg-color);color:var(--text-color);width:8rem"
+                            style="padding:0.25rem 0.4rem;border:1px solid var(--border-color);border-radius:4px;background:var(--bg-color);color:var(--text-color);width:8rem"
                             oninput="updateLookupLink()">
                           <div><a class="try-link" id="lookup-link" style="display:none"></a></div>
                         </div>
@@ -538,7 +540,7 @@ public class IndexGenerator {
                           <tr><td>coverage.{year}.gender</td><td class="type">boolean</td><td>Има ли разбивка по пол за годината</td></tr>
                           <tr><td>schools[]</td><td class="type">array</td><td>code, name, fullName, isPrivate, financing (null, ако кодът го няма в регистъра на МОН), profiles[]</td></tr>
                           <tr><td>schools[].profiles[]</td><td class="type">array</td><td>code, name и years - обект по година</td></tr>
-                          <tr><td>profiles[].years.{year}</td><td class="type">array</td><td>4 елемента (1-во…4-то класиране): обект или null - няма данни (паралелката е попълнена по-рано или класирането не е публикувано; виж coverage). Година без данни за паралелката липсва.</td></tr>
+                          <tr><td>profiles[].years.{year}</td><td class="type">array</td><td>4 елемента (1-во…4-то класиране): обект или null - няма данни (паралелката е попълнена по-рано или класирането не е публикувано; вижте coverage). Година без данни за паралелката липсва.</td></tr>
                           <tr><td>…{year}[k].min / max</td><td class="type">number</td><td>Минимален / максимален бал</td></tr>
                           <tr><td>…{year}[k].minMale / minFemale / maxMale / maxFemale</td><td class="type">number|null</td><td>По пол; null - няма разбивка</td></tr>
                         </table>"""));

@@ -132,7 +132,7 @@ init().catch((err) => {
   console.error(err);
   const box = document.getElementById('charts');
   if (box) {
-    box.innerHTML = '<p class="embed__error">Данните не можаха да се заредят. Опитай да презаредиш страницата.</p>';
+    box.innerHTML = '<p class="embed__error">Данните не можаха да се заредят. Опитайте да презаредите страницата.</p>';
   }
   postHeight();
 });

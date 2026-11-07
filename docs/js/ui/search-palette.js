@@ -103,7 +103,7 @@ function render(result, loading) {
     result.schools.forEach((s) => {
       const i = push(siteUrl('school/' + s.code + '/'));
       const links = s.grades.slice().sort((a, b) => a - b)
-        .map((g) => '<a class="badge" href="' + esc(siteUrl(g + '/?school=' + s.code)) + '" title="' + esc('Сравни в графиката - ' + GRADE_NAMES[g]) + '">' + g + '</a>');
+        .map((g) => '<a class="badge" href="' + esc(siteUrl(g + '/?school=' + s.code)) + '" title="' + esc('Сравнете в графиката - ' + GRADE_NAMES[g]) + '">' + g + '</a>');
       html.push('<div class="palette__row"><a class="palette__item" data-i="' + i + '" href="' + esc(items[i]) + '">'
         + '<span class="palette__item-icon">' + icon('school') + '</span>'
         + '<span class="palette__item-main"><span class="palette__item-title">' + highlight(s.fullName, result.terms) + '</span>'
@@ -113,14 +113,14 @@ function render(result, loading) {
   }
   if (result.schoolsTotal > result.schools.length) {
     html.push('<div class="combo__empty">Показани са първите ' + result.schools.length + ' от ' + result.schoolsTotal
-      + '. Добави града или още една дума, за да стесниш търсенето - напр. "Ботев Пловдив".</div>');
+      + '. Добавете града или още една дума, за да стесните търсенето - напр. "Ботев Пловдив".</div>');
   }
   if (!items.length) {
     html.push('<div class="combo__empty">' + (loading ? 'Зареждане…' : 'Няма резултати за "' + esc(lastQuery) + '"') + '</div>');
   } else if (loading) {
     html.push('<div class="combo__empty">Зареждане на училищата…</div>');
   } else if (normalize(lastQuery).length < 2) {
-    html.push('<div class="combo__empty">Напиши поне 2 букви, за да търсиш сред 1400+ училища и 140+ града.</div>');
+    html.push('<div class="combo__empty">Напишете поне 2 букви, за да търсите сред 1400+ училища и 140+ града.</div>');
   }
   resultsEl.innerHTML = html.join('');
   setActive(items.length ? 0 : -1);
@@ -151,7 +151,7 @@ function update() {
       }
     })
     .catch(() => {
-      resultsEl.innerHTML = '<div class="combo__empty">Търсенето не можа да се зареди. Опитай отново.</div>';
+      resultsEl.innerHTML = '<div class="combo__empty">Търсенето не можа да се зареди. Опитайте отново.</div>';
     });
   if (!indexLoaded()) {
     render(search(null, lastQuery), true);
@@ -164,10 +164,10 @@ function build() {
   dialog.setAttribute('aria-label', 'Търсене');
   dialog.innerHTML = '<div class="palette__field">' + icon('search')
     + '<input class="palette__input" type="search" placeholder="Училище, град или страница…" autocomplete="off" spellcheck="false" aria-label="Търсене" aria-controls="palette-results">'
-    + '<button type="button" class="icon-btn" data-close aria-label="Затвори">' + icon('x') + '</button></div>'
+    + '<button type="button" class="icon-btn" data-close aria-label="Затворете">' + icon('x') + '</button></div>'
     + '<div class="palette__results" id="palette-results" role="listbox"></div>'
     + '<div class="palette__hint"><span><kbd class="kbd">↑</kbd><kbd class="kbd">↓</kbd> избор</span>'
-    + '<span><kbd class="kbd">Enter</kbd> отвори</span><span><kbd class="kbd">Esc</kbd> затвори</span></div>';
+    + '<span><kbd class="kbd">Enter</kbd> отваря</span><span><kbd class="kbd">Esc</kbd> затваря</span></div>';
   document.body.appendChild(dialog);
   input = dialog.querySelector('input');
   resultsEl = dialog.querySelector('.palette__results');

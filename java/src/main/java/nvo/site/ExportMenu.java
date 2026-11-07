@@ -3,7 +3,7 @@ package nvo.site;
 import java.util.List;
 
 /**
- * Менюто "Изтегли ▾" (CSV · JSON · PDF) - същата разметка като exportMenuHtml() в
+ * Менюто "Изтеглете ▾" (CSV · JSON · PDF) - същата разметка като exportMenuHtml() в
  * docs/js/ui/export-menu.js. Поведението е в docs/js/ui/popover.js, действията -
  * в JS на страницата (data-action).
  */
@@ -27,7 +27,7 @@ public final class ExportMenu {
         StringBuilder h = new StringBuilder();
         h.append("<details class=\"menu-button").append(cls == null ? "" : " " + cls).append("\" data-popover>")
                 .append("<summary class=\"btn btn--sm\">").append(Icons.svg("download"))
-                .append("<span class=\"menu-button__long\">Изтегли данните</span><span class=\"menu-button__short\">Изтегли</span>")
+                .append("<span class=\"menu-button__long\">Изтеглете данните</span><span class=\"menu-button__short\">Изтеглете</span>")
                 .append("<span class=\"menu-button__caret\">").append(Icons.svg("chevron-down")).append("</span></summary>")
                 .append("<div class=\"menu-button__panel\"><p class=\"menu-button__title\">").append(esc(title)).append("</p>");
         for (Item it : items) {
