@@ -95,7 +95,7 @@ const OVERRIDES = {
     exportPrefix: 'nvo-10',
     chartBTitle: '10 клас - НВО - Български език',
     chartMTitle: '10 клас - НВО - Математика',
-    defaultSchools: ['2216301', '2212090'] // 1 АЕГ, 90 СУ
+    defaultSchools: ['2216301', '2204091'] // 1 АЕГ, 91 НЕГ
   },
   12: {
     rankBase: 2,
