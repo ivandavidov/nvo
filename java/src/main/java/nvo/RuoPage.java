@@ -71,6 +71,7 @@ public class RuoPage {
         ctx.put("jsonLd", jsonLd(cityName, hrefName, canonical, yearsLabel, firstYear, latestYear));
         ctx.put("cityName", cityName);
         ctx.put("citySlug", hrefName);
+        ctx.put("latestYear", latestYear);
         // Експортът - меню "Изтегли ▾" вдясно (CSV и PDF се правят от api/v1/balove/{град}.json).
         ctx.put("exportMenu", nvo.site.ExportMenu.html("Данни за " + cityName, java.util.List.of(
                 nvo.site.ExportMenu.Item.action("csv", "Таблица за Excel · всички години", "balove-csv"),

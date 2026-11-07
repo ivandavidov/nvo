@@ -2576,6 +2576,96 @@
   .trend--down { color: var(--accent); }
   .trend--same { color: var(--text-4); }
 
+  /* "Моят бал" над класацията на паралелките: полето, "Изчисли бала" и "Само паралелките в обсега"
+     в един ред (всички по 40 px); помощникът е панел под реда. Телефон: полето и бутонът са две
+     равни колони, превключвателят - ред под тях; помощникът е в две колони (формулата - на цял ред). */
+  .bal { display: grid; gap: var(--sp-3); container-type: inline-size; }
+  .bal__bar { display: flex; flex-wrap: wrap; align-items: flex-end; gap: var(--sp-3) var(--sp-4); }
+  .bal__score { flex: 0 1 15rem; }
+  .bal__input { position: relative; display: block; }
+  .bal__input .input { padding-right: 2.5rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .bal__clear {
+    position: absolute;
+    top: 50%;
+    right: 4px;
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 0;
+    border-radius: var(--radius-xs);
+    background: transparent;
+    color: var(--text-3);
+    transform: translateY(-50%);
+  }
+  .bal__clear:hover { background: var(--surface-2); color: var(--text); }
+  .bal__clear svg { width: 14px; height: 14px; }
+  .bal__calc-toggle { --btn-h: 40px; }
+  .bal__calc-toggle svg { transition: transform var(--dur) var(--ease); }
+  .bal__calc-toggle[aria-expanded="true"] svg { transform: rotate(180deg); }
+  .bal__only { min-height: 40px; }
+  .bal__only:has(input:disabled) { opacity: 0.55; cursor: default; }
+  .bal__only input:disabled { cursor: default; }
+  .bal__calc {
+    display: grid;
+    grid-template-columns: 7rem 7rem minmax(11rem, 1fr) minmax(11rem, 1fr) minmax(11rem, 1fr);
+    align-items: end;
+    gap: var(--sp-3) var(--sp-4);
+    padding: var(--sp-4);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--surface-2);
+  }
+  .bal__calc[hidden] { display: none; }
+  .bal__calc .input { font-variant-numeric: tabular-nums; }
+  .bal__result { grid-column: 1 / -1; margin: 0; color: var(--text-2); font-size: var(--fs-md); font-variant-numeric: tabular-nums; }
+  .bal__result strong { color: var(--text); font-size: var(--fs-lg); }
+  .bal__hint { margin: 0; }
+  .bal .input[aria-invalid="true"] { border-color: var(--danger); }
+  .bal__hint.is-error, .bal__result.is-error { color: var(--danger); }
+  @container (max-width: 55.99rem) {
+    .bal__calc { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .bal__formula { grid-column: 1 / -1; }
+  }
+  @media (max-width: 640px) {
+    .bal__bar { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-3); }
+    .bal__calc-toggle { width: 100%; }
+    .bal__only { grid-column: 1 / -1; }
+    .bal__calc { padding: var(--sp-3); }
+    .bal__calc-toggle .chip__long { display: none; }
+    .bal__calc-toggle .chip__short { display: inline; }
+  }
+  /* С въведен бал (balove.js) таблицата е само за последната година: "Мин. 26" и "Моят бал" - извод с
+     думи ("Стига за 1-во класиране", "Стига за 3-то класиране", "Не стига") и под него подробност с
+     точките. В компактния изглед (под 1024 px) изводът е трети ред под името на паралелката, а
+     таблицата е № | паралелка | Мин. 26 - събира се без скрол настрани. */
+  /* Широко колкото най-дългото "минимумът на 2-ро е 385.00 - балът е равен на него" да е на един ред. */
+  .balove-overview__table .col-verdict { width: 23rem; white-space: normal; }
+  .verdict, .verdict__detail { display: block; }
+  .verdict { font-weight: 650; }
+  .verdict--in { color: var(--success); }
+  .verdict--later { color: var(--warning); }
+  .verdict--out, .verdict--none { color: var(--text-3); }
+  .verdict__detail { margin-top: 1px; color: var(--text-3); font-size: var(--fs-sm); line-height: 1.35; }
+  .ov-verdict { display: block; margin-top: var(--sp-1); font-size: var(--fs-sm); line-height: 1.35; }
+  .ov-verdict .verdict__detail { font-size: var(--fs-xs); }
+  /* "3-то" не се разделя на два реда по тирето. */
+  .verdict__k { white-space: nowrap; }
+  /* 320 px: по-тесни № (2.5rem) и "Мин. 26" (5.5rem) и по-малки отстъпи - таблицата се събира
+     цялата, без скрол настрани, а "Математически" не се пренася по средата. */
+  @container (max-width: 19.99rem) {
+    .balove-overview__table--compact.balove-overview__table--bal .col-num { width: 2.5rem; padding-inline: 0.3rem 0.4rem; }
+    .balove-overview__table--compact.balove-overview__table--bal .col-profile { left: 2.5rem; padding-inline: 0.5rem; }
+    .balove-overview__table--compact.balove-overview__table--bal th.col-profile { width: max(7.75rem, calc(100cqw - 2.5rem - 5.5rem)); }
+    .balove-overview__table--compact.balove-overview__table--bal .col-score { width: 5.5rem; padding-inline: 0.5rem; }
+  }
+  .balove-overview__table .bal__all { margin-left: var(--sp-2); }
+  /* Над таблицата: обобщението (числата) и бележката под него. */
+  .bal__summary, .bal__note { display: block; }
+  .bal__summary { color: var(--text); font-size: var(--fs-md); }
+  .bal__note { margin-top: 2px; }
+
   .balove-hub__search { width: min(320px, 100%); }
   .balove-hub__tier { margin-top: var(--sp-8); }
   .balove-hub__tier .city-switch__label { display: block; margin-bottom: var(--sp-3); }

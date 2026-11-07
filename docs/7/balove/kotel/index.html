@@ -136,7 +136,7 @@
     <header class="page-head">
       <p class="page-head__eyebrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> Прием след 7 клас · Котел</p>
       <h1 class="page-head__title">Минимални и максимални балове по паралелки след 7 клас - Котел</h1>
-      <p class="page-head__lead">Баловете на приетите ученици по паралелки и класирания за последните години - избери паралелка за подробности или разгледай водещите паралелки в града.</p>
+      <p class="page-head__lead">Баловете на приетите ученици по паралелки и класирания за последните години - избери паралелка за подробности, разгледай водещите паралелки в града или въведи своя бал и виж докъде стига.</p>
       <div class="page-head__actions cluster">
         <a class="btn" href="../../#kotel"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg> <span class="chip__long">НВО 7 клас - Котел</span><span class="chip__short">НВО 7 клас</span></a>
         <a class="btn" href="../"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg> <span class="chip__long">Всички градове</span><span class="chip__short">Градове</span></a>
@@ -218,6 +218,45 @@
         </div>
       </div>
       <div class="card__body stack">
+        <div class="bal" id="bal">
+          <div class="bal__bar">
+            <label class="field bal__score" for="bal-input">
+              <span class="field__label">Моят бал</span>
+              <span class="bal__input">
+                <input class="input" id="bal-input" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" maxlength="7" placeholder="30-500, напр. 412,5" aria-describedby="bal-hint">
+                <button type="button" class="bal__clear" id="bal-clear" aria-label="Изчисти бала" hidden><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+              </span>
+            </label>
+            <button type="button" class="btn bal__calc-toggle" id="bal-calc-toggle" aria-expanded="false" aria-controls="bal-calc"><span class="chip__long">Изчисли бала</span><span class="chip__short">Изчисли</span> <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></button>
+            <label class="switch bal__only">
+              <input type="checkbox" id="bal-only" disabled> Само паралелките, за които балът стига
+            </label>
+          </div>
+          <div class="bal__calc" id="bal-calc" hidden>
+            <label class="field" for="bal-bel">
+              <span class="field__label">НВО БЕЛ</span>
+              <input class="input" id="bal-bel" type="text" inputmode="decimal" autocomplete="off" maxlength="6" placeholder="0-100">
+            </label>
+            <label class="field" for="bal-mat">
+              <span class="field__label">НВО МАТ</span>
+              <input class="input" id="bal-mat" type="text" inputmode="decimal" autocomplete="off" maxlength="6" placeholder="0-100">
+            </label>
+            <label class="field bal__formula" for="bal-formula">
+              <span class="field__label">Формула</span>
+              <select class="select" id="bal-formula"></select>
+            </label>
+            <label class="field" for="bal-grade1">
+              <span class="field__label">Оценка 1</span>
+              <select class="select" id="bal-grade1"></select>
+            </label>
+            <label class="field" for="bal-grade2">
+              <span class="field__label">Оценка 2</span>
+              <select class="select" id="bal-grade2"></select>
+            </label>
+            <p class="bal__result" id="bal-result" aria-live="polite"></p>
+          </div>
+          <p class="bal__hint muted text-sm" id="bal-hint">Въведи своя бал, за да видиш за кои паралелки стига спрямо минималните балове от 2026. Формулата, по която го смяташ, определяш ти - сравнението е само по крайния резултат, а не по формулата на всяка паралелка. Балът се пази само на това устройство.</p>
+        </div>
         <details class="disclosure disclosure--plain">
           <summary>Как работи тази секция?</summary>
           <div class="disclosure__body prose">
@@ -226,6 +265,13 @@
               <li>Полето за търсене филтрира по училище и паралелка.</li>
               <li>Клик върху заглавията "Училище", "Паралелка" и "Мин." сортира във възходящ или низходящ ред.</li>
               <li>Клик върху ред отваря детайлите за избраната паралелка по-горе.</li>
+              <li>С въведен бал таблицата е само за 2026 - в нея са паралелките с класиране през 2026. "Мин. 2026" е минималният бал на 1-во класиране, а "Моят бал" казва с думи стига ли твоят бал. Минималният бал е балът на последния приет на съответното класиране.</li>
+              <li>"Стига за 1-во класиране" - балът е поне колкото минимума на 1-во класиране. "Стига за 3-то класиране" - балът не стига за 1-во и 2-ро, но е поне колкото минимума на 3-то. Под извода е минимумът, който балът преминава, и с колко точки е над него. "Не стига" - балът е под минимума на всички класирания; под извода е колко точки липсват до най-ниския от тях.</li>
+              <li>С въведен бал таблицата е подредена по "Моят бал": по минимума, който балът преминава (на първото класиране, на което стига), най-високият отгоре. Така паралелка, в която балът стига чак на 2-ро класиране, е между паралелките за 1-во класиране с близък минимум - веднага се вижда и къде балът стига, ако се изчака по-късно класиране. Накрая са паралелките, за които балът не стига (най-близките до минимума отгоре). Клик върху "Моят бал" обръща подредбата.</li>
+              <li>"Само паралелките, за които балът стига" (по подразбиране е изключено) скрива паралелките, за които балът не стига на нито едно класиране през 2026.</li>
+              <li>Формулата на бала определяш ти. Сравнението е само по крайния резултат: въведеното число се сравнява с минималните балове на всички паралелки, без значение по каква формула е сметнат балът за всяка от тях. Формулите на паралелките ги няма в данните от РУО, затова сайтът не ги проверява.</li>
+              <li>"Изчисли бала" събира точките от НВО по БЕЛ и по математика (до 100 всяка; може и от пробен изпит), по формулата, която избереш, и точките от две оценки от свидетелството: отличен (6) - 50, много добър (5) - 39, добър (4) - 26, среден (3) - 15. Балът е от 30 (0 точки от НВО и две оценки среден (3)) до 500.</li>
+              <li>Минималните балове са от минали години и се менят всяка година - използвай ги като ориентир, не като гаранция.</li>
             </ul>
           </div>
         </details>
