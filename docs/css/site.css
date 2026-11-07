@@ -2644,10 +2644,25 @@
   :is(.bal__school, .balove-filters__school) .combo__check { grid-column: 2; grid-row: 1 / span 2; align-self: center; }
   .bal__result { grid-column: 1 / -1; margin: 0; color: var(--text-2); font-size: var(--fs-md); font-variant-numeric: tabular-nums; }
   .bal__result strong { color: var(--text); font-size: var(--fs-lg); }
-  /* Под сметката: дали нейният бал е този в таблицата; ако не - кой е и бутон "Използвайте X". */
-  .bal__status { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-1) var(--sp-3); margin-top: var(--sp-1); color: var(--text-3); font-size: var(--fs-sm); }
-  .bal__status--used { gap: var(--sp-1); color: var(--success); font-weight: 600; }
-  .bal__status svg { width: 16px; height: 16px; }
+  /* Под сметката: какво е в таблицата и едно поле с височината на бутона ("✓ Използва се" или
+     "Използвайте X") - еднакъв размер във всички състояния, панелът не подскача. На широко - едно до
+     друго, на тясно - едно под друго (контейнерът е .bal). */
+  .bal__status { display: grid; grid-template-columns: auto auto; justify-content: start; align-items: center; gap: var(--sp-1) var(--sp-3); margin-top: var(--sp-1); color: var(--text-3); font-size: var(--fs-sm); }
+  .bal__status-used {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--sp-1);
+    height: 32px;
+    padding: 0 var(--sp-3);
+    border-radius: var(--radius-xs);
+    background: var(--success-soft);
+    color: var(--success);
+    font-weight: 600;
+  }
+  .bal__status-used svg { width: 16px; height: 16px; }
+  @container (max-width: 29.99rem) {
+    .bal__status { grid-template-columns: auto; justify-items: start; }
+  }
   .bal__hint { margin: 0; }
   .bal .input[aria-invalid="true"] { border-color: var(--danger); }
   .bal__hint.is-error, .bal__result.is-error { color: var(--danger); }

@@ -739,8 +739,10 @@ const DEFAULT_GRADE = '6';
 let calcState = null;
 
 /**
- * Редът с резултата на сметката - винаги казва дали този бал е в таблицата: същият като в полето
- * "Моят бал" - "използва се"; друг или празно поле - кое се използва и бутон "Използвайте X".
+ * Редът с резултата на сметката - винаги казва дали този бал е в таблицата. Еднаква структура във
+ * всички състояния (иначе панелът подскача при "Използвайте"): първи ред "Бал по тази сметка: …",
+ * под него кратък текст какво е в таблицата и едно поле с височината на бутона - "✓ Използва се"
+ * или бутон "Използвайте X".
  */
 function renderCalcResult() {
   if (!calcState) {
@@ -748,17 +750,13 @@ function renderCalcResult() {
   }
   const b = calcState.bal.toFixed(2);
   const used = state.bal !== null && Math.abs(state.bal - calcState.bal) < 0.005;
-  let html = (used ? 'Бал: ' : 'Бал по тази сметка: ') + '<strong>' + b + '</strong> = ' + calcState.expr
-    + '<span class="bal__status' + (used ? ' bal__status--used' : '') + '">';
-  if (used) {
-    html += icon('check') + 'Използва се в таблицата';
-  } else {
-    html += (state.bal === null
-      ? 'Полето "Моят бал" е празно - този бал не се използва в таблицата.'
-      : 'В таблицата се използва ' + state.bal.toFixed(2) + ' от полето "Моят бал".')
-      + ' <button type="button" class="btn btn--sm bal__use" data-action="bal-use">Използвайте ' + b + '</button>';
-  }
-  el.calcResult.innerHTML = html + '</span>';
+  const now = state.bal === null ? 'Полето "Моят бал" е празно.' : 'В таблицата: ' + state.bal.toFixed(2) + ' от "Моят бал".';
+  el.calcResult.innerHTML = 'Бал по тази сметка: <strong>' + b + '</strong> = ' + calcState.expr
+    + '<span class="bal__status"><span class="bal__status-text">' + esc(now) + '</span>'
+    + (used
+      ? '<span class="bal__status-used">' + icon('check') + 'Използва се</span>'
+      : '<button type="button" class="btn btn--sm bal__use" data-action="bal-use">Използвайте ' + b + '</button>')
+    + '</span>';
 }
 
 /** × до "Моят бал": отначало - без бал и без сметка (училище, точки; формулата и оценките - по подразбиране). */
