@@ -679,6 +679,7 @@ function setBal(value) {
   if (state.school && window.Highcharts) {
     showDetail();   // линията "Моят бал" в графиките на избраната паралелка
   }
+  renderCalcResult();   // сметката казва дали нейният бал е този в таблицата
 }
 
 function persistBal() {
@@ -734,6 +735,49 @@ const CALC_EMPTY = 'Попълнете точките от НВО по БЕЛ и
 /** Оценките от свидетелството по подразбиране - отличен (6); посетителят може да ги смени. */
 const DEFAULT_GRADE = '6';
 
+/** Сметнатият бал ({ bal, expr }) или null, докато сметката не е пълна. */
+let calcState = null;
+
+/**
+ * Редът с резултата на сметката - винаги казва дали този бал е в таблицата: същият като в полето
+ * "Моят бал" - "използва се"; друг или празно поле - кое се използва и бутон "Използвайте X".
+ */
+function renderCalcResult() {
+  if (!calcState) {
+    return;
+  }
+  const b = calcState.bal.toFixed(2);
+  const used = state.bal !== null && Math.abs(state.bal - calcState.bal) < 0.005;
+  let html = (used ? 'Бал: ' : 'Бал по тази сметка: ') + '<strong>' + b + '</strong> = ' + calcState.expr
+    + '<span class="bal__status' + (used ? ' bal__status--used' : '') + '">';
+  if (used) {
+    html += icon('check') + 'Използва се в таблицата';
+  } else {
+    html += (state.bal === null
+      ? 'Полето "Моят бал" е празно - този бал не се използва в таблицата.'
+      : 'В таблицата се използва ' + state.bal.toFixed(2) + ' от полето "Моят бал".')
+      + ' <button type="button" class="btn btn--sm bal__use" data-action="bal-use">Използвайте ' + b + '</button>';
+  }
+  el.calcResult.innerHTML = html + '</span>';
+}
+
+/** × до "Моят бал": отначало - без бал и без сметка (училище, точки; формулата и оценките - по подразбиране). */
+function clearBalAll() {
+  el.balInput.value = '';
+  el.bel.value = '';
+  el.mat.value = '';
+  el.bel.setAttribute('aria-invalid', 'false');
+  el.mat.setAttribute('aria-invalid', 'false');
+  el.formula.value = FORMULAS[0].key;
+  el.grade1.value = DEFAULT_GRADE;
+  el.grade2.value = DEFAULT_GRADE;
+  setCalcSchool(null);
+  calcState = null;
+  el.calcResult.classList.remove('is-error');
+  el.calcResult.textContent = CALC_EMPTY;
+  readBalInput(true);   // таблицата - без бал; запазеното се изтрива
+}
+
 /** "Изчислете бала": от точките от НВО, избраната формула и двете оценки попълва "Моят бал"
  * (fill = false - само сметката). */
 function readCalc(fill) {
@@ -742,6 +786,7 @@ function readCalc(fill) {
   el.bel.setAttribute('aria-invalid', Number.isNaN(bel) ? 'true' : 'false');
   el.mat.setAttribute('aria-invalid', Number.isNaN(mat) ? 'true' : 'false');
   if (Number.isNaN(bel) || Number.isNaN(mat)) {
+    calcState = null;
     el.calcResult.textContent = 'Точките от НВО са от 0 до ' + MAX_NVO + '.';
     el.calcResult.classList.add('is-error');
     persistBal();
@@ -752,14 +797,15 @@ function readCalc(fill) {
   const grade2 = Number(el.grade2.value) || 0;
   const bal = balFromParts({ bel, mat, formula: el.formula.value, grade1, grade2 });
   if (bal === null) {
+    calcState = null;
     el.calcResult.textContent = CALC_EMPTY;
     persistBal();
     return;
   }
   const f = FORMULAS.find((x) => x.key === el.formula.value);
   const pts = (g) => GRADE_POINTS.find((x) => x.grade === g).points;
-  el.calcResult.innerHTML = 'Бал: <strong>' + bal.toFixed(2) + '</strong> = ' + f.bel + ' × ' + fmtPoints(bel) + ' + '
-    + f.mat + ' × ' + fmtPoints(mat) + ' + ' + pts(grade1) + ' + ' + pts(grade2);
+  calcState = { bal, expr: f.bel + ' × ' + fmtPoints(bel) + ' + ' + f.mat + ' × ' + fmtPoints(mat) + ' + ' + pts(grade1) + ' + ' + pts(grade2) };
+  renderCalcResult();
   if (fill) {
     el.balInput.value = fmtPoints(bal);
     readBalInput(true);
@@ -938,9 +984,14 @@ function setupBal() {
     }
   });
   el.balClear.addEventListener('click', () => {
-    el.balInput.value = '';
-    readBalInput(true);
+    clearBalAll();
     el.balInput.focus();
+  });
+  el.calcResult.addEventListener('click', (e) => {
+    if (e.target.closest('[data-action="bal-use"]') && calcState) {
+      el.balInput.value = fmtPoints(calcState.bal);
+      readBalInput(true);
+    }
   });
   el.balOnly.addEventListener('change', () => {
     reachOnlyPref = el.balOnly.checked;
