@@ -1100,6 +1100,11 @@
   .input::placeholder { color: var(--text-4); }
   .input:hover, .select:hover { border-color: var(--text-4); }
   .input:focus, .select:focus { outline: none; border-color: var(--primary); box-shadow: var(--ring); }
+  /* Safari на iPhone приближава страницата, когато фокусът влезе в поле с шрифт под 16px (и тя
+     тръгва и настрани) - на устройства с докосване полетата и менютата са 16px. */
+  @media (hover: none) and (pointer: coarse) {
+    .input, .select { font-size: max(1rem, var(--fs-md)); }
+  }
   .select {
     appearance: none;
     padding-right: 2.25rem;
@@ -2627,6 +2632,11 @@
   @container (max-width: 55.99rem) {
     .bal__calc { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .bal__formula { grid-column: 1 / -1; }
+  }
+  /* 320 px (с 16px шрифт на телефон): по-малко място за стрелката в менютата - "6 (50 т.)" да се събира,
+     а текстът да започва там, където и в полетата над тях. */
+  @container (max-width: 18rem) {
+    .bal__calc .select { padding-right: 1.6rem; background-position: right 0.4rem center; }
   }
   @media (max-width: 640px) {
     .bal__bar { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-3); }

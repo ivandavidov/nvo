@@ -753,7 +753,9 @@ function setupBal() {
     const open = el.calc.hidden;
     el.calc.hidden = !open;
     el.calcToggle.setAttribute('aria-expanded', String(open));
-    if (open) {
+    // С мишка/клавиатура - направо в първото поле; на телефон не: клавиатурата би изскочила
+    // и страницата би подскочила само от отварянето на панела.
+    if (open && window.matchMedia('(pointer: fine)').matches) {
       el.bel.focus();
     }
   });
