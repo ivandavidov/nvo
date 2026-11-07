@@ -1815,21 +1815,24 @@
     white-space: nowrap;
   }
 
-  /* Highcharts tooltip (useHTML) */
-  .tt { min-width: 240px; font-family: var(--font-sans); }
-  .tt__year { font-weight: 700; margin-bottom: 4px; }
-  .tt__row {
+  /* Highcharts tooltip (useHTML): една обща мрежа за всички редове (.tt__row е display: contents),
+     така че точките, имената, стойностите и броят ученици са в подравнени колони. Името е с пълната
+     си ширина (до 260px, после "…"), 1fr изтласква числата вдясно; числата са подравнени вдясно,
+     а текстът на реда - по базова линия (стойността и по-дребният брой ученици на една линия). */
+  .tt {
     display: grid;
-    /* Името е с пълната си ширина (до 260px, после "…"), а 1fr подравнява стойностите между редовете. */
     grid-template-columns: 16px minmax(max-content, 1fr) auto auto;
-    align-items: center;
-    gap: 6px 8px;
-    padding: 1px 0;
+    align-items: baseline;
+    gap: 3px 8px;
+    min-width: 240px;
+    font-family: var(--font-sans);
   }
-  .tt__row > .dot { justify-self: center; }
+  .tt__year { grid-column: 1 / -1; font-weight: 700; margin-bottom: 2px; }
+  .tt__row { display: contents; }
+  .tt__row > .dot { align-self: center; justify-self: center; }
   .tt__name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 260px; }
-  .tt__val { font-weight: 700; font-variant-numeric: tabular-nums; }
-  .tt__sub { color: var(--text-3); font-size: 11px; font-variant-numeric: tabular-nums; }
+  .tt__val { justify-self: end; text-align: right; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .tt__sub { justify-self: end; text-align: right; color: var(--text-3); font-size: 11px; font-variant-numeric: tabular-nums; }
 
   /* --- Градове --- */
   .city-filter { width: min(280px, 100%); }

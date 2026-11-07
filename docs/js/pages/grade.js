@@ -288,8 +288,10 @@ function tooltipFormatter(subj) {
       let name;
       let counts;
       if (opts.avgCity) {
-        // Средното за града: учениците с резултат в целия град.
-        name = opts.name;
+        // Средното за града: краткото име ("гр. В. Търново" - пунктирът го отличава от училищата)
+        // и учениците с резултат в целия град.
+        const city = cityBySlug(opts.avgCity);
+        name = city ? 'гр. ' + city.label : opts.name;
         counts = opts.students;
       } else {
         const o = school(opts.schoolIndex);
