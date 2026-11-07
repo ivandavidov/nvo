@@ -65,7 +65,9 @@ const el = {
   formula: document.getElementById('bal-formula'),
   grade1: document.getElementById('bal-grade1'),
   grade2: document.getElementById('bal-grade2'),
-  calcResult: document.getElementById('bal-result')
+  calcResult: document.getElementById('bal-result'),
+  calcSchool: document.getElementById('bal-school'),        // само за градове с НВО 7 клас
+  calcSchoolNote: document.getElementById('bal-school-note')
 };
 
 /** Бал с два знака след точката - еднаква ширина, за да са колоните подравнени (490.50, не 490.5). */
@@ -682,8 +684,15 @@ function setBal(value) {
 function persistBal() {
   const v = {
     bal: el.balInput.value.trim(), bel: el.bel.value.trim(), mat: el.mat.value.trim(),
-    formula: el.formula.value, grade1: el.grade1.value, grade2: el.grade2.value
+    formula: el.formula.value, grade1: el.grade1.value, grade2: el.grade2.value,
+    school: calcSchool ? calcSchool.code : '', schoolCity: calcSchool ? CITY : ''
   };
+  // Училище, избрано на страницата на друг град, остава запазено, докато точките са все още неговите.
+  const prev = readSavedBal();
+  if (!calcSchool && prev && prev.school && prev.schoolCity && prev.schoolCity !== CITY && prev.bel === v.bel && prev.mat === v.mat) {
+    v.school = prev.school;
+    v.schoolCity = prev.schoolCity;
+  }
   const empty = !v.bal && !v.bel && !v.mat && v.formula === FORMULAS[0].key
     && v.grade1 === DEFAULT_GRADE && v.grade2 === DEFAULT_GRADE;
   saveBal(empty ? null : v);
@@ -757,7 +766,128 @@ function readCalc(fill) {
   }
 }
 
+/* ---------- "Средни резултати на училище" в "Изчислете бала" ---------- */
+// Търсачка с училищата от града, които имат резултати от НВО 7 клас и по двата предмета за
+// последната година; изборът попълва НВО БЕЛ и МАТ със средните им точки. Данните са публичният
+// api/v1/7/{град}/data.json - зарежда се при първото отваряне на "Изчислете бала". Полето го има
+// само в градовете със страница за НВО 7 клас (шаблонът, hasNvo).
+const CITY = document.body.dataset.city;
+let calcSchools = null;       // [{ code, name, full, bel, mat, belN, matN, hay }]
+let calcSchoolYear = null;
+let calcSchool = null;        // избраното училище - докато НВО БЕЛ и МАТ са неговите средни
+let calcSchoolsLoading = null;
+const CALC_SCHOOL_HINT = el.calcSchoolNote ? el.calcSchoolNote.textContent : '';
+
+function loadCalcSchools() {
+  if (!el.calcSchool) {
+    return Promise.resolve(null);
+  }
+  if (!calcSchoolsLoading) {
+    calcSchoolsLoading = fetch('../../../api/v1/7/' + encodeURIComponent(CITY) + '/data.json')
+      .then((r) => {
+        if (!r.ok) {
+          throw new Error('HTTP ' + r.status);
+        }
+        return r.json();
+      })
+      .then((d) => {
+        const yi = (d.yearsRange || []).length - 1;
+        calcSchoolYear = d.yearsRange[yi];
+        const city = d.cities && d.cities[CITY];
+        const list = [];
+        Object.keys(city ? city.schools : {}).forEach((code) => {
+          const x = city.schools[code];
+          const bel = x.belScore ? x.belScore[yi] : null;
+          const mat = x.matScore ? x.matScore[yi] : null;
+          if (bel === null || bel === undefined || mat === null || mat === undefined) {
+            return;
+          }
+          list.push({ code, name: x.shortName, full: x.fullName, bel, mat,
+            belN: x.belStudents ? x.belStudents[yi] : null, matN: x.matStudents ? x.matStudents[yi] : null,
+            hay: searchKey(x.shortName + ' ' + x.fullName + ' ' + code + ' ' + expandAbbreviations(x.shortName + ' ' + x.fullName)) });
+        });
+        calcSchools = list.sort(bySchoolName);
+        if (document.activeElement === el.calcSchool) {
+          el.calcSchool.dispatchEvent(new Event('input'));   // списъкът - веднага щом дойдат данните
+        }
+        return calcSchools;
+      })
+      .catch(() => {
+        calcSchoolsLoading = null;   // следващото отваряне опитва отново
+        el.calcSchoolNote.textContent = 'Средните резултати на училищата не можаха да се заредят. Опитайте отново.';
+        return null;
+      });
+  }
+  return calcSchoolsLoading;
+}
+
+const pupils = (n) => n + (n === 1 ? ' ученик' : ' ученици');
+
+/** Избира училище (или null - без училище) и показва под полето откъде са числата. */
+function setCalcSchool(x) {
+  calcSchool = x;
+  if (!el.calcSchool) {
+    return;
+  }
+  el.calcSchool.value = x ? x.name : '';
+  if (!x) {
+    el.calcSchoolNote.textContent = CALC_SCHOOL_HINT;
+    return;
+  }
+  const n = x.belN === x.matN ? (x.belN ? ' (' + pupils(x.belN) + ')' : '')
+    : ' (БЕЛ - ' + pupils(x.belN || 0) + ', МАТ - ' + pupils(x.matN || 0) + ')';
+  el.calcSchoolNote.textContent = 'Средни резултати от НВО 7 клас на ' + x.full + ' за ' + calcSchoolYear + n
+    + ': БЕЛ ' + x.bel.toFixed(2) + ', МАТ ' + x.mat.toFixed(2)
+    + '. Това е средното на училището, а не резултат на конкретен ученик.';
+}
+
+function setupCalcSchool() {
+  if (!el.calcSchool) {
+    return;
+  }
+  createCombobox({
+    input: el.calcSchool,
+    host: el.calcSchool.closest('.combo'),
+    minChars: 0,
+    hint: '',
+    emptyText: () => (calcSchools ? 'Няма такова училище' : 'Зареждане…'),
+    search(q) {
+      if (!calcSchools) {
+        return [{ label: '', items: [] }];
+      }
+      const terms = searchKey(q).split(' ').filter(Boolean);
+      const items = calcSchools.filter((x) => terms.every((t) => x.hay.includes(t)))
+        .map((x) => ({ id: x.code, title: x.name, meta: x.full !== x.name ? x.full : '', checked: !!calcSchool && x.code === calcSchool.code }));
+      return [{ label: '', items }];
+    },
+    onSelect(item) {
+      const x = calcSchools.find((y) => y.code === item.id);
+      el.bel.value = fmtPoints(x.bel);
+      el.mat.value = fmtPoints(x.mat);
+      setCalcSchool(x);
+      readCalc(true);   // балът по избраната формула и оценки
+      el.calcSchool.blur();
+      // Комбобоксът изчиства полето след избора - името на училището се връща веднага след това.
+      setTimeout(() => {
+        el.calcSchool.value = calcSchool ? calcSchool.name : '';
+      }, 0);
+    }
+  });
+  // При фокус - целият списък (както при избора на училище по-горе); след това - името на избраното.
+  el.calcSchool.addEventListener('focus', () => {
+    loadCalcSchools();
+    el.calcSchool.value = '';
+    el.calcSchool.dispatchEvent(new Event('input'));
+  });
+  el.calcSchool.addEventListener('blur', () => {
+    setTimeout(() => {
+      el.calcSchool.value = calcSchool ? calcSchool.name : '';
+    }, 150);
+  });
+}
+
 function setupBal() {
+  setupCalcSchool();
   el.formula.innerHTML = FORMULAS.map((f) => '<option value="' + f.key + '">' + esc(f.label) + '</option>').join('');
   // Кратко ("6 (50 т.)"), за да се събира в две колони и на 320 px; името на оценката е за екранните четци.
   // Без празен избор: по подразбиране и двете са 6 - посетителят ги сменя, ако е нужно.
@@ -784,6 +914,15 @@ function setupBal() {
     });
     if (el.bel.value || el.mat.value) {
       readCalc(false);   // само сметката - балът е запазеният (може да е въведен на ръка)
+    }
+    // Запазеното училище - само на страницата на същия град и докато точките са все още неговите.
+    if (saved.school && saved.schoolCity === CITY && el.calcSchool) {
+      loadCalcSchools().then((list) => {
+        const s = list && list.find((x) => x.code === saved.school);
+        if (s && el.bel.value === fmtPoints(s.bel) && el.mat.value === fmtPoints(s.mat)) {
+          setCalcSchool(s);
+        }
+      });
     }
     readBalInput(true);
   }
@@ -820,29 +959,41 @@ function setupBal() {
     if (open && window.matchMedia('(pointer: fine)').matches) {
       el.bel.focus();
     }
+    if (open) {
+      loadCalcSchools();
+    }
   });
-  [el.bel, el.mat].forEach((inp) => inp.addEventListener('input', () => readCalc(true)));
+  [el.bel, el.mat].forEach((inp) => inp.addEventListener('input', () => {
+    // Ръчно сменени точки вече не са средните на училището.
+    if (calcSchool && (el.bel.value !== fmtPoints(calcSchool.bel) || el.mat.value !== fmtPoints(calcSchool.mat))) {
+      setCalcSchool(null);
+    }
+    readCalc(true);
+  }));
   [el.formula, el.grade1, el.grade2].forEach((sel) => sel.addEventListener('change', () => readCalc(true)));
 }
 
 /* ---------------- Старт ---------------- */
 
+/** Подредба на училища по кратко име: първо номерираните ("1 СУ", "2 ОУ"…) по номер, после по азбучен ред. */
+function bySchoolName(a, b) {
+  const an = /^\d/.test(a.name);
+  const bn = /^\d/.test(b.name);
+  if (an && bn) {
+    return Number.parseInt(a.name, 10) - Number.parseInt(b.name, 10);
+  }
+  if (an) {
+    return -1;
+  }
+  if (bn) {
+    return 1;
+  }
+  return a.name.localeCompare(b.name, 'bg');
+}
+
 function setupSchoolCombobox() {
   const list = Object.keys(schools).map((code) => ({ code, name: schools[code].n, full: schools[code].f }))
-    .sort((a, b) => {
-      const an = /^\d/.test(a.name);
-      const bn = /^\d/.test(b.name);
-      if (an && bn) {
-        return Number.parseInt(a.name, 10) - Number.parseInt(b.name, 10);
-      }
-      if (an) {
-        return -1;
-      }
-      if (bn) {
-        return 1;
-      }
-      return a.name.localeCompare(b.name, 'bg');
-    })
+    .sort(bySchoolName)
     .map((s) => Object.assign(s, { hay: searchKey(s.name + ' ' + s.full + ' ' + s.code + ' ' + expandAbbreviations(s.name + ' ' + s.full)) }));
   createCombobox({
     input: el.schoolInput,

@@ -2628,6 +2628,20 @@
   }
   .bal__calc[hidden] { display: none; }
   .bal__calc .input { font-variant-numeric: tabular-nums; }
+  /* "Средни резултати на училище" - на цял ред най-горе в помощника; под полето - откъде са числата. */
+  .bal__school { grid-column: 1 / -1; }
+  .bal__school-note { margin: 0; }
+  .bal__school .combo__list { max-height: min(360px, 50vh); }
+  /* Списъците с училища на страницата: краткото име, под него пълното - едно до друго на телефон
+     не се събират и краткото се реже ("10 …"). */
+  :is(.bal__school, .balove-filters__school) .combo__opt {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: var(--sp-2);
+    row-gap: 1px;
+  }
+  :is(.bal__school, .balove-filters__school) .combo__opt-meta { grid-column: 1; grid-row: 2; white-space: normal; }
+  :is(.bal__school, .balove-filters__school) .combo__check { grid-column: 2; grid-row: 1 / span 2; align-self: center; }
   .bal__result { grid-column: 1 / -1; margin: 0; color: var(--text-2); font-size: var(--fs-md); font-variant-numeric: tabular-nums; }
   .bal__result strong { color: var(--text); font-size: var(--fs-lg); }
   .bal__hint { margin: 0; }

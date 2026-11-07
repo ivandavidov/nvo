@@ -1,6 +1,6 @@
 // Combobox с търсене: поле + падащ списък с групи, навигация с клавиатура.
 //   createCombobox({ input, host, search(query) → [{ label, items: [{ id, title, meta, checked }] }],
-//                    onSelect(item), emptyText, minChars })
+//                    onSelect(item), emptyText, minChars })   emptyText - текст или функция (напр. "Зареждане…" докато данните идват)
 import { esc } from './dom.js';
 import { icon } from './icons.js';
 
@@ -78,7 +78,7 @@ export function createCombobox({ input, host, search, onSelect, emptyText = 'Н�
       });
     });
     if (!items.length) {
-      html.push('<div class="combo__empty">' + esc(emptyText) + '</div>');
+      html.push('<div class="combo__empty">' + esc(typeof emptyText === 'function' ? emptyText() : emptyText) + '</div>');
     }
     list.innerHTML = html.join('');
     list.hidden = false;
